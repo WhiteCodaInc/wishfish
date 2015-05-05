@@ -1,0 +1,863 @@
+<style type="text/css">
+    .overlay{
+        position:absolute;
+        background:rgba(0,0,0,0.85) 0%;
+        background:-moz-linear-gradient(top, rgba(0,0,0,0.85) 0% 0%, rgba(0,0,0,0.95) 100% 100%);
+        background:-webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0,0,0,0.85) 0%), color-stop(100%, rgba(0,0,0,0.95) 100%));
+        background:-webkit-linear-gradient(top, rgba(0,0,0,0.85) 0% 0%, rgba(0,0,0,0.95) 100% 100%);
+        background:-o-linear-gradient(top, rgba(0,0,0,0.85) 0% 0%, rgba(0,0,0,0.95) 100% 100%);
+        background:-ms-linear-gradient(top, rgba(0,0,0,0.85) 0% 0%, rgba(0,0,0,0.95) 100% 100%);
+        background:linear-gradient(to bottom, rgba(0,0,0,0.85) 0% 0%, rgba(0,0,0,0.95) 100% 100%);
+        filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='rgba(0,0,0,0.85) 0%', endColorstr='rgba(0,0,0,0.95) 100%', GradientType=0 );
+        filter:progid:DXImageTransform.Microsoft.gradient(startColorStr='#444444', EndColorStr='#000000');
+        left:0;
+        z-index:30;
+        width:100%;
+        height:100%
+    }
+    .social-register{
+        display:none;
+    }
+    .sign{
+        top: 0;
+        display:none;
+    }
+
+    .overlay .cancel {
+        position: absolute;
+        right: 0;
+        padding: 3%;
+        color: white;
+        text-decoration: none;
+        text-transform: uppercase;
+    }
+
+    .btn-social {
+        position: relative;
+        text-align: left;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding: 11px 60px;
+        border-radius: 0;
+    }
+    .btn-social :first-child {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 45px !important;
+        line-height: 46px !important;
+        font-size: 1.4em!important;
+        text-align: center;
+        border-right: 1px solid rgba(0, 0, 0, 0.2);
+    }
+    .btn-facebook {
+        color: #ffffff;
+        background-color: #3b5998;
+        border-color: rgba(0, 0, 0, 0.2);
+    }
+    .btn-facebook:hover,
+    .btn-facebook:focus{
+        color: #ffffff;
+        background-color: #30487b;
+        border-color: rgba(0, 0, 0, 0.2);
+    }
+    .btn-google-plus {
+        color: #ffffff;
+        background-color: #dd4b39;
+        border-color: rgba(0, 0, 0, 0.2);
+    }
+    .btn-google-plus:hover,
+    .btn-google-plus:focus{
+        color: #ffffff;
+        background-color: #ca3523;
+        border-color: rgba(0, 0, 0, 0.2);
+    }
+</style>
+
+
+
+<!-- if you like to use surface. change class="home" to class="surface"-->
+<section id="home" class="home">
+    <div class="overlay sign" style="display: none;min-height: 0">
+        <a style="padding: 6%"  href="javacript:void(0);" class="cancel">close <i class="fa fa-close"></i></a>
+        <div class="row" style="  margin: 7% 10%;">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <form id="registerForm" action="<?= site_url() ?>register/createAccount"  method="post" class="registration" >
+                    <h1 style="color: white;font-size: 30px;text-align: center">Register</h1>
+                    <div class="row" style="color: white">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input type="text" name="name" class="form-control"   placeholder="Your Full Name" required="" />
+                            </div>
+                            <div class="form-group">
+                                <input type="email" name="email" class="form-control"   placeholder="Your Email address" required=""/>
+                            </div>
+                            <div class="form-group">
+                                <p class="legal">
+                                    By clicking Register, I agree to the 
+                                    <a href="#">Terms of Service</a> and 
+                                    <a href="#">Privacy Policy</a>.
+                                </p>
+                            </div>
+                            <div style="text-align: center" class="form-group">
+                                <button type="submit" class="btn btn-primary btn-lg">Register</button>
+                            </div>
+                            <div class="form-group">
+                                <p style="text-align: center">
+                                    Already have an account? 
+                                    <a id="log" href="#">Log In</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <a href = "<?= $url ?>" class="btn btn-block btn-social btn-google-plus">
+                                <i class="fa fa-google-plus"></i> Sign up with Google
+                            </a>
+                            <a style="cursor: pointer" class="btn btn-block btn-social btn-facebook facebook"  href = "javascript:void(0);">
+                                <i class="fa fa-facebook"></i> Sign up with Facebook
+                            </a>
+                        </div>
+                    </div>
+                </form>
+
+                <form id="loginForm" action="<?= site_url() ?>login/signin" method="post" class="login" novalidate="novalidate">
+                    <h1 style="color: white;font-size: 30px;text-align: center">Log In</h1>
+                    <div class="row" style="color: white">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input type="email" name="email" class="form-control"   placeholder="Your Email address" required=""/>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" name="password" class="form-control"   placeholder="Your Password" required=""/>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="checkbox" name="remember" style="width: 15px;display: inline;height: 15px;font-size: 20;"/> 
+                                <span id="remember" style="cursor: pointer;color: white;font-size: 17px;">Remember me</span>
+                            </div>
+                            <div style="text-align: center" class="form-group">
+                                <button type="submit"  class="btn btn-primary btn-lg">Log In</button>
+                            </div>
+                            <div class="form-group">
+                                <p style="text-align: center">
+                                    Don't have an account?<br/> <a href="#" id="reg">Create Account</a> |
+                                    <a href="javascript:void(0);"  data-toggle="modal" data-target="#new-event">Forgot Password</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <a href = "<?= $url ?>" class="btn btn-block btn-social btn-google-plus">
+                                <i class="fa fa-google-plus"></i> Login with Google
+                            </a>
+                            <br/>
+                            <a style="cursor: pointer" class="btn btn-block btn-social btn-facebook facebook"  href = "javascript:void(0);">
+                                <i class="fa fa-facebook"></i> Login with Facebook
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="new-event" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" style="width: 400px">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h3>Forgot Password</h3>
+                </div>
+                <div class="modal-body" >
+                    <div class="row">
+                        <div class="col-md-12">
+                            <input type="email" id="forgotEmail" placeholder="Enter your email address" class="form-control" />
+                            <span id="msg" style="color: red;"></span>
+                        </div>
+                    </div>
+                    <br/>
+                    <!--                    <div class="row">
+                                            <div class="col-md-6" id="captcha_img"><?= $captcha['image'] ?></div>
+                                            <div class="col-md-3">
+                                                <img id="refresh" src="<?= base_url() ?>assets/refresh.png" alt="refresh" />
+                                            </div>
+                                        </div>-->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h1 id="captcha_img" style="text-align: center;background-image:url(<?= base_url() ?>assets/wow/images/captcha_background.png); ">
+                                <?= $word ?>
+                            </h1>
+                        </div>
+                        <div class="col-md-3">
+                            <img id="refresh" src="<?= base_url() ?>assets/refresh.png" alt="refresh" />
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <input type="text" id="captcha_word" class="form-control" placeholder="Enter Captcha Here" />
+                            <span id="msgCaptcha" style="color: red"></span>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-md-4" style="text-align: center">
+                            <button type="button" id="send" class="btn btn-primary btn-lg">Send</button>
+                        </div>
+                        <div class="col-md-8">
+                            <div style="display: none" id="loadSend">
+                                <img src="<?= base_url() ?>assets/dashboard/img/load.GIF" alt="" />
+                            </div>
+                            <span id="msgSend"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div id="surface"></div>-->
+    <canvas id="canvas"></canvas>
+    <!-- for surface use class overlay to canvas-overlay-->
+    <!-- for surface use class overlay to surface-overlay-->
+    <div class="canvas-overlay">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="home-intro-subscribe">
+                        <!--Header text -->
+                        <h1>Discover the easiest way to scheduling event with <b>Wish-Fish</b></h1>
+                        <h3>Never Again Forget <span  id="typed" style="white-space:pre;color: #1ac6ff;"></span></h3>
+                        <!--DOWNLOAD BUTTON -->
+                        <div class=" home-subscribe center-block">
+                            <form  action="<?= site_url() ?>register/createAccount"  method="post"  class="subscription-form mailchimp form-inline" role="form">
+                                <!-- SUBSCRIPTION SUCCESSFUL OR ERROR MESSAGES -->
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <input style="width: 100%" type="text" name="name"  placeholder="Your Name" class="form-control " required="">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input style="width: 100%" type="email" name="email"  placeholder="Your Email" class="form-control " required="">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <button style="margin: 0;padding: 13px 30px;width: 100%" type="submit" id="subscribe-button" class="btn btn-primary btn-lg">Join Now!</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- SUBSCRIBE BUTTON -->
+                        <!--<br/>-->
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+<section id="service" class="sections colorsbg">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-sm-4 clearfix">
+                <div class="feature text-center  wow fadeInLeft animated" data-wow-offset="120" data-wow-duration="1.5s">
+                    <i class="fa fa-user" data-selector="i.fa" style="outline: none; cursor: default;"></i>
+                    <h4 class="text-white">ADD A FRIEND</h4>
+                    <p class="text-white">
+                        The busier we get, the less time we have,<br/> but there are always those special people in our lives that we never want to forget.<br/> Wish-fish keeps track of their birthdays,<br/> so you don't have to.
+                    </p>
+                </div><!--end feature-->
+            </div>
+
+            <div class="col-sm-4 clearfix">
+                <div class="feature text-center  wow fadeIn animated" data-wow-offset="120" data-wow-duration="1.5s">
+                    <i class="fa fa-calendar" data-selector="i.fa" style="outline: none; cursor: default;"></i>
+                    <h4 class="text-white">SETUP A REMINDER</h4>
+                    <p class="text-white">
+                        If you've ever missed a friends birthday, anniversary, or special event,<br/> you know how embarrassing that can be!<br/> We get it, life can get crazy sometimes...<br/> wish-fish will remind you, so you can live your life to the fullest!
+                    </p>
+                </div><!--end feature-->
+            </div>
+
+            <div class="col-sm-4 clearfix">
+                <div class="feature text-center  wow fadeInRight animated" data-wow-offset="120" data-wow-duration="1.5s">
+                    <i class="fa fa-wheelchair" data-selector="i.fa" style="outline: none; cursor: default;"></i>
+                    <h4 class="text-white">SIT BACK AND RELAX</h4>
+                    <p class="text-white">
+                        Once everything is setup, you can sit back, relax, and never have to worry about missing another birthday, anniversary, or special event again, because wish-fish will remind you<br/> at just the right moment!
+                    </p>
+                </div><!--end feature-->
+            </div>
+
+        </div><!--end row-->
+
+    </div><!--end container-->
+</section>
+
+<section id="features" class="sections">
+    <div class="container">
+        <div class="row">
+            <!--  Heading-->
+            <div class="heading black-text wow fadeIn animated" data-wow-offset="120" data-wow-duration="1.5s">
+                <div class="title text-center"><h1>Our Features</h1></div>
+                <div class="subtitle text-center "><h5>You will love some of our features.</h5></div>
+                <div class="separator text-center"></div>
+            </div>
+
+            <div class="col-sm-6 wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">
+                <div class="feature-item text-right pull-left">
+                    <div class="feature-icon2 text-right pull-right">
+                        <i class="fa fa-thumbs-o-up" data-selector="i.fa" style="outline: none; cursor: default;"></i>
+                    </div>
+                    <h4>Easy to Use</h4>
+                    <p>Its as easy as riding a bike... actually... it's even easier, because you don't even have to get up!<br/> A couple clicks, and you're done!</p>
+                </div>
+                <div class="feature-item text-right pull-left">
+                    <div class="feature-icon2 text-right pull-right">
+                        <i class="fa fa-calendar" data-selector="i.fa" style="outline: none; cursor: default;"></i>
+                    </div>
+                    <div class="feature-details">
+                        <h4>Schedule Event</h4>
+                        <p>You can easily schedule events 24/7,&nbsp;&nbsp;any-time,&nbsp;&nbsp;any-where.  Sit back and relax, we will take care of the rest.</p>
+                    </div>
+
+                </div>
+                <div class="feature-item text-right pull-left">
+                    <div class="feature-icon2 text-right pull-right">
+                        <i class="fa fa-share" data-selector="i.fa" style="outline: none; cursor: default;"></i>
+                    </div>
+                    <h4>Recurring Event</h4>
+                    <p>Set it and forget it! Have a family member or client whose birthday you have to remember every year?<br/> Just set an event to repeat, and you'll never have to think about it again!</p>
+                </div>
+            </div>
+            <div class="col-sm-6 wow fadeInRight animated" data-wow-offset="10" data-wow-duration="1.5s">
+                <div class="feature-item pull-left">
+                    <div class="feature-icon2 pull-left">
+                        <i class="fa fa-users" data-selector="i.fa" style="outline: none; cursor: default;"></i>
+                    </div>
+                    <h4>Contact Management</h4>
+                    <p>Adding new contacts takes only few seconds.<br/> You can even import your contact list from Google, Facebook, or an excel spreadsheet.</p>
+                </div>
+                <div class="feature-item pull-left">
+                    <div class="feature-icon2  pull-left">
+                        <i class="fa fa-arrows" data-selector="i.fa" style="outline: none; cursor: default;"></i>
+                    </div>
+                    <h4>Drag & Drop Event</h4>
+                    <p>Our dynamic calendar allows you to quickly see what events are coming up, and re-arrange them if your schedule changes.</p>
+                </div>
+                <div class="feature-item pull-left">
+                    <div class="feature-icon2 pull-left">
+                        <i class="fa fa-cloud-download" data-selector="i.fa" style="outline: none; cursor: default;"></i>
+                    </div>
+                    <h4>Nothing to Install</h4>
+                    <p>Since Wish-Fish is web-based, you never need to worry about installation: just open your web browser & rock n' roll!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- testimonial Section-->
+<section class="testimonial">
+    <div class="overlay-img">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-1 padding-eighty">
+                    <div class="testimonials">
+                        <div class="testimonial-item2">
+                            <div class="testimonial-msg"><i class="fa fa-quote-left"></i>
+                                Wish-Fish helps me save so much time it's kind of insane!
+                                <i class="fa fa-quote-right pull-right"></i></div>
+                            <div class="white-separator"></div>
+                            <!--  INFORMATION -->
+                            <div class="testimonial-name">Mark</div>
+                            <!--<div class="testimonial-info">CEO, Envato pty Ltd.</div>-->
+                        </div>
+                        <div class="testimonial-item2">
+                            <div class="testimonial-msg"><i class="fa fa-quote-left"></i>
+                                Since I got Wish-Fish I haven't forgotten a single birthday, I swear my friends think I'm psychic!
+                                <i class="fa fa-quote-right pull-right"></i></div>
+                            <div class="white-separator"></div>
+                            <!--  INFORMATION -->
+                            <div class="testimonial-name">Laura</div>
+                            <!--<div class="testimonial-info">CEO, Envato pty Ltd.</div>-->
+                        </div>
+                        <div class="testimonial-item2">
+                            <div class="testimonial-msg"><i class="fa fa-quote-left"></i>
+                                It's weird....you don't think you need it until you get it,but after you get it you wonder how you ever lived without it!
+                                <i class="fa fa-quote-right pull-right"></i></div>
+                            <div class="white-separator"></div>
+                            <!--  INFORMATION -->
+                            <div class="testimonial-name">Steve</div>
+                            <!--<div class="testimonial-info">CEO, Envato pty Ltd.</div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- testimonial Section End-->
+
+<section id="describe" class="sections">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-push-6">
+
+
+                <!--  Heading-->
+                <div class="heading black-text wow fadeIn animated" data-wow-offset="120" data-wow-duration="1.5s">
+                    <div class="title-half"><h1>Awesome Apps wow</h1></div>
+                    <div class="subtitle-half"><h5>This is subtile. lorem ipsum dolar shit amet</h5></div>
+                    <div class="separator-left"></div>
+                </div>
+
+                <div class="describe-details wow fadeInRight animated" data-wow-offset="10" data-wow-duration="1.5s">
+                    <p>
+                        Xpeed ultimate landing page builder save your tons of time to design your website, Loren ipsum dolar sit amet cool Apps showcase. 
+                        Xpeed ultimate landing page builder save your tons of time to design your website, Loren ipsum dolar sit amet cool Apps showcase
+                        Xpeed ultimate landing page builder save your tons of time to design your website, Loren ipsum dolar sit amet cool Apps showcase
+
+                    </p>
+
+                    <ul class="describe-list">
+                        <li><i class="fa fa-h-square" data-selector="i.fa" style="outline: none; cursor: default;"></i> <span>Xpeed ultimate landing page builder save your tons of time to</span> </li>
+                        <li><i class="fa fa-database" data-selector="i.fa" style="outline: none; cursor: default;"></i> <span>Xpeed ultimate landing page builder save your tons of time to design</span> </li>
+                        <li><i class="fa fa-shekel" data-selector="i.fa" style="outline: none; cursor: default;"></i> <span>Xpeed ultimate landing page builder save your tons of time to design</span> </li>
+                        <li><i class="fa fa-database" data-selector="i.fa" style="outline: none; cursor: default;"></i> <span>Xpeed ultimate landing page builder save your tons of time to design</span> </li>
+                    </ul>
+                </div>
+            </div><!--end half-->
+
+            <div class="col-md-6 col-md-pull-6">
+                <div class="text-center describe-images wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">
+                    <img src="<?= base_url() ?>assets/wow/images/describe-monitor1.png" alt="" data-selector="img" style="">
+                </div>
+            </div>
+        </div><!--end row-->
+    </div><!--end container-->
+</section><!--end section-->
+
+
+
+<!-- funfact Section-->
+<section id="funfact" class="funfact">
+    <div class="overlay-img">
+        <div class="container">
+            <div class="row">
+                <!-- funfact -->
+                <div class="heading white-text wow fadeIn animated" data-wow-offset="120" data-wow-duration="1.5s">
+                    <div class="title text-center"><h1>Some Fun Fact About Wish-Fish</h1></div>
+                    <div class="separator text-center"></div>
+                </div>
+                <div class="funfacts-counter white-text">
+                    <div class="col-sm-3">
+                        <i class="fa fa-trophy"></i>
+                        <div class="statistic-counter">1,000</div>
+                        <div class="statistic-text">Completed Events</div>
+                    </div>
+                    <div class="col-sm-3">
+                        <i class="fa fa-group"></i>
+                        <div class="statistic-counter">100</div>
+                        <div class="statistic-text">Satisfied Clients</div>
+                    </div>
+                    <div class="col-sm-3">
+                        <i class="fa fa-calendar"></i>
+                        <div class="statistic-counter">2,100</div>
+                        <div class="statistic-text">Scheduled Events</div>
+                    </div>
+                    <div class="col-sm-3">
+                        <i class="fa fa-coffee"></i>
+                        <div class="statistic-counter">1,356</div>
+                        <div class="statistic-text">Cups Of Coffee</div>
+                    </div>
+                </div>
+            </div><!-- funfact row End-->
+        </div><!-- funfact Overlay End-->
+    </div><!-- funfact Container End-->
+</section>
+<!-- funfact Section End-->
+
+<!-- Pricing Section-->
+<section id="plan" class="sections">
+    <div class="pricing">
+        <div class="container">
+            <div class="row">
+                <!--  Heading-->
+                <div class="heading wow fadeIn animated" data-wow-offset="120" data-wow-duration="1.5s">
+                    <div class="title text-center"><h1>Plan &amp; Pricing</h1></div>
+                    <div class="subtitle text-center "><h5>Affordable event scheduling software made for everyone.</h5></div>
+                    <div class="separator text-center"></div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="pricing2">
+                        <div class="top">
+                            <h2>14-day Free Trial</h2>
+                            <p class="price"><span class="currency">$</span> <b>0</b> <span class="month">/month</span></p>
+                        </div><!-- /.top -->
+
+                        <div class="bottom">
+                            <ul>
+                                <li> Add Unlimited Contacts</li>
+                                <li> Schedule Unlimited Events</li>
+                                <li> <b>3</b> SMS Events per Contact</li>
+                                <li> <b>3</b> Email Events per Contact</li>
+                                <li> - </li>
+                                <li> - </li>
+                            </ul>
+                            <a href="javascript:void(0);" id="free" class="btn btn-lg btn-primary">Sign Up Now</a>
+                        </div><!-- /.bottom -->
+                    </div><!-- /.pricing1 -->
+                </div><!-- /.col-md-4 col -->
+                <div class="overlay social-register" style="display: none">
+                    <a  href="javacript:void(0);" class="cancel">close <i class="fa fa-close"></i></a>
+                    <div class="row" style="  margin: 18% 10%;">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4">
+                            <form id="overlay">
+                                <a href = "<?= $url ?>" class="btn btn-block btn-social btn-google-plus">
+                                    <i class="fa fa-google-plus"></i> Sign <?= ($isLogin_g) ? "in" : "up" ?> with Google
+                                </a>
+                                <br/>
+                                <a style="cursor: pointer" class="btn btn-block btn-social btn-facebook" id="facebook" href = "javascript:void(0);">
+                                    <i class="fa fa-facebook"></i> Sign <?= ($isLogin_f) ? "in" : "up" ?> with Facebook
+                                </a>
+                                <br/>
+                                <a href = "<?= site_url() ?>register"  class="btn btn-block btn-social btn-info">
+                                    <i class="fa fa-envelope-o"></i>Sign up with Email
+                                </a>
+                            </form>
+                        </div>
+                        <div class="col-md-4"></div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="pricing2 popular">
+                        <div class="top">
+                            <h2>Personal</h2>
+                            <p class="price"><span class="currency">$</span> <b>9.99</b> <span class="month">/month</span></p>
+                        </div><!-- /.top -->
+                        <div class="bottom">
+                            <ul>
+                                <li> Add Contact upto <b>10</b></li>
+                                <li> Maximum <b>20</b> Events per Contact</li>
+                                <li> <b>1</b> SMS Number per Customer</li>
+                                <li> <b>1</b> Email Address per Customer</li>
+                                <li> Import Contacts From Google</li>
+                                <li> Import Contacts From Spreadsheet or CSV File</li>
+                            </ul>
+                            <a href="javascript:void(0);" id="a_personal" class="btn btn-lg btn-primary">Sign Up Now</a>
+                        </div><!-- /.bottom -->
+                    </div><!-- /.pricing1 -->
+                </div><!-- /.col-md-4 col -->
+
+                <div class="col-sm-4">
+                    <div class="pricing2">
+                        <div class="top">
+                            <h2>Enterprise</h2>
+                            <p class="price"><span class="currency">$</span> <b>49.99</b> <span class="month">/month</span></p>
+                        </div><!-- /.top -->
+                        <div class="bottom">
+                            <ul>
+                                <li> Add Contact upto <b>20</b></li>
+                                <li> Maximum <b>40</b> Events per Contact</li>
+                                <li> <b>2</b> SMS Number per Customer</li>
+                                <li> <b>2</b> Email Address per Customer</li>
+                                <li> Import Contacts From Google</li>
+                                <li> Import Contacts From Spreadsheet or CSV File</li>
+                            </ul>
+                            <a  href="javascript:void(0);" id="a_enterprise" class="btn btn-lg btn-primary">Sign Up Now</a>
+                        </div><!-- /.bottom -->
+                    </div><!-- /.pricing1 -->
+                </div><!-- /.col-md-4 col -->
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </div><!-- /.item -->
+</section>
+
+<!--Funfact section-->
+<section id="tweets" class="tweets">
+    <div class="overlay-img">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-1 text-center">
+                    <div class="twitter-icon"><i class="fa fa-twitter"></i></div>
+                    <div id="tweet"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section id="contact" class="sections">
+    <div class="container">
+        <div class="row">
+            <!--  Heading-->
+            <div class="heading wow fadeIn animated" data-wow-offset="120" data-wow-duration="1.5s">
+                <div class="title text-center"><h1>Contact Us</h1></div>
+                <div class="subtitle text-center "><h5>You can use the form below to send us a general inquiry or just say to hello.</h5></div>
+                <div class="separator text-center"></div>
+            </div>
+            <div class="wow fadeIn animated" data-wow-offset="10" data-wow-duration="1.5s">
+                <div class="col-md-4 col-sm-6"></div>
+                <div class="col-md-5">
+                    <!-- CONTACT FORM -->
+                    <div class="contact-form">
+                        <div id="message"></div>
+                        <form action="<?= site_url() ?>home/contactus" class="form-horizontal contact-1" role="form" name="contactform" id="contactform">
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="name" id="name" placeholder="Name">
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="email" id="email" placeholder="Email">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <input class="form-control" id="subject" type="text" name="subject" placeholder="Subject">
+                                    <textarea name="contact-message" id="inquiry_msg" class="form-control" cols="30" rows="5" placeholder="Message"></textarea>
+                                    <button type="submit" class="btn btn-primary btn-block contact-1-button" data-loading-text="Loading...">Send Message</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6"></div>
+            </div>
+        </div> <!-- end row -->
+    </div>
+</section>
+
+<form style="display: none" id="personal" action="<?= site_url() ?>stripe_payment/pay" method="post">
+    <input type="hidden" name="amount" value="<?= $pdetail[0]->amount ?>"/>
+    <input type="hidden" name="frequency" value="1"/>
+    <input type="hidden" name="name" value="<?= $pdetail[0]->plan_name ?>"/>
+    <input type="hidden" name="id" value="<?= $pdetail[0]->plan_id ?>"/>
+
+    <script
+        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+        data-key="<?= $gatewayInfo->publish_key ?>"
+        data-image="/square-image.png"
+        data-name="Demo payment"
+        data-description="Product"                    
+        data-label="Stripe"                    
+        >
+    </script>
+</form>
+
+<form style="display: none" id="enterprise" action="<?= site_url() ?>stripe_payment/pay" method="post">
+    <input type="hidden" name="amount" value="<?= $pdetail[1]->amount ?>"/>
+    <input type="hidden" name="frequency" value="1"/>
+    <input type="hidden" name="name" value="<?= $pdetail[1]->plan_name ?>"/>
+    <input type="hidden" name="id" value="<?= $pdetail[1]->plan_id ?>"/>
+
+    <script
+        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+        data-key="<?= $gatewayInfo->publish_key ?>"
+        data-image="/square-image.png"
+        data-name="Demo payment"
+        data-description="Product"                    
+        data-label="Stripe"                    
+        >
+    </script>
+</form>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var emailV = 1;
+        var captchaV = 1;
+        var sess_word = "<?= $this->session->userdata('captchaWord') ?>";
+        $('#forgotEmail').focusout(function () {
+            var email = $(this).val();
+            if (email.trim() != "") {
+                $.ajax({
+                    type: "POST",
+                    data: {email: email},
+                    url: "<?= base_url() ?>home/checkEmail",
+                    success: function (res) {
+                        if (res == 0) {
+                            emailV = 0;
+                            $('#msg').text('Your Email is not register!');
+                        }
+                        else {
+                            $('#msg').empty();
+                            emailV = 1;
+                        }
+                    }
+                });
+            } else {
+                emailV = 0;
+            }
+        });
+        $('#captcha_word').focusout(function () {
+            var word = $(this).val();
+            if (word.trim() != "") {
+                if (word != sess_word) {
+                    captchaV = 0;
+                    $('#msgCaptcha').text("Captcha Invalid..!");
+                } else {
+                    captchaV = 1;
+                    $('#msgCaptcha').empty();
+                }
+            } else {
+                captchaV = 0;
+            }
+        });
+        $('#send').click(function () {
+            var email = $('#forgotEmail').val();
+            if (emailV === 0 || captchaV === 0)
+                return false;
+            $('#refresh').trigger('click');
+            $('#loadSend').css('display', 'block');
+            $.ajax({
+                type: "POST",
+                data: {email: email},
+                url: "<?= base_url() ?>home/sendMail",
+                success: function (res) {
+                    $('#loadSend').css('display', 'none');
+                    if (res == 1) {
+                        $('#msgSend').css('color', 'green');
+                        $('#msgSend').text('Check your email to get your link..!');
+                    } else {
+                        $('#msgSend').css('color', 'red');
+                        $('#msgSend').text('Email sending failed..!Try Again!');
+                    }
+                    $('#forgotEmail').val("");
+                    $('#captcha_word').val("");
+                    setTimeout(function () {
+                        $('#msgSend').empty();
+                        $('.close').trigger('click');
+                    }, 1000);
+
+                }
+            });
+        });
+
+        $("#refresh").click(function () {
+            $(this).css('cursor', 'progress');
+            $.ajax({
+                type: "POST",
+                url: "<?= base_url() ?>home/captcha_refresh",
+                success: function (res) {
+                    $('#refresh').removeAttr('style');
+                    if (res) {
+                        sess_word = res;
+                        $("#captcha_img").html(res);
+                    }
+                }
+            });
+        });
+
+        $('#free').click(function () {
+            $('.social-register').css('display', 'block');
+            //            $('#overlay').css('display', 'block');
+            //            $("html, body").animate({scrollTop: 0}, 1000);
+            //            setTimeout(function () {
+            //                $('html, body').animate({scrollTop: 0}, 4000);
+            //            }, 4000);
+        });
+
+        $('a#log,a#reg').click(function () {
+            $("html, body").animate({scrollTop: 0}, 1000);
+            setTimeout(function () {
+                $('html, body').animate({scrollTop: 0}, 4000);
+            }, 4000);
+            console.log($(this).attr('id'));
+            $('.sign').css('display', 'block');
+            var id = $(this).attr('id');
+            if (id == "log") {
+                $('form.login').css('display', 'block');
+                $('form.registration').css('display', 'none');
+            } else if (id == "reg") {
+                $('form.login').css('display', 'none');
+                $('form.registration').css('display', 'block');
+            }
+        });
+
+        //        $('#a_personal').click(function () {
+        //            $('#personal button').trigger('click');
+        //        });
+        $('a.cancel').click(function () {
+            $('.social-register').css('display', 'none');
+            $('.overlay').css('display', 'none');
+            $('.sign').css('display', 'none');
+        });
+        //        $('#a_enterprise').click(function () {
+        //            $('#enterprise button').trigger('click');
+        //        });
+    });
+</script>
+<script type="text/javascript">
+    window.fbAsyncInit = function () {
+        //Initiallize the facebook using the facebook javascript sdk
+        FB.init({
+            appId: '<?= $this->config->item('appID'); ?>', // App ID 
+            cookie: true, // enable cookies to allow the server to access the session
+            status: true, // check login status
+            xfbml: true, // parse XFBML
+            oauth: true //enable Oauth 
+        });
+    };
+    //Read the baseurl from the config.php file
+    (function (d) {
+        var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+        if (d.getElementById(id)) {
+            return;
+        }
+        js = d.createElement('script');
+        js.id = id;
+        js.async = true;
+        js.src = "//connect.facebook.net/en_US/all.js";
+        ref.parentNode.insertBefore(js, ref);
+    }(document));
+    //Onclick for fb login
+    $('.facebook').click(function (e) {
+        FB.login(function (response) {
+            if (response.authResponse) {
+                parent.location = '<?= site_url() ?>register/fbsignup'; //redirect uri after closing the facebook popup
+            }
+        }, {scope: 'email,read_stream,publish_stream,user_birthday,user_photos'}); //permissions for facebook
+    });
+</script>
+
+<script src="<?= base_url() ?>assets/wow/js/typed.js" type="text/javascript"></script>
+<script src="<?= base_url() ?>assets/wow/js/jquery-contact.js" type="text/javascript"></script>
+<script>
+    $(function () {
+        $("#typed").typed({
+            strings: ["Birthday", "Anniversaries", "Special Event", "Deadlines"],
+            typeSpeed: 50,
+            backDelay: 700,
+            loop: true,
+            contentType: 'html', // or text
+            // defaults to false for infinite loop
+            loopCount: false,
+            callback: function () {
+                foo();
+            },
+            resetCallback: function () {
+                newTyped();
+            }
+        });
+
+        $(".reset").click(function () {
+            $("#typed").typed('reset');
+        });
+
+    });
+    function newTyped() { /* A new typed object */
+    }
+    function foo() {
+        console.log("Callback");
+    }
+</script>
+

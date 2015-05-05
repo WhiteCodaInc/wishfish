@@ -1,0 +1,272 @@
+
+/* 
+    
+    Author     : XpeedStudio
+    Color      : Blue Deep
+    Color Code : #5170DD
+*/
+
+
+.colorstext {
+    color: #5170DD;
+}
+
+.colorsbg{
+    background: #5170DD ! important;
+}
+.color-overlay-img{
+    background: rgba(81, 112, 221, 0.7);
+}
+.navigation nav ul li .sub-nav li a:hover {
+    color: #5170DD; //need to be add in color css
+}
+
+#carousel-slider .carousel-control i:hover{
+    background: #5170DD;
+}
+
+.separator{
+    background: #5170DD;
+}
+
+.separator-left{
+    background: #5170DD;
+}
+
+.separator-min-height {
+    background: #5170DD;
+}
+
+.btn-primary {
+    background-color: #5170DD;
+    border-color: #5170DD;
+}
+.btn-primary:hover{
+    color: #5170DD;
+    border-color: #5170DD;
+}
+
+.btn-default:hover {
+    color: #5170DD;
+    background-color: #FFFFFF;
+}
+
+.nav-light.custom-nav .navbar-nav>.active>a, 
+.nav-light.custom-nav .navbar-nav>.active>a:hover, 
+.nav-light.custom-nav .navbar-nav>.active>a:focus{
+    color:#5170DD;
+}
+
+.nav-light.scroll-nav  .navbar-nav>li>a:hover, 
+.nav-light.scroll-nav  .navbar-nav>li>a:focus,
+.nav-light.custom-nav .navbar-nav>li>a:hover, 
+.nav-light.custom-nav .navbar-nav>li>a:focus{
+    color:#5170DD;
+}
+
+.nav-light.scroll-nav .navbar-nav>.active>a, 
+.nav-light.scroll-nav .navbar-nav>.active>a:hover, 
+.nav-light.scroll-nav .navbar-nav>.active>a:focus{
+    color:#5170DD;
+}
+
+.nav-dark.custom-nav .navbar-nav>.active>a, 
+.nav-dark.custom-nav .navbar-nav>.active>a:hover, 
+.nav-dark.custom-nav .navbar-nav>.active>a:focus,
+.nav-dark.scroll-nav .navbar-nav>.active>a, 
+.nav-dark.scroll-nav .navbar-nav>.active>a:hover, 
+.nav-light.scroll-nav .navbar-nav>.active>a:focus{
+    color:#5170DD;
+}
+.nav-dark.custom-nav .navbar-nav>li>a:hover, 
+.nav-dark.custom-nav .navbar-nav>li>a:focus,
+.nav-dark.scroll-nav  .navbar-nav>li>a:hover, 
+.nav-dark.scroll-nav  .navbar-nav>li>a:focus{
+    color:#5170DD;
+}
+
+.hide-nav-light.navbar .navbar-nav>.active>a, 
+.hide-nav-light.navbar .navbar-nav>.active>a:hover, 
+.hide-nav-light.navbar .navbar-nav>.active>a:focus,
+.hide-nav-light.navbar .navbar-nav>li>a:hover, 
+.hide-nav-light.navbar  .navbar-nav>li>a:focus{
+    color:#5170DD;
+}
+
+.hide-nav-dark.navbar .navbar-nav>.active>a, 
+.hide-nav-dark.navbar .navbar-nav>.active>a:hover, 
+.hide-nav-dark.navbar .navbar-nav>.active>a:focus,
+.hide-nav-dark.navbar .navbar-nav>li>a:hover, 
+.hide-nav-dark.navbar  .navbar-nav>li>a:focus{
+    color:#5170DD;
+}
+.fixed-nav.navbar .navbar-nav>.active>a, 
+.fixed-nav.navbar .navbar-nav>.active>a:hover, 
+.fixed-nav.navbar .navbar-nav>.active>a:focus,
+.fixed-nav.navbar .navbar-nav>li>a:hover, 
+.fixed-nav.navbar  .navbar-nav>li>a:focus{
+    color:#5170DD;
+}
+
+.fixed-nav-dark.navbar .navbar-nav>.active>a, 
+.fixed-nav-dark.navbar .navbar-nav>.active>a:hover, 
+.fixed-nav-dark.navbar .navbar-nav>.active>a:focus,
+.fixed-nav-dark.navbar .navbar-nav>li>a:hover, 
+.fixed-nav-dark.navbar  .navbar-nav>li>a:focus{
+    color:#5170DD;
+}
+
+.download-btn:hover {
+    background: rgba(255, 255, 255, 0.95);
+    color: #5170DD !important;
+}
+
+
+.home-intro-half-try  p i{
+    background: #5170DD;
+
+}
+.home-social  .list-inline a:hover{
+    color: #5170DD;
+
+}
+.home-intro-2nd-half-try .try-registration-form input{
+    border-left: 3px solid #5170DD;
+}
+
+.home-intro-2nd-half-try .try-registration-form input:focus{
+    border:1px solid  #5170DD;
+    border-left: 3px solid #5170DD;
+}
+.home-intro-2nd-half-try .try-registration-form textarea{
+    border-left: 3px solid #5170DD;
+}
+
+.home-intro-2nd-half-try .try-registration-form textarea:focus{
+    border:1px solid  #5170DD;
+    border-left: 3px solid #5170DD;
+}
+.service span i {
+    color: #5170DD;
+}
+.service:hover span {
+    background: #5170DD;
+}
+
+.feature i{
+    color: #5170DD;   
+}
+
+.feature-icon i{
+    color: #5170DD;
+}
+
+.feature-icon2 i{
+    background: #5170DD;
+}
+.feature-item:hover .feature-icon2 i{
+    color: #5170DD;
+    border: 2px solid #5170DD;
+
+}
+.features .feature-items .icon-container i{
+
+    background: #5170DD;
+    box-shadow: 0 0 0 3px #5170DD;
+}
+.features .feature-items:hover .icon-container i{
+    border: 1px solid #5170DD;
+    background: #5170DD;
+}
+
+.event-info i{
+    color: #5170DD;
+}
+
+.event-info-2 i{
+    color: #5170DD;
+
+}
+
+.events-schedule .event-title{
+    color: #5170DD;
+}
+
+.buy-form .form-control {
+    border-left: 3px solid #5170DD;
+
+}
+
+.panel-default>.panel-heading {
+    background: #5170DD;
+
+}
+.describe-panel .panel-default>.panel-heading .indicator {
+    color: #5170DD;
+}
+
+.describe-list li i {
+    color: #5170DD;
+}
+
+.faqs2.faqs .panel .panel-heading {
+    background: #5170DD;
+}
+
+.subscribe-form3 i {
+    color: #5170DD;
+}
+
+.subscribe-form2{
+    background: #5170DD ! important;
+}
+
+.price-1 .plan {
+    border: 1px solid #5170DD;
+}
+
+.price-1 .plan .title {
+    color: #5170DD;
+}
+
+.price-1 .plan .description {
+    border-top: 1px solid #5170DD;
+}
+
+.price-2 .plan li.plan-name {
+    background: #5170DD;
+}
+.price-2  .plan li > strong {
+    color: #5170DD;
+
+}
+.pricing2 .top {
+    background: #5170DD;
+}
+
+.pricing2 .bottom ul li > span {
+    color: #5170DD;
+}
+.team-member h5 {
+    color: #5170DD;
+}
+
+.contact-4 i{
+    color: #5170DD;
+}
+
+.footer-1 a span:hover,
+.footer-1-light a span:hover {
+    color: #5170DD;
+}
+
+.call-to-action {
+    background: #5170DD ! important;
+}
+.owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span {
+    background: #5170DD;
+}
+
+.tweet a:hover,a:hover {
+    color: #5170DD;
+}

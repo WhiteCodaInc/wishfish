@@ -1,0 +1,273 @@
+/*
+    Created on : Nov 5, 2014, 8:03:35 AM
+    Author     : xpeedstudio
+*/
+
+.counter-group {
+    margin: 30px auto;
+    display: inline-block;
+}
+.counter-group:before,
+.counter-group:after {
+    content: " ";
+    display: table;
+}
+.counter-group:after {
+    clear: both;
+}
+.counter-block {
+    float: left;
+    margin-right: 20px;
+}
+.counter-block .counter {
+    position: relative;
+    width: 200px;
+    height: 166px;
+    overflow: hidden;
+    font-weight: 700;
+    font-family:  'Arial Narrow', 'Nimbus Sans L', sans-serif;
+}
+.counter-block .counter .number {
+    padding: 1%;
+    width: 46%;
+    height: 98%;
+    background-color: #fff;
+    color: #000;
+    position: absolute;
+    font-size: 180px;
+    line-height: 150px;
+    top: -10000px;
+}
+.counter-block .counter .number.tens {
+    left: 0;
+}
+.counter-block .counter .number.units {
+    left: 50%;
+}
+.counter-block .counter .number.hundreds {
+    display: none;
+}
+.counter-block .counter .number.show {
+    top: 0;
+    z-index: 2;
+}
+.counter-block .counter .number.hidden-down {
+    top: 100%;
+}
+.counter-block .counter .number.hidden-up {
+    top: -100%;
+    z-index: 100;
+}
+.counter-block .counter.with-hundreds {
+    width: 300px;
+}
+.counter-block .counter.with-hundreds .number {
+    width: 30.66%;
+}
+.counter-block .counter.with-hundreds .number.tens {
+    left: 33.33%;
+}
+.counter-block .counter.with-hundreds .number.units {
+    left: 66.66%;
+}
+.counter-block .counter.with-hundreds .number.hundreds {
+    display: block;
+    left: 0;
+}
+.counter-block .counter-caption {
+    font-size: 150%;
+    color: #fff;
+}
+
+
+
+.home-comming-soon{
+    padding-top: 100px;
+    text-align: center;
+    display: block;
+}
+.home-comming-soon h1 {
+    color: #fff;
+    margin-bottom: 15px;
+    text-transform: none;
+}
+.home-comming-soon h3 {
+    color: #fff;
+    font-weight: 400;
+    font-size: 18px;
+    margin: auto;
+    margin-top: 20px;
+    width: 80%;
+}
+.comming-soon {
+    margin: auto;
+    margin-top: 20px;
+
+}
+.events-countdown{
+    padding-top: 200px;
+}
+.events-countdown h1{
+    font-size: 4.5rem;
+    margin-bottom: 40px;
+    line-height: 50px
+}
+
+//countdown 2
+
+.home-comming-soon .countdown2 {
+    padding-top: 100px;
+}
+
+
+#countdown_dashboard {
+    height: 110px;
+    width: 700px;
+    margin: auto;
+    margin-bottom: 60px;
+    margin-top: 50px;
+}
+
+#countdown_dashboard .dash {
+    width: 110px;
+    height: 125px;
+    background: transparent;
+    float: left;
+    margin-left: 20px;
+    position: relative;
+
+}
+
+#countdown_dashboard .dash .digit {
+    font-size: 70pt;
+    font-weight: bold;
+    float: left;
+    width: 55px;
+    text-align: center;
+    font-family: Times;
+    color: #fff;
+    position: relative;
+    height: 105px;
+    overflow: hidden;
+}
+
+#countdown_dashboard .dash_title {
+    position: absolute;
+    display: block;
+    bottom: 0px;
+    right: 20px;
+    font-size: 9pt;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+
+
+@media (max-width: 992px) {
+    .counter-group {
+        margin: 10px auto;
+    }
+    .counter-block {
+        margin-right: 10px;
+    }
+    .counter-block .counter {
+        width: 120px;
+        height: 100px;
+        overflow: hidden;
+        font-weight: 700;
+    }
+    .counter-block .counter .number {
+        font-size: 108px;
+        line-height: 90px;
+    }
+    .counter-block .counter.with-hundreds {
+        width: 180px;
+    }
+    .counter-block .counter-caption {
+        font-size: 100%;
+    }
+}
+@media (max-width: 768px) {
+    .counter-group {
+        margin: 0 auto;
+    }
+    .counter-block {
+        margin-right: 8px;
+    }
+    .counter-block .counter {
+        width: 96px;
+        height: 80px;
+    }
+    .counter-block .counter .number {
+        font-size: 86px;
+        line-height: 72px;
+    }
+    .counter-block .counter.with-hundreds {
+        width: 144px;
+    }
+    .counter-block .counter-caption {
+        font-size: 85%;
+    }
+    #countdown_dashboard {
+        height: 110px;
+        width: 600px;
+        margin: auto;
+    }
+    #countdown_dashboard .dash {
+        width: 80px;
+        height: 100px;
+        margin-left: 10px;
+
+    }
+    #countdown_dashboard .dash .digit {
+        font-size: 50pt;
+
+        width: 40px;
+        height: 80px;
+        overflow: hidden;
+    }
+}
+@media (max-width: 480px) {
+    .counter-block .counter {
+        width: 61px;
+        height: 52px;
+    }
+    .counter-block .counter .number {
+        font-size: 55px;
+        line-height: 50px;
+    }
+    .counter-block .counter.with-hundreds {
+        width: 91px;
+    }
+    .counter-block .counter-caption {
+        font-size: 70%;
+    }
+    #countdown_dashboard {
+        height: 110px;
+        width: 600px;
+    }
+    #countdown_dashboard .dash {
+        width: 60px;
+        height: 65px;
+        margin-left: 5px;
+
+
+    }
+    #countdown_dashboard .dash .digit {
+        font-size: 30pt;
+        width: 30px;
+        height: 50px;
+    }
+
+    #countdown_dashboard .dash_title {
+
+        font-size: 7pt;
+        right: 0
+
+    }
+}
+
+
+

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Page not found | Login and Access Plugin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="../../../../wp-content/themes/pressapps-plugin-demo/assets/css/main.min.css@ver=9a2dd99b82ca338b034e8730b94139d2">
+<link rel="stylesheet" href="../../../../wp-content/themes/pressapps-plugin-demo/assets/css/app.css">
+<script type='text/javascript' src='../../../../../ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
+<script>window.jQuery || document.write('<script src="../../../../wp-content/themes/pressapps-plugin-demo/assets/js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+<script type='text/javascript' src='../../../../wp-content/themes/pressapps-plugin-demo/assets/js/vendor/modernizr-2.6.2.min.js'></script>
+<script>
+                if ( window.location === window.parent.location ) {
+                    // Check if preview bar was previously closed
+                    if ( sessionStorage.getItem('wpdemo_preview_bar_closed') != '1' ) {
+                        // not in an iframe
+                        var url = window.location.href;
+                        if ( url.indexOf('?') > -1 ) {
+                           url += '&preview';
+                        } else {
+                           url += '?preview';
+                        }
+                        var referrer = encodeURIComponent( document.referrer );
+                        if ( referrer !== '' ) {
+                            url += '&utm_referrer=' + referrer;
+                        }
+                        window.location.href = url;
+                    }
+                }
+                </script><style type="text/css" title="dynamic-css" class="options-output">dovy{color:#ffffff;}.switcher-bar, .header-btn.purchase-btn a:hover{background-color:#ffffff;}.switcher-bar, .logo, .header-btn a{border-color:#e6e6e6;}.test{color:#e6e6e6;}.logo.textual a, .header-btn.launchDemo-btn a, .header-btn.launch-demo-btn a, .header-btn .fa, .product-switcher a, .product-demo a, .header-btn.purchase-btn a:hover *{color:#9b9b9b;}.product-switcher a, .product-switcher a:hover i, a.product:hover .title{color:#3498db;}.preloading-icon, .header-btn a:hover,.header-btn.current a,.header-btn.purchase-btn a{background-color:#3498db;}</style>
+  <link rel="alternate" type="application/rss+xml" title="Login and Access Plugin Feed" href="../../../../feed/default.htm">
+</head>
+<body class="error404">
+
+  <!--[if lt IE 8]><div class="alert alert-warning">You are using an <strong>outdated</strong> browser. Please <a href="../../../../../browsehappy.com/default.htm">upgrade your browser</a> to improve your experience.</div><![endif]-->
+
+  <header class="banner navbar navbar-default navbar-static-top" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="../../../../default.htm"><img src="../../../../wp-content/themes/pressapps-plugin-demo/assets/img/logo.png" title="Login and Access Plugin"></a>
+    </div>
+
+    <nav class="collapse navbar-collapse navbar-left" role="navigation">
+          </nav>
+  </div>
+</header>
+
+  <div class="wrap container" role="document">
+    <div class="content row">
+      <div class="main col-sm-12" role="main">
+        <div class="page-header">
+  <h1>
+    Not Found  </h1>
+</div>
+<div class="alert alert-warning">
+  Sorry, but the page you were trying to view does not exist.</div>
+
+<p>It looks like this was the result of either:</p>
+<ul>
+  <li>a mistyped address</li>
+  <li>an out-of-date link</li>
+</ul>
+
+<form role="search" method="get" class="search-form form-inline" action="http://demo3.pressapps.co/">
+  <div class="input-group">
+    <input type="search" value="" name="s" class="search-field form-control" placeholder="Search Login and Access Plugin">
+    <label class="hide">Search for:</label>
+    <span class="input-group-btn">
+      <button type="submit" class="search-submit btn btn-default">Search</button>
+    </span>
+  </div>
+</form>
+      </div><!-- /.main -->
+          </div><!-- /.content -->
+  </div><!-- /.wrap -->
+
+  <footer class="content-info container" role="contentinfo">
+  <div class="row">
+    <div class="col-lg-12">
+          </div>
+  </div>
+</footer>
+
+	<div id="wp-auth-check-wrap" class="hidden">
+	<div id="wp-auth-check-bg"></div>
+	<div id="wp-auth-check">
+	<div class="wp-auth-check-close" tabindex="0" title="Close"></div>
+			<div id="wp-auth-check-form" data-src="../../../../wp-login.php@interim-login=1"></div>
+			<div class="wp-auth-fallback">
+		<p><b class="wp-auth-fallback-expired" tabindex="0">Session expired</b></p>
+		<p><a href="../../../../wp-login.php" target="_blank">Please log in again.</a>
+		The login page will open in a new window. After logging in you can close it and return to this page.</p>
+	</div>
+	</div>
+	</div>
+	<style>#wp-auth-check-wrap #wp-auth-check { padding-top: 0 !important } #wp-auth-check-wrap .wp-auth-check-close:before { color: #ffffff!important; } </style><link rel="stylesheet" href="../../../../wp-content/plugins/pa-login/assets/css/front.css@ver=3.9.3">
+<link rel="stylesheet" href="../../../../wp-includes/css/dashicons.min.css@ver=3.9.3">
+<link rel="stylesheet" href="../../../../wp-includes/css/wp-auth-check.min.css@ver=3.9.3">
+<script type='text/javascript' src='../../../../wp-content/plugins/pressapps-fitvids/jquery.fitvids.js@ver=1.0'></script>
+<script type='text/javascript' src='../../../../wp-content/themes/pressapps-plugin-demo/assets/js/scripts.min.js@ver=2a3e700c4c6e3d70a95b00241a845695'></script>
+<script type='text/javascript' src='../../../../wp-content/plugins/pa-login/assets/js/frontend.js@ver=3.9.3'></script>
+    	<script type="text/javascript">
+    	jQuery(document).ready(function() {
+    		jQuery('.fitvids').fitVids({ customSelector: "add-custom-selector"});
+    	});
+    	</script>
+</body>
+</html>

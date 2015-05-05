@@ -1,0 +1,404 @@
+
+/* 
+    Created on : Oct 12, 2014, 10:37:02 PM
+    Author     : xpeed
+*/
+
+
+
+
+
+/* Large desktops and laptops */
+@media (min-width: 900px) {
+
+    /*Child menu*/
+    nav ul li .dropdown-menu {
+        display: block;
+        visibility: hidden;
+        background-color: #fff;
+        min-width: 10em;
+        border: 1px solid rgba(0,0,0,0.2);
+        border-top: none;
+        position: absolute;
+        left: -0.5em;
+        padding: 0;
+        text-align: left;
+        list-style-type: none;
+        opacity: 0;
+        -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+        transition: opacity 0.35s, transform 0.35s;
+        -webkit-transform: translate3d(0, -15px, 0);
+        transform: translate3d(0, -15px, 0);
+
+    }
+    nav ul li:hover .dropdown-menu {
+        visibility: visible;
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+
+    }
+    nav ul li .dropdown-menu li {
+        margin: 0;
+    }
+    nav ul li .dropdown-menu li:hover a {
+        background-color: #fbfbfb;
+    }
+    nav ul li .dropdown-menu li a {
+        display: block;
+        line-height: 2.5em;
+        padding: 0.2em 1em;
+        border-bottom: 1px solid rgba(0,0,0,0.07);
+    }
+    nav ul li .dropdown-menu li a:hover {
+        color: #1ac6ff; //need to be add in color css
+    } 
+}
+
+
+/* Portrait tablets and medium desktops */
+@media (min-width: 992px) and (max-width: 1199px) {
+    body {
+        font-size: 15px;
+    }
+    .describe-half-img .btn-lg {
+        padding: 10px 15px;
+    }
+
+}
+@media  (min-width: 767px) { 
+    .nav-dark.custom-nav {
+        background: rgba(237, 237, 237, 0);
+        border-color: transparent;
+    }
+    .nav-light.custom-nav {
+        background: rgba(237, 237, 237, 0);
+        border-color: transparent;
+        box-shadow: none;
+    }
+}
+/* Portrait tablets and small desktops */
+@media  (max-width: 991px) {
+    html {
+        font-size: 90%;
+    }
+    .home-intro h1,
+    .home-intro-half h1,
+    .home-intro-block h1,
+    .home-intro-app-block h1,
+    .home-intro-subscribe h1,
+    .home-intro-half-try h1{
+        font-size: 3.2em;
+    }
+    .home-intro  h3,
+    .home-intro-block h3,
+    .home-intro-half h3,
+    .home-intro-app-block h3{
+        line-height: 23px;
+    }
+    .home-intro-half-try p {
+        font-size: 15px;
+        line-height: 20px;
+    }
+    .home-intro-2nd-half {
+        padding-top: 40px;
+    }
+    .btn-lg, .btn-group-lg>.btn,
+    .download-btn{
+        font-size: 15px;
+    }
+
+    .home-intro-2nd-half-try .try-registration-form h3 {
+        margin-top: 0; 
+        font-size: 1.5em;
+    }
+    .feature {
+        margin-top: 40px;
+    }
+    .subscribe-form  .subscribe-input{
+        width: 98%
+    }
+
+    .footer-3 .additional-links,
+    .footer-2 .additional-links {
+        clear: both;
+        text-align: left;
+    }
+    .describe-half-img,
+    .subscribe-img{
+        position: relative;
+        right: auto;
+        top: auto;
+        bottom: auto;
+    }
+    .describe-videos {
+        margin-bottom: 80px;
+    }
+
+
+}
+/* Landscape phones and portrait tablets */
+@media (max-width: 767px) {
+    html {
+        font-size: 80%;
+    }
+    .navbar-default .navbar-header{
+        background: #fff; 
+    }
+    .navbar-inverse .navbar-header{
+        background: #000; 
+    }
+    .nav-light.custom-nav .navbar-nav>li>a {
+        color: #000;
+    }
+
+    .home-intro h1,
+    .home-intro-half h1,
+    .home-intro-block h1,
+    .home-intro-app-block h1,
+    .home-intro-subscribe h1,
+    .home-intro-half-try h1{
+        font-size: 2.5em;
+        line-height: 4rem;
+    }
+
+
+    .home-intro  h3,
+    .home-intro-half h3,
+    .home-intro-block h3,
+    .home-intro-app-block h3,
+    .home-intro-subscribe h3{
+        font-size: 16px;
+        line-height: 25px;
+    }
+    .home-intro-subscribe .subscribe-form input {
+        width: 92%;
+        margin-left: 15px;
+    }
+    .home-intro ,
+    .home-intro-half,
+    .home-intro-half-try{
+        padding-top: 150px;
+    }
+    .home-intro-half-try p{
+        font-size: 15px;
+        line-height: 20px;
+    }
+
+    .home-intro-2nd-half,
+    .home-intro-2nd-half-try {
+        padding-top: 25px;
+        margin-bottom: 30px;
+    }
+    .subscribe-form {
+        padding: 5px;
+    }
+    .home-subscribe form {
+        padding-top: 10px;
+        padding-bottom: 20px;
+    }
+
+    .home-subscribe .btn-lg {
+        width: auto;
+    }
+    #carousel-slider .slider-content h2{
+        font-size: 2rem;
+        margin-top: 10px;
+    }
+    .slider-btn {
+        margin-top: 0px;
+    }
+    #carousel-slider .slider-content h4 {
+        margin-top: 0px; 
+    }
+    .feature {
+        margin-top: 40px;
+    }
+    .subscription .subscribtion-form .subscribe-input {
+        margin: auto;
+        margin-bottom: 10px;
+        width: 95%;
+    }
+    .subscription .btn-lg {
+        margin: auto;
+        display: block;
+    }
+    .price-1 .col-md-3,
+    .team-member{
+        width: 45%;
+        float: left;
+        margin: 10px;
+    }
+    .client-wrapper2 .col-md-2 {
+        float: left;
+    }
+    .client-wrapper .col-sm-3 {
+        border-right: none;
+    }
+    .subscribe-form2 input[type="text"], 
+    .subscribe-form2 input[type="email"] {
+        text-align: center;
+        font-size: 22px;
+    }
+    .home-subscribe .subscribe-input {
+        width: 93%;}
+
+    .price-1 .plan {
+        margin-top: 30px;
+    }
+    .price-1 .col-sm-4:first-child .plan {
+        margin-top: 0;
+    }
+    .subscribe-form2 .col-sm-4 {
+        width: auto;
+        display: block;
+        text-align: center;
+    }
+    .footer-3.v-center.row > *, 
+    .footer-3 .v-center.row > * {
+        display: block;
+        vertical-align: baseline;
+        margin-top: 30px;
+    }
+    .features-list-item {
+        text-align: center;
+    }
+    .feature-items .text-right,
+    .feature-items {
+        text-align: center
+    }
+    .features .features-left .icon-container,
+    .features .features-right .icon-container {
+        float: none;
+        margin-left: 0;
+        text-align: center;
+        min-height: 90px;
+    }
+    .events-details {
+        width: 50%;
+        float: left;
+    }
+    #events .nav-tabs>li>a{
+        padding: 10px 23px;
+    }
+    .describe-half-img,
+    .subscribe-img {
+        padding: 60px 20px 80px;
+    }
+    .screenshots .col-sm-3 {
+        width: 50%;
+        float: left;
+    }
+    .screenshots .col-sm-4 {
+        text-align: center
+
+    }
+    .contact-4 .col-sm-4 {
+        margin-top: 20px;
+    }
+}
+
+
+
+/* Landscape phones and smaller */
+@media (max-width: 480px) {
+    html {
+        font-size: 65%;
+    }
+
+    .home-intro-subscribe {
+       padding-top: 150px;
+    }
+    .home-subscribe{
+        width: 100%
+    }
+    .home-intro h1,
+    .home-intro-half h1,
+    .home-intro-block h1,
+    .home-intro-app-block h1,
+    .home-intro-subscribe h1,
+    .home-intro-half-try h1{
+        font-size: 1.4em;
+    }
+    
+    .home-subscribe .subscription-form{
+       padding: 5%
+    }
+    
+    .home-subscribe .subscription-form input{
+       margin: 5% 0;
+    }
+    
+    .home-intro  h3,
+    .home-intro-half h3,
+    .home-intro-block h3,
+    .home-intro-app-block h3, 
+    .home-intro-subscribe h3 {
+        font-size: 14px;
+        line-height: 20px;
+    }
+    .home-intro-subscribe .subscribe-form{
+        width: 100%;
+    }
+    .btn-lg, .btn-group-lg>.btn,
+    .download-btn,
+    .btn.extra-width{
+        font-size: 15px;
+        padding: 10px 10px;
+    }
+
+    .price-1 .col-md-3,
+    .team-member{
+        width: 100%;
+    }
+    .subscribe-form2 .col-sm-4 {
+        display: block;
+        float: none;
+    }
+    .events-details {
+        width: 100%;
+        float: none;
+    }
+    #events .nav-tabs>li>a {
+        padding: 7px 9px;
+    }
+    .events-tabs > .nav-tabs > li .title,
+    #events .panel .panel-title a {
+        font-size: 16px;
+    }
+    .events-tabs > .nav-tabs > li .subtitle {
+        font-size: 12px;
+    }
+    #events .speaker-wrapper {
+        left: 10px;
+    }
+    #events .panel {
+
+        padding-left: 75px;
+    }
+    element.style {
+    }
+    .panel-title {
+        font-size: 14px;
+        line-height: 20px;
+
+    }
+    .screenshots .col-sm-3 {
+        width: 100%
+    }
+    .price-2 .col-xs-6 {
+        width: 100%;
+    }
+
+}
+
+
+
+@media (max-width: 320px) {
+
+
+    html {
+        font-size: 60.5%;
+    }
+}
+

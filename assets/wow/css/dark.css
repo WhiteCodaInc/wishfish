@@ -1,0 +1,175 @@
+
+
+/*==========================================
+DARK Version CSS
+==========================================*/
+
+
+
+html, body{
+    background-color: #1F1F1F;
+    font-size: 16px;
+    color: #CBCBCB;
+    width:100%;
+    padding:0;
+    margin-left:0;
+    margin-right:0;
+    font-family: 'Open Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    font-weight: 300;
+}
+
+
+section:nth-of-type(odd) {
+    background-color: #161616 ;
+}
+
+
+.black-text {
+    color: #CBCBCB
+}
+.feature-items h4, 
+.features-list-item h4{
+    color: #fff;
+}
+
+.features .feature-items .icon-container i {
+    color: #161616;
+    border: 5px solid #161616;
+}
+.describe-panel .panel-title>a{
+    color: #CBCBCB;
+}
+.describe-panel .panel-default>.panel-heading {
+    border-bottom: 1px solid #323232;
+}
+.service span {
+    background: #000000;
+}
+.screenshots img {
+    padding: 10px;
+    background: #020202;
+}
+.team-bg {
+    background: none;
+}
+
+.team-member li i {
+    color:  #CBCBCB
+}
+.contact-2 textarea,
+.contact-2 input, 
+.contact-form input,
+.contact-form textarea{
+
+    background: #000;
+}
+.panel-default>.panel-heading+.panel-collapse>.panel-body {
+    border-top-color: #303030;
+}
+
+.buy-form {
+    background: #2C2C2C;
+}
+.events-schedule .schedule-heading {
+    background: #2C2C2C;
+    border-bottom: 5px solid #353535;
+}
+.events-schedule .panel{
+    background: #2C2C2C;
+    border-bottom: 1px solid #3A3A3A;
+}
+.panel-group .panel-heading+.panel-collapse>.panel-body, .panel-group .panel-heading+.panel-collapse>.list-group {
+    border-top: 1px solid #474747;
+}
+.events-schedule .event-time {
+    color: #DDD;
+}
+
+.price-1 .plan, 
+.price-1 .plan b{
+    color: #CBCBCB;
+}
+.pricing2 .top h2,
+.pricing2 .top,
+.pricing2 .top .price b,
+.pricing2 .top .price .month{
+    color:  #353535
+}
+.pricing2 .bottom{
+    background: #2C2C2C;
+    border: 1px solid #444444;
+}
+.pricing2 .bottom ul li{
+    border-bottom: 1px solid #444444;
+}
+.price-2 .plan{
+    background: #2C2C2C;
+    border: 1px solid #444444;
+}
+
+.price-2 .plan li{
+    border-top: 1px solid #444444;
+    color: #CBCBCB;
+}
+
+.price-1 .plan li {
+    border-bottom: 1px solid #3C3C3C;
+    padding: 6px 0;
+}
+
+.testimonial-quote .quote-box {
+    color: #CBCBCB;
+    border: 1px solid #6E6D6D;
+    background: url('../images/quotes-dark.png') top right no-repeat;
+}
+
+.faq-2 .panel-default>.panel-heading, .panel {
+    background: #2C2C2C;
+}
+.faq-2 .panel-title>a{
+    color:  #CBCBCB
+}
+.faqs .panel .panel-heading {
+    background: #3C3C3C;
+    color: #FFF;
+}
+.faqs .panel .collapsed.panel-heading:before, 
+.faqs .panel .panel-heading:before{
+    color: #FFF;
+}
+.footer-1-light{
+    background: #000000;
+    color: #B6B6B6;
+}
+.footer-1-light h2 {
+    color: #A9A9A9;
+}
+.footer-4 {
+    background: #000000;
+}
+
+.article.blog-posts {
+    border-bottom: 1px solid #3F3F3F;
+}
+.tagcloud a{
+    background: #383838;
+}
+.entry-navigation {
+    border-top: 1px solid #3D3D3D;
+    border-bottom: 1px solid #3D3D3D;
+}
+.comment-respond {
+    background-color: #2D2D2D;
+}
+#commentform input[type="text"], #commentform input[type="email"], #commentform input[type="password"], #commentform input[type="search"], #commentform input[type="tel"], #commentform #comment {
+    background-color: black;
+    color: #EDEDED;
+}
+.tagcloud a:hover, .tagcloud a:hover:before {
+    color: #EDEDED;
+}
+.search-form input[type="text"] {
+    background-color: rgb(56, 56, 56);
+    border-color: black;
+}
