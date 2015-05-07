@@ -96,9 +96,9 @@
                                 <input id="card_number"  type="text" maxlength="16" class="form-control" placeholder="Card Number"/>
                             </div>
                             <div class="form-group">
-                                <label>Expiration (MM/YYYY)</label>
                                 <div class="row">
                                     <div class="col-md-6">
+                                        <label>Expiration (MM/YYYY)</label>
                                         <div class="row">
                                             <div class="col-md-5">
                                                 <input id="month" maxlength="2" type="text" class="form-control" placeholder="MM">
