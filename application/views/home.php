@@ -288,7 +288,7 @@
 
             <div class="col-sm-4 clearfix">
                 <div class="feature text-center  wow fadeInRight animated" data-wow-offset="120" data-wow-duration="1.5s">
-                    <i class="fa fa-wheelchair" data-selector="i.fa" style="outline: none; cursor: default;"></i>
+                    <i class="fa fa-smile-o" data-selector="i.fa" style="outline: none; cursor: default;"></i>
                     <h4 class="text-white">SIT BACK AND RELAX</h4>
                     <p class="text-white">
                         Once everything is setup, you can sit back, relax, and never have to worry about missing another birthday, anniversary, or special event again, because wish-fish will remind you<br/> at just the right moment!
