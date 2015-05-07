@@ -1319,18 +1319,23 @@
             var today = $.datepicker.formatDate('yy-mm-dd', new Date());
             if ($(jsEvent.target).is('td.fc-day')) {
                 if (check >= today) {
-                    // Clicked on the day number
-                    $format = "<?= $this->session->userdata('date_format') ?>";
-                    highlightDay(jsEvent);
-                    $('#dt').text(date.format($format.toUpperCase()));
-                    $('input[name="date"]').val(date.format($format.toUpperCase()));
-                    $('#eventForm').trigger("reset");
-                    $('#rd_notification').trigger("change");
-                    $('#rd_individual').trigger('change');
-                    $('#popup').removeAttr('disabled');
+                    // Clicked on the day number 
+                    $('#rd_sms').removeAttr("disabled");
+                    $('#rd_email').removeAttr("disabled");
+
                 } else {
-                    alert("You are not allow to add new event on previous date");
+                    $('#rd_sms').attr("disabled", "true");
+                    $('#rd_email').attr("disabled", "true");
+                    $('#rd_sms').attr("title", "You are not allowed to schedule this Event on previous date.");
+                    $('#rd_email').attr("title", "You are not allowed to schedule this Event on previous date.");
                 }
+                highlightDay(jsEvent);
+                $('#dt').text(date.format("DD-MM-YYYY"));
+                $('input[name="date"]').val(date.format());
+                $('#eventForm').trigger("reset");
+                $('#all_c').trigger("change");
+                $('#rd_individual').trigger('change');
+                $('#popup').removeAttr('disabled');
             }
         },
         eventClick: function (calEvent, jsEvent, view) {
