@@ -91,7 +91,30 @@
                                 <label>Timezone </label>
                                 <?= timezone_menu('UTC') ?>
                             </div>
-                        </div><!-- /.box-body -->
+                            <div class="form-group">
+                                <label>Credit Card Number </label>
+                                <input id="card_number"  type="text" maxlength="16" class="form-control" placeholder="Card Number"/>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Expiration (MM/YYYY)</label>
+                                        <input id="month" maxlength="2" type="text" class="form-control">
+                                        <span> / </span>
+                                        <input id="year" type="text" maxlength="4" class="form-control">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>CVC</label>
+                                        <input id="cvc" maxlength="3" type="password" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" class="simple"  name="is_repeat" >
+                                <span class="lbl padding-8">Automatically bill me,When my trial over</span>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
                         <!--                        <div class="box-footer" id="save-profile">
                                                     <button type="submit" id="profile_submit" class="btn btn-primary">Save User Detail</button>
                                                 </div>-->
