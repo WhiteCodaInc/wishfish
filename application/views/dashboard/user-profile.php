@@ -1,4 +1,33 @@
 <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/dashboard/css/checkbox.css"/>
+<style type="text/css">
+    .alert1 {
+        position: relative;
+        padding: 10px 35px;
+        margin: 20px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+    }
+    .alert-danger1 {
+        color: #a94442;
+        background-color: #f2dede;
+        border-color: #ebccd1;
+    }
+
+    .alert1 > .fa, .alert1 > .glyphicon {
+        position: absolute;
+        left: -15px;
+        top: -15px;
+        width: 35px;
+        height: 35px;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+        line-height: 35px;
+        text-align: center;
+        background: inherit;
+        border: inherit;
+    }
+</style>
 <aside class="right-side">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -12,6 +41,17 @@
                 "http://mikhailkuznetsov.s3.amazonaws.com/" . $user->profile_pic :
                 base_url() . 'assets/dashboard/img/default-avatar.png';
         ?>
+        <div id="error" class="row" style="background-color: #ecf0f5;margin: 0;">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="alert alert-danger alert-dismissable">
+                    <i class="fa fa-ban"></i>
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <b>Error!</b> <span id="error-msg"></span>
+                </div>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
         <div class="row">
             <div class="col-md-3"></div>
             <!-- left column -->
@@ -62,7 +102,7 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-phone"></i>
                                             </div>
-                                            <input value="<?= $phone ?>" type="text" name="phone" class="form-control" placeholder="Enter Phone Number" data-inputmask='"mask": "(999) 999-9999"' data-mask/>
+                                            <input style="z-index: 0" value="<?= $phone ?>" type="text" name="phone" class="form-control" placeholder="Enter Phone Number" data-inputmask='"mask": "(999) 999-9999"' data-mask/>
                                         </div><!-- /.input group -->
                                     </div>
                                 </div>
@@ -94,7 +134,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Credit Card Number </label>
-                                <input id="card_number"  type="text" maxlength="16" class="form-control" placeholder="Card Number"/>
+                                <input data-stripe="number"  type="text" maxlength="16" class="form-control" placeholder="Card Number"/>
                             </div>
                             <div class="form-group">
                                 <div class="row">
@@ -102,11 +142,11 @@
                                         <label>Expiration (MM/YYYY)</label>
                                         <div class="row">
                                             <div class="col-md-5" style="padding-right: 0">
-                                                <input id="month" maxlength="2" type="text" class="form-control" placeholder="MM">
+                                                <input data-stripe="exp-month" maxlength="2" type="text" class="form-control" placeholder="MM">
                                             </div>
                                             <div class="col-md-1" style="padding: 0 8px;font-size: 23px">/</div>
                                             <div class="col-md-5" style="padding-left: 0">
-                                                <input id="year" type="text" maxlength="4" class="form-control" placeholder="YYYY">
+                                                <input data-stripe="exp-year" type="text" maxlength="4" class="form-control" placeholder="YYYY">
                                             </div>
                                         </div>
                                     </div>
@@ -134,6 +174,7 @@
     </section><!-- /.content -->
 </aside><!-- /.right-side -->
 
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 
 <!-- InputMask -->
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/input-mask/jquery.inputmask.js" type="text/javascript"></script>
@@ -142,6 +183,9 @@
 
 <script type="text/javascript">
     $(function () {
+
+        Stripe.setPublishableKey('pk_test_qVqwj9LKS3yljQVTRh15YB2K');
+
         $("[data-mask]").inputmask();
         $('.default-date-picker').datepicker({
             format: "<?= $this->session->userdata('date_format') ?>",
@@ -161,16 +205,82 @@
             }
         });
     });
+    function reportError(msg) {
+        // Show the error in the form:
+        $('#error-msg').text(msg);
+        // re-enable the submit button:
+        $('#save-profile').prop('disabled', false);
+        return false;
+    }
 </script>
 <script type="text/javascript">
     $(document).ready(function (e) {
 
         $('#save-profile').click(function () {
+            $(this).attr("disabled", "disabled");
             $('#userForm').submit();
         });
 
-        $("input:file").change(function () {
+        $('#userForm').on('submit', function () {
+            var error = false;
+            var ccNum = $('#card_number').val(),
+                    cvcNum = $('cvc').val(),
+                    expMonth = $('month').val(),
+                    expYear = $('year').val();
 
+            // Validate the number:
+            if (!Stripe.card.validateCardNumber(ccNum)) {
+                error = true;
+                reportError('The credit card number appears to be invalid.');
+            }
+
+            // Validate the CVC:
+            if (!Stripe.card.validateCVC(cvcNum)) {
+                error = true;
+                reportError('The CVC number appears to be invalid.');
+            }
+
+            // Validate the expiration:
+            if (!Stripe.card.validateExpiry(expMonth, expYear)) {
+                error = true;
+                reportError('The expiration date appears to be invalid.');
+            }
+
+            // Check for errors:
+            if (!error) {
+                // Get the Stripe token:
+                Stripe.card.createToken({
+                    number: ccNum,
+                    cvc: cvcNum,
+                    exp_month: expMonth,
+                    exp_year: expYear
+                }, stripeResponseHandler);
+            }
+            // Prevent the form from submitting:
+            return false;
+        });
+
+        // Function handles the Stripe response:
+        function stripeResponseHandler(status, response) {
+
+            // Check for an error:
+            if (response.error) {
+                reportError(response.error.message);
+            } else { // No errors, submit the form:
+                var f = $("#userForm");
+
+                // Token contains id, last4, and card type:
+                var token = response['id'];
+
+                // Insert the token into the form so it gets submitted to the server
+                f.append("<input type='hidden' name='stripeToken' value='" + token + "' />");
+                // Submit the form:
+                f.get(0).submit();
+            }
+
+        } // End of stripeResponseHandler() function.
+
+        $("input:file").change(function () {
             $("#error_message").empty(); // To remove the previous error message
             var file = this.files[0];
             var imagefile = file.type;
@@ -187,6 +297,7 @@
                 reader.readAsDataURL(this.files[0]);
             }
         });
+
         function imageIsLoaded(e) {
             $("#profilePic").css("color", "green");
             $("#profile_previewing").attr('src', e.target.result);
