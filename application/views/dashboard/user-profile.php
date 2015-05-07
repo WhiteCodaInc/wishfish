@@ -227,7 +227,11 @@
                     cvcNum = $('#cvc').val(),
                     expMonth = $('#month').val(),
                     expYear = $('#year').val();
-
+            console.log(ccNum);
+            console.log(cvcNum);
+            console.log(expMonth);
+            console.log(expYear);
+            return false;
             // Validate the number:
             if (!Stripe.card.validateCardNumber(ccNum)) {
                 error = true;
