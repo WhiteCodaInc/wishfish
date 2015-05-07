@@ -100,11 +100,11 @@
                                     <div class="col-md-6">
                                         <label>Expiration (MM/YYYY)</label>
                                         <div class="row">
-                                            <div class="col-md-5">
+                                            <div class="col-md-5" style="padding-right: 0">
                                                 <input id="month" maxlength="2" type="text" class="form-control" placeholder="MM">
                                             </div>
-                                            <div class="col-md-2"><span> / </span></div>
-                                            <div class="col-md-5">
+                                            <div class="col-md-1" style="padding: 0 8px">/</div>
+                                            <div class="col-md-5" style="padding-left: 0">
                                                 <input id="year" type="text" maxlength="4" class="form-control" placeholder="YYYY">
                                             </div>
                                         </div>
