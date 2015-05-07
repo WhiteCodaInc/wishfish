@@ -224,26 +224,29 @@
         $('#userForm').on('submit', function () {
             var error = false;
             var ccNum = $('#card_number').val(),
-                    cvcNum = $('cvc').val(),
-                    expMonth = $('month').val(),
-                    expYear = $('year').val();
+                    cvcNum = $('#cvc').val(),
+                    expMonth = $('#month').val(),
+                    expYear = $('#year').val();
 
             // Validate the number:
             if (!Stripe.card.validateCardNumber(ccNum)) {
                 error = true;
                 reportError('The credit card number appears to be invalid.');
+                return false;
             }
 
             // Validate the CVC:
             if (!Stripe.card.validateCVC(cvcNum)) {
                 error = true;
                 reportError('The CVC number appears to be invalid.');
+                return false;
             }
 
             // Validate the expiration:
             if (!Stripe.card.validateExpiry(expMonth, expYear)) {
                 error = true;
                 reportError('The expiration date appears to be invalid.');
+                return false;
             }
 
             // Check for errors:
