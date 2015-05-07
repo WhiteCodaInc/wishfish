@@ -103,7 +103,7 @@
                                             <div class="col-md-5" style="padding-right: 0">
                                                 <input id="month" maxlength="2" type="text" class="form-control" placeholder="MM">
                                             </div>
-                                            <div class="col-md-1" style="padding: 0 8px">/</div>
+                                            <div class="col-md-1" style="padding: 0 8px;font-size: 23px">/</div>
                                             <div class="col-md-5" style="padding-left: 0">
                                                 <input id="year" type="text" maxlength="4" class="form-control" placeholder="YYYY">
                                             </div>
