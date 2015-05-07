@@ -227,18 +227,18 @@
                     cvcNum = $('#cvc').val(),
                     expMonth = $('#month').val(),
                     expYear = $('#year').val();
-            console.log(ccNum);
-            console.log(cvcNum);
-            console.log(expMonth);
-            console.log(expYear);
-            return false;
+//            console.log(ccNum);
+//            console.log(cvcNum);
+//            console.log(expMonth);
+//            console.log(expYear);
+//            return false;
             // Validate the number:
             if (!Stripe.card.validateCardNumber(ccNum)) {
                 error = true;
                 reportError('The credit card number appears to be invalid.');
                 return false;
             }
-
+            return false;
             // Validate the CVC:
             if (!Stripe.card.validateCVC(cvcNum)) {
                 error = true;
