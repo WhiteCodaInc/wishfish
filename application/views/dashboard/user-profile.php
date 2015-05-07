@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/dashboard/css/checkbox.css"/>
+<!--<link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/dashboard/css/checkbox.css"/>-->
 <style type="text/css">
     .alert1 {
         position: relative;
@@ -41,17 +41,17 @@
                 "http://mikhailkuznetsov.s3.amazonaws.com/" . $user->profile_pic :
                 base_url() . 'assets/dashboard/img/default-avatar.png';
         ?>
-        <div id="error" class="row" style="background-color: #ecf0f5;margin: 0;">
-            <div class="col-md-3"></div>
-            <div class="col-md-6">
-                <div class="alert alert-danger alert-dismissable">
-                    <i class="fa fa-ban"></i>
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                    <b>Error!</b> <span id="error-msg"></span>
-                </div>
-            </div>
-            <div class="col-md-3"></div>
-        </div>
+        <!--        <div id="error" class="row" style="background-color: #ecf0f5;margin: 0;">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        <div class="alert alert-danger alert-dismissable">
+                            <i class="fa fa-ban"></i>
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <b>Error!</b> <span id="error-msg"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3"></div>
+                </div>-->
         <div class="row">
             <div class="col-md-3"></div>
             <!-- left column -->
@@ -132,6 +132,7 @@
                                 <label>Timezone </label>
                                 <?= timezone_menu('UTC') ?>
                             </div>
+                            <!--
                             <div class="form-group">
                                 <label>Credit Card Number </label>
                                 <input id="card_number" data-stripe="number"  type="text" maxlength="16" class="form-control" placeholder="Card Number"/>
@@ -161,10 +162,11 @@
                                 <span class="lbl padding-8">Automatically bill me,When my trial over</span>
                             </div>
                         </div>
-                        <!-- /.box-body -->
-                        <!--                        <div class="box-footer" id="save-profile">
-                                                    <button type="submit" id="profile_submit" class="btn btn-primary">Save User Detail</button>
-                                                </div>-->
+                            -->
+                            <!-- /.box-body -->
+                            <!--                        <div class="box-footer" id="save-profile">
+                                                        <button type="submit" id="profile_submit" class="btn btn-primary">Save User Detail</button>
+                                                    </div>-->
                     </form>
                 </div><!-- /.box -->
             </div><!--/.col (left) -->
@@ -174,7 +176,7 @@
     </section><!-- /.content -->
 </aside><!-- /.right-side -->
 
-<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<!--<script type="text/javascript" src="https://js.stripe.com/v2/"></script>-->
 
 <!-- InputMask -->
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/input-mask/jquery.inputmask.js" type="text/javascript"></script>
@@ -184,7 +186,7 @@
 <script type="text/javascript">
     $(function () {
 
-        Stripe.setPublishableKey('pk_test_qVqwj9LKS3yljQVTRh15YB2K');
+        //Stripe.setPublishableKey('pk_test_qVqwj9LKS3yljQVTRh15YB2K');
 
         $("[data-mask]").inputmask();
         $('.default-date-picker').datepicker({
@@ -217,75 +219,75 @@
     $(document).ready(function (e) {
 
         $('#save-profile').click(function () {
-            $(this).attr("disabled", "disabled");
+            //$(this).attr("disabled", "disabled");
             $('#userForm').submit();
         });
 
-        $('#userForm').on('submit', function () {
-            var error = false;
-            var ccNum = $('#card_number').val(),
-                    cvcNum = $('#cvc').val(),
-                    expMonth = $('#month').val(),
-                    expYear = $('#year').val();
-//            console.log(ccNum);
-//            console.log(cvcNum);
-//            console.log(expMonth);
-//            console.log(expYear);
-//            return false;
-            // Validate the number:
-            if (!Stripe.card.validateCardNumber(ccNum)) {
-                error = true;
-                reportError('The credit card number appears to be invalid.');
-                return false;
-            }
-
-            // Validate the CVC:
-            if (!Stripe.card.validateCVC(cvcNum)) {
-                error = true;
-                reportError('The CVC number appears to be invalid.');
-                return false;
-            }
-
-            // Validate the expiration:
-            if (!Stripe.card.validateExpiry(expMonth, expYear)) {
-                error = true;
-                reportError('The expiration date appears to be invalid.');
-                return false;
-            }
-
-            // Check for errors:
-            if (!error) {
-                // Get the Stripe token:
-                Stripe.card.createToken({
-                    number: ccNum,
-                    cvc: cvcNum,
-                    exp_month: expMonth,
-                    exp_year: expYear
-                }, stripeResponseHandler);
-            }
-            // Prevent the form from submitting:
-            return false;
-        });
-
-        // Function handles the Stripe response:
-        function stripeResponseHandler(status, response) {
-
-            // Check for an error:
-            if (response.error) {
-                reportError(response.error.message);
-            } else { // No errors, submit the form:
-                var f = $("#userForm");
-
-                // Token contains id, last4, and card type:
-                var token = response['id'];
-
-                // Insert the token into the form so it gets submitted to the server
-                f.append("<input type='hidden' name='stripeToken' value='" + token + "' />");
-                // Submit the form:
-                // f.get(0).submit();
-            }
-
-        } // End of stripeResponseHandler() function.
+        /*$('#userForm').on('submit', function () {
+         var error = false;
+         var ccNum = $('#card_number').val(),
+         cvcNum = $('#cvc').val(),
+         expMonth = $('#month').val(),
+         expYear = $('#year').val();
+         //            console.log(ccNum);
+         //            console.log(cvcNum);
+         //            console.log(expMonth);
+         //            console.log(expYear);
+         //            return false;
+         // Validate the number:
+         if (!Stripe.card.validateCardNumber(ccNum)) {
+         error = true;
+         reportError('The credit card number appears to be invalid.');
+         return false;
+         }
+         
+         // Validate the CVC:
+         if (!Stripe.card.validateCVC(cvcNum)) {
+         error = true;
+         reportError('The CVC number appears to be invalid.');
+         return false;
+         }
+         
+         // Validate the expiration:
+         if (!Stripe.card.validateExpiry(expMonth, expYear)) {
+         error = true;
+         reportError('The expiration date appears to be invalid.');
+         return false;
+         }
+         
+         // Check for errors:
+         if (!error) {
+         // Get the Stripe token:
+         Stripe.card.createToken({
+         number: ccNum,
+         cvc: cvcNum,
+         exp_month: expMonth,
+         exp_year: expYear
+         }, stripeResponseHandler);
+         }
+         // Prevent the form from submitting:
+         return false;
+         });
+         
+         // Function handles the Stripe response:
+         function stripeResponseHandler(status, response) {
+         
+         // Check for an error:
+         if (response.error) {
+         reportError(response.error.message);
+         } else { // No errors, submit the form:
+         var f = $("#userForm");
+         
+         // Token contains id, last4, and card type:
+         var token = response['id'];
+         
+         // Insert the token into the form so it gets submitted to the server
+         f.append("<input type='hidden' name='stripeToken' value='" + token + "' />");
+         // Submit the form:
+         // f.get(0).submit();
+         }
+         
+         } // End of stripeResponseHandler() function.*/
 
         $("input:file").change(function () {
             $("#error_message").empty(); // To remove the previous error message
