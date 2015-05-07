@@ -238,7 +238,7 @@
                 reportError('The credit card number appears to be invalid.');
                 return false;
             }
-            return false;
+
             // Validate the CVC:
             if (!Stripe.card.validateCVC(cvcNum)) {
                 error = true;
@@ -282,7 +282,7 @@
                 // Insert the token into the form so it gets submitted to the server
                 f.append("<input type='hidden' name='stripeToken' value='" + token + "' />");
                 // Submit the form:
-                f.get(0).submit();
+                // f.get(0).submit();
             }
 
         } // End of stripeResponseHandler() function.
