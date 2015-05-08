@@ -698,6 +698,7 @@
                 emailV = 0;
             }
         });
+
         $('#captcha_word').focusout(function () {
             var word = $(this).val();
             if (word.trim() != "") {
@@ -712,6 +713,7 @@
                 captchaV = 0;
             }
         });
+
         $('#send').click(function () {
             var email = $('#forgotEmail').val();
             if (emailV === 0 || captchaV === 0)

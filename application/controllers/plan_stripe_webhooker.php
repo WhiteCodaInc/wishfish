@@ -57,12 +57,13 @@ class Plan_stripe_webhooker extends CI_Controller {
             fwrite($myfile, "EVENT : " . $event . "\n");
         }
 
+        $this->objpayment->stripe($customer, $event);
 
-        if ($event == "customer.subscription.deleted") {
-            $this->objpayment->stripeCancel($customer);
-        } else if ($event == "invoice.payment_succeeded") {
-            $this->objpayment->stripe($customer);
-        }
+//        if ($event == "customer.subscription.deleted") {
+//            $this->objpayment->stripeCancel($customer);
+//        } else if ($event == "invoice.payment_succeeded") {
+//            $this->objpayment->stripe($customer);
+//        }
     }
 
 }

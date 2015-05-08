@@ -18,80 +18,66 @@ class M_plan_stripe_webhooker extends CI_Model {
         parent::__construct();
     }
 
-    function stripe($payment) {
+    function stripe($payment, $event_type) {
 
-        /*if (file_exists('stripedata.txt')) {
-            $myfile = fopen(FCPATH . 'stripedata.txt', "a");
-            fwrite($myfile, "Customer : " . $payment . "\n");
-        } else {
-            $myfile = fopen(FCPATH . 'stripedata.txt', "w");
-            fwrite($myfile, "Customer : " . $payment . "\n");
-        }*/
+        switch ($event_type) {
+            case "invoice.payment_succeeded":
+                $pname = $payment->subscriptions->data[0]->plan->id;
 
-        $planid = $payment->metadata->planid;
 
-//        fwrite($myfile, "PLAN ID : " . $planid . "\n");
+                $planid = ($pname == "wishfish-free") ? 1 :
+                        (($pname == "wishfish-personal") ? 2 : 3);
 
-        if (isset($payment->metadata->userid)) {
-            $userid = $payment->metadata->userid;
-//            fwrite($myfile, "USER Exists : " . $userid . "\n");
-        } else {
-//            fwrite($myfile, "USER Not Exists..!\n");
+                if (isset($payment->metadata->userid)) {
+                    $userid = $payment->metadata->userid;
+                    $check_where = array(
+                        'user_id' => $userid
+                    );
+                    $query = $this->db->get_where('plan_detail', $check_where);
+                    if ($query->num_rows() > 1) {
+                        $check_where['plan_status'] = 1;
+                        $set = array(
+                            'plan_status' => 0
+                        );
+                        $query = $this->db->get_where('plan_detail', $check_where);
+                        $this->db->update('plan_detail', $set, array('id' => $query->row()->id));
+
+                        $pid = $this->insertPlanDetail($userid, $planid, $payment);
+                        $this->insertPaymentDetail($pid, $payment);
+                    }
+                } else {
+                    $user_set = array(
+                        'email' => $payment->email,
+                        'password' => $this->generateRandomString(5),
+                        'register_date' => date('Y-m-d', $payment->subscriptions->data[0]->current_period_start)
+                    );
+                    $this->db->insert('user_mst', $user_set);
+                    $uid = $this->db->insert_id();
+                    $pid = $this->insertPlanDetail($uid, $planid, $payment);
+                    $this->insertPaymentDetail($pid, $payment);
+                    $this->sendMail($user_set);
+                }
+                break;
+            case "customer.subscription.deleted":
+                $customerid = $payment->id;
+                if ($payment->deleted == "true") {
+                    $this->db->select('*');
+                    $query = $this->db->get_where('payment_mst', array('payer_id' => $customerid));
+                    $this->db->update('plan_detail', array('plan_status' => 0, 'cancel_date' => date('Y-m-d')), array('id' => $query->row()->id));
+                }
+                break;
         }
+    }
+
+    function generateRandomString($length = 5) {
+        return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
+    }
+
+    function insertPlanDetail($userid, $planid, $payment) {
         $amount = $payment->subscriptions->data[0]->plan->amount / 100;
-
-
-
-        if (isset($userid)) {
-            $where = array(
-                'U.user_id' => $userid,
-                'P.plan_status' => 1
-            );
-        } else {
-            $where = array(
-                'U.email' => $payment->email,
-                'P.plan_status' => 1
-            );
-        }
-        $this->db->select('*');
-        $this->db->from('plan_detail as P');
-        $this->db->join('user_mst as U', 'P.user_id = U.user_id');
-        $this->db->where($where);
-        $query = $this->db->get();
-
-        if ($query->num_rows() > 0) {
-//            fwrite($myfile, "Record Exists..!\n");
-            // Deactive Old Plan
-            $deactive_set = array(
-                'plan_status' => 0
-            );
-            $deactive_where = array(
-                'id' => $query->row()->id
-            );
-            $this->db->update('plan_detail', $deactive_set, $deactive_where);
-        }
-//        fwrite($myfile, "Record Not Exists..!\n");
-        //-------Insert User Data----------------------//
-        $this->db->trans_start();
-        if (isset($userid)) {
-            $uid = $userid;
-//            fwrite($myfile, " {$uid} Record Found..!\n");
-        } else {
-            $user_set = array(
-                'email' => $payment->email,
-                'password' => $this->generateRandomString(5),
-                'register_date' => date('Y-m-d', $payment->subscriptions->data[0]->current_period_start)
-            );
-            $this->db->insert('user_mst', $user_set);
-            $uid = $this->db->insert_id();
-//            fwrite($myfile, " {$uid} Record Inserted..!\n");
-        }
-        //--------------------------------------------//
-        //-------Insert Plan Detail----------------------//
         $planInfo = $this->common->getPlan($planid);
-//        fwrite($myfile, " Plan {$planInfo->plan_name} ..!\n");
         $plan_set = array(
-            'user_id' => $uid,
+            'user_id' => $userid,
             'plan_id' => $planid,
             'contacts' => $planInfo->contacts,
             'events' => $planInfo->events,
@@ -101,10 +87,11 @@ class M_plan_stripe_webhooker extends CI_Model {
             'expiry_date' => date('Y-m-d', $payment->subscriptions->data[0]->current_period_end)
         );
         $this->db->insert('plan_detail', $plan_set);
-        $pid = $this->db->insert_id();
-//        fwrite($myfile, " {$pid} Plan Detail Inserted..!\n");
-        //--------------------------------------------//
-        //-------Insert Payment Detail----------------------//
+        return $this->db->insert_id();
+    }
+
+    function insertPaymentDetail($pid, $payment) {
+        $amount = $payment->subscriptions->data[0]->plan->amount / 100;
         $insert_set = array(
             'id' => $pid,
             'payer_id' => $payment->id,
@@ -115,25 +102,6 @@ class M_plan_stripe_webhooker extends CI_Model {
             'payment_date' => date('Y-m-d', $payment->subscriptions->data[0]->current_period_start)
         );
         $this->db->insert('payment_mst', $insert_set);
-        $payid = $this->db->insert_id();
-//        fwrite($myfile, " {$payid} Payment Inserted..!\n");
-        //--------------------------------------------//
-        $this->db->trans_complete();
-        $this->sendMail($user_set);
-    }
-
-    function stripeCancel($payment) {
-        $customerid = $payment->id;
-        if ($payment->deleted == "true") {
-            $this->db->select('*');
-            $query = $this->db->get_where('payment_mst', array('payer_id' => $customerid));
-            $this->db->update('plan_detail', array('plan_status' => 0, 'cancel_date' => date('Y-m-d')), array('id' => $query->row()->id));
-        }
-        return true;
-    }
-
-    function generateRandomString($length = 5) {
-        return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
     }
 
     function sendMail($post) {
