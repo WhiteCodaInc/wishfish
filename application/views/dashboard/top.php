@@ -107,12 +107,16 @@ $img_src = ($profile_pic != "") ?
                             <i class="fa fa-th"></i> <span>Calender</span>
                         </a>
                     </li>
-
-                    <li style="margin: 10px 60px;color: white;">
-                        <span style="font-size: 20px">
-                            Day Left on Trial : <?= $this->common->getDateDiff() ?>
-                        </span>
-                    </li>
+                    <?php
+                    $currPlan = $this->common->getCurrentPlan();
+                    if ($currPlan->plan_id == 1) {
+                        ?>
+                        <li style="margin: 10px 60px;color: white;">
+                            <span style="font-size: 20px">
+                                Day Left on Trial : <?= $this->common->getDateDiff() ?>
+                            </span>
+                        </li>
+                    <?php } ?>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">

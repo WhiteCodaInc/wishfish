@@ -24,7 +24,6 @@ class M_plan_stripe_webhooker extends CI_Model {
             case "invoice.payment_succeeded":
                 $pname = $payment->subscriptions->data[0]->plan->id;
 
-
                 $planid = ($pname == "wishfish-free") ? 1 :
                         (($pname == "wishfish-personal") ? 2 : 3);
 

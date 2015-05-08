@@ -160,10 +160,15 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <input type="checkbox" class="simple"  name="is_bill" >
-                                <span class="lbl padding-8">Automatically bill me,When my trial over</span>
-                            </div>
+                            <?php
+                            $currPlan = $this->common->getCurrentPlan();
+                            if ($currPlan->plan_id == 1):
+                                ?>
+                                <div class="form-group">
+                                    <input type="checkbox" class="simple"  name="is_bill" >
+                                    <span class="lbl padding-8">Automatically bill me,When my trial over</span>
+                                </div>
+                            <?php endif; ?>
                         </div><!-- /.box-body -->
                     </form>
                 </div><!-- /.box -->
