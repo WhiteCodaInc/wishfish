@@ -35,9 +35,9 @@ class M_profile extends CI_Model {
     function updateProfile($set) {
         $m = "";
         $userInfo = $this->common->getUserInfo($this->userid);
-        if (!$userInfo->is_bill) {
+        if ($userInfo->customer_id != NULL) {
             if (isset($set['stripeToken']) && $set['stripeToken'] != "")
-                $this->addCustomerToStripe($userInfo, $set['stripeToken']);
+                $this->saveCardDetail($userInfo, $set['stripeToken']);
         }
         if ($this->session->userdata('name') == "") {
             $this->session->set_userdata('name', $set['name']);
@@ -98,20 +98,20 @@ class M_profile extends CI_Model {
         }
     }
 
-    function addCustomerToStripe($uInfo, $stripeToken) {
-        $payment = array();
-        $success = 0;
+    function saveCardDetail($uInfo, $stripeToken) {
         $gatewayInfo = $this->common->getPaymentGatewayInfo("STRIPE");
-        //require_once(FCPATH . 'stripe\lib\Stripe.php');
         require_once(FCPATH . 'stripe/lib/Stripe.php');
         Stripe::setApiKey($gatewayInfo->secret_key);
+        $customer = Stripe_Customer::retrieve($uInfo->customer_id);
         try {
-            Stripe_Customer::create(array(
-                "card" => $stripeToken,
-                "email" => $uInfo->email,
-                "metadata" => array("planid" => "wishfish-free", "userid" => $this->userid),
-                "plan" => "wishfish-free"
-            ));
+            $customer->card = $stripeToken;
+            $customer->save();
+//            Stripe_Customer::create(array(
+//                "card" => $stripeToken,
+//                "email" => $uInfo->email,
+//                "metadata" => array("planid" => "wishfish-free", "userid" => $this->userid),
+//                "plan" => "wishfish-free"
+//            ));
             $success = 1;
         } catch (Stripe_CardError $e) {
             $error = $e->getMessage();
