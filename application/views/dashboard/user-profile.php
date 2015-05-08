@@ -171,7 +171,7 @@
     </section><!-- /.content -->
 </aside><!-- /.right-side -->
 
-<!--<script type="text/javascript" src="https://js.stripe.com/v2/"></script>-->
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 
 <!-- InputMask -->
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/input-mask/jquery.inputmask.js" type="text/javascript"></script>
