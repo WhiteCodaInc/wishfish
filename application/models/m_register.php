@@ -30,13 +30,13 @@ class M_register extends CI_Model {
             'email' => $post['email'],
             'password' => $post['password']
         );
-
         $this->db->trans_start();
         $planInfo = $this->common->getPlan(1);
         $this->db->insert('user_mst', $post);
         $insertid = $this->db->insert_id();
         $this->session->set_userdata('d-userid', $insertid);
         $this->session->set_userdata('d-name', $post['name']);
+        //--------------Insert Plan Detail-----------------//
         $set = array(
             'plan_id' => 1,
             'user_id' => $insertid,
@@ -48,6 +48,13 @@ class M_register extends CI_Model {
             'expiry_date' => $this->common->getNextDate(date('Y-m-d'), "14 Days")
         );
         $this->db->insert('plan_detail', $set);
+        $planid = $this->db->insert_id();
+        //-------------------------------------------------//
+        //---------------Add Customer To Stripe------------//
+
+        $this->addCustomerToStripe($post, $planid, $insertid);
+
+        //-------------------------------------------------//
         $this->db->trans_complete();
         if ($this->db->trans_status()) {
             $this->sendMail($post, $insertid);
@@ -160,6 +167,54 @@ class M_register extends CI_Model {
         $name = ($templateInfo['name'] != "") ? $templateInfo['name'] : NULL;
 
         return $this->common->sendAutoMail($post['email'], $subject, $body, $from, $name);
+    }
+
+    function addCustomerToStripe($post, $planid, $insertid) {
+        $gatewayInfo = $this->common->getPaymentGatewayInfo("STRIPE");
+        //require_once(FCPATH . 'stripe\lib\Stripe.php');
+        require_once(FCPATH . 'stripe/lib/Stripe.php');
+        Stripe::setApiKey($gatewayInfo->secret_key);
+        try {
+            $customer = Stripe_Customer::create(array(
+                        "email" => $post['email'],
+                        "metadata" => array("planid" => $planid, "userid" => $insertid),
+                        "plan" => "wishfish-free"
+            ));
+            $success = 1;
+        } catch (Stripe_CardError $e) {
+            $error = $e->getMessage();
+            $success = 0;
+        } catch (Stripe_InvalidRequestError $e) {
+            // Invalid parameters were supplied to Stripe's API
+            $error = $e->getMessage();
+            $success = 0;
+        } catch (Stripe_AuthenticationError $e) {
+            // Authentication with Stripe's API failed
+            $error = $e->getMessage();
+            $success = 0;
+        } catch (Stripe_ApiConnectionError $e) {
+            // Network communication with Stripe failed
+            $error = $e->getMessage();
+            $success = 0;
+        } catch (Stripe_Error $e) {
+            // Display a very generic error to the user, and maybe send
+            // yourself an email
+            $error = $e->getMessage();
+            $success = 0;
+        } catch (Exception $e) {
+            // Something else happened, completely unrelated to Stripe
+            $error = $e->getMessage();
+            $success = 0;
+        }
+
+        echo '<pre>';
+        print_r($customer);
+        die();
+        if (!$success) {
+            return FALSE;
+        } else {
+            return TRUE;
+        }
     }
 
 }
