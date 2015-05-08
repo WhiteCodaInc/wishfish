@@ -209,7 +209,7 @@ class M_register extends CI_Model {
         if (!$success) {
             return FALSE;
         } else {
-            $this->db->update('user_mst', array('customer_id'), array('user_id' => $insertid));
+            $this->db->update('user_mst', array('customer_id' => $customer->id), array('user_id' => $insertid));
             return TRUE;
         }
     }
