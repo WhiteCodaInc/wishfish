@@ -123,22 +123,19 @@ class M_profile extends CI_Model {
         }
     }
 
-//    function updateCard($uInfo, $stripeToken) {
-//        try {
-//            $customer = Stripe_Customer::retrieve($uInfo->customer_id);
-//            $customer->sources->create(array("source" => $stripeToken));
-//            $success = 1;
-//        } catch (Exception $e) {
-//            $error = $e->getMessage();
-//            $success = 0;
-//        }
-//        if ($success != 1) {
-//            $this->session->set_flashdata('error', $error);
-//            header('Location:' . site_url() . 'app/profile');
-//        } else {
-//            return TRUE;
-//        }
-//    }
+    function updateCard($uInfo, $stripeToken) {
+        try {
+            $customer = Stripe_Customer::retrieve($uInfo->customer_id);
+            if ($customer->cards->total_count != 0) {
+                $cardid = $customer->cards->data[0]->id;
+                $customer->sources->retrieve($cardid)->delete();
+            }
+            $customer->sources->create(array("source" => $stripeToken));
+            return TRUE;
+        } catch (Exception $e) {
+            return FALSE;
+        }
+    }
 
     function getCardDetail() {
         try {
