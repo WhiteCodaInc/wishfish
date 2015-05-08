@@ -157,10 +157,10 @@
             <div class="col-md-3"></div>
             <!-- right column -->
         </div>
-        <div id="error" class="row" style="background-color: #ecf0f5;margin: 0;">
+        <div id="error" class="row" style="background-color: #ecf0f5;margin: 0;display: none">
             <div class="col-md-3"></div>
             <div class="col-md-6">
-                <div class="alert alert-danger alert-dismissable">
+                <div style="background-color: mistyrose;border-color: mintcream;color: red !important;" class="alert alert-danger alert-dismissable">
                     <i class="fa fa-ban"></i>
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                     <b>Error!</b> <span id="error-msg"></span>
@@ -249,12 +249,15 @@
             // Check for errors:
             if (!error) {
                 // Get the Stripe token:
+                $('#error').hide();
                 Stripe.card.createToken({
                     number: ccNum,
                     cvc: cvcNum,
                     exp_month: expMonth,
                     exp_year: expYear
                 }, stripeResponseHandler);
+            } else {
+                $('#error').show();
             }
             // Prevent the form from submitting:
             return false;
