@@ -142,7 +142,7 @@
                             ?>
                             <div class="form-group">
                                 <label>Credit Card Number </label>
-                                <input id="card_number" value="<?= ($card) ? $cardNo : "" ?>" data-stripe="number"  type="text" maxlength="16" class="form-control" placeholder="Card Number" />
+                                <input id="card_number" value="<?= ($card) ? $cardNo : "" ?>" data-stripe="number"  type="text" maxlength="16" class="form-control" placeholder="Card Number" <?= ($card) ? "readonly" : "" ?> />
                             </div>
                             <div class="form-group">
                                 <div class="row">
@@ -150,17 +150,17 @@
                                         <label>Expiration (MM/YYYY)</label>
                                         <div class="row">
                                             <div class="col-md-5" style="padding-right: 0">
-                                                <input value="<?= ($card) ? $card['exp_month'] : "" ?>" id="month" data-stripe="exp-month" maxlength="2" type="text" class="form-control" placeholder="MM">
+                                                <input value="<?= ($card) ? $card['exp_month'] : "" ?>" id="month" data-stripe="exp-month" maxlength="2" type="text" class="form-control" placeholder="MM" <?= ($card) ? "readonly" : "" ?>>
                                             </div>
                                             <div class="col-md-1" style="padding: 0 8px;font-size: 23px">/</div>
                                             <div class="col-md-5" style="padding-left: 0">
-                                                <input value="<?= ($card) ? $card['exp_year'] : "" ?>" id="year" data-stripe="exp-year" type="text" maxlength="4" class="form-control" placeholder="YYYY">
+                                                <input value="<?= ($card) ? $card['exp_year'] : "" ?>" id="year" data-stripe="exp-year" type="text" maxlength="4" class="form-control" placeholder="YYYY" <?= ($card) ? "readonly" : "" ?>>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <label>CVC</label>
-                                        <input id="cvc" maxlength="3" type="password" class="form-control">
+                                        <input value="123" id="cvc" maxlength="3" type="password" class="form-control" <?= ($card) ? "readonly" : "" ?>>
                                     </div>
                                 </div>
                             </div>
