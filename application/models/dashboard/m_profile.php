@@ -38,9 +38,6 @@ class M_profile extends CI_Model {
 
     function updateProfile($set) {
         $m = "";
-        echo '<pre>';
-        print_r($set);
-        die();
         $userInfo = $this->common->getUserInfo($this->userid);
         $currPlan = $this->common->getCurrentPlan();
         if ($userInfo->customer_id != NULL) {
