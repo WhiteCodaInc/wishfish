@@ -226,42 +226,44 @@
                     expMonth = $('#month').val(),
                     expYear = $('#year').val();
 
-            // Validate the number:
-            if (!Stripe.card.validateCardNumber(ccNum)) {
-                error = true;
-                reportError('The credit card number appears to be invalid.');
+            if (ccNum.trim() != "" || cvcNum.trim() != "" ||
+                    expMonth.trim() != "" || expYear.trim() != "") {
+                // Validate the number:
+                if (!Stripe.card.validateCardNumber(ccNum)) {
+                    error = true;
+                    reportError('The credit card number appears to be invalid.');
+                    return false;
+                }
+                // Validate the CVC:
+                if (!Stripe.card.validateCVC(cvcNum)) {
+                    error = true;
+                    reportError('The CVC number appears to be invalid.');
+                    return false;
+                }
+                // Validate the expiration:
+                if (!Stripe.card.validateExpiry(expMonth, expYear)) {
+                    error = true;
+                    reportError('The expiration date appears to be invalid.');
+                    return false;
+                }
+                // Check for errors:
+                if (!error) {
+                    // Get the Stripe token:
+                    $('#error').hide();
+                    Stripe.card.createToken({
+                        number: ccNum,
+                        cvc: cvcNum,
+                        exp_month: expMonth,
+                        exp_year: expYear
+                    }, stripeResponseHandler);
+                } else {
+                    $('#error').show();
+                }
                 return false;
-            }
-
-            // Validate the CVC:
-            if (!Stripe.card.validateCVC(cvcNum)) {
-                error = true;
-                reportError('The CVC number appears to be invalid.');
-                return false;
-            }
-
-            // Validate the expiration:
-            if (!Stripe.card.validateExpiry(expMonth, expYear)) {
-                error = true;
-                reportError('The expiration date appears to be invalid.');
-                return false;
-            }
-
-            // Check for errors:
-            if (!error) {
-                // Get the Stripe token:
-                $('#error').hide();
-                Stripe.card.createToken({
-                    number: ccNum,
-                    cvc: cvcNum,
-                    exp_month: expMonth,
-                    exp_year: expYear
-                }, stripeResponseHandler);
+                // Prevent the form from submitting:
             } else {
-                $('#error').show();
+                return true;
             }
-            // Prevent the form from submitting:
-            return false;
         });
 
         // Function handles the Stripe response:
