@@ -160,7 +160,7 @@
         <div id="error" class="row" style="background-color: #ecf0f5;margin: 0;display: none">
             <div class="col-md-3"></div>
             <div class="col-md-6">
-                <div style="background-color: mistyrose;border-color: mintcream;color: red !important;" class="alert alert-danger alert-dismissable">
+                <div style="background-color: mistyrose !important;border-color: mintcream;color: red !important;" class="alert alert-danger alert-dismissable">
                     <i class="fa fa-ban"></i>
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                     <b>Error!</b> <span id="error-msg"></span>
@@ -205,6 +205,7 @@
     function reportError(msg) {
         // Show the error in the form:
         $('#error-msg').text(msg);
+        $('#error').show();
         // re-enable the submit button:
         $('#save-profile').prop('disabled', false);
         return false;
