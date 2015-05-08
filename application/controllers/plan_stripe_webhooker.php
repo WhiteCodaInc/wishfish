@@ -40,15 +40,24 @@ class Plan_stripe_webhooker extends CI_Controller {
         $customer_id = $event_json->data->object->customer;
         $customer = Stripe_Customer::retrieve($customer_id);
 
-        /* if (file_exists('stripedata.txt')) {
-          $myfile = fopen(FCPATH . 'stripedata.txt', "a");
-          fwrite($myfile, "Customer : " . $customer."\n");
-          } else {
-          $myfile = fopen(FCPATH . 'stripedata.txt', "w");
-          fwrite($myfile, "Customer : " . $customer . "\n");
-          } */
-
         $event = $event_json->type;
+
+        if (file_exists('stripedata.txt')) {
+            $stripefile = fopen(FCPATH . 'stripedata.txt', "a");
+            fwrite($stripefile, "Customer : " . $customer . "\n");
+        } else {
+            $stripefile = fopen(FCPATH . 'stripedata.txt', "w");
+            fwrite($stripefile, "Customer : " . $customer . "\n");
+        }
+        if (file_exists('events.txt')) {
+            $myfile = fopen(FCPATH . 'events.txt', "a");
+            fwrite($myfile, "EVENT : " . $event . "\n");
+        } else {
+            $myfile = fopen(FCPATH . 'events.txt', "w");
+            fwrite($myfile, "EVENT : " . $event . "\n");
+        }
+
+
         if ($event == "customer.subscription.deleted") {
             $this->objpayment->stripeCancel($customer);
         } else if ($event == "invoice.payment_succeeded") {
