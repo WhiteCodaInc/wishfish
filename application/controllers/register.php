@@ -100,10 +100,10 @@ class Register extends CI_Controller {
                     $this->input->set_cookie($googleid);
                     header('location:' . site_url() . 'app/dashboard');
                 } else {
-                    header('Location: ' . site_url() . 'register');
+                    header('Location: ' . site_url() . 'register?msg=RF');
                 }
             } else {
-                header('Location: ' . filter_var($this->client->getRedirectUri(), FILTER_SANITIZE_URL));
+                //header('Location: ' . filter_var($this->client->getRedirectUri(), FILTER_SANITIZE_URL));
             }
         }
     }
@@ -136,7 +136,7 @@ class Register extends CI_Controller {
                     $this->input->set_cookie($facebookid);
                     header('location:' . site_url() . 'app/dashboard');
                 } else {
-                    header('location: ' . site_url() . 'register');
+                    header('location: ' . site_url() . 'register?msg=RF');
                 }
             } catch (FacebookApiException $e) {
                 error_log($e);
