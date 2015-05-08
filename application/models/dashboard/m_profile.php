@@ -34,6 +34,9 @@ class M_profile extends CI_Model {
 
     function updateProfile($set) {
         $m = "";
+        echo '<pre>';
+        print_r($set);
+        die();
         if ($this->session->userdata('name') == "") {
             $this->session->set_userdata('name', $set['name']);
         }
