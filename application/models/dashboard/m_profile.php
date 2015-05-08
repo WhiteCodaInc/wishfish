@@ -146,8 +146,10 @@ class M_profile extends CI_Model {
             $customer = Stripe_Customer::retrieve($uInfo->customer_id);
             $cardid = $customer->cards->data[0]->id;
             $card = $customer->sources->retrieve($cardid);
+
             echo '<pre>';
             print_r($card);
+            echo $card->id;
             die();
             $success = 1;
         } catch (Exception $e) {
