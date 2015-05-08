@@ -206,15 +206,10 @@ class M_register extends CI_Model {
             $error = $e->getMessage();
             $success = 0;
         }
-
-        echo '<pre>';
-        print_r($customer);
-        echo '<br>--Customer ID----<br>';
-        echo $customer->id;
-        die();
         if (!$success) {
             return FALSE;
         } else {
+            $this->db->update('user_mst', array('customer_id'), array('user_id' => $insertid));
             return TRUE;
         }
     }
