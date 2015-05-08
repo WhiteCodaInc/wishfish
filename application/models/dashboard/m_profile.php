@@ -144,18 +144,18 @@ class M_profile extends CI_Model {
         try {
             $uInfo = $this->common->getUserInfo($this->userid);
             $customer = Stripe_Customer::retrieve($uInfo->customer_id);
-            echo '<pre>';
-            print_r($customer);
-            //$cardid = $customer->cards->data[0]->id;
-            //$card = $customer->sources->retrieve($cardid);
-            //print_r($card);
-            die();
-            $cardDetail = array(
-                'last4' => $card->last4,
-                'exp_month' => $card->exp_month,
-                'exp_year' => $card->exp_year,
-            );
-            return $cardDetail;
+            if ($customer->cards->total_count != 0) {
+                $cardid = $customer->cards->data[0]->id;
+                $card = $customer->sources->retrieve($cardid);
+                $cardDetail = array(
+                    'last4' => $card->last4,
+                    'exp_month' => $card->exp_month,
+                    'exp_year' => $card->exp_year,
+                );
+                return $cardDetail;
+            } else {
+                return FALSE;
+            }
         } catch (Exception $e) {
             return FALSE;
         }

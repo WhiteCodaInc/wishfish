@@ -135,10 +135,14 @@
                                 <label>Timezone </label>
                                 <?= timezone_menu('UTC') ?>
                             </div>
-
+                            <?php
+                            if ($card) {
+                                $cardNo = "************{$card['last4']}";
+                            }
+                            ?>
                             <div class="form-group">
                                 <label>Credit Card Number </label>
-                                <input id="card_number" data-stripe="number"  type="text" maxlength="16" class="form-control" placeholder="Card Number"/>
+                                <input id="card_number" value="<?= ($card) ? $cardNo : "" ?>" data-stripe="number"  type="text" maxlength="16" class="form-control" placeholder="Card Number" />
                             </div>
                             <div class="form-group">
                                 <div class="row">
@@ -146,11 +150,11 @@
                                         <label>Expiration (MM/YYYY)</label>
                                         <div class="row">
                                             <div class="col-md-5" style="padding-right: 0">
-                                                <input id="month" data-stripe="exp-month" maxlength="2" type="text" class="form-control" placeholder="MM">
+                                                <input value="<?= ($card) ? $card['exp_month'] : "" ?>" id="month" data-stripe="exp-month" maxlength="2" type="text" class="form-control" placeholder="MM">
                                             </div>
                                             <div class="col-md-1" style="padding: 0 8px;font-size: 23px">/</div>
                                             <div class="col-md-5" style="padding-left: 0">
-                                                <input id="year" data-stripe="exp-year" type="text" maxlength="4" class="form-control" placeholder="YYYY">
+                                                <input value="<?= ($card) ? $card['exp_year'] : "" ?>" id="year" data-stripe="exp-year" type="text" maxlength="4" class="form-control" placeholder="YYYY">
                                             </div>
                                         </div>
                                     </div>
