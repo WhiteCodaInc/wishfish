@@ -147,14 +147,14 @@ class M_profile extends CI_Model {
             $cardid = $customer->cards->data[0]->id;
             $card = $customer->sources->retrieve($cardid);
 
-            echo '<pre>';
-            print_r($card);
-            echo $card->id;
-            die();
-            $success = 1;
+            $cardDetail = array(
+                'last4' => $card->last4,
+                'exp_month' => $card->exp_month,
+                'exp_year' => $card->exp_year,
+            );
+            return $cardDetail;
         } catch (Exception $e) {
-            $error = $e->getMessage();
-            $success = 0;
+            return FALSE;
         }
     }
 
