@@ -36,15 +36,7 @@ class Stripe_payment extends CI_Controller {
         if ($this->input->post('stripeToken') != "") {
 
             try {
-                $customer = Stripe_Plan::create(array(
-                            "amount" => $set['amount'] * 100,
-                            "currency" => 'USD',
-                            "interval" => 'month',
-                            "interval_count" => $set['frequency'],
-                            "name" => $set['name'],
-                            "metadata" => array("planid" => $set['id']),
-                            "id" => $set['id']));
-                $payment = Stripe_Customer::create(array(
+                $customer = Stripe_Customer::create(array(
                             "card" => $this->input->post('stripeToken'),
                             "email" => $this->input->post('stripeEmail'),
                             "metadata" => array(),

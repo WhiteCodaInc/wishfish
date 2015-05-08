@@ -106,12 +106,6 @@ class M_profile extends CI_Model {
         try {
             $customer->card = $stripeToken;
             $customer->save();
-//            Stripe_Customer::create(array(
-//                "card" => $stripeToken,
-//                "email" => $uInfo->email,
-//                "metadata" => array("planid" => "wishfish-free", "userid" => $this->userid),
-//                "plan" => "wishfish-free"
-//            ));
             $success = 1;
         } catch (Stripe_CardError $e) {
             $error = $e->getMessage();

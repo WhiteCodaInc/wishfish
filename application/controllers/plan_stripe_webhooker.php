@@ -30,12 +30,9 @@ class Plan_stripe_webhooker extends CI_Controller {
 
 
         $event_json = json_decode(@file_get_contents('php://input', true));
-//        $userid = $event_json->data->object->lines->data[0]->plan->metadata->userid;
 
         $data = $this->common->getPaymentGatewayInfo("STRIPE");
         Stripe::setApiKey($data->secret_key);
-
-
 
         $customer_id = $event_json->data->object->customer;
         $customer = Stripe_Customer::retrieve($customer_id);

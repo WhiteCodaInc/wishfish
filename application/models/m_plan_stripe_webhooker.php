@@ -49,12 +49,14 @@ class M_plan_stripe_webhooker extends CI_Model {
                     $user_set = array(
                         'email' => $payment->email,
                         'password' => $this->generateRandomString(5),
+                        'customer_id' => $payment->id,
                         'register_date' => date('Y-m-d', $payment->subscriptions->data[0]->current_period_start)
                     );
                     $this->db->insert('user_mst', $user_set);
                     $uid = $this->db->insert_id();
                     $pid = $this->insertPlanDetail($uid, $planid, $payment);
                     $this->insertPaymentDetail($pid, $payment);
+                    $this->updateCardDetail($payment, $uid);
                     $this->sendMail($user_set);
                 }
                 break;
@@ -102,6 +104,20 @@ class M_plan_stripe_webhooker extends CI_Model {
             'payment_date' => date('Y-m-d', $payment->subscriptions->data[0]->current_period_start)
         );
         $this->db->insert('payment_mst', $insert_set);
+    }
+
+    function updateCardDetail($payment, $uid) {
+        $gatewayInfo = $this->common->getPaymentGatewayInfo("STRIPE");
+        require_once(FCPATH . 'stripe/lib/Stripe.php');
+        Stripe::setApiKey($gatewayInfo->secret_key);
+        $customer = Stripe_Customer::retrieve($payment->id);
+        try {
+            $customer->metadata = array('userid' => $uid);
+            $customer->save();
+            return TRUE;
+        } catch (Exception $e) {
+            return FALSE;
+        }
     }
 
     function sendMail($post) {
