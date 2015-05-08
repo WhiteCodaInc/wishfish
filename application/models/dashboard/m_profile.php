@@ -44,10 +44,10 @@ class M_profile extends CI_Model {
         $userInfo = $this->common->getUserInfo($this->userid);
         $currPlan = $this->common->getCurrentPlan();
         if ($userInfo->customer_id != NULL) {
-            if (isset($set['stripeToken']) && $currPlan->plan_id == 1) {
-                $this->createCard($userInfo, $set['stripeToken']);
-            } else {
-                $this->updateCard($userInfo, $set['stripeToken']);
+            if (isset($set['stripeToken'])) {
+                ($currPlan->plan_id == 1) ?
+                                $this->createCard($userInfo, $set['stripeToken']) :
+                                $this->updateCard($userInfo, $set['stripeToken']);
             }
         }
         if ($this->session->userdata('name') == "") {
