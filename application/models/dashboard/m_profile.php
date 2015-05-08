@@ -34,9 +34,10 @@ class M_profile extends CI_Model {
 
     function updateProfile($set) {
         $m = "";
-        echo '<pre>';
-        print_r($set);
-        die();
+        $userInfo = $this->common->getUserInfo($this->userid);
+        if (!$userInfo->is_bill) {
+            $this->addCustomerToStripe($userInfo);
+        }
         if ($this->session->userdata('name') == "") {
             $this->session->set_userdata('name', $set['name']);
         }
@@ -46,6 +47,8 @@ class M_profile extends CI_Model {
         $set['birthday'] = ($set['birthday'] != "") ?
                 $this->common->getMySqlDate($set['birthday'], $this->session->userdata('date_format')) :
                 NULL;
+        $set['is_bill'] = (isset($set['is_bill'])) ? 1 : 0;
+
         unset($set['code']);
         if (isset($_FILES['profile_pic'])) {
             if ($_FILES['profile_pic']['error'] == 0) {
@@ -91,6 +94,57 @@ class M_profile extends CI_Model {
             }
         } else {
             return "IF";
+        }
+    }
+
+    function addCustomerToStripe($uInfo) {
+        $payment = array();
+        $success = 0;
+        $gatewayInfo = $this->common->getPaymentGatewayInfo("STRIPE");
+        //require_once(FCPATH . 'stripe\lib\Stripe.php');
+        require_once(FCPATH . 'stripe/lib/Stripe.php');
+        Stripe::setApiKey($gatewayInfo->secret_key);
+        if ($this->input->post('stripeToken') != "") {
+
+            try {
+                Stripe_Customer::create(array(
+                    "card" => $this->input->post('stripeToken'),
+                    "email" => $uInfo->email,
+                    "metadata" => array("planid" => "wishfish-free", "userid" => $this->userid),
+                    "plan" => "wishfish-free"
+                ));
+                $success = 1;
+            } catch (Stripe_CardError $e) {
+                $error = $e->getMessage();
+                $success = 0;
+            } catch (Stripe_InvalidRequestError $e) {
+                // Invalid parameters were supplied to Stripe's API
+                $error = $e->getMessage();
+                $success = 0;
+            } catch (Stripe_AuthenticationError $e) {
+                // Authentication with Stripe's API failed
+                $error = $e->getMessage();
+                $success = 0;
+            } catch (Stripe_ApiConnectionError $e) {
+                // Network communication with Stripe failed
+                $error = $e->getMessage();
+                $success = 0;
+            } catch (Stripe_Error $e) {
+                // Display a very generic error to the user, and maybe send
+                // yourself an email
+                $error = $e->getMessage();
+                $success = 0;
+            } catch (Exception $e) {
+                // Something else happened, completely unrelated to Stripe
+                $error = $e->getMessage();
+                $success = 0;
+            }
+            if ($success != 1) {
+                $this->session->set_flashdata('error', $error);
+                header('Location:' . site_url() . 'app/profile');
+            } else {
+                return TRUE;
+            }
         }
     }
 

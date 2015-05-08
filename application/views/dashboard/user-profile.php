@@ -40,7 +40,21 @@
         $img_src = ($user->profile_pic != "") ?
                 "http://mikhailkuznetsov.s3.amazonaws.com/" . $user->profile_pic :
                 base_url() . 'assets/dashboard/img/default-avatar.png';
+        $error = $this->session->flashdata('error');
         ?>
+        <?php if ($error): ?>
+            <div  class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <div style="background-color: mistyrose !important;border-color: mintcream;color: red !important;" class="alert alert-danger alert-dismissable">
+                        <i class="fa fa-ban"></i>
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <b>Error!</b> <?= $error ?> 
+                    </div>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+        <?php endif; ?>
         <div class="row">
             <div class="col-md-3"></div>
             <!-- left column -->
@@ -107,7 +121,7 @@
                             </div><!-- /.form group -->
                             <div class="form-group">
                                 <label>Email</label>
-                                <input value="<?= isset($user) ? $user->email : '' ?>" type="email" name="email" class="form-control" placeholder="Email"/>
+                                <input value="<?= isset($user) ? $user->email : '' ?>" type="email" name="email" class="form-control" placeholder="Email" readonly=""/>
                             </div>
 
                             <div class="form-group">
@@ -147,7 +161,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <input type="checkbox" class="simple"  name="is_repeat" >
+                                <input type="checkbox" class="simple"  name="is_bill" >
                                 <span class="lbl padding-8">Automatically bill me,When my trial over</span>
                             </div>
                         </div><!-- /.box-body -->
@@ -157,7 +171,7 @@
             <div class="col-md-3"></div>
             <!-- right column -->
         </div>
-        <div id="error" class="row" style="background-color: #ecf0f5;margin: 0;display: none">
+        <div id="error" class="row" style="display: none">
             <div class="col-md-3"></div>
             <div class="col-md-6">
                 <div style="background-color: mistyrose !important;border-color: mintcream;color: red !important;" class="alert alert-danger alert-dismissable">
