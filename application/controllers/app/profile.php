@@ -28,9 +28,7 @@ class Profile extends CI_Controller {
     function index() {
         $data['user'] = $this->objprofile->getProfile();
         $data['card'] = $this->objprofile->getCardDetail();
-        echo '<pre>';
-        print_r($data);
-        die();
+        
         $this->load->view('dashboard/header');
         $this->load->view('dashboard/top');
 
