@@ -32,8 +32,10 @@ class M_register extends CI_Model {
         );
         $this->db->trans_start();
         $planInfo = $this->common->getPlan(1);
+
         $this->db->insert('user_mst', $post);
         $insertid = $this->db->insert_id();
+
         $this->session->set_userdata('d-userid', $insertid);
         $this->session->set_userdata('d-name', $post['name']);
         //--------------Insert Plan Detail-----------------//
@@ -52,17 +54,22 @@ class M_register extends CI_Model {
         //-------------------------------------------------//
         //---------------Add Customer To Stripe------------//
 
-        $this->addCustomerToStripe($post, $planid, $insertid);
+        if ($this->addCustomerToStripe($post, $planid, $insertid)) {
+            $this->db->trans_complete();
+            echo "SUCCESS";
+        } else {
+            echo $this->session->flashdata('error');
+        }
+        die();
 
         //-------------------------------------------------//
-        $this->db->trans_complete();
-        if ($this->db->trans_status()) {
-            $this->sendMail($post, $insertid);
-            $flag = TRUE;
-        } else {
-            $flag = FALSE;
-        }
-        return ($flag) ? TRUE : FALSE;
+//        if ($this->db->trans_status()) {
+//            $this->sendMail($post, $insertid);
+//            $flag = TRUE;
+//        } else {
+//            $flag = FALSE;
+//        }
+//        return ($flag) ? TRUE : FALSE;
     }
 
     function generateRandomString($length = 5) {
@@ -207,6 +214,7 @@ class M_register extends CI_Model {
             $success = 0;
         }
         if (!$success) {
+            $this->session->set_flashdata('error', $error);
             return FALSE;
         } else {
             $this->db->update('user_mst', array('customer_id' => $customer->id), array('user_id' => $insertid));
