@@ -209,6 +209,8 @@ class M_register extends CI_Model {
 
         echo '<pre>';
         print_r($customer);
+        echo '<br>--Customer ID----<br>';
+        echo $customer->id;
         die();
         if (!$success) {
             return FALSE;
