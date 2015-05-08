@@ -135,7 +135,7 @@
                                 <label>Timezone </label>
                                 <?= timezone_menu('UTC') ?>
                             </div>
-                            
+
                             <div class="form-group">
                                 <label>Credit Card Number </label>
                                 <input id="card_number" data-stripe="number"  type="text" maxlength="16" class="form-control" placeholder="Card Number"/>

@@ -144,10 +144,11 @@ class M_profile extends CI_Model {
         try {
             $uInfo = $this->common->getUserInfo($this->userid);
             $customer = Stripe_Customer::retrieve($uInfo->customer_id);
-            $cardid = $customer->cards->data[0]->id;
-            $card = $customer->sources->retrieve($cardid);
             echo '<pre>';
-            print_r($card);
+            print_r($customer);
+            //$cardid = $customer->cards->data[0]->id;
+            //$card = $customer->sources->retrieve($cardid);
+            //print_r($card);
             die();
             $cardDetail = array(
                 'last4' => $card->last4,
