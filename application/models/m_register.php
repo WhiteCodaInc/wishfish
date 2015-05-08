@@ -214,12 +214,15 @@ class M_register extends CI_Model {
             $success = 0;
         }
         if (!$success) {
-            $this->session->set_flashdata('error', $error);
-            return FALSE;
+//            $this->session->set_flashdata('error', $error);
+            echo $error;
+            // return FALSE;
         } else {
-            $this->db->update('user_mst', array('customer_id' => $customer->id), array('user_id' => $insertid));
-            return TRUE;
+            echo 'SUCCESS';
+            //$this->db->update('user_mst', array('customer_id' => $customer->id), array('user_id' => $insertid));
+            //return TRUE;
         }
+        return FALSE;
     }
 
 }
