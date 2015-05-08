@@ -25,6 +25,10 @@ class M_profile extends CI_Model {
         $this->bucket = "mikhailkuznetsov";
         $this->accessKey = "AKIAJWQAEAXONVCWQZKQ";
         $this->secretKey = "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";
+
+        $gatewayInfo = $this->common->getPaymentGatewayInfo("STRIPE");
+        require_once(FCPATH . 'stripe/lib/Stripe.php');
+        Stripe::setApiKey($gatewayInfo->secret_key);
     }
 
     function getProfile() {
@@ -35,9 +39,13 @@ class M_profile extends CI_Model {
     function updateProfile($set) {
         $m = "";
         $userInfo = $this->common->getUserInfo($this->userid);
+        $currPlan = $this->common->getCurrentPlan();
         if ($userInfo->customer_id != NULL) {
-            if (isset($set['stripeToken']) && $set['stripeToken'] != "")
-                $this->saveCardDetail($userInfo, $set['stripeToken']);
+            if (isset($set['stripeToken']) && $currPlan->plan_id == 1) {
+                $this->createCard($userInfo, $set['stripeToken']);
+            } else {
+                $this->updateCard($userInfo, $set['stripeToken']);
+            }
         }
         if ($this->session->userdata('name') == "") {
             $this->session->set_userdata('name', $set['name']);
@@ -98,37 +106,12 @@ class M_profile extends CI_Model {
         }
     }
 
-    function saveCardDetail($uInfo, $stripeToken) {
-        $gatewayInfo = $this->common->getPaymentGatewayInfo("STRIPE");
-        require_once(FCPATH . 'stripe/lib/Stripe.php');
-        Stripe::setApiKey($gatewayInfo->secret_key);
-        $customer = Stripe_Customer::retrieve($uInfo->customer_id);
+    function createCard($uInfo, $stripeToken) {
         try {
-            $customer->card = $stripeToken;
-            $customer->save();
+            $customer = Stripe_Customer::retrieve($uInfo->customer_id);
+            $customer->sources->create(array("source" => $stripeToken));
             $success = 1;
-        } catch (Stripe_CardError $e) {
-            $error = $e->getMessage();
-            $success = 0;
-        } catch (Stripe_InvalidRequestError $e) {
-            // Invalid parameters were supplied to Stripe's API
-            $error = $e->getMessage();
-            $success = 0;
-        } catch (Stripe_AuthenticationError $e) {
-            // Authentication with Stripe's API failed
-            $error = $e->getMessage();
-            $success = 0;
-        } catch (Stripe_ApiConnectionError $e) {
-            // Network communication with Stripe failed
-            $error = $e->getMessage();
-            $success = 0;
-        } catch (Stripe_Error $e) {
-            // Display a very generic error to the user, and maybe send
-            // yourself an email
-            $error = $e->getMessage();
-            $success = 0;
         } catch (Exception $e) {
-            // Something else happened, completely unrelated to Stripe
             $error = $e->getMessage();
             $success = 0;
         }
@@ -137,6 +120,39 @@ class M_profile extends CI_Model {
             header('Location:' . site_url() . 'app/profile');
         } else {
             return TRUE;
+        }
+    }
+
+//    function updateCard($uInfo, $stripeToken) {
+//        try {
+//            $customer = Stripe_Customer::retrieve($uInfo->customer_id);
+//            $customer->sources->create(array("source" => $stripeToken));
+//            $success = 1;
+//        } catch (Exception $e) {
+//            $error = $e->getMessage();
+//            $success = 0;
+//        }
+//        if ($success != 1) {
+//            $this->session->set_flashdata('error', $error);
+//            header('Location:' . site_url() . 'app/profile');
+//        } else {
+//            return TRUE;
+//        }
+//    }
+
+    function getCardDetail() {
+        try {
+            $uInfo = $this->common->getUserInfo($this->userid);
+            $customer = Stripe_Customer::retrieve($uInfo->customer_id);
+            $cardid = $customer->cards->data[0]->id;
+            $card = $customer->sources->retrieve($cardid);
+            echo '<pre>';
+            print_r($card);
+            die();
+            $success = 1;
+        } catch (Exception $e) {
+            $error = $e->getMessage();
+            $success = 0;
         }
     }
 

@@ -54,7 +54,7 @@ class M_register extends CI_Model {
         //-------------------------------------------------//
         //---------------Add Customer To Stripe------------//
 
-        if ($this->addCustomerToStripe($post, $planid, $insertid)) {
+        if ($this->addCustomerToStripe($post, $insertid)) {
             $this->db->trans_complete();
             if ($this->db->trans_status()) {
                 $this->sendMail($post, $insertid);
@@ -110,7 +110,7 @@ class M_register extends CI_Model {
         $this->db->insert('plan_detail', $plan_set);
         $planid = $this->db->insert_id();
 
-        if ($this->addCustomerToStripe($set, $planid, $insertid)) {
+        if ($this->addCustomerToStripe($set, $insertid)) {
             $this->db->trans_complete();
             $flag = ($this->db->trans_status()) ? TRUE : FALSE;
         } else {
@@ -165,7 +165,7 @@ class M_register extends CI_Model {
         return $this->common->sendAutoMail($post['email'], $subject, $body, $from, $name);
     }
 
-    function addCustomerToStripe($post, $planid, $insertid) {
+    function addCustomerToStripe($post, $insertid) {
         $gatewayInfo = $this->common->getPaymentGatewayInfo("STRIPE");
         //require_once(FCPATH . 'stripe\lib\Stripe.php');
         require_once(FCPATH . 'stripe/lib/Stripe.php');
