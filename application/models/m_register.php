@@ -56,36 +56,22 @@ class M_register extends CI_Model {
 
         if ($this->addCustomerToStripe($post, $planid, $insertid)) {
             $this->db->trans_complete();
-            echo "SUCCESS";
+            if ($this->db->trans_status()) {
+                $this->sendMail($post, $insertid);
+                $flag = TRUE;
+            } else {
+                $flag = FALSE;
+            }
         } else {
-            echo $this->session->flashdata('error');
+            $flag = FALSE;
         }
-        die();
-
         //-------------------------------------------------//
-//        if ($this->db->trans_status()) {
-//            $this->sendMail($post, $insertid);
-//            $flag = TRUE;
-//        } else {
-//            $flag = FALSE;
-//        }
-//        return ($flag) ? TRUE : FALSE;
+        return $flag;
     }
 
     function generateRandomString($length = 5) {
         return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
     }
-
-//    function send_Mail($post, $userid) {
-//        $uid = $this->encryption->encode($userid);
-//        $subject = "Welcome {$post['name']}";
-//        $body = "Dear {$post['name']}," . '<br>';
-//        $body .= "Congratulation on joining Wish-Fish!" . '<br>';
-//        $body .= "Hopefully you`re excited to get started!<br>";
-//        $body .= "Please click the button below." . '<br>';
-//        $body .= "<a href='" . site_url() . "app/dashboard?uid={$uid}'>Click me!</a>";
-//        return $this->common->sendMail($post['email'], $subject, $body);
-//    }
 
     function isUserExist($data) {
         $where = array(
@@ -107,6 +93,7 @@ class M_register extends CI_Model {
             'user_unique_id' => $data['id']
         );
         $this->db->trans_start();
+
         $this->db->insert('user_mst', $set);
         $insertid = $this->db->insert_id();
         $planInfo = $this->common->getPlan(1);
@@ -121,30 +108,32 @@ class M_register extends CI_Model {
             'expiry_date' => $this->common->getNextDate(date('Y-m-d'), "14 Days")
         );
         $this->db->insert('plan_detail', $plan_set);
-        $flag = FALSE;
-        if (isset($data['picture'])) {
-            $ext = explode('.', basename($data['picture']));
-            copy($data['picture'], FCPATH . basename($data['picture']));
-            $fname = 'wish-fish/users/profile_' . $insertid . '.' . $ext[1];
-            $ext_url = FCPATH . basename($data['picture']);
+        $planid = $this->db->insert_id();
 
-            $flag = TRUE;
+        if ($this->addCustomerToStripe($set, $planid, $insertid)) {
+            $this->db->trans_complete();
+            $flag = ($this->db->trans_status()) ? TRUE : FALSE;
         } else {
-            copy("https://graph.facebook.com/{$data['id']}/picture?width=215&height=215", FCPATH . "user.jpg");
-            $fname = 'wish-fish/users/profile_' . $insertid . '.jpg';
-            $ext_url = FCPATH . "user.jpg";
-            $flag = TRUE;
+            $flag = FALSE;
         }
-
         if ($flag) {
+            if (isset($data['picture'])) {
+                $ext = explode('.', basename($data['picture']));
+                copy($data['picture'], FCPATH . basename($data['picture']));
+                $fname = 'wish-fish/users/profile_' . $insertid . '.' . $ext[1];
+                $ext_url = FCPATH . basename($data['picture']);
+            } else {
+                copy("https://graph.facebook.com/{$data['id']}/picture?width=215&height=215", FCPATH . "user.jpg");
+                $fname = 'wish-fish/users/profile_' . $insertid . '.jpg';
+                $ext_url = FCPATH . "user.jpg";
+            }
             $this->s3->setAuth($this->accessKey, $this->secretKey);
             if ($this->s3->putObjectFile($ext_url, $this->bucket, $fname, "public-read")) {
                 unlink($ext_url);
                 $this->db->update('user_mst', array('profile_pic' => $fname), array('user_id' => $insertid));
             }
         }
-        $this->db->trans_complete();
-        return true;
+        return $flag;
     }
 
     function sendMail($post, $userid) {
@@ -214,15 +203,11 @@ class M_register extends CI_Model {
             $success = 0;
         }
         if (!$success) {
-//            $this->session->set_flashdata('error', $error);
-            echo $error;
-            // return FALSE;
+            return FALSE;
         } else {
-            echo 'SUCCESS';
-            //$this->db->update('user_mst', array('customer_id' => $customer->id), array('user_id' => $insertid));
-            //return TRUE;
+            $this->db->update('user_mst', array('customer_id' => $customer->id), array('user_id' => $insertid));
+            return TRUE;
         }
-        return FALSE;
     }
 
 }

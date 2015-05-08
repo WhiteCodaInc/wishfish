@@ -73,12 +73,12 @@ class Register extends CI_Controller {
 
         $code = $this->input->get('code');
         $token = $this->session->userdata('token');
-		
-		
-		
-       /* if (isset($token) && $token != "") {
-            $this->client->setAccessToken($token);
-        }*/
+
+
+
+        /* if (isset($token) && $token != "") {
+          $this->client->setAccessToken($token);
+          } */
 
         if (isset($code) && $code != "") {
             $this->client->authenticate($code);
@@ -90,17 +90,18 @@ class Register extends CI_Controller {
                 $this->session->set_userdata('token', $this->client->getAccessToken());
                 $user = $this->isUserExist($data);
 
-                if (!$user) {
-                    $this->objregister->registerWithSocial($data);
+                if (!$user && $this->objregister->registerWithSocial($data)) {
+                    $googleid = array(
+                        'name' => 'googleid',
+                        'value' => $data['id'],
+                        'expire' => time() + 86500,
+                        'domain' => '.wish-fish.com'
+                    );
+                    $this->input->set_cookie($googleid);
+                    header('location:' . site_url() . 'app/dashboard');
+                } else {
+                    header('Location: ' . filter_var($this->client->getRedirectUri(), FILTER_SANITIZE_URL));
                 }
-                $googleid = array(
-                    'name' => 'googleid',
-                    'value' => $data['id'],
-                    'expire' => time() + 86500,
-                    'domain' => '.wish-fish.com'
-                );
-                $this->input->set_cookie($googleid);
-                header('location:' . site_url() . 'app/dashboard');
             } else {
                 header('Location: ' . filter_var($this->client->getRedirectUri(), FILTER_SANITIZE_URL));
             }
@@ -125,17 +126,16 @@ class Register extends CI_Controller {
             try {
                 $user_profile = $facebook->api('/me');  //Get the facebook user profile data
                 $is_user = $this->isUserExist($user_profile);
-                if (!$is_user) {
-                    $this->objregister->registerWithSocial($user_profile);
+                if (!$is_user && $this->objregister->registerWithSocial($user_profile)) {
+                    $facebookid = array(
+                        'name' => 'facebookid',
+                        'value' => $user_profile['id'],
+                        'expire' => time() + 86500,
+                        'domain' => '.wish-fish.com'
+                    );
+                    $this->input->set_cookie($facebookid);
+                    header('location:' . site_url() . 'app/dashboard');
                 }
-                $facebookid = array(
-                    'name' => 'facebookid',
-                    'value' => $user_profile['id'],
-                    'expire' => time() + 86500,
-                    'domain' => '.wish-fish.com'
-                );
-                $this->input->set_cookie($facebookid);
-                header('location:' . site_url() . 'app/dashboard');
             } catch (FacebookApiException $e) {
                 error_log($e);
                 $user = NULL;
