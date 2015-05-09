@@ -16,6 +16,9 @@ class M_plan_stripe_webhooker extends CI_Model {
 //put your code here
     function __construct() {
         parent::__construct();
+        $gatewayInfo = $this->common->getPaymentGatewayInfo("STRIPE");
+        require_once(FCPATH . 'stripe/lib/Stripe.php');
+        Stripe::setApiKey($gatewayInfo->secret_key);
     }
 
     function stripe($payment, $event_type) {
@@ -112,13 +115,9 @@ class M_plan_stripe_webhooker extends CI_Model {
     }
 
     function updateCardDetail($payment, $uid) {
-        $gatewayInfo = $this->common->getPaymentGatewayInfo("STRIPE");
-        require_once(FCPATH . 'stripe/lib/Stripe.php');
-        Stripe::setApiKey($gatewayInfo->secret_key);
-        $customer = Stripe_Customer::retrieve($payment->id);
         try {
-            $customer->metadata = array('userid' => $uid);
-            $customer->save();
+            $payment->metadata = array('userid' => $uid);
+            $payment->save();
             return TRUE;
         } catch (Exception $e) {
             return FALSE;
