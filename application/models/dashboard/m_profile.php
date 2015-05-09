@@ -126,11 +126,14 @@ class M_profile extends CI_Model {
             $customer = Stripe_Customer::retrieve($uInfo->customer_id);
             if ($customer->cards->total_count != 0) {
                 $cardid = $customer->cards->data[0]->id;
-                $customer->sources->retrieve($cardid)->delete();
+                echo $cardid;
+                //$customer->sources->retrieve($cardid)->delete();
             }
-            $customer->sources->create(array("source" => $stripeToken));
+            //$customer->sources->create(array("source" => $stripeToken));
+            die("TRUE");
             return TRUE;
         } catch (Exception $e) {
+            die("FALSE");
             return FALSE;
         }
     }
