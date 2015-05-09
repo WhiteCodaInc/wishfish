@@ -108,6 +108,8 @@ $img_src = ($profile_pic != "") ?
                         </a>
                     </li>
                     <?php
+                    echo 'USER ID :' . $this->session->userdata('userid');
+                    die();
                     $currPlan = $this->common->getCurrentPlan();
                     if ($currPlan->plan_id == 1) {
                         ?>

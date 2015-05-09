@@ -26,13 +26,14 @@ class Dashboard extends CI_Controller {
         $this->output->set_header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
 
         $this->load->library("authex");
-
         $this->load->helper('cookie');
 
         $userid = $this->input->get('uid');
         $this->type = $this->input->get('type');
         $this->duid = $this->session->userdata('d-userid');
         $this->uid = ($userid != "") ? $this->encryption->decode($userid) : '';
+
+
 
         if (!$this->duid && !$this->uid) {
             $gid = $this->input->cookie('googleid', TRUE);
@@ -55,7 +56,6 @@ class Dashboard extends CI_Controller {
                 header('location:' . site_url() . 'home');
             }
         }
-        $this->load->library("common");
         $this->load->model('dashboard/m_dashboard', 'objdashboard');
         $this->load->model('dashboard/m_calender', 'objcalender');
     }
