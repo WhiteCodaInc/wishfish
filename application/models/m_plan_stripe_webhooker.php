@@ -75,9 +75,11 @@ class M_plan_stripe_webhooker extends CI_Model {
                 $userInfo = $this->common->getUserInfo($userid);
                 if ($userInfo->is_bill) {
                     $subs = $payment->subscriptions->data[0]->id;
-                    $subscription = $payment->subscriptions->retrieve($subs);
-                    $subscription->plan = "wishfish-personal";
-                    $subscription->save();
+//                    $subscription = $payment->subscriptions->retrieve($subs);
+                    $payment->subscriptions->retrieve($subs)->cancel();
+                    $payment->subscriptions->create(array("plan" => "wishfish-personal"));
+//                    $subscription->plan = "wishfish-personal";
+//                    $subscription->save();
                 } else {
                     $where = array(
                         'user_id' => $userid,
