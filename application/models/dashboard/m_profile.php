@@ -156,13 +156,4 @@ class M_profile extends CI_Model {
         }
     }
 
-    function changePlan() {
-        $uInfo = $this->common->getUserInfo($this->userid);
-        $customer = Stripe_Customer::retrieve($uInfo->customer_id);
-        $subs = $customer->subscriptions->data[0]->id;
-        $subscription = $customer->subscriptions->retrieve($subs);
-        $subscription->plan = "wishfish-personal";
-        $subscription->save();
-    }
-
 }

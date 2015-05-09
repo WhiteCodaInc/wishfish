@@ -48,8 +48,4 @@ class Profile extends CI_Controller {
         header('location:' . site_url() . 'app/profile');
     }
 
-    function changePlan() {
-        $this->objprofile->changePlan();
-    }
-
 }
