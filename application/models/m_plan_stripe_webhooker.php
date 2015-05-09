@@ -34,17 +34,15 @@ class M_plan_stripe_webhooker extends CI_Model {
                 if (isset($payment->metadata->userid)) {
                     $userid = $payment->metadata->userid;
                     $check_where = array(
-                        'user_id' => $userid
+                        'user_id' => $userid,
+                        'plan_status' => 1
                     );
                     $query = $this->db->get_where('plan_detail', $check_where);
-                    if ($query->num_rows() > 1) {
-                        $check_where['plan_status'] = 1;
+                    if ($query->row()->plan_id != $planid) {
                         $set = array(
                             'plan_status' => 0
                         );
-                        $query = $this->db->get_where('plan_detail', $check_where);
                         $this->db->update('plan_detail', $set, array('id' => $query->row()->id));
-
                         $pid = $this->insertPlanDetail($userid, $planid, $payment);
                         $this->insertPaymentDetail($pid, $payment);
                     }
