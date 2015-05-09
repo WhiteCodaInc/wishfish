@@ -827,7 +827,7 @@
             if (response.authResponse) {
                 parent.location = '<?= site_url() ?>register/fbsignup'; //redirect uri after closing the facebook popup
             }
-        }, {scope: 'email,read_stream,publish_stream,user_birthday,user_photos'}); //permissions for facebook
+        }, {scope: 'email,read_stream,user_birthday,user_photos'}); //permissions for facebook
     });
 </script>
 
