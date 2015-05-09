@@ -19,6 +19,8 @@ class Contact_groups extends CI_Controller {
         $this->load->library("common");
         if (!$this->authex->logged_in()) {
             header('location:' . site_url() . 'home');
+        } elseif (!$this->authex->isActivePlan()) {
+            header('location:' . site_url() . 'app/upgrade');
         } else {
             $this->load->model('dashboard/m_contact_groups', 'objgroup');
         }
@@ -28,7 +30,7 @@ class Contact_groups extends CI_Controller {
         $data['groups'] = $this->objgroup->getContactGroups("simple");
         $this->load->view('dashboard/header');
         $this->load->view('dashboard/top');
-        
+
         $this->load->view('dashboard/contact-group', $data);
         $this->load->view('dashboard/footer');
     }
@@ -36,7 +38,7 @@ class Contact_groups extends CI_Controller {
     function addContactGroup() {
         $this->load->view('dashboard/header');
         $this->load->view('dashboard/top');
-        
+
         $this->load->view('dashboard/add-contact-group');
         $this->load->view('dashboard/footer');
     }
@@ -52,7 +54,7 @@ class Contact_groups extends CI_Controller {
         if ($data['groups']) {
             $this->load->view('dashboard/header');
             $this->load->view('dashboard/top');
-            
+
             $this->load->view('dashboard/add-contact-group', $data);
             $this->load->view('dashboard/footer');
         } else {

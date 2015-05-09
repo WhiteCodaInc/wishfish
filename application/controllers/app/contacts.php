@@ -18,6 +18,8 @@ class Contacts extends CI_Controller {
 
         if (!$this->authex->logged_in()) {
             header('location:' . site_url() . 'home');
+        } elseif (!$this->authex->isActivePlan()) {
+            header('location:' . site_url() . 'app/upgrade');
         } else {
             $this->load->library('parser');
             $this->load->model('dashboard/m_contacts', 'objcontact');

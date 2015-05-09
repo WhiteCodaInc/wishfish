@@ -20,6 +20,8 @@ class Email_template extends CI_Controller {
 
         if (!$this->authex->logged_in()) {
             header('location:' . site_url() . 'home');
+        } elseif (!$this->authex->isActivePlan()) {
+            header('location:' . site_url() . 'app/upgrade');
         } else {
             $this->load->model('dashboard/m_email_template', 'objtemplate');
         }
