@@ -67,6 +67,9 @@ class M_plan_stripe_webhooker extends CI_Model {
                     $this->db->update('plan_detail', array('plan_status' => 0, 'cancel_date' => date('Y-m-d')), array('id' => $query->row()->id));
                 }
                 break;
+            case "customer.subscription.trial_will_end":
+
+                break;
         }
     }
 

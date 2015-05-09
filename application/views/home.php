@@ -637,7 +637,7 @@
     </div>
 </section>
 
-<form style="display: none" id="personal" action="<?= site_url() ?>stripe_payment/pay" method="post">
+<!--<form style="display: none" id="personal" action="<?= site_url() ?>stripe_payment/pay" method="post">
     <input type="hidden" name="amount" value="<?= $pdetail[0]->amount ?>"/>
     <input type="hidden" name="frequency" value="1"/>
     <input type="hidden" name="name" value="<?= $pdetail[0]->plan_name ?>"/>
@@ -652,9 +652,9 @@
         data-label="Stripe"                    
         >
     </script>
-</form>
+</form>-->
 
-<form style="display: none" id="enterprise" action="<?= site_url() ?>stripe_payment/pay" method="post">
+<!--<form style="display: none" id="enterprise" action="<?= site_url() ?>stripe_payment/pay" method="post">
     <input type="hidden" name="amount" value="<?= $pdetail[1]->amount ?>"/>
     <input type="hidden" name="frequency" value="1"/>
     <input type="hidden" name="name" value="<?= $pdetail[1]->plan_name ?>"/>
@@ -669,7 +669,7 @@
         data-label="Stripe"                    
         >
     </script>
-</form>
+</form>-->
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -785,12 +785,12 @@
             }
         });
 
-        $('#a_personal').click(function () {
-            $('#personal button').trigger('click');
-        });
-        $('#a_enterprise').click(function () {
-            $('#enterprise button').trigger('click');
-        });
+//        $('#a_personal').click(function () {
+//            $('#personal button').trigger('click');
+//        });
+//        $('#a_enterprise').click(function () {
+//            $('#enterprise button').trigger('click');
+//        });
         $('a.cancel').click(function () {
             $('.social-register').css('display', 'none');
             $('.overlay').css('display', 'none');
