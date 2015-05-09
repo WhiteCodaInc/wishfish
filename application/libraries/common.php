@@ -19,7 +19,8 @@ class Common {
         $this->_CI->load->helper('captcha');
         $this->_CI->load->helper('file');
         $this->user_id = $this->_CI->session->userdata('userid');
-
+        echo "USER_ID : " . $this->user_id;
+        die();
         require_once APPPATH . 'third_party/mailgun-php/vendor/autoload.php';
         $this->mgClient = new Mailgun('key-acfdb718a88968c616bcea83e1020909');
         $this->listAddress = 'wish-fish@mg.mikhailkuznetsov.com';
