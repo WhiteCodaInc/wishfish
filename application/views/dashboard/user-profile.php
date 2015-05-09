@@ -113,7 +113,9 @@
                             ?>
                             <div class="form-group">
                                 <label>Credit Card Number </label>
-                                <a style="cursor: pointer" class="card"  data-toggle="modal" data-target="#card-modal">Change Card Detail</a>
+                                <?php if ($card): ?>
+                                    <a style="cursor: pointer" class="card"  data-toggle="modal" data-target="#card-modal">Change Card Detail</a>
+                                <?php endif; ?>
                                 <input value="<?= ($card) ? $cardNo : "" ?>" data-stripe="number"  type="text" maxlength="16" class="card_number form-control" placeholder="Card Number" <?= ($card) ? "readonly" : "" ?> />
                             </div>
                             <div class="form-group">

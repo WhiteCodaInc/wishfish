@@ -44,6 +44,8 @@ class Profile extends CI_Controller {
 
     function updateCard() {
         $token = $this->input->post('stripeToken');
+        echo $token;
+        die();
         $this->objprofile->updateCard($token);
         header('location:' . site_url() . 'app/profile');
     }
