@@ -173,7 +173,7 @@ class M_register extends CI_Model {
             $customer = Stripe_Customer::create(array(
                         "email" => $post['email'],
                         "metadata" => array("userid" => $insertid),
-                        "plan" => "wishfish-test"
+                        "plan" => "test"
             ));
             $success = 1;
         } catch (Stripe_CardError $e) {
