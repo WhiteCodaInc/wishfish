@@ -45,14 +45,18 @@ class Dashboard extends CI_Controller {
             if (!$this->authex->logged_in()) {
                 if ($gid != "" && $g_isSignup) {
                     $flag = (!$this->authex->loginByGoogle($gid)) ? FALSE : TRUE;
-                    echo '<pre>';
-                    print_r($this->session->all_userdata());
                 } else if ($fid != "" && $f_isSignup) {
                     $flag = (!$this->authex->loginByFacebook($fid)) ? FALSE : TRUE;
                 }
             }
             if (!$flag && !$this->authex->logged_in()) {
                 header('location:' . site_url() . 'home');
+            }
+            if (!$this->authex->logged_in()) {
+                header('location:' . site_url() . 'home');
+            } else {
+                echo '<pre>';
+                print_r($this->session->all_userdata());
             }
         }
         die();
