@@ -114,77 +114,25 @@
                             <div class="form-group">
                                 <label>Credit Card Number </label>
                                 <a style="cursor: pointer" class="card"  data-toggle="modal" data-target="#card-modal">Change Card Detail</a>
-                                <input id="card_number" value="<?= ($card) ? $cardNo : "" ?>" data-stripe="number"  type="text" maxlength="16" class="form-control" placeholder="Card Number" <?= ($card) ? "readonly" : "" ?> />
+                                <input value="<?= ($card) ? $cardNo : "" ?>" data-stripe="number"  type="text" maxlength="16" class="card_number form-control" placeholder="Card Number" <?= ($card) ? "readonly" : "" ?> />
                             </div>
-
-                            <!-------------------------------Model------------------------------------>
-                            <div class="modal fade" id="card-modal" tabindex="-1" role="dialog" aria-hidden="true">
-                                <div class="modal-dialog" style="max-width: 400px">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                            <h4 class="modal-title">Card Detail</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="form-group">
-                                                <label>Credit Card Number </label>
-                                                <input data-stripe="number"  type="text" maxlength="16" class="card_number form-control" placeholder="Card Number" />
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <label>Expiration (MM/YYYY)</label>
-                                                        <div class="row">
-                                                            <div class="col-md-5" style="padding-right: 0">
-                                                                <input  data-stripe="exp-month" maxlength="2" type="text" class="month form-control" placeholder="MM" />
-                                                            </div>
-                                                            <div class="col-md-1" style="padding: 0 8px;font-size: 23px">/</div>
-                                                            <div class="col-md-5" style="padding-left: 0">
-                                                                <input data-stripe="exp-year" type="text" maxlength="4" class="year form-control" placeholder="YYYY" />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label>CVC</label>
-                                                        <input maxlength="3" type="password" class="cvc form-control" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer clearfix">
-                                            <div class="row">
-                                                <div class="col-md-3">
-                                                    <button type="button" id="save" class="btn btn-primary pull-left">Save</button>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <button type="button" class="btn btn-danger discard" data-dismiss="modal">
-                                                        <i class="fa fa-times"></i> Discard
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div><!-- /.modal-content -->
-                                </div><!-- /.modal-dialog -->
-                            </div>
-                            <!------------------------------------------------------------------------>
-
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label>Expiration (MM/YYYY)</label>
                                         <div class="row">
                                             <div class="col-md-5" style="padding-right: 0">
-                                                <input value="<?= ($card) ? $card['exp_month'] : "" ?>" id="month" data-stripe="exp-month" maxlength="2" type="text" class="form-control" placeholder="MM" <?= ($card) ? "readonly" : "" ?>>
+                                                <input value="<?= ($card) ? $card['exp_month'] : "" ?>" data-stripe="exp-month" maxlength="2" type="text" class="month form-control" placeholder="MM" <?= ($card) ? "readonly" : "" ?>>
                                             </div>
                                             <div class="col-md-1" style="padding: 0 8px;font-size: 23px">/</div>
                                             <div class="col-md-5" style="padding-left: 0">
-                                                <input value="<?= ($card) ? $card['exp_year'] : "" ?>" id="year" data-stripe="exp-year" type="text" maxlength="4" class="form-control" placeholder="YYYY" <?= ($card) ? "readonly" : "" ?>>
+                                                <input value="<?= ($card) ? $card['exp_year'] : "" ?>" data-stripe="exp-year" type="text" maxlength="4" class="year form-control" placeholder="YYYY" <?= ($card) ? "readonly" : "" ?>>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <label>CVC</label>
-                                        <input value="123" id="cvc" maxlength="3" type="password" class="form-control" <?= ($card) ? "readonly" : "" ?>>
+                                        <input value="123" maxlength="3" type="password" class="cvc form-control" <?= ($card) ? "readonly" : "" ?>>
                                     </div>
                                 </div>
                             </div>
@@ -217,6 +165,63 @@
         </div>
     </section><!-- /.content -->
 </aside><!-- /.right-side -->
+<!-------------------------------Model------------------------------------>
+<div class="modal fade" id="card-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" style="max-width: 400px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Card Detail</h4>
+            </div>
+            <div class="modal-body">
+                <form id="cardForm" role="form" action="<?= site_url() ?>app/profile/updateCard"  method="post">
+                    <div class="form-group">
+                        <label>Credit Card Number </label>
+                        <input data-stripe="number"  type="text" maxlength="16" class="card_number form-control" placeholder="Card Number" />
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Expiration (MM/YYYY)</label>
+                                <div class="row">
+                                    <div class="col-md-5" style="padding-right: 0">
+                                        <input  data-stripe="exp-month" maxlength="2" type="text" class="month form-control" placeholder="MM" />
+                                    </div>
+                                    <div class="col-md-1" style="padding: 0 8px;font-size: 23px">/</div>
+                                    <div class="col-md-5" style="padding-left: 0">
+                                        <input data-stripe="exp-year" type="text" maxlength="4" class="year form-control" placeholder="YYYY" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label>CVC</label>
+                                <input maxlength="3" type="password" class="cvc form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <span style="color: red;display: none" id="msgCard"></span>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer clearfix">
+                <div class="row">
+                    <div class="col-md-3">
+                        <button type="submit" class="btn btn-primary pull-left">Save</button>
+                    </div>
+                    <div class="col-md-3">
+                        <button type="button" class="btn btn-danger discard" data-dismiss="modal">
+                            <i class="fa fa-times"></i> Discard
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<!------------------------------------------------------------------------>
+
+
 
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 
@@ -266,37 +271,46 @@
             $('#userForm').submit();
         });
 
-        $('#userForm').on('submit', function () {
+        $('#userForm,#cardForm').on('submit', function () {
 <?php if (!$card) { ?>
                 var error = false;
-                var ccNum = $('#card_number').val(),
-                        cvcNum = $('#cvc').val(),
-                        expMonth = $('#month').val(),
-                        expYear = $('#year').val();
+                var formid = $(this).attr('id');
+                var ccNum = $(this).find('.card_number').val(),
+                        cvcNum = $(this).find('.cvc').val(),
+                        expMonth = $(this).find('.month').val(),
+                        expYear = $(this).find('.year').val();
 
                 if (ccNum.trim() != "" || cvcNum.trim() != "" ||
                         expMonth.trim() != "" || expYear.trim() != "") {
                     // Validate the number:
                     if (!Stripe.card.validateCardNumber(ccNum)) {
                         error = true;
-                        reportError('The credit card number appears to be invalid.');
+                        (formid == "userForm") ?
+                                reportError('The credit card number appears to be invalid.') :
+                                $('#msgCard').text('The credit card number appears to be invalid.');
+
                         return false;
                     }
                     // Validate the CVC:
                     if (!Stripe.card.validateCVC(cvcNum)) {
                         error = true;
-                        reportError('The CVC number appears to be invalid.');
+                        (formid == "userForm") ?
+                                reportError('The CVC number appears to be invalid.') :
+                                $('#msgCard').text('The CVC number appears to be invalid.');
                         return false;
                     }
                     // Validate the expiration:
                     if (!Stripe.card.validateExpiry(expMonth, expYear)) {
                         error = true;
-                        reportError('The expiration date appears to be invalid.');
+                        (formid == "userForm") ?
+                                reportError('The expiration date appears to be invalid.') :
+                                $('#msgCard').text('The expiration date appears to be invalid.');
                         return false;
                     }
                     // Check for errors:
                     if (!error) {
                         // Get the Stripe token:
+                        $('#msgCard').empty();
                         $('#error').hide();
                         Stripe.card.createToken({
                             number: ccNum,
@@ -306,6 +320,7 @@
                         }, stripeResponseHandler);
                     } else {
                         $('#error').show();
+                        $('#error').hide();
                     }
                     return false;
                     // Prevent the form from submitting:
@@ -314,10 +329,8 @@
                 }
 <?php } ?>
         });
-
         // Function handles the Stripe response:
         function stripeResponseHandler(status, response) {
-
             // Check for an error:
             if (response.error) {
                 reportError(response.error.message);
@@ -334,6 +347,9 @@
             }
 
         } // End of stripeResponseHandler() function.
+
+
+
 
         $("input:file").change(function () {
             $("#error_message").empty(); // To remove the previous error message
