@@ -169,12 +169,13 @@
 <div class="modal fade" id="card-modal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" style="max-width: 400px">
         <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Card Detail</h4>
-            </div>
-            <div class="modal-body">
-                <form id="cardForm" role="form" action="<?= site_url() ?>app/profile/updateCard"  method="post">
+            <form id="cardForm" role="form" action="<?= site_url() ?>app/profile/updateCard"  method="post">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Card Detail</h4>
+                </div>
+                <div class="modal-body">
+
                     <div class="form-group">
                         <label>Credit Card Number </label>
                         <input data-stripe="number"  type="text" maxlength="16" class="card_number form-control" placeholder="Card Number" />
@@ -202,20 +203,20 @@
                     <div class="form-group">
                         <span style="color: red;display: none" id="msgCard"></span>
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer clearfix">
-                <div class="row">
-                    <div class="col-md-3">
-                        <button type="submit" class="btn btn-primary pull-left">Save</button>
-                    </div>
-                    <div class="col-md-3">
-                        <button type="button" class="btn btn-danger discard" data-dismiss="modal">
-                            <i class="fa fa-times"></i> Discard
-                        </button>
+                </div>
+                <div class="modal-footer clearfix">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <button type="submit" class="btn btn-primary pull-left">Save</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-danger discard" data-dismiss="modal">
+                                <i class="fa fa-times"></i> Discard
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div>
