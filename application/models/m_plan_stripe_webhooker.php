@@ -25,24 +25,24 @@ class M_plan_stripe_webhooker extends CI_Model {
 
         switch ($event_type) {
             case "invoice.payment_succeeded":
-                $this->writeFile($payment, $event_type);
                 $pname = $payment->subscriptions->data[0]->plan->id;
-
                 $planid = ($pname == "wishfish-free") ? 1 :
                         (($pname == "wishfish-personal") ? 2 : 3);
 
                 if (isset($payment->metadata->userid)) {
                     $userid = $payment->metadata->userid;
                     $check_where = array(
-                        'user_id' => $userid,
-                        'plan_status' => 1
+                        'user_id' => $userid
                     );
                     $query = $this->db->get_where('plan_detail', $check_where);
-                    if ($query->row()->plan_id != $planid) {
+                    if ($query->num_rows() > 1) {
+                        $check_where['plan_status'] = 1;
                         $set = array(
                             'plan_status' => 0
                         );
+                        $query = $this->db->get_where('plan_detail', $check_where);
                         $this->db->update('plan_detail', $set, array('id' => $query->row()->id));
+
                         $pid = $this->insertPlanDetail($userid, $planid, $payment);
                         $this->insertPaymentDetail($pid, $payment);
                     }
@@ -84,23 +84,6 @@ class M_plan_stripe_webhooker extends CI_Model {
                     $this->db->update('plan_detail', array('plan_status' => 0), $where);
                 }
                 break;
-        }
-    }
-
-    function writeFile($payment, $type) {
-        if (file_exists('stripedata.txt')) {
-            $stripefile = fopen(FCPATH . 'stripedata.txt', "a");
-            fwrite($stripefile, "Customer : " . $payment . "\n");
-        } else {
-            $stripefile = fopen(FCPATH . 'stripedata.txt', "w");
-            fwrite($stripefile, "Customer : " . $payment . "\n");
-        }
-        if (file_exists('events.txt')) {
-            $myfile = fopen(FCPATH . 'events.txt', "a");
-            fwrite($myfile, "EVENT : " . $type . "\n");
-        } else {
-            $myfile = fopen(FCPATH . 'events.txt', "w");
-            fwrite($myfile, "EVENT : " . $type . "\n");
         }
     }
 
