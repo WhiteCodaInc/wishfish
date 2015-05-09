@@ -280,7 +280,7 @@
         });
 
         $('#userForm,#cardForm').on('submit', function () {
-            if (!cardFlag && $(this).attr('id') == "cardForm") {
+            if (!cardFlag || $(this).attr('id') == "cardForm") {
                 var error = false;
                 cardForm = $(this).attr('id');
                 var ccNum = $(this).find('.card_number').val(),
