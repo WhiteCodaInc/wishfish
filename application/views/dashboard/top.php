@@ -110,7 +110,7 @@ $img_src = ($profile_pic != "") ?
                     <?php
                     $userid = $this->session->userdata('userid');
                     $currPlan = $this->common->getCurrentPlan($userid);
-                    if ($currPlan->plan_id == 1) {
+                    if (is_array($currPlan) && $currPlan->plan_id == 1) {
                         ?>
                         <li style="margin: 10px 60px;color: white;">
                             <span style="font-size: 20px">
