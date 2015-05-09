@@ -113,8 +113,51 @@
                             ?>
                             <div class="form-group">
                                 <label>Credit Card Number </label>
+                                <a class="card"  data-toggle="modal" data-target="#card-modal">Change Card Detail</a>
                                 <input id="card_number" value="<?= ($card) ? $cardNo : "" ?>" data-stripe="number"  type="text" maxlength="16" class="form-control" placeholder="Card Number" <?= ($card) ? "readonly" : "" ?> />
                             </div>
+
+                            <!-------------------------------Model------------------------------------>
+                            <div class="modal fade" id="card-modal" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog" style="max-width: 400px">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title">Feedback / Support</h4>
+                                        </div>
+                                        <form id="supportForm"  method="post">
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <label>Have questions or feedback?<br/>We`re always happy to hear from you!</label>
+                                                        <div class="form-group" >
+                                                            <textarea id="query" class="form-control"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <img  src="<?= base_url() ?>assets/dashboard/img/load.GIF" alt="" class="load" style="display: none" />
+                                                        <span style="display: none" class="msg"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer clearfix">
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <button type="button" id="send" class="btn btn-primary pull-left">Send</button>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <button type="button" class="btn btn-danger discard" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div><!-- /.modal-content -->
+                                </div><!-- /.modal-dialog -->
+                            </div>
+                            <!------------------------------------------------------------------------>
+
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-6">
