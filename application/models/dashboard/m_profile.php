@@ -39,12 +39,9 @@ class M_profile extends CI_Model {
     function updateProfile($set) {
         $m = "";
         $userInfo = $this->common->getUserInfo($this->userid);
-        $currPlan = $this->common->getCurrentPlan();
         if ($userInfo->customer_id != NULL) {
             if (isset($set['stripeToken'])) {
-                ($currPlan->plan_id == 1) ?
-                                $this->createCard($userInfo, $set['stripeToken']) :
-                                $this->updateCard($userInfo, $set['stripeToken']);
+                $this->createCard($userInfo, $set['stripeToken']);
             }
         }
         if ($this->session->userdata('name') == "") {
@@ -123,8 +120,9 @@ class M_profile extends CI_Model {
         }
     }
 
-    function updateCard($uInfo, $stripeToken) {
+    function updateCard($stripeToken) {
         try {
+            $uInfo = $this->common->getUserInfo($this->userid);
             $customer = Stripe_Customer::retrieve($uInfo->customer_id);
             if ($customer->cards->total_count != 0) {
                 $cardid = $customer->cards->data[0]->id;

@@ -28,7 +28,7 @@ class Profile extends CI_Controller {
     function index() {
         $data['user'] = $this->objprofile->getProfile();
         $data['card'] = $this->objprofile->getCardDetail();
-        
+
         $this->load->view('dashboard/header');
         $this->load->view('dashboard/top');
 
@@ -40,6 +40,12 @@ class Profile extends CI_Controller {
         $post = $this->input->post();
         $msg = $this->objprofile->updateProfile($post);
         header('location:' . site_url() . 'app/dashboard');
+    }
+
+    function updateCard() {
+        $token = $this->input->post('stripeToken');
+        $this->objprofile->updateCard($token);
+        header('location:' . site_url() . 'app/profile');
     }
 
 }
