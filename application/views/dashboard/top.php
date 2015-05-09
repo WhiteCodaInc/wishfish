@@ -110,14 +110,11 @@ $img_src = ($profile_pic != "") ?
                     <?php
                     $userid = $this->session->userdata('userid');
                     $currPlan = $this->common->getCurrentPlan($userid);
-                    echo '<pre>';
-                    print_r($currPlan);
-                    die();
                     if ($currPlan->plan_id == 1) {
                         ?>
                         <li style="margin: 10px 60px;color: white;">
                             <span style="font-size: 20px">
-                                Day Left on Trial : <?= $this->common->getDateDiff() ?>
+                                Day Left on Trial : <?= $this->common->getDateDiff($currPlan) ?>
                             </span>
                         </li>
                     <?php } ?>

@@ -196,11 +196,11 @@ class Common {
         }
     }
 
-    function getDateDiff() {
+    function getDateDiff($planInfo = NULL) {
         $format = $this->_CI->session->userdata('date_format');
-        $planInfo = $this->getCurrentPlan();
+        $pInfo = ($planInfo == NULL) ? $this->getCurrentPlan() : $planInfo;
         $d1 = date_create($this->getMySqlDate($this->getUTCDate(), $format));
-        $d2 = date_create($planInfo->expiry_date);
+        $d2 = date_create($pInfo->expiry_date);
         return date_diff($d2, $d1)->format('%a');
     }
 
