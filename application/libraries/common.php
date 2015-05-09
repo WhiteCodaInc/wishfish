@@ -19,8 +19,6 @@ class Common {
         $this->_CI->load->helper('captcha');
         $this->_CI->load->helper('file');
         $this->user_id = $this->_CI->session->userdata('userid');
-        echo "USER_ID : " . $this->user_id;
-        die();
         require_once APPPATH . 'third_party/mailgun-php/vendor/autoload.php';
         $this->mgClient = new Mailgun('key-acfdb718a88968c616bcea83e1020909');
         $this->listAddress = 'wish-fish@mg.mikhailkuznetsov.com';
@@ -43,6 +41,8 @@ class Common {
     }
 
     function getCurrentPlan() {
+        echo "USER_ID : " . $this->user_id;
+        die();
         $query = $this->_CI->db->get_where('plan_detail', array('user_id' => $this->user_id, 'plan_status' => 1));
         return $query->row();
     }
