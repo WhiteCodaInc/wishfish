@@ -321,7 +321,7 @@
                     // Check for errors:
                     if (!error) {
                         // Get the Stripe token:
-                        $('#msgCard').empty();
+                        $('#msgCard').hide();
                         $('#error').hide();
                         Stripe.card.createToken({
                             number: ccNum,
@@ -331,7 +331,7 @@
                         }, stripeResponseHandler);
                     } else {
                         $('#error').show();
-                        $('#error').hide();
+                        $('#msgCard').show();
                     }
                     return false;
                     // Prevent the form from submitting:
