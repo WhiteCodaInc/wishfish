@@ -266,7 +266,7 @@
 </script>
 <script type="text/javascript">
     $(document).ready(function (e) {
-        var card = <?= $card ?>;
+        var card = "<?= $card ?>";
         alert(card);
         $('#save-profile').click(function () {
             //$(this).attr("disabled", "disabled");
