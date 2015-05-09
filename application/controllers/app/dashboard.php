@@ -19,6 +19,8 @@ class Dashboard extends CI_Controller {
     function __construct() {
         parent::__construct();
 
+        echo $this->session->userdata('userid');
+        die();
 
         $this->output->set_header('cache-Control: no-store, no-cache, must-revalidate');
         $this->output->set_header("cache-Control: post-check=0, pre-check=0", false);
