@@ -283,8 +283,8 @@
 
         $('#userForm,#cardForm').on('submit', function () {
             cardForm = $(this).attr('id');
-            console.log(cardForm);
-            (cardForm == "cardFrom") ? $('#save').prop('disabled', 'disabled') : '';
+//            console.log(cardForm);
+            $('#save').attr('disabled', 'disabled');
             if (!cardFlag || cardForm == "cardForm") {
                 var error = false;
                 var ccNum = $(this).find('.card_number').val(),
