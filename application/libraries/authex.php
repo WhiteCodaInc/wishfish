@@ -91,9 +91,6 @@ class Authex {
         $res = $query->row();
 
         if ($query->num_rows() == 1) {
-            echo '<pre>';
-            print_r($res);
-            die();
             $this->_CI->session->set_userdata('userid', $res->user_id);
             $this->_CI->session->set_userdata('name', $res->name);
             $this->_CI->session->set_userdata('email', $res->email);

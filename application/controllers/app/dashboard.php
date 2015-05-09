@@ -33,7 +33,7 @@ class Dashboard extends CI_Controller {
         $this->type = $this->input->get('type');
         $this->duid = $this->session->userdata('d-userid');
         $this->uid = ($userid != "") ? $this->encryption->decode($userid) : '';
-        
+
         if (!$this->duid && !$this->uid) {
             $gid = $this->input->cookie('googleid', TRUE);
             $fid = $this->input->cookie('facebookid', TRUE);
@@ -45,6 +45,8 @@ class Dashboard extends CI_Controller {
             if (!$this->authex->logged_in()) {
                 if ($gid != "" && $g_isSignup) {
                     $flag = (!$this->authex->loginByGoogle($gid)) ? FALSE : TRUE;
+                    echo '<pre>';
+                    print_r($this->session->all_userdata());
                 } else if ($fid != "" && $f_isSignup) {
                     $flag = (!$this->authex->loginByFacebook($fid)) ? FALSE : TRUE;
                 }
@@ -53,6 +55,7 @@ class Dashboard extends CI_Controller {
                 header('location:' . site_url() . 'home');
             }
         }
+        die();
         $this->load->model('dashboard/m_dashboard', 'objdashboard');
         $this->load->model('dashboard/m_calender', 'objcalender');
     }
