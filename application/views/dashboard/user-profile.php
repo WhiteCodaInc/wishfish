@@ -113,7 +113,7 @@
                             ?>
                             <div class="form-group">
                                 <label>Credit Card Number </label>
-                                <a class="card"  data-toggle="modal" data-target="#card-modal">Change Card Detail</a>
+                                <a style="cursor: pointer" class="card"  data-toggle="modal" data-target="#card-modal">Change Card Detail</a>
                                 <input id="card_number" value="<?= ($card) ? $cardNo : "" ?>" data-stripe="number"  type="text" maxlength="16" class="form-control" placeholder="Card Number" <?= ($card) ? "readonly" : "" ?> />
                             </div>
 
@@ -123,36 +123,46 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                            <h4 class="modal-title">Feedback / Support</h4>
+                                            <h4 class="modal-title">Card Detail</h4>
                                         </div>
-                                        <form id="supportForm"  method="post">
-                                            <div class="modal-body">
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label>Credit Card Number </label>
+                                                <input data-stripe="number"  type="text" maxlength="16" class="card_number form-control" placeholder="Card Number" />
+                                            </div>
+                                            <div class="form-group">
                                                 <div class="row">
-                                                    <div class="col-md-12">
-                                                        <label>Have questions or feedback?<br/>We`re always happy to hear from you!</label>
-                                                        <div class="form-group" >
-                                                            <textarea id="query" class="form-control"></textarea>
+                                                    <div class="col-md-6">
+                                                        <label>Expiration (MM/YYYY)</label>
+                                                        <div class="row">
+                                                            <div class="col-md-5" style="padding-right: 0">
+                                                                <input  data-stripe="exp-month" maxlength="2" type="text" class="month form-control" placeholder="MM" />
+                                                            </div>
+                                                            <div class="col-md-1" style="padding: 0 8px;font-size: 23px">/</div>
+                                                            <div class="col-md-5" style="padding-left: 0">
+                                                                <input data-stripe="exp-year" type="text" maxlength="4" class="year form-control" placeholder="YYYY" />
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <img  src="<?= base_url() ?>assets/dashboard/img/load.GIF" alt="" class="load" style="display: none" />
-                                                        <span style="display: none" class="msg"></span>
+                                                    <div class="col-md-6">
+                                                        <label>CVC</label>
+                                                        <input maxlength="3" type="password" class="cvc form-control" />
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="modal-footer clearfix">
-                                                <div class="row">
-                                                    <div class="col-md-3">
-                                                        <button type="button" id="send" class="btn btn-primary pull-left">Send</button>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <button type="button" class="btn btn-danger discard" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
-                                                    </div>
+                                        </div>
+                                        <div class="modal-footer clearfix">
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <button type="button" id="save" class="btn btn-primary pull-left">Save</button>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <button type="button" class="btn btn-danger discard" data-dismiss="modal">
+                                                        <i class="fa fa-times"></i> Discard
+                                                    </button>
                                                 </div>
                                             </div>
-                                        </form>
+                                        </div>
                                     </div><!-- /.modal-content -->
                                 </div><!-- /.modal-dialog -->
                             </div>
