@@ -207,7 +207,7 @@
                 <div class="modal-footer clearfix">
                     <div class="row">
                         <div class="col-md-3">
-                            <button type="submit" class="btn btn-primary pull-left">Save</button>
+                            <button type="submit" id="save" class="btn btn-primary pull-left">Save</button>
                         </div>
                         <div class="col-md-3">
                             <button type="button" class="btn btn-danger discard" data-dismiss="modal">
@@ -280,9 +280,11 @@
         });
 
         $('#userForm,#cardForm').on('submit', function () {
-            if (!cardFlag || $(this).attr('id') == "cardForm") {
+            cardForm = $(this).attr('id');
+            (cardFrom == "cardFrom") ? $('#save').prop('disabled', 'disabled') : '';
+            if (!cardFlag || cardForm == "cardForm") {
                 var error = false;
-                cardForm = $(this).attr('id');
+
                 var ccNum = $(this).find('.card_number').val(),
                         cvcNum = $(this).find('.cvc').val(),
                         expMonth = $(this).find('.month').val(),
@@ -300,6 +302,7 @@
                                 reportError('The credit card number appears to be invalid.') :
                                 $('#msgCard').text('The credit card number appears to be invalid.');
                         $('#msgCard').show();
+                        $('#save').prop('disabled', false);
                         return false;
                     }
                     // Validate the CVC:
@@ -309,6 +312,7 @@
                                 reportError('The CVC number appears to be invalid.') :
                                 $('#msgCard').text('The CVC number appears to be invalid.');
                         $('#msgCard').show();
+                        $('#save').prop('disabled', false);
                         return false;
                     }
                     // Validate the expiration:
@@ -318,6 +322,7 @@
                                 reportError('The expiration date appears to be invalid.') :
                                 $('#msgCard').text('The expiration date appears to be invalid.');
                         $('#msgCard').show();
+                        $('#save').prop('disabled', false);
                         return false;
                     }
                     // Check for errors:
