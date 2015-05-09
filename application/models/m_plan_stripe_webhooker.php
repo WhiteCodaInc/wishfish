@@ -68,7 +68,10 @@ class M_plan_stripe_webhooker extends CI_Model {
                 }
                 break;
             case "customer.subscription.trial_will_end":
-
+                $subs = $payment->subscriptions->data[0]->id;
+                $subscription = $payment->subscriptions->retrieve($subs);
+                $subscription->plan = "wishfish-personal";
+                $subscription->save();
                 break;
         }
     }
