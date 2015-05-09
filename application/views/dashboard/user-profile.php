@@ -266,17 +266,23 @@
 </script>
 <script type="text/javascript">
     $(document).ready(function (e) {
-        var card = "<?= $card ?>";
-        alert(card);
+        var cardFlag;
+        var cardForm;
+<?php if (!$card): ?>
+            cardFlag = false;
+<?php else: ?>
+            cardFlag = true;
+<?php endif; ?>
+
         $('#save-profile').click(function () {
-            //$(this).attr("disabled", "disabled");
+            $(this).attr("disabled", "disabled");
             $('#userForm').submit();
         });
 
         $('#userForm,#cardForm').on('submit', function () {
-<?php if (!$card) { ?>
+            if (!cardFlag && $(this).attr('id') == "cardForm") {
                 var error = false;
-                var formid = $(this).attr('id');
+                cardForm = $(this).attr('id');
                 var ccNum = $(this).find('.card_number').val(),
                         cvcNum = $(this).find('.cvc').val(),
                         expMonth = $(this).find('.month').val(),
@@ -287,7 +293,7 @@
                     // Validate the number:
                     if (!Stripe.card.validateCardNumber(ccNum)) {
                         error = true;
-                        (formid == "userForm") ?
+                        (cardForm == "userForm") ?
                                 reportError('The credit card number appears to be invalid.') :
                                 $('#msgCard').text('The credit card number appears to be invalid.');
 
@@ -296,7 +302,7 @@
                     // Validate the CVC:
                     if (!Stripe.card.validateCVC(cvcNum)) {
                         error = true;
-                        (formid == "userForm") ?
+                        (cardForm == "userForm") ?
                                 reportError('The CVC number appears to be invalid.') :
                                 $('#msgCard').text('The CVC number appears to be invalid.');
                         return false;
@@ -304,7 +310,7 @@
                     // Validate the expiration:
                     if (!Stripe.card.validateExpiry(expMonth, expYear)) {
                         error = true;
-                        (formid == "userForm") ?
+                        (cardForm == "userForm") ?
                                 reportError('The expiration date appears to be invalid.') :
                                 $('#msgCard').text('The expiration date appears to be invalid.');
                         return false;
@@ -327,9 +333,9 @@
                     return false;
                     // Prevent the form from submitting:
                 } else {
-                    return true;
+                    return (cardForm == "cardForm") ? false : true;
                 }
-<?php } ?>
+            }
         });
         // Function handles the Stripe response:
         function stripeResponseHandler(status, response) {
@@ -337,7 +343,7 @@
             if (response.error) {
                 reportError(response.error.message);
             } else { // No errors, submit the form:
-                var f = $("#userForm");
+                var f = $("#" + cardForm);
 
                 // Token contains id, last4, and card type:
                 var token = response['id'];
