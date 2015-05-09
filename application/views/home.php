@@ -673,6 +673,11 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+
+        $('#remember').click(function () {
+            $('input[name="remember"]').trigger('click');
+        });
+
         var emailV = 1;
         var captchaV = 1;
         var sess_word = "<?= $this->session->userdata('captchaWord') ?>";
