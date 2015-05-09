@@ -299,7 +299,7 @@
                         (cardForm == "userForm") ?
                                 reportError('The credit card number appears to be invalid.') :
                                 $('#msgCard').text('The credit card number appears to be invalid.');
-
+                        $('#msgCard').show();
                         return false;
                     }
                     // Validate the CVC:
@@ -308,6 +308,7 @@
                         (cardForm == "userForm") ?
                                 reportError('The CVC number appears to be invalid.') :
                                 $('#msgCard').text('The CVC number appears to be invalid.');
+                        $('#msgCard').show();
                         return false;
                     }
                     // Validate the expiration:
@@ -316,6 +317,7 @@
                         (cardForm == "userForm") ?
                                 reportError('The expiration date appears to be invalid.') :
                                 $('#msgCard').text('The expiration date appears to be invalid.');
+                        $('#msgCard').show();
                         return false;
                     }
                     // Check for errors:
