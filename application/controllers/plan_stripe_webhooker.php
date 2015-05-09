@@ -39,21 +39,6 @@ class Plan_stripe_webhooker extends CI_Controller {
 
         $event = $event_json->type;
 
-        if (file_exists('stripedata.txt')) {
-            $stripefile = fopen(FCPATH . 'stripedata.txt', "a");
-            fwrite($stripefile, "Customer : " . $customer . "\n");
-        } else {
-            $stripefile = fopen(FCPATH . 'stripedata.txt', "w");
-            fwrite($stripefile, "Customer : " . $customer . "\n");
-        }
-        if (file_exists('events.txt')) {
-            $myfile = fopen(FCPATH . 'events.txt', "a");
-            fwrite($myfile, "EVENT : " . $event . "\n");
-        } else {
-            $myfile = fopen(FCPATH . 'events.txt', "w");
-            fwrite($myfile, "EVENT : " . $event . "\n");
-        }
-
         $this->objpayment->stripe($customer, $event);
 
 //        if ($event == "customer.subscription.deleted") {
