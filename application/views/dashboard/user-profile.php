@@ -287,7 +287,10 @@
                         cvcNum = $(this).find('.cvc').val(),
                         expMonth = $(this).find('.month').val(),
                         expYear = $(this).find('.year').val();
-
+                console.log(ccNum);
+                console.log(cvcNum);
+                console.log(expMonth);
+                console.log(expYear);
                 if (ccNum.trim() != "" || cvcNum.trim() != "" ||
                         expMonth.trim() != "" || expYear.trim() != "") {
                     // Validate the number:
