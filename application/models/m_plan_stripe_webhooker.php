@@ -73,13 +73,10 @@ class M_plan_stripe_webhooker extends CI_Model {
             case "customer.subscription.trial_will_end":
                 $userid = $payment->metadata->userid;
                 $userInfo = $this->common->getUserInfo($userid);
+                $subs = $payment->subscriptions->data[0]->id;
+                $payment->subscriptions->retrieve($subs)->cancel();
                 if ($userInfo->is_bill) {
-                    $subs = $payment->subscriptions->data[0]->id;
-//                    $subscription = $payment->subscriptions->retrieve($subs);
-                    $payment->subscriptions->retrieve($subs)->cancel();
                     $payment->subscriptions->create(array("plan" => "wishfish-personal"));
-//                    $subscription->plan = "wishfish-personal";
-//                    $subscription->save();
                 } else {
                     $where = array(
                         'user_id' => $userid,
