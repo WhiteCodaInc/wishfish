@@ -41,8 +41,9 @@ class Common {
         return $query->row();
     }
 
-    function getCurrentPlan() {
-        $query = $this->_CI->db->get_where('plan_detail', array('user_id' => $this->user_id, 'plan_status' => 1));
+    function getCurrentPlan($userid = NULL) {
+        $uid = ($userid == NULL) ? $this->user_id : $userid;
+        $query = $this->_CI->db->get_where('plan_detail', array('user_id' => $uid, 'plan_status' => 1));
         return $query->row();
     }
 

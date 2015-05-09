@@ -108,9 +108,8 @@ $img_src = ($profile_pic != "") ?
                         </a>
                     </li>
                     <?php
-                    echo 'USER ID :' . $this->session->userdata('userid');
-                    die();
-                    $currPlan = $this->common->getCurrentPlan();
+                    $userid = $this->session->userdata('userid');
+                    $currPlan = $this->common->getCurrentPlan($userid);
                     if ($currPlan->plan_id == 1) {
                         ?>
                         <li style="margin: 10px 60px;color: white;">
