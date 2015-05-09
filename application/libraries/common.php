@@ -42,9 +42,6 @@ class Common {
     }
 
     function getCurrentPlan() {
-        echo "USER ID :" . $this->user_id;
-
-        die();
         $query = $this->_CI->db->get_where('plan_detail', array('user_id' => $this->user_id, 'plan_status' => 1));
         return $query->row();
     }

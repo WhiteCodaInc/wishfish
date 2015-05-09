@@ -108,7 +108,6 @@ class M_register extends CI_Model {
             'expiry_date' => $this->common->getNextDate(date('Y-m-d'), "14 Days")
         );
         $this->db->insert('plan_detail', $plan_set);
-        $planid = $this->db->insert_id();
 
         if ($this->addCustomerToStripe($set, $insertid)) {
             $this->db->trans_complete();

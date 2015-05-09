@@ -19,7 +19,7 @@ class Dashboard extends CI_Controller {
     function __construct() {
         parent::__construct();
 
-       
+
 
         $this->output->set_header('cache-Control: no-store, no-cache, must-revalidate');
         $this->output->set_header("cache-Control: post-check=0, pre-check=0", false);
@@ -33,9 +33,7 @@ class Dashboard extends CI_Controller {
         $this->type = $this->input->get('type');
         $this->duid = $this->session->userdata('d-userid');
         $this->uid = ($userid != "") ? $this->encryption->decode($userid) : '';
-
-
-
+        
         if (!$this->duid && !$this->uid) {
             $gid = $this->input->cookie('googleid', TRUE);
             $fid = $this->input->cookie('facebookid', TRUE);
@@ -44,8 +42,6 @@ class Dashboard extends CI_Controller {
             $f_isSignup = $this->input->cookie('f_isSignup', TRUE);
             ($f_isSignup) ? delete_cookie('f_isSignup', '.wish-fish.com', '/') : '';
             $flag = FALSE;
-
-
             if (!$this->authex->logged_in()) {
                 if ($gid != "" && $g_isSignup) {
                     $flag = (!$this->authex->loginByGoogle($gid)) ? FALSE : TRUE;

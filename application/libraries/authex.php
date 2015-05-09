@@ -89,6 +89,9 @@ class Authex {
     function loginByGoogle($gid) {
         $query = $this->_CI->db->get_where("user_mst", array("user_unique_id" => $gid));
         $res = $query->row();
+        echo '<pre>';
+        print_r($res);
+        die();
         if ($query->num_rows() == 1) {
             $this->_CI->session->set_userdata('userid', $res->user_id);
             $this->_CI->session->set_userdata('name', $res->name);

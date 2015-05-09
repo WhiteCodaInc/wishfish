@@ -62,7 +62,6 @@ class Register extends CI_Controller {
         if ($this->input->get('error')) {
             header('location:' . site_url() . 'register');
         }
-
         $isSignup = array(
             'name' => 'g_isSignup',
             'value' => 1,
@@ -74,12 +73,6 @@ class Register extends CI_Controller {
         $code = $this->input->get('code');
         $token = $this->session->userdata('token');
 
-
-
-        /* if (isset($token) && $token != "") {
-          $this->client->setAccessToken($token);
-          } */
-
         if (isset($code) && $code != "") {
             $this->client->authenticate($code);
             $this->session->set_userdata('token', $this->client->getAccessToken());
@@ -89,16 +82,19 @@ class Register extends CI_Controller {
 
                 $this->session->set_userdata('token', $this->client->getAccessToken());
                 $user = $this->isUserExist($data);
-
-                if (!$user && $this->objregister->registerWithSocial($data)) {
-                    $googleid = array(
-                        'name' => 'googleid',
-                        'value' => $data['id'],
-                        'expire' => time() + 86500,
-                        'domain' => '.wish-fish.com'
-                    );
-                    $this->input->set_cookie($googleid);
-                    header('location:' . site_url() . 'app/dashboard');
+                if (!$user) {
+                    if ($this->objregister->registerWithSocial($data)) {
+                        $googleid = array(
+                            'name' => 'googleid',
+                            'value' => $data['id'],
+                            'expire' => time() + 86500,
+                            'domain' => '.wish-fish.com'
+                        );
+                        $this->input->set_cookie($googleid);
+                        header('location:' . site_url() . 'app/dashboard');
+                    } else {
+                        header('Location: ' . site_url() . 'register?msg=RF');
+                    }
                 } else {
                     header('Location: ' . site_url() . 'register?msg=RF');
                 }
