@@ -28,7 +28,7 @@ class M_plan_stripe_webhooker extends CI_Model {
         switch ($event) {
             case "customer.subscription.created":
                 $customer = Stripe_Customer::retrieve($event_json->data->object->customer);
-                $pname = $event_json->object->plan->id;
+                $pname = $event_json->data->object->plan->id;
                 fwrite($myfile, "PLAN :" . $pname . "\n");
 //                $planid = ($pname == "wishfish-free") ? 1 :
 //                        (($pname == "wishfish-personal") ? 2 : 3);
