@@ -23,19 +23,12 @@ class M_plan_stripe_webhooker extends CI_Model {
 
     function stripe($event_json) {
         $event = $event_json->type;
-        $myfile = fopen(FCPATH . 'events.txt', "a");
-        fwrite($myfile, "Event :" . $event . "\n");
+
         switch ($event) {
             case "customer.subscription.created":
                 $customer = Stripe_Customer::retrieve($event_json->data->object->customer);
                 $pname = $event_json->data->object->plan->id;
 
-                if (isset($event_json->data->object->plan->metadata->userid)) {
-                    $user_data = $event_json->data->object->plan->metadata->userid;
-                    fwrite($myfile, "USER DATA :" . $user_data . "\n");
-                } else {
-                    fwrite($myfile, "Not SET \n");
-                }
                 $planid = ($pname == "test") ? 1 :
                         (($pname == "wishfish-personal") ? 2 : 3);
 
@@ -63,54 +56,12 @@ class M_plan_stripe_webhooker extends CI_Model {
                 }
                 break;
             case "invoice.payment_succeeded":
-                /*
-                  $customer = Stripe_Customer::retrieve($event_json->data->object->customer);
-                  $pname = $event_json->lines->data[0]->plan->id;
-                  $planid = ($pname == "wishfish-free") ? 1 :
-                  (($pname == "wishfish-personal") ? 2 : 3);
-                  if (isset($customer->metadata->userid)) {
-                  $userid = $customer->metadata->userid;
-                  $check_where = array(
-                  'user_id' => $userid
-                  );
-                  $query = $this->db->get_where('plan_detail', $check_where);
-                  if ($query->num_rows() > 1) {
-                  $check_where['plan_status'] = 1;
-                  $set = array(
-                  'plan_status' => 0
-                  );
-                  $query = $this->db->get_where('plan_detail', $check_where);
-                  $this->db->update('plan_detail', $set, array('id' => $query->row()->id));
-
-                  $pid = $this->insertPlanDetail($userid, $planid, $customer);
-                  $this->insertPaymentDetail($pid, $customer);
-                  }
-                  } else {
-                  $user_set = array(
-                  'email' => $customer->email,
-                  'password' => $this->generateRandomString(5),
-                  'customer_id' => $customer->id,
-                  'register_date' => date('Y-m-d', $customer->subscriptions->data[0]->current_period_start)
-                  );
-                  $this->db->insert('user_mst', $user_set);
-                  $uid = $this->db->insert_id();
-                  $pid = $this->insertPlanDetail($uid, $planid, $customer);
-                  $this->insertPaymentDetail($pid, $customer);
-                  $this->updateCardDetail($customer, $uid);
-                  $this->sendMail($user_set);
-                  }
-                 * 
-                 */
                 break;
             case "customer.subscription.deleted":
                 $customer = Stripe_Customer::retrieve($event_json->data->object->customer);
-                //fwrite($myfile, $customer . "\n");
                 $subsid = $event_json->data->object->id;
-
                 $userid = $customer->metadata->userid;
-                fwrite($myfile, "USER ID : " . $userid . "\n");
                 $userInfo = $this->common->getUserInfo($userid);
-                // fwrite($myfile, "BILL STATUS : " . $userInfo->is_bill . "\n");
 
                 $this->db->select('*');
                 $query = $this->db->get_where('payment_mst', array('transaction_id' => $subsid));
@@ -154,17 +105,6 @@ class M_plan_stripe_webhooker extends CI_Model {
                 break;
         }
     }
-
-//    function writeFile() {
-//        if (file_exists('stripedata.txt')) {
-//            $myfile = fopen(FCPATH . 'stripedata.txt', "a");
-//            fwrite($myfile, "Customer : " . $customer);
-//            fwrite($myfile, "\n");
-//        } else {
-//            $myfile = fopen(FCPATH . 'stripedata.txt', "w");
-//            fwrite($myfile, "Customer : " . $customer . "\n");
-//        }
-//    }
 
     function isFreePlan($res) {
         $query = $this->db->get_where('plan_detail', array('id' => $res->id));
