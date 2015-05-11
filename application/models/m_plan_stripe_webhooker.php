@@ -28,7 +28,7 @@ class M_plan_stripe_webhooker extends CI_Model {
                 $pname = $customer->subscriptions->data[0]->plan->id;
                 $planid = ($pname == "wishfish-free") ? 1 :
                         (($pname == "wishfish-personal") ? 2 : 3);
-                
+
                 if (isset($customer->metadata->userid)) {
                     $userid = $customer->metadata->userid;
                     $check_where = array(
@@ -66,7 +66,14 @@ class M_plan_stripe_webhooker extends CI_Model {
                 if ($customer->deleted == "true") {
                     $this->db->select('*');
                     $query = $this->db->get_where('payment_mst', array('payer_id' => $customerid));
-                    $this->db->update('plan_detail', array('plan_status' => 0, 'cancel_date' => date('Y-m-d')), array('id' => $query->row()->id));
+                    $set = array(
+                        'plan_status' => 0,
+                        'cancel_date' => date('Y-m-d')
+                    );
+                    $where = array(
+                        'id' => $query->row()->id
+                    );
+                    $this->db->update('plan_detail', $set, $where);
                 }
                 break;
             case "customer.subscription.trial_will_end":
@@ -123,11 +130,11 @@ class M_plan_stripe_webhooker extends CI_Model {
         $amount = $customer->subscriptions->data[0]->plan->amount / 100;
         $insert_set = array(
             'id' => $pid,
+            'transaction_id' => $customer->subscriptions->data[0]->id,
             'payer_id' => $customer->id,
             'payer_email' => $customer->email,
             'mc_gross' => $amount,
             'mc_fee' => ($amount * 0.029) + 0.30,
-            'gateway' => "STRIPE",
             'payment_date' => date('Y-m-d', $customer->subscriptions->data[0]->current_period_start)
         );
         $this->db->insert('payment_mst', $insert_set);
