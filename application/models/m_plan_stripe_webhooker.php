@@ -39,7 +39,7 @@ class M_plan_stripe_webhooker extends CI_Model {
                 $planid = ($pname == "test") ? 1 :
                         (($pname == "wishfish-personal") ? 2 : 3);
 
-                if (!isset($event_json->data->object->metadata->userid)) {
+                if ($pname != "test" && !isset($event_json->data->object->metadata->userid)) {
                     $user_set = array(
                         'email' => $customer->email,
                         'password' => $this->generateRandomString(5),
