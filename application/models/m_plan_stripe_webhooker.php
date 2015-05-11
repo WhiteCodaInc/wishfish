@@ -37,7 +37,7 @@ class M_plan_stripe_webhooker extends CI_Model {
                 $planid = ($pname == "test") ? 1 :
                         (($pname == "wishfish-personal") ? 2 : 3);
 
-                if (!isset($event_json->data->object->plan->metadata->userid)) {
+                if (!isset($event_json->data->object->metadata->userid)) {
                     $user_set = array(
                         'email' => $customer->email,
                         'password' => $this->generateRandomString(5),
@@ -51,8 +51,8 @@ class M_plan_stripe_webhooker extends CI_Model {
                     $this->updateCardDetail($customer, $uid, $pid);
                     $this->sendMail($user_set);
                 } else {
-                    if (isset($event_json->data->object->plan->metadata->userid)) {
-                        $uid = $event_json->data->object->plan->metadata->userid;
+                    if (isset($event_json->data->object->metadata->userid)) {
+                        $uid = $event_json->data->object->metadata->userid;
                         $pid = $this->insertPlanDetail($uid, $planid, $customer);
                     } else {
                         $pid = $customer->metadata->planid;
