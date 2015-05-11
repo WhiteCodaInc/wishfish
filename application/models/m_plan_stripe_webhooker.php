@@ -30,10 +30,12 @@ class M_plan_stripe_webhooker extends CI_Model {
                 $customer = Stripe_Customer::retrieve($event_json->data->object->customer);
                 $pname = $event_json->data->object->plan->id;
 
-//                if (isset($event_json->data->object->plan->metadata->userid)) {
-//                    $user_data = $event_json->data->object->plan->metadata->userid;
-//                    fwrite($myfile, "USER DATA :" . $user_data . "\n");
-//                }
+                if (isset($event_json->data->object->plan->metadata->userid)) {
+                    $user_data = $event_json->data->object->plan->metadata->userid;
+                    fwrite($myfile, "USER DATA :" . $user_data . "\n");
+                } else {
+                    fwrite($myfile, "Not SET \n");
+                }
                 $planid = ($pname == "test") ? 1 :
                         (($pname == "wishfish-personal") ? 2 : 3);
 
