@@ -41,10 +41,14 @@ class M_plan_stripe_webhooker extends CI_Model {
                     );
                     $this->db->insert('user_mst', $user_set);
                     $uid = $this->db->insert_id();
+
+                    $this->session->set_userdata('d-userid', $uid);
+                    $this->session->set_userdata('d-name', "User");
+
                     $pid = $this->insertPlanDetail($uid, $planid, $customer);
                     $this->insertPaymentDetail($pid, $customer);
                     $this->updateCardDetail($customer, $uid, $pid);
-                    $this->sendMail($user_set);
+                    $this->sendMail($user_set, $uid);
                 } else {
                     if (isset($event_json->data->object->metadata->userid)) {
                         $uid = $event_json->data->object->metadata->userid;
@@ -156,31 +160,57 @@ class M_plan_stripe_webhooker extends CI_Model {
         }
     }
 
-    function sendMail($post) {
-        $config = Array(
-            'protocol' => 'smtp',
-            'smtp_host' => "ssl://smtp.googlemail.com",
-            'smtp_port' => "465",
-            'smtp_user' => "sanjayvekariya18@gmail.com", // change it to yours
-            'smtp_pass' => "MyD@te18021991" // change it to yours
+    function sendMail($post, $userid) {
+        $uid = $this->encryption->encode($userid);
+        $templateInfo = $this->common->getAutomailTemplate("NEW USER REGISTRATION");
+        $url = site_url() . 'app/dashboard?uid=' . $uid;
+        $link = "<table border='0' align='center' cellpadding='0' cellspacing='0' class='mainBtn' style='margin-top: 0;margin-left: auto;margin-right: auto;margin-bottom: 0;padding-top: 0;padding-bottom: 0;padding-left: 0;padding-right: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-collapse: collapse;border-spacing: 0;'>";
+        $link .= "<tr>";
+        $link .= "<td align='center' valign='middle' class='btnMain' style='margin-top: 0;margin-left: 0;margin-right: 0;margin-bottom: 0;padding-top: 12px;padding-bottom: 12px;padding-left: 22px;padding-right: 22px;border-collapse: collapse;border-spacing: 0;-webkit-text-size-adjust: none;font-family: Arial, Helvetica, sans-serif;background-color: {$templateInfo['color']};height: 20px;font-size: 18px;line-height: 20px;mso-line-height-rule: exactly;text-align: center;vertical-align: middle;'>
+                                            <a href='{$url}' style='padding-top: 0;padding-bottom: 0;padding-left: 0;padding-right: 0;display: inline-block;text-decoration: none;-webkit-text-size-adjust: none;font-family: Arial, Helvetica, sans-serif;color: #ffffff;font-weight: bold;'>
+                                                <span style='text-decoration: none;color: #ffffff;'>
+                                                    Active Your Account
+                                                </span>
+                                            </a>
+                                        </td>";
+        $link .= "</tr></table>";
+        $tag = array(
+            'NAME' => "User",
+            'LINK' => $link,
+            'THISDOMAIN' => "Wish-Fish"
         );
-        $subject = "Welcome To our Wish-Fish, Login Details";
-        $body = "Dear User," . '<br>';
-        $body .= "Thank you for register on Wish-Fish." . '<br>';
-        $body .= "Your account login detail is below : " . '<br>';
-        $body .= "Email  : {$post['email']} " . '<br>';
-        $body .= "Password  : {$post['password']} " . '<br>';
+        $subject = $this->parser->parse_string($templateInfo['mail_subject'], $tag, TRUE);
+        $this->load->view('email_format', $templateInfo, TRUE);
+        $body = $this->parser->parse('email_format', $tag, TRUE);
 
-        $this->load->library('email', $config);
-        $this->email->from("info@mikhailkuznetsov.com", "Mikhail");
-        $this->email->to($post['email']);
-        $this->email->subject($subject);
-        $this->email->message($body);
-        if ($this->email->send()) {
-            return TRUE;
-        } else {
-            return FALSE;
-        }
+        $from = ($templateInfo['from'] != "") ? $templateInfo['from'] : NULL;
+        $name = ($templateInfo['name'] != "") ? $templateInfo['name'] : NULL;
+
+        return $this->common->sendAutoMail($post['email'], $subject, $body, $from, $name);
+//        $config = Array(
+//            'protocol' => 'smtp',
+//            'smtp_host' => "ssl://smtp.googlemail.com",
+//            'smtp_port' => "465",
+//            'smtp_user' => "sanjayvekariya18@gmail.com", // change it to yours
+//            'smtp_pass' => "MyD@te18021991" // change it to yours
+//        );
+//        $subject = "Welcome To our Wish-Fish, Login Details";
+//        $body = "Dear User," . '<br>';
+//        $body .= "Thank you for register on Wish-Fish." . '<br>';
+//        $body .= "Your account login detail is below : " . '<br>';
+//        $body .= "Email  : {$post['email']} " . '<br>';
+//        $body .= "Password  : {$post['password']} " . '<br>';
+//
+//        $this->load->library('email', $config);
+//        $this->email->from("info@mikhailkuznetsov.com", "Mikhail");
+//        $this->email->to($post['email']);
+//        $this->email->subject($subject);
+//        $this->email->message($body);
+//        if ($this->email->send()) {
+//            return TRUE;
+//        } else {
+//            return FALSE;
+//        }
     }
 
 }

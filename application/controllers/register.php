@@ -151,10 +151,6 @@ class Register extends CI_Controller {
         return $this->objregister->isUserExist($data);
     }
 
-    function create() {
-        
-    }
-
     function createAccount() {
         $post = $this->input->post();
         if ($this->authex->can_register($post['email'])) {
