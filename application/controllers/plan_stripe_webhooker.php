@@ -42,11 +42,14 @@ class Plan_stripe_webhooker extends CI_Controller {
         $myfile = fopen(FCPATH . 'events.txt', "a");
         fwrite($myfile, "Event : " . $event);
         fwrite($myfile, "\n");
-        if ($event == "customer.subscription.deleted") {
-            $myfile = fopen(FCPATH . 'stripedata.txt', "a");
-            fwrite($myfile, $customer);
-            fwrite($myfile, "\n");
-        }
+        fwrite($myfile, "---------------------------\n");
+        fwrite($myfile, $customer);
+        fwrite($myfile, "===================================================\n");
+//        if ($event == "customer.subscription.deleted") {
+//            $myfile = fopen(FCPATH . 'stripedata.txt', "a");
+//            fwrite($myfile, $customer);
+//            fwrite($myfile, "\n");
+//        }
 
 
 
