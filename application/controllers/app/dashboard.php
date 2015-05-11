@@ -33,8 +33,6 @@ class Dashboard extends CI_Controller {
         $this->duid = $this->session->userdata('d-userid');
         $this->uid = ($userid != "") ? $this->encryption->decode($userid) : '';
 
-
-
         if (!$this->duid && !$this->uid) {
             $gid = $this->input->cookie('googleid', TRUE);
             $fid = $this->input->cookie('facebookid', TRUE);
