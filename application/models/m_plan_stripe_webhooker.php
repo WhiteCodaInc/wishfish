@@ -32,7 +32,7 @@ class M_plan_stripe_webhooker extends CI_Model {
                 $pname = $event_json->object->plan->id;
                 $planid = ($pname == "wishfish-free") ? 1 :
                         (($pname == "wishfish-personal") ? 2 : 3);
-                if (!isset($customer->metadata->userid)) {
+                if ($pname != "test") {
                     $user_set = array(
                         'email' => $customer->email,
                         'password' => $this->generateRandomString(5),
@@ -43,7 +43,7 @@ class M_plan_stripe_webhooker extends CI_Model {
                     $uid = $this->db->insert_id();
                     $pid = $this->insertPlanDetail($uid, $planid, $customer);
                     $this->insertPaymentDetail($pid, $customer);
-                    $this->updateCardDetail($customer, $uid);
+                    $this->updateCardDetail($customer, $uid, $pid);
                     $this->sendMail($user_set);
                 } else {
                     $pid = $customer->metadata->planid;
