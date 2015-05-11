@@ -27,8 +27,13 @@ class M_plan_stripe_webhooker extends CI_Model {
         fwrite($myfile, "Event :" . $event . "\n");
         switch ($event) {
             case "customer.subscription.created":
+
                 $customer = Stripe_Customer::retrieve($event_json->data->object->customer);
                 $pname = $event_json->data->object->plan->id;
+                if (isset($event_json->data->object->plan->metadata->userid)) {
+                    $user_data = $event_json->data->object->plan->metadata->userid;
+                    fwrite($myfile, "USER DATA :" . $user_data . "\n");
+                }
                 $planid = ($pname == "test") ? 1 :
                         (($pname == "wishfish-personal") ? 2 : 3);
                 if ($pname != "test") {
@@ -91,12 +96,13 @@ class M_plan_stripe_webhooker extends CI_Model {
                 break;
             case "customer.subscription.deleted":
                 $customer = Stripe_Customer::retrieve($event_json->data->object->customer);
-                fwrite($myfile, $customer . "\n");
+                //fwrite($myfile, $customer . "\n");
                 $subsid = $event_json->data->object->id;
+
                 $userid = $customer->metadata->userid;
-                fwrite($myfile, "USER ID : " . $userid . "\n");
+                //fwrite($myfile, "USER ID : " . $userid . "\n");
                 $userInfo = $this->common->getUserInfo($userid);
-                fwrite($myfile, "BILL STATUS : " . $userInfo->is_bill . "\n");
+                // fwrite($myfile, "BILL STATUS : " . $userInfo->is_bill . "\n");
 
                 $this->db->select('*');
                 $query = $this->db->get_where('payment_mst', array('transaction_id' => $subsid));
@@ -112,7 +118,10 @@ class M_plan_stripe_webhooker extends CI_Model {
 
                 if ($this->isFreePlan($res)) {
                     if ($userInfo->is_bill) {
-                        $customer->subscriptions->create(array("plan" => "wishfish-personal"));
+                        $customer->subscriptions->create(array(
+                            "plan" => "wishfish-personal",
+                            "metadata" => array("userid" => $userid)
+                        ));
                     }
                 }
                 break;
