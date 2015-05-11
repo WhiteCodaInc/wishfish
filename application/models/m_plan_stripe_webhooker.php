@@ -91,22 +91,24 @@ class M_plan_stripe_webhooker extends CI_Model {
                 break;
             case "customer.subscription.deleted":
                 $customer = Stripe_Customer::retrieve($event_json->data->object->customer);
+                fwrite($myfile, $customer . "\n");
                 $subsid = $event_json->data->object->id;
                 $userid = $customer->metadata->userid;
                 $userInfo = $this->common->getUserInfo($userid);
 
                 $this->db->select('*');
                 $query = $this->db->get_where('payment_mst', array('transaction_id' => $subsid));
+                $res = $query->row();
                 $set = array(
                     'plan_status' => 0,
                     'cancel_date' => date('Y-m-d')
                 );
                 $where = array(
-                    'id' => $query->row()->id
+                    'id' => $res->id
                 );
                 $this->db->update('plan_detail', $set, $where);
 
-                if ($this->isFreePlan($query->row())) {
+                if ($this->isFreePlan($res)) {
                     if ($userInfo->is_bill) {
                         $customer->subscriptions->create(array("plan" => "wishfish-personal"));
                     }
