@@ -454,7 +454,7 @@
             <div class="row">
                 <!-- funfact -->
                 <div class="heading white-text wow fadeIn animated" data-wow-offset="120" data-wow-duration="1.5s">
-                    <div class="title text-center"><h1>Some Fun Fact About Wish-Fish</h1></div>
+                    <div class="title text-center"><h1>Some Fun Facts About Wish-Fish</h1></div>
                     <div class="separator text-center"></div>
                 </div>
                 <div class="funfacts-counter white-text">
@@ -492,7 +492,7 @@
             <div class="row">
                 <!--  Heading-->
                 <div class="heading wow fadeIn animated" data-wow-offset="120" data-wow-duration="1.5s">
-                    <div class="title text-center"><h1>Plan &amp; Pricing</h1></div>
+                    <div class="title text-center"><h1>Plans &amp; Pricing</h1></div>
                     <div class="subtitle text-center "><h5>Affordable event scheduling software made for everyone.</h5></div>
                     <div class="separator text-center"></div>
                 </div>
@@ -841,7 +841,7 @@
 <script>
     $(function () {
         $("#typed").typed({
-            strings: ["Birthday", "Anniversaries", "Special Event", "Deadlines"],
+            strings: ["Birthdays", "Anniversaries", "Special Events", "Deadlines"],
             typeSpeed: 50,
             backDelay: 700,
             loop: true,

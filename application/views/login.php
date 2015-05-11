@@ -235,7 +235,7 @@ and open the template in the editor.
         <?php
         switch ($msg) {
             case "R":
-                $m = "Email has been already Register..!";
+                $m = "This Email Has Already Been Used! Please Use Forgot Password!..:)";
                 $t = "error";
                 break;
             default:

@@ -21,7 +21,7 @@
                     <!--<li><a href="#service" >service</a></li>-->
                     <li><a href="#features" >Features</a></li>
                     <li><a href="#describe" >Why Us</a></li>
-                    <li><a href="#plan">Plan & Pricing</a></li>
+                    <li><a href="#plan">Plans & Pricing</a></li>
                     <li><a href="#contact" >Contact</a></li>
                 </ul>
             </div>  <!--end collapse -->

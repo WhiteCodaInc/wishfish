@@ -230,7 +230,7 @@
                 <div class="msg">
                     <?php if (!$flag): ?>
                         <!--<h1>Please check your email to get started..!</h1>-->
-                        <h1>Welcome!Please check our email to get started!</h1>
+                        <h1>Welcome to Wish-Fish!<br/>Please click the 'Active Your Account' Button in your Email To Get Started!</h1>
                     <?php else : ?>
                         <div class="row" >
                             <div class="col-md-3"></div>
