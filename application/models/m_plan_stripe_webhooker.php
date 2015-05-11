@@ -108,7 +108,7 @@ class M_plan_stripe_webhooker extends CI_Model {
                 $subsid = $event_json->data->object->id;
 
                 $userid = $customer->metadata->userid;
-                //fwrite($myfile, "USER ID : " . $userid . "\n");
+                fwrite($myfile, "USER ID : " . $userid . "\n");
                 $userInfo = $this->common->getUserInfo($userid);
                 // fwrite($myfile, "BILL STATUS : " . $userInfo->is_bill . "\n");
 
