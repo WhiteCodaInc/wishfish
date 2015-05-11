@@ -28,7 +28,6 @@ class M_plan_stripe_webhooker extends CI_Model {
                 $pname = $customer->subscriptions->data[0]->plan->id;
                 $planid = ($pname == "wishfish-free") ? 1 :
                         (($pname == "wishfish-personal") ? 2 : 3);
-
                 if (isset($customer->metadata->userid)) {
                     $userid = $customer->metadata->userid;
                     $check_where = array(
@@ -78,6 +77,7 @@ class M_plan_stripe_webhooker extends CI_Model {
                     }
                 }
                 break;
+
             case "customer.subscription.trial_will_end":
                 $userid = $customer->metadata->userid;
                 $userInfo = $this->common->getUserInfo($userid);

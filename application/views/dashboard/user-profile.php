@@ -140,7 +140,7 @@
                             </div>
                             <?php
                             $currPlan = $this->common->getCurrentPlan();
-                            if ($currPlan->plan_id == 1):
+                            if (count($currPlan) && $currPlan->plan_id == 1):
                                 ?>
                                 <div class="form-group">
                                     <input type="checkbox" class="simple" <?= ($user->is_bill) ? "checked" : "" ?>  name="is_bill" >
