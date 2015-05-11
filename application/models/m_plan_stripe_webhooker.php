@@ -27,16 +27,17 @@ class M_plan_stripe_webhooker extends CI_Model {
         fwrite($myfile, "Event :" . $event . "\n");
         switch ($event) {
             case "customer.subscription.created":
-
                 $customer = Stripe_Customer::retrieve($event_json->data->object->customer);
                 $pname = $event_json->data->object->plan->id;
-                if (isset($event_json->data->object->plan->metadata->userid)) {
-                    $user_data = $event_json->data->object->plan->metadata->userid;
-                    fwrite($myfile, "USER DATA :" . $user_data . "\n");
-                }
+
+//                if (isset($event_json->data->object->plan->metadata->userid)) {
+//                    $user_data = $event_json->data->object->plan->metadata->userid;
+//                    fwrite($myfile, "USER DATA :" . $user_data . "\n");
+//                }
                 $planid = ($pname == "test") ? 1 :
                         (($pname == "wishfish-personal") ? 2 : 3);
-                if ($pname != "test") {
+
+                if (!isset($event_json->data->object->plan->metadata->userid)) {
                     $user_set = array(
                         'email' => $customer->email,
                         'password' => $this->generateRandomString(5),
@@ -50,7 +51,12 @@ class M_plan_stripe_webhooker extends CI_Model {
                     $this->updateCardDetail($customer, $uid, $pid);
                     $this->sendMail($user_set);
                 } else {
-                    $pid = $customer->metadata->planid;
+                    if (isset($event_json->data->object->plan->metadata->userid)) {
+                        $uid = $event_json->data->object->plan->metadata->userid;
+                        $pid = $this->insertPlanDetail($uid, $planid, $customer);
+                    } else {
+                        $pid = $customer->metadata->planid;
+                    }
                     $this->insertPaymentDetail($pid, $customer);
                 }
                 break;
