@@ -71,8 +71,7 @@ class Stripe_payment extends CI_Controller {
                 $data['error'] = $error;
                 $this->load->view('stripe_error', $data);
             } else {
-                header('location:' . site_url() . 'app/dashboard');
-//                header('Location:' . site_url() . 'login');
+                header('Location:' . site_url() . 'login');
             }
         }
     }

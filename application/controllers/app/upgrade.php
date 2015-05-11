@@ -38,7 +38,7 @@ class Upgrade extends CI_Controller {
 //        die();
         $this->load->view('dashboard/header');
         $this->load->view('dashboard/top');
-        
+
         $this->load->view('dashboard/upgrade', $data);
         $this->load->view('dashboard/footer');
     }

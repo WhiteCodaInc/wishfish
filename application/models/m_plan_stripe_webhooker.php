@@ -42,9 +42,6 @@ class M_plan_stripe_webhooker extends CI_Model {
                     $this->db->insert('user_mst', $user_set);
                     $uid = $this->db->insert_id();
 
-                    $this->session->set_userdata('d-userid', $uid);
-                    $this->session->set_userdata('d-name', "User");
-
                     $pid = $this->insertPlanDetail($uid, $planid, $customer);
                     $this->insertPaymentDetail($pid, $customer);
                     $this->updateCardDetail($customer, $uid, $pid);
@@ -187,30 +184,6 @@ class M_plan_stripe_webhooker extends CI_Model {
         $name = ($templateInfo['name'] != "") ? $templateInfo['name'] : NULL;
 
         return $this->common->sendAutoMail($post['email'], $subject, $body, $from, $name);
-//        $config = Array(
-//            'protocol' => 'smtp',
-//            'smtp_host' => "ssl://smtp.googlemail.com",
-//            'smtp_port' => "465",
-//            'smtp_user' => "sanjayvekariya18@gmail.com", // change it to yours
-//            'smtp_pass' => "MyD@te18021991" // change it to yours
-//        );
-//        $subject = "Welcome To our Wish-Fish, Login Details";
-//        $body = "Dear User," . '<br>';
-//        $body .= "Thank you for register on Wish-Fish." . '<br>';
-//        $body .= "Your account login detail is below : " . '<br>';
-//        $body .= "Email  : {$post['email']} " . '<br>';
-//        $body .= "Password  : {$post['password']} " . '<br>';
-//
-//        $this->load->library('email', $config);
-//        $this->email->from("info@mikhailkuznetsov.com", "Mikhail");
-//        $this->email->to($post['email']);
-//        $this->email->subject($subject);
-//        $this->email->message($body);
-//        if ($this->email->send()) {
-//            return TRUE;
-//        } else {
-//            return FALSE;
-//        }
     }
 
 }
