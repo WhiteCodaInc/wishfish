@@ -34,17 +34,12 @@ class Plan_stripe_webhooker extends CI_Controller {
         $data = $this->common->getPaymentGatewayInfo("STRIPE");
         Stripe::setApiKey($data->secret_key);
 
-        $customer_id = $event_json->data->object->customer;
-        $customer = Stripe_Customer::retrieve($customer_id);
+        //$customer_id = $event_json->data->object->customer;
+        //$customer = Stripe_Customer::retrieve($customer_id);
 
-        $event = $event_json->type;
+        //$event = $event_json->type;
 
-        $myfile = fopen(FCPATH . 'events.txt', "a");
-        fwrite($myfile, "Event : " . $event);
-        fwrite($myfile, "\n");
-        fwrite($myfile, "---------------------------\n");
-        fwrite($myfile, $customer);
-        fwrite($myfile, "===================================================\n");
+        
 //        if ($event == "customer.subscription.deleted") {
 //            $myfile = fopen(FCPATH . 'stripedata.txt', "a");
 //            fwrite($myfile, $customer);
@@ -53,7 +48,7 @@ class Plan_stripe_webhooker extends CI_Controller {
 
 
 
-        $this->objpayment->stripe($customer, $event);
+        $this->objpayment->stripe($event_json);
     }
 
 }
