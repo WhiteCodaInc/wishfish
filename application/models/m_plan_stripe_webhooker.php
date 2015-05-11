@@ -30,25 +30,25 @@ class M_plan_stripe_webhooker extends CI_Model {
                 $customer = Stripe_Customer::retrieve($event_json->data->object->customer);
                 $pname = $event_json->object->plan->id;
                 fwrite($myfile, "PLAN :" . $pname . "\n");
-                $planid = ($pname == "wishfish-free") ? 1 :
-                        (($pname == "wishfish-personal") ? 2 : 3);
-                if ($pname != "test") {
-                    $user_set = array(
-                        'email' => $customer->email,
-                        'password' => $this->generateRandomString(5),
-                        'customer_id' => $customer->id,
-                        'register_date' => date('Y-m-d', $customer->subscriptions->data[0]->current_period_start)
-                    );
-                    $this->db->insert('user_mst', $user_set);
-                    $uid = $this->db->insert_id();
-                    $pid = $this->insertPlanDetail($uid, $planid, $customer);
-                    $this->insertPaymentDetail($pid, $customer);
-                    $this->updateCardDetail($customer, $uid, $pid);
-                    $this->sendMail($user_set);
-                } else {
-                    $pid = $customer->metadata->planid;
-                    $this->insertPaymentDetail($pid, $customer);
-                }
+//                $planid = ($pname == "wishfish-free") ? 1 :
+//                        (($pname == "wishfish-personal") ? 2 : 3);
+//                if ($pname != "test") {
+//                    $user_set = array(
+//                        'email' => $customer->email,
+//                        'password' => $this->generateRandomString(5),
+//                        'customer_id' => $customer->id,
+//                        'register_date' => date('Y-m-d', $customer->subscriptions->data[0]->current_period_start)
+//                    );
+//                    $this->db->insert('user_mst', $user_set);
+//                    $uid = $this->db->insert_id();
+//                    $pid = $this->insertPlanDetail($uid, $planid, $customer);
+//                    $this->insertPaymentDetail($pid, $customer);
+//                    $this->updateCardDetail($customer, $uid, $pid);
+//                    $this->sendMail($user_set);
+//                } else {
+//                    $pid = $customer->metadata->planid;
+//                    $this->insertPaymentDetail($pid, $customer);
+//                }
                 break;
             case "invoice.payment_succeeded":
                 /*
