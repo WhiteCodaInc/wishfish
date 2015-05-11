@@ -95,6 +95,7 @@ class M_plan_stripe_webhooker extends CI_Model {
                 $subsid = $event_json->data->object->id;
                 $userid = $customer->metadata->userid;
                 $userInfo = $this->common->getUserInfo($userid);
+                fwrite($myfile, $userInfo . "\n");
 
                 $this->db->select('*');
                 $query = $this->db->get_where('payment_mst', array('transaction_id' => $subsid));
