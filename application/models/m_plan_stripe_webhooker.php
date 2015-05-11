@@ -66,14 +66,16 @@ class M_plan_stripe_webhooker extends CI_Model {
                 if ($customer->deleted == "true") {
                     $this->db->select('*');
                     $query = $this->db->get_where('payment_mst', array('payer_id' => $customerid));
-                    $set = array(
-                        'plan_status' => 0,
-                        'cancel_date' => date('Y-m-d')
-                    );
-                    $where = array(
-                        'id' => $query->row()->id
-                    );
-                    $this->db->update('plan_detail', $set, $where);
+                    if ($query->num_rows() > 0) {
+                        $set = array(
+                            'plan_status' => 0,
+                            'cancel_date' => date('Y-m-d')
+                        );
+                        $where = array(
+                            'id' => $query->row()->id
+                        );
+                        $this->db->update('plan_detail', $set, $where);
+                    }
                 }
                 break;
             case "customer.subscription.trial_will_end":
