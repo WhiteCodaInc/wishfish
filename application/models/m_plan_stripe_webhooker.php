@@ -186,9 +186,9 @@ class M_plan_stripe_webhooker extends CI_Model {
         $this->db->insert('payment_mst', $insert_set);
     }
 
-    function updateCardDetail($customer, $uid) {
+    function updateCardDetail($customer, $uid, $pid) {
         try {
-            $customer->metadata = array('userid' => $uid);
+            $customer->metadata = array('planid' => $pid, 'userid' => $uid);
             $customer->save();
             return TRUE;
         } catch (Exception $e) {
