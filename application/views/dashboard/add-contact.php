@@ -118,7 +118,7 @@
         ;
     });
     $(document).ready(function () {
-
+        console.log(hopscotch.getState());
         $('#save-contact').click(function () {
             var tourStep = hopscotch.getState();
             var href = "";
