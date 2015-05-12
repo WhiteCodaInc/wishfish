@@ -23,7 +23,7 @@ class M_profile extends CI_Model {
         $this->load->library('amazons3');
         $this->userid = $this->session->userdata('userid');
         $this->bucket = "mikhailkuznetsov";
-        $this->accessKey = "AKIAJWQAEAXONVCWQZKQ";
+        $this->accessKey = "AKIAJTSSWQFVK3YRSDNQ";
         $this->secretKey = "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";
 
         $gatewayInfo = $this->common->getPaymentGatewayInfo("STRIPE");
