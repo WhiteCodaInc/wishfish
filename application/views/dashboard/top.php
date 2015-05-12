@@ -498,7 +498,7 @@ $img_src = ($profile_pic != "") ?
                                 url: "<?= site_url() ?>app/dashboard/checkVerificationCode",
                                 success: function (data, textStatus, jqXHR) {
                                     if (data == 1) {
-                                        $('.discard').trigger('click');
+                                        $('.close').trigger('click');
                                         alertify.success("Congratulations! You have verified your phone number successfully!");
                                         setTimeout(function () {
                                             location.reload(true);
