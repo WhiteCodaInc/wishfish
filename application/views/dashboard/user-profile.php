@@ -102,8 +102,8 @@
                                     <option value="dd-mm-yyyy">dd-mm-yyyy</option>
                                 </select>
                             </div>
-                            <div class="form-group">
-                                <label id="select-timezone">Timezone </label>
+                            <div class="form-group" id="select-timezone">
+                                <label >Timezone </label>
                                 <?= timezone_menu('UTC') ?>
                             </div>
                             <?php
