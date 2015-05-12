@@ -69,7 +69,8 @@ var tour = {
             showPrevButton: false,
             placement: 'left',
             title: 'Select Your Time Zone',
-            arrowOffset: 20
+            arrowOffset: 20,
+            yOffset: 0,
         },
         {
             target: 'save-profile',
