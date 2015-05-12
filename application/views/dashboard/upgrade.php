@@ -1,3 +1,8 @@
+<style type="text/css">
+    #planUpgrade ul li{
+        padding: 5%
+    }
+</style>
 <aside class="right-side">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -7,7 +12,7 @@
     </section>
     <!-- Main content -->
     <section class="content">
-        <div class="row">
+        <div class="row" id="planUpgrade">
             <div class="col-md-1" style="margin-right: 5%;"></div>
             <div class="col-md-3">
                 <div class="box box-solid">
