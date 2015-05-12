@@ -6,6 +6,10 @@
         list-style: none;
         padding: 0;
     }
+    #planUpgrade p{
+        font-size: 16px;
+        line-height: 25px;
+    }
     #planUpgrade .box-header{
         text-align: center;
         background-color: #1ac6ff;
