@@ -50,8 +50,7 @@
     <!-- Main content -->
     <section class="content">
         <div class="row" id="planUpgrade">
-            <div class="col-md-1" style="margin-right: 5%;"></div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="box box-solid">
                     <div class="box-header" >
                         <h2>14-day Free Trial</h2>
@@ -70,7 +69,7 @@
                     </div><!-- /.box-body -->
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="box box-solid">
                     <div class="box-header" style="text-align: center">
                         <h2>Personal</h2>
@@ -89,7 +88,7 @@
                     </div><!-- /.box-body -->
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="box box-solid">
                     <div class="box-header" style="text-align: center">
                         <h2>Enterprise</h2>
