@@ -70,7 +70,7 @@ var tour = {
             placement: 'left',
             title: 'Select Your Time Zone',
             arrowOffset: 20,
-            yOffset: -45,
+            yOffset: -35,
         },
         {
             target: 'save-profile',
