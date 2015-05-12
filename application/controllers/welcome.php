@@ -41,9 +41,9 @@ class Welcome extends CI_Controller {
 
         echo '-------------Decryption--------------<br>';
 
-        echo 'BUCKET : ' . $this->encryption->encode("ShLvoZAkeBrawkThnA-akEfhitL4Vcgr-oBnwAn-bUU") . '<br>';
-        echo 'ACCESS KEY : ' . $this->encryption->encode("kjruBRpR5XOSbsqgGLeRMJwFasiaIUrZsNaqjc_LLic") . '<br>';
-        echo 'SECRET KEY : ' . $this->encryption->encode("jN86kD3vVS_wSPV0HOpfkr8UtTIQ2BbdX85scQqywnG82fMIY9aPlxHtsFTvUJiSzD3IjjSg2F6Re_ZUbiUJmg") . '<br>';
+        echo 'BUCKET : ' . $this->encryption->decode("ShLvoZAkeBrawkThnA-akEfhitL4Vcgr-oBnwAn-bUU") . '<br>';
+        echo 'ACCESS KEY : ' . $this->encryption->decode("kjruBRpR5XOSbsqgGLeRMJwFasiaIUrZsNaqjc_LLic") . '<br>';
+        echo 'SECRET KEY : ' . $this->encryption->decode("jN86kD3vVS_wSPV0HOpfkr8UtTIQ2BbdX85scQqywnG82fMIY9aPlxHtsFTvUJiSzD3IjjSg2F6Re_ZUbiUJmg") . '<br>';
 
         //$this->load->view('welcome_message');
     }
