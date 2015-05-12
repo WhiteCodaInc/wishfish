@@ -178,6 +178,19 @@
                         $('#planUpgrade .box-body button').prop('disabled', 'disabled');
                         $('.enterprise .overlay').show();
                         $('.enterprise .loading-img').show();
+                        $.ajax({
+                            type: 'POST',
+                            data: {plan: "wishfish-enterprise"},
+                            url: "<?= site_url() ?>app/upgrade/upgradePlan",
+                            success: function (data, textStatus, jqXHR) {
+                                if (data == 1) {
+                                    window.location.assign("<?= site_url() ?>app/dashboard");
+                                } else {
+                                    $('#error').show();
+                                    $('#error-msg').text(data);
+                                }
+                            }
+                        });
                     }
 
                 });
