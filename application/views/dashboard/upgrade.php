@@ -8,7 +8,8 @@
     <!-- Main content -->
     <section class="content">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-2"></div>
+            <div class="col-md-3">
                 <div class="box box-solid">
                     <div class="box-header" style="text-align: center">
                         <h3>14-day Free Trial</h3>
@@ -28,7 +29,7 @@
                     </div><!-- /.box-body -->
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="box box-solid">
                     <div class="box-header" style="text-align: center">
                         <h3>Personal</h3>
@@ -46,7 +47,7 @@
                     </div><!-- /.box-body -->
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="box box-solid">
                     <div class="box-header" style="text-align: center">
                         <h3>Enterprise</h3>
