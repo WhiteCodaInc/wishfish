@@ -14,6 +14,11 @@
     #planUpgrade .box-header h2{
         font-weight: 600
     }
+    #planUpgrade .box-header b{
+        font-size: 60px;
+        line-height: 70px;
+        color: #fff;
+    }
     #planUpgrade .box-header span.currency{
         font-size: 24px;
         line-height: 54px;
