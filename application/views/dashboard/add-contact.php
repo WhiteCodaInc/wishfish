@@ -23,7 +23,6 @@
                     <!-- form start -->
                     <form id="contactForm" role="form" action="" enctype="multipart/form-data" method="post">
                         <div class="box-body">
-
                             <div class="form-group" id="add-profile-pic">
                                 <div class="row">
                                     <div class="col-md-3">

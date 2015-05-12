@@ -110,13 +110,13 @@ var tour = {
             yOffset: -10,
             xOffset: -20
         },
-        {
-            target: 'add-profile-pic',
-            placement: 'left',
-            title: 'Add Profile Picture',
-            arrowOffset: 20,
-            showPrevButton: false
-        },
+//        {
+//            target: 'add-profile-pic',
+//            placement: 'left',
+//            title: 'Add Profile Picture',
+//            arrowOffset: 20,
+//            showPrevButton: false
+//        },
         {
             target: 'add-name',
             placement: 'left',
