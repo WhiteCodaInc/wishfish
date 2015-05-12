@@ -76,6 +76,7 @@
                         </button>
                     </div><!-- /.box-body -->
                     <div class="overlay"></div>
+                    <div class="loading-img"></div>
                 </div>
             </div>
             <div class="col-md-4">
