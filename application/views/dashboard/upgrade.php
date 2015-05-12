@@ -8,7 +8,7 @@
     <!-- Main content -->
     <section class="content">
         <div class="row">
-            <div class="col-md-2"></div>
+            <div class="col-md-1"></div>
             <div class="col-md-3">
                 <div class="box box-solid">
                     <div class="box-header" style="text-align: center">
