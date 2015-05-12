@@ -278,8 +278,6 @@
         <script type="text/javascript">
             $(document).ready(function () {
 
-                console.log("<?= $this->session->userdata('d-userid') ?>");
-
                 var pass = 1;
                 var confirmpass = 1;
 
@@ -318,7 +316,17 @@
                 });
 
                 $('#sendAgain').on('click', function () {
-
+                    $.ajax({
+                        type: 'POST',
+                        url: "<?= site_url() ?>app/dashboard/sendActivationEmail",
+                        success: function (data, textStatus, jqXHR) {
+                            if (data == 1) {
+                                alertify.success("Email has been successfully sent..!");
+                            } else {
+                                alertify.error("Email sending failed! Try Again..!");
+                            }
+                        }
+                    });
                 });
             });
         </script>

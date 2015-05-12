@@ -58,6 +58,7 @@ class Dashboard extends CI_Controller {
         }
         $this->load->model('dashboard/m_dashboard', 'objdashboard');
         $this->load->model('dashboard/m_calender', 'objcalender');
+        $this->load->model('m_register', 'objregister');
     }
 
     function index() {
@@ -179,6 +180,16 @@ class Dashboard extends CI_Controller {
         } else {
             echo 0;
         }
+    }
+
+    function sendActivationEmail() {
+        $uid = $this->session->userdata('d-userid');
+        $userInfo = $this->common->getUserInfo($uid);
+        $post = array(
+            'name' => $userInfo->name,
+            'email' => $userInfo->email
+        );
+        echo ($this->objregister->sendMail($post, $uid)) ? 1 : 0;
     }
 
 }
