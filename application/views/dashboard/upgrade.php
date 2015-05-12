@@ -2,6 +2,10 @@
     #planUpgrade ul li{
         padding: 2%
     }
+    #planUpgrade ul{
+        list-style: none;
+        padding: 0;
+    }
 </style>
 <aside class="right-side">
     <!-- Content Header (Page header) -->
