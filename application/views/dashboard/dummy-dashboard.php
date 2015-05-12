@@ -40,6 +40,14 @@
         <!--BOOTSTRAP--> 
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js" type="text/javascript"></script>
 
+        <!-- Alertify -->
+        <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/dashboard/css/alertify.core.css"/>
+        <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/dashboard/css/alertify.default.css"/>
+
+        <!--Alertify-->
+        <script type="text/javascript" src="<?= base_url() ?>assets/dashboard/js/alertify.js"></script>
+        <script type="text/javascript" src="<?= base_url() ?>assets/dashboard/js/alertify.min.js"></script>
+
 
 
     </head>
