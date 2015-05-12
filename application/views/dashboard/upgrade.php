@@ -7,7 +7,7 @@
         padding: 0;
     }
     #planUpgrade p{
-        font-size: 16px;
+        font-size: 20px;
         line-height: 25px;
     }
     #planUpgrade .box-header{
@@ -63,9 +63,8 @@
             <div class="col-md-3">
                 <div class="box box-solid">
                     <div class="box-header" style="text-align: center">
-                        <h3>Personal</h3>
-                        <br/>
-                        <h4>USD 9.99 / month</h4>
+                        <h2>Personal</h2>
+                        <p class="price"><span class="currency">$</span> <b>9.99</b> <span class="month">/month</span></p>
                     </div><!-- /.box-header -->
                     <div class="box-body" style="text-align: center">
                         <ul>
@@ -83,9 +82,8 @@
             <div class="col-md-3">
                 <div class="box box-solid">
                     <div class="box-header" style="text-align: center">
-                        <h3>Enterprise</h3>
-                        <br/>
-                        <h4>USD 49.99 / month</h4>
+                        <h2>Enterprise</h2>
+                        <p class="price"><span class="currency">$</span> <b>49.99</b> <span class="month">/month</span></p>
                     </div><!-- /.box-header -->
                     <div class="box-body" style="text-align: center">
                         <ul>
