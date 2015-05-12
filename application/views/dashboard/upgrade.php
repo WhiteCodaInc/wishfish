@@ -16,6 +16,11 @@
     #planUpgrade .box-body{
         padding: 0;
     }
+    #planUpgrade .box-body a{
+        margin: 40px auto;
+        display: block;
+        width: 80%;
+    }
     #planUpgrade .box-header{
         text-align: center;
         background-color: #1ac6ff;
