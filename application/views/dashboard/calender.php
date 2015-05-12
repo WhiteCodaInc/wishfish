@@ -1060,8 +1060,8 @@
                     }
                 }
             }
-            if (hopscotch.getState() == "welcome:15") {
-                hopscotch.showStep(16);
+            if (hopscotch.getState() == "welcome:15:7") {
+                hopscotch.nextStep();
             }
             var data = CKEDITOR.instances['e_emailbody'].getData();
             $('#e_emailbody').val(data);
