@@ -71,7 +71,9 @@
                             <li> Import Contacts From Google</li>
                             <li> Import Contacts From Spreadsheet or CSV File</li>
                         </ul>
-                        <button type="button" id="a_personal" class="btn btn-info btn-lg">Upgrade</button>
+                        <button <?= ($currPlan->plan_id == 2) ? 'disabled' : '' ?> type="button" id="a_personal" class="btn btn-info btn-lg">
+                            Upgrade
+                        </button>
                     </div><!-- /.box-body -->
                 </div>
             </div>
@@ -90,7 +92,9 @@
                             <li> Import Contacts From Google</li>
                             <li> Import Contacts From Spreadsheet or CSV File</li>
                         </ul>
-                        <button type="button" id="a_enterprise" class="btn btn-info btn-lg">Upgrade</button>
+                        <button <?= ($currPlan->plan_id == 3) ? 'disabled' : '' ?> type="button" id="a_enterprise" class="btn btn-info btn-lg">
+                            Upgrade
+                        </button>
                     </div><!-- /.box-body -->
                 </div>
             </div>
