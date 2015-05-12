@@ -1,6 +1,6 @@
 <style type="text/css">
     #planUpgrade ul li{
-        padding: 5%
+        padding: 2%
     }
 </style>
 <aside class="right-side">
@@ -42,11 +42,13 @@
                         <h4>USD 9.99 / month</h4>
                     </div><!-- /.box-header -->
                     <div class="box-body" style="text-align: center">
-                        <h4>Organize your life.</h4>
-                        <ul style="text-align: left">
-                            <li>Workspace for daily projects</li>
-                            <li>Keep everything together</li>
-                            <li>Sync across all devices</li>
+                        <ul>
+                            <li> Add Contact upto <b>10</b></li>
+                            <li> Maximum <b>20</b> Events per Contact</li>
+                            <li> <b>1</b> SMS Number per Customer</li>
+                            <li> <b>1</b> Email Address per Customer</li>
+                            <li> Import Contacts From Google</li>
+                            <li> Import Contacts From Spreadsheet or CSV File</li>
                         </ul>
                         <a id="a_personal" href="javascript:void(0)" class="btn btn-info">Upgrade</a>
                     </div><!-- /.box-body -->
@@ -57,14 +59,16 @@
                     <div class="box-header" style="text-align: center">
                         <h3>Enterprise</h3>
                         <br/>
-                        <h4>USD 49.9 / month</h4>
+                        <h4>USD 49.99 / month</h4>
                     </div><!-- /.box-header -->
                     <div class="box-body" style="text-align: center">
-                        <h4>Organize your life.</h4>
-                        <ul style="text-align: left">
-                            <li>Workspace for daily projects</li>
-                            <li>Keep everything together</li>
-                            <li>Sync across all devices</li>
+                        <ul>
+                            <li> Add Contact upto <b>20</b></li>
+                            <li> Maximum <b>40</b> Events per Contact</li>
+                            <li> <b>2</b> SMS Number per Customer</li>
+                            <li> <b>2</b> Email Address per Customer</li>
+                            <li> Import Contacts From Google</li>
+                            <li> Import Contacts From Spreadsheet or CSV File</li>
                         </ul>
                         <a id="a_enterprise" href="javascript:void(0)"  class="btn btn-info">Upgrade</a>
                     </div><!-- /.box-body -->
