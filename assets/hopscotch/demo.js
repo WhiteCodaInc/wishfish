@@ -146,20 +146,20 @@ var tour = {
             multipage: true,
             showPrevButton: false,
             showNextButton: false,
-            onNext: function () {
-                var form = $('#contactForm')[0]; // You need to use standart javascript object here
-                var formData = new FormData(form);
-                $.ajax({
-                    type: 'POST',
-                    processData: false,
-                    contentType: false,
-                    data: formData,
-                    url: "https://wish-fish.com/app/contacts/createContact?type=ajax",
-                    success: function (data, textStatus, jqXHR) {
-                        window.location = "https://wish-fish.com/app/calender?date=" + data;
-                    }
-                });
-            }
+//            onNext: function () {
+//                var form = $('#contactForm')[0]; // You need to use standart javascript object here
+//                var formData = new FormData(form);
+//                $.ajax({
+//                    type: 'POST',
+//                    processData: false,
+//                    contentType: false,
+//                    data: formData,
+//                    url: "https://wish-fish.com/app/contacts/createContact?type=ajax",
+//                    success: function (data, textStatus, jqXHR) {
+//                        window.location = "https://wish-fish.com/app/calender?date=" + data;
+//                    }
+//                });
+//            }
         },
         {
             target: 'birth_day',
