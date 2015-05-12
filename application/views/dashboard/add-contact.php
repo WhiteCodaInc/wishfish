@@ -119,7 +119,7 @@
     $(document).ready(function () {
         console.log(hopscotch.getState());
         if (hopscotch.getState() == "welcome:9:7") {
-            hopscotch.showStep(10);
+            hopscotch.nextStep();
         }
         $('#save-contact').click(function () {
             var tourStep = hopscotch.getState();
