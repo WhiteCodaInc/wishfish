@@ -170,8 +170,10 @@ class Dashboard extends CI_Controller {
         if ($code == $this->session->userdata('verificationCode')) {
             $this->db->update('user_mst', $set, $where);
             $userInfo = $this->common->getUserInfo($userid);
-            $text = "Congratulations! You have verified your phone number successfully!";
-            $this->common->sendSMS($userInfo->phone, $text);
+            $msg1 = "Congratulations! You have verified your phone number successfully!";
+            $this->common->sendSMS($userInfo->phone, $msg1);
+            $msg2 = "Please save this number as 'Wish-Fish', You can use it for your own custom notification.";
+            $this->common->sendSMS($userInfo->phone, $msg2);
             echo 1;
         } else {
             echo 0;
