@@ -6,6 +6,20 @@
         list-style: none;
         padding: 0;
     }
+    #planUpgrade .box-header{
+        text-align: center;
+        background-color: #1ac6ff;
+        color: white;
+    }
+    #planUpgrade .box-header h2{
+        font-weight: 600
+    }
+    #planUpgrade .box-header span.currency{
+        font-size: 24px;
+        line-height: 54px;
+        vertical-align: top;
+        display: inline-block;
+    }
 </style>
 <aside class="right-side">
     <!-- Content Header (Page header) -->
@@ -20,10 +34,9 @@
             <div class="col-md-1" style="margin-right: 5%;"></div>
             <div class="col-md-3">
                 <div class="box box-solid">
-                    <div class="box-header" style="text-align: center">
-                        <h3>14-day Free Trial</h3>
-                        <br/>
-                        <h4>USD 0 / month</h4>
+                    <div class="box-header" >
+                        <h2>14-day Free Trial</h2>
+                        <p class="price"><span class="currency">$</span> <b>0</b> <span class="month">/month</span></p>
                     </div><!-- /.box-header -->
                     <div class="box-body" style="text-align: center">
                         <ul>
