@@ -204,17 +204,17 @@ function check() {
 
 $('#wishfish-profile a').click(function () {
     if (hopscotch.getState() == "welcome:1") {
-        hopscotch.nextStep();
+        hopscotch.showStep(2);
     }
 });
 $('#profile_submit').click(function () {
     if (hopscotch.getState() == "welcome:7") {
-        hopscotch.nextStep();
+        hopscotch.showStep(8);
     }
 });
 $('#create-contact a').click(function () {
     if (hopscotch.getState() == "welcome:9") {
-        hopscotch.nextStep();
+        hopscotch.showStep(10);
     }
 });
 
