@@ -102,60 +102,55 @@
                                     <option value="dd-mm-yyyy">dd-mm-yyyy</option>
                                 </select>
                             </div>
-                            <div class="form-group">
-                                <div class="row" id="select-timezone">
-                                    <div class="col-md-12">
-                                        <label >Timezone </label>
-                                        <?= timezone_menu('UTC') ?>
-                                    </div>
+                            <div class="form-group" id="select-timezone">
+                                <label >Timezone </label>
+                                <?= timezone_menu('UTC') ?>
+                            </div>
+                            <?php ($card) ? $cardNo = "************{$card['last4']}" : ""; ?>
+                            <div class="box box-primary">
+                                <div class="box-header" >
+                                    <h3  class="box-title">Payment Info</h3>
                                 </div>
-                            </div>
-                            <hr/>
-                            <?php
-                            if ($card) {
-                                $cardNo = "************{$card['last4']}";
-                            }
-                            ?>
-                            <div class="form-group">
-                                <h3>Credit Card Detail</h3>
-                            </div>
-                            <div class="form-group">
-                                <label>Credit Card Number </label>
-                                <?php if ($card): ?>
-                                    <a style="cursor: pointer" class="card"  data-toggle="modal" data-target="#card-modal">Change Card Detail</a>
-                                <?php endif; ?>
-                                <input value="<?= ($card) ? $cardNo : "" ?>" data-stripe="number"  type="text" maxlength="16" class="card_number form-control" placeholder="Card Number" <?= ($card) ? "readonly" : "" ?> />
-                            </div>
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Expiration (MM/YYYY)</label>
+                                <div class="box-body">
+                                    <div class="form-group">
+                                        <label>Credit Card Number </label>
+                                        <?php if ($card): ?>
+                                            <a style="cursor: pointer" class="card"  data-toggle="modal" data-target="#card-modal">Change Card Detail</a>
+                                        <?php endif; ?>
+                                        <input value="<?= ($card) ? $cardNo : "" ?>" data-stripe="number"  type="text" maxlength="16" class="card_number form-control" placeholder="Card Number" <?= ($card) ? "readonly" : "" ?> />
+                                    </div>
+                                    <div class="form-group">
                                         <div class="row">
-                                            <div class="col-md-5" style="padding-right: 0">
-                                                <input value="<?= ($card) ? $card['exp_month'] : "" ?>" data-stripe="exp-month" maxlength="2" type="text" class="month form-control" placeholder="MM" <?= ($card) ? "readonly" : "" ?>>
+                                            <div class="col-md-6">
+                                                <label>Expiration (MM/YYYY)</label>
+                                                <div class="row">
+                                                    <div class="col-md-5" style="padding-right: 0">
+                                                        <input value="<?= ($card) ? $card['exp_month'] : "" ?>" data-stripe="exp-month" maxlength="2" type="text" class="month form-control" placeholder="MM" <?= ($card) ? "readonly" : "" ?>>
+                                                    </div>
+                                                    <div class="col-md-1" style="padding: 0 8px;font-size: 23px">/</div>
+                                                    <div class="col-md-5" style="padding-left: 0">
+                                                        <input value="<?= ($card) ? $card['exp_year'] : "" ?>" data-stripe="exp-year" type="text" maxlength="4" class="year form-control" placeholder="YYYY" <?= ($card) ? "readonly" : "" ?>>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="col-md-1" style="padding: 0 8px;font-size: 23px">/</div>
-                                            <div class="col-md-5" style="padding-left: 0">
-                                                <input value="<?= ($card) ? $card['exp_year'] : "" ?>" data-stripe="exp-year" type="text" maxlength="4" class="year form-control" placeholder="YYYY" <?= ($card) ? "readonly" : "" ?>>
+                                            <div class="col-md-6">
+                                                <label>CVC</label>
+                                                <input value="123" maxlength="3" type="password" class="cvc form-control" <?= ($card) ? "readonly" : "" ?>>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <label>CVC</label>
-                                        <input value="123" maxlength="3" type="password" class="cvc form-control" <?= ($card) ? "readonly" : "" ?>>
-                                    </div>
+                                    <?php
+                                    $currPlan = $this->common->getCurrentPlan();
+                                    if (count($currPlan) && $currPlan->plan_id == 1):
+                                        ?>
+                                        <div class="form-group">
+                                            <input type="checkbox" class="simple" <?= ($user->is_bill) ? "checked" : "" ?>  name="is_bill" >
+                                            <span class="lbl padding-8">Automatically bill me,When my trial over</span>
+                                        </div>
+                                    <?php endif; ?>
                                 </div>
-                            </div>
-                            <?php
-                            $currPlan = $this->common->getCurrentPlan();
-                            if (count($currPlan) && $currPlan->plan_id == 1):
-                                ?>
-                                <div class="form-group">
-                                    <input type="checkbox" class="simple" <?= ($user->is_bill) ? "checked" : "" ?>  name="is_bill" >
-                                    <span class="lbl padding-8">Automatically bill me,When my trial over</span>
-                                </div>
-                            <?php endif; ?>
-                        </div><!-- /.box-body -->
+                            </div><!-- /.box-body -->
+                        </div>
                     </form>
                 </div><!-- /.box -->
             </div><!--/.col (left) -->
