@@ -23,22 +23,24 @@ class Upgrade extends CI_Controller {
         $this->output->set_header("Pragma: no-cache");
         $this->output->set_header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
 
-        $this->userid = $this->session->userdata('userid');
-        /* if (!$this->authex->logged_in()) {
-          header('location:' . site_url() . 'login');
-          } */
+        if (!$this->authex->logged_in()) {
+            header('location:' . site_url() . 'home');
+        } else {
+            $this->userid = $this->session->userdata('userid');
+            $this->load->model('dashboard/m_profile', 'objprofile');
+        }
     }
 
     function index() {
         $data['currPlan'] = $this->common->getCurrentPlan();
         $data['pdetail'] = $this->common->getPlans();
         $data['gatewayInfo'] = $this->common->getPaymentGatewayInfo("STRIPE");
-//        echo '<pre>';
-//        print_r($data);
-//        die();
+        $data['card'] = $this->objprofile->getCardDetail();
+        echo '<pre>';
+        print_r($data);
+        die();
         $this->load->view('dashboard/header');
         $this->load->view('dashboard/top');
-
         $this->load->view('dashboard/upgrade', $data);
         $this->load->view('dashboard/footer');
     }
@@ -58,7 +60,6 @@ class Upgrade extends CI_Controller {
         require_once(FCPATH . 'stripe/lib/Stripe.php');
         Stripe::setApiKey($gatewayInfo->secret_key);
         if ($this->input->post('stripeToken') != "") {
-
             try {
                 $customer = Stripe_Plan::create(array(
                             "amount" => $set['amount'] * 100,
