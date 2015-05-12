@@ -21,7 +21,7 @@
     #planUpgrade .box-body{
         padding: 0;
     }
-    #planUpgrade .box-body a{
+    #planUpgrade .box-body button{
         width: 65%;
         margin: 5%;
     }
@@ -70,7 +70,7 @@
                             <li> - </li>
                             <li> - </li>
                         </ul>
-                        <a id="a_personal" href="javascript:void(0)" class="btn btn-info btn-lg">Upgrade</a>
+                        <button type="button" id="a_free" class="btn btn-info btn-lg">Upgrade</button>
                     </div><!-- /.box-body -->
                 </div>
             </div>
@@ -89,7 +89,7 @@
                             <li> Import Contacts From Google</li>
                             <li> Import Contacts From Spreadsheet or CSV File</li>
                         </ul>
-                        <a id="a_personal" href="javascript:void(0)" class="btn btn-info btn-lg">Upgrade</a>
+                        <button type="button" id="a_personal" class="btn btn-info btn-lg">Upgrade</button>
                     </div><!-- /.box-body -->
                 </div>
             </div>
@@ -108,7 +108,7 @@
                             <li> Import Contacts From Google</li>
                             <li> Import Contacts From Spreadsheet or CSV File</li>
                         </ul>
-                        <a id="a_enterprise" href="javascript:void(0)"  class="btn btn-info btn-lg">Upgrade</a>
+                        <button type="button" id="a_enterprise" class="btn btn-info btn-lg">Upgrade</button>
                     </div><!-- /.box-body -->
                 </div>
             </div>
