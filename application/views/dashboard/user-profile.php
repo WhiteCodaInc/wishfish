@@ -94,7 +94,7 @@
                                 <label>Email</label>
                                 <input value="<?= isset($user) ? $user->email : '' ?>" type="email" name="email" class="form-control" placeholder="Email" readonly=""/>
                             </div>
-
+                            <hr/>
                             <div class="form-group">
                                 <label>Date Format</label>
                                 <select name="date_format" id="date-format" class="form-control m-bot15">
