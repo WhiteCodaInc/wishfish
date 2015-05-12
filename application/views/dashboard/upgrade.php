@@ -57,7 +57,7 @@
         <div class="row" id="planUpgrade">
             <div class="col-md-2"></div>
             <div class="col-md-4">
-                <div class="box box-solid">
+                <div class="box box-solid personal">
                     <div class="box-header" style="text-align: center">
                         <h2>Personal</h2>
                         <p class="price"><span class="currency">$</span> <b>9.99</b> <span class="month">/month</span></p>
@@ -75,12 +75,12 @@
                             Upgrade
                         </button>
                     </div><!-- /.box-body -->
-                    <div class="overlay"></div>
-                    <div class="loading-img"></div>
+                    <div style="display: none" class="overlay"></div>
+                    <div style="display: none" class="loading-img"></div>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="box box-solid">
+                <div class="box box-solid enterprise">
                     <div class="box-header" style="text-align: center">
                         <h2>Enterprise</h2>
                         <p class="price"><span class="currency">$</span> <b>49.99</b> <span class="month">/month</span></p>
@@ -98,6 +98,8 @@
                             Upgrade
                         </button>
                     </div><!-- /.box-body -->
+                    <div style="display: none" class="overlay"></div>
+                    <div style="display: none" class="loading-img"></div>
                 </div>
             </div>
             <div class="col-md-2"></div>
@@ -138,11 +140,30 @@
         <?php endif; ?>
         <script type="text/javascript">
             $(document).ready(function () {
+                var cardFlag;
+<?php if (!$card): ?>
+                    cardFlag = false;
+<?php else: ?>
+                    cardFlag = true;
+<?php endif; ?>
                 $('#a_personal').click(function () {
-                    $('#personal button').trigger('click');
+                    if (!cardFlag) {
+                        $('#personal button').trigger('click');
+                    } else {
+                        $('#planUpgrade .box-body button').prop('disabled', 'disabled');
+                        $('.personal .overlay').show();
+                        $('.personal .loading-img').show();
+                    }
                 });
                 $('#a_enterprise').click(function () {
-                    $('#enterprise button').trigger('click');
+                    if (!cardFlag) {
+                        $('#enterprise button').trigger('click');
+                    } else {
+                        $('#planUpgrade .box-body button').prop('disabled', 'disabled');
+                        $('.enterprise .overlay').show();
+                        $('.enterprise .loading-img').show();
+                    }
+
                 });
             });
         </script>
