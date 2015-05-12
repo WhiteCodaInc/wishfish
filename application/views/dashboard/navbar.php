@@ -108,9 +108,9 @@ $img_src = ($profile_pic != "") ?
                 });
             </script>-->
             <script type="text/javascript">
-                $('li#create-contact > a').on('click', function () {
-                    hopscotch.nextStep();
-                });
+//                $('li#create-contact > a').on('click', function () {
+//                    hopscotch.nextStep();
+//                });
 //                var list = $('ul.sidebar-menu');
 //                var listItems = list.children('li').sort(function (a, b) {
 //                    return $(a).attr('id') - $(b).attr('id');
