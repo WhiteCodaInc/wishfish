@@ -191,9 +191,8 @@ var tour = {
     showPrevButton: true,
     scrollTopMargin: 100
 };
-if (hopscotch.getState() == null) {
-    hopscotch.startTour(tour);
-}
+hopscotch.startTour(tour);
+
 console.log(hopscotch.getState());
 
 function check() {
