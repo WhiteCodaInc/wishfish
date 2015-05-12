@@ -30,9 +30,10 @@ class Backup extends CI_Controller {
         $this->listAddress = 'wish-fish@mg.mikhailkuznetsov.com';
         $this->domain = 'mg.wish-fish.com';
 
-        $this->bucket = "mikhailkuznetsov";
-        $this->accessKey = "AKIAJWQAEAXONVCWQZKQ";
-        $this->secretKey = "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";
+        $this->config->load('aws');
+        $this->bucket = $this->encryption->decode($this->config->item('bucket', 'aws'));
+        $this->accessKey = $this->encryption->decode($this->config->item('accessKey', 'aws'));
+        $this->secretKey = $this->encryption->decode($this->config->item('secretKey', 'aws'));
     }
 
     function index() {

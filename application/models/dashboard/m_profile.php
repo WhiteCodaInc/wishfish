@@ -21,10 +21,12 @@ class M_profile extends CI_Model {
     function __construct() {
         parent::__construct();
         $this->load->library('amazons3');
+        $this->config->load('aws');
+        $this->bucket = $this->encryption->decode($this->config->item('bucket', 'aws'));
+        $this->accessKey = $this->encryption->decode($this->config->item('accessKey', 'aws'));
+        $this->secretKey = $this->encryption->decode($this->config->item('secretKey', 'aws'));
+        
         $this->userid = $this->session->userdata('userid');
-        $this->bucket = "mikhailkuznetsov";
-        $this->accessKey = "AKIAJTSSWQFVK3YRSDNQ";
-        $this->secretKey = "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";
 
         $gatewayInfo = $this->common->getPaymentGatewayInfo("STRIPE");
         require_once(FCPATH . 'stripe/lib/Stripe.php');
