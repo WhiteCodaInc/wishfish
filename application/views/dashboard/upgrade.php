@@ -1,4 +1,9 @@
 <style type="text/css">
+
+    #planUpgrade{
+        margin: 0 5%;
+    }
+
     #planUpgrade ul li{
         line-height: 50px;
         border-bottom: 1px solid #dee2e4;
