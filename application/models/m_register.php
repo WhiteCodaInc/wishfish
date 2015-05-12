@@ -166,7 +166,6 @@ class M_register extends CI_Model {
 
     function addCustomerToStripe($post, $planid, $insertid) {
         $gatewayInfo = $this->common->getPaymentGatewayInfo("STRIPE");
-        //require_once(FCPATH . 'stripe\lib\Stripe.php');
         require_once(FCPATH . 'stripe/lib/Stripe.php');
         Stripe::setApiKey($gatewayInfo->secret_key);
         try {
@@ -208,5 +207,7 @@ class M_register extends CI_Model {
             return TRUE;
         }
     }
+
+   
 
 }

@@ -104,6 +104,17 @@
             </div>
             <div class="col-md-2"></div>
         </div>
+        <div id="error" class="row" style="display: none">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div style="background-color: mistyrose !important;border-color: mintcream;color: red !important;" class="alert alert-danger alert-dismissable">
+                    <i class="fa fa-ban"></i>
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <b>Error!</b> <span id="error-msg"></span>
+                </div>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
         <?php if (!$card): ?>
             <form style="display: none" id="personal" action="<?= site_url() ?>app/upgrade/pay" method="post">
                 <input type="hidden" name="amount" value="<?= $pdetail[0]->amount ?>"/>
@@ -153,6 +164,19 @@
                         $('#planUpgrade .box-body button').prop('disabled', 'disabled');
                         $('.personal .overlay').show();
                         $('.personal .loading-img').show();
+                        $.ajax({
+                            type: 'POST',
+                            data: {plan: "wishfish-personal"},
+                            url: "<?= site_url() ?>app/upgrade/upgradePlan",
+                            success: function (data, textStatus, jqXHR) {
+                                if (data == 1) {
+                                    window.location.assign("<?= site_url() ?>app/dashboard");
+                                } else {
+                                    $('#error').show();
+                                    $('#error-msg').text(data);
+                                }
+                            }
+                        });
                     }
                 });
                 $('#a_enterprise').click(function () {

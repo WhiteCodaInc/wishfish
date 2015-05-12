@@ -110,6 +110,30 @@ class Upgrade extends CI_Controller {
         }
     }
 
+    function upgradePlan() {
+        $plan = $this->input->post('plan');
+        $gatewayInfo = $this->common->getPaymentGatewayInfo("STRIPE");
+        require_once(FCPATH . 'stripe/lib/Stripe.php');
+        Stripe::setApiKey($gatewayInfo->secret_key);
+        try {
+            $userInfo = $this->common->getUserInfo($this->userid);
+            $customer = Stripe_Customer::retrieve($userInfo->customer_id);
+            $customer->subscriptions->create(array(
+                "plan" => $plan,
+                "metadata" => array("userid" => $this->userid)
+            ));
+            $success = 1;
+        } catch (Exception $e) {
+            $error = $e->getMessage();
+            $success = 0;
+        }
+        if (!$success) {
+            echo $error;
+        } else {
+            echo 1;
+        }
+    }
+
     /* function checkout() {
       $data['error'] = $this->session->flashdata('error');
       $data['msg'] = $this->session->flashdata('msg');
