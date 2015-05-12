@@ -221,7 +221,7 @@
                 height:100%
             }
             .overlay div.msg{
-                padding: 14% 23%;
+                padding: 14% 21%;
                 color: white
             }
         </style>
@@ -278,6 +278,8 @@
         <script type="text/javascript">
             $(document).ready(function () {
 
+                console.log("<?= $this->session->userdata('d-userid') ?>");
+
                 var pass = 1;
                 var confirmpass = 1;
 
@@ -306,12 +308,17 @@
                         confirmpass = 1;
                     }
                 });
+
                 $('#passForm').on('submit', function () {
                     if (pass === 0 || confirmpass === 0)
                     {
                         $('#msgPass').text("Password Must be Same..!");
                         return false;
                     }
+                });
+
+                $('#sendAgain').on('click', function () {
+
                 });
             });
         </script>
