@@ -52,28 +52,23 @@ class Upgrade extends CI_Controller {
     }
 
     function pay() {
-        $payment = array();
         $success = 0;
         $set = $this->input->post();
         $gatewayInfo = $this->common->getPaymentGatewayInfo("STRIPE");
-        //require_once(FCPATH . 'stripe\lib\Stripe.php');
         require_once(FCPATH . 'stripe/lib/Stripe.php');
         Stripe::setApiKey($gatewayInfo->secret_key);
         if ($this->input->post('stripeToken') != "") {
             try {
-                $customer = Stripe_Plan::create(array(
-                            "amount" => $set['amount'] * 100,
-                            "currency" => 'USD',
-                            "interval" => 'month',
-                            "interval_count" => $set['frequency'],
-                            "name" => $set['name'],
-                            "metadata" => array("planid" => $set['id'], "userid" => $this->userid),
-                            "id" => $set['id']));
-                $payment = Stripe_Customer::create(array(
-                            "card" => $this->input->post('stripeToken'),
-                            "email" => $this->input->post('stripeEmail'),
-                            "metadata" => array("planid" => $set['id'], "userid" => $this->userid),
-                            "plan" => $set['id']
+                $userInfo = $this->common->getUserInfo($this->userid);
+                $customer = Stripe_Customer::retrieve($userInfo->customer_id);
+                $customer->sources->create(array("source" => $this->input->post('stripeToken')));
+                if ($customer->subscriptions->total_count) {
+                    $subs = $customer->subscriptions->data[0]->id;
+                    $customer->subscriptions->retrieve($subs)->cancel();
+                }
+                $customer->subscriptions->create(array(
+                    "plan" => $set['plan'],
+                    "metadata" => array("userid" => $this->userid)
                 ));
                 $success = 1;
             } catch (Stripe_CardError $e) {

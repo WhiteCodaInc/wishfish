@@ -117,11 +117,7 @@
         </div>
         <?php if (!$card): ?>
             <form style="display: none" id="personal" action="<?= site_url() ?>app/upgrade/pay" method="post">
-                <input type="hidden" name="amount" value="<?= $pdetail[0]->amount ?>"/>
-                <input type="hidden" name="frequency" value="1"/>
-                <input type="hidden" name="name" value="<?= $pdetail[0]->plan_name ?>"/>
-                <input type="hidden" name="id" value="<?= $pdetail[0]->plan_id ?>"/>
-
+                <input type="hidden" name="plan" value="wishfish-personal"/>
                 <script
                     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                     data-key="<?= $gatewayInfo->publish_key ?>"
@@ -133,11 +129,7 @@
                 </script>
             </form>
             <form style="display: none" id="enterprise" action="<?= site_url() ?>app/upgrade/pay" method="post">
-                <input type="hidden" name="amount" value="<?= $pdetail[1]->amount ?>"/>
-                <input type="hidden" name="frequency" value="1"/>
-                <input type="hidden" name="name" value="<?= $pdetail[1]->plan_name ?>"/>
-                <input type="hidden" name="id" value="<?= $pdetail[1]->plan_id ?>"/>
-
+                <input type="hidden" name="plan" value="wishfish-enterprise"/>
                 <script
                     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                     data-key="<?= $gatewayInfo->publish_key ?>"
