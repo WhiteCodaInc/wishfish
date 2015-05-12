@@ -102,9 +102,13 @@
                                     <option value="dd-mm-yyyy">dd-mm-yyyy</option>
                                 </select>
                             </div>
-                            <div class="form-group" id="select-timezone">
-                                <label >Timezone </label>
-                                <?= timezone_menu('UTC') ?>
+                            <div class="form-group">
+                                <div class="row" id="select-timezone">
+                                    <div class="col-md-12">
+                                        <label >Timezone </label>
+                                        <?= timezone_menu('UTC') ?>
+                                    </div>
+                                </div>
                             </div>
                             <?php
                             if ($card) {
