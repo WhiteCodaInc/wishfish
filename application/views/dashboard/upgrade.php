@@ -10,6 +10,12 @@
         font-size: 20px;
         line-height: 25px;
     }
+    #planUpgrade .box-body{
+        line-height: 50px;
+        border-bottom: 1px solid #dee2e4;
+        text-align: center;
+        font-size: 16px;
+    }
     #planUpgrade .box-header{
         text-align: center;
         background-color: #1ac6ff;
