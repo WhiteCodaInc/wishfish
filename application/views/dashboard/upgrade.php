@@ -55,25 +55,7 @@
     <!-- Main content -->
     <section class="content">
         <div class="row" id="planUpgrade">
-            <div class="col-md-4">
-                <div class="box box-solid">
-                    <div class="box-header" >
-                        <h2>14-day Free Trial</h2>
-                        <p class="price"><span class="currency">$</span> <b>0</b> <span class="month">/month</span></p>
-                    </div><!-- /.box-header -->
-                    <div class="box-body" style="text-align: center">
-                        <ul>
-                            <li> Add Unlimited Contacts</li>
-                            <li> Schedule Unlimited Events</li>
-                            <li> <b>3</b> SMS Events per Contact</li>
-                            <li> <b>3</b> Email Events per Contact</li>
-                            <li> - </li>
-                            <li> - </li>
-                        </ul>
-                        <button type="button" id="a_free" class="btn btn-info btn-lg">Upgrade</button>
-                    </div><!-- /.box-body -->
-                </div>
-            </div>
+            <div class="col-md-2"></div>
             <div class="col-md-4">
                 <div class="box box-solid">
                     <div class="box-header" style="text-align: center">
@@ -112,6 +94,7 @@
                     </div><!-- /.box-body -->
                 </div>
             </div>
+            <div class="col-md-2"></div>
         </div>
 <!--        <form style="display: none" id="personal" action="<?= site_url() ?>app/upgrade/pay" method="post">
             <input type="hidden" name="amount" value="<?= $pdetail[0]->amount ?>"/>
