@@ -142,19 +142,18 @@ class Dashboard extends CI_Controller {
                 NULL;
 
         if ($phone) {
-//            $code = $this->common->getRandomDigit(6);
-//            $str = "Hey,This is Wish-Fish ! Your Verification code is:{$code}";
-//            if ($this->common->sendSMS($phone, $str)) {
-//                $userinfo = $this->common->getUserInfo($userid);
-//                if ($userinfo->phone == NULL) {
-//                    $this->db->update('user_mst', array('phone' => $phone), array('user_id' => $userid));
-//                }
-//                $this->session->set_userdata('verificationCode', $code);
-//                echo 1;
-//            } else {
-//                echo 0;
-//            }
-            echo 1;
+            $code = $this->common->getRandomDigit(6);
+            $str = "Hey,This is Wish-Fish ! Your Verification code is:{$code}";
+            if ($this->common->sendSMS($phone, $str)) {
+                $userinfo = $this->common->getUserInfo($userid);
+                if ($userinfo->phone == NULL) {
+                    $this->db->update('user_mst', array('phone' => $phone), array('user_id' => $userid));
+                }
+                $this->session->set_userdata('verificationCode', $code);
+                echo 1;
+            } else {
+                echo 0;
+            }
         } else {
             echo 0;
         }
