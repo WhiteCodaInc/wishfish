@@ -1,6 +1,9 @@
 <style type="text/css">
     #planUpgrade ul li{
-        padding: 2%
+        line-height: 50px;
+        border-bottom: 1px solid #dee2e4;
+        text-align: center;
+        font-size: 16px;
     }
     #planUpgrade ul{
         list-style: none;
@@ -11,10 +14,7 @@
         line-height: 25px;
     }
     #planUpgrade .box-body{
-        line-height: 50px;
-        border-bottom: 1px solid #dee2e4;
-        text-align: center;
-        font-size: 16px;
+        padding: 0;
     }
     #planUpgrade .box-header{
         text-align: center;
