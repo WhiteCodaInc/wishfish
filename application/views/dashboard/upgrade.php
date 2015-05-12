@@ -17,9 +17,8 @@
         padding: 0;
     }
     #planUpgrade .box-body a{
-        margin: 40px auto;
-        display: block;
-        width: 80%;
+        width: 65%;
+        margin: 5%;
     }
     #planUpgrade .box-header{
         text-align: center;
@@ -67,7 +66,7 @@
                             <li> - </li>
                             <li> - </li>
                         </ul>
-                        <a id="a_personal" href="javascript:void(0)" class="btn btn-info">Upgrade</a>
+                        <a id="a_personal" href="javascript:void(0)" class="btn btn-info btn-lg">Upgrade</a>
                     </div><!-- /.box-body -->
                 </div>
             </div>
@@ -86,7 +85,7 @@
                             <li> Import Contacts From Google</li>
                             <li> Import Contacts From Spreadsheet or CSV File</li>
                         </ul>
-                        <a id="a_personal" href="javascript:void(0)" class="btn btn-info">Upgrade</a>
+                        <a id="a_personal" href="javascript:void(0)" class="btn btn-info btn-lg">Upgrade</a>
                     </div><!-- /.box-body -->
                 </div>
             </div>
@@ -105,7 +104,7 @@
                             <li> Import Contacts From Google</li>
                             <li> Import Contacts From Spreadsheet or CSV File</li>
                         </ul>
-                        <a id="a_enterprise" href="javascript:void(0)"  class="btn btn-info">Upgrade</a>
+                        <a id="a_enterprise" href="javascript:void(0)"  class="btn btn-info btn-lg">Upgrade</a>
                     </div><!-- /.box-body -->
                 </div>
             </div>
