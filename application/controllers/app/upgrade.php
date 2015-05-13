@@ -36,9 +36,9 @@ class Upgrade extends CI_Controller {
         $data['pdetail'] = $this->common->getPlans();
         $data['gatewayInfo'] = $this->common->getPaymentGatewayInfo("STRIPE");
         $data['card'] = $this->objprofile->getCardDetail();
-        echo '<pre>';
-        print_r($data);
-        die();
+//        echo '<pre>';
+//        print_r($data);
+//        die();
         $this->load->view('dashboard/header');
         $this->load->view('dashboard/top');
         $this->load->view('dashboard/upgrade', $data);
