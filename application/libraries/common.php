@@ -248,9 +248,6 @@ class Common {
         $where['user_id'] = $userid;
         $this->_CI->db->select('count(*)as total');
         $query = $this->_CI->db->get_where($tbl, $where);
-        echo '<pre>';
-        print_r($query->row());
-        die();
         return $query->row()->total;
     }
 
