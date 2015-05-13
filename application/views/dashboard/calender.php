@@ -1038,6 +1038,7 @@
         });
 
         $('#edit').click(function () {
+            var id = $(this).prop('id');
             if ($('#editForm input[name="date"]').val().trim() == "") {
                 alertify.error("Please Select Date..!");
                 return false;
@@ -1065,12 +1066,14 @@
             }
             var data = CKEDITOR.instances['e_emailbody'].getData();
             $('#e_emailbody').val(data);
+            $('#' + id).prop('disabled', 'disabled');
             $.ajax({
                 type: 'POST',
                 data: $('#editForm').serialize(),
                 url: "<?= site_url() ?>app/calender/updateEvent",
                 success: function (data, textStatus, jqXHR) {
                     $('#e_discard').trigger('click');
+                    $('#' + id).prop('disabled', false);
                     if (data == 1) {
                         $("#calendar").fullCalendar("refetchEvents");
                         alertify.success("Event has been successfully Updated..!");
