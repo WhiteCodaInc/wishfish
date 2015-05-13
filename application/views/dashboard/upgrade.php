@@ -62,7 +62,7 @@
                     continue;
                 ?>
                 <div class="col-md-4">
-                    <div class="box box-solid personal">
+                    <div class="box box-solid <?= ($plan->plan_id == 2) ? "personal" : "enterprise" ?>">
                         <div class="box-header" style="text-align: center">
                             <h2><?= $plan->plan_name ?></h2>
                             <p class="price">
