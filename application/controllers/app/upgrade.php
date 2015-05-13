@@ -130,7 +130,8 @@ class Upgrade extends CI_Controller {
     }
 
     function isAllowToDowngrade() {
-        $contacts = checkTotalContact();
+        $planInfo = $this->common->getPlan(2);
+        $tcontacts = $this->common->getTotal($this->userid, 'contact_detail');
     }
 
     /* function checkout() {
