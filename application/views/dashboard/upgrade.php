@@ -90,12 +90,12 @@
                             </ul>
                             <?php
                             $id = ($plan->plan_id == 2) ? "a_personal" : "a_enterprise";
-                            $prop = "";
-                            if ($plan->plan_id == 2) {
-                                $prop = ($currPlan->plan_id == 2 || $currPlan->plan_id == 3) ? 'disabled' : '';
-                            } else {
-                                $prop = ($currPlan->plan_id == 3) ? 'disabled' : '';
-                            }
+                            $prop = ($currPlan->plan_id == $plan->plan_id) ? 'disabled' : '';
+//                            if ($plan->plan_id == 2) {
+//                                $prop = ($currPlan->plan_id == 2 || $currPlan->plan_id == 3) ? 'disabled' : '';
+//                            } else {
+//                                $prop = ($currPlan->plan_id == 3) ? 'disabled' : '';
+//                            }
                             ?>
                             <button <?= $prop ?> type="button" id="<?= $id ?>" class="btn btn-info btn-lg">
                                 Upgrade
@@ -146,6 +146,10 @@
             </form>
         <?php endif; ?>
         <script type="text/javascript">
+            planid = "<?= $currPlan->plan_id ?>";
+            if (planid == 3) {
+                $('#a_personal').text("Downgrade");
+            }
             $(document).ready(function () {
                 var cardFlag;
 <?php if (!$card): ?>
