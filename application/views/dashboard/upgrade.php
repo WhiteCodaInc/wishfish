@@ -82,7 +82,7 @@
             <div class="col-md-4">
                 <div class="box box-solid enterprise">
                     <div class="box-header" style="text-align: center">
-                        <h2><?= $pdetail[2]->plan_name ?></h2>
+                        <h2><?= ucfirst($pdetail[2]->plan_name) ?></h2>
                         <p class="price"><span class="currency">$</span> <b>49.99</b> <span class="month">/month</span></p>
                     </div><!-- /.box-header -->
                     <div class="box-body" style="text-align: center">
