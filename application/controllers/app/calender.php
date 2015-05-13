@@ -58,15 +58,17 @@ class Calender extends CI_Controller {
 
     function allGroup() {
         $currPlan = $this->common->getCurrentPlan();
-        $group = $this->objgroup->getContactGroups("simple");
-        echo '<select  name="group_id" class="form-control">';
-        foreach ($group as $value) {
-            $res = $this->objcalender->checkTotalGroupEvent($value->group_id);
-            if (!$res || $res->total < $currPlan->group_events) {
+        $res = $this->objcalender->checkTotalGroupEvent();
+        if (!$res || $res->total < $currPlan->group_events) {
+            $group = $this->objgroup->getContactGroups("simple");
+            echo '<select  name="group_id" class="form-control">';
+            foreach ($group as $value) {
                 echo "<option value='$value->group_id'>$value->group_name</option>";
             }
+            echo '</select>';
+        } else {
+            echo 0;
         }
-        echo '</select>';
     }
 
     function allContacts($type) {
