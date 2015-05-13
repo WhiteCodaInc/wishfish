@@ -53,12 +53,7 @@
                         </tr>
                         <tr>
                             <td class="eFooter" style="margin-top: 0;margin-left: 0;margin-right: 0;margin-bottom: 0;padding-top: 14px;padding-bottom: 0;padding-left: 0;padding-right: 0;border-collapse: collapse;border-spacing: 0;-webkit-text-size-adjust: none;font-family: Arial, Helvetica, sans-serif;text-align: center;font-size: 12px;line-height: 21px;width: 544px;color: #b2b2b2;">
-                                <strong>Copyright © 2015 White Coda Inc.</strong> All rights reserved. <br>
-                                    <a href="#" class="highFix" style="padding-top: 0;padding-bottom: 0;padding-left: 0;padding-right: 0;display: inline-block;text-decoration: none;-webkit-text-size-adjust: none;font-family: Arial, Helvetica, sans-serif;color: #b2b2b2;cursor: pointer;">
-                                        <span style="text-decoration: none;color: #b2b2b2;cursor: pointer;">
-                                            4170 Haymond St. • Mcdermitt • PA 18503 USA
-                                        </span>
-                                    </a>
+                                <strong>Copyright © 2015 White Coda Inc.</strong> All rights reserved.
                             </td>
                         </tr>
                     </table>
