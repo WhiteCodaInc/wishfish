@@ -68,17 +68,18 @@ class Calender extends CI_Controller {
     function allContacts($type) {
         $ids = $user = array();
         $individual = $this->objcontact->getContactDetail();
+        $currPlan = $this->common->getCurrentPlan();
         foreach ($individual as $key => $value) {
             $res = $this->objcalender->checkTotalEvent($value->contact_id);
             switch ($type) {
                 case "email":
-                    if (!isset($res['email']) || (isset($res['email']) && $res['email'] < 4)) {
+                    if (!isset($res['email']) || (isset($res['email']) && $res['email'] < $currPlan->email_events + 1)) {
                         $user[$key] = $value->fname . '  ' . $value->lname . ' || ' . $value->email;
                         $ids[$key] = $value->contact_id;
                     }
                     break;
                 case "sms":
-                    if (!isset($res['sms']) || (isset($res['sms']) && $res['sms'] < 4)) {
+                    if (!isset($res['sms']) || (isset($res['sms']) && $res['sms'] < $currPlan->sms_events + 1)) {
                         $user[$key] = $value->fname . '  ' . $value->lname . ' || ' . $value->phone;
                         $ids[$key] = $value->contact_id;
                     }

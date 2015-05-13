@@ -199,14 +199,15 @@ class M_calender extends CI_Model {
         $res = $result[0];
 
         //---------------Check Total Event For Updating New Event-------------//
+        $currPlan = $this->common->getCurrentPlan();
         $total = $this->checkTotalEvent($res['contact_id']);
         switch ($set['event_type']) {
             case "email":
-                if (isset($total['email']) && $total['email'] >= 4)
+                if (isset($total['email']) && $total['email'] >= $currPlan->email_events + 1)
                     $checkFlag = FALSE;
                 break;
             case "sms":
-                if (isset($total['sms']) && $total['sms'] >= 4)
+                if (isset($total['sms']) && $total['sms'] >= $currPlan->sms_events + 1)
                     $checkFlag = FALSE;
                 break;
         }
