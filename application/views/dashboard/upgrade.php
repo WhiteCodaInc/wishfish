@@ -113,7 +113,6 @@
             <div class="col-md-8">
                 <div style="background-color: mistyrose !important;border-color: mintcream;color: red !important;" class="alert alert-danger alert-dismissable">
                     <i class="fa fa-ban"></i>
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                     <b>Error!</b> <span id="error-msg"></span>
                 </div>
             </div>
