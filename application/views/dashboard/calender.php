@@ -908,7 +908,7 @@
         } else if ($(this).val() == "all_gc") {
             if (groupEvent == "0") {
                 $('#rd_individual').trigger('click');
-                alertify.confirm("Your Account is under 14 days trial period if you want this feature you should need to upgrade your account.Would you like to upgrade your plan?", function (e) {
+                alertify.confirm("Your Account does not support this feature if you want this feature you should need to upgrade your account.Would you like to upgrade your plan?", function (e) {
                     if (e) {
                         window.location.href = "<?= site_url() ?>app/upgrade";
                     }
