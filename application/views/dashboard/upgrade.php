@@ -158,25 +158,30 @@
                     cardFlag = true;
 <?php endif; ?>
                 $('#a_personal').click(function () {
-                    if (!cardFlag) {
-                        $('#personal button').trigger('click');
-                    } else {
-                        $('#planUpgrade .box-body button').prop('disabled', 'disabled');
-                        $('.personal .overlay').show();
-                        $('.personal .loading-img').show();
-                        $.ajax({
-                            type: 'POST',
-                            data: {plan: "wishfish-personal"},
-                            url: "<?= site_url() ?>app/upgrade/upgradePlan",
-                            success: function (data, textStatus, jqXHR) {
-                                if (data == 1) {
-                                    window.location.assign("<?= site_url() ?>app/dashboard");
-                                } else {
-                                    $('#error').show();
-                                    $('#error-msg').text(data);
+                    if (isAllowToDowngrade()) {
+                        if (!cardFlag) {
+                            $('#personal button').trigger('click');
+                        } else {
+                            $('#planUpgrade .box-body button').prop('disabled', 'disabled');
+                            $('.personal .overlay').show();
+                            $('.personal .loading-img').show();
+                            $.ajax({
+                                type: 'POST',
+                                data: {plan: "wishfish-personal"},
+                                url: "<?= site_url() ?>app/upgrade/upgradePlan",
+                                success: function (data, textStatus, jqXHR) {
+                                    if (data == 1) {
+                                        window.location.assign("<?= site_url() ?>app/dashboard");
+                                    } else {
+                                        $('#error').show();
+                                        $('#error-msg').text(data);
+                                    }
                                 }
-                            }
-                        });
+                            });
+                        }
+                    } else {
+                        $('#error').show();
+                        $('#error-msg').text("You can not downgrade your plan..! ");
                     }
                 });
                 $('#a_enterprise').click(function () {
@@ -202,6 +207,10 @@
                     }
 
                 });
+
+                function isAllowToDowngrade() {
+                    return false;
+                }
             });
         </script>
     </section>
