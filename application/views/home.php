@@ -546,10 +546,10 @@
                         </div><!-- /.top -->
                         <div class="bottom">
                             <ul>
-                                <li> Add Contact upto <b>10</b></li>
-                                <li> Maximum <b>20</b> Events per Contact</li>
-                                <li> <b>1</b> SMS Number per Customer</li>
-                                <li> <b>1</b> Email Address per Customer</li>
+                                <li> Add Unlimited Contacts</li>
+                                <li> Schedule Unlimited Events</li>
+                                <li> <b>10</b> SMS Events per Contact</li>
+                                <li> <b>10</b> Email Events per Contact</li>
                                 <li> Import Contacts From Google</li>
                                 <li> Import Contacts From Spreadsheet or CSV File</li>
                             </ul>
@@ -566,10 +566,10 @@
                         </div><!-- /.top -->
                         <div class="bottom">
                             <ul>
-                                <li> Add Contact upto <b>20</b></li>
-                                <li> Maximum <b>40</b> Events per Contact</li>
-                                <li> <b>2</b> SMS Number per Customer</li>
-                                <li> <b>2</b> Email Address per Customer</li>
+                                <li> Add Unlimited Contacts</li>
+                                <li> Schedule Unlimited Events</li>
+                                <li> Schedule Unlimited SMS Events</li>
+                                <li> Schedule Unlimited Email Events</li>
                                 <li> Import Contacts From Google</li>
                                 <li> Import Contacts From Spreadsheet or CSV File</li>
                             </ul>
