@@ -184,6 +184,7 @@
                     $('#planUpgrade .box-body button').prop('disabled', 'disabled');
                     $('.enterprise .overlay').show();
                     $('.enterprise .loading-img').show();
+                    return false;
                     if (!cardFlag) {
                         $('#enterprise button').trigger('click');
                         $('#a_enterprise').prop('disabled', false);
