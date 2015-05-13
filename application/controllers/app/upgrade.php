@@ -45,12 +45,6 @@ class Upgrade extends CI_Controller {
         $this->load->view('dashboard/footer');
     }
 
-    function stripe() {
-        $data['pdetail'] = $this->common->getPlanInfo();
-        $data['gatewayInfo'] = $this->common->getPaymentGatewayInfo("STRIPE");
-        $this->load->view('dashboard/stripe', $data);
-    }
-
     function pay() {
         $success = 0;
         $set = $this->input->post();

@@ -36,10 +36,10 @@ class Common {
         return $query->row();
     }
 
-    function getPlanInfo() {
-        $query = $this->_CI->db->get_where('plan_detail', array('user_id' => $this->user_id, 'plan_status' => 2));
-        return $query->row();
-    }
+//    function getPlanInfo() {
+//        $query = $this->_CI->db->get_where('plan_detail', array('user_id' => $this->user_id, 'plan_status' => 2));
+//        return $query->row();
+//    }
 
     function getCurrentPlan($userid = NULL) {
         $uid = ($userid == NULL) ? $this->user_id : $userid;
@@ -53,7 +53,7 @@ class Common {
     }
 
     function getPlans() {
-        $this->_CI->db->where_in('plan_id', array('2', '3'));
+//        $this->_CI->db->where_in('plan_id', array('2', '3'));
         $query = $this->_CI->db->get('plans');
         return $query->result();
     }

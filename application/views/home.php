@@ -637,39 +637,31 @@
     </div>
 </section>
 
-<!--<form style="display: none" id="personal" action="<?= site_url() ?>stripe_payment/pay" method="post">
-    <input type="hidden" name="amount" value="<?= $pdetail[0]->amount ?>"/>
-    <input type="hidden" name="frequency" value="1"/>
-    <input type="hidden" name="name" value="<?= $pdetail[0]->plan_name ?>"/>
-    <input type="hidden" name="id" value="wishfish-personal"/>
-
+<form style="display: none" id="personal" action="<?= site_url() ?>stripe_payment/pay" method="post">
+    <input type="hidden" name="plan" value="wishfish-personal"/>
     <script
         src="https://checkout.stripe.com/checkout.js" class="stripe-button"
         data-key="<?= $gatewayInfo->publish_key ?>"
         data-image="/square-image.png"
-        data-name="Demo payment"
+        data-name="Personal"
         data-description="Product"                    
         data-label="Stripe"                    
         >
     </script>
-</form>-->
+</form>
 
-<!--<form style="display: none" id="enterprise" action="<?= site_url() ?>stripe_payment/pay" method="post">
-    <input type="hidden" name="amount" value="<?= $pdetail[1]->amount ?>"/>
-    <input type="hidden" name="frequency" value="1"/>
-    <input type="hidden" name="name" value="<?= $pdetail[1]->plan_name ?>"/>
-    <input type="hidden" name="id" value="wishfish-enterprise"/>
-
+<form style="display: none" id="enterprise" action="<?= site_url() ?>stripe_payment/pay" method="post">
+    <input type="hidden" name="plan" value="wishfish-enterprise"/>
     <script
         src="https://checkout.stripe.com/checkout.js" class="stripe-button"
         data-key="<?= $gatewayInfo->publish_key ?>"
         data-image="/square-image.png"
-        data-name="Demo payment"
+        data-name="Enterprise"
         data-description="Product"                    
         data-label="Stripe"                    
         >
     </script>
-</form>-->
+</form>
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -790,12 +782,12 @@
             }
         });
 
-//        $('#a_personal').click(function () {
-//            $('#personal button').trigger('click');
-//        });
-//        $('#a_enterprise').click(function () {
-//            $('#enterprise button').trigger('click');
-//        });
+        $('#a_personal').click(function () {
+            $('#personal button').trigger('click');
+        });
+        $('#a_enterprise').click(function () {
+            $('#enterprise button').trigger('click');
+        });
         $('a.cancel').click(function () {
             $('.social-register').css('display', 'none');
             $('.overlay').css('display', 'none');

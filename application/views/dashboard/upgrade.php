@@ -59,7 +59,7 @@
             <div class="col-md-4">
                 <div class="box box-solid personal">
                     <div class="box-header" style="text-align: center">
-                        <h2>Personal</h2>
+                        <h2><?= $pdetail[1]->plan_name ?></h2>
                         <p class="price"><span class="currency">$</span> <b>9.99</b> <span class="month">/month</span></p>
                     </div><!-- /.box-header -->
                     <div class="box-body" style="text-align: center">
@@ -82,7 +82,7 @@
             <div class="col-md-4">
                 <div class="box box-solid enterprise">
                     <div class="box-header" style="text-align: center">
-                        <h2>Enterprise</h2>
+                        <h2><?= $pdetail[2]->plan_name ?></h2>
                         <p class="price"><span class="currency">$</span> <b>49.99</b> <span class="month">/month</span></p>
                     </div><!-- /.box-header -->
                     <div class="box-body" style="text-align: center">
@@ -122,7 +122,7 @@
                     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                     data-key="<?= $gatewayInfo->publish_key ?>"
                     data-image="/square-image.png"
-                    data-name="<?= $pdetail[0]->plan_name ?>"
+                    data-name="Personal"
                     data-description="Product"                    
                     data-label="Stripe"                    
                     >
@@ -134,7 +134,7 @@
                     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                     data-key="<?= $gatewayInfo->publish_key ?>"
                     data-image="/square-image.png"
-                    data-name="<?= $pdetail[1]->plan_name ?>"
+                    data-name="Enterprise"
                     data-description="Product"                    
                     data-label="Stripe"                    
                     >
