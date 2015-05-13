@@ -56,52 +56,63 @@
     <section class="content">
         <div class="row" id="planUpgrade">
             <div class="col-md-2"></div>
-            <div class="col-md-4">
-                <div class="box box-solid personal">
-                    <div class="box-header" style="text-align: center">
-                        <h2><?= $pdetail[1]->plan_name ?></h2>
-                        <p class="price"><span class="currency">$</span> <b>9.99</b> <span class="month">/month</span></p>
-                    </div><!-- /.box-header -->
-                    <div class="box-body" style="text-align: center">
-                        <ul>
-                            <li> Add Unlimited Contacts</li>
-                            <li> Schedule Unlimited Events</li>
-                            <li> <b>10</b> SMS Events per Contact</li>
-                            <li> <b>10</b> Email Events per Contact</li>
-                            <li> Import Contacts From Google</li>
-                            <li> Import Contacts From Spreadsheet or CSV File</li>
-                        </ul>
-                        <button <?= ($currPlan->plan_id == 2 || $currPlan->plan_id == 3) ? 'disabled' : '' ?> type="button" id="a_personal" class="btn btn-info btn-lg">
-                            Upgrade
-                        </button>
-                    </div><!-- /.box-body -->
-                    <div style="display: none" class="overlay"></div>
-                    <div style="display: none" class="loading-img"></div>
+            <?php
+            foreach ($pdetail as $plan) {
+                if ($plan->plan_id == 1)
+                    continue;
+                ?>
+                <div class="col-md-4">
+                    <div class="box box-solid personal">
+                        <div class="box-header" style="text-align: center">
+                            <h2><?= $plan->plan_name ?></h2>
+                            <p class="price">
+                                <span class="currency">$</span>
+                                <b><?= $plan->amount ?></b> 
+                                <span class="month">/month</span>
+                            </p>
+                        </div><!-- /.box-header -->
+                        <div class="box-body" style="text-align: center">
+                            <ul>
+                                <li> Add <?= ($plan->contacts == -1) ? "Unlimited" : $plan->contacts ?> Contacts</li>
+                                <li> Schedule Unlimited Events</li>
+                                <li> <b><?= ($plan->sms_events == -1) ? "Unlimited" : $plan->sms_events ?></b> SMS Events per Contact</li>
+                                <li> <b><?= ($plan->email_events == -1) ? "Unlimited" : $plan->email_events ?></b> Email Events per Contact</li>
+                                <li> Import Contacts From Google</li>
+                                <li> Import Contacts From Spreadsheet or CSV File</li>
+                            </ul>
+                            <button <?= ($currPlan->plan_id == 2 || $currPlan->plan_id == 3) ? 'disabled' : '' ?> type="button" id="a_personal" class="btn btn-info btn-lg">
+                                Upgrade
+                            </button>
+                        </div><!-- /.box-body -->
+                        <div style="display: none" class="overlay"></div>
+                        <div style="display: none" class="loading-img"></div>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="box box-solid enterprise">
-                    <div class="box-header" style="text-align: center">
-                        <h2><?= ucfirst($pdetail[2]->plan_name) ?></h2>
-                        <p class="price"><span class="currency">$</span> <b>49.99</b> <span class="month">/month</span></p>
-                    </div><!-- /.box-header -->
-                    <div class="box-body" style="text-align: center">
-                        <ul>
-                            <li> Add Unlimited Contacts</li>
-                            <li> Schedule Unlimited Events</li>
-                            <li> Schedule Unlimited SMS Events per Contact</li>
-                            <li> Schedule Unlimited Email Events per Contact</li>
-                            <li> Import Contacts From Google</li>
-                            <li> Import Contacts From Spreadsheet or CSV File</li>
-                        </ul>
-                        <button <?= ($currPlan->plan_id == 3) ? 'disabled' : '' ?> type="button" id="a_enterprise" class="btn btn-info btn-lg">
-                            Upgrade
-                        </button>
-                    </div><!-- /.box-body -->
-                    <div style="display: none" class="overlay"></div>
-                    <div style="display: none" class="loading-img"></div>
-                </div>
-            </div>
+            <?php } ?>
+
+            <!--            <div class="col-md-4">
+                            <div class="box box-solid enterprise">
+                                <div class="box-header" style="text-align: center">
+                                    <h2>Enterprise</h2>
+                                    <p class="price"><span class="currency">$</span> <b>49.99</b> <span class="month">/month</span></p>
+                                </div> /.box-header 
+                                <div class="box-body" style="text-align: center">
+                                    <ul>
+                                        <li> Add Unlimited Contacts</li>
+                                        <li> Schedule Unlimited Events</li>
+                                        <li> Schedule Unlimited SMS Events per Contact</li>
+                                        <li> Schedule Unlimited Email Events per Contact</li>
+                                        <li> Import Contacts From Google</li>
+                                        <li> Import Contacts From Spreadsheet or CSV File</li>
+                                    </ul>
+                                    <button <?= ($currPlan->plan_id == 3) ? 'disabled' : '' ?> type="button" id="a_enterprise" class="btn btn-info btn-lg">
+                                        Upgrade
+                                    </button>
+                                </div> /.box-body 
+                                <div style="display: none" class="overlay"></div>
+                                <div style="display: none" class="loading-img"></div>
+                            </div>
+                        </div>-->
             <div class="col-md-2"></div>
         </div>
         <div id="error" class="row" style="display: none">
