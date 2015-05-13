@@ -496,7 +496,7 @@
                     <div class="subtitle text-center "><h5>Affordable event scheduling software made for everyone.</h5></div>
                     <div class="separator text-center"></div>
                 </div>
-                <?php foreach ($pdetail as $$plan) { ?>
+                <?php foreach ($pdetail as $plan) { ?>
                     <div class="col-sm-4">
                         <div class="pricing2">
                             <div class="top">
