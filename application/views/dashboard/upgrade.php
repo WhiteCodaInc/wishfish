@@ -80,7 +80,10 @@
                                 <li> Import Contacts From Google</li>
                                 <li> Import Contacts From Spreadsheet or CSV File</li>
                             </ul>
-                            <button <?= ($currPlan->plan_id == 2 || $currPlan->plan_id == 3) ? 'disabled' : '' ?> type="button" id="a_personal" class="btn btn-info btn-lg">
+                            <?php
+                            $id = ($plan->plan_id == 2) ? "a_personal" : "a_enterprise";
+                            ?>
+                            <button <?= ($currPlan->plan_id == 2 || $currPlan->plan_id == 3) ? 'disabled' : '' ?> type="button" id="<?= $id ?>" class="btn btn-info btn-lg">
                                 Upgrade
                             </button>
                         </div><!-- /.box-body -->
