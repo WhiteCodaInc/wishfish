@@ -524,7 +524,7 @@
                                     case 2:
                                         $id = "a_personal";
                                         break;
-                                    case 1:
+                                    case 3:
                                         $id = "a_enterprise";
                                         break;
                                 }
