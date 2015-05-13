@@ -82,8 +82,14 @@
                             </ul>
                             <?php
                             $id = ($plan->plan_id == 2) ? "a_personal" : "a_enterprise";
+                            $prop = "";
+                            if ($plan->plan_id == 2) {
+                                $prop = ($currPlan->plan_id == 2 || $currPlan->plan_id == 3) ? 'disabled' : '';
+                            } else {
+                                $prop = ($currPlan->plan_id == 3) ? 'disabled' : '';
+                            }
                             ?>
-                            <button <?= ($currPlan->plan_id == 2 || $currPlan->plan_id == 3) ? 'disabled' : '' ?> type="button" id="<?= $id ?>" class="btn btn-info btn-lg">
+                            <button <?= $prop ?> type="button" id="<?= $id ?>" class="btn btn-info btn-lg">
                                 Upgrade
                             </button>
                         </div><!-- /.box-body -->
