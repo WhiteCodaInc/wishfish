@@ -1084,7 +1084,8 @@
         });
 
         $('#insert,#n_insert').click(function () {
-            if ($(this).attr("id") == "insert") {
+            var id = $(this).prop('id');
+            if (id == "insert") {
                 if ($("#rd_individual").prop("checked")) {
                     var cnt = $('#users').val();
                     if (cnt.trim() == "") {
@@ -1138,11 +1139,11 @@
                 }
             }
             var form = "";
-            $id = $(this).attr('id');
-            if ($id == "insert") {
+
+            if (id == "insert") {
                 var data = CKEDITOR.instances['emailbody'].getData();
                 $('#emailbody').val(data);
-            } else if ($id == "n_insert") {
+            } else if (id == "n_insert") {
                 var data = CKEDITOR.instances['n_emailbody'].getData();
                 $('#n_emailbody').val(data);
             }
@@ -1153,7 +1154,8 @@
                 $('input[name="contact_id"]').val(ids[contact.indexOf($('#users').val())]);
 <?php endif; ?>
 //            $(this).prop('disabled', 'disabled');
-            console.log($(this).prop('id'));
+            console.log(id);
+
             $.ajax({
                 type: 'POST',
                 data: $('#' + form).serialize(),
@@ -1163,7 +1165,7 @@
                     $('#n_discard').trigger('click');
                     $('#eventForm').trigger("reset");
                     $('#neweventForm').trigger("reset");
-                    console.log($(this).prop('id'));
+                    console.log(id);
 //                    $(this).removeAttr('disabled');
                     if (data == 1) {
                         $("#calendar").fullCalendar("refetchEvents");
