@@ -168,6 +168,9 @@ class Common {
     }
 
     function getMySqlDate($dt, $format) {
+        echo $dt . '<br>';
+        echo $format;
+        die();
         $date = str_replace('mm', 'm', $format);
         $date = str_replace('dd', 'd', $date);
         $date = str_replace('yyyy', 'Y', $date);
