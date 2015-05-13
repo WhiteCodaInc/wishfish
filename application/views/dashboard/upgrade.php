@@ -210,13 +210,16 @@
                 });
 
                 function isAllowToDowngrade() {
+                    var flag = "FALSE";
                     $.ajax({
                         type: 'POST',
                         url: "<?= site_url() ?>app/upgrade/isAllowToDowngrade",
                         success: function (data, textStatus, jqXHR) {
-                            return (data == 1) ? true : false;
+//                            return (data == 1) ? true : false;
+                            flag = "TRUE";
                         }
                     });
+                    console.log(flag);
                 }
             });
         </script>
