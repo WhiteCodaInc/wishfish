@@ -181,17 +181,23 @@
                     });
                 });
                 $('#a_enterprise').click(function () {
+                    $('#planUpgrade .box-body button').prop('disabled', 'disabled');
+                    $('.enterprise .overlay').show();
+                    $('.enterprise .loading-img').show();
                     if (!cardFlag) {
                         $('#enterprise button').trigger('click');
+                        $('#a_enterprise').prop('disabled', false);
+                        $('.enterprise .overlay').hide();
+                        $('.enterprise .loading-img').hide();
                     } else {
-                        $('#planUpgrade .box-body button').prop('disabled', 'disabled');
-                        $('.enterprise .overlay').show();
-                        $('.enterprise .loading-img').show();
                         $.ajax({
                             type: 'POST',
                             data: {plan: "wishfish-enterprise"},
                             url: "<?= site_url() ?>app/upgrade/upgradePlan",
                             success: function (data, textStatus, jqXHR) {
+                                $('#a_enterprise').prop('disabled', false);
+                                $('.enterprise .overlay').hide();
+                                $('.enterprise .loading-img').hide();
                                 if (data == 1) {
                                     window.location.assign("<?= site_url() ?>app/dashboard");
                                 } else {
