@@ -889,7 +889,7 @@
 <!-- End Auto complete -->
 <?php $planInfo = $this->common->getCurrentPlan(); ?>
 <script type="text/javascript">
-    var planid = "<?= $planInfo->plan_id ?>";
+    var groupEvent = "<?= $planInfo->group_events ?>";
     $('#eventForm input[name="assign"]').change(function () {
         var event_type = $('#eventForm input[name="event_type"]:checked').val();
         if ($(this).val() == "all_c") {
@@ -906,7 +906,7 @@
                 }
             });
         } else if ($(this).val() == "all_gc") {
-            if (planid == "1") {
+            if (groupEvent == "0") {
                 $('#rd_individual').trigger('click');
                 alertify.confirm("Your Account is under 14 days trial period if you want this feature you should need to upgrade your account.Would you like to upgrade your plan?", function (e) {
                     if (e) {
