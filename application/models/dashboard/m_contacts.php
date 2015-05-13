@@ -376,20 +376,12 @@ class M_contacts extends CI_Model {
     }
 
     function checkTotalContact() {
-        $this->db->select('contacts');
-        $where = array(
-            'user_id' => $this->userid,
-            'plan_status' => 1
-        );
-        $query = $this->db->get_where('plan_detail', $where);
-        if ($query->num_rows() > 0) {
-            $res = $query->row();
-            $tcontacts = $this->common->getTotal($this->userid, 'contact_detail');
-            if ($res->contacts == -1 || $tcontacts < $res->contacts) {
-                return true;
-            } else {
-                return false;
-            }
+        $planInfo = $this->common->getLatestPlan();
+        $tcontacts = $this->common->getTotal($this->userid, 'contact_detail');
+        if ($planInfo->contacts == -1 || $tcontacts < $planInfo->contacts) {
+            return true;
+        } else {
+            return false;
         }
     }
 

@@ -28,6 +28,7 @@ class Upgrade extends CI_Controller {
         } else {
             $this->userid = $this->session->userdata('userid');
             $this->load->model('dashboard/m_profile', 'objprofile');
+            $this->load->model('dashboard/m_contact', 'objcontact');
         }
     }
 
@@ -126,6 +127,10 @@ class Upgrade extends CI_Controller {
         } else {
             echo 1;
         }
+    }
+
+    function isAllowToDowngrade() {
+        $contacts = checkTotalContact();
     }
 
     /* function checkout() {
