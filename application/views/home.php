@@ -496,87 +496,68 @@
                     <div class="subtitle text-center "><h5>Affordable event scheduling software made for everyone.</h5></div>
                     <div class="separator text-center"></div>
                 </div>
-                <div class="col-sm-4">
-                    <div class="pricing2">
-                        <div class="top">
-                            <h2>14-day Free Trial</h2>
-                            <p class="price"><span class="currency">$</span> <b>0</b> <span class="month">/month</span></p>
-                        </div><!-- /.top -->
-
-                        <div class="bottom">
-                            <ul>
-                                <li> Add Unlimited Contacts</li>
-                                <li> Schedule Unlimited Events</li>
-                                <li> <b>3</b> SMS Events per Contact</li>
-                                <li> <b>3</b> Email Events per Contact</li>
-                                <li> - </li>
-                                <li> - </li>
-                            </ul>
-                            <a href="javascript:void(0);" id="free" class="btn btn-lg btn-primary">Sign Up Now</a>
-                        </div><!-- /.bottom -->
-                    </div><!-- /.pricing1 -->
-                </div><!-- /.col-md-4 col -->
-                <div class="overlay social-register" style="display: none">
-                    <a  href="javacript:void(0);" class="cancel">close <i class="fa fa-close"></i></a>
-                    <div class="row" style="  margin: 18% 10%;">
-                        <div class="col-md-4"></div>
-                        <div class="col-md-4">
-                            <form id="overlay">
-                                <a href = "<?= $url ?>" class="btn btn-block btn-social btn-google-plus">
-                                    <i class="fa fa-google-plus"></i> Sign <?= ($isLogin_g) ? "in" : "up" ?> with Google
-                                </a>
-                                <br/>
-                                <a style="cursor: pointer" class="btn btn-block btn-social btn-facebook" id="facebook" href = "javascript:void(0);">
-                                    <i class="fa fa-facebook"></i> Sign <?= ($isLogin_f) ? "in" : "up" ?> with Facebook
-                                </a>
-                                <br/>
-                                <a href = "<?= site_url() ?>register"  class="btn btn-block btn-social btn-info">
-                                    <i class="fa fa-envelope-o"></i>Sign up with Email
-                                </a>
-                            </form>
+                <?php foreach ($pdetail as $$plan) { ?>
+                    <div class="col-sm-4">
+                        <div class="pricing2">
+                            <div class="top">
+                                <h2><?= $plan->plan_name ?></h2>
+                                <p class="price">
+                                    <span class="currency">$</span>
+                                    <b><?= $plan->amount ?></b> 
+                                    <span class="month">/month</span>
+                                </p>
+                            </div><!-- /.top -->
+                            <div class="bottom">
+                                <ul>
+                                    <li> Add <?= ($plan->contacts == -1) ? "Unlimited" : $plan->contacts ?> Contacts</li>
+                                    <li> Schedule Unlimited Events</li>
+                                    <li> <b><?= ($plan->sms_events == -1) ? "Unlimited" : $plan->sms_events ?></b> SMS Events per Contact</li>
+                                    <li> <b><?= ($plan->email_events == -1) ? "Unlimited" : $plan->email_events ?></b> Email Events per Contact</li>
+                                    <li> <?= ($plan->plan_id == 1) ? "-" : "Import Contacts From Google" ?> </li>
+                                    <li> <?= ($plan->plan_id == 1) ? "-" : "Import Contacts From Spreadsheet or CSV File" ?></li>
+                                </ul>
+                                <?php
+                                switch ($plan->plan_id) {
+                                    case 1:
+                                        $id = "free";
+                                        break;
+                                    case 2:
+                                        $id = "a_personal";
+                                        break;
+                                    case 1:
+                                        $id = "a_enterprise";
+                                        break;
+                                }
+                                ?>
+                                <a href="javascript:void(0);" id="<?= $id ?>" class="btn btn-lg btn-primary">Sign Up Now</a>
+                            </div><!-- /.bottom -->
+                        </div><!-- /.pricing1 -->
+                    </div><!-- /.col-md-4 col -->
+                    <?php if ($plan->plan_id == 1): ?>
+                        <div class="overlay social-register" style="display: none">
+                            <a  href="javacript:void(0);" class="cancel">close <i class="fa fa-close"></i></a>
+                            <div class="row" style="  margin: 18% 10%;">
+                                <div class="col-md-4"></div>
+                                <div class="col-md-4">
+                                    <form id="overlay">
+                                        <a href = "<?= $url ?>" class="btn btn-block btn-social btn-google-plus">
+                                            <i class="fa fa-google-plus"></i> Sign <?= ($isLogin_g) ? "in" : "up" ?> with Google
+                                        </a>
+                                        <br/>
+                                        <a style="cursor: pointer" class="btn btn-block btn-social btn-facebook" id="facebook" href = "javascript:void(0);">
+                                            <i class="fa fa-facebook"></i> Sign <?= ($isLogin_f) ? "in" : "up" ?> with Facebook
+                                        </a>
+                                        <br/>
+                                        <a href = "<?= site_url() ?>register"  class="btn btn-block btn-social btn-info">
+                                            <i class="fa fa-envelope-o"></i>Sign up with Email
+                                        </a>
+                                    </form>
+                                </div>
+                                <div class="col-md-4"></div>
+                            </div>
                         </div>
-                        <div class="col-md-4"></div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="pricing2 popular">
-                        <div class="top">
-                            <h2>Personal</h2>
-                            <p class="price"><span class="currency">$</span> <b>9.99</b> <span class="month">/month</span></p>
-                        </div><!-- /.top -->
-                        <div class="bottom">
-                            <ul>
-                                <li> Add Unlimited Contacts</li>
-                                <li> Schedule Unlimited Events</li>
-                                <li> <b>10</b> SMS Events per Contact</li>
-                                <li> <b>10</b> Email Events per Contact</li>
-                                <li> Import Contacts From Google</li>
-                                <li> Import Contacts From Spreadsheet or CSV File</li>
-                            </ul>
-                            <a href="javascript:void(0);" id="a_personal" class="btn btn-lg btn-primary">Sign Up Now</a>
-                        </div><!-- /.bottom -->
-                    </div><!-- /.pricing1 -->
-                </div><!-- /.col-md-4 col -->
-
-                <div class="col-sm-4">
-                    <div class="pricing2">
-                        <div class="top">
-                            <h2>Enterprise</h2>
-                            <p class="price"><span class="currency">$</span> <b>49.99</b> <span class="month">/month</span></p>
-                        </div><!-- /.top -->
-                        <div class="bottom">
-                            <ul>
-                                <li> Add Unlimited Contacts</li>
-                                <li> Schedule Unlimited Events</li>
-                                <li> Schedule Unlimited SMS Events per Contact</li>
-                                <li> Schedule Unlimited Email Events per Contact</li>
-                                <li> Import Contacts From Google</li>
-                                <li> Import Contacts From Spreadsheet or CSV File</li>
-                            </ul>
-                            <a  href="javascript:void(0);" id="a_enterprise" class="btn btn-lg btn-primary">Sign Up Now</a>
-                        </div><!-- /.bottom -->
-                    </div><!-- /.pricing1 -->
-                </div><!-- /.col-md-4 col -->
+                    <?php endif; ?>
+                <?php } ?>
             </div><!-- /.row -->
         </div><!-- /.container -->
     </div><!-- /.item -->
