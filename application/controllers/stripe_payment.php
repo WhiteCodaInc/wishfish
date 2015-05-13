@@ -26,11 +26,9 @@ class Stripe_payment extends CI_Controller {
     }
 
     function pay() {
-        $payment = array();
         $success = 0;
         $set = $this->input->post();
         $gatewayInfo = $this->common->getPaymentGatewayInfo("STRIPE");
-        //require_once(FCPATH . 'stripe\lib\Stripe.php');
         require_once(FCPATH . 'stripe/lib/Stripe.php');
         Stripe::setApiKey($gatewayInfo->secret_key);
         if ($this->input->post('stripeToken') != "") {
@@ -40,7 +38,7 @@ class Stripe_payment extends CI_Controller {
                             "card" => $this->input->post('stripeToken'),
                             "email" => $this->input->post('stripeEmail'),
                             "metadata" => array(),
-                            "plan" => $set['id']));
+                            "plan" => $set['plan']));
                 $success = 1;
             } catch (Stripe_CardError $e) {
                 $error = $e->getMessage();
