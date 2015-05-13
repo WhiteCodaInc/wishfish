@@ -109,15 +109,15 @@
             <div class="col-md-2"></div>
         </div>
         <div id="error" class="row" style="display: none">
-            <div class="col-md-3"></div>
-            <div class="col-md-6">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
                 <div style="background-color: mistyrose !important;border-color: mintcream;color: red !important;" class="alert alert-danger alert-dismissable">
                     <i class="fa fa-ban"></i>
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                     <b>Error!</b> <span id="error-msg"></span>
                 </div>
             </div>
-            <div class="col-md-3"></div>
+            <div class="col-md-2"></div>
         </div>
         <?php if (!$card): ?>
             <form style="display: none" id="personal" action="<?= site_url() ?>app/upgrade/pay" method="post">
