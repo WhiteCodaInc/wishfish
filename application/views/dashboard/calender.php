@@ -890,6 +890,7 @@
 <?php $planInfo = $this->common->getCurrentPlan(); ?>
 <script type="text/javascript">
     var groupEvent = "<?= $planInfo->group_events ?>";
+    var planid = "<?= $planInfo->plan_id ?>";
     $('#eventForm input[name="assign"]').change(function () {
         var event_type = $('#eventForm input[name="event_type"]:checked').val();
         if ($(this).val() == "all_c") {
@@ -918,8 +919,13 @@
                     type: 'POST',
                     url: "<?= site_url() ?>app/calender/allGroup",
                     success: function (data, textStatus, jqXHR) {
-                        $("#lbl_select").text("Group");
-                        $('#user-tag').html(data);
+                        if (data != 0) {
+                            $("#lbl_select").text("Group");
+                            $('#user-tag').html(data);
+                        } else {
+                            $('#rd_individual').trigger('click');
+                            alertify.alert("You have already reach your Group event  limit..!\nYou can not add more..!");
+                        }
                     }
                 });
             }
