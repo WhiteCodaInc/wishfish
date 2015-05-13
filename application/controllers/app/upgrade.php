@@ -107,15 +107,16 @@ class Upgrade extends CI_Controller {
         try {
             $userInfo = $this->common->getUserInfo($this->userid);
             $customer = Stripe_Customer::retrieve($userInfo->customer_id);
-
-            if ($customer->subscriptions->total_count) {
-                $subs = $customer->subscriptions->data[0]->id;
-                $customer->subscriptions->retrieve($subs)->cancel();
-            }
-            $customer->subscriptions->create(array(
-                "plan" => $plan,
-                "metadata" => array("userid" => $this->userid)
-            ));
+            print_r($customer);
+            die();
+//            if ($customer->subscriptions->total_count) {
+//                $subs = $customer->subscriptions->data[0]->id;
+//                $customer->subscriptions->retrieve($subs)->cancel();
+//            }
+//            $customer->subscriptions->create(array(
+//                "plan" => $plan,
+//                "metadata" => array("userid" => $this->userid)
+//            ));
             $success = 1;
         } catch (Exception $e) {
             $error = $e->getMessage();
