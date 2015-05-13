@@ -1162,7 +1162,7 @@
                     $('#n_discard').trigger('click');
                     $('#eventForm').trigger("reset");
                     $('#neweventForm').trigger("reset");
-                    $(this).prop('disabled', 'false');
+                    $(this).removeProp('disabled');
                     if (data == 1) {
                         $("#calendar").fullCalendar("refetchEvents");
                         alertify.success("Event has been successfully created..!");
