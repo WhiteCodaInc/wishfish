@@ -1153,9 +1153,7 @@
                 form = "eventForm";
                 $('input[name="contact_id"]').val(ids[contact.indexOf($('#users').val())]);
 <?php endif; ?>
-//            $(this).prop('disabled', 'disabled');
-            console.log(id);
-
+            $('#' + id).prop('disabled', 'disabled');
             $.ajax({
                 type: 'POST',
                 data: $('#' + form).serialize(),
@@ -1165,8 +1163,7 @@
                     $('#n_discard').trigger('click');
                     $('#eventForm').trigger("reset");
                     $('#neweventForm').trigger("reset");
-                    console.log(id);
-//                    $(this).removeAttr('disabled');
+                    $('#' + id).prop('disabled', 'false');
                     if (data == 1) {
                         $("#calendar").fullCalendar("refetchEvents");
                         alertify.success("Event has been successfully created..!");
