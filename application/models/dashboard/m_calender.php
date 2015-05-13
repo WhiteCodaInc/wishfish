@@ -285,8 +285,7 @@ class M_calender extends CI_Model {
     function checkTotalGroupEvent($groupid) {
         $this->db->select('count(event_id) as total');
         $query = $this->db->get_where('schedule', array('user_id' => $this->userid, 'group_id' => $groupid));
-        print_r($query->row());
-        //return $query->row();
+        return $query->row();
     }
 
 }

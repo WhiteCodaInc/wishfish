@@ -62,9 +62,10 @@ class Calender extends CI_Controller {
         echo '<select  name="group_id" class="form-control">';
         foreach ($group as $value) {
             $res = $this->objcalender->checkTotalGroupEvent($value->group_id);
-            if (!count($res['email']) || (count($res['email']) && $res->total < $currPlan->group_events)) {
-                echo "<option value='$value->group_id'>$value->group_name</option>";
-            }
+//            if (!count($res) || (count($res) && $res->total < $currPlan->group_events)) {
+//                echo "<option value='$value->group_id'>$value->group_name</option>";
+            echo "<option value='$value->group_id'>" . count($res) ? 'CHE' : 'NATHI' . "</option>";
+//            }
         }
         echo '</select>';
     }
