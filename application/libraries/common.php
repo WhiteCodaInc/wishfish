@@ -58,6 +58,13 @@ class Common {
         return $query->result();
     }
 
+    function getLatestPlan() {
+        $this->_CI->db->limit(1);
+        $this->_CI->db->order_by('register_date', 'desc');
+        $query = $this->_CI->db->get_where('plan_detail', array('user_id' => $this->user_id));
+        return $query->row();
+    }
+
     function getPaymentGatewayInfo($mname) {
         $query = $this->_CI->db->get_where('general_setting', array('method_name' => $mname));
         return $query->row();
