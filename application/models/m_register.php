@@ -46,6 +46,7 @@ class M_register extends CI_Model {
             'contacts' => $planInfo->contacts,
             'sms_events' => $planInfo->sms_events,
             'email_events' => $planInfo->email_events,
+            'group_events' => $planInfo->group_events,
             'amount' => 0,
             'plan_status' => 1,
             'start_date' => date('Y-m-d'),

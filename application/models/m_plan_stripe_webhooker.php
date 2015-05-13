@@ -125,6 +125,7 @@ class M_plan_stripe_webhooker extends CI_Model {
             'contacts' => $planInfo->contacts,
             'sms_events' => $planInfo->sms_events,
             'email_events' => $planInfo->email_events,
+            'group_events' => $planInfo->group_events,
             'amount' => $amount,
             'plan_status' => 1,
             'start_date' => date('Y-m-d', $customer->subscriptions->data[0]->current_period_start),
