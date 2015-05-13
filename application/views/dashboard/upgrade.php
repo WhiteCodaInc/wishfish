@@ -157,33 +157,28 @@
                     cardFlag = true;
 <?php endif; ?>
                 $('#a_personal').click(function () {
-                    if (isAllowToDowngrade()) {
-                        if (!cardFlag) {
-                            console.log("CARD HOLDER");
-                            //$('#personal button').trigger('click');
-                        } else {
-                            console.log("WITHOUT CARD HOLDER");
-                            $('#planUpgrade .box-body button').prop('disabled', 'disabled');
-                            $('.personal .overlay').show();
-                            $('.personal .loading-img').show();
-//                            $.ajax({
-//                                type: 'POST',
-//                                data: {plan: "wishfish-personal"},
-//                                url: "<?= site_url() ?>app/upgrade/upgradePlan",
-//                                success: function (data, textStatus, jqXHR) {
-//                                    if (data == 1) {
-//                                        window.location.assign("<?= site_url() ?>app/dashboard");
-//                                    } else {
-//                                        $('#error').show();
-//                                        $('#error-msg').text(data);
-//                                    }
-//                                }
-//                            });
+                    $('#planUpgrade .box-body button').prop('disabled', 'disabled');
+                    $('.personal .overlay').show();
+                    $('.personal .loading-img').show();
+                    $.ajax({
+                        type: 'POST',
+                        url: "<?= site_url() ?>app/upgrade/isAllowToDowngrade",
+                        success: function (data, textStatus, jqXHR) {
+                            $('#a_personal').prop('disabled', false);
+                            $('.personal .overlay').hide();
+                            $('.personal .loading-img').hide();
+                            if (data == 1) {
+                                if (!cardFlag) {
+                                    $('#personal button').trigger('click');
+                                } else {
+                                    upgradePlan();
+                                }
+                            } else {
+                                $('#error').show();
+                                $('#error-msg').text("You can not downgrade your plan..! ");
+                            }
                         }
-                    } else {
-                        $('#error').show();
-                        $('#error-msg').text("You can not downgrade your plan..! ");
-                    }
+                    });
                 });
                 $('#a_enterprise').click(function () {
                     if (!cardFlag) {
@@ -209,17 +204,26 @@
 
                 });
 
-                function isAllowToDowngrade() {
-                    var flag = "FALSE";
+                function upgradePlan() {
+                    $('#planUpgrade .box-body button').prop('disabled', 'disabled');
+                    $('.personal .overlay').show();
+                    $('.personal .loading-img').show();
                     $.ajax({
                         type: 'POST',
-                        url: "<?= site_url() ?>app/upgrade/isAllowToDowngrade",
+                        data: {plan: "wishfish-personal"},
+                        url: "<?= site_url() ?>app/upgrade/upgradePlan",
                         success: function (data, textStatus, jqXHR) {
-//                            return (data == 1) ? true : false;
-                            flag = "TRUE";
+                            $('#a_personal').prop('disabled', false);
+                            $('.personal .overlay').hide();
+                            $('.personal .loading-img').hide();
+                            if (data == 1) {
+                                window.location.assign("<?= site_url() ?>app/dashboard");
+                            } else {
+                                $('#error').show();
+                                $('#error-msg').text(data);
+                            }
                         }
                     });
-                    console.log(flag);
                 }
             });
         </script>
