@@ -168,13 +168,14 @@ class Common {
     }
 
     function getMySqlDate($dt, $format) {
-        echo $dt . '<br>';
-        echo $format;
-        die();
-        $date = str_replace('mm', 'm', $format);
-        $date = str_replace('dd', 'd', $date);
-        $date = str_replace('yyyy', 'Y', $date);
-        return DateTime::createFromFormat($date, $dt)->format('Y-m-d');
+        if ($this->validateDate($dt, 'Y-m-d')) {
+            return $dt;
+        } else {
+            $date = str_replace('mm', 'm', $format);
+            $date = str_replace('dd', 'd', $date);
+            $date = str_replace('yyyy', 'Y', $date);
+            return DateTime::createFromFormat($date, $dt)->format('Y-m-d');
+        }
     }
 
     function validateDate($dt, $format) {

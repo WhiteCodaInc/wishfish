@@ -70,8 +70,7 @@ class M_calender extends CI_Model {
             $post['contact_id'] = $post['contactid'];
             unset($post['contactid']);
         }
-        print_r($post);
-        die();
+
         $post['date'] = $this->common->getMySqlDate($post['date'], $this->session->userdata('date_format'));
         $post['is_repeat'] = (isset($post['is_repeat']) && $post['is_repeat'] == "on") ? 1 : 0;
         $post['body'] = ($post['event_type'] == "sms" || $post['event_type'] == "notification") ? $post['smsbody'] : $post['emailbody'];
@@ -81,6 +80,9 @@ class M_calender extends CI_Model {
         unset($post['assign']);
         unset($post['smsbody']);
         unset($post['emailbody']);
+
+        print_r($post);
+        die();
 
         $this->db->trans_start();
         $post['color'] = "#0073b7";
