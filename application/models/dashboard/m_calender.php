@@ -81,9 +81,6 @@ class M_calender extends CI_Model {
         unset($post['smsbody']);
         unset($post['emailbody']);
 
-        print_r($post);
-        die();
-
         $this->db->trans_start();
         $post['color'] = "#0073b7";
         $this->db->insert('schedule', $post);
