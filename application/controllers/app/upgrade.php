@@ -55,6 +55,7 @@ class Upgrade extends CI_Controller {
             try {
                 $userInfo = $this->common->getUserInfo($this->userid);
                 $customer = Stripe_Customer::retrieve($userInfo->customer_id);
+                echo '<pre>';
                 print_r($customer);
                 die();
                 $customer->sources->create(array("source" => $this->input->post('stripeToken')));
