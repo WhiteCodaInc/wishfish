@@ -159,24 +159,26 @@
                 $('#a_personal').click(function () {
                     if (isAllowToDowngrade()) {
                         if (!cardFlag) {
-                            $('#personal button').trigger('click');
+                            console.log("CARD HOLDER");
+                            //$('#personal button').trigger('click');
                         } else {
+                            console.log("WITHOUT CARD HOLDER");
                             $('#planUpgrade .box-body button').prop('disabled', 'disabled');
                             $('.personal .overlay').show();
                             $('.personal .loading-img').show();
-                            $.ajax({
-                                type: 'POST',
-                                data: {plan: "wishfish-personal"},
-                                url: "<?= site_url() ?>app/upgrade/upgradePlan",
-                                success: function (data, textStatus, jqXHR) {
-                                    if (data == 1) {
-                                        window.location.assign("<?= site_url() ?>app/dashboard");
-                                    } else {
-                                        $('#error').show();
-                                        $('#error-msg').text(data);
-                                    }
-                                }
-                            });
+//                            $.ajax({
+//                                type: 'POST',
+//                                data: {plan: "wishfish-personal"},
+//                                url: "<?= site_url() ?>app/upgrade/upgradePlan",
+//                                success: function (data, textStatus, jqXHR) {
+//                                    if (data == 1) {
+//                                        window.location.assign("<?= site_url() ?>app/dashboard");
+//                                    } else {
+//                                        $('#error').show();
+//                                        $('#error-msg').text(data);
+//                                    }
+//                                }
+//                            });
                         }
                     } else {
                         $('#error').show();
@@ -212,7 +214,7 @@
                         type: 'POST',
                         url: "<?= site_url() ?>app/upgrade/isAllowToDowngrade",
                         success: function (data, textStatus, jqXHR) {
-                            
+                            return (data == 1) ? true : false;
                         }
                     });
                 }
