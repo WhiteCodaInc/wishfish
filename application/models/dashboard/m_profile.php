@@ -168,7 +168,8 @@ class M_profile extends CI_Model {
                 $customer->subscriptions->retrieve($subs)->cancel();
                 $success = 1;
             } else {
-                $this->session->set_flashdata('error', "You have not currently subscribe any plan..!");
+                $error = "You have not currently subscribe any plan..!  <a href='" . site_url() . "app/upgrade'>Subscribe Plan</a>";
+                $this->session->set_flashdata('error', $error);
                 $success = 0;
             }
         } catch (Exception $e) {
