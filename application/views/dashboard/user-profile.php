@@ -256,7 +256,7 @@
     <input type="hidden" name="item_name" value="wishfish-personal">
     <!--<input type="hidden" name="invoice" value="">-->
     <input type="hidden" name="no_note" value="1">
-    <input type="hidden" name="src" value="1"> //
+    <input type="hidden" name="src" value="1">
     <input type="hidden" name="a3" value="9.99">
     <input type="hidden" name="p3" value="1">
     <input type="hidden" name="t3" value="M">
