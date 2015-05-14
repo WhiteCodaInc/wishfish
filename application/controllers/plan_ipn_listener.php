@@ -127,7 +127,7 @@ class Plan_ipn_listener extends CI_Controller {
                 case "subscr_signup":
                     $userid = $data['custom'];
                     if ($userid != "") {
-                        $currPlan = $this->common->getLatestPlan();
+                        $currPlan = $this->common->getLatestPlan($userid);
                         if ($currPlan->plan_status == 1) {
                             try {
                                 $uInfo = $this->common->getUserInfo($userid);

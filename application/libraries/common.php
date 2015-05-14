@@ -58,10 +58,11 @@ class Common {
         return $query->result();
     }
 
-    function getLatestPlan() {
+    function getLatestPlan($userid = NULL) {
+        $uid = ($userid == NULL) ? $this->user_id : $userid;
         $this->_CI->db->limit(1);
         $this->_CI->db->order_by('register_date', 'desc');
-        $query = $this->_CI->db->get_where('plan_detail', array('user_id' => $this->user_id));
+        $query = $this->_CI->db->get_where('plan_detail', array('user_id' => $uid));
         return $query->row();
     }
 
