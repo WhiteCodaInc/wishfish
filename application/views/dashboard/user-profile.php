@@ -164,11 +164,13 @@
                                     </div>
                                 </div><!-- /.box-body -->
                             <?php endif; ?>
-                            <div class="form-group">
-                                <button id="pay" class="btn btn-primary">
-                                    Pay With Paypal
-                                </button>
-                            </div>
+                            <?php if (!$user->is_set): ?>
+                                <div class="form-group">
+                                    <button id="pay" class="btn btn-primary">
+                                        Pay With Paypal
+                                    </button>
+                                </div>
+                            <?php endif; ?>
                         </div>
                     </form>
                 </div><!-- /.box -->
