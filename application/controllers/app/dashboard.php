@@ -52,9 +52,10 @@ class Dashboard extends CI_Controller {
             }
             if (!$flag && !$this->authex->logged_in()) {
                 header('location:' . site_url() . 'home');
-            } elseif (!$this->authex->isActivePlan()) {
-                header('location:' . site_url() . 'app/upgrade');
             }
+//            } elseif (!$this->authex->isActivePlan()) {
+//                header('location:' . site_url() . 'app/upgrade');
+//            }
         }
         $this->load->model('dashboard/m_dashboard', 'objdashboard');
         $this->load->model('dashboard/m_calender', 'objcalender');
