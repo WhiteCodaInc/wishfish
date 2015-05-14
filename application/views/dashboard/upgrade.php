@@ -90,7 +90,7 @@
                             </ul>
                             <?php
                             $id = ($plan->plan_id == 2) ? "a_personal" : "a_enterprise";
-                            $prop = ($currPlan->plan_id == $plan->plan_id) ? 'disabled' : '';
+                            $prop = ($currPlan->plan_id == $plan->plan_id && $currPlan->plan_status != 0) ? 'disabled' : '';
 //                            if ($plan->plan_id == 2) {
 //                                $prop = ($currPlan->plan_id == 2 || $currPlan->plan_id == 3) ? 'disabled' : '';
 //                            } else {
