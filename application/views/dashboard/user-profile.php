@@ -119,7 +119,7 @@
                             <?php ($card) ? $cardNo = "************{$card['last4']}" : ""; ?>
                             <div class="box box-primary">
                                 <div class="box-header" >
-                                    <h3  class="box-title">Payment Info</h3>
+                                    <h3  class="box-title">Stripe Payment Info</h3>
                                 </div>
                                 <div class="box-body">
                                     <div class="form-group">
@@ -160,6 +160,11 @@
                                     <?php endif; ?>
                                 </div>
                             </div><!-- /.box-body -->
+                            <div class="form-group">
+                                <a class="btn btn-primary btn-lg" href="<?= site_url() ?>express_checkout">
+                                    Pay With Paypal
+                                </a>
+                            </div>
                         </div>
                     </form>
                 </div><!-- /.box -->

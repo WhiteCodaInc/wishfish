@@ -52,4 +52,11 @@ class Profile extends CI_Controller {
         $this->objprofile->cancelCurrentPlan();
     }
 
+//    function express_checkout() {
+//        $data['error'] = $this->session->flashdata('error');
+//        $data['msg'] = $this->session->flashdata('msg');
+//        $this->load->view('client/twocheckout_success', $data);
+//    }
+    
+    
 }
