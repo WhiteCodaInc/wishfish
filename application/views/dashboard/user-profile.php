@@ -161,9 +161,9 @@
                                 </div>
                             </div><!-- /.box-body -->
                             <div class="form-group">
-                                <a class="btn btn-primary btn-lg" href="<?= site_url() ?>app/profile/pay">
+                                <button id="pay" class="btn btn-primary">
                                     Pay With Paypal
-                                </a>
+                                </button>
                             </div>
                         </div>
                     </form>
@@ -319,6 +319,10 @@
             cardFlag = true;
 <?php endif; ?>
 
+        $('#pay').click(function () {
+            $(this).prop("disabled", "disabled");
+            $('#paypal').submit();
+        });
         $('#save-profile').click(function () {
             $(this).attr("disabled", "disabled");
             $('#userForm').submit();
