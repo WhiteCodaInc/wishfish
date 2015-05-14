@@ -117,7 +117,7 @@ class Plan_ipn_listener extends CI_Controller {
         if (strcmp($res, "VERIFIED") == 0) {
 
             $data = $this->input->post();
-//            $myfile = fopen(FCPATH . 'newfile.txt', "a");
+            $myfile = fopen(FCPATH . 'paypal.txt', "a");
 //            fwrite($myfile, $data . "\n");
             $planid = ($data['item_name'] == "wishfish-personal") ? 2 : 3;
 
@@ -134,11 +134,11 @@ class Plan_ipn_listener extends CI_Controller {
                                     $subs = $customer->subscriptions->data[0]->id;
                                     $customer->subscriptions->retrieve($subs)->cancel();
                                 } else {
-//                                    fwrite($myfile, "PLAN DOES NOT EXIST....!" . "\n");
+                                    fwrite($myfile, "PLAN DOES NOT EXIST....!" . "\n");
                                 }
                             } catch (Exception $e) {
-//                                $error = $e->getMessage();
-//                                fwrite($myfile, $error . "\n");
+                                $error = $e->getMessage();
+                                fwrite($myfile, $error . "\n");
                             }
                         }
                         $this->updateUser($userid, $data);
