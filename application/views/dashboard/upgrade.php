@@ -209,7 +209,6 @@
                     }
 
                 });
-
                 function upgradePlan() {
                     $('#planUpgrade .box-body button').prop('disabled', 'disabled');
                     $('.personal .overlay').show();
