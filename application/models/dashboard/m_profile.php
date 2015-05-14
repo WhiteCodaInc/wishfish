@@ -160,17 +160,24 @@ class M_profile extends CI_Model {
 
     function cancelCurrentPlan() {
         try {
+            $success = 0;
             $uInfo = $this->common->getUserInfo($this->userid);
             $customer = Stripe_Customer::retrieve($uInfo->customer_id);
-            $subs = $customer->subscriptions->data[0]->id;
-            $customer->subscriptions->retrieve($subs)->cancel();
-            $success = 1;
+            if (isset($customer->subscriptions->data[0]->id)) {
+                $subs = $customer->subscriptions->data[0]->id;
+                $customer->subscriptions->retrieve($subs)->cancel();
+                $success = 1;
+            } else {
+                $this->session->set_flashdata('error', "You have not currently subscribe any plan..!");
+                $success = 0;
+            }
         } catch (Exception $e) {
             $error = $e->getMessage();
+            $this->session->set_flashdata('error', $error);
             $success = 0;
         }
         if ($success != 1) {
-            $this->session->set_flashdata('error', $error);
+
             header('Location:' . site_url() . 'app/profile');
         } else {
             header('Location:' . site_url() . 'app/dashboard');
