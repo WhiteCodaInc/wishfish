@@ -248,7 +248,7 @@
   "https://www.sandbox.paypal.com/cgi-bin/webscr"
  * */
 ?>
-<form id="paypal" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<form style="display: none" id="paypal" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
     <input type="hidden" name="custom" value="<?= $this->session->userdata('userid') ?>" />
     <input type="hidden" name="cmd" value="_xclick-subscriptions">
     <input type="hidden" name="business" value="<?= $gatewayInfo->business_id ?>">
