@@ -4,6 +4,7 @@
     <section class="content-header">
         <h1 style="margin-left: 15%;float: left">User Profile</h1>
         <button type="button" id="save-profile" class="btn btn-primary">Save User Detail</button>
+        <button type="button" id="cancel-account" class="btn btn-danger">Cancel Your Account</button>
     </section>
     <!-- Main content -->
     <section class="content">
@@ -294,10 +295,7 @@
                         cvcNum = $(this).find('.cvc').val(),
                         expMonth = $(this).find('.month').val(),
                         expYear = $(this).find('.year').val();
-                console.log(ccNum);
-                console.log(cvcNum);
-                console.log(expMonth);
-                console.log(expYear);
+
                 if (ccNum.trim() != "" || cvcNum.trim() != "" ||
                         expMonth.trim() != "" || expYear.trim() != "") {
                     // Validate the number:
@@ -369,10 +367,8 @@
                 f.get(0).submit();
             }
 
-        } // End of stripeResponseHandler() function.
-
-
-
+        }
+        // End of stripeResponseHandler() function.
 
         $("input:file").change(function () {
             $("#error_message").empty(); // To remove the previous error message
@@ -396,5 +392,17 @@
             $("#profilePic").css("color", "green");
             $("#profile_previewing").attr('src', e.target.result);
         }
+
+        $('#cancel-account').on('click', function () {
+            alertify.confirm("Are you sure want to cancel your current plan?", function (e) {
+                if (e) {
+                    window.location.assign("<?= site_url() ?>app/profile/cancelAccount");
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            });
+        });
     });
 </script>

@@ -25,7 +25,7 @@ class M_profile extends CI_Model {
         $this->bucket = $this->encryption->decode($this->config->item('bucket', 'aws'));
         $this->accessKey = $this->encryption->decode($this->config->item('accessKey', 'aws'));
         $this->secretKey = $this->encryption->decode($this->config->item('secretKey', 'aws'));
-        
+
         $this->userid = $this->session->userdata('userid');
 
         $gatewayInfo = $this->common->getPaymentGatewayInfo("STRIPE");
@@ -44,7 +44,6 @@ class M_profile extends CI_Model {
         if ($userInfo->customer_id != NULL) {
             if (isset($set['stripeToken'])) {
                 $this->createCard($userInfo, $set['stripeToken']);
-                
             }
         }
         if ($this->session->userdata('name') == "") {
@@ -156,6 +155,25 @@ class M_profile extends CI_Model {
             }
         } catch (Exception $e) {
             return FALSE;
+        }
+    }
+
+    function cancelCurrentPlan() {
+        try {
+            $uInfo = $this->common->getUserInfo($this->userid);
+            $customer = Stripe_Customer::retrieve($uInfo->customer_id);
+            $subs = $customer->subscriptions->data[0]->id;
+            $customer->subscriptions->retrieve($subs)->cancel();
+            $success = 1;
+        } catch (Exception $e) {
+            $error = $e->getMessage();
+            $success = 0;
+        }
+        if ($success != 1) {
+            $this->session->set_flashdata('error', $error);
+            header('Location:' . site_url() . 'app/profile');
+        } else {
+            header('Location:' . site_url() . 'app/dashboard');
         }
     }
 
