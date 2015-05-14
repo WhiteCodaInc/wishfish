@@ -1,4 +1,13 @@
 <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/dashboard/css/checkbox.css"/>
+<style type="text/css">
+    .alert a{
+        text-decoration: none;
+        color: #3c8dbc;
+        font-size: 15px;
+        padding: 0px 3px;
+        font-weight: 600;
+    }
+</style>
 <aside class="right-side">
     <!-- Content Header (Page header) -->
     <section class="content-header">
