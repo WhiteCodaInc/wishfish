@@ -117,11 +117,9 @@ class Plan_ipn_listener extends CI_Controller {
         if (strcmp($res, "VERIFIED") == 0) {
 
             $data = $this->input->post();
-            $myfile = fopen(FCPATH . 'newfile.txt', "a");
-            fwrite($myfile, $data . "\n");
+//            $myfile = fopen(FCPATH . 'newfile.txt', "a");
+//            fwrite($myfile, $data . "\n");
             $planid = ($data['item_name'] == "wishfish-personal") ? 2 : 3;
-
-
 
             switch ($data['txn_type']) {
                 case "subscr_signup":
