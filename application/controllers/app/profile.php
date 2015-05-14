@@ -28,6 +28,7 @@ class Profile extends CI_Controller {
     function index() {
         $data['user'] = $this->objprofile->getProfile();
         $data['card'] = $this->objprofile->getCardDetail();
+        $data['gatewayInfo'] = $this->common->getPaymentGatewayInfo("PAYPAL");
 
         $this->load->view('dashboard/header');
         $this->load->view('dashboard/top');
@@ -52,11 +53,11 @@ class Profile extends CI_Controller {
         $this->objprofile->cancelCurrentPlan();
     }
 
-//    function express_checkout() {
-//        $data['error'] = $this->session->flashdata('error');
-//        $data['msg'] = $this->session->flashdata('msg');
-//        $this->load->view('client/twocheckout_success', $data);
-//    }
-    
-    
+    function pay() {
+        $this->objprofile->cancelCurrentPlan();
+        $data['error'] = $this->session->flashdata('error');
+        $data['msg'] = $this->session->flashdata('msg');
+        $this->load->view('client/twocheckout_success', $data);
+    }
+
 }

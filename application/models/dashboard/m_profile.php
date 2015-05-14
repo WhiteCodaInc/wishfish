@@ -178,7 +178,6 @@ class M_profile extends CI_Model {
             $success = 0;
         }
         if ($success != 1) {
-
             header('Location:' . site_url() . 'app/profile');
         } else {
             header('Location:' . site_url() . 'app/dashboard');

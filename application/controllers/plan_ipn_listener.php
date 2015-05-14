@@ -15,13 +15,9 @@ class Plan_ipn_listener extends CI_Controller {
 
     function __construct() {
         parent::__construct();
-        $this->load->library('email');
-        $this->load->library('parser');
-        $this->load->helper('cookie');
-        $this->load->helper('date');
-        $this->load->library('common');
-        $this->load->model('app/m_company_register', 'objCompanyRegsiter');
-        $this->load->model('admin/m_affiliate', 'objaffiliate');
+        $gatewayInfo = $this->common->getPaymentGatewayInfo("STRIPE");
+        require_once(FCPATH . 'stripe/lib/Stripe.php');
+        Stripe::setApiKey($gatewayInfo->secret_key);
     }
 
     function index() {
@@ -121,158 +117,55 @@ class Plan_ipn_listener extends CI_Controller {
         if (strcmp($res, "VERIFIED") == 0) {
 
             $data = $this->input->post();
+            $myfile = fopen(FCPATH . 'newfile.txt', "a");
+            fwrite($myfile, $data . "\n");
+            $planid = ($data['item_name'] == "wishfish-personal") ? 2 : 3;
 
-//            $payer_id = $this->input->post['recurring_payment_id'];
-//            mail('bhadresh.sidapara@gmail.com', 'message', $payer_id);
-//            if (file_exists('newfile.txt')) {
-//                $myfile = fopen(FCPATH . 'newfile.txt', "a");
-//                fwrite($myfile," New This is Successfully Done" );
-//                fwrite($myfile, "\n");
-//            } else {
-//                $myfile = fopen(FCPATH . 'newfile.txt', "w");
-//                fwrite($myfile,"This is Successfully Done \n");
-//            }
 
 
             switch ($data['txn_type']) {
                 case "subscr_signup":
-                    $compid = $data['custom'];
-                    $type = explode('+', $data['period3']);
-                    $dt = date('Y-m-d', strtotime($data['subscr_date']));
-                    $expiry_date = $this->getExpiryDate($dt, $type[0]);
-
-                    $this->db->select('*');
-                    $where = array(
-                        'comp_id' => $compid,
-                        'plan_status' => 1
-                    );
-                    $query = $this->db->get_where('plan_upgrade_mst', $where);
-                    if ($query->num_rows() > 0) {
-                        // Deactive Old Plan
-                        $deactive_set = array(
-                            'plan_status' => 0
-                        );
-                        $deactive_where = array(
-                            'upgrade_id' => $query->row()->upgrade_id
-                        );
-                        $this->db->update('plan_upgrade_mst', $deactive_set, $deactive_where);
-
-                        $active_set = array(
-                            'plan_status' => 1,
-                            'start_date' => date('Y-m-d', strtotime($data['subscr_date'])),
-                            'expiry_date' => $expiry_date
-                        );
-                        $active_where = array(
-                            'upgrade_id' => $data['invoice']
-                        );
-                        $this->db->update('plan_upgrade_mst', $active_set, $active_where);
-
-                        // Delete Pending Plan
-                        $delete_where = array(
-                            'comp_id' => $compid,
-                            'plan_status' => 2
-                        );
-                        $this->db->delete('plan_upgrade_mst', $delete_where);
-                    } else {
-                        $active_set = array(
-                            'plan_status' => 1,
-                            'start_date' => date('Y-m-d', strtotime($data['subscr_date'])),
-                            'expiry_date' => $expiry_date
-                        );
-                        $active_where = array(
-                            'upgrade_id' => $data['invoice']
-                        );
-                        $this->db->update('plan_upgrade_mst', $active_set, $active_where);
-                    }
-                    $result = $this->db->get_where('plan_upgrade_mst', array('upgrade_id' => $data['invoice']));
-                    $notify = array(
-                        'comp_id' => $compid,
-                        'plan_id' => $result->row()->plan_id,
-                        $result->row()->amount,
-                        'type' => "new"
-                    );
-                    $this->db->insert('plan_notification', $notify);
-
-                    //------------------- Affiliate Info----------------------//
-                    $uname = get_cookie('affiliate_user', TRUE);
-                    $setting = $this->objaffiliate->setting();
-
-                    if ($this->authex->isAffiliateExist($uname)) {
-                        $aff = $this->objaffiliate->getAffiliateDetail($uname);
-                        $aff_detail = $this->objaffiliate->getAffiliateInfo($aff->affiliate_id);
-
-                        $reff_set = array(
-                            'affiliate_id' => $aff->affiliate_id,
-                            'comp_id' => $compid,
-                            'plan_id' => $result->row()->plan_id,
-                            'register_date' => date('Y-m-d'),
-                            'end_date' => $this->common->getNextDate(date('Y-m-d'), $setting->register_duration . ' months')
-                        );
-                        switch ($reff_set['plan_id']) {
-                            case 2:
-                                $reff_set['earn'] = $aff_detail->plan1;
-                                break;
-                            case 3:
-                                $reff_set['earn'] = $aff_detail->plan2;
-                                break;
-                            case 4:
-                                $reff_set['earn'] = $aff_detail->plan3;
-                                break;
+                    $userid = $data['custom'];
+                    if ($userid != "") {
+                        $currPlan = $this->common->getLatestPlan();
+                        if ($currPlan->plan_status == 1) {
+                            try {
+                                $uInfo = $this->common->getUserInfo($userid);
+                                $customer = Stripe_Customer::retrieve($uInfo->customer_id);
+                                if (isset($customer->subscriptions->data[0]->id)) {
+                                    $subs = $customer->subscriptions->data[0]->id;
+                                    $customer->subscriptions->retrieve($subs)->cancel();
+                                } else {
+                                    fwrite($myfile, "PLAN DOES NOT EXIST....!" . "\n");
+                                }
+                            } catch (Exception $e) {
+                                $error = $e->getMessage();
+                                fwrite($myfile, $error . "\n");
+                            }
                         }
-                        $this->db->insert('affiliate_referal', $reff_set);
-
-                        $aff_set['pending'] = $aff->pending + $reff_set['earn'];
-                        $this->db->update('affiliates', $aff_set, array('affiliate_id' => $aff->affilaite_id));
-                        $compInfo = $this->common->getCompanyInfo($compid);
-                        $this->sendEmail($aff_detail, $compInfo, $reff_set);
+                        $pid = $this->insertPlanDetail($userid, $planid, $data);
+                        $this->insertPaymentDetail($pid, $data);
+                    } else {
+                        $uid = $this->insertUser($data);
+                        $pid = $this->insertPlanDetail($uid, $planid, $data);
+                        $this->insertPaymentDetail($pid, $data);
                     }
                     break;
-
                 case "subscr_payment":
-                    $insert_set = array(
-                        'upgrade_id' => $data['invoice'],
-                        'transaction_id' => $data['txn_id'],
-                        'payer_id' => $data['payer_id'],
-                        'payer_email' => $data['payer_email'],
-                        'business' => $data['business'],
-                        'mc_gross' => $data['mc_gross'],
-                        'mc_fee' => $data['mc_fee'],
-                        'payment_status' => $data['payment_status'],
-                        'gateway' => "PAYPAL",
-                        'payment_date' => date('Y-m-d', strtotime($data['payment_date']))
-                    );
-                    $this->db->insert('payment_mst', $insert_set);
-
-                    $where_set = array(
-                        'upgrade_id' => $data['invoice']
-                    );
-                    //-----------------------Plan Upgrade---------------------//
-                    $result = $this->db->get_where('plan_upgrade_mst', $where_set);
-                    $res = $query->result_array();
-
-                    $interval = $this->getDateDiff($res[0]['start_date'], $res[0]['start_date']);
-                    $nextdt = $this->getExpiryDate($insert_set['payment_date'], $interval);
-
-                    $update_set = array(
-                        'start_date' => $insert_set['payment_date'],
-                        'expiry_date' => $nextdt
-                    );
-                    $this->db->update('plan_upgrade_mst', $update_set, $where_set);
-                    //--------------------------------------------------------//
-                    $this->sendMail($res[0], "PAYMENT NOTIFICATION", $insert_set);
                     break;
                 case "subscr_eot":
                 case "subscr_cancel":
-                    $result = $this->db->get_where('plan_upgrade_mst', array('upgrade_id' => $data['invoice']));
-                    $notify = array(
-                        'comp_id' => $result->row()->comp_id,
-                        'plan_id' => $result->row()->plan_id,
-                        'amount' => $result->row()->amount,
-                        'type' => "old"
+                    $this->db->select('*');
+                    $query = $this->db->get_where('payment_mst', array('transaction_id' => $data['subscr_id']));
+                    $res = $query->row();
+                    $set = array(
+                        'plan_status' => 0,
+                        'cancel_date' => date('Y-m-d')
                     );
-                    $this->db->insert('plan_notification', $notify);
-                    $this->db->update('plan_upgrade_mst', array('plan_status' => 0, 'cancel_date' => date('Y-m-d', strtotime($data['subscr_date']))), array('upgrade_id' => $data['invoice']));
-                    $this->sendMail($notify, "ACCOUNT CANCELLED");
+                    $where = array(
+                        'id' => $res->id
+                    );
+                    $this->db->update('plan_detail', $set, $where);
                     break;
             }
 
@@ -289,110 +182,87 @@ class Plan_ipn_listener extends CI_Controller {
         }
     }
 
-    function getDateDiff($dt1, $dt2) {
-        $datetime1 = date_create($dt1);
-        $datetime2 = date_create($dt2);
-        $interval = date_diff($datetime1, $datetime2);
-        return $interval->format('%m');
-    }
-
-    function getExpiryDate($dt, $interval) {
-        switch ($interval) {
-            case 1:
-                $expiry_date = $this->common->getNextDate($dt, '1 months');
-                break;
-            case 6:
-                $expiry_date = $this->common->getNextDate($dt, '6 months');
-                break;
-            case 12:
-                $expiry_date = $this->common->getNextDate($dt, '12 months');
-                break;
-        }
-        return $expiry_date;
-    }
-
-    function sendMail($data, $type, $paypal = NULL) {
-
-        $templateInfo = $this->common->getAdminEmailTemplate($type);
-        $companyInfo = $this->common->getCompanyInfo($data['comp_id']);
-
-        if ($type == "ACCOUNT CANCELLED") {
-            $tag = array(
-                'CONTACT_NAME' => $companyInfo->contact_name,
-                'NAME' => $companyInfo->comp_name,
-                'USERNAME' => $companyInfo->comp_username,
-                'PLAN_NAME' => $this->objCompanyRegsiter->getPlanName($data['plan_id'])->plan_name,
-                'DATE' => date('d-M-Y h:i:s')
-            );
-            $subject_tag = array();
-        } else {
-            $interval = $this->getDateDiff($data['start_date'], $data['expiry_date']);
-            $expiry_date = $this->getExpiryDate($paypal['payment_date'], $interval);
-            $tag = array(
-                'CONTACT_NAME' => $companyInfo->contact_name,
-                'NAME' => $companyInfo->comp_name,
-                'USERNAME' => $companyInfo->comp_username,
-                'AMOUNT' => $data['amount'],
-                'PLAN_NAME' => $this->objCompanyRegsiter->getPlanName($data['plan_id'])->plan_name,
-                'DATE' => date('d-M-Y', strtotime($paypal['payment_date'])),
-                'EXPIRE_DATE' => date('d-M-Y', $expiry_date)
-            );
-            $subject_tag = array();
-        }
-        $subject = $this->parser->parse_string($templateInfo['mail_subject'], $subject_tag, TRUE);
-
-        $this->load->view('admin/email_format', $templateInfo);
-        $body = $this->parser->parse('admin/email_format', $tag);
-
-        $config = $this->common->getEmailConfig();
-        if ($config) {
-            $this->email->initialize($config);
-        }
-
-        $this->email->from($templateInfo['from'], $templateInfo['name']);
-        $this->email->to($companyInfo->comp_email);
-        $this->email->subject($subject);
-        $this->email->message($body);
-
-        if ($this->email->send())
-            return TRUE;
-        else
-            echo $this->email->print_debugger();
-    }
-
-    function sendEmail($affInfo, $company, $referal) {
-        $templateInfo = $this->common->getAffiliateEmailTemplate("NEW CUSTOMER JOIN");
-        $tag = array(
-            'CONTACT_NAME' => $affInfo->name,
-            'COMPANY_NAME' => $company->comp_name,
-            'AMOUNT' => $referal['earn']
+    function insertUser($data) {
+        $user_set = array(
+            'email' => $data['payer_email'],
+            'password' => $this->generateRandomString(5),
+            'customer_id' => $data['payer_id'],
+            'gateway' => "PAYPAL",
+            'is_set' => 1,
+            'register_date' => date('Y-m-d', strtotime($data['subscr_date']))
         );
-        $subject_tag = array();
-        $email = $affInfo->email;
-        $replyTo = $templateInfo['from'];
-        $from = $templateInfo['name'];
+        $this->db->insert('user_mst', $user_set);
+        return $this->db->insert_id();
+    }
 
-        $subject = $this->parser->parse_string($templateInfo['mail_subject'], $subject_tag, TRUE);
+    function insertPlanDetail($userid, $planid, $data) {
 
-        $this->load->view('admin/email_format', $templateInfo, TRUE);
-        $body = $this->parser->parse('admin/email_format', $tag, TRUE);
+        $start_dt = date('Y-m-d', strtotime($data['subscr_date']));
+        $expiry_date = $this->common->getNextDate($start_dt, '1 months');
 
+        $amount = $data['mc_amount3'];
+        $planInfo = $this->common->getPlan($planid);
+        $plan_set = array(
+            'user_id' => $userid,
+            'plan_id' => $planid,
+            'contacts' => $planInfo->contacts,
+            'sms_events' => $planInfo->sms_events,
+            'email_events' => $planInfo->email_events,
+            'group_events' => $planInfo->group_events,
+            'amount' => $amount,
+            'plan_status' => 1,
+            'start_date' => $start_dt,
+            'expiry_date' => $expiry_date
+        );
+        $this->db->insert('plan_detail', $plan_set);
+        return $this->db->insert_id();
+    }
 
-        $config = $this->common->getEmailConfig();
-        if ($config) {
-            $this->email->initialize($config);
-        }
+    function insertPaymentDetail($pid, $data) {
+        $amount = $data['mc_amount3'];
+        $insert_set = array(
+            'id' => $pid,
+            'transaction_id' => $data['subscr_id'],
+            'payer_id' => $data['payer_id'],
+            'payer_email' => $data['payer_email'],
+            'mc_gross' => $amount,
+            'gateway' => "PAYPAL",
+            'payment_date' => date('Y-m-d', strtotime($data['payment_date']))
+        );
+        $this->db->insert('payment_mst', $insert_set);
+    }
 
-        $this->email->from($replyTo, $from);
-        $this->email->to($email);
-        $this->email->subject($subject);
-        $this->email->message($body);
-        if ($this->email->send()) {
-            return TRUE;
-        } else {
-            return FALSE;
-        }
-        //echo $this->email->print_debugger();
+    function generateRandomString($length = 5) {
+        return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
+    }
+
+    function sendMail($post, $userid) {
+        $uid = $this->encryption->encode($userid);
+        $templateInfo = $this->common->getAutomailTemplate("NEW USER REGISTRATION");
+        $url = site_url() . 'app/dashboard?uid=' . $uid;
+        $link = "<table border='0' align='center' cellpadding='0' cellspacing='0' class='mainBtn' style='margin-top: 0;margin-left: auto;margin-right: auto;margin-bottom: 0;padding-top: 0;padding-bottom: 0;padding-left: 0;padding-right: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-collapse: collapse;border-spacing: 0;'>";
+        $link .= "<tr>";
+        $link .= "<td align='center' valign='middle' class='btnMain' style='margin-top: 0;margin-left: 0;margin-right: 0;margin-bottom: 0;padding-top: 12px;padding-bottom: 12px;padding-left: 22px;padding-right: 22px;border-collapse: collapse;border-spacing: 0;-webkit-text-size-adjust: none;font-family: Arial, Helvetica, sans-serif;background-color: {$templateInfo['color']};height: 20px;font-size: 18px;line-height: 20px;mso-line-height-rule: exactly;text-align: center;vertical-align: middle;'>
+                                            <a href='{$url}' style='padding-top: 0;padding-bottom: 0;padding-left: 0;padding-right: 0;display: inline-block;text-decoration: none;-webkit-text-size-adjust: none;font-family: Arial, Helvetica, sans-serif;color: #ffffff;font-weight: bold;'>
+                                                <span style='text-decoration: none;color: #ffffff;'>
+                                                    Active Your Account
+                                                </span>
+                                            </a>
+                                        </td>";
+        $link .= "</tr></table>";
+        $tag = array(
+            'NAME' => "User",
+            'LINK' => $link,
+            'THISDOMAIN' => "Wish-Fish"
+        );
+        $subject = $this->parser->parse_string($templateInfo['mail_subject'], $tag, TRUE);
+        $this->load->view('email_format', $templateInfo, TRUE);
+        $body = $this->parser->parse('email_format', $tag, TRUE);
+
+        $from = ($templateInfo['from'] != "") ? $templateInfo['from'] : NULL;
+        $name = ($templateInfo['name'] != "") ? $templateInfo['name'] : NULL;
+
+        return $this->common->sendAutoMail($post['email'], $subject, $body, $from, $name);
     }
 
 }

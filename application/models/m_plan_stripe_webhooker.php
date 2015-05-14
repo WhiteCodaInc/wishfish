@@ -37,6 +37,8 @@ class M_plan_stripe_webhooker extends CI_Model {
                         'email' => $customer->email,
                         'password' => $this->generateRandomString(5),
                         'customer_id' => $customer->id,
+                        'gateway' => "STRIPE",
+                        'is_set' => 1,
                         'register_date' => date('Y-m-d', $customer->subscriptions->data[0]->current_period_start)
                     );
                     $this->db->insert('user_mst', $user_set);
@@ -62,8 +64,8 @@ class M_plan_stripe_webhooker extends CI_Model {
                 $customer = Stripe_Customer::retrieve($event_json->data->object->customer);
                 $subsid = $event_json->data->object->id;
                 $userid = $customer->metadata->userid;
-                $userInfo = $this->common->getUserInfo($userid);
 
+                $userInfo = $this->common->getUserInfo($userid);
                 $this->db->select('*');
                 $query = $this->db->get_where('payment_mst', array('transaction_id' => $subsid));
                 $res = $query->row();
@@ -85,7 +87,6 @@ class M_plan_stripe_webhooker extends CI_Model {
                     }
                 }
                 break;
-
             case "customer.subscription.trial_will_end":
                 /*
                   $userid = $customer->metadata->userid;
@@ -144,6 +145,7 @@ class M_plan_stripe_webhooker extends CI_Model {
             'payer_email' => $customer->email,
             'mc_gross' => $amount,
             'mc_fee' => ($amount * 0.029) + 0.30,
+            'gateway' => "STRIPE",
             'payment_date' => date('Y-m-d', $customer->subscriptions->data[0]->current_period_start)
         );
         $this->db->insert('payment_mst', $insert_set);

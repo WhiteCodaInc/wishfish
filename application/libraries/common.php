@@ -255,6 +255,39 @@ class Common {
         return substr(str_shuffle("0123456789"), 0, $length);
     }
 
+    function insertPlanDetail($userid, $planid, $customer) {
+        $amount = $customer->subscriptions->data[0]->plan->amount / 100;
+        $planInfo = $this->common->getPlan($planid);
+        $plan_set = array(
+            'user_id' => $userid,
+            'plan_id' => $planid,
+            'contacts' => $planInfo->contacts,
+            'sms_events' => $planInfo->sms_events,
+            'email_events' => $planInfo->email_events,
+            'group_events' => $planInfo->group_events,
+            'amount' => $amount,
+            'plan_status' => 1,
+            'start_date' => date('Y-m-d', $customer->subscriptions->data[0]->current_period_start),
+            'expiry_date' => date('Y-m-d', $customer->subscriptions->data[0]->current_period_end)
+        );
+        $this->db->insert('plan_detail', $plan_set);
+        return $this->db->insert_id();
+    }
+
+    function insertPaymentDetail($pid, $customer) {
+        $amount = $customer->subscriptions->data[0]->plan->amount / 100;
+        $insert_set = array(
+            'id' => $pid,
+            'transaction_id' => $customer->subscriptions->data[0]->id,
+            'payer_id' => $customer->id,
+            'payer_email' => $customer->email,
+            'mc_gross' => $amount,
+            'mc_fee' => ($amount * 0.029) + 0.30,
+            'payment_date' => date('Y-m-d', $customer->subscriptions->data[0]->current_period_start)
+        );
+        $this->db->insert('payment_mst', $insert_set);
+    }
+
     //----------------------Admin Automail Template---------------------------//
     function getAutomailTemplate($type) {
         $query = $this->_CI->db->get_where('automail_template', array('mail_type' => $type));
