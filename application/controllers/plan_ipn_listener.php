@@ -134,13 +134,14 @@ class Plan_ipn_listener extends CI_Controller {
                                     $subs = $customer->subscriptions->data[0]->id;
                                     $customer->subscriptions->retrieve($subs)->cancel();
                                 } else {
-                                    fwrite($myfile, "PLAN DOES NOT EXIST....!" . "\n");
+//                                    fwrite($myfile, "PLAN DOES NOT EXIST....!" . "\n");
                                 }
                             } catch (Exception $e) {
-                                $error = $e->getMessage();
-                                fwrite($myfile, $error . "\n");
+//                                $error = $e->getMessage();
+//                                fwrite($myfile, $error . "\n");
                             }
                         }
+                        $this->updateUser($userid, $data);
                         $pid = $this->insertPlanDetail($userid, $planid, $data);
                         $this->insertPaymentDetail($pid, $data);
                     } else {
@@ -178,6 +179,15 @@ class Plan_ipn_listener extends CI_Controller {
                 error_log(date('[Y-m-d H:i e] ') . "Invalid IPN: $req" . PHP_EOL, 3, LOG_FILE);
             }
         }
+    }
+
+    function updateUser($userid, $data) {
+        $user_set = array(
+            'customer_id' => $data['payer_id'],
+            'gateway' => "PAYPAL",
+            'is_set' => 1
+        );
+        $this->db->update('user_mst', $user_set, array('user_id' => $userid));
     }
 
     function insertUser($data) {
