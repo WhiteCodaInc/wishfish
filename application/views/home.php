@@ -588,8 +588,8 @@
                 <div class="separator text-center"></div>
             </div>
             <div class="wow fadeIn animated" data-wow-offset="10" data-wow-duration="1.5s">
-                <div class="col-md-4 col-sm-6"></div>
-                <div class="col-md-5">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
                     <!-- CONTACT FORM -->
                     <div class="contact-form">
                         <div id="message"></div>
@@ -612,7 +612,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-6"></div>
+                <div class="col-md-4"></div>
             </div>
         </div> <!-- end row -->
     </div>
