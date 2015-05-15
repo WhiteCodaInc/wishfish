@@ -520,21 +520,21 @@
                                 switch ($plan->plan_id) {
                                     case 1:
                                         $id = "free";
-                                        $plan = "wishfish-free";
+                                        $pname = "wishfish-free";
                                         break;
                                     case 2:
                                         $id = "a_personal";
-                                        $plan = "wishfish-personal";
+                                        $pname = "wishfish-personal";
                                         break;
                                     case 3:
                                         $id = "a_enterprise";
-                                        $plan = "wishfish-enterprise";
+                                        $pname = "wishfish-enterprise";
                                         break;
                                 }
                                 ?>
                                 <a href="javascript:void(0);" id="<?= $id ?>" class="btn btn-lg btn-primary">Sign Up With Credit Card</a>
                                 <?php if ($plan->plan_id != 1): ?>
-                                    <a href="javascript:void(0);" id="<?= $plan ?>" class="btn btn-lg btn-primary">Sign Up With Paypal</a>
+                                    <a href="javascript:void(0);" id="<?= $pname ?>" class="btn btn-lg btn-primary">Sign Up With Paypal</a>
                                 <?php endif; ?>
                             </div><!-- /.bottom -->
                         </div><!-- /.pricing2 -->
