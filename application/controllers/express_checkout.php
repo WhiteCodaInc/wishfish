@@ -32,8 +32,9 @@ class Express_checkout extends CI_Controller {
                 echo 'https://www.sandbox.paypal.com/webscr?cmd=_express-checkout&token=' . urlencode($token);
             else
                 echo 'https://www.paypal.com/webscr?cmd=_express-checkout&token=' . urlencode($token);
-        } else
+        } else {
             return false;
+        }
     }
 
     function consolidate() {
