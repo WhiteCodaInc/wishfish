@@ -91,11 +91,6 @@
                             <?php
                             $id = ($plan->plan_id == 2) ? "a_personal" : "a_enterprise";
                             $prop = ($currPlan->plan_id == $plan->plan_id && $currPlan->plan_status != 0) ? 'disabled' : '';
-//                            if ($plan->plan_id == 2) {
-//                                $prop = ($currPlan->plan_id == 2 || $currPlan->plan_id == 3) ? 'disabled' : '';
-//                            } else {
-//                                $prop = ($currPlan->plan_id == 3) ? 'disabled' : '';
-//                            }
                             ?>
                             <button <?= $prop ?> type="button" id="<?= $id ?>" class="btn btn-info btn-lg">
                                 Upgrade
@@ -144,6 +139,22 @@
                 </script>
             </form>
         <?php endif; ?>
+
+        <form id="paypal" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+            <input type="hidden" name="cmd" value="_xclick-subscriptions">
+            <input type="hidden" name="business" value="<?= $paypal->business_id ?>">
+            <input type="hidden" name="item_name" value="">
+            <input type="hidden" name="no_note" value="1">
+            <input type="hidden" name="src" value="1">
+            <input type="hidden" name="a3" value="">
+            <input type="hidden" name="p3" value="1">
+            <input type="hidden" name="t3" value="M">
+            <input type="hidden" name="currency_code" value="USD">
+            <input type="hidden" name="return" value="<?= site_url() ?>login" >
+            <input type="hidden" name="cancel_return" value="<?= site_url() ?>home">
+            <input type="hidden" name="bn" value="PP-SubscriptionsBF:btn_subscribeCC_LG.gif:NonHostedGuest">
+        </form>
+
         <script type="text/javascript">
             planid = "<?= $currPlan->plan_id ?>";
             if (planid == 3) {

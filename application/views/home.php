@@ -520,6 +520,14 @@
                                     <li> Schedule Unlimited Events</li>
                                     <li> <b><?= ($plan->sms_events == -1) ? "Unlimited" : $plan->sms_events ?></b> SMS Events per Contact</li>
                                     <li> <b><?= ($plan->email_events == -1) ? "Unlimited" : $plan->email_events ?></b> Email Events per Contact</li>
+                                    <li> 
+                                        <?=
+                                        ($plan->group_events == -1) ?
+                                                "<b>Unlimited</b>" :
+                                                (($plan->group_events == 0) ? "No" : '<b>' . $plan->group_events . '</b>')
+                                        ?>
+                                        Group Events
+                                    </li>
                                     <li> <?= ($plan->plan_id == 1) ? "-" : "Import Contacts From Google" ?> </li>
                                     <li> <?= ($plan->plan_id == 1) ? "-" : "Import Contacts From Spreadsheet or CSV File" ?></li>
                                 </ul>

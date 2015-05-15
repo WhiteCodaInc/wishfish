@@ -34,7 +34,9 @@ class Upgrade extends CI_Controller {
     function index() {
         $data['currPlan'] = $this->common->getLatestPlan();
         $data['pdetail'] = $this->common->getPlans();
-        $data['gatewayInfo'] = $this->common->getPaymentGatewayInfo("STRIPE");
+        $data['stripe'] = $this->common->getPaymentGatewayInfo("STRIPE");
+        $data['paypal'] = $this->common->getPaymentGatewayInfo("PAYPAL");
+        $data['userInfo'] = $this->common->getUserInfo($this->userid);
         $data['card'] = $this->objprofile->getCardDetail();
 //        echo '<pre>';
 //        print_r($data);

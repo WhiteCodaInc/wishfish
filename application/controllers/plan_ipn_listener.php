@@ -197,7 +197,7 @@ class Plan_ipn_listener extends CI_Controller {
             'customer_id' => $data['payer_id'],
             'gateway' => "PAYPAL",
             'is_set' => 1,
-            'register_date' => date('Y-m-d', strtotime($data['subscr_date']))
+            'register_date' => date('Y-m-d H:i:s', strtotime($data['subscr_date']))
         );
         $this->db->insert('user_mst', $user_set);
         return $this->db->insert_id();
