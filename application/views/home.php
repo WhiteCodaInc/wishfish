@@ -529,9 +529,10 @@
                                         break;
                                 }
                                 ?>
-                                <a href="javascript:void(0);" id="<?= $id ?>" class="btn btn-lg btn-primary">Sign Up Now</a>
+                                <a href="javascript:void(0);" id="<?= $id ?>" class="btn btn-lg btn-primary">Sign Up With Credit Card</a>
+                                <a href="javascript:void(0);" id="<?= $id ?>" class="btn btn-lg btn-primary">Sign Up With Paypal</a>
                             </div><!-- /.bottom -->
-                        </div><!-- /.pricing1 -->
+                        </div><!-- /.pricing2 -->
                     </div><!-- /.col-md-4 col -->
                     <?php if ($plan->plan_id == 1): ?>
                         <div class="overlay social-register" style="display: none">
@@ -649,7 +650,7 @@
     <input type="hidden" name="plan" value="wishfish-enterprise"/>
     <script
         src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-        data-key="<?= $gatewayInfo->publish_key ?>"
+        data-key="<?= $stripe->publish_key ?>"
         data-image="/square-image.png"
         data-name="Enterprise"
         data-description="Product"                    
@@ -751,14 +752,9 @@
             });
         });
 
-        $('#free').click(function () {
-            $('.social-register').css('display', 'block');
-            //            $('#overlay').css('display', 'block');
-            //            $("html, body").animate({scrollTop: 0}, 1000);
-            //            setTimeout(function () {
-            //                $('html, body').animate({scrollTop: 0}, 4000);
-            //            }, 4000);
-        });
+//        $('#free').click(function () {
+//
+//        });
 
         $('a#log,a#reg').click(function () {
             $("html, body").animate({scrollTop: 0}, 1000);
@@ -777,12 +773,23 @@
             }
         });
 
-        $('#a_personal').click(function () {
-            $('#personal button').trigger('click');
+        $('.pricing2 a').on('click', function () {
+            var id = $(this).prop('id');
+            if (id == "a_personal") {
+                $('#personal button').trigger('click');
+            } else if (id == "a_enterprise") {
+                $('#enterprise button').trigger('click');
+            } else {
+                $('.social-register').css('display', 'block');
+            }
         });
-        $('#a_enterprise').click(function () {
-            $('#enterprise button').trigger('click');
-        });
+
+//        $('#a_personal').click(function () {
+//
+//        });
+//        $('#a_enterprise').click(function () {
+//
+//        });
         $('a.cancel').click(function () {
             $('.social-register').css('display', 'none');
             $('.overlay').css('display', 'none');
