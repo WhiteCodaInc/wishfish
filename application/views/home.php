@@ -520,18 +520,21 @@
                                 switch ($plan->plan_id) {
                                     case 1:
                                         $id = "free";
+                                        $plan = "wishfish-free";
                                         break;
                                     case 2:
                                         $id = "a_personal";
+                                        $plan = "wishfish-personal";
                                         break;
                                     case 3:
                                         $id = "a_enterprise";
+                                        $plan = "wishfish-enterprise";
                                         break;
                                 }
                                 ?>
                                 <a href="javascript:void(0);" id="<?= $id ?>" class="btn btn-lg btn-primary">Sign Up With Credit Card</a>
                                 <?php if ($plan->plan_id != 1): ?>
-                                    <a href="javascript:void(0);" id="<?= $id ?>" class="btn btn-lg btn-primary">Sign Up With Paypal</a>
+                                    <a href="javascript:void(0);" id="<?= $plan ?>" class="btn btn-lg btn-primary">Sign Up With Paypal</a>
                                 <?php endif; ?>
                             </div><!-- /.bottom -->
                         </div><!-- /.pricing2 -->
@@ -754,10 +757,6 @@
             });
         });
 
-//        $('#free').click(function () {
-//
-//        });
-
         $('a#log,a#reg').click(function () {
             $("html, body").animate({scrollTop: 0}, 1000);
             setTimeout(function () {
@@ -777,21 +776,29 @@
 
         $('.pricing2 a').on('click', function () {
             var id = $(this).prop('id');
-            if (id == "a_personal") {
-                $('#personal button').trigger('click');
-            } else if (id == "a_enterprise") {
-                $('#enterprise button').trigger('click');
-            } else {
-                $('.social-register').css('display', 'block');
+            switch (id) {
+                case "free":
+                    $('.social-register').css('display', 'block');
+                    break;
+                case "a_personal":
+                    $('#personal button').trigger('click');
+                    break;
+                case "a_enterprise":
+                    $('#enterprise button').trigger('click');
+                    break;
+                case "wishfish-personal":
+                    $('#paypal input[name="item_name"]').val('wishfish-personal');
+                    $('#paypal input[name="a3"]').val('9.99');
+                    $('#paypal').submit();
+                    break;
+                case "wishfish-enterprise":
+                    $('#paypal input[name="item_name"]').val('wishfish-enterprise');
+                    $('#paypal input[name="a3"]').val('49.99');
+                    $('#paypal').submit();
+                    break;
             }
         });
 
-//        $('#a_personal').click(function () {
-//
-//        });
-//        $('#a_enterprise').click(function () {
-//
-//        });
         $('a.cancel').click(function () {
             $('.social-register').css('display', 'none');
             $('.overlay').css('display', 'none');
