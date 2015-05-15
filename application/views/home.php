@@ -555,6 +555,10 @@
                                     <a href="javascript:void(0);" id="<?= $pname ?>" class="btn btn-primary">Sign Up With Paypal</a>
                                 <?php endif; ?>
                             </div><!-- /.bottom -->
+                            <?php if ($plan->plan_id != 1): ?>
+                                <div style="display: none" class="overlay"></div>
+                                <div style="display: none" class="loading-img"></div>
+                            <?php endif; ?>
                         </div><!-- /.pricing2 -->
                     </div><!-- /.col-md-4 col -->
                     <?php if ($plan->plan_id == 1): ?>
