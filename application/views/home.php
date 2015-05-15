@@ -528,18 +528,21 @@
                                     case 1:
                                         $id = "free";
                                         $pname = "wishfish-free";
+                                        $lable = "Sign Up Now";
                                         break;
                                     case 2:
                                         $id = "a_personal";
                                         $pname = "wishfish-personal";
+                                        $lable = "Sign Up With Credit Card";
                                         break;
                                     case 3:
                                         $id = "a_enterprise";
                                         $pname = "wishfish-enterprise";
+                                        $lable = "Sign Up With Credit Card";
                                         break;
                                 }
                                 ?>
-                                <a href="javascript:void(0);" id="<?= $id ?>" class="btn  btn-primary">Sign Up With Credit Card</a>
+                                <a href="javascript:void(0);" id="<?= $id ?>" class="btn  btn-primary"><?= $lable ?></a>
                                 <?php if ($plan->plan_id != 1): ?>
                                     <a href="javascript:void(0);" id="<?= $pname ?>" class="btn btn-primary">Sign Up With Paypal</a>
                                 <?php endif; ?>
