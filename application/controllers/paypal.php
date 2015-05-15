@@ -40,30 +40,26 @@ class Paypal extends CI_Controller {
     }
 
     function consolidate() {
-        echo '<pre>';
-        print_r($this->session->flashdata('item_name'));
-        die();
         if ($this->input->get('token')) { // Token parameter exists
             $gatewayInfo = $this->common->getPaymentGatewayInfo("PAYPAL");
             $this->paypal_lib->set_acct_info(
                     $gatewayInfo->api_username, $gatewayInfo->api_password, $gatewayInfo->signature
             );
-            $this->db->trans_start();
             $checkoutDetails = $this->paypal_lib->request('GetExpressCheckoutDetails', array('TOKEN' => $this->input->get('token')));
             $uid = $this->insertUser($checkoutDetails);
 
-            $planid = ($this->session->userdata('item_name') == "wishfish-personal") ? 2 : 3;
+            $planid = ($this->session->flashdata('item_name') == "wishfish-personal") ? 2 : 3;
 
             // Complete the checkout transaction
             $requestParams = array(
                 'TOKEN' => $this->input->get('token'),
                 'PROFILESTARTDATE' => $checkoutDetails['TIMESTAMP'],
-                'DESC' => $this->session->userdata('item_name'),
+                'DESC' => $this->session->flashdata('item_name'),
                 'BILLINGPERIOD' => 'Month',
                 'PROFILEREFERENCE' => $uid,
                 'BILLINGFREQUENCY' => 1,
                 'TOTALBILLINGCYCLES' => 0,
-                'AMT' => $this->session->userdata('amount'),
+                'AMT' => $this->session->flashdata('amount'),
                 'CURRENCYCODE' => 'USD',
                 'MAXFAILEDPAYMENTS' => 3,
                 'FAILEDINITAMTACTION' => 'CancelOnFailure'
@@ -72,9 +68,10 @@ class Paypal extends CI_Controller {
             $response = $this->paypal_lib->request('CreateRecurringPaymentsProfile', $requestParams);
             if (is_array($response) && $response['ACK'] == 'Success') {
                 $this->insertPlanDetail($uid, $planid, $response);
-                $this->db->trans_complete();
+                $this->session->set_userdata('d-userid', $uid);
+                $this->session->set_userdata('d-name', $checkoutDetails['FIRSTNAME'] . ' ' . $checkoutDetails['LASTNAME']);
                 $this->sendMail($checkoutDetails, $uid);
-                header('Location:' . site_url() . 'login');
+                header('Location:' . site_url() . 'app/dashboard');
             } else {
                 header('Location:' . site_url() . 'home');
             }
@@ -83,6 +80,7 @@ class Paypal extends CI_Controller {
 
     function insertUser($data) {
         $user_set = array(
+            'name' => $data['FIRSTNAME'] . ' ' . $data['LASTNAME'],
             'email' => $data['EMAIL'],
             'password' => $this->generateRandomString(5),
             'customer_id' => $data['PAYERID'],
@@ -122,7 +120,7 @@ class Paypal extends CI_Controller {
     }
 
     function cancelled() {
-        header('location:' . site_url() . 'client/client_recurring');
+        header('location:' . site_url() . 'home');
     }
 
     function sendMail($post, $userid) {
