@@ -642,19 +642,9 @@
     </div>
 </section>
 
-<form id="paypal" action="<?= site_url() ?>express_checkout" method="post">
-    <input type="hidden" name="cmd" value="_xclick-subscriptions">
-    <input type="hidden" name="business" value="<?= $paypal->business_id ?>">
+<form id="paypal" action="<?= site_url() ?>paypal" method="post">
     <input type="hidden" name="item_name" value="">
-    <input type="hidden" name="no_note" value="1">
-    <input type="hidden" name="src" value="1">
-    <input type="hidden" name="a3" value="">
-    <input type="hidden" name="p3" value="1">
-    <input type="hidden" name="t3" value="M">
-    <input type="hidden" name="currency_code" value="USD">
-    <input type="hidden" name="return" value="<?= site_url() ?>login" >
-    <input type="hidden" name="cancel_return" value="<?= site_url() ?>home">
-    <input type="hidden" name="bn" value="PP-SubscriptionsBF:btn_subscribeCC_LG.gif:NonHostedGuest">
+    <input type="hidden" name="amount" value="">
 </form>
 <form style="display: none" id="personal" action="<?= site_url() ?>stripe_payment/pay" method="post">
     <input type="hidden" name="plan" value="wishfish-personal"/>

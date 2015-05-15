@@ -3,29 +3,28 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Express_checkout extends CI_Controller {
+class Paypal extends CI_Controller {
+
+    var $post = array();
 
     function __construct() {
         parent::__construct();
-        $this->load->library('expresscheckout');
+        $this->load->library('paypal_lib');
     }
 
     function index() {
-        $post = $this->input->post();
-        echo '<pre>';
-        print_r($post);
-        die();
+        $this->post = $this->input->post();
         $gatewayInfo = $this->common->getPaymentGatewayInfo("EC");
         $this->expresscheckout->set_acct_info($gatewayInfo->api_username, $gatewayInfo->api_password, $gatewayInfo->api_signature);
 
         $requestParams = array(
-            'RETURNURL' => site_url() . 'express_checkout/consolidate',
-            'CANCELURL' => site_url() . 'express_checkout/cancelled',
+            'RETURNURL' => site_url() . 'paypal/consolidate',
+            'CANCELURL' => site_url() . 'home',
         );
 
         $recurring = array(
             'L_BILLINGTYPE0' => 'RecurringPayments',
-            'L_BILLINGAGREEMENTDESCRIPTION0' => 'Recurring Profile'
+            'L_BILLINGAGREEMENTDESCRIPTION0' => $this->post['item_name']
         );
         $response = $this->expresscheckout->request('SetExpressCheckout', $requestParams + $recurring);
 
@@ -42,6 +41,11 @@ class Express_checkout extends CI_Controller {
     }
 
     function consolidate() {
+
+        echo '<pre>';
+        print_r($this->post);
+        die();
+
         if ($this->input->get('token')) { // Token parameter exists
             $gatewayInfo = $this->common->getPaymentGatewayInfo("EC");
             $this->expresscheckout->set_acct_info(

@@ -6,7 +6,7 @@ if (!defined('BASEPATH'))
 /**
 
  * */
-class Expresscheckout extends CI_Controller {
+class Paypal_lib extends CI_Controller {
 
     var $is_sandbox = TRUE;
     var $_errors = array();
