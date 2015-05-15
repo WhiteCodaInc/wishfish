@@ -8,8 +8,6 @@ class Paypal extends CI_Controller {
     function __construct() {
         parent::__construct();
         $this->load->library('paypal_lib');
-        echo date('Y-m-d H:i:s', strtotime("2015-05-15T06:11:18Z"));
-        die();
     }
 
     function index() {
@@ -69,6 +67,7 @@ class Paypal extends CI_Controller {
 
             $response = $this->paypal_lib->request('CreateRecurringPaymentsProfile', $requestParams);
             if (is_array($response) && $response['ACK'] == 'Success') {
+                $response['AMT'] = $checkoutDetails['AMT'];
                 $this->insertPlanDetail($uid, $planid, $response);
                 $this->session->set_userdata('d-userid', $uid);
                 $this->session->set_userdata('d-name', $checkoutDetails['FIRSTNAME'] . ' ' . $checkoutDetails['LASTNAME']);
