@@ -43,7 +43,7 @@ class Paypal extends CI_Controller {
         if ($this->input->get('token')) { // Token parameter exists
             $gatewayInfo = $this->common->getPaymentGatewayInfo("PAYPAL");
             $this->paypal_lib->set_acct_info(
-                    $gatewayInfo->api_username, $gatewayInfo->api_password, $gatewayInfo->signature
+                    $gatewayInfo->api_username, $gatewayInfo->api_password, $gatewayInfo->api_signature
             );
             $checkoutDetails = $this->paypal_lib->request('GetExpressCheckoutDetails', array('TOKEN' => $this->input->get('token')));
             $uid = $this->insertUser($checkoutDetails);
@@ -86,7 +86,7 @@ class Paypal extends CI_Controller {
             'customer_id' => $data['PAYERID'],
             'gateway' => "PAYPAL",
             'is_set' => 1,
-            'register_date' => $data['TIMESTAMP']
+            'register_date' => date('Y-m-d H:i:s', strtotime($data['TIMESTAMP']))
         );
         $this->db->insert('user_mst', $user_set);
         return $this->db->insert_id();
