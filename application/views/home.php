@@ -532,20 +532,10 @@
                                         break;
                                 }
                                 ?>
-                                <div class="row">
-                                    <?php if ($plan->plan_id != 1): ?>
-                                        <div class="col-md-6">
-                                            <a href="javascript:void(0);" id="<?= $id ?>" class="btn btn-lg btn-primary">Sign Up With Credit Card</a>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <a href="javascript:void(0);" id="<?= $pname ?>" class="btn btn-lg btn-primary">Sign Up With Paypal</a>
-                                        </div>
-                                    <?php else: ?>
-                                        <div class="col-md-12">
-                                            <a href="javascript:void(0);" id="<?= $id ?>" class="btn btn-lg btn-primary">Sign Up With Credit Card</a>
-                                        </div>
-                                    <?php endif; ?>
-                                </div>
+                                <a href="javascript:void(0);" id="<?= $id ?>" class="btn btn-lg btn-primary">Sign Up With Credit Card</a>
+                                <?php if ($plan->plan_id != 1): ?>
+                                    <a href="javascript:void(0);" id="<?= $pname ?>" class="btn btn-lg btn-primary">Sign Up With Paypal</a>
+                                <?php endif; ?>
                             </div><!-- /.bottom -->
                         </div><!-- /.pricing2 -->
                     </div><!-- /.col-md-4 col -->
