@@ -530,7 +530,9 @@
                                 }
                                 ?>
                                 <a href="javascript:void(0);" id="<?= $id ?>" class="btn btn-lg btn-primary">Sign Up With Credit Card</a>
-                                <a href="javascript:void(0);" id="<?= $id ?>" class="btn btn-lg btn-primary">Sign Up With Paypal</a>
+                                <?php if ($plan->plan_id != 1): ?>
+                                    <a href="javascript:void(0);" id="<?= $id ?>" class="btn btn-lg btn-primary">Sign Up With Paypal</a>
+                                <?php endif; ?>
                             </div><!-- /.bottom -->
                         </div><!-- /.pricing2 -->
                     </div><!-- /.col-md-4 col -->
