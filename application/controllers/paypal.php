@@ -23,7 +23,7 @@ class Paypal extends CI_Controller {
 
         $recurring = array(
             'L_BILLINGTYPE0' => 'RecurringPayments',
-            'L_BILLINGAGREEMENTDESCRIPTION0' => $this->post['item_name']
+            'L_BILLINGAGREEMENTDESCRIPTION0' => $post['item_name']
         );
         $response = $this->paypal_lib->request('SetExpressCheckout', $requestParams + $recurring);
 
