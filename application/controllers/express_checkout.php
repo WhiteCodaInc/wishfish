@@ -11,6 +11,10 @@ class Express_checkout extends CI_Controller {
     }
 
     function index() {
+        $post = $this->input->post();
+        echo '<pre>';
+        print_r($post);
+        die();
         $gatewayInfo = $this->common->getPaymentGatewayInfo("EC");
         $this->expresscheckout->set_acct_info($gatewayInfo->api_username, $gatewayInfo->api_password, $gatewayInfo->api_signature);
 

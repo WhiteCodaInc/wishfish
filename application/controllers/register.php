@@ -81,7 +81,7 @@ class Register extends CI_Controller {
                 $data = $this->service->userinfo->get();
 
                 $this->session->set_userdata('token', $this->client->getAccessToken());
-                $user = $this->isUserExist($data);
+                $user = $this->objregister->isUserExist($data);
                 if (!$user) {
                     if ($this->objregister->registerWithSocial($data)) {
                         $googleid = array(

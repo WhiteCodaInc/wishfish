@@ -642,7 +642,7 @@
     </div>
 </section>
 
-<form id="paypal" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<form id="paypal" action="<?= site_url() ?>express_checkout" method="post">
     <input type="hidden" name="cmd" value="_xclick-subscriptions">
     <input type="hidden" name="business" value="<?= $paypal->business_id ?>">
     <input type="hidden" name="item_name" value="">
