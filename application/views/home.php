@@ -506,94 +506,85 @@
                 <?php foreach ($pdetail as $plan) { ?>
                     <div class="col-sm-4">
                         <div class="pricing2">
-                            <div class="box box-solid <?= ($plan->plan_id == 2) ? "personal" : "enterprise" ?>">
-                                <div class="box-header">
-                                    <div class="top">
-                                        <h2><?= $plan->plan_name ?></h2>
-                                        <p class="price">
-                                            <span class="currency">$</span>
-                                            <b><?= $plan->amount ?></b> 
-                                            <span class="month">/month</span>
-                                        </p>
-                                    </div><!-- /.top -->
-                                </div>
-                                <div class="box-body" style="text-align: center">
-                                    <div class="bottom">
-                                        <ul>
-                                            <li> Add <?= ($plan->contacts == -1) ? "Unlimited" : $plan->contacts ?> Contacts</li>
-                                            <li> Schedule Unlimited Events</li>
-                                            <li> <b><?= ($plan->sms_events == -1) ? "Unlimited" : $plan->sms_events ?></b> SMS Events per Contact</li>
-                                            <li> <b><?= ($plan->email_events == -1) ? "Unlimited" : $plan->email_events ?></b> Email Events per Contact</li>
-                                            <li> 
-                                                <?=
-                                                ($plan->group_events == -1) ?
-                                                        "<b>Unlimited</b>" :
-                                                        (($plan->group_events == 0) ? "No" : '<b>' . $plan->group_events . '</b>')
-                                                ?>
-                                                Group Events
-                                            </li>
-                                            <li> <?= ($plan->plan_id == 1) ? "-" : "Import Contacts From Google" ?> </li>
-                                            <li> <?= ($plan->plan_id == 1) ? "-" : "Import Contacts From Spreadsheet or CSV File" ?></li>
-                                        </ul>
-                                        <?php
-                                        switch ($plan->plan_id) {
-                                            case 1:
-                                                $id = "free";
-                                                $pname = "wishfish-free";
-                                                $lable = "Sign Up Now";
-                                                break;
-                                            case 2:
-                                                $id = "a_personal";
-                                                $pname = "wishfish-personal";
-                                                $lable = "Sign Up With Credit Card";
-                                                break;
-                                            case 3:
-                                                $id = "a_enterprise";
-                                                $pname = "wishfish-enterprise";
-                                                $lable = "Sign Up With Credit Card";
-                                                break;
-                                        }
+                            <div class="top">
+                                <h2><?= $plan->plan_name ?></h2>
+                                <p class="price">
+                                    <span class="currency">$</span>
+                                    <b><?= $plan->amount ?></b> 
+                                    <span class="month">/month</span>
+                                </p>
+                            </div><!-- /.top -->
+                            <div class="bottom">
+                                <ul>
+                                    <li> Add <?= ($plan->contacts == -1) ? "Unlimited" : $plan->contacts ?> Contacts</li>
+                                    <li> Schedule Unlimited Events</li>
+                                    <li> <b><?= ($plan->sms_events == -1) ? "Unlimited" : $plan->sms_events ?></b> SMS Events per Contact</li>
+                                    <li> <b><?= ($plan->email_events == -1) ? "Unlimited" : $plan->email_events ?></b> Email Events per Contact</li>
+                                    <li> 
+                                        <?=
+                                        ($plan->group_events == -1) ?
+                                                "<b>Unlimited</b>" :
+                                                (($plan->group_events == 0) ? "No" : '<b>' . $plan->group_events . '</b>')
                                         ?>
-                                        <a href="javascript:void(0);" id="<?= $id ?>" class="btn  btn-primary"><?= $lable ?></a>
-                                        <?php if ($plan->plan_id != 1): ?>
-                                            <a href="javascript:void(0);" id="<?= $pname ?>" class="btn btn-primary">Sign Up With Paypal</a>
-                                        <?php endif; ?>
-                                    </div><!-- /.bottom -->
-                                </div><!-- /.box-body -->
+                                        Group Events
+                                    </li>
+                                    <li> <?= ($plan->plan_id == 1) ? "-" : "Import Contacts From Google" ?> </li>
+                                    <li> <?= ($plan->plan_id == 1) ? "-" : "Import Contacts From Spreadsheet or CSV File" ?></li>
+                                </ul>
+                                <?php
+                                switch ($plan->plan_id) {
+                                    case 1:
+                                        $id = "free";
+                                        $pname = "wishfish-free";
+                                        $lable = "Sign Up Now";
+                                        break;
+                                    case 2:
+                                        $id = "a_personal";
+                                        $pname = "wishfish-personal";
+                                        $lable = "Sign Up With Credit Card";
+                                        break;
+                                    case 3:
+                                        $id = "a_enterprise";
+                                        $pname = "wishfish-enterprise";
+                                        $lable = "Sign Up With Credit Card";
+                                        break;
+                                }
+                                ?>
+                                <a href="javascript:void(0);" id="<?= $id ?>" class="btn  btn-primary"><?= $lable ?></a>
                                 <?php if ($plan->plan_id != 1): ?>
-                                    <div style="display: none" class="overlay"></div>
-                                    <div style="display: none" class="loading-img"></div>
+                                    <a href="javascript:void(0);" id="<?= $pname ?>" class="btn btn-primary">Sign Up With Paypal</a>
                                 <?php endif; ?>
-                            </div><!-- /.pricing2 -->
-                        </div><!-- /.col-md-4 col -->
-                        <?php if ($plan->plan_id == 1): ?>
-                            <div class="overlay social-register" style="display: none">
-                                <a  href="javacript:void(0);" class="cancel">close <i class="fa fa-close"></i></a>
-                                <div class="row" style="  margin: 18% 10%;">
-                                    <div class="col-md-4"></div>
-                                    <div class="col-md-4">
-                                        <form id="overlay">
-                                            <a href = "<?= $url ?>" class="btn btn-block btn-social btn-google-plus">
-                                                <i class="fa fa-google-plus"></i> Sign <?= ($isLogin_g) ? "in" : "up" ?> with Google
-                                            </a>
-                                            <br/>
-                                            <a style="cursor: pointer" class="btn btn-block btn-social btn-facebook" id="facebook" href = "javascript:void(0);">
-                                                <i class="fa fa-facebook"></i> Sign <?= ($isLogin_f) ? "in" : "up" ?> with Facebook
-                                            </a>
-                                            <br/>
-                                            <a href = "<?= site_url() ?>register"  class="btn btn-block btn-social btn-info">
-                                                <i class="fa fa-envelope-o"></i>Sign up with Email
-                                            </a>
-                                        </form>
-                                    </div>
-                                    <div class="col-md-4"></div>
+                            </div><!-- /.bottom -->
+                        </div><!-- /.pricing2 -->
+                    </div><!-- /.col-md-4 col -->
+                    <?php if ($plan->plan_id == 1): ?>
+                        <div class="overlay social-register" style="display: none">
+                            <a  href="javacript:void(0);" class="cancel">close <i class="fa fa-close"></i></a>
+                            <div class="row" style="  margin: 18% 10%;">
+                                <div class="col-md-4"></div>
+                                <div class="col-md-4">
+                                    <form id="overlay">
+                                        <a href = "<?= $url ?>" class="btn btn-block btn-social btn-google-plus">
+                                            <i class="fa fa-google-plus"></i> Sign <?= ($isLogin_g) ? "in" : "up" ?> with Google
+                                        </a>
+                                        <br/>
+                                        <a style="cursor: pointer" class="btn btn-block btn-social btn-facebook" id="facebook" href = "javascript:void(0);">
+                                            <i class="fa fa-facebook"></i> Sign <?= ($isLogin_f) ? "in" : "up" ?> with Facebook
+                                        </a>
+                                        <br/>
+                                        <a href = "<?= site_url() ?>register"  class="btn btn-block btn-social btn-info">
+                                            <i class="fa fa-envelope-o"></i>Sign up with Email
+                                        </a>
+                                    </form>
                                 </div>
+                                <div class="col-md-4"></div>
                             </div>
-                        <?php endif; ?>
-                    <?php } ?>
-                </div><!-- /.row -->
-            </div><!-- /.container -->
-        </div><!-- /.item -->
+                        </div>
+                    <?php endif; ?>
+                <?php } ?>
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </div><!-- /.item -->
 </section>
 
 <!--Funfact section-->
