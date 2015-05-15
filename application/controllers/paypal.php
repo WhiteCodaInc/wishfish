@@ -14,7 +14,7 @@ class Paypal extends CI_Controller {
 
     function index() {
         $this->post = $this->input->post();
-        $gatewayInfo = $this->common->getPaymentGatewayInfo("EC");
+        $gatewayInfo = $this->common->getPaymentGatewayInfo("PAYPAL");
         $this->paypal_lib->set_acct_info($gatewayInfo->api_username, $gatewayInfo->api_password, $gatewayInfo->api_signature);
 
         $requestParams = array(
@@ -47,7 +47,7 @@ class Paypal extends CI_Controller {
         die();
 
         if ($this->input->get('token')) { // Token parameter exists
-            $gatewayInfo = $this->common->getPaymentGatewayInfo("EC");
+            $gatewayInfo = $this->common->getPaymentGatewayInfo("PAYPAL");
             $this->paypal_lib->set_acct_info(
                     $gatewayInfo->api_username, $gatewayInfo->api_password, $gatewayInfo->signature
             );
