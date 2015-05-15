@@ -235,7 +235,7 @@ class Plan_ipn_listener extends CI_Controller {
             'payer_email' => $data['payer_email'],
             'mc_gross' => $amount,
             'gateway' => "PAYPAL",
-            'payment_date' => date('Y-m-d', strtotime($data['payment_date']))
+            'payment_date' => date('Y-m-d', strtotime($data['subscr_date']))
         );
         $this->db->insert('payment_mst', $insert_set);
     }
