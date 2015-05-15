@@ -74,6 +74,13 @@
         background-color: #ca3523;
         border-color: rgba(0, 0, 0, 0.2);
     }
+    .pricing2 .bottom > a {
+        margin: 5% 16%;
+        display: block;
+        width: 75%;
+        padding: 3%;
+        font-size: 20px
+    }
 </style>
 
 
