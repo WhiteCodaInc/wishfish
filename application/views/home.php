@@ -619,21 +619,17 @@
 </section>
 
 <form id="paypal" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
-    <input type="hidden" name="custom" value="<?= $this->session->userdata('userid') ?>" />
     <input type="hidden" name="cmd" value="_xclick-subscriptions">
-    <input type="hidden" name="business" value="<?= $gatewayInfo->business_id ?>">
-    <input type="hidden" name="lc" value="IN">
+    <input type="hidden" name="business" value="<?= $paypal->business_id ?>">
     <input type="hidden" name="item_name" value="<?= $pdetail->plan_name ?>">
-    <input type="hidden" name="invoice" value="">
     <input type="hidden" name="no_note" value="1">
     <input type="hidden" name="src" value="1">
     <input type="hidden" name="a3" value="">
-    <input type="hidden" name="p3" value="">
+    <input type="hidden" name="p3" value="1">
     <input type="hidden" name="t3" value="M">
     <input type="hidden" name="currency_code" value="USD">
-    <input type="hidden" name="notify_url" value="" >
-    <input type="hidden" name="return" value="<?= site_url() ?>dashboard/dashboard" >
-    <input type="hidden" name="cancel_return" value="<?= site_url() ?>dashboard/upgrade_plans">
+    <input type="hidden" name="return" value="<?= site_url() ?>login" >
+    <input type="hidden" name="cancel_return" value="<?= site_url() ?>home">
     <input type="hidden" name="bn" value="PP-SubscriptionsBF:btn_subscribeCC_LG.gif:NonHostedGuest">
 </form>
 <form style="display: none" id="personal" action="<?= site_url() ?>stripe_payment/pay" method="post">

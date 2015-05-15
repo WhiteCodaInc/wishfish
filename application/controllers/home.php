@@ -23,9 +23,6 @@ class Home extends CI_Controller {
             require APPPATH . 'third_party/google-api/Google_Client.php';
             require APPPATH . 'third_party/google-api/contrib/Google_Oauth2Service.php';
             require_once APPPATH . 'third_party/facebook/facebook.php';
-            $this->load->library('authex');
-            $this->load->helper('cookie');
-
             $this->config->load('googleplus');
             $this->config->load('facebook');
             $this->load->model('m_register', 'objregister');
@@ -56,7 +53,8 @@ class Home extends CI_Controller {
         $data['isLogin_f'] = (isset($fid) && $fid != "") ? TRUE : FALSE;
         $data['url'] = $this->client->createAuthUrl();
         $data['pdetail'] = $this->common->getPlans();
-        $data['gatewayInfo'] = $this->common->getPaymentGatewayInfo("STRIPE");
+        $data['stripe'] = $this->common->getPaymentGatewayInfo("STRIPE");
+        $data['paypal'] = $this->common->getPaymentGatewayInfo("PAYPAL");
         $this->load->view('header');
         $this->load->view('navbar');
         $this->load->view('home', $data);
@@ -97,7 +95,7 @@ class Home extends CI_Controller {
         $subject = $this->parser->parse_string($templateInfo['mail_subject'], $tag, TRUE);
         $this->load->view('email_format', $templateInfo, TRUE);
         $body = $this->parser->parse('email_format', $tag, TRUE);
-		
+
         $from = ($templateInfo['from'] != "") ? $templateInfo['from'] : NULL;
         $name = ($templateInfo['name'] != "") ? $templateInfo['name'] : NULL;
 
