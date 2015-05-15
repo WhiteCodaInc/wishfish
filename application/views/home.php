@@ -621,7 +621,7 @@
 <form id="paypal" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
     <input type="hidden" name="cmd" value="_xclick-subscriptions">
     <input type="hidden" name="business" value="<?= $paypal->business_id ?>">
-    <input type="hidden" name="item_name" value="<?= $pdetail->plan_name ?>">
+    <input type="hidden" name="item_name" value="">
     <input type="hidden" name="no_note" value="1">
     <input type="hidden" name="src" value="1">
     <input type="hidden" name="a3" value="">
@@ -636,7 +636,7 @@
     <input type="hidden" name="plan" value="wishfish-personal"/>
     <script
         src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-        data-key="<?= $gatewayInfo->publish_key ?>"
+        data-key="<?= $stripe->publish_key ?>"
         data-image="/square-image.png"
         data-name="Personal"
         data-description="Product"                    
