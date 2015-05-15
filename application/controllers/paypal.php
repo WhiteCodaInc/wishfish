@@ -5,15 +5,14 @@ if (!defined('BASEPATH'))
 
 class Paypal extends CI_Controller {
 
-    var $post = array();
-
     function __construct() {
         parent::__construct();
         $this->load->library('paypal_lib');
     }
 
     function index() {
-        $this->post = $this->input->post();
+        $post = $this->input->post();
+        $this->session->set_userdata($post);
         $gatewayInfo = $this->common->getPaymentGatewayInfo("PAYPAL");
         $this->paypal_lib->set_acct_info($gatewayInfo->api_username, $gatewayInfo->api_password, $gatewayInfo->api_signature);
 
@@ -43,7 +42,7 @@ class Paypal extends CI_Controller {
     function consolidate() {
 
         echo '<pre>';
-        print_r($this->post);
+        print_r($this->session->all_userdata());
         die();
 
         if ($this->input->get('token')) { // Token parameter exists
