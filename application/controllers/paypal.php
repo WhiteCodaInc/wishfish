@@ -95,7 +95,7 @@ class Paypal extends CI_Controller {
 
     function insertPlanDetail($userid, $planid, $data) {
 
-        $start_dt = date('Y-m-d', $data['TIMESTAMP']);
+        $start_dt = date('Y-m-d', strtotime($data['TIMESTAMP']));
         $expiry_date = $this->common->getNextDate($start_dt, '1 months');
 
         $amount = $data['AMT'];
