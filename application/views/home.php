@@ -642,7 +642,7 @@
     </div>
 </section>
 
-<form id="paypal" action="<?= site_url() ?>paypal" method="post">
+<form id="paypal">
     <input type="hidden" name="item_name" value="">
     <input type="hidden" name="amount" value="">
 </form>
@@ -795,14 +795,25 @@
                     $('#enterprise button').trigger('click');
                     break;
                 case "wishfish-personal":
-                    $('#paypal input[name="item_name"]').val('wishfish-personal');
-                    $('#paypal input[name="a3"]').val('9.99');
-                    $('#paypal').submit();
-                    break;
                 case "wishfish-enterprise":
-                    $('#paypal input[name="item_name"]').val('wishfish-enterprise');
-                    $('#paypal input[name="a3"]').val('49.99');
-                    $('#paypal').submit();
+                    var item_name = "";
+                    var amount = "";
+                    $(this).prop('disabled', 'disabled');
+                    if (id == "wishfish-personal") {
+                        item_name = "wishfish-personal";
+                        amount = "9.99";
+                    } else {
+                        item_name = "wishfish-enterprise";
+                        amount = "49.99";
+                    }
+                    $.ajax({
+                        type: 'POST',
+                        url: "<?= site_url() ?>paypal",
+                        data: {item_name: item_name, amount: amount},
+                        success: function (answer) {
+                            window.location = answer;
+                        }
+                    });
                     break;
             }
         });
