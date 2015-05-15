@@ -8,7 +8,7 @@ class Paypal extends CI_Controller {
     function __construct() {
         parent::__construct();
         $this->load->library('paypal_lib');
-        date('Y-m-d',  strtotime("2015-05-15T06:11:18Z"));
+        echo date('Y-m-d', strtotime("2015-05-15T06:11:18Z"));
         die();
     }
 
