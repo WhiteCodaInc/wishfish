@@ -119,7 +119,7 @@ and open the template in the editor.
                                     </div>
                                     <div class="row m-bot15">
                                         <div class="col-md-1">
-                                            <input  class="form-control" style="width: 20px;margin: 0;" type="checkbox" name="remember"/> 
+                                            <input  style="width: 20px;margin: 0;" type="checkbox" name="remember"/> 
                                         </div>
                                         <div style="margin-top: 13px;" class="col-md-11">
                                             <span  id="remember" style="cursor: pointer">Remember me</span>
