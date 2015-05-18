@@ -20,7 +20,7 @@ class Pay extends CI_Controller {
         $currPlan = $this->common->getLatestPlan($this->userid);
         $userInfo = $this->common->getUserInfo($this->userid);
 
-        if (!$userInfo->is_set || $this->isExistProfileId($currPlan)) {
+        if (!$userInfo->is_set || ($userInfo->is_set && $this->isExistProfileId($currPlan))) {
             $post = $this->input->post();
             $this->session->set_flashdata($post);
             $gatewayInfo = $this->common->getPaymentGatewayInfo("PAYPAL");
