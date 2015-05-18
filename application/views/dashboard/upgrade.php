@@ -95,6 +95,9 @@
                             <button <?= $prop ?> type="button" id="<?= $id ?>" class="btn btn-info btn-lg">
                                 Upgrade
                             </button>
+                            <button <?= $prop ?> type="button" id="<?= $id ?>" class="btn btn-info btn-lg">
+                                    Upgrade
+                                </button>
                         </div><!-- /.box-body -->
                         <div style="display: none" class="overlay"></div>
                         <div style="display: none" class="loading-img"></div>
