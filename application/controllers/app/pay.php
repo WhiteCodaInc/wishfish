@@ -5,15 +5,19 @@ if (!defined('BASEPATH'))
 
 class Pay extends CI_Controller {
 
-    var $userid;
+    var $userid, $api_username, $api_password, $api_signature;
 
     function __construct() {
         parent::__construct();
         $gatewayInfo = $this->common->getPaymentGatewayInfo("STRIPE");
+        $paypalGatewayInfo = $this->common->getPaymentGatewayInfo("PAYPAL");
         require_once(FCPATH . 'stripe/lib/Stripe.php');
         Stripe::setApiKey($gatewayInfo->secret_key);
         $this->load->library('paypal_lib');
         $this->userid = $this->session->userdata('userid');
+        $this->api_username = $paypalGatewayInfo->api_username;
+        $this->api_password = $paypalGatewayInfo->api_password;
+        $this->api_signature = $paypalGatewayInfo->api_signature;
     }
 
     function index() {
@@ -25,8 +29,7 @@ class Pay extends CI_Controller {
         if (!$userInfo->is_set || ($userInfo->is_set && $this->isExistProfileId($currPlan))) {
             $post = $this->input->post();
             $this->session->set_flashdata($post);
-            $gatewayInfo = $this->common->getPaymentGatewayInfo("PAYPAL");
-            $this->paypal_lib->set_acct_info($gatewayInfo->api_username, $gatewayInfo->api_password, $gatewayInfo->api_signature);
+            $this->paypal_lib->set_acct_info($this->api_username, $this->api_password, $this->api_signature);
 
             $requestParams = array(
                 'RETURNURL' => site_url() . 'app/pay/consolidate',
@@ -56,9 +59,8 @@ class Pay extends CI_Controller {
 
     function consolidate() {
         if ($this->input->get('token')) { // Token parameter exists
-            $gatewayInfo = $this->common->getPaymentGatewayInfo("PAYPAL");
             $this->paypal_lib->set_acct_info(
-                    $gatewayInfo->api_username, $gatewayInfo->api_password, $gatewayInfo->api_signature
+                    $this->api_username, $this->api_password, $this->api_signature
             );
             $checkoutDetails = $this->paypal_lib->request('GetExpressCheckoutDetails', array('TOKEN' => $this->input->get('token')));
 
@@ -141,6 +143,9 @@ class Pay extends CI_Controller {
     function cancelRecurringProfile($id) {
 
         if ($this->getRecurringProfile($id)) {
+            $this->paypal_lib->set_acct_info(
+                    $this->api_username, $this->api_password, $this->api_signature
+            );
             $requestParams = array(
                 'PROFILEID' => $id,
                 'ACTION' => 'Cancel', //Cancel,Suspend,Reactivate
@@ -153,10 +158,16 @@ class Pay extends CI_Controller {
     }
 
     function getRecurringProfile($id) {
+        $this->paypal_lib->set_acct_info(
+                $this->api_username, $this->api_password, $this->api_signature
+        );
         $requestParams = array(
             'PROFILEID' => $id
         );
         $response = $this->paypal_lib->request('GetRecurringPaymentsProfileDetails', $requestParams);
+        echo '<pre>';
+        print_r($response);
+        die();
         return ($response['STATUS'] == "Active") ? TRUE : FALSE;
     }
 
