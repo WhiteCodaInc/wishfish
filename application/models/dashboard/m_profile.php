@@ -118,6 +118,11 @@ class M_profile extends CI_Model {
             $this->session->set_flashdata('error', $error);
             header('Location:' . site_url() . 'app/profile');
         } else {
+            $user_set = array(
+                'gateway' => "STRIPE",
+                'is_set' => 1
+            );
+            $this->db->update('user_mst', $user_set, array('user_id' => $this->userid));
             return TRUE;
         }
     }
