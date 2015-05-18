@@ -92,7 +92,7 @@ class Pay extends CI_Controller {
 
     function updateUser($data) {
         $user_set = array(
-            'customer_id' => $data['payer_id'],
+            'customer_id' => $data['PAYERID'],
             'gateway' => "PAYPAL",
             'is_set' => 1
         );
