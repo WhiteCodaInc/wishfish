@@ -99,6 +99,10 @@ class M_register extends CI_Model {
 
         $this->db->insert('user_mst', $set);
         $insertid = $this->db->insert_id();
+
+        $this->session->set_userdata('d-userid', $insertid);
+        $this->session->set_userdata('d-name', $set['name']);
+
         $planInfo = $this->common->getPlan(1);
         $plan_set = array(
             'plan_id' => 1,
@@ -137,6 +141,10 @@ class M_register extends CI_Model {
             }
         }
         return $flag;
+    }
+
+    function loginWithSocial($data) {
+        
     }
 
     function sendMail($post, $userid) {

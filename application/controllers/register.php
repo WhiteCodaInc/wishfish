@@ -58,7 +58,6 @@ class Register extends CI_Controller {
     }
 
     function signup() {
-
         if ($this->input->get('error')) {
             header('location:' . site_url() . 'register');
         }
@@ -96,7 +95,8 @@ class Register extends CI_Controller {
                         header('Location: ' . site_url() . 'register?msg=RF');
                     }
                 } else {
-                    header('Location: ' . site_url() . 'register?msg=RF');
+//                    header('Location: ' . site_url() . 'register?msg=RF');
+                    $this->objregister->registerWithSocial($data);
                 }
             } else {
                 //header('Location: ' . filter_var($this->client->getRedirectUri(), FILTER_SANITIZE_URL));

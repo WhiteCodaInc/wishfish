@@ -45,7 +45,6 @@ class Login extends CI_Controller {
     }
 
     function index() {
-
         $gid = $this->input->cookie('googleid');
         $fid = $this->input->cookie('facebookid');
         if (isset($gid) && $gid != "") {
