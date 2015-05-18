@@ -20,6 +20,14 @@ class Pay extends CI_Controller {
         $currPlan = $this->common->getLatestPlan($this->userid);
         $userInfo = $this->common->getUserInfo($this->userid);
 
+        $res = $this->isExistProfileId($currPlan);
+        if ($res) {
+            echo '<pre>';
+            print_r($res);
+        } else {
+            echo "FALSE";
+        }
+        die();
         if (!$userInfo->is_set || ($userInfo->is_set && $this->isExistProfileId($currPlan))) {
             $post = $this->input->post();
             $this->session->set_flashdata($post);

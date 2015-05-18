@@ -202,7 +202,7 @@
                     $('.enterprise .loading-img').show();
                     $.ajax({
                         type: 'POST',
-                        url: "<?= site_url() ?>paypal",
+                        url: "<?= site_url() ?>app/pay",
                         data: {item_name: item_name, amount: amount, upgrade: "1"},
                         success: function (answer) {
                             $('#' + id).prop('disabled', false);
