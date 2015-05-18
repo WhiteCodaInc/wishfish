@@ -208,7 +208,7 @@
                             $('#' + id).prop('disabled', false);
                             $('.enterprise .overlay').hide();
                             $('.enterprise .loading-img').hide();
-                            if (!answer) {
+                            if (answer == "0F") {
                                 $('#error').show();
                                 $('#error-msg').text("You can not upgrade your plan until your first invoice will create.!");
                             } else {
