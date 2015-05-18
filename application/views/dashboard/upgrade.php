@@ -99,14 +99,14 @@
                                 $id = ($plan->plan_id == 2) ? "a_personal" : "a_enterprise";
                                 ?>
                                 <button <?= $prop ?> type="button" id="<?= $id ?>" class="btn btn-info btn-lg">
-                                    Upgrade With Credit Card
+                                    <?= ($userInfo->is_set) ? "Upgrade" : "Upgrade With Credit Card" ?>
                                 </button>
                                 <?php
                             } else if (!$userInfo->is_set || $userInfo->gateway == "PAYPAL") {
                                 $id = ($plan->plan_id == 2) ? "pay_personal" : "pay_enterprise";
                                 ?>
                                 <button <?= $prop ?> type="button" id="<?= $id ?>" class="btn btn-info btn-lg">
-                                    Upgrade With Paypal
+                                    <?= ($userInfo->is_set) ? "Upgrade" : "Upgrade With Paypal" ?>
                                 </button>
                             <?php } ?>
                         </div><!-- /.box-body -->
