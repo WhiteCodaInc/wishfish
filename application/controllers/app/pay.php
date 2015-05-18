@@ -24,8 +24,6 @@ class Pay extends CI_Controller {
         $currPlan = $this->common->getLatestPlan($this->userid);
         $userInfo = $this->common->getUserInfo($this->userid);
 
-        $res = $this->isExistProfileId($currPlan);
-
         if (!$userInfo->is_set || ($userInfo->is_set && $this->isExistProfileId($currPlan))) {
             $post = $this->input->post();
             $this->session->set_flashdata($post);
@@ -141,7 +139,6 @@ class Pay extends CI_Controller {
     }
 
     function cancelRecurringProfile($id) {
-
         if ($this->getRecurringProfile($id)) {
             $this->paypal_lib->set_acct_info(
                     $this->api_username, $this->api_password, $this->api_signature
@@ -165,9 +162,6 @@ class Pay extends CI_Controller {
             'PROFILEID' => $id
         );
         $response = $this->paypal_lib->request('GetRecurringPaymentsProfileDetails', $requestParams);
-        echo '<pre>';
-        print_r($response);
-        die();
         return ($response['STATUS'] == "Active") ? TRUE : FALSE;
     }
 
