@@ -173,7 +173,7 @@ class Pay extends CI_Controller {
         echo '<pre>';
         print_r($query->row());
         die();
-        return ($query->num_rows()) ? $query->row() : FALSE;
+        return ($query->num_rows() == 1) ? $query->row() : FALSE;
     }
 
 }
