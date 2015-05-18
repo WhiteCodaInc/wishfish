@@ -61,9 +61,7 @@ class Pay extends CI_Controller {
                 'MAXFAILEDPAYMENTS' => 3,
                 'FAILEDINITAMTACTION' => 'CancelOnFailure'
             );
-            echo '<pre>';
-            print_r($checkoutDetails);
-            die();
+
             $response = $this->paypal_lib->request('CreateRecurringPaymentsProfile', $requestParams);
             if (is_array($response) && $response['ACK'] == 'Success') {
                 $currPlan = $this->common->getLatestPlan($this->userid);
