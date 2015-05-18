@@ -9,6 +9,9 @@ class Pay extends CI_Controller {
 
     function __construct() {
         parent::__construct();
+        $gatewayInfo = $this->common->getPaymentGatewayInfo("STRIPE");
+        require_once(FCPATH . 'stripe/lib/Stripe.php');
+        Stripe::setApiKey($gatewayInfo->secret_key);
         $this->load->library('paypal_lib');
         $this->userid = $this->session->userdata('userid');
     }
