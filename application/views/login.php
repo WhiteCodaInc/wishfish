@@ -238,6 +238,10 @@ and open the template in the editor.
                 $m = "This Email Has Already Been Used! Please Use Forgot Password!..:)";
                 $t = "error";
                 break;
+            case "NR":
+                $m = "Your Email address not register..!";
+                $t = "error";
+                break;
             default:
                 $m = 0;
                 break;
