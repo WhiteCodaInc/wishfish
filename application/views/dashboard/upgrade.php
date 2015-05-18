@@ -22,8 +22,13 @@
         padding: 0;
     }
     #planUpgrade .box-body button{
-        width: 65%;
-        margin: 5%;
+        /*        width: 65%;
+                margin: 5%;*/
+        margin: 5% 16%;
+        display: block;
+        width: 75%;
+        padding: 3%;
+        font-size: 20px
     }
     #planUpgrade .box-header{
         text-align: center;
@@ -96,8 +101,8 @@
                                 Upgrade
                             </button>
                             <button <?= $prop ?> type="button" id="<?= $id ?>" class="btn btn-info btn-lg">
-                                    Upgrade
-                                </button>
+                                Upgrade
+                            </button>
                         </div><!-- /.box-body -->
                         <div style="display: none" class="overlay"></div>
                         <div style="display: none" class="loading-img"></div>
