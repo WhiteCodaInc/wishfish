@@ -170,10 +170,7 @@ class Pay extends CI_Controller {
         $this->db->select('*');
         $this->db->limit(1);
         $query = $this->db->get_where('payment_mst', array('id' => $currPlan->id));
-        echo '<pre>';
-        print_r($query->row());
-        die();
-        return ($query->num_rows() == 1) ? $query->row() : FALSE;
+        return ($query->num_rows()) ? $query->row() : FALSE;
     }
 
 }
