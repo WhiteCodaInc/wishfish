@@ -65,9 +65,12 @@ class Pay extends CI_Controller {
                     $this->api_username, $this->api_password, $this->api_signature
             );
             $checkoutDetails = $this->paypal_lib->request('GetExpressCheckoutDetails', array('TOKEN' => $this->input->get('token')));
-
             $planid = ($this->session->flashdata('item_name') == "wishfish-personal") ? 2 : 3;
 
+//            $currPlan = $this->common->getLatestPlan($this->userid);
+//            $profileid = $this->isExistProfileId($currPlan);
+//            $this->getRecurringProfile($profileid->transaction_id)
+//            echo '<pre>';
             // Complete the checkout transaction
             $requestParams = array(
                 'TOKEN' => $this->input->get('token'),
@@ -99,7 +102,7 @@ class Pay extends CI_Controller {
                     } else {
                         $profileid = $this->isExistProfileId($currPlan);
                         if ($profileid)
-                            $this->cancelRecurringProfile($profileid->id);
+                            $this->cancelRecurringProfile($profileid->transaction_id);
                     }
                 }
                 $this->insertPlanDetail($planid, $response);
