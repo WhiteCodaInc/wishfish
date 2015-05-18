@@ -210,7 +210,7 @@
                             $('.enterprise .loading-img').hide();
                             if (answer == "0") {
                                 $('#error').show();
-                                $('#error-msg').text("You can not upgrade your plan until your first invoice will create.!");
+                                $('#error-msg').text("You can not upgrade your plan until your first invoice was created.!");
                             } else {
                                 window.location = answer;
                             }
