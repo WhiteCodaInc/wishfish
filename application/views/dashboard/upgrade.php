@@ -89,22 +89,12 @@
                                 <li> Import Contacts From Spreadsheet or CSV File</li>
                             </ul>
                             <?php
-                            if ($userInfo->gateway == "STRIPE") {
-                                $id = ($plan->plan_id == 2) ? "a_personal" : "a_enterprise";
-                                $prop = ($currPlan->plan_id == $plan->plan_id && $currPlan->plan_status != 0) ? 'disabled' : '';
-                            } else if ($userInfo->gateway == "PAYPAL") {
-                                $id = ($plan->plan_id == 2) ? "pay_personal" : "pay_enterprise";
-                            } else {
-                                $id = "";
-                                $prop = "";
-                            }
+                            $id = ($plan->plan_id == 2) ? "a_personal" : "a_enterprise";
+                            $prop = ($currPlan->plan_id == $plan->plan_id && $currPlan->plan_status != 0) ? 'disabled' : '';
                             ?>
                             <button <?= $prop ?> type="button" id="<?= $id ?>" class="btn btn-info btn-lg">
                                 Upgrade
                             </button>
-                            <button <?= $prop ?> type="button" id="<?= $id ?>" class="btn btn-info btn-lg">
-                                    Upgrade
-                                </button>
                         </div><!-- /.box-body -->
                         <div style="display: none" class="overlay"></div>
                         <div style="display: none" class="loading-img"></div>
