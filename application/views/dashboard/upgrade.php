@@ -89,8 +89,12 @@
                                 <li> Import Contacts From Spreadsheet or CSV File</li>
                             </ul>
                             <?php
-                            $id = ($plan->plan_id == 2) ? "a_personal" : "a_enterprise";
-                            $prop = ($currPlan->plan_id == $plan->plan_id && $currPlan->plan_status != 0) ? 'disabled' : '';
+                            if ($userInfo->is_set && $userInfo->gateway == "STRIPE") {
+                                $id = ($plan->plan_id == 2) ? "a_personal" : "a_enterprise";
+                                $prop = ($currPlan->plan_id == $plan->plan_id && $currPlan->plan_status != 0) ? 'disabled' : '';
+                            } else if ($userInfo->is_set && $userInfo->gateway == "PAYPAL") {
+                                $id = ($plan->plan_id == 2) ? "pay_personal" : "pay_enterprise";
+                            }
                             ?>
                             <button <?= $prop ?> type="button" id="<?= $id ?>" class="btn btn-info btn-lg">
                                 Upgrade
@@ -141,7 +145,7 @@
                 </form>
             <?php endif; ?>
         <?php endif; ?>
-        
+
         <!--        <form id="paypal" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
                     <input type="hidden" name="cmd" value="_xclick-subscriptions">
                     <input type="hidden" name="business" value="<?= $paypal->business_id ?>">
