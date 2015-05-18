@@ -203,7 +203,13 @@
                         url: "<?= site_url() ?>paypal",
                         data: {item_name: item_name, amount: amount, upgrade: "1"},
                         success: function (answer) {
-                            window.location = answer;
+                            if (!answer) {
+                                $('#error').show();
+                                $('#error-msg').text("You can not upgrade your plan until your first invoice will create.!");
+                            } else {
+                                window.location = answer;
+                            }
+
                         }
                     });
                 });

@@ -17,29 +17,38 @@ class Pay extends CI_Controller {
     }
 
     function index() {
-        $gatewayInfo = $this->common->getPaymentGatewayInfo("PAYPAL");
-        $this->paypal_lib->set_acct_info($gatewayInfo->api_username, $gatewayInfo->api_password, $gatewayInfo->api_signature);
+        $currPlan = $this->common->getLatestPlan($this->userid);
+        $userInfo = $this->common->getUserInfo($this->userid);
 
-        $requestParams = array(
-            'RETURNURL' => site_url() . 'app/pay/consolidate',
-            'CANCELURL' => site_url() . 'app/profile',
-        );
+        if (!$userInfo->is_set || $this->isExistProfileId($currPlan)) {
+            $post = $this->input->post();
+            $this->session->set_flashdata($post);
+            $gatewayInfo = $this->common->getPaymentGatewayInfo("PAYPAL");
+            $this->paypal_lib->set_acct_info($gatewayInfo->api_username, $gatewayInfo->api_password, $gatewayInfo->api_signature);
 
-        $recurring = array(
-            'L_BILLINGTYPE0' => 'RecurringPayments',
-            'L_BILLINGAGREEMENTDESCRIPTION0' => "wishfish-personal"
-        );
-        $response = $this->paypal_lib->request('SetExpressCheckout', $requestParams + $recurring);
+            $requestParams = array(
+                'RETURNURL' => site_url() . 'app/pay/consolidate',
+                'CANCELURL' => site_url() . 'app/profile',
+            );
 
-        if (is_array($response) && $response['ACK'] == 'Success') { //Request successful
-            $token = $response['TOKEN'];
+            $recurring = array(
+                'L_BILLINGTYPE0' => 'RecurringPayments',
+                'L_BILLINGAGREEMENTDESCRIPTION0' => $post['item_name']
+            );
+            $response = $this->paypal_lib->request('SetExpressCheckout', $requestParams + $recurring);
 
-            if ($this->paypal_lib->is_sandbox)
-                echo 'https://www.sandbox.paypal.com/webscr?cmd=_express-checkout&token=' . urlencode($token);
-            else
-                echo 'https://www.paypal.com/webscr?cmd=_express-checkout&token=' . urlencode($token);
+            if (is_array($response) && $response['ACK'] == 'Success') { //Request successful
+                $token = $response['TOKEN'];
+
+                if ($this->paypal_lib->is_sandbox)
+                    echo 'https://www.sandbox.paypal.com/webscr?cmd=_express-checkout&token=' . urlencode($token);
+                else
+                    echo 'https://www.paypal.com/webscr?cmd=_express-checkout&token=' . urlencode($token);
+            } else {
+                echo 0;
+            }
         } else {
-            return false;
+            echo 0;
         }
     }
 
@@ -50,16 +59,19 @@ class Pay extends CI_Controller {
                     $gatewayInfo->api_username, $gatewayInfo->api_password, $gatewayInfo->api_signature
             );
             $checkoutDetails = $this->paypal_lib->request('GetExpressCheckoutDetails', array('TOKEN' => $this->input->get('token')));
+
+            $planid = ($this->session->flashdata('item_name') == "wishfish-personal") ? 2 : 3;
+
             // Complete the checkout transaction
             $requestParams = array(
                 'TOKEN' => $this->input->get('token'),
                 'PROFILESTARTDATE' => $checkoutDetails['TIMESTAMP'],
-                'DESC' => "wishfish-personal",
+                'DESC' => $this->session->flashdata('item_name'),
                 'BILLINGPERIOD' => 'Month',
                 'PROFILEREFERENCE' => $this->userid,
                 'BILLINGFREQUENCY' => 1,
                 'TOTALBILLINGCYCLES' => 0,
-                'AMT' => '9.99',
+                'AMT' => $this->session->flashdata('amount'),
                 'CURRENCYCODE' => 'USD',
                 'MAXFAILEDPAYMENTS' => 3,
                 'FAILEDINITAMTACTION' => 'CancelOnFailure'
@@ -67,21 +79,30 @@ class Pay extends CI_Controller {
 
             $response = $this->paypal_lib->request('CreateRecurringPaymentsProfile', $requestParams);
             if (is_array($response) && $response['ACK'] == 'Success') {
+                $response['AMT'] = $this->session->flashdata('amount');
                 $currPlan = $this->common->getLatestPlan($this->userid);
+                $userInfo = $this->common->getUserInfo($this->userid);
                 if ($currPlan->plan_status == 1) {
-                    try {
-                        $uInfo = $this->common->getUserInfo($this->userid);
-                        $customer = Stripe_Customer::retrieve($uInfo->customer_id);
-                        if (isset($customer->subscriptions->data[0]->id)) {
-                            $subs = $customer->subscriptions->data[0]->id;
-                            $customer->subscriptions->retrieve($subs)->cancel();
+                    if (!$userInfo->is_set) {
+                        try {
+                            $uInfo = $this->common->getUserInfo($this->userid);
+                            $customer = Stripe_Customer::retrieve($uInfo->customer_id);
+                            if (isset($customer->subscriptions->data[0]->id)) {
+                                $subs = $customer->subscriptions->data[0]->id;
+                                $customer->subscriptions->retrieve($subs)->cancel();
+                            }
+                        } catch (Exception $e) {
+                            
                         }
-                    } catch (Exception $e) {
-                        
+                    } else {
+                        $this->db->select('*');
+                        $this->db->limit(1);
+                        $query = $this->db->get_where('payment_mst', array('id' => $currPlan));
                     }
                 }
+
                 $this->updateUser($checkoutDetails);
-                $this->insertPlanDetail($response);
+                $this->insertPlanDetail($planid, $response);
                 header('Location:' . site_url() . 'app/dashboard');
             } else {
                 $this->session->set_flashdata('error', "Transaction Failed..!Try Again..!");
@@ -99,7 +120,7 @@ class Pay extends CI_Controller {
         $this->db->update('user_mst', $user_set, array('user_id' => $this->userid));
     }
 
-    function insertPlanDetail($data) {
+    function insertPlanDetail($planid, $data) {
 
         $start_dt = date('Y-m-d', strtotime($data['TIMESTAMP']));
         $expiry_date = $this->common->getNextDate($start_dt, '1 months');
@@ -107,18 +128,48 @@ class Pay extends CI_Controller {
         $planInfo = $this->common->getPlan(2);
         $plan_set = array(
             'user_id' => $this->userid,
-            'plan_id' => 2,
+            'plan_id' => $planid,
             'contacts' => $planInfo->contacts,
             'sms_events' => $planInfo->sms_events,
             'email_events' => $planInfo->email_events,
             'group_events' => $planInfo->group_events,
-            'amount' => '9.99',
+            'amount' => $data['AMT'],
             'plan_status' => 1,
             'start_date' => $start_dt,
             'expiry_date' => $expiry_date
         );
         $this->db->insert('plan_detail', $plan_set);
         return true;
+    }
+
+    function cancelRecurringProfile($id) {
+        $this->load->library('paypallib');
+        $paypal = $this->paypallib;
+        $requestParams = array(
+            'PROFILEID' => $id,
+            'ACTION' => 'Cancel', //Cancel,Suspend,Reactivate
+        );
+        $response = $paypal->request('ManageRecurringPaymentsProfileStatus', $requestParams);
+        echo "<pre>";
+        print_r($response);
+    }
+
+    function getRecurringProfile($id) {
+        $this->load->library('paypallib');
+        $paypal = $this->paypallib;
+        $requestParams = array(
+            'PROFILEID' => $id,
+        );
+        $response = $paypal->request('GetRecurringPaymentsProfileDetails', $requestParams);
+        echo "<pre>";
+        print_r($response);
+    }
+
+    function isExistProfileId($currPlan) {
+        $this->db->select('*');
+        $this->db->limit(1);
+        $query = $this->db->get_where('payment_mst', array('id' => $currPlan->id));
+        return ($query->num_rows()) ? $query->row() : FALSE;
     }
 
 }

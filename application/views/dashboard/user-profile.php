@@ -300,6 +300,7 @@
             $(this).prop('disabled', 'disabled');
             $.ajax({
                 type: 'POST',
+                data: {item_name: "wishfish-personal", amount: "9.99"},
                 url: "<?= site_url() ?>app/pay",
                 success: function (answer) {
                     window.location = answer;
