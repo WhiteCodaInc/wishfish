@@ -205,7 +205,6 @@
                         url: "<?= site_url() ?>app/pay",
                         data: {item_name: item_name, amount: amount, upgrade: "1"},
                         success: function (answer) {
-                            $('#' + id).prop('disabled', false);
                             $('.enterprise .overlay').hide();
                             $('.enterprise .loading-img').hide();
                             if (answer == "0") {
