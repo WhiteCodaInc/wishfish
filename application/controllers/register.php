@@ -70,7 +70,7 @@ class Register extends CI_Controller {
         $this->input->set_cookie($isSignup);
 
         $code = $this->input->get('code');
-        $token = $this->session->userdata('token');
+//        $token = $this->session->userdata('token');
 
         if (isset($code) && $code != "") {
             $this->client->authenticate($code);
@@ -95,8 +95,7 @@ class Register extends CI_Controller {
                         header('Location: ' . site_url() . 'register?msg=RF');
                     }
                 } else {
-//                    header('Location: ' . site_url() . 'register?msg=RF');
-                    $this->objregister->registerWithSocial($data);
+                    header('Location: ' . site_url() . 'register?msg=RF');
                 }
             } else {
                 //header('Location: ' . filter_var($this->client->getRedirectUri(), FILTER_SANITIZE_URL));

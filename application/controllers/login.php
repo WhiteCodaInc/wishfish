@@ -26,16 +26,16 @@ class Login extends CI_Controller {
             require_once APPPATH . 'third_party/facebook/facebook.php';
             $this->load->library('authex');
             $this->load->helper('cookie');
-            $this->config->load('googleplus');
+            $this->config->load('googlelogin');
             $this->config->load('facebook');
             $this->load->model('m_register', 'objregister');
 
             $this->client = new Google_Client();
-            $this->client->setApplicationName($this->config->item('application_name', 'googleplus'));
-            $this->client->setClientId($this->config->item('client_id', 'googleplus'));
-            $this->client->setClientSecret($this->config->item('client_secret', 'googleplus'));
-            $this->client->setRedirectUri($this->config->item('redirect_uri', 'googleplus'));
-            $this->client->setDeveloperKey($this->config->item('api_key', 'googleplus'));
+            $this->client->setApplicationName($this->config->item('application_name', 'googlelogin'));
+            $this->client->setClientId($this->config->item('client_id', 'googlelogin'));
+            $this->client->setClientSecret($this->config->item('client_secret', 'googlelogin'));
+            $this->client->setRedirectUri($this->config->item('redirect_uri', 'googlelogin'));
+            $this->client->setDeveloperKey($this->config->item('api_key', 'googlelogin'));
 
             $this->service = new Google_Oauth2Service($this->client);
 
@@ -64,7 +64,7 @@ class Login extends CI_Controller {
         $this->load->view('login', $data);
     }
 
-    function signin() {
+    function login() {
         $post = $this->input->post();
         if (isset($post['remember'])) {
             $remember = $post['remember'];
@@ -85,6 +85,33 @@ class Login extends CI_Controller {
             }
         } else {
             header('location:' . site_url() . 'login');
+        }
+    }
+
+    function signin() {
+        if ($this->input->get('error')) {
+            header('location:' . site_url() . 'login');
+        }
+        $code = $this->input->get('code');
+        if (isset($code) && $code != "") {
+            $this->client->authenticate($code);
+            $this->session->set_userdata('token', $this->client->getAccessToken());
+            if ($this->client->getAccessToken()) {
+                $data = $this->service->userinfo->get();
+                $this->session->set_userdata('token', $this->client->getAccessToken());
+                $user = $this->objregister->isUserExist($data);
+                if (!$user) {
+                    header('Location: ' . site_url() . 'login?msg=NR');
+                } else {
+                    if ($this->authex->loginByGoogle($data['id'])) {
+                        header('location:' . site_url() . 'app/dashboard');
+                    } else {
+                        header('Location: ' . site_url() . 'login?msg=NR');
+                    }
+                }
+            } else {
+                header('Location: ' . site_url() . 'login');
+            }
         }
     }
 
