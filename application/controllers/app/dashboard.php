@@ -34,21 +34,23 @@ class Dashboard extends CI_Controller {
         $this->uid = ($userid != "") ? $this->encryption->decode($userid) : '';
 
         if (!$this->duid && !$this->uid) {
-//            $gid = $this->input->cookie('googleid', TRUE);
-//            $fid = $this->input->cookie('facebookid', TRUE);
-//            $g_isSignup = $this->input->cookie('g_isSignup', TRUE);
-//            ($g_isSignup) ? delete_cookie('g_isSignup', '.wish-fish.com', '/') : '';
-//            $f_isSignup = $this->input->cookie('f_isSignup', TRUE);
-//            ($f_isSignup) ? delete_cookie('f_isSignup', '.wish-fish.com', '/') : '';
-//            $flag = FALSE;
-//            if (!$this->authex->logged_in()) {
-//                if ($gid != "" && $g_isSignup) {
-//                    $flag = (!$this->authex->loginByGoogle($gid)) ? FALSE : TRUE;
-//                } else if ($fid != "" && $f_isSignup) {
-//                    $flag = (!$this->authex->loginByFacebook($fid)) ? FALSE : TRUE;
-//                }
-//            }
+            $gid = $this->input->cookie('googleid', TRUE);
+            $fid = $this->input->cookie('facebookid', TRUE);
+            $g_isSignup = $this->input->cookie('g_isSignup', TRUE);
+            ($g_isSignup) ? delete_cookie('g_isSignup', '.wish-fish.com', '/') : '';
+            $f_isSignup = $this->input->cookie('f_isSignup', TRUE);
+            ($f_isSignup) ? delete_cookie('f_isSignup', '.wish-fish.com', '/') : '';
+            $flag = FALSE;
+
+
             if (!$this->authex->logged_in()) {
+                if ($gid != "" && $g_isSignup) {
+                    $flag = (!$this->authex->loginByGoogle($gid)) ? FALSE : TRUE;
+                } else if ($fid != "" && $f_isSignup) {
+                    $flag = (!$this->authex->loginByFacebook($fid)) ? FALSE : TRUE;
+                }
+            }
+            if (!$flag && !$this->authex->logged_in()) {
                 header('location:' . site_url() . 'home');
             }
 //            } elseif (!$this->authex->isActivePlan()) {
