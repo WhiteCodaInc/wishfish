@@ -246,33 +246,6 @@
 </div>
 <!------------------------------------------------------------------------>
 
-
-
-<?php
-/*
-  $url = ($gatewayInfo->mode) ?
-  "https://www.paypal.com/cgi-bin/webscr" :
-  "https://www.sandbox.paypal.com/cgi-bin/webscr"
- * */
-?>
-<!--<form style="display: none" id="paypal" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
-    <input type="hidden" name="custom" value="<?= $this->session->userdata('userid') ?>" />
-    <input type="hidden" name="cmd" value="_xclick-subscriptions">
-    <input type="hidden" name="business" value="<?= $gatewayInfo->business_id ?>">
-    <input type="hidden" name="item_name" value="wishfish-personal">
-    <input type="hidden" name="no_note" value="1">
-    <input type="hidden" name="src" value="1">
-    <input type="hidden" name="a3" value="9.99">
-    <input type="hidden" name="p3" value="1">
-    <input type="hidden" name="t3" value="M">
-    <input type="hidden" name="currency_code" value="USD">
-    <input type="hidden" name="return" value="<?= site_url() ?>app/dashboard" >
-    <input type="hidden" name="cancel_return" value="<?= site_url() ?>app/profile">
-    <input type="hidden" name="bn" value="PP-SubscriptionsBF:btn_subscribeCC_LG.gif:NonHostedGuest">
-</form>-->
-<!-------------------------------------------------------------------------------------------------->
-
-
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 
 <!-- InputMask -->
