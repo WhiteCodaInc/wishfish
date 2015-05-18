@@ -99,7 +99,7 @@ class Pay extends CI_Controller {
                     } else {
                         $profileid = $this->isExistProfileId($currPlan);
                         if ($profileid)
-                            $this->cancelRecurringProfile($profileid);
+                            $this->cancelRecurringProfile($profileid->id);
                     }
                 }
                 $this->insertPlanDetail($planid, $response);
@@ -144,9 +144,9 @@ class Pay extends CI_Controller {
 
     function cancelRecurringProfile($id) {
         if ($this->getRecurringProfile($id)) {
-            $this->paypal_lib->set_acct_info(
-                    $this->api_username, $this->api_password, $this->api_signature
-            );
+//            $this->paypal_lib->set_acct_info(
+//                    $this->api_username, $this->api_password, $this->api_signature
+//            );
             $requestParams = array(
                 'PROFILEID' => $id,
                 'ACTION' => 'Cancel', //Cancel,Suspend,Reactivate
@@ -159,9 +159,9 @@ class Pay extends CI_Controller {
     }
 
     function getRecurringProfile($id) {
-        $this->paypal_lib->set_acct_info(
-                $this->api_username, $this->api_password, $this->api_signature
-        );
+//        $this->paypal_lib->set_acct_info(
+//                $this->api_username, $this->api_password, $this->api_signature
+//        );
         $requestParams = array(
             'PROFILEID' => $id
         );
