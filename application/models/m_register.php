@@ -101,7 +101,7 @@ class M_register extends CI_Model {
         $insertid = $this->db->insert_id();
 
         $this->session->set_userdata('d-userid', $insertid);
-        $this->session->set_userdata('d-name', $post['name']);
+        $this->session->set_userdata('d-name', $set['name']);
 
         $planInfo = $this->common->getPlan(1);
         $plan_set = array(
