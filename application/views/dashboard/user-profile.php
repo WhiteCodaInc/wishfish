@@ -246,10 +246,7 @@
 </div>
 <!------------------------------------------------------------------------>
 
-<form id="paypal" action="<?= site_url() ?>paypal">
-    <input type="hidden" name="item_name" value="wishfish-personal">
-    <input type="hidden" name="amount" value="9.99">
-</form>
+
 
 <?php
 /*
