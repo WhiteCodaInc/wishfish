@@ -22,7 +22,7 @@ class Pay extends CI_Controller {
 
         $requestParams = array(
             'RETURNURL' => site_url() . 'app/pay/consolidate',
-            'CANCELURL' => site_url() . 'app/dashboard',
+            'CANCELURL' => site_url() . 'app/profile',
         );
 
         $recurring = array(
