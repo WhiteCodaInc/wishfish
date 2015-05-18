@@ -147,10 +147,6 @@ class Register extends CI_Controller {
         header('Location: ' . site_url() . 'login'); //redirect user back to page
     }
 
-    function isUserExist($data) {
-        return $this->objregister->isUserExist($data);
-    }
-
     function createAccount() {
         $post = $this->input->post();
         if ($this->authex->can_register($post['email'])) {
