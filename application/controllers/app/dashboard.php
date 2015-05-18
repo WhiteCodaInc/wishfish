@@ -175,7 +175,7 @@ class Dashboard extends CI_Controller {
             $userInfo = $this->common->getUserInfo($userid);
             $msg1 = "Congratulations! You have verified your phone number successfully!";
             $this->common->sendSMS($userInfo->phone, $msg1);
-            $msg2 = "Please save this number as 'Wish-Fish', You can use it for your own custom notification.";
+            $msg2 = "Please save this number as 'Wish-Fish'.";
             $this->common->sendSMS($userInfo->phone, $msg2);
             echo 1;
         } else {

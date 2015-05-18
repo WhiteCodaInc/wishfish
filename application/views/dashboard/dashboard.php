@@ -234,13 +234,6 @@
                 </div>
             </div>
         </div>
-        <div class="row" style="margin: 10%">
-            <div class="col-md-3"></div>
-            <div id="wishfish-title" class="col-md-6" style="text-align: center">
-                <h1>Welcome To Wish Fish</h1>
-            </div>
-            <div class="col-md-3"></div>
-        </div>
     </section>
 </aside>
 <?php $userInfo = $this->common->getUserInfo($this->session->userdata('userid')); ?>
