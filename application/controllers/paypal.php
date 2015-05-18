@@ -69,6 +69,7 @@ class Paypal extends CI_Controller {
             );
             $response = $this->paypal_lib->request('CreateRecurringPaymentsProfile', $requestParams);
             print_r($response);
+            echo $this->session->flashdata('amount');
             die();
             if (is_array($response) && $response['ACK'] == 'Success') {
                 $response['AMT'] = $checkoutDetails['AMT'];
