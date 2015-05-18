@@ -121,43 +121,6 @@ class Pay extends CI_Controller {
         return true;
     }
 
-    function generateRandomString($length = 5) {
-        return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
-    }
-
-    function cancelled() {
-        header('location:' . site_url() . 'app/profile');
-    }
-
-    function sendMail($post, $userid) {
-        $uid = $this->encryption->encode($userid);
-        $templateInfo = $this->common->getAutomailTemplate("NEW USER REGISTRATION");
-        $url = site_url() . 'app/dashboard?uid=' . $uid;
-        $link = "<table border='0' align='center' cellpadding='0' cellspacing='0' class='mainBtn' style='margin-top: 0;margin-left: auto;margin-right: auto;margin-bottom: 0;padding-top: 0;padding-bottom: 0;padding-left: 0;padding-right: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-collapse: collapse;border-spacing: 0;'>";
-        $link .= "<tr>";
-        $link .= "<td align='center' valign='middle' class='btnMain' style='margin-top: 0;margin-left: 0;margin-right: 0;margin-bottom: 0;padding-top: 12px;padding-bottom: 12px;padding-left: 22px;padding-right: 22px;border-collapse: collapse;border-spacing: 0;-webkit-text-size-adjust: none;font-family: Arial, Helvetica, sans-serif;background-color: {$templateInfo['color']};height: 20px;font-size: 18px;line-height: 20px;mso-line-height-rule: exactly;text-align: center;vertical-align: middle;'>
-                                            <a href='{$url}' style='padding-top: 0;padding-bottom: 0;padding-left: 0;padding-right: 0;display: inline-block;text-decoration: none;-webkit-text-size-adjust: none;font-family: Arial, Helvetica, sans-serif;color: #ffffff;font-weight: bold;'>
-                                                <span style='text-decoration: none;color: #ffffff;'>
-                                                    Active Your Account
-                                                </span>
-                                            </a>
-                                        </td>";
-        $link .= "</tr></table>";
-        $tag = array(
-            'NAME' => "User",
-            'LINK' => $link,
-            'THISDOMAIN' => "Wish-Fish"
-        );
-        $subject = $this->parser->parse_string($templateInfo['mail_subject'], $tag, TRUE);
-        $this->load->view('email_format', $templateInfo, TRUE);
-        $body = $this->parser->parse('email_format', $tag, TRUE);
-
-        $from = ($templateInfo['from'] != "") ? $templateInfo['from'] : NULL;
-        $name = ($templateInfo['name'] != "") ? $templateInfo['name'] : NULL;
-
-        return $this->common->sendAutoMail($post['EMAIL'], $subject, $body, $from, $name);
-    }
-
 }
 
 /* End of file welcome.php */
