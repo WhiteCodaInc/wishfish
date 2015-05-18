@@ -642,7 +642,7 @@
     </div>
 </section>
 
-<form id="paypal">
+<form id="paypal" action="<?= site_url() ?>app/pay">
     <input type="hidden" name="item_name" value="">
     <input type="hidden" name="amount" value="">
 </form>

@@ -166,9 +166,7 @@
                             <?php endif; ?>
                             <?php if (!$user->is_set): ?>
                                 <div class="form-group">
-                                    <button id="pay" class="btn btn-primary">
-                                        Pay With Paypal
-                                    </button>
+                                    <a href="javascript:void(0);" id="pay" class="btn btn-primary">Pay With Paypal</a>
                                 </div>
                             <?php endif; ?>
                         </div>
@@ -247,6 +245,12 @@
     </div><!-- /.modal-dialog -->
 </div>
 <!------------------------------------------------------------------------>
+
+<form id="paypal" action="<?= site_url() ?>paypal">
+    <input type="hidden" name="item_name" value="wishfish-personal">
+    <input type="hidden" name="amount" value="9.99">
+</form>
+
 <?php
 /*
   $url = ($gatewayInfo->mode) ?
@@ -254,7 +258,7 @@
   "https://www.sandbox.paypal.com/cgi-bin/webscr"
  * */
 ?>
-<form style="display: none" id="paypal" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<!--<form style="display: none" id="paypal" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
     <input type="hidden" name="custom" value="<?= $this->session->userdata('userid') ?>" />
     <input type="hidden" name="cmd" value="_xclick-subscriptions">
     <input type="hidden" name="business" value="<?= $gatewayInfo->business_id ?>">
@@ -268,7 +272,7 @@
     <input type="hidden" name="return" value="<?= site_url() ?>app/dashboard" >
     <input type="hidden" name="cancel_return" value="<?= site_url() ?>app/profile">
     <input type="hidden" name="bn" value="PP-SubscriptionsBF:btn_subscribeCC_LG.gif:NonHostedGuest">
-</form>
+</form>-->
 <!-------------------------------------------------------------------------------------------------->
 
 
@@ -323,9 +327,16 @@
 <?php endif; ?>
 
         $('#pay').click(function () {
-            $(this).prop("disabled", "disabled");
-            $('#paypal').submit();
+            $(this).prop('disabled', 'disabled');
+            $.ajax({
+                type: 'POST',
+                url: "<?= site_url() ?>app/pay",
+                success: function (answer) {
+                    window.location = answer;
+                }
+            });
         });
+
         $('#save-profile').click(function () {
             $(this).attr("disabled", "disabled");
             $('#userForm').submit();
