@@ -19,12 +19,12 @@
         line-height: 25px;
     }
     #planUpgrade .box-body{
-        padding: 0;
+        padding: 1px;
     }
     #planUpgrade .box-body button{
         /*        width: 65%;
                 margin: 5%;*/
-        margin: 5% 16%;
+        margin: 3% 13%;
         display: block;
         width: 75%;
         padding: 3%;
@@ -94,15 +94,21 @@
                                 <li> Import Contacts From Spreadsheet or CSV File</li>
                             </ul>
                             <?php
-                            $id = ($plan->plan_id == 2) ? "a_personal" : "a_enterprise";
                             $prop = ($currPlan->plan_id == $plan->plan_id && $currPlan->plan_status != 0) ? 'disabled' : '';
-                            ?>
-                            <button <?= $prop ?> type="button" id="<?= $id ?>" class="btn btn-info btn-lg">
-                                Upgrade
-                            </button>
-                            <button <?= $prop ?> type="button" id="<?= $id ?>" class="btn btn-info btn-lg">
-                                Upgrade
-                            </button>
+                            if (!$userInfo->is_set || $userInfo->gateway == "STRIPE") {
+                                $id = ($plan->plan_id == 2) ? "a_personal" : "a_enterprise";
+                                ?>
+                                <button <?= $prop ?> type="button" id="<?= $id ?>" class="btn btn-info btn-lg">
+                                    Upgrade With Credit Card
+                                </button>
+                                <?php
+                            } else if (!$userInfo->is_set || $userInfo->gateway == "PAYPAL") {
+                                $id = ($plan->plan_id == 2) ? "pay_personal" : "pay_enterprise";
+                                ?>
+                                <button <?= $prop ?> type="button" id="<?= $id ?>" class="btn btn-info btn-lg">
+                                    Upgrade With Paypal
+                                </button>
+                            <?php } ?>
                         </div><!-- /.box-body -->
                         <div style="display: none" class="overlay"></div>
                         <div style="display: none" class="loading-img"></div>
