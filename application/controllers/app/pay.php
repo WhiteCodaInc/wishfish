@@ -126,7 +126,7 @@ class Pay extends CI_Controller {
     }
 
     function cancelled() {
-        header('location:' . site_url() . 'home');
+        header('location:' . site_url() . 'app/profile');
     }
 
     function sendMail($post, $userid) {
