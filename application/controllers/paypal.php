@@ -48,8 +48,8 @@ class Paypal extends CI_Controller {
             $checkoutDetails = $this->paypal_lib->request('GetExpressCheckoutDetails', array('TOKEN' => $this->input->get('token')));
             echo '<pre>';
             print_r($checkoutDetails);
-            die();
-            $uid = $this->insertUser($checkoutDetails);
+
+            //$uid = $this->insertUser($checkoutDetails);
 
             $planid = ($this->session->flashdata('item_name') == "wishfish-personal") ? 2 : 3;
 
@@ -59,7 +59,7 @@ class Paypal extends CI_Controller {
                 'PROFILESTARTDATE' => $checkoutDetails['TIMESTAMP'],
                 'DESC' => $this->session->flashdata('item_name'),
                 'BILLINGPERIOD' => 'Month',
-                'PROFILEREFERENCE' => $uid,
+                'PROFILEREFERENCE' => 100,
                 'BILLINGFREQUENCY' => 1,
                 'TOTALBILLINGCYCLES' => 0,
                 'AMT' => $this->session->flashdata('amount'),
@@ -67,8 +67,9 @@ class Paypal extends CI_Controller {
                 'MAXFAILEDPAYMENTS' => 3,
                 'FAILEDINITAMTACTION' => 'CancelOnFailure'
             );
-
             $response = $this->paypal_lib->request('CreateRecurringPaymentsProfile', $requestParams);
+            print_r($response);
+            die();
             if (is_array($response) && $response['ACK'] == 'Success') {
                 $response['AMT'] = $checkoutDetails['AMT'];
                 $this->insertPlanDetail($uid, $planid, $response);
