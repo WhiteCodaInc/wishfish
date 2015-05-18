@@ -101,8 +101,9 @@
                                 <button <?= $prop ?> type="button" id="<?= $id ?>" class="btn btn-info btn-lg">
                                     <?= ($userInfo->is_set) ? "Upgrade" : "Upgrade With Credit Card" ?>
                                 </button>
-                                <?php
-                            } else if (!$userInfo->is_set || $userInfo->gateway == "PAYPAL") {
+                            <?php } ?>
+                            <?php
+                            if (!$userInfo->is_set || $userInfo->gateway == "PAYPAL") {
                                 $id = ($plan->plan_id == 2) ? "pay_personal" : "pay_enterprise";
                                 ?>
                                 <button <?= $prop ?> type="button" id="<?= $id ?>" class="btn btn-info btn-lg">
