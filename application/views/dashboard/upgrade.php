@@ -184,6 +184,30 @@
 <?php else: ?>
                     cardFlag = true;
 <?php endif; ?>
+
+                $('#pay_personal,#pay_enterprise').click(function () {
+                    var id = $(this).prop('id');
+                    $(this).prop('disabled', 'disabled');
+                    var item_name = "";
+                    var amount = "";
+                    $(this).prop('disabled', 'disabled');
+                    if (id == "wishfish-personal") {
+                        item_name = "wishfish-personal";
+                        amount = "9.99";
+                    } else {
+                        item_name = "wishfish-enterprise";
+                        amount = "49.99";
+                    }
+                    $.ajax({
+                        type: 'POST',
+                        url: "<?= site_url() ?>paypal",
+                        data: {item_name: item_name, amount: amount, upgrade: "1"},
+                        success: function (answer) {
+                            window.location = answer;
+                        }
+                    });
+                });
+
                 $('#a_personal').click(function () {
                     $('#planUpgrade .box-body button').prop('disabled', 'disabled');
                     $('.personal .overlay').show();
@@ -208,6 +232,7 @@
                         }
                     });
                 });
+
                 $('#a_enterprise').click(function () {
                     $('#planUpgrade .box-body button').prop('disabled', 'disabled');
                     $('.enterprise .overlay').show();
@@ -237,6 +262,7 @@
                     }
 
                 });
+
                 function upgradePlan() {
                     $('#planUpgrade .box-body button').prop('disabled', 'disabled');
                     $('.personal .overlay').show();
