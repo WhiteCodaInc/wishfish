@@ -190,7 +190,6 @@
                     $(this).prop('disabled', 'disabled');
                     var item_name = "";
                     var amount = "";
-                    $(this).prop('disabled', 'disabled');
                     if (id == "wishfish-personal") {
                         item_name = "wishfish-personal";
                         amount = "9.99";
@@ -198,11 +197,17 @@
                         item_name = "wishfish-enterprise";
                         amount = "49.99";
                     }
+                    $('#planUpgrade .box-body button').prop('disabled', 'disabled');
+                    $('.enterprise .overlay').show();
+                    $('.enterprise .loading-img').show();
                     $.ajax({
                         type: 'POST',
                         url: "<?= site_url() ?>paypal",
                         data: {item_name: item_name, amount: amount, upgrade: "1"},
                         success: function (answer) {
+                            $('#' + id).prop('disabled', false);
+                            $('.enterprise .overlay').hide();
+                            $('.enterprise .loading-img').hide();
                             if (!answer) {
                                 $('#error').show();
                                 $('#error-msg').text("You can not upgrade your plan until your first invoice will create.!");
