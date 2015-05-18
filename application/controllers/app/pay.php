@@ -76,7 +76,6 @@ class Pay extends CI_Controller {
                 'MAXFAILEDPAYMENTS' => 3,
                 'FAILEDINITAMTACTION' => 'CancelOnFailure'
             );
-
             $response = $this->paypal_lib->request('CreateRecurringPaymentsProfile', $requestParams);
             if (is_array($response) && $response['ACK'] == 'Success') {
                 $response['AMT'] = $this->session->flashdata('amount');
@@ -84,24 +83,19 @@ class Pay extends CI_Controller {
                 $userInfo = $this->common->getUserInfo($this->userid);
                 if ($currPlan->plan_status == 1) {
                     if (!$userInfo->is_set) {
-                        try {
-                            $uInfo = $this->common->getUserInfo($this->userid);
-                            $customer = Stripe_Customer::retrieve($uInfo->customer_id);
-                            if (isset($customer->subscriptions->data[0]->id)) {
-                                $subs = $customer->subscriptions->data[0]->id;
-                                $customer->subscriptions->retrieve($subs)->cancel();
-                            }
-                        } catch (Exception $e) {
-                            
+                        $uInfo = $this->common->getUserInfo($this->userid);
+                        $customer = Stripe_Customer::retrieve($uInfo->customer_id);
+                        if (isset($customer->subscriptions->data[0]->id)) {
+                            $subs = $customer->subscriptions->data[0]->id;
+                            $customer->subscriptions->retrieve($subs)->cancel();
                         }
+                        $this->updateUser($checkoutDetails);
                     } else {
-                        $this->db->select('*');
-                        $this->db->limit(1);
-                        $query = $this->db->get_where('payment_mst', array('id' => $currPlan));
+                        $profileid = $this->isExistProfileId($currPlan);
+                        if ($profileid)
+                            $this->cancelRecurringProfile($profileid);
                     }
                 }
-
-                $this->updateUser($checkoutDetails);
                 $this->insertPlanDetail($planid, $response);
                 header('Location:' . site_url() . 'app/dashboard');
             } else {
@@ -143,26 +137,25 @@ class Pay extends CI_Controller {
     }
 
     function cancelRecurringProfile($id) {
-        $this->load->library('paypallib');
-        $paypal = $this->paypallib;
-        $requestParams = array(
-            'PROFILEID' => $id,
-            'ACTION' => 'Cancel', //Cancel,Suspend,Reactivate
-        );
-        $response = $paypal->request('ManageRecurringPaymentsProfileStatus', $requestParams);
-        echo "<pre>";
-        print_r($response);
+
+        if ($this->getRecurringProfile($id)) {
+            $requestParams = array(
+                'PROFILEID' => $id,
+                'ACTION' => 'Cancel', //Cancel,Suspend,Reactivate
+            );
+            $response = $this->paypal_lib->request('ManageRecurringPaymentsProfileStatus', $requestParams);
+            return ($response['ACK'] == "Success") ? TRUE : FALSE;
+        } else {
+            return FALSE;
+        }
     }
 
     function getRecurringProfile($id) {
-        $this->load->library('paypallib');
-        $paypal = $this->paypallib;
         $requestParams = array(
-            'PROFILEID' => $id,
+            'PROFILEID' => $id
         );
-        $response = $paypal->request('GetRecurringPaymentsProfileDetails', $requestParams);
-        echo "<pre>";
-        print_r($response);
+        $response = $this->paypal_lib->request('GetRecurringPaymentsProfileDetails', $requestParams);
+        return ($response['STATUS'] == "Active") ? TRUE : FALSE;
     }
 
     function isExistProfileId($currPlan) {
