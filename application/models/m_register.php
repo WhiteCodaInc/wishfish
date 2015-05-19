@@ -108,13 +108,6 @@ class M_register extends CI_Model {
             'domain' => '.wish-fish.com'
         );
         $this->input->set_cookie($d_userid);
-//        $d_name = array(
-//            'name' => 'd-name',
-//            'value' => $set['name'],
-//            'expire' => time() + 86500,
-//            'domain' => '.wish-fish.com'
-//        );
-//        $this->input->set_cookie($d_name);
 
         $planInfo = $this->common->getPlan(1);
         $plan_set = array(

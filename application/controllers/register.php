@@ -61,16 +61,7 @@ class Register extends CI_Controller {
         if ($this->input->get('error')) {
             header('location:' . site_url() . 'register');
         }
-//        $isSignup = array(
-//            'name' => 'g_isSignup',
-//            'value' => 1,
-//            'expire' => time() + 86500,
-//            'domain' => '.wish-fish.com'
-//        );
-//        $this->input->set_cookie($isSignup);
-
         $code = $this->input->get('code');
-//        $token = $this->session->userdata('token');
 
         if (isset($code) && $code != "") {
             $this->client->authenticate($code);
@@ -103,14 +94,6 @@ class Register extends CI_Controller {
     }
 
     function fbsignup() {
-//        $isSignup = array(
-//            'name' => 'f_isSignup',
-//            'value' => 1,
-//            'expire' => time() + 86500,
-//            'domain' => '.wish-fish.com'
-//        );
-//        $this->input->set_cookie($isSignup);
-
         $facebook = new Facebook(array(
             'appId' => $this->config->item('appID'),
             'secret' => $this->config->item('appSecret'),
