@@ -69,10 +69,10 @@ class Home extends CI_Controller {
         $data['stripe'] = $this->common->getPaymentGatewayInfo("STRIPE");
         $data['paypal'] = $this->common->getPaymentGatewayInfo("PAYPAL");
         
-        echo '<pre>';
-        print_r($data);
-        die();
-        
+//        echo '<pre>';
+//        print_r($data);
+//        die();
+
         $this->load->view('header');
         $this->load->view('navbar');
         $this->load->view('home', $data);
