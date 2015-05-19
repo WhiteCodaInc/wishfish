@@ -122,7 +122,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <a href = "<?= $url ?>" class="btn btn-block btn-social btn-google-plus">
+                            <a href = "<?= $signupUrl ?>" class="btn btn-block btn-social btn-google-plus">
                                 <i class="fa fa-google-plus"></i> Sign up with Google
                             </a>
                             <a style="cursor: pointer" class="btn btn-block btn-social btn-facebook facebook"  href = "javascript:void(0);">
@@ -159,7 +159,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <a href = "<?= $url ?>" class="btn btn-block btn-social btn-google-plus">
+                            <a href = "<?= $signinUrl ?>" class="btn btn-block btn-social btn-google-plus">
                                 <i class="fa fa-google-plus"></i> Login with Google
                             </a>
                             <br/>

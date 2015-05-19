@@ -24,17 +24,27 @@ class Home extends CI_Controller {
             require APPPATH . 'third_party/google-api/contrib/Google_Oauth2Service.php';
             require_once APPPATH . 'third_party/facebook/facebook.php';
             $this->config->load('googleplus');
+            $this->config->load('googlelogin');
             $this->config->load('facebook');
             $this->load->model('m_register', 'objregister');
-            //-------------Google---------------------------------//
-            $this->client = new Google_Client();
-            $this->client->setApplicationName($this->config->item('application_name', 'googleplus'));
-            $this->client->setClientId($this->config->item('client_id', 'googleplus'));
-            $this->client->setClientSecret($this->config->item('client_secret', 'googleplus'));
-            $this->client->setRedirectUri($this->config->item('redirect_uri', 'googleplus'));
-            $this->client->setDeveloperKey($this->config->item('api_key', 'googleplus'));
+            //-------------Google Sign Up---------------------------------//
+            $this->signup = new Google_Client();
+            $this->signup->setApplicationName($this->config->item('application_name', 'googleplus'));
+            $this->signup->setClientId($this->config->item('client_id', 'googleplus'));
+            $this->signup->setClientSecret($this->config->item('client_secret', 'googleplus'));
+            $this->signup->setRedirectUri($this->config->item('redirect_uri', 'googleplus'));
+            $this->signup->setDeveloperKey($this->config->item('api_key', 'googleplus'));
 
-            $this->service = new Google_Oauth2Service($this->client);
+            $this->signup_service = new Google_Oauth2Service($this->signup);
+            //-------------Google Sign In---------------------------------//
+            $this->signin = new Google_Client();
+            $this->signin->setApplicationName($this->config->item('application_name', 'googlelogin'));
+            $this->signin->setClientId($this->config->item('client_id', 'googlelogin'));
+            $this->signin->setClientSecret($this->config->item('client_secret', 'googlelogin'));
+            $this->signin->setRedirectUri($this->config->item('redirect_uri', 'googlelogin'));
+            $this->signin->setDeveloperKey($this->config->item('api_key', 'googlelogin'));
+
+            $this->signin_service = new Google_Oauth2Service($this->signin);
         }
     }
 
@@ -43,15 +53,18 @@ class Home extends CI_Controller {
         $fid = $this->input->cookie('facebookid');
         if (isset($gid) && $gid != "") {
             $data['isLogin_g'] = TRUE;
-            $this->client->setApprovalPrompt('auto');
+            $this->signup->setApprovalPrompt('auto');
+            $this->signin->setApprovalPrompt('auto');
         } else {
             $data['isLogin_g'] = FALSE;
-            $this->client->setApprovalPrompt('force');
+            $this->signup->setApprovalPrompt('force');
+            $this->signin->setApprovalPrompt('force');
         }
         $data['word'] = $this->common->getRandomDigit(5);
         $this->session->set_userdata('captchaWord', $data['word']);
         $data['isLogin_f'] = (isset($fid) && $fid != "") ? TRUE : FALSE;
-        $data['url'] = $this->client->createAuthUrl();
+        $data['signupUrl'] = $this->signup->createAuthUrl();
+        $data['signinUrl'] = $this->signin->createAuthUrl();
         $data['pdetail'] = $this->common->getPlans();
         $data['stripe'] = $this->common->getPaymentGatewayInfo("STRIPE");
         $data['paypal'] = $this->common->getPaymentGatewayInfo("PAYPAL");
