@@ -98,6 +98,9 @@ class Login extends CI_Controller {
             $this->session->set_userdata('token', $this->client->getAccessToken());
             if ($this->client->getAccessToken()) {
                 $data = $this->service->userinfo->get();
+                echo '<pre>';
+                print_r($data);
+                die();
                 $this->session->set_userdata('token', $this->client->getAccessToken());
                 $user = $this->objregister->isUserExist($data);
                 if (!$user) {
