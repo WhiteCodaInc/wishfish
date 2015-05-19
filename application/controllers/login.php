@@ -40,7 +40,7 @@ class Login extends CI_Controller {
 
             $this->load->library('authex');
             $this->load->helper('cookie');
-            die('STOP');
+//            die('STOP');
         }
     }
 
