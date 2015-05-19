@@ -41,6 +41,9 @@ class Dashboard extends CI_Controller {
             delete_cookie('d-userid', '.wish-fish.com', '/');
         }
 
+        echo $this->uid;
+        die();
+
         if (!$this->duid && !$this->uid) {
 
 
