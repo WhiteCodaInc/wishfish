@@ -248,7 +248,7 @@ and open the template in the editor.
         }
         ?>
         <script type="text/javascript">
-<?php if ($msg): ?>
+<?php if ($m): ?>
                 alertify.<?= $t ?>("<?= $m ?>");
 <?php endif; ?>
         </script>
