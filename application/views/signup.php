@@ -184,7 +184,7 @@ and open the template in the editor.
         <?php
         switch ($msg) {
             case "RF":
-                $m = "Registration Failed..!Try Again..!";
+                $m = "It`s look like you have a Google App account,But the Login Services are disabled.Please contact your Google App account administrator";
                 $t = "error";
                 break;
             default:

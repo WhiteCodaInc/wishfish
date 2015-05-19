@@ -88,7 +88,7 @@ class Register extends CI_Controller {
                     header('Location: ' . site_url() . 'login?msg=R');
                 }
             } else {
-                //header('Location: ' . filter_var($this->client->getRedirectUri(), FILTER_SANITIZE_URL));
+                header('Location: ' . site_url() . 'register?msg=RF');
             }
         }
     }
