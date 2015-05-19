@@ -37,6 +37,7 @@ class Login extends CI_Controller {
         if ($this->authex->logged_in()) {
             header('location:' . site_url() . 'app/dashboard');
         } else {
+            $from = $this->input->get('from');
             $gid = $this->input->cookie('googleid');
             $fid = $this->input->cookie('facebookid');
             if (isset($gid) && $gid != "") {
@@ -46,14 +47,19 @@ class Login extends CI_Controller {
                 $data['isLogin_g'] = FALSE;
                 $this->client->setApprovalPrompt('force');
             }
-            $data['word'] = $this->common->getRandomDigit(5);
-            $this->session->set_userdata('captchaWord', $data['word']);
-            $data['isLogin_f'] = (isset($fid) && $fid != "") ? TRUE : FALSE;
-            $data['url'] = $this->client->createAuthUrl();
 
-            $data['uname'] = $this->input->cookie('useremail', TRUE);
-            $data['passwd'] = $this->input->cookie('password', TRUE);
-            $this->load->view('login', $data);
+            if ($from != "" && $from == "home") {
+                header('location:' . $this->client->createAuthUrl());
+            } else {
+                $data['word'] = $this->common->getRandomDigit(5);
+                $this->session->set_userdata('captchaWord', $data['word']);
+                $data['isLogin_f'] = (isset($fid) && $fid != "") ? TRUE : FALSE;
+                $data['url'] = $this->client->createAuthUrl();
+
+                $data['uname'] = $this->input->cookie('useremail', TRUE);
+                $data['passwd'] = $this->input->cookie('password', TRUE);
+                $this->load->view('login', $data);
+            }
         }
     }
 

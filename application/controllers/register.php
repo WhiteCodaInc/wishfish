@@ -42,6 +42,7 @@ class Register extends CI_Controller {
     }
 
     function index() {
+        $from = $this->input->get('from');
         $gid = $this->input->cookie('googleid');
         $fid = $this->input->cookie('facebookid');
         if (isset($gid) && $gid != "") {
@@ -51,9 +52,15 @@ class Register extends CI_Controller {
             $data['isLogin_g'] = FALSE;
             $this->client->setApprovalPrompt('force');
         }
-        $data['isLogin_f'] = (isset($fid) && $fid != "") ? TRUE : FALSE;
-        $data['url'] = $this->client->createAuthUrl();
-        $this->load->view('signup', $data);
+        if ($from != "" && $from == "home") {
+            echo $this->client->createAuthUrl();
+            die();
+            header('location:' . $this->client->createAuthUrl());
+        } else {
+            $data['isLogin_f'] = (isset($fid) && $fid != "") ? TRUE : FALSE;
+            $data['url'] = $this->client->createAuthUrl();
+            $this->load->view('signup', $data);
+        }
     }
 
     function signup() {
