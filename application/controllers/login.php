@@ -59,6 +59,9 @@ class Login extends CI_Controller {
 
     function login() {
         $post = $this->input->post();
+        echo '<pre>';
+        print_r($post);
+        die();
         if (isset($post['remember'])) {
             $remember = $post['remember'];
             unset($post['remember']);
