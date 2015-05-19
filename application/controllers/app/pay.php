@@ -29,7 +29,7 @@ class Pay extends CI_Controller {
             $this->session->set_flashdata($post);
             $this->paypal_lib->set_acct_info($this->api_username, $this->api_password, $this->api_signature);
 
-            $returnUrl = ($post['upgrade'] == 1) ?
+            $returnUrl = (isset($post['upgrade']) && $post['upgrade'] == 1) ?
                     site_url() . 'app/upgrade' :
                     site_url() . 'app/profile';
 
