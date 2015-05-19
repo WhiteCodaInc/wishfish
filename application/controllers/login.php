@@ -18,10 +18,10 @@ class Login extends CI_Controller {
         parent::__construct();
 
         if ($this->authex->logged_in()) {
-            echo "SESSIOn CALLED";
+//            echo "SESSIOn CALLED";
 //            header('location:' . site_url() . 'app/dashboard');
         } else {
-            echo "SESSIOn NOT CALLED";
+//            echo "SESSIOn NOT CALLED";
             require APPPATH . 'third_party/google-api/Google_Client.php';
             require APPPATH . 'third_party/google-api/contrib/Google_Oauth2Service.php';
             require_once APPPATH . 'third_party/facebook/facebook.php';
