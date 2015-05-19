@@ -82,7 +82,6 @@ class Login extends CI_Controller {
     }
 
     function signin() {
-        die();
         if ($this->input->get('error')) {
             header('location:' . site_url() . 'login');
         }
@@ -94,6 +93,9 @@ class Login extends CI_Controller {
                 $data = $this->service->userinfo->get();
                 $this->session->set_userdata('token', $this->client->getAccessToken());
                 $user = $this->objregister->isUserExist($data);
+                echo '<pre>';
+                print_r($data);
+                die();
                 if (!$user) {
                     header('Location: ' . site_url() . 'login?msg=NR');
                 } else {
