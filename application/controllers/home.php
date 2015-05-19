@@ -64,7 +64,7 @@ class Home extends CI_Controller {
         $this->session->set_userdata('captchaWord', $data['word']);
         $data['isLogin_f'] = (isset($fid) && $fid != "") ? TRUE : FALSE;
         $data['signupUrl'] = $this->signup->createAuthUrl();
-        $data['signinUrl'] = $this->signin->createAuthUrl();
+//        $data['signinUrl'] = $this->signin->createAuthUrl();
         $data['pdetail'] = $this->common->getPlans();
         $data['stripe'] = $this->common->getPaymentGatewayInfo("STRIPE");
         $data['paypal'] = $this->common->getPaymentGatewayInfo("PAYPAL");
