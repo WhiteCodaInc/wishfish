@@ -371,7 +371,7 @@ and open the template in the editor.
             $('.facebook').click(function (e) {
                 FB.login(function (response) {
                     if (response.authResponse) {
-                        parent.location = '<?= site_url() ?>register/fbsignup'; //redirect uri after closing the facebook popup
+                        parent.location = '<?= site_url() ?>login/fbsignin'; //redirect uri after closing the facebook popup
                     }
                 }, {scope: 'email,read_stream,user_birthday,user_photos'}); //permissions for facebook
             });

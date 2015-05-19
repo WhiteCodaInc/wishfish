@@ -97,7 +97,6 @@ class Login extends CI_Controller {
                 if (!$user) {
                     header('location: ' . site_url() . 'login?msg=NR');
                 } else {
-
                     $is_login = array(
                         'name' => 'isLogin',
                         'value' => $data['id'],
@@ -108,6 +107,36 @@ class Login extends CI_Controller {
                     header('location:' . site_url() . 'app/dashboard');
                 }
             } else {
+                header('Location: ' . site_url() . 'login');
+            }
+        }
+    }
+
+    function fbsignin() {
+        $facebook = new Facebook(array(
+            'appId' => $this->config->item('appID'),
+            'secret' => $this->config->item('appSecret'),
+        ));
+        $user = $facebook->getUser();
+        if ($user) {
+            try {
+                $user_profile = $facebook->api('/me');  //Get the facebook user profile data
+                $is_user = $this->objregister->isUserExist($user_profile);
+                if (!$is_user) {
+                    header('location: ' . site_url() . 'login?msg=NR');
+                } else {
+                    $is_login = array(
+                        'name' => 'isLogin',
+                        'value' => $user_profile['id'],
+                        'expire' => time() + 86500,
+                        'domain' => '.wish-fish.com'
+                    );
+                    $this->input->set_cookie($is_login);
+                    header('location:' . site_url() . 'app/dashboard');
+                }
+            } catch (FacebookApiException $e) {
+                error_log($e);
+                $user = NULL;
                 header('Location: ' . site_url() . 'login');
             }
         }
