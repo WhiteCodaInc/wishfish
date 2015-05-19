@@ -119,7 +119,7 @@ $img_src = ($profile_pic != "") ?
                         </li>
                     <?php } ?>
                 </ul>
-                <a class="btn btn-warning" href="<?= site_url() ?>app/upgrade">
+                <a style="margin-top: 8px;width: 12%;font-size: 18px;" class="btn btn-warning" href="<?= site_url() ?>app/upgrade">
                     Upgrade
                 </a>
                 <ul class="nav navbar-nav navbar-right" id="wishfish-title">
