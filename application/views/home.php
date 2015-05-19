@@ -122,7 +122,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <a href = "<?= $signupUrl ?>" class="btn btn-block btn-social btn-google-plus">
+                            <a href = "<?= site_url() ?>register/add" class="btn btn-block btn-social btn-google-plus">
                                 <i class="fa fa-google-plus"></i> Sign up with Google
                             </a>
                             <a style="cursor: pointer" class="btn btn-block btn-social btn-facebook facebook"  href = "javascript:void(0);">

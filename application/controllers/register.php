@@ -41,6 +41,11 @@ class Register extends CI_Controller {
         // }
     }
 
+    function add() {
+        $url = $this->client->createAuthUrl();
+        header('location:' . $url);
+    }
+
     function index() {
 
         $gid = $this->input->cookie('googleid');
