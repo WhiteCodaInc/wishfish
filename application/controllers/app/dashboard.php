@@ -59,9 +59,9 @@ class Dashboard extends CI_Controller {
 //                    $flag = (!$this->authex->loginByFacebook($fid)) ? FALSE : TRUE;
 //                }
 //            }
-            if (!$this->authex->logged_in()) {
-                header('location:' . site_url() . 'home');
-            }
+//            if (!$this->authex->logged_in()) {
+//                header('location:' . site_url() . 'home');
+//            }
 //            } elseif (!$this->authex->isActivePlan()) {
 //                header('location:' . site_url() . 'app/upgrade');
 //            }
