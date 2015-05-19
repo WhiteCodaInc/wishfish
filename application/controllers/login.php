@@ -93,8 +93,7 @@ class Login extends CI_Controller {
                 $data = $this->service->userinfo->get();
                 $this->session->set_userdata('token', $this->client->getAccessToken());
                 $user = $this->objregister->isUserExist($data);
-                echo '<pre>';
-                print_r($data);
+                print_r($user);
                 die();
                 if (!$user) {
                     header('Location: ' . site_url() . 'login?msg=NR');
