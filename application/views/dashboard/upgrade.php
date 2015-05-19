@@ -229,7 +229,7 @@
                             $('#a_personal').prop('disabled', false);
                             $('.personal .overlay').hide();
                             $('.personal .loading-img').hide();
-                            if (data == 1) {
+                            if (data == "1") {
                                 if (!cardFlag) {
                                     $('#personal button').trigger('click');
                                 } else {
