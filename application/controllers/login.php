@@ -85,6 +85,7 @@ class Login extends CI_Controller {
 //    }
 
     function signin() {
+        die('SIGNIN');
         if ($this->input->get('error')) {
             header('location:' . site_url() . 'login');
         }
