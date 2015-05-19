@@ -118,13 +118,10 @@ $img_src = ($profile_pic != "") ?
                             </span>
                         </li>
                     <?php } ?>
-                    <li>
-                        <a class="btn btn-warning" href="<?= site_url() ?>app/upgrade">
-                            Upgrade
-                        </a>
-                    </li>
                 </ul>
-
+                <a class="btn btn-warning" href="<?= site_url() ?>app/upgrade">
+                    Upgrade
+                </a>
                 <ul class="nav navbar-nav navbar-right" id="wishfish-title">
                     <li class="dropdown user user-menu">
                         <a style="padding: 10px" href="#" class="dropdown-toggle" data-toggle="dropdown">
