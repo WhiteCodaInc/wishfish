@@ -19,8 +19,6 @@ class Login extends CI_Controller {
         require APPPATH . 'third_party/google-api/Google_Client.php';
         require APPPATH . 'third_party/google-api/contrib/Google_Oauth2Service.php';
         require_once APPPATH . 'third_party/facebook/facebook.php';
-        $this->load->library('authex');
-        $this->load->helper('cookie');
         $this->config->load('googlelogin');
         $this->config->load('facebook');
         $this->load->model('m_register', 'objregister');
@@ -84,6 +82,7 @@ class Login extends CI_Controller {
     }
 
     function signin() {
+        die();
         if ($this->input->get('error')) {
             header('location:' . site_url() . 'login');
         }
