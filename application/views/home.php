@@ -132,7 +132,7 @@
                     </div>
                 </form>
 
-                <form id="loginForm" action="<?= site_url() ?>login/signin" method="post" class="login" novalidate="novalidate">
+                <form id="loginForm" action="<?= site_url() ?>login/login" method="post" class="login" novalidate="novalidate">
                     <h1 style="color: white;font-size: 30px;text-align: center">Log In</h1>
                     <div class="row" style="color: white">
                         <div class="col-md-12">
