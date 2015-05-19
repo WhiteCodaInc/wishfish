@@ -16,76 +16,72 @@ class Login extends CI_Controller {
     //put your code here
     function __construct() {
         parent::__construct();
+        require APPPATH . 'third_party/google-api/Google_Client.php';
+        require APPPATH . 'third_party/google-api/contrib/Google_Oauth2Service.php';
+        require_once APPPATH . 'third_party/facebook/facebook.php';
+        $this->load->library('authex');
+        $this->load->helper('cookie');
+        $this->config->load('googlelogin');
+        $this->config->load('facebook');
+        $this->load->model('m_register', 'objregister');
 
-        if ($this->authex->logged_in()) {
-            echo "SESSIOn CALLED";
-//            header('location:' . site_url() . 'app/dashboard');
-        } else {
-            echo "SESSIOn NOT CALLED";
-            require APPPATH . 'third_party/google-api/Google_Client.php';
-            require APPPATH . 'third_party/google-api/contrib/Google_Oauth2Service.php';
-            require_once APPPATH . 'third_party/facebook/facebook.php';
-            $this->load->library('authex');
-            $this->load->helper('cookie');
-            $this->config->load('googlelogin');
-            $this->config->load('facebook');
-            $this->load->model('m_register', 'objregister');
+        $this->client = new Google_Client();
+        $this->client->setApplicationName($this->config->item('application_name', 'googlelogin'));
+        $this->client->setClientId($this->config->item('client_id', 'googlelogin'));
+        $this->client->setClientSecret($this->config->item('client_secret', 'googlelogin'));
+        $this->client->setRedirectUri($this->config->item('redirect_uri', 'googlelogin'));
+        $this->client->setDeveloperKey($this->config->item('api_key', 'googlelogin'));
 
-            $this->client = new Google_Client();
-            $this->client->setApplicationName($this->config->item('application_name', 'googlelogin'));
-            $this->client->setClientId($this->config->item('client_id', 'googlelogin'));
-            $this->client->setClientSecret($this->config->item('client_secret', 'googlelogin'));
-            $this->client->setRedirectUri($this->config->item('redirect_uri', 'googlelogin'));
-            $this->client->setDeveloperKey($this->config->item('api_key', 'googlelogin'));
-
-            $this->service = new Google_Oauth2Service($this->client);
-        }
-        die("STOP");
+        $this->service = new Google_Oauth2Service($this->client);
     }
 
     function index() {
-        $gid = $this->input->cookie('googleid');
-        $fid = $this->input->cookie('facebookid');
-        if (isset($gid) && $gid != "") {
-            $data['isLogin_g'] = TRUE;
-            $this->client->setApprovalPrompt('auto');
+        if ($this->authex->logged_in()) {
+            header('location:' . site_url() . 'app/dashboard');
         } else {
-            $data['isLogin_g'] = FALSE;
-            $this->client->setApprovalPrompt('force');
-        }
-        $data['word'] = $this->common->getRandomDigit(5);
-        $this->session->set_userdata('captchaWord', $data['word']);
-        $data['isLogin_f'] = (isset($fid) && $fid != "") ? TRUE : FALSE;
-        $data['url'] = $this->client->createAuthUrl();
+            $gid = $this->input->cookie('googleid');
+            $fid = $this->input->cookie('facebookid');
+            if (isset($gid) && $gid != "") {
+                $data['isLogin_g'] = TRUE;
+                $this->client->setApprovalPrompt('auto');
+            } else {
+                $data['isLogin_g'] = FALSE;
+                $this->client->setApprovalPrompt('force');
+            }
+            $data['word'] = $this->common->getRandomDigit(5);
+            $this->session->set_userdata('captchaWord', $data['word']);
+            $data['isLogin_f'] = (isset($fid) && $fid != "") ? TRUE : FALSE;
+            $data['url'] = $this->client->createAuthUrl();
 
-        $data['uname'] = $this->input->cookie('useremail', TRUE);
-        $data['passwd'] = $this->input->cookie('password', TRUE);
-        $this->load->view('login', $data);
+            $data['uname'] = $this->input->cookie('useremail', TRUE);
+            $data['passwd'] = $this->input->cookie('password', TRUE);
+            $this->load->view('login', $data);
+        }
     }
 
-//    function login() {
-//        $post = $this->input->post();
-//        if (isset($post['remember'])) {
-//            $remember = $post['remember'];
-//            unset($post['remember']);
-//        }
-//        if (is_array($post) && count($post) > 0) {
-//            $is_login = $this->authex->login($post);
-//            if ($is_login) {
-//                if (isset($remember) && $remember == "on")
-//                    $this->storeCookie($post);
-//                if ($this->authex->isActivePlan()) {
-//                    header('location:' . site_url() . 'app/dashboard');
-//                } else {
-//                    header('location:' . site_url() . 'app/upgrade');
-//                }
-//            } else {
-//                header('location:' . site_url() . 'login?msg=F');
-//            }
-//        } else {
-//            header('location:' . site_url() . 'login');
-//        }
-//    }
+    function login() {
+        $post = $this->input->post();
+        if (isset($post['remember'])) {
+            $remember = $post['remember'];
+            unset($post['remember']);
+        }
+        if (is_array($post) && count($post) > 0) {
+            $is_login = $this->authex->login($post);
+            if ($is_login) {
+                if (isset($remember) && $remember == "on")
+                    $this->storeCookie($post);
+                if ($this->authex->isActivePlan()) {
+                    header('location:' . site_url() . 'app/dashboard');
+                } else {
+                    header('location:' . site_url() . 'app/upgrade');
+                }
+            } else {
+                header('location:' . site_url() . 'login?msg=F');
+            }
+        } else {
+            header('location:' . site_url() . 'login');
+        }
+    }
 
     function signin() {
         if ($this->input->get('error')) {
