@@ -49,8 +49,6 @@ class Login extends CI_Controller {
             }
 
             if ($from != "" && $from == "home") {
-                echo $this->client->createAuthUrl();
-                die();
                 header('location:' . $this->client->createAuthUrl());
             } else {
                 $data['word'] = $this->common->getRandomDigit(5);
