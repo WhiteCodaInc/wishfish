@@ -93,11 +93,12 @@ class Login extends CI_Controller {
                 $data = $this->service->userinfo->get();
                 $this->session->set_userdata('token', $this->client->getAccessToken());
                 $user = $this->objregister->isUserExist($data);
-                print_r($user);
-                die();
+
                 if (!$user) {
                     header('Location: ' . site_url() . 'login?msg=NR');
                 } else {
+                    print_r($user);
+                    die();
                     if ($this->authex->loginByGoogle($data['id'])) {
                         header('location:' . site_url() . 'app/dashboard');
                     } else {
