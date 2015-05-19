@@ -57,11 +57,9 @@ class Login extends CI_Controller {
         }
     }
 
-    function login() {
+    function signin() {
         $post = $this->input->post();
-        echo '<pre>';
-        print_r($post);
-        die();
+
         if (isset($post['remember'])) {
             $remember = $post['remember'];
             unset($post['remember']);
@@ -84,7 +82,7 @@ class Login extends CI_Controller {
         }
     }
 
-    function signin() {
+    function gsignin() {
         if ($this->input->get('error')) {
             header('location:' . site_url() . 'login');
         }
