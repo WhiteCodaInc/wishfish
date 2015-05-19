@@ -102,7 +102,7 @@ class Register extends CI_Controller {
         if ($user) {
             try {
                 $user_profile = $facebook->api('/me');  //Get the facebook user profile data
-                $is_user = $this->isUserExist($user_profile);
+                $is_user = $this->objregister->isUserExist($user_profile);
                 if (!$is_user && $this->objregister->registerWithSocial($user_profile)) {
                     $facebookid = array(
                         'name' => 'facebookid',
