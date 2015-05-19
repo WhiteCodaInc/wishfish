@@ -122,9 +122,9 @@ $img_src = ($profile_pic != "") ?
 
                 <ul class="nav navbar-nav navbar-right" id="wishfish-title">
                     <li class="dropdown user user-menu">
-                        <a style="padding: 0" href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <a style="padding: 10px" href="#" class="dropdown-toggle" data-toggle="dropdown">
 <!--                            <i class="glyphicon glyphicon-user"></i>-->
-                            <img style="width: 25px;border-radius: 50%;" src="<?= $img_src ?>"  />
+                            <img style="width: 30px;border-radius: 50%;" src="<?= $img_src ?>"  />
                             <span><i class="caret"></i></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
