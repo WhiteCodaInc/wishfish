@@ -37,10 +37,6 @@ class Login extends CI_Controller {
             $this->client->setDeveloperKey($this->config->item('api_key', 'googlelogin'));
 
             $this->service = new Google_Oauth2Service($this->client);
-
-            $this->load->library('authex');
-            $this->load->helper('cookie');
-            die('STOP');
         }
     }
 
@@ -64,29 +60,29 @@ class Login extends CI_Controller {
         $this->load->view('login', $data);
     }
 
-    function login() {
-        $post = $this->input->post();
-        if (isset($post['remember'])) {
-            $remember = $post['remember'];
-            unset($post['remember']);
-        }
-        if (is_array($post) && count($post) > 0) {
-            $is_login = $this->authex->login($post);
-            if ($is_login) {
-                if (isset($remember) && $remember == "on")
-                    $this->storeCookie($post);
-                if ($this->authex->isActivePlan()) {
-                    header('location:' . site_url() . 'app/dashboard');
-                } else {
-                    header('location:' . site_url() . 'app/upgrade');
-                }
-            } else {
-                header('location:' . site_url() . 'login?msg=F');
-            }
-        } else {
-            header('location:' . site_url() . 'login');
-        }
-    }
+//    function login() {
+//        $post = $this->input->post();
+//        if (isset($post['remember'])) {
+//            $remember = $post['remember'];
+//            unset($post['remember']);
+//        }
+//        if (is_array($post) && count($post) > 0) {
+//            $is_login = $this->authex->login($post);
+//            if ($is_login) {
+//                if (isset($remember) && $remember == "on")
+//                    $this->storeCookie($post);
+//                if ($this->authex->isActivePlan()) {
+//                    header('location:' . site_url() . 'app/dashboard');
+//                } else {
+//                    header('location:' . site_url() . 'app/upgrade');
+//                }
+//            } else {
+//                header('location:' . site_url() . 'login?msg=F');
+//            }
+//        } else {
+//            header('location:' . site_url() . 'login');
+//        }
+//    }
 
     function signin() {
         if ($this->input->get('error')) {
