@@ -33,6 +33,13 @@ class Dashboard extends CI_Controller {
             $this->duid = $this->input->cookie('d-userid', TRUE);
             delete_cookie('d-userid', '.wish-fish.com', '/');
         }
+
+        if ($this->input->cookie('isLogin')) {
+            $id = $this->input->cookie('isLogin', TRUE);
+            delete_cookie('isLogin', '.wish-fish.com', '/');
+            $this->authex->loginBySocial($id);
+        }
+
         $this->load->model('dashboard/m_dashboard', 'objdashboard');
         $this->load->model('dashboard/m_calender', 'objcalender');
         $this->load->model('m_register', 'objregister');

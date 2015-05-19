@@ -95,15 +95,17 @@ class Login extends CI_Controller {
                 $user = $this->objregister->isUserExist($data);
 
                 if (!$user) {
-                    header('Location: ' . site_url() . 'login?msg=NR');
+                    header('location: ' . site_url() . 'login?msg=NR');
                 } else {
-                    print_r($user);
-                    die();
-                    if ($this->authex->loginByGoogle($data['id'])) {
-                        header('location:' . site_url() . 'app/dashboard');
-                    } else {
-                        header('Location: ' . site_url() . 'login?msg=NR');
-                    }
+
+                    $is_login = array(
+                        'name' => 'isLogin',
+                        'value' => $data['id'],
+                        'expire' => time() + 86500,
+                        'domain' => '.wish-fish.com'
+                    );
+                    $this->input->set_cookie($is_login);
+                    header('location:' . site_url() . 'app/dashboard');
                 }
             } else {
                 header('Location: ' . site_url() . 'login');

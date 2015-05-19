@@ -86,7 +86,7 @@ class Authex {
         return ($password == $query->row()->password) ? true : false;
     }
 
-    function loginByGoogle($gid) {
+    function loginBySocial($gid) {
         $query = $this->_CI->db->get_where("user_mst", array("user_unique_id" => $gid));
         $res = $query->row();
 
@@ -103,20 +103,19 @@ class Authex {
         }
     }
 
-    function loginByFacebook($fid) {
-        $query = $this->_CI->db->get_where("user_mst", array("user_unique_id" => $fid));
-        $res = $query->row();
-        if ($query->num_rows() == 1) {
-            $this->_CI->session->set_userdata('userid', $res->user_id);
-            $this->_CI->session->set_userdata('name', $res->name);
-            $this->_CI->session->set_userdata('email', $res->email);
-            $this->_CI->session->set_userdata('profile_pic', $res->profile_pic);
-            $this->_CI->session->set_userdata('timezone', $res->timezones);
-            $this->_CI->session->set_userdata('date_format', $res->date_format);
-            return TRUE;
-        } else {
-            return FALSE;
-        }
-    }
-
+//    function loginByFacebook($fid) {
+//        $query = $this->_CI->db->get_where("user_mst", array("user_unique_id" => $fid));
+//        $res = $query->row();
+//        if ($query->num_rows() == 1) {
+//            $this->_CI->session->set_userdata('userid', $res->user_id);
+//            $this->_CI->session->set_userdata('name', $res->name);
+//            $this->_CI->session->set_userdata('email', $res->email);
+//            $this->_CI->session->set_userdata('profile_pic', $res->profile_pic);
+//            $this->_CI->session->set_userdata('timezone', $res->timezones);
+//            $this->_CI->session->set_userdata('date_format', $res->date_format);
+//            return TRUE;
+//        } else {
+//            return FALSE;
+//        }
+//    }
 }
