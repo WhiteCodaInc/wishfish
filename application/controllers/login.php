@@ -89,12 +89,11 @@ class Login extends CI_Controller {
     }
 
     function signin() {
+        die("STOP");
         if ($this->input->get('error')) {
             header('location:' . site_url() . 'login');
         }
         $code = $this->input->get('code');
-        echo $code;
-        die();
         if (isset($code) && $code != "") {
             $this->client->authenticate($code);
             $this->session->set_userdata('token', $this->client->getAccessToken());
