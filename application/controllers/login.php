@@ -20,7 +20,6 @@ class Login extends CI_Controller {
         if ($this->authex->logged_in()) {
             header('location:' . site_url() . 'app/dashboard');
         } else {
-
             require APPPATH . 'third_party/google-api/Google_Client.php';
             require APPPATH . 'third_party/google-api/contrib/Google_Oauth2Service.php';
             require_once APPPATH . 'third_party/facebook/facebook.php';
@@ -61,11 +60,10 @@ class Login extends CI_Controller {
 
         $data['uname'] = $this->input->cookie('useremail', TRUE);
         $data['passwd'] = $this->input->cookie('password', TRUE);
-
         $this->load->view('login', $data);
     }
 
-    function log_in() {
+    function login() {
         $post = $this->input->post();
         if (isset($post['remember'])) {
             $remember = $post['remember'];
@@ -90,7 +88,6 @@ class Login extends CI_Controller {
     }
 
     function signin() {
-        die("STOP");
         if ($this->input->get('error')) {
             header('location:' . site_url() . 'login');
         }
@@ -100,9 +97,6 @@ class Login extends CI_Controller {
             $this->session->set_userdata('token', $this->client->getAccessToken());
             if ($this->client->getAccessToken()) {
                 $data = $this->service->userinfo->get();
-                echo '<pre>';
-                print_r($data);
-                die();
                 $this->session->set_userdata('token', $this->client->getAccessToken());
                 $user = $this->objregister->isUserExist($data);
                 if (!$user) {

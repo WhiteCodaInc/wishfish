@@ -132,7 +132,7 @@
                     </div>
                 </form>
 
-                <form id="loginForm" action="<?= site_url() ?>login/log_in" method="post" class="login" novalidate="novalidate">
+                <form id="loginForm" action="<?= site_url() ?>login/signin" method="post" class="login" novalidate="novalidate">
                     <h1 style="color: white;font-size: 30px;text-align: center">Log In</h1>
                     <div class="row" style="color: white">
                         <div class="col-md-12">
@@ -163,7 +163,7 @@
                                 <i class="fa fa-google-plus"></i> Login with Google
                             </a>
                             <br/>
-                            <a style="cursor: pointer" class="btn btn-block btn-social btn-facebook facebook"  href ="javascript:void(0);">
+                            <a style="cursor: pointer" class="btn btn-block btn-social btn-facebook facebook"  href = "javascript:void(0);">
                                 <i class="fa fa-facebook"></i> Login with Facebook
                             </a>
                         </div>
