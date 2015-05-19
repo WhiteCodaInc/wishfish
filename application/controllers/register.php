@@ -53,8 +53,6 @@ class Register extends CI_Controller {
             $this->client->setApprovalPrompt('force');
         }
         if ($from != "" && $from == "home") {
-            echo $this->client->createAuthUrl();
-            die();
             header('location:' . $this->client->createAuthUrl());
         } else {
             $data['isLogin_f'] = (isset($fid) && $fid != "") ? TRUE : FALSE;
