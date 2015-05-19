@@ -27,10 +27,10 @@ class M_register extends CI_Model {
     function register($post) {
         $flag = FALSE;
         $post['password'] = $this->generateRandomString(5);
-        $login = array(
-            'email' => $post['email'],
-            'password' => $post['password']
-        );
+//        $login = array(
+//            'email' => $post['email'],
+//            'password' => $post['password']
+//        );
         $this->db->trans_start();
         $planInfo = $this->common->getPlan(1);
 
@@ -93,6 +93,7 @@ class M_register extends CI_Model {
         $set = array(
             'name' => $data['name'],
             'email' => $data['email'],
+            'password' => $this->generateRandomString(5),
             'user_unique_id' => $data['id']
         );
         $this->db->trans_start();
@@ -131,6 +132,7 @@ class M_register extends CI_Model {
         $pid = $this->db->insert_id();
         if ($this->addCustomerToStripe($set, $pid, $insertid)) {
             $this->db->trans_complete();
+            $this->sendMail($set, $insertid);
             $flag = ($this->db->trans_status()) ? TRUE : FALSE;
         } else {
             $flag = FALSE;
