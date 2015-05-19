@@ -558,11 +558,11 @@
                                 <div class="col-md-4"></div>
                                 <div class="col-md-4">
                                     <form id="overlay">
-                                        <a href = "<?= $url ?>" class="btn btn-block btn-social btn-google-plus">
+                                        <a href = "<?= site_url() ?>register?from=home" class="btn btn-block btn-social btn-google-plus">
                                             <i class="fa fa-google-plus"></i> Sign up with Google
                                         </a>
                                         <br/>
-                                        <a style="cursor: pointer" class="btn btn-block btn-social btn-facebook" id="facebook" href = "javascript:void(0);">
+                                        <a style="cursor: pointer" id="fb-signup" class="btn btn-block btn-social btn-facebook" id="facebook" href = "javascript:void(0);">
                                             <i class="fa fa-facebook"></i> Sign up with Facebook
                                         </a>
                                         <br/>
