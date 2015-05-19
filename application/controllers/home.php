@@ -20,56 +20,17 @@ class Home extends CI_Controller {
         if ($this->authex->logged_in()) {
             header('location:' . site_url() . 'app/dashboard');
         } else {
-//            require APPPATH . 'third_party/google-api/Google_Client.php';
-//            require APPPATH . 'third_party/google-api/contrib/Google_Oauth2Service.php';
-//            require_once APPPATH . 'third_party/facebook/facebook.php';
-//            $this->config->load('googleplus');
-//            $this->config->load('googlelogin');
             $this->config->load('facebook');
             $this->load->model('m_register', 'objregister');
-            //-------------Google Sign Up---------------------------------//
-//            $this->signup = new Google_Client();
-//            $this->signup->setApplicationName($this->config->item('application_name', 'googleplus'));
-//            $this->signup->setClientId($this->config->item('client_id', 'googleplus'));
-//            $this->signup->setClientSecret($this->config->item('client_secret', 'googleplus'));
-//            $this->signup->setRedirectUri($this->config->item('redirect_uri', 'googleplus'));
-//            $this->signup->setDeveloperKey($this->config->item('api_key', 'googleplus'));
-//            $this->signup_service = new Google_Oauth2Service($this->signup);
-            //-------------Google Sign In---------------------------------//
-//            $this->signin = new Google_Client();
-//            $this->signin->setApplicationName($this->config->item('application_name', 'googlelogin'));
-//            $this->signin->setClientId($this->config->item('client_id', 'googlelogin'));
-//            $this->signin->setClientSecret($this->config->item('client_secret', 'googlelogin'));
-//            $this->signin->setRedirectUri($this->config->item('redirect_uri', 'googlelogin'));
-//            $this->signin->setDeveloperKey($this->config->item('api_key', 'googlelogin'));
-//            $this->signin_service = new Google_Oauth2Service($this->signin);
         }
     }
 
     function index() {
-//        $gid = $this->input->cookie('googleid');
-//        $fid = $this->input->cookie('facebookid');
-//        if (isset($gid) && $gid != "") {
-//            $data['isLogin_g'] = TRUE;
-//            $this->signup->setApprovalPrompt('auto');
-//            $this->signin->setApprovalPrompt('auto');
-//        } else {
-//            $data['isLogin_g'] = FALSE;
-//            $this->signup->setApprovalPrompt('force');
-//            $this->signin->setApprovalPrompt('force');
-//        }
         $data['word'] = $this->common->getRandomDigit(5);
         $this->session->set_userdata('captchaWord', $data['word']);
-//        $data['isLogin_f'] = (isset($fid) && $fid != "") ? TRUE : FALSE;
-//        $data['signupUrl'] = $this->signup->createAuthUrl();
-//        $data['signinUrl'] = $this->signin->createAuthUrl();
         $data['pdetail'] = $this->common->getPlans();
         $data['stripe'] = $this->common->getPaymentGatewayInfo("STRIPE");
         $data['paypal'] = $this->common->getPaymentGatewayInfo("PAYPAL");
-
-//        echo '<pre>';
-//        print_r($data);
-//        die();
 
         $this->load->view('header');
         $this->load->view('navbar');

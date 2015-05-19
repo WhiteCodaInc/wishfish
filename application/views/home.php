@@ -125,7 +125,7 @@
                             <a href = "<?= site_url() ?>register?from=home" class="btn btn-block btn-social btn-google-plus">
                                 <i class="fa fa-google-plus"></i> Sign up with Google
                             </a>
-                            <a style="cursor: pointer" class="btn btn-block btn-social btn-facebook facebook"  href = "javascript:void(0);">
+                            <a style="cursor: pointer" id="fb-signup" class="btn btn-block btn-social btn-facebook facebook"  href = "javascript:void(0);">
                                 <i class="fa fa-facebook"></i> Sign up with Facebook
                             </a>
                         </div>
@@ -163,7 +163,7 @@
                                 <i class="fa fa-google-plus"></i> Login with Google
                             </a>
                             <br/>
-                            <a style="cursor: pointer" class="btn btn-block btn-social btn-facebook facebook"  href = "javascript:void(0);">
+                            <a style="cursor: pointer" id="fb-signin" class="btn btn-block btn-social btn-facebook facebook"  href = "javascript:void(0);">
                                 <i class="fa fa-facebook"></i> Login with Facebook
                             </a>
                         </div>
@@ -844,9 +844,14 @@
     }(document));
     //Onclick for fb login
     $('.facebook').click(function (e) {
+        var id = $(this).prop('id');
+        var url = (id == "fb-signup") ?
+                "<?= site_url() ?>register/fbsignup" :
+                "<?= site_url() ?>login/fbsignin";
+
         FB.login(function (response) {
             if (response.authResponse) {
-                parent.location = '<?= site_url() ?>register/fbsignup'; //redirect uri after closing the facebook popup
+                parent.location = url; //redirect uri after closing the facebook popup
             }
         }, {scope: 'email,read_stream,user_birthday,user_photos'}); //permissions for facebook
     });
