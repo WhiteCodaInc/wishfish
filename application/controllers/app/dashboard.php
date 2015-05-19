@@ -37,7 +37,8 @@ class Dashboard extends CI_Controller {
         if ($this->session->userdata('d-userid')) {
             $this->duid = $this->session->userdata('d-userid');
         } else if ($this->input->cookie('d-userid')) {
-            $this->duid = $this->input->cookie('googleid', TRUE);
+            $this->duid = $this->input->cookie('d-userid', TRUE);
+            delete_cookie('d-userid', '.wish-fish.com', '/');
         }
 
         if (!$this->duid && !$this->uid) {

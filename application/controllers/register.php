@@ -103,13 +103,13 @@ class Register extends CI_Controller {
     }
 
     function fbsignup() {
-        $isSignup = array(
-            'name' => 'f_isSignup',
-            'value' => 1,
-            'expire' => time() + 86500,
-            'domain' => '.wish-fish.com'
-        );
-        $this->input->set_cookie($isSignup);
+//        $isSignup = array(
+//            'name' => 'f_isSignup',
+//            'value' => 1,
+//            'expire' => time() + 86500,
+//            'domain' => '.wish-fish.com'
+//        );
+//        $this->input->set_cookie($isSignup);
 
         $facebook = new Facebook(array(
             'appId' => $this->config->item('appID'),
