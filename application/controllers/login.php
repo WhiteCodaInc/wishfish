@@ -40,7 +40,7 @@ class Login extends CI_Controller {
 
             $this->service = new Google_Oauth2Service($this->client);
         }
-        die("STOP");
+//        die("STOP");
     }
 
     function index() {
