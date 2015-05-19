@@ -122,7 +122,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <a href = "<?= site_url() ?>register/add" class="btn btn-block btn-social btn-google-plus">
+                            <a href = "<?= site_url() ?>register?from=home" class="btn btn-block btn-social btn-google-plus">
                                 <i class="fa fa-google-plus"></i> Sign up with Google
                             </a>
                             <a style="cursor: pointer" class="btn btn-block btn-social btn-facebook facebook"  href = "javascript:void(0);">
@@ -159,7 +159,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <a href = "<?= $signinUrl ?>" class="btn btn-block btn-social btn-google-plus">
+                            <a href = "<?= site_url() ?>login?from=home" class="btn btn-block btn-social btn-google-plus">
                                 <i class="fa fa-google-plus"></i> Login with Google
                             </a>
                             <br/>
@@ -189,12 +189,6 @@
                         </div>
                     </div>
                     <br/>
-                    <!--                    <div class="row">
-                                            <div class="col-md-6" id="captcha_img"><?= $captcha['image'] ?></div>
-                                            <div class="col-md-3">
-                                                <img id="refresh" src="<?= base_url() ?>assets/refresh.png" alt="refresh" />
-                                            </div>
-                                        </div>-->
                     <div class="row">
                         <div class="col-md-6">
                             <h1 id="captcha_img" style="text-align: center;background-image:url(<?= base_url() ?>assets/wow/images/captcha_background.png); ">
@@ -565,11 +559,11 @@
                                 <div class="col-md-4">
                                     <form id="overlay">
                                         <a href = "<?= $url ?>" class="btn btn-block btn-social btn-google-plus">
-                                            <i class="fa fa-google-plus"></i> Sign <?= ($isLogin_g) ? "in" : "up" ?> with Google
+                                            <i class="fa fa-google-plus"></i> Sign up with Google
                                         </a>
                                         <br/>
                                         <a style="cursor: pointer" class="btn btn-block btn-social btn-facebook" id="facebook" href = "javascript:void(0);">
-                                            <i class="fa fa-facebook"></i> Sign <?= ($isLogin_f) ? "in" : "up" ?> with Facebook
+                                            <i class="fa fa-facebook"></i> Sign up with Facebook
                                         </a>
                                         <br/>
                                         <a href = "<?= site_url() ?>register"  class="btn btn-block btn-social btn-info">
