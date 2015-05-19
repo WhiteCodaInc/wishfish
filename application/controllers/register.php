@@ -61,13 +61,13 @@ class Register extends CI_Controller {
         if ($this->input->get('error')) {
             header('location:' . site_url() . 'register');
         }
-        $isSignup = array(
-            'name' => 'g_isSignup',
-            'value' => 1,
-            'expire' => time() + 86500,
-            'domain' => '.wish-fish.com'
-        );
-        $this->input->set_cookie($isSignup);
+//        $isSignup = array(
+//            'name' => 'g_isSignup',
+//            'value' => 1,
+//            'expire' => time() + 86500,
+//            'domain' => '.wish-fish.com'
+//        );
+//        $this->input->set_cookie($isSignup);
 
         $code = $this->input->get('code');
 //        $token = $this->session->userdata('token');
@@ -78,7 +78,6 @@ class Register extends CI_Controller {
 
             if ($this->client->getAccessToken()) {
                 $data = $this->service->userinfo->get();
-
                 $this->session->set_userdata('token', $this->client->getAccessToken());
                 $user = $this->objregister->isUserExist($data);
                 if (!$user) {

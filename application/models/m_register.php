@@ -100,8 +100,20 @@ class M_register extends CI_Model {
         $this->db->insert('user_mst', $set);
         $insertid = $this->db->insert_id();
 
-        $this->session->set_userdata('d-userid', $insertid);
-        $this->session->set_userdata('d-name', $set['name']);
+        $d_userid = array(
+            'name' => 'd-userid',
+            'value' => $insertid,
+            'expire' => time() + 86500,
+            'domain' => '.wish-fish.com'
+        );
+        $this->input->set_cookie($d_userid);
+//        $d_name = array(
+//            'name' => 'd-name',
+//            'value' => $set['name'],
+//            'expire' => time() + 86500,
+//            'domain' => '.wish-fish.com'
+//        );
+//        $this->input->set_cookie($d_name);
 
         $planInfo = $this->common->getPlan(1);
         $plan_set = array(

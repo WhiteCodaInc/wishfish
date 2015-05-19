@@ -28,19 +28,35 @@ class Dashboard extends CI_Controller {
         $this->load->library("authex");
         $this->load->helper('cookie');
 
+        if ($this->input->cookie('googleid', TRUE)) {
+            echo 'CHE';
+        } else {
+            echo 'NATHI';
+        }
+        die();
         $userid = $this->input->get('uid');
         $this->type = $this->input->get('type');
-        $this->duid = $this->session->userdata('d-userid');
+
         $this->uid = ($userid != "") ? $this->encryption->decode($userid) : '';
 
-        if (!$this->duid && !$this->uid) {
+        if ($this->session->userdata('d-userid')) {
+            $this->duid = $this->session->userdata('d-userid');
+        } else {
             $gid = $this->input->cookie('googleid', TRUE);
-            $fid = $this->input->cookie('facebookid', TRUE);
-            $g_isSignup = $this->input->cookie('g_isSignup', TRUE);
-            ($g_isSignup) ? delete_cookie('g_isSignup', '.wish-fish.com', '/') : '';
-            $f_isSignup = $this->input->cookie('f_isSignup', TRUE);
-            ($f_isSignup) ? delete_cookie('f_isSignup', '.wish-fish.com', '/') : '';
+        }
+
+        if (!$this->duid && !$this->uid) {
+
+
+
+//            $gid = $this->input->cookie('googleid', TRUE);
+            //$fid = $this->input->cookie('facebookid', TRUE);
+            //$g_isSignup = $this->input->cookie('g_isSignup', TRUE);
+            //($g_isSignup) ? delete_cookie('g_isSignup', '.wish-fish.com', '/') : '';
+            //$f_isSignup = $this->input->cookie('f_isSignup', TRUE);
+            //($f_isSignup) ? delete_cookie('f_isSignup', '.wish-fish.com', '/') : '';
             $flag = FALSE;
+
 
 
             if (!$this->authex->logged_in()) {
