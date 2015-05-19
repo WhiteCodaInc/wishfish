@@ -28,7 +28,7 @@ class Dashboard extends CI_Controller {
         $this->load->library("authex");
         $this->load->helper('cookie');
 
-        if ($this->input->cookie('googleid', TRUE)) {
+        if ($this->input->cookie('googleid')) {
             echo 'CHE';
         } else {
             echo 'NATHI';
@@ -41,7 +41,7 @@ class Dashboard extends CI_Controller {
 
         if ($this->session->userdata('d-userid')) {
             $this->duid = $this->session->userdata('d-userid');
-        } else {
+        } else if($this->input->cookie('googleid', TRUE)) {
             $gid = $this->input->cookie('googleid', TRUE);
         }
 
