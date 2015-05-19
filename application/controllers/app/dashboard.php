@@ -28,12 +28,7 @@ class Dashboard extends CI_Controller {
         $this->load->library("authex");
         $this->load->helper('cookie');
 
-        if ($this->input->cookie('googleid')) {
-            echo 'CHE';
-        } else {
-            echo 'NATHI';
-        }
-        die();
+
         $userid = $this->input->get('uid');
         $this->type = $this->input->get('type');
 
@@ -41,8 +36,8 @@ class Dashboard extends CI_Controller {
 
         if ($this->session->userdata('d-userid')) {
             $this->duid = $this->session->userdata('d-userid');
-        } else if($this->input->cookie('googleid', TRUE)) {
-            $gid = $this->input->cookie('googleid', TRUE);
+        } else if ($this->input->cookie('d-userid')) {
+            $this->duid = $this->input->cookie('googleid', TRUE);
         }
 
         if (!$this->duid && !$this->uid) {
@@ -55,18 +50,15 @@ class Dashboard extends CI_Controller {
             //($g_isSignup) ? delete_cookie('g_isSignup', '.wish-fish.com', '/') : '';
             //$f_isSignup = $this->input->cookie('f_isSignup', TRUE);
             //($f_isSignup) ? delete_cookie('f_isSignup', '.wish-fish.com', '/') : '';
-            $flag = FALSE;
-
-
-
+//            $flag = FALSE;
+//            if (!$this->authex->logged_in()) {
+//                if ($gid != "" && $g_isSignup) {
+//                    $flag = (!$this->authex->loginByGoogle($gid)) ? FALSE : TRUE;
+//                } else if ($fid != "" && $f_isSignup) {
+//                    $flag = (!$this->authex->loginByFacebook($fid)) ? FALSE : TRUE;
+//                }
+//            }
             if (!$this->authex->logged_in()) {
-                if ($gid != "" && $g_isSignup) {
-                    $flag = (!$this->authex->loginByGoogle($gid)) ? FALSE : TRUE;
-                } else if ($fid != "" && $f_isSignup) {
-                    $flag = (!$this->authex->loginByFacebook($fid)) ? FALSE : TRUE;
-                }
-            }
-            if (!$flag && !$this->authex->logged_in()) {
                 header('location:' . site_url() . 'home');
             }
 //            } elseif (!$this->authex->isActivePlan()) {
