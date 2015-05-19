@@ -62,10 +62,6 @@ class Login extends CI_Controller {
         $data['uname'] = $this->input->cookie('useremail', TRUE);
         $data['passwd'] = $this->input->cookie('password', TRUE);
 
-        echo '<pre>';
-        print_r($data);
-        die();
-
         $this->load->view('login', $data);
     }
 
