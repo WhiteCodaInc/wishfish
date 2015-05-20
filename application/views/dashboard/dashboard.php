@@ -251,6 +251,11 @@
                         </div>
                     </div><!-- /.box-header -->
                     <div class="box-body" style="text-align: center">
+                        <ul>
+                            <li> Schedule Unlimited Events</li>
+                            <li> Import Contacts From Google</li>
+                            <li> Import Contacts From Spreadsheet or CSV File</li>
+                        </ul>
                     </div>
                 </div>
             </div>
