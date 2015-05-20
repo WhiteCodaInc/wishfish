@@ -250,25 +250,25 @@
                         </a>
                     </li>
                     <li>
-                        <a class="<?= ($upload) ? "task-success" : "" ?>" href="javascript:void(0)" id="upload" data-toggle="modal" data-target="<?= (!$upload) ? "#setup" : "" ?>">
+                        <a class="<?= ($upload) ? "task-success" : "" ?>" href="javascript:void(0)" id="upload" data-toggle="modal" data-target="<?= (!$upload) ? "#uploadSetup" : "" ?>">
                             <i class="fa <?= ($upload) ? "fa-check-square" : "fa-square-o" ?> i_upload"></i>
                             Upload Your Photo
                         </a>
                     </li>
                     <li>
-                        <a class="<?= ($profile) ? "task-success" : "" ?>" href="javascript:void(0)" id="profile" data-toggle="modal" data-target="<?= (!$profile) ? "#setup" : "" ?>">
+                        <a class="<?= ($profile) ? "task-success" : "" ?>" href="javascript:void(0)" id="profile" data-toggle="modal" data-target="<?= (!$profile) ? "#profileSetup" : "" ?>">
                             <i class="fa <?= ($profile) ? "fa-check-square" : "fa-square-o" ?> i_profile"></i>
                             Complete Your Profile
                         </a>
                     </li>
                     <li>
-                        <a class="<?= ($contact) ? "task-success" : "" ?>" href="javascript:void(0)" id="contact" data-toggle="modal" data-target="<?= (!$contact) ? "#setup" : "" ?>">
+                        <a class="<?= ($contact) ? "task-success" : "" ?>" href="javascript:void(0)" id="contact" data-toggle="modal" data-target="<?= (!$contact) ? "#contactSetup" : "" ?>">
                             <i class="fa <?= ($contact) ? "fa-check-square" : "fa-square-o" ?> i_contact"></i>
                             Add Contact
                         </a>
                     </li>
                     <li>
-                        <a class="<?= ($event) ? "task-success" : "" ?>" href="javascript:void(0)" id="event" data-toggle="modal" data-target="<?= (!$event) ? "#setup" : "" ?>">
+                        <a class="<?= ($event) ? "task-success" : "" ?>" href="javascript:void(0)" id="event" data-toggle="modal" data-target="<?= (!$event) ? "#eventSetup" : "" ?>">
                             <i class="fa <?= ($event) ? "fa-check-square" : "fa-square-o" ?> i_event"></i>
                             Schedule an Event
                         </a>
@@ -276,14 +276,14 @@
                 </ul>
             </div>
         </div>
-        <div class="modal fade" id="setup" tabindex="-1" role="dialog" aria-hidden="true">
+        <!---------------------------Complete Your Profile------------------------------->
+        <div class="modal fade" id="profileSetup" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog" style="max-width: 400px">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title"></h4>
+                        <h4 class="modal-title">Complete Your Profile</h4>
                     </div>
-
                     <div class="modal-body">
                         <form id="profileForm"  method="post">
                             <div class="row">
@@ -334,7 +334,7 @@
                     <div class="modal-footer clearfix">
                         <div class="row">
                             <div class="col-md-3">
-                                <button type="button" id="send" class="btn btn-primary pull-left">Send</button>
+                                <button type="button" id="profileBtn" class="btn btn-primary pull-left">Send</button>
                             </div>
                             <div class="col-md-3">
                                 <button type="button" class="btn btn-danger discard" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
@@ -345,6 +345,56 @@
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div>
+        <!-------------------------End Complete Your Profile------------------------------>
+
+        <!-------------------------Upload Your Profile Photo------------------------------>
+        <?php
+        $path = $this->session->userdata('profile_pic');
+        $img_src = ($path != "") ?
+                "http://mikhailkuznetsov.s3.amazonaws.com/" . $path :
+                base_url() . 'assets/dashboard/img/default-avatar.png';
+        ?>
+        <div class="modal fade" id="uploadSetup" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" style="max-width: 400px">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Complete Your Profile</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form id="uploadForm"  method="post">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div  class="image" style="text-align: center">
+                                            <img id="profile_previewing" style="width: 100px;height: 100px"  src="<?= $img_src ?>" class="img-circle" alt="User Image" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <label for="profile pic">Profile Picture</label>
+                                        <input title="Add a photo so we can recognize you !" name="profile_pic"  type="file" id="profilePic" class="form-control" />
+                                        <span id="error_message"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer clearfix">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <button type="button" id="uploadBtn" class="btn btn-primary pull-left">Send</button>
+                            </div>
+                            <div class="col-md-3">
+                                <button type="button" class="btn btn-danger discard" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+        <!-----------------------End Upload Your Profile Photo---------------------------->
+
     </section>
 </aside>
 <?php $userInfo = $this->common->getUserInfo($this->session->userdata('userid')); ?>
@@ -360,7 +410,6 @@ $hour = ($userInfo->timezones == "UM9") ? $hour : $hour - 1;
 ?>
 <script type="text/javascript" >
     $(function () {
-
         $('.default-date-picker').datepicker({
             format: "<?= $this->session->userdata('date_format') ?>",
             todayBtn: "linked",
@@ -408,7 +457,42 @@ $hour = ($userInfo->timezones == "UM9") ? $hour : $hour - 1;
     $(document).ready(function () {
         $('.setup a').on('click', function () {
             var id = $(this).prop('id');
-            $('#setup .modal-title').text(id);
+            switch (id) {
+                case "upload":
+                    $('#setup .modal-title').text("Complete Your Profile");
+                    break;
+                case "profile":
+                    $('#setup .modal-title').text("Upload Your Profile Photo");
+                    break;
+                case "contact":
+                    $('#setup .modal-title').text("Complete Your Profile");
+                    break;
+                case "event":
+                    $('#setup .modal-title').text("Complete Your Profile");
+                    break;
+            }
         });
+        $("#uploadForm input:file").change(function () {
+            $("#uploadForm #error_message").empty(); // To remove the previous error message
+            var file = this.files[0];
+            var imagefile = file.type;
+            var match = ["image/jpeg", "image/png", "image/jpg"];
+            if (!((imagefile == match[0]) || (imagefile == match[1]) || (imagefile == match[2])))
+            {
+                $("#uploadForm #error_message").html("<p id='error' style='color:red'>Please Select A valid Image File.<br>" + "<span id='error_message'>Only jpeg, jpg and png Images type allowed</span></p>");
+                return false;
+            }
+            else
+            {
+                var reader = new FileReader();
+                reader.onload = imageIsLoaded;
+                reader.readAsDataURL(this.files[0]);
+            }
+        });
+
+        function imageIsLoaded(e) {
+            $("#uploadForm #profilePic").css("color", "green");
+            $("#uploadForm #profile_previewing").attr('src', e.target.result);
+        }
     });
 </script>

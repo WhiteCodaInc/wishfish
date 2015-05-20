@@ -249,16 +249,16 @@
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 
 <!-- InputMask -->
-<script src="<?= base_url() ?>assets/dashboard/js/plugins/input-mask/jquery.inputmask.js" type="text/javascript"></script>
+<!--<script src="<?= base_url() ?>assets/dashboard/js/plugins/input-mask/jquery.inputmask.js" type="text/javascript"></script>
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/input-mask/jquery.inputmask.date.extensions.js" type="text/javascript"></script>
-<script src="<?= base_url() ?>assets/dashboard/js/plugins/input-mask/jquery.inputmask.extensions.js" type="text/javascript"></script>
+<script src="<?= base_url() ?>assets/dashboard/js/plugins/input-mask/jquery.inputmask.extensions.js" type="text/javascript"></script>-->
 
 <script type="text/javascript">
     $(function () {
 
         Stripe.setPublishableKey('pk_test_qVqwj9LKS3yljQVTRh15YB2K');
 
-        $("[data-mask]").inputmask();
+//        $("[data-mask]").inputmask();
         $('.default-date-picker').datepicker({
             format: "<?= $this->session->userdata('date_format') ?>",
             todayBtn: "linked",
