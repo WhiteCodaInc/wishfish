@@ -173,6 +173,14 @@ $img_src = ($profile_pic != "") ?
                         </ul>
                     </li>
                 </ul>
+
+                <div class="row" style="float: right">
+                    <div class="col-md-12">
+                        <a style="margin-top: 6px;font-size: 16px;" class="btn btn-info" href="<?= site_url() ?>app/import">
+                            <i class="fa fa-user"></i> <span> Import Google Contact</span>
+                        </a>
+                    </div>
+                </div>
                 <span class="separator"></span>
                 <div class="row" style="float: right">
                     <div class="col-md-12">
@@ -183,13 +191,7 @@ $img_src = ($profile_pic != "") ?
                     </div>
                 </div>
                 <span class="separator"></span>
-                <div class="row" style="float: right">
-                    <div class="col-md-12">
-                        <a class="btn btn-primary btn-sm" href="<?= site_url() ?>app/import">
-                            <i class="fa fa-user"></i> <span> Import Google Contact</span>
-                        </a>
-                    </div>
-                </div>
+
                 <div class="modal fade" id="query-modal" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog" style="max-width: 400px">
                         <div class="modal-content">
