@@ -23,6 +23,7 @@ class Import extends CI_Controller {
         $this->userid = $this->session->userdata('userid');
         echo '<pre>';
         print_r($this->session->all_userdata());
+        die();
         //$_SESSION['userid'] = $this->userid;
         $this->config->load('googlecontact');
 
