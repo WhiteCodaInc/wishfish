@@ -5,13 +5,14 @@
 </footer>
 <?php
 $userid = $this->session->userdata('userid');
-if($userid != ""){
-	$userInfo = $this->common->getUserInfo($userid);
-	if ($userInfo->phone_verification) {
-    ?>
-    <script type="text/javascript" src="<?= base_url() ?>assets/hopscotch/demo.js"></script>
-	<?php 
-	}
+echo "USER ID :" . $userid;
+if ($userid != "") {
+    $userInfo = $this->common->getUserInfo($userid);
+    if ($userInfo->phone_verification) {
+        ?>
+        <script type="text/javascript" src="<?= base_url() ?>assets/hopscotch/demo.js"></script>
+        <?php
+    }
 }
 ?>
 
