@@ -64,4 +64,9 @@ class Profile extends CI_Controller {
         echo ($this->objprofile->upload()) ? 1 : 0;
     }
 
+    function updateProfileSetup() {
+        $post = $this->input->post();
+        echo ($this->objprofile->updateProfileSetup($post)) ? 1 : 0;
+    }
+
 }

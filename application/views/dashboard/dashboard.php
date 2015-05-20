@@ -296,10 +296,6 @@
                                                     <option value="+1">+1</option>
                                                 </select>
                                             </div>
-                                            <?php
-                                            $phone = (isset($user)) ?
-                                                    substr($user->phone, -10) : "";
-                                            ?>
                                             <div class="col-sm-8">
                                                 <label>Phone Number</label>
                                                 <i title="The coolest thing about Wish-Fish is that you can setup text message notification for yourself,These way you never miss an important event like a birthday or anniversary! We will only message you with the notifications you set,We promise." class="fa fa-question-circle"></i>
@@ -307,7 +303,7 @@
                                                     <div class="input-group-addon">
                                                         <i class="fa fa-phone"></i>
                                                     </div>
-                                                    <input style="z-index: 0" value="<?= $phone ?>" type="text" name="phone" class="form-control" placeholder="Enter Phone Number" data-inputmask='"mask": "(999) 999-9999"' data-mask/>
+                                                    <input style="z-index: 0" type="text" name="phone" class="form-control" placeholder="Enter Phone Number" data-inputmask='"mask": "(999) 999-9999"' data-mask/>
                                                 </div><!-- /.input group -->
                                             </div>
                                         </div>
@@ -318,17 +314,12 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </div>
-                                            <input style="z-index: 0;" name="birthday" value="<?= isset($user->birthday) ? $this->common->getUTCDate($user->birthday) : NULL ?>"  class="form-control form-control-inline input-medium default-date-picker" size="16" type="text">
+                                            <input style="z-index: 0;" name="birthday" class="form-control form-control-inline input-medium default-date-picker" size="16" type="text">
                                         </div><!-- /.input group -->
                                     </div><!-- /.form group -->
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <img  src="<?= base_url() ?>assets/dashboard/img/load.GIF" alt="" class="load" style="display: none" />
-                                    <span style="display: none" class="msg"></span>
-                                </div>
-                            </div>
+                            <span id="msgProfile"></span>
                         </form>
                     </div>
                     <div class="modal-footer clearfix">
@@ -336,7 +327,12 @@
                             <div class="col-md-3">
                                 <button type="button" id="profileBtn" class="btn btn-primary pull-left">Save Profile</button>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
+                                <div id="loadProfile" style="display: none">
+                                    <img src="<?= base_url() ?>assets/dashboard/img/load.GIF" alt="" />
+                                </div>
+                            </div>
+                            <div class="col-md-7" style="text-align: right">
                                 <button type="button" class="btn btn-danger discard" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
                             </div>
                         </div>
@@ -480,6 +476,8 @@ $hour = ($userInfo->timezones == "UM9") ? $hour : $hour - 1;
                     break;
             }
         });
+
+        /**************************Upload Profile Pic**************************/
         $("#uploadForm input:file").change(function () {
             $("#uploadForm #error_message").empty(); // To remove the previous error message
             var file = this.files[0];
@@ -504,6 +502,7 @@ $hour = ($userInfo->timezones == "UM9") ? $hour : $hour - 1;
             $("#uploadForm #profilePic").css("color", "green");
             $("#uploadForm #profile_previewing").attr('src', e.target.result);
         }
+
         $('#uploadForm').on('submit', (function (e) {
             if (!isValid)
                 return false;
@@ -536,5 +535,33 @@ $hour = ($userInfo->timezones == "UM9") ? $hour : $hour - 1;
                 }
             });
         }));
+        /**********************************************************************/
+
+        /*************************Complete Your Profile************************/
+        $('#profileBtn').on('click', function () {
+            var id = $(this).prop('id');
+            $('#' + id).prop('disabled', true);
+            $('#loadProfile').show();
+            $.ajax({
+                type: 'POST',
+                data: $('#profileForm').serialize(),
+                url: "<?= site_url() ?>app/profile/updateProfileSetup",
+                success: function (data, textStatus, jqXHR) {
+                    $('#loadUpload').hide();
+                    if (data == "1") {
+                        $("#msgProfile").css('color', 'green');
+                        $("#msgProfile").html("Profile Successfully Updated..!");
+                        setTimeout(function () {
+                            $('.discard').trigger('click');
+                        }, 1000);
+                    } else {
+                        $("#msgProfile").css('color', 'red');
+                        $("#msgProfile").html("Profile has not been Updated..!");
+                        $('#' + id).prop('disabled', false);
+                    }
+                }
+            });
+        });
+        /**********************************************************************/
     });
 </script>

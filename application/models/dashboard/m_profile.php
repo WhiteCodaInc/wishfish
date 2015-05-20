@@ -89,6 +89,16 @@ class M_profile extends CI_Model {
         return $m;
     }
 
+    function updateProfileSetup($set) {
+        $set['phone'] = (preg_match('/^\(?\d{3}\)?[- ]?\d{3}[- ]?\d{4}$/', $set['phone'])) ?
+                str_replace(array('(', ')', ' ', '-'), '', $set['code'] . $set['phone']) :
+                NULL;
+        $set['birthday'] = ($set['birthday'] != "") ?
+                $this->common->getMySqlDate($set['birthday'], $this->session->userdata('date_format')) :
+                NULL;
+        return ($this->db->update('user_mst', $set, array('user_id' => $this->userid))) ? TRUE : FALSE;
+    }
+
     function upload() {
         $flag = false;
         if (isset($_FILES['profile_pic'])) {
