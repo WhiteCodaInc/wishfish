@@ -94,6 +94,7 @@ class M_dashboard extends CI_Model {
     }
 
     function getProfileSetup() {
+        $per = 20;
         $userInfo = $this->common->getUserInfo($this->userid);
         $setup['upload'] = ($userInfo->profile_pic != "") ? 1 : 0;
         $setup['profile'] = ($userInfo->phone != "" && $userInfo->birthday != "") ? 1 : 0;
@@ -101,6 +102,10 @@ class M_dashboard extends CI_Model {
         $setup['contact'] = (count($contacts) > 0) ? 1 : 0;
         $events = $this->objcalender->getNormalEvent();
         $setup['event'] = (count($events) > 0) ? 1 : 0;
+        foreach ($setup as $value) {
+            $per += ($value) ? 20 : 0;
+        }
+        $setup['per'] = $per;
         return $setup;
     }
 
