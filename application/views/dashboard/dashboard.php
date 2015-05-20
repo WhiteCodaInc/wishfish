@@ -431,13 +431,13 @@
                             </div><!-- /.form group -->
                             <div class="form-group" id="add-phone">
                                 <div class="row">
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                         <label>Country Code</label>
                                         <select name="code" class="form-control">
                                             <option value="+1">+1</option>
                                         </select>
                                     </div>
-                                    <div class="col-sm-9">
+                                    <div class="col-sm-8">
                                         <label>Phone Number </label>
                                         <i title="You can send your contact a pre scheduled text message.In case you`r busy or vacation,so you don`t miss an important date ! (its kind of magical!)" class="fa fa-question-circle"></i>
                                         <div class="input-group">
