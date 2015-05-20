@@ -1,54 +1,6 @@
 <style type="text/css">
 
-    #planUpgrade{
-        margin: 0 5%;
-    }
-
-    #planUpgrade ul li{
-        line-height: 50px;
-        border-bottom: 1px solid #dee2e4;
-        text-align: center;
-        font-size: 16px;
-    }
-    #planUpgrade ul{
-        list-style: none;
-        padding: 0;
-    }
-    #planUpgrade p{
-        font-size: 20px;
-        line-height: 25px;
-    }
-    #planUpgrade .box-body{
-        padding: 1px;
-    }
-    #planUpgrade .box-body button{
-        /*        width: 65%;
-                margin: 5%;*/
-        margin: 3% 13%;
-        display: block;
-        width: 75%;
-        padding: 3%;
-        font-size: 20px
-    }
-    #planUpgrade .box-header{
-        text-align: center;
-        background-color: #1ac6ff;
-        color: white;
-    }
-    #planUpgrade .box-header h2{
-        font-weight: 600
-    }
-    #planUpgrade .box-header b{
-        font-size: 60px;
-        line-height: 70px;
-        color: #fff;
-    }
-    #planUpgrade .box-header span.currency{
-        font-size: 24px;
-        line-height: 54px;
-        vertical-align: top;
-        display: inline-block;
-    }
+    
 </style>
 <aside class="right-side">
     <!-- Content Header (Page header) -->
