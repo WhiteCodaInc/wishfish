@@ -96,6 +96,7 @@ class M_profile extends CI_Model {
         $set['birthday'] = ($set['birthday'] != "") ?
                 $this->common->getMySqlDate($set['birthday'], $this->session->userdata('date_format')) :
                 NULL;
+         unset($set['code']);
         return ($this->db->update('user_mst', $set, array('user_id' => $this->userid))) ? TRUE : FALSE;
     }
 
