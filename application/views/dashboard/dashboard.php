@@ -520,7 +520,7 @@ $hour = ($userInfo->timezones == "UM9") ? $hour : $hour - 1;
                     $("#error_message").html("Profile Picture Successfully Uploaded..!");
                     setTimeout(function () {
                         $('.discard').trigger('click');
-                        location.reload(true);
+                        //location.reload(true);
                     }, 1000);
                 }
             });

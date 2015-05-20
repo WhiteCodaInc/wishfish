@@ -89,6 +89,34 @@ class M_profile extends CI_Model {
         return $m;
     }
 
+    function upload() {
+        print_r($_FILES);
+        die();
+        $flag = false;
+        if (isset($_FILES['profile_pic'])) {
+            if ($_FILES['profile_pic']['error'] == 0) {
+                $msg = $this->uploadImage($_FILES);
+                switch ($msg) {
+                    case "UF":
+                        $flag = false;
+                        break;
+                    case "IF":
+                        $flag = false;
+                        break;
+                    default:
+                        $set['profile_pic'] = $msg;
+                        $this->session->set_userdata('profile_pic', $msg);
+                        $m = "U";
+                        break;
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
     function uploadImage($file) {
         $valid_formats = array("jpg", "png", "gif", "bmp", "jpeg", "PNG", "JPG", "JPEG", "GIF", "BMP");
         $ext = explode('/', $file['profile_pic']['type']);
