@@ -232,50 +232,52 @@
                 </div>
             </div>
         </div>
-        <div class="box box-solid booster">
-            <div class="box-header">
-                <h3>Profile <?= $per ?>% completed</h3>
-                <div class="progress progress-striped">
-                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="<?= $per ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?= $per ?>%">
-                        <span class="sr-only">40% Complete (success)</span>
+        <?php if ($per != "100"): ?>
+            <div class="box box-solid booster">
+                <div class="box-header">
+                    <h3>Profile <?= $per ?>% completed</h3>
+                    <div class="progress progress-striped">
+                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="<?= $per ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?= $per ?>%">
+                            <span class="sr-only">40% Complete (success)</span>
+                        </div>
                     </div>
+                </div><!-- /.box-header -->
+                <div class="box-body setup">
+                    <ul>
+                        <li class="task-success">
+                            <a class="task-success" href="javascript:void(0)">
+                                <i class="fa fa-check-square"></i>
+                                Setup Your Account
+                            </a>
+                        </li>
+                        <li>
+                            <a class="<?= ($upload) ? "task-success" : "" ?>" href="javascript:void(0)" data-toggle="modal" data-target="<?= (!$upload) ? "#uploadSetup" : "" ?>">
+                                <i class="fa <?= ($upload) ? "fa-check-square" : "fa-square-o" ?> i_upload"></i>
+                                Upload Your Photo
+                            </a>
+                        </li>
+                        <li>
+                            <a class="<?= ($profile) ? "task-success" : "" ?>" href="javascript:void(0)" data-toggle="modal" data-target="<?= (!$profile) ? "#profileSetup" : "" ?>">
+                                <i class="fa <?= ($profile) ? "fa-check-square" : "fa-square-o" ?> i_profile"></i>
+                                Complete Your Profile
+                            </a>
+                        </li>
+                        <li>
+                            <a class="<?= ($contact) ? "task-success" : "" ?>" href="javascript:void(0)" data-toggle="modal" data-target="<?= (!$contact) ? "#contactSetup" : "" ?>">
+                                <i class="fa <?= ($contact) ? "fa-check-square" : "fa-square-o" ?> i_contact"></i>
+                                Add Contact
+                            </a>
+                        </li>
+                        <li>
+                            <a class="<?= ($event) ? "task-success" : "" ?>" href="<?= (!$contact) ? site_url() . "app/calender" : "javascript:void(0)" ?>">
+                                <i class="fa <?= ($event) ? "fa-check-square" : "fa-square-o" ?> i_event"></i>
+                                Schedule an Event
+                            </a>
+                        </li>
+                    </ul>
                 </div>
-            </div><!-- /.box-header -->
-            <div class="box-body setup">
-                <ul>
-                    <li class="task-success">
-                        <a class="task-success" href="javascript:void(0)">
-                            <i class="fa fa-check-square"></i>
-                            Setup Your Account
-                        </a>
-                    </li>
-                    <li>
-                        <a class="<?= ($upload) ? "task-success" : "" ?>" href="javascript:void(0)" data-toggle="modal" data-target="<?= (!$upload) ? "#uploadSetup" : "" ?>">
-                            <i class="fa <?= ($upload) ? "fa-check-square" : "fa-square-o" ?> i_upload"></i>
-                            Upload Your Photo
-                        </a>
-                    </li>
-                    <li>
-                        <a class="<?= ($profile) ? "task-success" : "" ?>" href="javascript:void(0)" data-toggle="modal" data-target="<?= (!$profile) ? "#profileSetup" : "" ?>">
-                            <i class="fa <?= ($profile) ? "fa-check-square" : "fa-square-o" ?> i_profile"></i>
-                            Complete Your Profile
-                        </a>
-                    </li>
-                    <li>
-                        <a class="<?= ($contact) ? "task-success" : "" ?>" href="javascript:void(0)" data-toggle="modal" data-target="<?= (!$contact) ? "#contactSetup" : "" ?>">
-                            <i class="fa <?= ($contact) ? "fa-check-square" : "fa-square-o" ?> i_contact"></i>
-                            Add Contact
-                        </a>
-                    </li>
-                    <li>
-                        <a class="<?= ($event) ? "task-success" : "" ?>" href="<?= (!$contact) ? site_url() . "app/calender" : "javascript:void(0)" ?>">
-                            <i class="fa <?= ($event) ? "fa-check-square" : "fa-square-o" ?> i_event"></i>
-                            Schedule an Event
-                        </a>
-                    </li>
-                </ul>
             </div>
-        </div>
+        <?php endif; ?>
         <!---------------------------Complete Your Profile------------------------------->
         <div class="modal fade" id="profileSetup" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog" style="max-width: 400px">
