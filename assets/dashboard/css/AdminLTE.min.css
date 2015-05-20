@@ -12,7 +12,7 @@
     margin: 0 5%;
 }
 .task-success{
-    color: #00c875
+    color: #00c875 !important
 }
 .booster{
     width: 25% !important;
