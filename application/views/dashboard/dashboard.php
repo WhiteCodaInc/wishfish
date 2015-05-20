@@ -695,7 +695,7 @@ $hour = ($userInfo->timezones == "UM9") ? $hour : $hour - 1;
                 type: 'POST',
 //                data: {birthday: bdate, phone: phone, code: code},
                 data: $('#contactForm').serialize(),
-                url: "<?= site_url() ?>app/contacts/addContact",
+                url: "<?= site_url() ?>app/contacts/add_contact",
                 success: function (data, textStatus, jqXHR) {
                     $('#loadContact').hide();
                     if (data == "1") {
