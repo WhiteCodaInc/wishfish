@@ -5,7 +5,7 @@
 </footer>
 <?php
 $userid = $this->session->userdata('userid');
-//echo "USER ID :" . $userid;
+echo "USER ID :" . $userid;
 if ($userid != "") {
     $userInfo = $this->common->getUserInfo($userid);
     if ($userInfo->phone_verification) {
