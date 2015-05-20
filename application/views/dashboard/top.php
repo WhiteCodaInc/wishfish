@@ -33,6 +33,15 @@
     /*    .modal-backdrop{
             z-index: 0
         }*/
+    .separator{
+        display: inline-block;
+        height: 30px;
+        vertical-align: top;
+        margin-top: 5px;
+        margin-left: 15px;
+        border-right: 1px solid #dfdfdf;
+        float: right
+    }
 </style>
 <?php
 $profile_pic = $this->session->userdata('profile_pic');
@@ -164,13 +173,13 @@ $img_src = ($profile_pic != "") ?
                         </ul>
                     </li>
                 </ul>
+                <span class="separator"></span>
                 <div class="row" style="float: right">
                     <div class="col-md-12">
                         <a style="margin-top: 6px;font-size: 18px;" class="btn btn-warning" href="<?= site_url() ?>app/upgrade">
                             Upgrade
                             <i class="fa fa-arrow-circle-right"></i>
                         </a>
-                        <span class="separator-left"></span>
                     </div>
                 </div>
                 <div class="modal fade" id="query-modal" tabindex="-1" role="dialog" aria-hidden="true">
