@@ -505,21 +505,20 @@ $hour = ($userInfo->timezones == "UM9") ? $hour : $hour - 1;
             $("#uploadForm #profile_previewing").attr('src', e.target.result);
         }
         $('#uploadForm').on('submit', (function (e) {
-//            if (!isValid)
-//                return false;
+            if (!isValid)
+                return false;
             $('#uploadBtn').prop('disabled', true);
-
             e.preventDefault();
             $('#loadUpload').show();
             $("#error_message").empty();
             $.ajax({
-                url: "<?= site_url() ?>app/profile/upload", // Url to which the request is send
-                type: "POST", // Type of request to be send, called as method
+                url: "<?= site_url() ?>app/profile/upload",
+                type: "POST",
                 data: new FormData(this), // Data sent to server, a set of key/value pairs representing form fields and values 
                 contentType: false, // The content type used when sending data to the server. Default is: "application/x-www-form-urlencoded"
                 cache: false, // To unable request pages to be cached
                 processData: false, // To send DOMDocument or non processed data file it is set to false (i.e. data should not be in the form of string)
-                success: function (data)  		// A function to be called if request succeeds
+                success: function (data)
                 {
                     $('#loadUpload').hide();
                     if (data == "1") {
@@ -527,7 +526,7 @@ $hour = ($userInfo->timezones == "UM9") ? $hour : $hour - 1;
                         $("#error_message").html("Profile Picture Successfully Uploaded..!");
                         setTimeout(function () {
                             $('.discard').trigger('click');
-                            //location.reload(true);
+                            location.reload(true);
                         }, 1000);
                     } else {
                         $('#uploadBtn').prop('disabled', false);
