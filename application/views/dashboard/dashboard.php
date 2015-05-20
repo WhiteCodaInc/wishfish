@@ -234,23 +234,28 @@
                 </div>
             </div>
         </div>
-        <div class="box box-solid">
-            <div class="box-header" style="text-align: center">
-                <!--                <h2>A</h2>
-                                <p class="price">
-                                    <span class="currency">$</span>
-                                    <b><?= $plan->amount ?></b> 
-                                    <span class="month">/month</span>
-                                </p>-->
-                <div class="progress progress-striped">
-                    <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                        <span class="sr-only">40% Complete (success)</span>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="box box-solid">
+                    <div class="box-header" style="text-align: center">
+                        <!--                <h2>A</h2>
+                                        <p class="price">
+                                            <span class="currency">$</span>
+                                            <b><?= $plan->amount ?></b> 
+                                            <span class="month">/month</span>
+                                        </p>-->
+                        <div class="progress progress-striped">
+                            <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                <span class="sr-only">40% Complete (success)</span>
+                            </div>
+                        </div>
+                    </div><!-- /.box-header -->
+                    <div class="box-body" style="text-align: center">
                     </div>
                 </div>
-            </div><!-- /.box-header -->
-            <div class="box-body" style="text-align: center">
             </div>
         </div>
+
     </section>
 </aside>
 <?php $userInfo = $this->common->getUserInfo($this->session->userdata('userid')); ?>
