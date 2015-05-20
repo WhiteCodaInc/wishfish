@@ -283,11 +283,44 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <h4 class="modal-title"></h4>
                     </div>
-                    <form id="setupForm"  method="post">
-                        <div class="modal-body">
+
+                    <div class="modal-body">
+                        <form id="profileForm"  method="post">
                             <div class="row">
                                 <div class="col-md-12">
-
+                                    <div class="form-group" id="phone-number">
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <label>Country Code</label>
+                                                <select name="code" class="form-control">
+                                                    <option value="+1">+1</option>
+                                                </select>
+                                            </div>
+                                            <?php
+                                            $phone = (isset($user)) ?
+                                                    substr($user->phone, -10) : "";
+                                            ?>
+                                            <div class="col-sm-9">
+                                                <label>Phone Number</label>
+                                                <i title="The coolest thing about Wish-Fish is that you can setup text message notification for yourself,These way you never miss an important event like a birthday or anniversary! We will only message you with the notifications you set,We promise." class="fa fa-question-circle"></i>
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-phone"></i>
+                                                    </div>
+                                                    <input style="z-index: 0" value="<?= $phone ?>" type="text" name="phone" class="form-control" placeholder="Enter Phone Number" data-inputmask='"mask": "(999) 999-9999"' data-mask/>
+                                                </div><!-- /.input group -->
+                                            </div>
+                                        </div>
+                                    </div><!-- /.form group -->
+                                    <div class="form-group" id="birthday">
+                                        <label>Birthday</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <input style="z-index: 0;" name="birthday" value="<?= isset($user->birthday) ? $this->common->getUTCDate($user->birthday) : NULL ?>"  class="form-control form-control-inline input-medium default-date-picker" size="16" type="text">
+                                        </div><!-- /.input group -->
+                                    </div><!-- /.form group -->
                                 </div>
                             </div>
                             <div class="row">
@@ -296,17 +329,18 @@
                                     <span style="display: none" class="msg"></span>
                                 </div>
                             </div>
-                        </div>
-                        <div class="modal-footer clearfix">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <button type="button" id="send" class="btn btn-primary pull-left">Send</button>
-                                </div>
-                                <div class="col-md-3">
-                                    <button type="button" class="btn btn-danger discard" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
-                                </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer clearfix">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <button type="button" id="send" class="btn btn-primary pull-left">Send</button>
+                            </div>
+                            <div class="col-md-3">
+                                <button type="button" class="btn btn-danger discard" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
                             </div>
                         </div>
+                    </div>
                     </form>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
