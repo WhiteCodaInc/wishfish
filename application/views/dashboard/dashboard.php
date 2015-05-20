@@ -385,6 +385,11 @@
                             <div class="col-md-3">
                                 <button type="button" id="uploadBtn" class="btn btn-primary pull-left">Upload</button>
                             </div>
+                            <div class="col-md-3">
+                                <div id="loadUpload" style="display: none">
+                                    <img src="<?= base_url() ?>assets/dashboard/load.GIF" alt="" />
+                                </div>
+                            </div>
                             <div class="col-md-9" style="text-align: right">
                                 <button type="button" class="btn btn-danger discard" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
                             </div>
