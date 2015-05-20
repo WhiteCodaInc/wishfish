@@ -248,20 +248,28 @@
                         Setup Your Account
                     </li>
                     <li>
-                        <i class="fa fa-square-o"></i>
-                        Upload Your Photo
+                        <a href="javascript:void(0)" id="upload-photo">
+                            <i class="fa fa-square-o"></i>
+                            Upload Your Photo
+                        </a>
                     </li>
                     <li>
-                        <i class="fa fa-square-o"></i>
-                        Complete Your Profile
+                        <a href="javascript:void(0)" id="upload-photo">
+                            <i class="fa fa-square-o"></i>
+                            Complete Your Profile
+                        </a>
                     </li>
                     <li>
-                        <i class="fa fa-square-o"></i>
-                        Add Contact
+                        <a href="javascript:void(0)" id="upload-photo">
+                            <i class="fa fa-square-o"></i>
+                            Add Contact
+                        </a>
                     </li>
                     <li>
-                        <i class="fa fa-square-o"></i>
-                        Schedule an Event
+                        <a href="javascript:void(0)" id="upload-photo">
+                            <i class="fa fa-square-o"></i>
+                            Schedule an Event
+                        </a>
                     </li>
 
                 </ul>
