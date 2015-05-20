@@ -66,6 +66,8 @@ class Profile extends CI_Controller {
 
     function updateProfileSetup() {
         $post = $this->input->post();
+        print_r($post);
+        die();
         echo ($this->objprofile->updateProfileSetup($post)) ? 1 : 0;
     }
 
