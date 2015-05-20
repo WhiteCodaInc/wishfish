@@ -248,7 +248,7 @@
                         Setup Your Account
                     </li>
                     <li>
-                        <a href="javascript:void(0)" id="upload-photo">
+                        <a class="task-success" href="javascript:void(0)" id="upload-photo">
                             <i class="fa fa-square-o"></i>
                             Upload Your Photo
                         </a>
