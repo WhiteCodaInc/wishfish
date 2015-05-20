@@ -288,9 +288,9 @@
                         <form id="profileForm"  method="post">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="form-group" id="phone-number">
+                                    <div class="form-group">
                                         <div class="row">
-                                            <div class="col-sm-3">
+                                            <div class="col-sm-4">
                                                 <label>Country Code</label>
                                                 <select name="code" class="form-control">
                                                     <option value="+1">+1</option>
@@ -300,7 +300,7 @@
                                             $phone = (isset($user)) ?
                                                     substr($user->phone, -10) : "";
                                             ?>
-                                            <div class="col-sm-9">
+                                            <div class="col-sm-8">
                                                 <label>Phone Number</label>
                                                 <i title="The coolest thing about Wish-Fish is that you can setup text message notification for yourself,These way you never miss an important event like a birthday or anniversary! We will only message you with the notifications you set,We promise." class="fa fa-question-circle"></i>
                                                 <div class="input-group">
@@ -312,7 +312,7 @@
                                             </div>
                                         </div>
                                     </div><!-- /.form group -->
-                                    <div class="form-group" id="birthday">
+                                    <div class="form-group">
                                         <label>Birthday</label>
                                         <div class="input-group">
                                             <div class="input-group-addon">
@@ -360,6 +360,14 @@ $hour = ($userInfo->timezones == "UM9") ? $hour : $hour - 1;
 ?>
 <script type="text/javascript" >
     $(function () {
+
+        $('.default-date-picker').datepicker({
+            format: "<?= $this->session->userdata('date_format') ?>",
+            todayBtn: "linked",
+            autoclose: true,
+            todayHighlight: true
+        });
+
         var props = 'transform WebkitTransform MozTransform OTransform msTransform'.split(' '),
                 prop,
                 el = document.createElement('div');
