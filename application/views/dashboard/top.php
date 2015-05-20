@@ -44,6 +44,9 @@
     .import:hover{
         color: #428bca
     }
+    .import{
+        color: white
+    }
 </style>
 <?php
 $profile_pic = $this->session->userdata('profile_pic');
@@ -179,7 +182,7 @@ $img_src = ($profile_pic != "") ?
                 <div class="row" style="float: right;margin: 14px -15px;">
                     <div class="col-md-12">
                         <a class="import" href="<?= site_url() ?>app/import">
-                            <i class="fa fa-user"></i> <span> Import Google Contact</span>
+                            <i class="fa fa-plus"></i> <span> Import Google Contact</span>
                         </a>
                     </div>
                 </div>
