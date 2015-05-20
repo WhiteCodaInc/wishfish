@@ -462,6 +462,7 @@ $hour = ($userInfo->timezones == "UM9") ? $hour : $hour - 1;
 </script>
 <script type="text/javascript">
     $(document).ready(function () {
+        var isValid = true;
         $('.setup a').on('click', function () {
             var id = $(this).prop('id');
             switch (id) {
@@ -483,10 +484,11 @@ $hour = ($userInfo->timezones == "UM9") ? $hour : $hour - 1;
             $("#uploadForm #error_message").empty(); // To remove the previous error message
             var file = this.files[0];
             var imagefile = file.type;
-            var match = ["image/jpeg", "image/png", "image/jpg"];
-            if (!((imagefile == match[0]) || (imagefile == match[1]) || (imagefile == match[2])))
+            var match = ["image/jpeg", "image/png", "image/jpg", "image/gif"];
+            if (!((imagefile == match[0]) || (imagefile == match[1]) || (imagefile == match[2]) || (imagefile == match[3])))
             {
                 $("#uploadForm #error_message").html("<p id='error' style='color:red'>Please Select A valid Image File.<br>" + "<span id='error_message'>Only jpeg, jpg and png Images type allowed</span></p>");
+                isValid = false;
                 return false;
             }
             else
@@ -494,6 +496,7 @@ $hour = ($userInfo->timezones == "UM9") ? $hour : $hour - 1;
                 var reader = new FileReader();
                 reader.onload = imageIsLoaded;
                 reader.readAsDataURL(this.files[0]);
+                isValid = true;
             }
         });
 
@@ -502,7 +505,10 @@ $hour = ($userInfo->timezones == "UM9") ? $hour : $hour - 1;
             $("#uploadForm #profile_previewing").attr('src', e.target.result);
         }
         $('#uploadForm').on('submit', (function (e) {
+            if (!isValid)
+                return false;
             $('#uploadBtn').prop('disabled', true);
+
             e.preventDefault();
             $('#loadUpload').show();
             $("#error_message").empty();
