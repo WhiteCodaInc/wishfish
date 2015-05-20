@@ -461,7 +461,7 @@
                     <div class="modal-footer clearfix">
                         <div class="row">
                             <div class="col-md-3">
-                                <button type="button" id="profileBtn" class="btn btn-primary pull-left">Save Profile</button>
+                                <button type="button" id="contactBtn" class="btn btn-primary pull-left">Save Profile</button>
                             </div>
                             <div class="col-md-2">
                                 <div id="loadContact" style="display: none">
