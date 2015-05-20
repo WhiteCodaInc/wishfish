@@ -166,10 +166,11 @@ $img_src = ($profile_pic != "") ?
                 </ul>
                 <div class="row" style="float: right">
                     <div class="col-md-12">
-                        <a style="margin-top: 6px;width: 10%;font-size: 18px;" class="btn btn-warning" href="<?= site_url() ?>app/upgrade">
+                        <a style="margin-top: 6px;font-size: 18px;" class="btn btn-warning" href="<?= site_url() ?>app/upgrade">
                             Upgrade
                             <i class="fa fa-arrow-circle-right"></i>
                         </a>
+                        <span class="separator-left"></span>
                     </div>
                 </div>
                 <div class="modal fade" id="query-modal" tabindex="-1" role="dialog" aria-hidden="true">
