@@ -11,7 +11,9 @@
 #planUpgrade{
     margin: 0 5%;
 }
-
+.booster{
+    width:25%;
+}
 .booster ul li{
     line-height: 50px;
     border-bottom: 1px solid #dee2e4;
