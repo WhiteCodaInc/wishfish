@@ -59,5 +59,9 @@ class Profile extends CI_Controller {
         $data['msg'] = $this->session->flashdata('msg');
         $this->load->view('client/twocheckout_success', $data);
     }
+    
+    function upload(){
+        print_r($_FILES);
+    }
 
 }

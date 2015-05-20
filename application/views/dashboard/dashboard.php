@@ -362,7 +362,7 @@
                         <h4 class="modal-title">Upload Your Profile Picture</h4>
                     </div>
                     <div class="modal-body">
-                        <form id="uploadForm"  method="post">
+                        <form id="uploadForm" action=""  method="post" enctype="multipart/form-data">
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-12" style="text-align: center">
@@ -383,7 +383,7 @@
                     <div class="modal-footer clearfix">
                         <div class="row">
                             <div class="col-md-3">
-                                <button type="button" id="uploadBtn" class="btn btn-primary pull-left">Upload</button>
+                                <button type="submit" id="uploadBtn" class="btn btn-primary pull-left">Upload</button>
                             </div>
                             <div class="col-md-2">
                                 <div id="loadUpload" style="display: none">
@@ -395,7 +395,6 @@
                             </div>
                         </div>
                     </div>
-                    </form>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div>
@@ -500,5 +499,22 @@ $hour = ($userInfo->timezones == "UM9") ? $hour : $hour - 1;
             $("#uploadForm #profilePic").css("color", "green");
             $("#uploadForm #profile_previewing").attr('src', e.target.result);
         }
+        $('#uploadForm').on('submit', (function (e) {
+//            e.preventDefault();
+            $("#error_message").empty();
+            $.ajax({
+                url: "<?= site_url() ?>app/profile/upload", // Url to which the request is send
+                type: "POST", // Type of request to be send, called as method
+                data: new FormData(this), // Data sent to server, a set of key/value pairs representing form fields and values 
+                contentType: false, // The content type used when sending data to the server. Default is: "application/x-www-form-urlencoded"
+                cache: false, // To unable request pages to be cached
+                processData: false, // To send DOMDocument or non processed data file it is set to false (i.e. data should not be in the form of string)
+                success: function (data)  		// A function to be called if request succeeds
+                {
+                    $("#error_message").html(data);
+//                    $("#error_message").fadeOut(7000);
+                }
+            });
+        }));
     });
 </script>
