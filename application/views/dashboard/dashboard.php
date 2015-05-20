@@ -236,7 +236,7 @@
             <div class="box-header">
                 <h3>Profile 40% completed</h3>
                 <div class="progress progress-striped">
-                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="<?= $per ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?= $per ?>%">
                         <span class="sr-only">40% Complete (success)</span>
                     </div>
                 </div>
