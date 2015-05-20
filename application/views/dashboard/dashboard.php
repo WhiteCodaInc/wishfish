@@ -240,16 +240,15 @@
                     <div class="box-header" style="text-align: center;background-color: #66ccf5">
                         <h2>Profile 40% completed</h2>
                         <div class="progress progress-striped">
-                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
                                 <span class="sr-only">40% Complete (success)</span>
                             </div>
                         </div>
                     </div><!-- /.box-header -->
                     <div class="box-body" style="text-align: center">
                         <ul>
-                            <li> Schedule Unlimited Events</li>
-                            <li> Import Contacts From Google</li>
-                            <li> Import Contacts From Spreadsheet or CSV File</li>
+                            <li><i class="fa fa-circle-o"></i> Schedule Unlimited Events</li>
+                            <li style="color: green"><i class="fa fa-check-circle-o"></i> Import Contacts From Google</li>
                         </ul>
                     </div>
                 </div>
