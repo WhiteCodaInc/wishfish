@@ -11,6 +11,9 @@
 #planUpgrade{
     margin: 0 5%;
 }
+.task-success{
+    color: #00c875
+}
 .booster{
     width: 25% !important;
     position: fixed !important;
@@ -22,6 +25,10 @@
     border-bottom: 1px solid #dee2e4;
     font-size: 16px;
     padding: 0 15px
+}
+.booster ul li i{
+    vertical-align: middle;
+    font-size: 20px
 }
 
 #planUpgrade ul li{

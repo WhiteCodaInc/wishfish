@@ -243,14 +243,27 @@
             </div><!-- /.box-header -->
             <div class="box-body">
                 <ul>
+                    <li style="task-success">
+                        <i class="fa fa-check-square"></i>
+                        Setup Your Account
+                    </li>
                     <li>
-                        <i style="vertical-align: middle;font-size: 20px" class="fa fa-square-o"></i>
-                        Schedule Unlimited Events
+                        <i class="fa fa-square-o"></i>
+                        Upload Your Photo
                     </li>
-                    <li style="color: green">
-                        <i style="vertical-align: middle;font-size: 20px;" class="fa fa-check-square"></i>
-                        Import Contacts From Google
+                    <li>
+                        <i class="fa fa-square-o"></i>
+                        Complete Your Profile
                     </li>
+                    <li>
+                        <i class="fa fa-square-o"></i>
+                        Add Contact
+                    </li>
+                    <li>
+                        <i class="fa fa-square-o"></i>
+                        Schedule an Event
+                    </li>
+
                 </ul>
             </div>
         </div>
