@@ -556,6 +556,7 @@ $hour = ($userInfo->timezones == "UM9") ? $hour : $hour - 1;
                         $("#msgProfile").html("Profile Successfully Updated..!");
                         setTimeout(function () {
                             $('.discard').trigger('click');
+                            location.reload(true);
                         }, 1000);
                     } else {
                         $("#msgProfile").css('color', 'red');
