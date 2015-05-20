@@ -234,7 +234,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row" id="planUpgrade">
             <div class="col-md-4">
                 <div class="box box-solid">
                     <div class="box-header" style="text-align: center">
