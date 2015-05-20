@@ -248,25 +248,25 @@
                         Setup Your Account
                     </li>
                     <li>
-                        <a class="<?= ($upload) ? "task-success" : "" ?>" href="javascript:void(0)" id="upload" data-toggle="modal" data-target="#setup">
+                        <a class="<?= ($upload) ? "task-success" : "" ?>" href="javascript:void(0)" id="upload" data-toggle="modal" data-target="<?= (!$upload) ? "#setup" : "" ?>">
                             <i class="fa <?= ($upload) ? "fa-check-square" : "fa-square-o" ?> i_upload"></i>
                             Upload Your Photo
                         </a>
                     </li>
                     <li>
-                        <a class="<?= ($profile) ? "task-success" : "" ?>" href="javascript:void(0)" id="profile" data-toggle="modal" data-target="#setup">
+                        <a class="<?= ($profile) ? "task-success" : "" ?>" href="javascript:void(0)" id="profile" data-toggle="modal" data-target="<?= (!$profile) ? "#setup" : "" ?>">
                             <i class="fa <?= ($profile) ? "fa-check-square" : "fa-square-o" ?> i_profile"></i>
                             Complete Your Profile
                         </a>
                     </li>
                     <li>
-                        <a class="<?= ($contact) ? "task-success" : "" ?>" href="javascript:void(0)" id="contact" data-toggle="modal" data-target="#setup">
+                        <a class="<?= ($contact) ? "task-success" : "" ?>" href="javascript:void(0)" id="contact" data-toggle="modal" data-target="<?= (!$contact) ? "#setup" : "" ?>">
                             <i class="fa <?= ($contact) ? "fa-check-square" : "fa-square-o" ?> i_contact"></i>
                             Add Contact
                         </a>
                     </li>
                     <li>
-                        <a class="<?= ($event) ? "task-success" : "" ?>" href="javascript:void(0)" id="event" data-toggle="modal" data-target="#setup">
+                        <a class="<?= ($event) ? "task-success" : "" ?>" href="javascript:void(0)" id="event" data-toggle="modal" data-target="<?= (!$event) ? "#setup" : "" ?>">
                             <i class="fa <?= ($event) ? "fa-check-square" : "fa-square-o" ?> i_event"></i>
                             Schedule an Event
                         </a>
