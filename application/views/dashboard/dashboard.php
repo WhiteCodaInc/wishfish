@@ -248,31 +248,69 @@
                         Setup Your Account
                     </li>
                     <li>
-                        <a class="<?= ($upload) ? "task-success" : "" ?>" href="javascript:void(0)" id="upload-photo">
+                        <a class="<?= ($upload) ? "task-success" : "" ?>" href="javascript:void(0)" id="upload" data-toggle="modal" data-target="#query-modal">
                             <i class="fa <?= ($upload) ? "fa-check-square" : "fa-square-o" ?> i_upload"></i>
                             Upload Your Photo
                         </a>
                     </li>
                     <li>
-                        <a class="<?= ($profile) ? "task-success" : "" ?>" href="javascript:void(0)" id="upload-photo">
+                        <a class="<?= ($profile) ? "task-success" : "" ?>" href="javascript:void(0)" id="profile" data-toggle="modal" data-target="#query-modal">
                             <i class="fa <?= ($profile) ? "fa-check-square" : "fa-square-o" ?> i_profile"></i>
                             Complete Your Profile
                         </a>
                     </li>
                     <li>
-                        <a class="<?= ($contact) ? "task-success" : "" ?>" href="javascript:void(0)" id="upload-photo">
+                        <a class="<?= ($contact) ? "task-success" : "" ?>" href="javascript:void(0)" id="contact" data-toggle="modal" data-target="#query-modal">
                             <i class="fa <?= ($contact) ? "fa-check-square" : "fa-square-o" ?> i_contact"></i>
                             Add Contact
                         </a>
                     </li>
                     <li>
-                        <a class="<?= ($event) ? "task-success" : "" ?>" href="javascript:void(0)" id="upload-photo">
+                        <a class="<?= ($event) ? "task-success" : "" ?>" href="javascript:void(0)" id="event" data-toggle="modal" data-target="#query-modal">
                             <i class="fa <?= ($event) ? "fa-check-square" : "fa-square-o" ?> i_event"></i>
                             Schedule an Event
                         </a>
                     </li>
                 </ul>
             </div>
+        </div>
+        <!--        <a class="query_popup" style="color: white;" data-toggle="modal" data-target="#query-modal">
+                    <i id="help" class="fa fa-question-circle"></i>
+                </a>-->
+        <div class="modal fade" id="query-modal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" style="max-width: 400px">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title"></h4>
+                    </div>
+                    <form id="setupForm"  method="post">
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12">
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <img  src="<?= base_url() ?>assets/dashboard/img/load.GIF" alt="" class="load" style="display: none" />
+                                    <span style="display: none" class="msg"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer clearfix">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <button type="button" id="send" class="btn btn-primary pull-left">Send</button>
+                                </div>
+                                <div class="col-md-3">
+                                    <button type="button" class="btn btn-danger discard" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
         </div>
     </section>
 </aside>
