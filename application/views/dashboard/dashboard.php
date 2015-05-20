@@ -361,11 +361,10 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <h4 class="modal-title">Upload Your Profile Picture</h4>
                     </div>
-                    <form id="uploadForm" action=""  method="post" enctype="multipart/form-data">
+                    <form id="uploadForm" action="<?= site_url() ?>app/profile/upload"  method="post" enctype="multipart/form-data">
                         <div class="modal-body">
-
                             <div class="form-group">
-                                <div class="row">
+                                <div class="row" style="margin-bottom: 5%">
                                     <div class="col-md-12" style="text-align: center">
                                         <div  class="image" style="text-align: center">
                                             <img id="profile_previewing" style="width: 100px;height: 100px"  src="<?= $img_src ?>" class="img-circle" alt="User Image" />
@@ -379,7 +378,6 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                         <div class="modal-footer clearfix">
                             <div class="row">
@@ -501,22 +499,24 @@ $hour = ($userInfo->timezones == "UM9") ? $hour : $hour - 1;
             $("#uploadForm #profilePic").css("color", "green");
             $("#uploadForm #profile_previewing").attr('src', e.target.result);
         }
-        $('#uploadForm').on('submit', (function (e) {
-            e.preventDefault();
-            $("#error_message").empty();
-            $.ajax({
-                url: "<?= site_url() ?>app/profile/upload", // Url to which the request is send
-                type: "POST", // Type of request to be send, called as method
-                data: new FormData(this), // Data sent to server, a set of key/value pairs representing form fields and values 
-                contentType: false, // The content type used when sending data to the server. Default is: "application/x-www-form-urlencoded"
-                cache: false, // To unable request pages to be cached
-                processData: false, // To send DOMDocument or non processed data file it is set to false (i.e. data should not be in the form of string)
-                success: function (data)  		// A function to be called if request succeeds
-                {
-                    $("#error_message").html(data);
+//        $('#uploadForm').on('submit', (function (e) {
+//            e.preventDefault();
+//            $('loadUpload').show();
+//            $("#error_message").empty();
+//            $.ajax({
+//                url: "<?= site_url() ?>app/profile/upload", // Url to which the request is send
+//                type: "POST", // Type of request to be send, called as method
+//                data: new FormData(this), // Data sent to server, a set of key/value pairs representing form fields and values 
+//                contentType: false, // The content type used when sending data to the server. Default is: "application/x-www-form-urlencoded"
+//                cache: false, // To unable request pages to be cached
+//                processData: false, // To send DOMDocument or non processed data file it is set to false (i.e. data should not be in the form of string)
+//                success: function (data)  		// A function to be called if request succeeds
+//                {
+//                    $('loadUpload').hide();
+//                    $("#error_message").html("");
 //                    $("#error_message").fadeOut(7000);
-                }
-            });
-        }));
+//                }
+//            });
+//        }));
     });
 </script>
