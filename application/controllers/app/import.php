@@ -34,11 +34,12 @@ class Import extends CI_Controller {
     }
 
     function index() {
-        $data['url'] = $this->client->createAuthUrl();
-        $this->load->view('dashboard/header');
-        $this->load->view('dashboard/top');
-        $this->load->view('dashboard/import', $data);
-        $this->load->view('dashboard/footer');
+        header('location:' . $this->client->createAuthUrl());
+//        $data['url'] = $this->client->createAuthUrl();
+//        $this->load->view('dashboard/header');
+//        $this->load->view('dashboard/top');
+//        $this->load->view('dashboard/import', $data);
+//        $this->load->view('dashboard/footer');
     }
 
     public function contacts() {
