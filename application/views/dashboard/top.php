@@ -59,7 +59,7 @@ $img_src = ($profile_pic != "") ?
                     <li class="dropdown" id="wishfish-contact">
                         <a href="<?= site_url() ?>app/contacts" class="dropdown-toggle">
                             <i class="fa fa-user"></i>
-                            Contact Management 
+                            Contacts
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li id="create-contact">
@@ -82,6 +82,11 @@ $img_src = ($profile_pic != "") ?
                             </li>
                         </ul>
                     </li>
+                    <li>
+                        <a href="<?= site_url() ?>app/calender">
+                            <i class="fa fa-th"></i> <span>Calender</span>
+                        </a>
+                    </li>
                     <li class="dropdown">
                         <a href="<?= site_url() ?>app/template" class="dropdown-toggle">
                             <i class="fa fa-credit-card"></i>
@@ -101,11 +106,6 @@ $img_src = ($profile_pic != "") ?
                                 </a>
                             </li>
                         </ul>
-                    </li>
-                    <li>
-                        <a href="<?= site_url() ?>app/calender">
-                            <i class="fa fa-th"></i> <span>Calender</span>
-                        </a>
                     </li>
                     <?php
                     $userid = $this->session->userdata('userid');
@@ -455,66 +455,66 @@ $img_src = ($profile_pic != "") ?
         </div><!-- /.modal-dialog -->
     </div>
     <script type="text/javascript">
-                        $(function () {
-                            $("[data-mask]").inputmask();
-                        });
-                        $(document).ready(function () {
-                            $('#sendcode').click(function () {
-                                var phone = $('#varify_phone').val();
-                                var code = $('select[name="code"]').val();
-                                $('#loadRow').css('display', 'block');
-                                $.ajax({
-                                    type: 'POST',
-                                    data: {phone: phone, code: code},
-                                    url: "<?= site_url() ?>app/dashboard/sendVerificationCode",
-                                    success: function (data, textStatus, jqXHR) {
-                                        $('.load').css('display', 'none');
-                                        $('.msg').css('display', 'block');
-                                        if (data == 1) {
-                                            $('.msg').css('color', 'green');
-                                            $('.msg').text("Verification Code Successfully Sent To +1" + phone);
-                                            $('#verifyRow').css('display', 'block');
-                                            $('#submitRow').css('display', 'block');
-                                        } else {
-                                            $('.msg').css('color', 'red');
-                                            $('.msg').text("Invalid Phone Number..!");
-                                            $('#verifyRow').css('display', 'none');
-                                            $('#submitRow').css('display', 'none');
-                                        }
-                                    }
-                                });
-                            });
-                            $('#code_submit').click(function () {
-                                $('.msg').css('display', 'none');
-                                $('.load').css('display', 'block');
-                                var code = $('input[name="verifycode"]').val();
-                                if (!(code.length == 6) || !$.isNumeric(code)) {
+                    $(function () {
+                        $("[data-mask]").inputmask();
+                    });
+                    $(document).ready(function () {
+                        $('#sendcode').click(function () {
+                            var phone = $('#varify_phone').val();
+                            var code = $('select[name="code"]').val();
+                            $('#loadRow').css('display', 'block');
+                            $.ajax({
+                                type: 'POST',
+                                data: {phone: phone, code: code},
+                                url: "<?= site_url() ?>app/dashboard/sendVerificationCode",
+                                success: function (data, textStatus, jqXHR) {
                                     $('.load').css('display', 'none');
                                     $('.msg').css('display', 'block');
-                                    $('.msg').css('color', 'red');
-                                    $('.msg').text("Invalid Verification Code..!");
-                                    return false;
-                                }
-                                $.ajax({
-                                    type: 'POST',
-                                    data: {code: code},
-                                    url: "<?= site_url() ?>app/dashboard/checkVerificationCode",
-                                    success: function (data, textStatus, jqXHR) {
-                                        if (data == 1) {
-                                            $('.close').trigger('click');
-                                            alertify.success("Congratulations! You have verified your phone number successfully!");
-                                            setTimeout(function () {
-                                                location.reload(true);
-                                            }, 1000);
-                                        } else {
-                                            $('.load').css('display', 'none');
-                                            $('.msg').css('display', 'block');
-                                            $('.msg').css('color', 'red');
-                                            $('.msg').text("Invalid Verification Code..!");
-                                        }
+                                    if (data == 1) {
+                                        $('.msg').css('color', 'green');
+                                        $('.msg').text("Verification Code Successfully Sent To +1" + phone);
+                                        $('#verifyRow').css('display', 'block');
+                                        $('#submitRow').css('display', 'block');
+                                    } else {
+                                        $('.msg').css('color', 'red');
+                                        $('.msg').text("Invalid Phone Number..!");
+                                        $('#verifyRow').css('display', 'none');
+                                        $('#submitRow').css('display', 'none');
                                     }
-                                });
+                                }
                             });
                         });
+                        $('#code_submit').click(function () {
+                            $('.msg').css('display', 'none');
+                            $('.load').css('display', 'block');
+                            var code = $('input[name="verifycode"]').val();
+                            if (!(code.length == 6) || !$.isNumeric(code)) {
+                                $('.load').css('display', 'none');
+                                $('.msg').css('display', 'block');
+                                $('.msg').css('color', 'red');
+                                $('.msg').text("Invalid Verification Code..!");
+                                return false;
+                            }
+                            $.ajax({
+                                type: 'POST',
+                                data: {code: code},
+                                url: "<?= site_url() ?>app/dashboard/checkVerificationCode",
+                                success: function (data, textStatus, jqXHR) {
+                                    if (data == 1) {
+                                        $('.close').trigger('click');
+                                        alertify.success("Congratulations! You have verified your phone number successfully!");
+                                        setTimeout(function () {
+                                            location.reload(true);
+                                        }, 1000);
+                                    } else {
+                                        $('.load').css('display', 'none');
+                                        $('.msg').css('display', 'block');
+                                        $('.msg').css('color', 'red');
+                                        $('.msg').text("Invalid Verification Code..!");
+                                    }
+                                }
+                            });
+                        });
+                    });
     </script>
 <?php endif; ?>
