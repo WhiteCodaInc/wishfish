@@ -247,8 +247,8 @@
                     </div><!-- /.box-header -->
                     <div class="box-body" style="text-align: center">
                         <ul>
-                            <li><i class="fa fa-circle-o"></i> Schedule Unlimited Events</li>
-                            <li style="color: green"><i class="fa fa-check-circle-o"></i> Import Contacts From Google</li>
+                            <li><i style="vertical-align: middle;font-size: 20px" class="fa fa-circle-o"></i> Schedule Unlimited Events</li>
+                            <li style="vertical-align: middle;font-size: 20px;color: green"><i class="fa fa-check-circle-o"></i> Import Contacts From Google</li>
                         </ul>
                     </div>
                 </div>
