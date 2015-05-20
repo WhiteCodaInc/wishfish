@@ -29,6 +29,7 @@
 .booster ul{
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 #planUpgrade ul{
@@ -42,7 +43,7 @@
 
 
 .booster .box-body{
-    padding: 1px;
+    padding: 0;
 }
 #planUpgrade .box-body{
     padding: 1px;
