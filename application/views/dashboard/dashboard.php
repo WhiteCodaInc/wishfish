@@ -248,25 +248,25 @@
                         Setup Your Account
                     </li>
                     <li>
-                        <a href="javascript:void(0)" id="upload-photo">
+                        <a class="<?= ($upload) ? "task-success" : "" ?>" href="javascript:void(0)" id="upload-photo">
                             <i class="fa <?= ($upload) ? "fa-check-square" : "fa-square-o" ?> i_upload"></i>
                             Upload Your Photo
                         </a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)" id="upload-photo">
+                        <a class="<?= ($upload) ? "task-success" : "" ?>" href="javascript:void(0)" id="upload-photo">
                             <i class="fa <?= ($profile) ? "fa-check-square" : "fa-square-o" ?> i_profile"></i>
                             Complete Your Profile
                         </a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)" id="upload-photo">
+                        <a class="<?= ($upload) ? "task-success" : "" ?>" href="javascript:void(0)" id="upload-photo">
                             <i class="fa <?= ($contact) ? "fa-check-square" : "fa-square-o" ?> i_contact"></i>
                             Add Contact
                         </a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)" id="upload-photo">
+                        <a class="<?= ($upload) ? "task-success" : "" ?>" href="javascript:void(0)" id="upload-photo">
                             <i class="fa <?= ($event) ? "fa-check-square" : "fa-square-o" ?> i_event"></i>
                             Schedule an Event
                         </a>
