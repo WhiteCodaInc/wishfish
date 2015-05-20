@@ -90,10 +90,6 @@ class M_profile extends CI_Model {
     }
 
     function updateProfileSetup($set) {
-        
-        print_r($set);
-        die();
-        
         $set['phone'] = (preg_match('/^\(?\d{3}\)?[- ]?\d{3}[- ]?\d{4}$/', $set['phone'])) ?
                 str_replace(array('(', ')', ' ', '-'), '', $set['code'] . $set['phone']) :
                 NULL;
