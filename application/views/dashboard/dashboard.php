@@ -241,11 +241,13 @@
                     </div>
                 </div>
             </div><!-- /.box-header -->
-            <div class="box-body">
+            <div class="box-body setup">
                 <ul>
                     <li class="task-success">
-                        <i class="fa fa-check-square"></i>
-                        Setup Your Account
+                        <a class="task-success" href="javascript:void(0)">
+                            <i class="fa fa-check-square"></i>
+                            Setup Your Account
+                        </a>
                     </li>
                     <li>
                         <a class="<?= ($upload) ? "task-success" : "" ?>" href="javascript:void(0)" id="upload" data-toggle="modal" data-target="<?= (!$upload) ? "#setup" : "" ?>">
@@ -274,9 +276,6 @@
                 </ul>
             </div>
         </div>
-        <!--        <a class="query_popup" style="color: white;" data-toggle="modal" data-target="#query-modal">
-                    <i id="help" class="fa fa-question-circle"></i>
-                </a>-->
         <div class="modal fade" id="setup" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog" style="max-width: 400px">
                 <div class="modal-content">
@@ -361,5 +360,13 @@ $hour = ($userInfo->timezones == "UM9") ? $hour : $hour - 1;
                 }
             }, 1000);
         }
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.setup a').on('click', function () {
+            var id = $(this).prop('id');
+            $('#setup .modal-title').text(id);
+        });
     });
 </script>
