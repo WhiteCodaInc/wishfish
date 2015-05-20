@@ -398,6 +398,86 @@
         </div>
         <!-----------------------End Upload Your Profile Photo---------------------------->
 
+        <!---------------------------Add New Contact------------------------------->
+        <div class="modal fade" id="contactSetup" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" style="max-width: 400px">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Add New Contact</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form id="contactForm" method="post">
+                            <div id="add-name" class="form-group">
+                                <div class="row">
+                                    <div  class="col-md-6">
+                                        <label>First Name</label>
+                                        <input type="text" name="fname" autofocus="autofocus" class="form-control" placeholder="First Name" required=""/>
+                                    </div>
+                                    <div  class="col-md-6">
+                                        <label>Last Name</label>
+                                        <input type="text" name="lname" class="form-control" placeholder="Last Name" required=""/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="add-birthday">
+                                <label>Birthday</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input style="z-index: 0" name="birthday" placeholder="Enter Birthdate" value="<?= isset($contacts) ? $this->common->getUTCDate($contacts->birthday) : '' ?>"  class="form-control form-control-inline input-medium default-date-picker" size="16" type="text" required="">
+                                </div><!-- /.input group -->
+                            </div><!-- /.form group -->
+                            <div class="form-group" id="add-phone">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <label>Country Code</label>
+                                        <select name="code" class="form-control">
+                                            <option value="+1">+1</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <label>Phone Number </label>
+                                        <i title="You can send your contact a pre scheduled text message.In case you`r busy or vacation,so you don`t miss an important date ! (its kind of magical!)" class="fa fa-question-circle"></i>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-phone"></i>
+                                            </div>
+                                            <input name="phone" type="text" class="form-control"  placeholder="Enter Phone Number" data-inputmask='"mask": "(999) 999-9999"' data-mask required=""/>
+                                        </div><!-- /.input group -->
+                                    </div>
+                                </div>
+                            </div><!-- /.form group -->
+                            <div class="form-group">
+                                <label for="password">Email</label>
+                                <input name="email" type="email" class="form-control"  placeholder="Enter Their Email">
+                            </div>
+                            <span id="msgProfile"></span>
+                            <input value="" name="zodiac" type="hidden" class="form-control" >
+                            <input value="" name="age" type="hidden" class="form-control" >
+                        </form>
+                    </div>
+                    <div class="modal-footer clearfix">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <button type="button" id="profileBtn" class="btn btn-primary pull-left">Save Profile</button>
+                            </div>
+                            <div class="col-md-2">
+                                <div id="loadContact" style="display: none">
+                                    <img src="<?= base_url() ?>assets/dashboard/img/load.GIF" alt="" />
+                                </div>
+                            </div>
+                            <div class="col-md-7" style="text-align: right">
+                                <button type="button" class="btn btn-danger discard" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+        <!-------------------------End Add Contact------------------------------>
+
     </section>
 </aside>
 <?php $userInfo = $this->common->getUserInfo($this->session->userdata('userid')); ?>
@@ -413,7 +493,17 @@ $hour = ($userInfo->timezones == "UM9") ? $hour : $hour - 1;
 ?>
 <script type="text/javascript" >
     $(function () {
-        $('.default-date-picker').datepicker({
+
+        $('#contactForm .default-date-picker').datepicker({
+            format: "<?= $this->session->userdata('date_format') ?>",
+            todayBtn: "linked",
+            autoclose: true,
+            todayHighlight: true
+        }).on('changeDate', function (ev) {
+            $('#contactForm input[name="birthday"]').focusout();
+        });
+
+        $('#profileForm .default-date-picker').datepicker({
             format: "<?= $this->session->userdata('date_format') ?>",
             todayBtn: "linked",
             autoclose: true,
@@ -567,5 +657,61 @@ $hour = ($userInfo->timezones == "UM9") ? $hour : $hour - 1;
             });
         });
         /**********************************************************************/
+        /*************************Add New Contact************************/
+        $('#contactForm input[name="fname"]').focusout(function () {
+            var str = $(this).val() + "'s";
+            $('#contactForm input[name="birthday"]').attr('placeholder', 'Enter ' + str + ' Birthdate');
+            $('#contactForm input[name="phone"]').attr('placeholder', 'Enter ' + str + ' Phone Number');
+        });
+        $('#contactForm input[name="birthday"]').focusout(function () {
+            var dt = $(this).val();
+            var pastYear = dt.split('-');
+            var now = new Date();
+            var nowYear = now.getFullYear();
+            var age = nowYear - pastYear[2];
+            if (dt != "") {
+                $.ajax({
+                    type: 'POST',
+                    data: {birthdate: dt},
+                    url: "<?= site_url() ?>app/contacts/getZodiac/" + dt,
+                    success: function (data, textStatus, jqXHR) {
+                        $('#contactForm input[name="zodiac"]').val(data);
+                        $('#contactForm input[name="age"]').val(age);
+                    }
+                });
+            } else {
+                $('#contactForm input[name="zodiac"]').val('');
+                $('#contactForm input[name="age"]').val('');
+            }
+        });
+        $('#contactBtn').on('click', function () {
+            var id = $(this).prop('id');
+//            var bdate = $('#contactForm input[name="birthday"]').val();
+//            var phone = $('#contactForm input[name="phone"]').val();
+//            var code = $('#contactForm select[name="code"]').val();
+            $('#' + id).prop('disabled', true);
+            $('#loadContact').show();
+            $.ajax({
+                type: 'POST',
+//                data: {birthday: bdate, phone: phone, code: code},
+                data: $('#contactForm').serialize(),
+                url: "<?= site_url() ?>app/contacts/addContact",
+                success: function (data, textStatus, jqXHR) {
+                    $('#loadContact').hide();
+                    if (data == "1") {
+                        $("#msgContact").css('color', 'green');
+                        $("#msgContact").html("Contact Successfully added..!");
+                        setTimeout(function () {
+                            $('.discard').trigger('click');
+                            location.reload(true);
+                        }, 1000);
+                    } else {
+                        $("#msgContact").css('color', 'red');
+                        $("#msgContact").html("Profile has not been Updated..!");
+                        $('#' + id).prop('disabled', false);
+                    }
+                }
+            });
+        });
     });
 </script>

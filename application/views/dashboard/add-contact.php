@@ -99,13 +99,13 @@
 </aside><!-- /.right-side -->
 
 <!-- InputMask -->
-<script src="<?= base_url() ?>assets/dashboard/js/plugins/input-mask/jquery.inputmask.js" type="text/javascript"></script>
+<!--<script src="<?= base_url() ?>assets/dashboard/js/plugins/input-mask/jquery.inputmask.js" type="text/javascript"></script>
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/input-mask/jquery.inputmask.date.extensions.js" type="text/javascript"></script>
-<script src="<?= base_url() ?>assets/dashboard/js/plugins/input-mask/jquery.inputmask.extensions.js" type="text/javascript"></script>
+<script src="<?= base_url() ?>assets/dashboard/js/plugins/input-mask/jquery.inputmask.extensions.js" type="text/javascript"></script>-->
 
 <script type="text/javascript">
     $(function () {
-        $("[data-mask]").inputmask();
+//        $("[data-mask]").inputmask();
         $('.default-date-picker').datepicker({
             format: "<?= $this->session->userdata('date_format') ?>",
             todayBtn: "linked",
@@ -114,7 +114,6 @@
         }).on('changeDate', function (ev) {
             $('input[name="birthday"]').focusout();
         });
-        ;
     });
     $(document).ready(function () {
         console.log(hopscotch.getState());
