@@ -18,9 +18,7 @@ class Import extends CI_Controller {
     //put your code here
     function __construct() {
         parent::__construct();
-        //session_start();
         require APPPATH . 'third_party/google-api/Google_Client.php';
-        $this->sess_data = $this->session->all_userdata();
         $this->config->load('googlecontact');
 
         $this->client = new Google_Client();
@@ -34,17 +32,9 @@ class Import extends CI_Controller {
 
     function index() {
         header('location:' . $this->client->createAuthUrl());
-//        $data['url'] = $this->client->createAuthUrl();
-//        $this->load->view('dashboard/header');
-//        $this->load->view('dashboard/top');
-//        $this->load->view('dashboard/import', $data);
-//        $this->load->view('dashboard/footer');
     }
 
     public function contacts() {
-        echo '<pre>';
-        print_r($this->sess_data);
-        die();
         $authcode = $this->input->get('code');
         $clientid = $this->client->getClientId();
         $clientsecret = $this->client->getClientSecret();
@@ -96,9 +86,6 @@ class Import extends CI_Controller {
 
         $response = $this->curl_file_get_contents($url);
         $contacts = json_decode($response, true);
-        //echo '<pre>';
-        //print_r($contacts);
-        //die();
         $gc = array();
         foreach ($contacts['feed']['entry'] as $cnt) {
             $name = $cnt['title']['$t'];
@@ -109,19 +96,13 @@ class Import extends CI_Controller {
         $data['gc'] = $gc;
         $data['url'] = $this->client->createAuthUrl();
 
-        //$this->setAllSessionValue();
-
         $this->load->view('dashboard/header');
-        //$this->load->view('dashboard/top');
         $this->load->view('dashboard/import', $data);
         $this->load->view('dashboard/footer');
     }
 
     function addContacts() {
-        //echo "<pre>";
         $post = $this->input->post();
-        //print_r($post);
-        //die();
         foreach ($post['contact'] as $value) {
             $name = explode(' ', $post['name'][$value]);
             $set = array(
@@ -132,10 +113,8 @@ class Import extends CI_Controller {
             ($post['email'][$value]) ? $set['email'] = $post['email'][$value] : '';
             ($post['phone'][$value]) ? $set['phone'] = $post['phone'][$value] : '';
 
-            //print_r($set);
             $this->db->insert('contact_detail', $set);
         }
-        //die();
         header('location:' . site_url() . 'app/contacts');
     }
 
@@ -152,15 +131,6 @@ class Import extends CI_Controller {
         $contents = curl_exec($curl);
         curl_close($curl);
         return $contents;
-    }
-
-    function setAllSessionValue() {
-        $this->session->set_userdata('userid', $res->user_id);
-        $this->session->set_userdata('name', $res->name);
-        $this->session->set_userdata('email', $res->email);
-        $this->session->set_userdata('profile_pic', $res->profile_pic);
-        $this->session->set_userdata('timezone', $res->timezones);
-        $this->session->set_userdata('date_format', $res->date_format);
     }
 
 }
