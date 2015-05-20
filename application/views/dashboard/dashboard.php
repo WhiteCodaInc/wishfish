@@ -80,8 +80,6 @@
                 </div>
             </div><!-- ./col -->
         </div><!-- /.row -->
-
-
         <div class="row ui-sortable">
             <div class="col-md-4">
                 <div class="row">
@@ -234,25 +232,25 @@
                 </div>
             </div>
         </div>
-        <div class="row" id="planUpgrade" style="margin: 0 -15px">
+        <div class="row booster">
             <div class="col-md-4">
                 <div class="box box-solid">
-                    <div class="box-header" style="text-align: center;background-color: #66ccf5">
-                        <h2>Profile 40% completed</h2>
+                    <div class="box-header">
+                        <h3>Profile 40% completed</h3>
                         <div class="progress progress-striped">
                             <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
                                 <span class="sr-only">40% Complete (success)</span>
                             </div>
                         </div>
                     </div><!-- /.box-header -->
-                    <div class="box-body" style="text-align: center">
+                    <div class="box-body">
                         <ul>
                             <li>
                                 <i style="vertical-align: middle;font-size: 20px" class="fa fa-square-o"></i>
                                 Schedule Unlimited Events
                             </li>
                             <li style="color: green">
-                                <i style="vertical-align: middle;font-size: 20px;" class="fa fa-check-square-o"></i>
+                                <i style="vertical-align: middle;font-size: 20px;" class="fa fa-check-square"></i>
                                 Import Contacts From Google
                             </li>
                         </ul>

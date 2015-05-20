@@ -12,12 +12,25 @@
     margin: 0 5%;
 }
 
+.booster ul li{
+    line-height: 50px;
+    border-bottom: 1px solid #dee2e4;
+    text-align: center;
+    font-size: 16px;
+}
+
 #planUpgrade ul li{
     line-height: 50px;
     border-bottom: 1px solid #dee2e4;
     text-align: center;
     font-size: 16px;
 }
+
+.booster ul{
+    list-style: none;
+    padding: 0;
+}
+
 #planUpgrade ul{
     list-style: none;
     padding: 0;
@@ -26,6 +39,8 @@
     font-size: 20px;
     line-height: 25px;
 }
+
+
 #planUpgrade .box-body{
     padding: 1px;
 }
@@ -38,6 +53,13 @@
     padding: 3%;
     font-size: 20px
 }
+
+.booster .box-header{
+    text-align: center;
+    background-color: #66ccf5;
+    color: white;
+}
+
 #planUpgrade .box-header{
     text-align: center;
     background-color: #1ac6ff;
