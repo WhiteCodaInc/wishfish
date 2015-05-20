@@ -94,7 +94,7 @@ class M_dashboard extends CI_Model {
     }
 
     function getProfileSetup() {
-        $userInfo = $this->common->getUserInfo();
+        $userInfo = $this->common->getUserInfo($this->userid);
         $setup['upload'] = ($userInfo->profile_pic != "") ? 1 : 0;
         $setup['profile'] = ($userInfo->phone != "" && $userInfo->birthday != "") ? 1 : 0;
         $contacts = $this->objcontact->getContactDetail();
