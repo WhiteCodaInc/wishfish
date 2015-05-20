@@ -237,7 +237,7 @@
         <div class="row" id="planUpgrade" style="margin: 0 -15px">
             <div class="col-md-4">
                 <div class="box box-solid">
-                    <div class="box-header" style="text-align: center">
+                    <div class="box-header" style="text-align: center;background-color: #66ccf5">
                         <h2>Profile 40% completed</h2>
                         <div class="progress progress-striped">
                             <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
