@@ -37,10 +37,10 @@
         display: inline-block;
         height: 30px;
         vertical-align: top;
-        margin-top: 5px;
-        margin-left: 15px;
+        margin-top: 9px;
+        margin-left: 12px;
         border-right: 1px solid #dfdfdf;
-        float: right
+        float: right;
     }
 </style>
 <?php
@@ -176,9 +176,17 @@ $img_src = ($profile_pic != "") ?
                 <span class="separator"></span>
                 <div class="row" style="float: right">
                     <div class="col-md-12">
-                        <a style="margin-top: 6px;font-size: 18px;" class="btn btn-warning" href="<?= site_url() ?>app/upgrade">
+                        <a style="margin-top: 6px;font-size: 16px;" class="btn btn-warning" href="<?= site_url() ?>app/upgrade">
                             Upgrade
                             <i class="fa fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <span class="separator"></span>
+                <div class="row" style="float: right">
+                    <div class="col-md-12">
+                        <a class="btn btn-primary btn-sm" href="<?= site_url() ?>app/import">
+                            <i class="fa fa-user"></i> <span> Import Google Contact</span>
                         </a>
                     </div>
                 </div>
