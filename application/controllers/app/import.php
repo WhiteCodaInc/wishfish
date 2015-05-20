@@ -13,12 +13,14 @@
  */
 class Import extends CI_Controller {
 
+    var $sess_data = array();
+
     //put your code here
     function __construct() {
         parent::__construct();
         //session_start();
         require APPPATH . 'third_party/google-api/Google_Client.php';
-        $this->userid = $this->session->userdata('userid');
+        $this->sess_data = $this->session->all_userdata();
         $this->config->load('googlecontact');
 
         $this->client = new Google_Client();
@@ -40,6 +42,9 @@ class Import extends CI_Controller {
     }
 
     public function contacts() {
+        echo '<pre>';
+        print_r($this->session->all_userdata());
+        die();
         $authcode = $this->input->get('code');
         $clientid = $this->client->getClientId();
         $clientsecret = $this->client->getClientSecret();
@@ -104,7 +109,7 @@ class Import extends CI_Controller {
         $data['gc'] = $gc;
         $data['url'] = $this->client->createAuthUrl();
 
-
+        //$this->setAllSessionValue();
 
         $this->load->view('dashboard/header');
         //$this->load->view('dashboard/top');
@@ -147,6 +152,15 @@ class Import extends CI_Controller {
         $contents = curl_exec($curl);
         curl_close($curl);
         return $contents;
+    }
+
+    function setAllSessionValue() {
+        $this->session->set_userdata('userid', $res->user_id);
+        $this->session->set_userdata('name', $res->name);
+        $this->session->set_userdata('email', $res->email);
+        $this->session->set_userdata('profile_pic', $res->profile_pic);
+        $this->session->set_userdata('timezone', $res->timezones);
+        $this->session->set_userdata('date_format', $res->date_format);
     }
 
 }
