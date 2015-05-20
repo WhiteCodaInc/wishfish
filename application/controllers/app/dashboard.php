@@ -49,6 +49,10 @@ class Dashboard extends CI_Controller {
         if ($this->authex->logged_in()) {
             $card = $this->objcalender->getCards();
             $setup = $this->objdashboard->getProfileSetup();
+            echo '<pre>';
+            print_r($card);
+            print_r($setup);
+            die();
             $this->load->view('dashboard/header');
             $this->load->view('dashboard/top');
             $this->load->view('dashboard/dashboard', $card . $setup);
