@@ -387,7 +387,7 @@
                             </div>
                             <div class="col-md-3">
                                 <div id="loadUpload" style="display: none">
-                                    <img src="<?= base_url() ?>assets/dashboard/load.GIF" alt="" />
+                                    <img src="<?= base_url() ?>assets/dashboard/img/load.GIF" alt="" />
                                 </div>
                             </div>
                             <div class="col-md-9" style="text-align: right">
