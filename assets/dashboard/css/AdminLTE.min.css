@@ -41,9 +41,13 @@
 }
 
 
+.booster .box-body{
+    padding: 1px;
+}
 #planUpgrade .box-body{
     padding: 1px;
 }
+
 #planUpgrade .box-body button{
     /*        width: 65%;
             margin: 5%;*/
