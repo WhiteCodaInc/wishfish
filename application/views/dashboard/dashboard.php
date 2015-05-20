@@ -250,25 +250,25 @@
                         </a>
                     </li>
                     <li>
-                        <a class="<?= ($upload) ? "task-success" : "" ?>" href="javascript:void(0)" id="upload" data-toggle="modal" data-target="<?= (!$upload) ? "#uploadSetup" : "" ?>">
+                        <a class="<?= ($upload) ? "task-success" : "" ?>" href="javascript:void(0)" data-toggle="modal" data-target="<?= (!$upload) ? "#uploadSetup" : "" ?>">
                             <i class="fa <?= ($upload) ? "fa-check-square" : "fa-square-o" ?> i_upload"></i>
                             Upload Your Photo
                         </a>
                     </li>
                     <li>
-                        <a class="<?= ($profile) ? "task-success" : "" ?>" href="javascript:void(0)" id="profile" data-toggle="modal" data-target="<?= (!$profile) ? "#profileSetup" : "" ?>">
+                        <a class="<?= ($profile) ? "task-success" : "" ?>" href="javascript:void(0)" data-toggle="modal" data-target="<?= (!$profile) ? "#profileSetup" : "" ?>">
                             <i class="fa <?= ($profile) ? "fa-check-square" : "fa-square-o" ?> i_profile"></i>
                             Complete Your Profile
                         </a>
                     </li>
                     <li>
-                        <a class="<?= ($contact) ? "task-success" : "" ?>" href="javascript:void(0)" id="contact" data-toggle="modal" data-target="<?= (!$contact) ? "#contactSetup" : "" ?>">
+                        <a class="<?= ($contact) ? "task-success" : "" ?>" href="javascript:void(0)" data-toggle="modal" data-target="<?= (!$contact) ? "#contactSetup" : "" ?>">
                             <i class="fa <?= ($contact) ? "fa-check-square" : "fa-square-o" ?> i_contact"></i>
                             Add Contact
                         </a>
                     </li>
                     <li>
-                        <a class="<?= ($event) ? "task-success" : "" ?>" href="javascript:void(0)" id="event" data-toggle="modal" data-target="<?= (!$event) ? "#eventSetup" : "" ?>">
+                        <a class="<?= ($event) ? "task-success" : "" ?>" href="<?= site_url() ?>app/calender">
                             <i class="fa <?= ($event) ? "fa-check-square" : "fa-square-o" ?> i_event"></i>
                             Schedule an Event
                         </a>
@@ -453,7 +453,7 @@
                                 <label for="password">Email</label>
                                 <input name="email" type="email" class="form-control"  placeholder="Enter Their Email">
                             </div>
-                            <span id="msgProfile"></span>
+                            <span id="msgContact"></span>
                             <input value="" name="zodiac" type="hidden" class="form-control" >
                             <input value="" name="age" type="hidden" class="form-control" >
                         </form>
@@ -686,28 +686,24 @@ $hour = ($userInfo->timezones == "UM9") ? $hour : $hour - 1;
         });
         $('#contactBtn').on('click', function () {
             var id = $(this).prop('id');
-//            var bdate = $('#contactForm input[name="birthday"]').val();
-//            var phone = $('#contactForm input[name="phone"]').val();
-//            var code = $('#contactForm select[name="code"]').val();
             $('#' + id).prop('disabled', true);
             $('#loadContact').show();
             $.ajax({
                 type: 'POST',
-//                data: {birthday: bdate, phone: phone, code: code},
                 data: $('#contactForm').serialize(),
                 url: "<?= site_url() ?>app/contacts/add_contact",
                 success: function (data, textStatus, jqXHR) {
                     $('#loadContact').hide();
                     if (data == "1") {
                         $("#msgContact").css('color', 'green');
-                        $("#msgContact").html("Contact Successfully added..!");
+                        $("#msgContact").html("Contact Successfully Added..!");
                         setTimeout(function () {
                             $('.discard').trigger('click');
                             location.reload(true);
                         }, 1000);
                     } else {
                         $("#msgContact").css('color', 'red');
-                        $("#msgContact").html("Profile has not been Updated..!");
+                        $("#msgContact").html("Contact has not been Added..!");
                         $('#' + id).prop('disabled', false);
                     }
                 }
