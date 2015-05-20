@@ -232,33 +232,28 @@
                 </div>
             </div>
         </div>
-        <div class="row booster">
-            <div class="col-md-3">
-                <div class="box box-solid">
-                    <div class="box-header">
-                        <h3>Profile 40% completed</h3>
-                        <div class="progress progress-striped">
-                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                                <span class="sr-only">40% Complete (success)</span>
-                            </div>
-                        </div>
-                    </div><!-- /.box-header -->
-                    <div class="box-body">
-                        <ul>
-                            <li>
-                                <i style="vertical-align: middle;font-size: 20px" class="fa fa-square-o"></i>
-                                Schedule Unlimited Events
-                            </li>
-                            <li style="color: green">
-                                <i style="vertical-align: middle;font-size: 20px;" class="fa fa-check-square"></i>
-                                Import Contacts From Google
-                            </li>
-                        </ul>
+        <div class="box box-solid booster">
+            <div class="box-header">
+                <h3>Profile 40% completed</h3>
+                <div class="progress progress-striped">
+                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                        <span class="sr-only">40% Complete (success)</span>
                     </div>
                 </div>
+            </div><!-- /.box-header -->
+            <div class="box-body">
+                <ul>
+                    <li>
+                        <i style="vertical-align: middle;font-size: 20px" class="fa fa-square-o"></i>
+                        Schedule Unlimited Events
+                    </li>
+                    <li style="color: green">
+                        <i style="vertical-align: middle;font-size: 20px;" class="fa fa-check-square"></i>
+                        Import Contacts From Google
+                    </li>
+                </ul>
             </div>
         </div>
-
     </section>
 </aside>
 <?php $userInfo = $this->common->getUserInfo($this->session->userdata('userid')); ?>
