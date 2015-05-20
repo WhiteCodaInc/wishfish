@@ -12,7 +12,10 @@
     margin: 0 5%;
 }
 .booster{
-    width:25% !important;
+    width: 25% !important;
+    position: fixed !important;
+    right: 15px;
+    bottom: 35px;
 }
 .booster ul li{
     line-height: 50px;
