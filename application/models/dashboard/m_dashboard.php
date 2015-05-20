@@ -26,6 +26,9 @@ class M_dashboard extends CI_Model {
         $this->bucket = $this->encryption->decode($this->config->item('bucket', 'aws'));
         $this->accessKey = $this->encryption->decode($this->config->item('accessKey', 'aws'));
         $this->secretKey = $this->encryption->decode($this->config->item('secretKey', 'aws'));
+
+        $this->load->model('dashboard/m_contacts', 'objcontact');
+        $this->load->model('dashboard/m_calender', 'objcalender');
     }
 
     function uploadProfilePic() {
@@ -90,6 +93,17 @@ class M_dashboard extends CI_Model {
         }
     }
 
+    function getProfileSetup() {
+        $userInfo = $this->common->getUserInfo();
+        $setup['upload'] = ($userInfo->profile_pic != "") ? 1 : 0;
+        $setup['profile'] = ($userInfo->phone != "" && $userInfo->birthday != "") ? 1 : 0;
+        $contacts = $this->objcontact->getContactDetail();
+        $setup['contact'] = (count($contacts) > 0) ? 1 : 0;
+        $events = $this->objcalender->getNormalEvent();
+        $setup['event'] = (count($events) > 0) ? 1 : 0;
+        return $setup;
+    }
+
     function sendMail($userid, $type) {
         $userInfo = $this->common->getUserInfo($userid);
         $templateInfo = $this->common->getAutomailTemplate($type);
@@ -98,6 +112,7 @@ class M_dashboard extends CI_Model {
             'NAME' => $userInfo->name,
             'THISDOMAIN' => "Wish-Fish"
         );
+
         $subject = $this->parser->parse_string($templateInfo['mail_subject'], $tag, TRUE);
         $this->load->view('email_format', $templateInfo, TRUE);
         $body = $this->parser->parse('email_format', $tag, TRUE);

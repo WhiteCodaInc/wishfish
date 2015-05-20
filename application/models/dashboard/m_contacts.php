@@ -127,6 +127,7 @@ class M_contacts extends CI_Model {
 
         $event_data = array(
             'user_id' => $this->userid,
+            'is_birthday' => 1,
             'event' => 'Birthday : ' . $set['fname'],
             'event_type' => "notification",
             'group_type' => "individual",
@@ -210,6 +211,7 @@ class M_contacts extends CI_Model {
         if (!$this->isBirthdaySchedule($cid, $set)) {
             $event_data = array(
                 'user_id' => $this->userid,
+                'is_birthday' => 1,
                 'event' => 'Birthday : ' . $set['fname'],
                 'event_type' => "notification",
                 'group_type' => "individual",

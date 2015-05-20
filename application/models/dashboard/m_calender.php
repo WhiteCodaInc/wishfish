@@ -20,6 +20,11 @@ class M_calender extends CI_Model {
         $this->userid = $this->session->userdata('userid');
     }
 
+    function getNormalEvent() {
+        $query = $this->db->get_where('schedule', array('user_id' => $this->userid, 'is_birthday' => 0));
+        return $query->result();
+    }
+
     function getSMSTemplate($tmpid) {
         $where = array(
             'template_id' => $tmpid,
