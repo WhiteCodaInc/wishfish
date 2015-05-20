@@ -233,7 +233,7 @@
             </div>
         </div>
         <div class="row booster">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="box box-solid">
                     <div class="box-header">
                         <h3>Profile 40% completed</h3>
