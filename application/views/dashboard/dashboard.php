@@ -334,7 +334,7 @@
                     <div class="modal-footer clearfix">
                         <div class="row">
                             <div class="col-md-3">
-                                <button type="button" id="profileBtn" class="btn btn-primary pull-left">Send</button>
+                                <button type="button" id="profileBtn" class="btn btn-primary pull-left">Save Profile</button>
                             </div>
                             <div class="col-md-3">
                                 <button type="button" class="btn btn-danger discard" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
@@ -373,7 +373,6 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12" style="text-align: center">
-                                        <label for="profile pic">Profile Picture</label>
                                         <input title="Add a photo so we can recognize you !" name="profile_pic"  type="file" id="profilePic" class="form-control" />
                                         <span id="error_message"></span>
                                     </div>
@@ -382,18 +381,18 @@
                         </form>
                     </div>
                     <div class="modal-footer clearfix">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <button type="button" id="uploadBtn" class="btn btn-primary pull-left">Send</button>
-                            </div>
-                            <div class="col-md-3">
-                                <button type="button" class="btn btn-danger discard" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
-                            </div>
-                        </div>
+                        <!--<div class="row">-->
+                        <!--<div class="col-md-3">-->
+                        <button type="button" id="uploadBtn" class="btn btn-primary pull-left">Upload</button>
+                        <!--</div>-->
+                        <!--<div class="col-md-3">-->
+                        <button type="button" class="btn btn-danger discard" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
+                        <!--</div>-->
                     </div>
-                    </form>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
+                </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
         </div>
         <!-----------------------End Upload Your Profile Photo---------------------------->
 
