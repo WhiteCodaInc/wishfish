@@ -547,7 +547,7 @@ $hour = ($userInfo->timezones == "UM9") ? $hour : $hour - 1;
                 data: $('#profileForm').serialize(),
                 url: "<?= site_url() ?>app/profile/updateProfileSetup",
                 success: function (data, textStatus, jqXHR) {
-                    $('#loadUpload').hide();
+                    $('#loadProfile').hide();
                     if (data == "1") {
                         $("#msgProfile").css('color', 'green');
                         $("#msgProfile").html("Profile Successfully Updated..!");
