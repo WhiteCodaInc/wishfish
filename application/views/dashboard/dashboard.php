@@ -502,7 +502,7 @@ $hour = ($userInfo->timezones == "UM9") ? $hour : $hour - 1;
             $("#uploadForm #profile_previewing").attr('src', e.target.result);
         }
         $('#uploadForm').on('submit', (function (e) {
-//            e.preventDefault();
+            e.preventDefault();
             $("#error_message").empty();
             $.ajax({
                 url: "<?= site_url() ?>app/profile/upload", // Url to which the request is send
