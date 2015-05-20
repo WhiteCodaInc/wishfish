@@ -121,6 +121,7 @@ $img_src = ($profile_pic != "") ?
                 </ul>
                 <a style="margin-top: 6px;width: 12%;font-size: 18px;" class="btn btn-warning" href="<?= site_url() ?>app/upgrade">
                     Upgrade
+                    <i class="fa fa-arrow-circle-o-right"></i>
                 </a>
                 <ul class="nav navbar-nav navbar-right" id="wishfish-title">
                     <li class="dropdown user user-menu">
