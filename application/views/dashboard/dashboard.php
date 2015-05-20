@@ -381,18 +381,18 @@
                         </form>
                     </div>
                     <div class="modal-footer clearfix">
-                        <!--<div class="row">-->
-                        <!--<div class="col-md-3">-->
-                        <button type="button" id="uploadBtn" class="btn btn-primary pull-left">Upload</button>
-                        <!--</div>-->
-                        <!--<div class="col-md-3">-->
-                        <button type="button" class="btn btn-danger discard" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
-                        <!--</div>-->
+                        <div class="row">
+                            <div class="col-md-3">
+                                <button type="button" id="uploadBtn" class="btn btn-primary pull-left">Upload</button>
+                            </div>
+                            <div class="col-md-9" style="text-align: right">
+                                <button type="button" class="btn btn-danger discard" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                </form>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
+                    </form>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
         </div>
         <!-----------------------End Upload Your Profile Photo---------------------------->
 
