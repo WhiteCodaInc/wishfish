@@ -268,7 +268,7 @@
                         </a>
                     </li>
                     <li>
-                        <a class="<?= ($event) ? "task-success" : "" ?>" href="<?= site_url() ?>app/calender">
+                        <a class="<?= ($event) ? "task-success" : "" ?>" href="<?= (!$contact) ? site_url() . "app/calender" : "javascript:void(0)" ?>">
                             <i class="fa <?= ($event) ? "fa-check-square" : "fa-square-o" ?> i_event"></i>
                             Schedule an Event
                         </a>
