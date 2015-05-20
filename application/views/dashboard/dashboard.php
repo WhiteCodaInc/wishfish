@@ -361,8 +361,9 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <h4 class="modal-title">Upload Your Profile Picture</h4>
                     </div>
-                    <div class="modal-body">
-                        <form id="uploadForm" action=""  method="post" enctype="multipart/form-data">
+                    <form id="uploadForm" action=""  method="post" enctype="multipart/form-data">
+                        <div class="modal-body">
+
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-12" style="text-align: center">
@@ -378,23 +379,24 @@
                                     </div>
                                 </div>
                             </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer clearfix">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <button type="submit" id="uploadBtn" class="btn btn-primary pull-left">Upload</button>
-                            </div>
-                            <div class="col-md-2">
-                                <div id="loadUpload" style="display: none">
-                                    <img src="<?= base_url() ?>assets/dashboard/img/load.GIF" alt="" />
+
+                        </div>
+                        <div class="modal-footer clearfix">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <button type="submit" id="uploadBtn" class="btn btn-primary pull-left">Upload</button>
+                                </div>
+                                <div class="col-md-2">
+                                    <div id="loadUpload" style="display: none">
+                                        <img src="<?= base_url() ?>assets/dashboard/img/load.GIF" alt="" />
+                                    </div>
+                                </div>
+                                <div class="col-md-7" style="text-align: right">
+                                    <button type="button" class="btn btn-danger discard" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
                                 </div>
                             </div>
-                            <div class="col-md-7" style="text-align: right">
-                                <button type="button" class="btn btn-danger discard" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
-                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div>
