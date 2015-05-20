@@ -285,7 +285,7 @@
                         <h4 class="modal-title">Complete Your Profile</h4>
                     </div>
                     <div class="modal-body">
-                        <form id="profileForm"  method="post">
+                        <form id="profileForm">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
