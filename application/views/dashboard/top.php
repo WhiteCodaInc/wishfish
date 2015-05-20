@@ -38,7 +38,7 @@
         height: 30px;
         vertical-align: top;
         margin: 10px;
-        border-right: 1px solid #dfdfdf;
+        border-right: 1px solid lightseagreen;
         float: right;
     }
     .import:hover{
