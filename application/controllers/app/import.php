@@ -18,13 +18,7 @@ class Import extends CI_Controller {
         parent::__construct();
         //session_start();
         require APPPATH . 'third_party/google-api/Google_Client.php';
-//        require_once APPPATH . 'third_party/facebook/facebook.php';
-
         $this->userid = $this->session->userdata('userid');
-        echo '<pre>';
-        print_r($this->session->all_userdata());
-        die();
-        //$_SESSION['userid'] = $this->userid;
         $this->config->load('googlecontact');
 
         $this->client = new Google_Client();
@@ -46,9 +40,6 @@ class Import extends CI_Controller {
     }
 
     public function contacts() {
-
-
-
         $authcode = $this->input->get('code');
         $clientid = $this->client->getClientId();
         $clientsecret = $this->client->getClientSecret();
