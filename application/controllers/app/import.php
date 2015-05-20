@@ -43,7 +43,7 @@ class Import extends CI_Controller {
 
     public function contacts() {
         echo '<pre>';
-        print_r($this->session->all_userdata());
+        print_r($this->sess_data);
         die();
         $authcode = $this->input->get('code');
         $clientid = $this->client->getClientId();
