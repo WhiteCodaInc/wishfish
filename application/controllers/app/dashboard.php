@@ -50,12 +50,12 @@ class Dashboard extends CI_Controller {
             $card = $this->objcalender->getCards();
             $setup = $this->objdashboard->getProfileSetup();
             $data = array_merge_recursive($card, $setup);
-            echo '<pre>';
-            print_r($data);
-            die();
+//            echo '<pre>';
+//            print_r($data);
+//            die();
             $this->load->view('dashboard/header');
             $this->load->view('dashboard/top');
-            $this->load->view('dashboard/dashboard', $card . $setup);
+            $this->load->view('dashboard/dashboard', $data);
             $this->load->view('dashboard/footer');
         } else {
             $userInfo = $this->common->getUserInfo($this->uid);
