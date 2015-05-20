@@ -37,8 +37,7 @@
         display: inline-block;
         height: 30px;
         vertical-align: top;
-        margin-top: 9px;
-        margin-left: 12px;
+        margin: 10px;
         border-right: 1px solid #dfdfdf;
         float: right;
     }
@@ -173,7 +172,7 @@ $img_src = ($profile_pic != "") ?
                         </ul>
                     </li>
                 </ul>
-
+                <span class="separator"></span>
                 <div class="row" style="float: right">
                     <div class="col-md-12">
                         <a style="margin-top: 6px;font-size: 16px;" class="btn btn-info" href="<?= site_url() ?>app/import">
@@ -184,13 +183,13 @@ $img_src = ($profile_pic != "") ?
                 <span class="separator"></span>
                 <div class="row" style="float: right">
                     <div class="col-md-12">
-                        <a style="margin-top: 6px;font-size: 16px;" class="btn btn-warning" href="<?= site_url() ?>app/upgrade">
+                        <a style="margin-top: 6px;font-size: 16px;" class="btn btn-info" href="<?= site_url() ?>app/upgrade">
                             Upgrade
                             <i class="fa fa-arrow-circle-right"></i>
                         </a>
                     </div>
                 </div>
-                <span class="separator"></span>
+
 
                 <div class="modal fade" id="query-modal" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog" style="max-width: 400px">
