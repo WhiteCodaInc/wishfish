@@ -90,31 +90,29 @@ class M_profile extends CI_Model {
     }
 
     function upload() {
-        print_r($_FILES);
-        die();
         $flag = false;
         if (isset($_FILES['profile_pic'])) {
             if ($_FILES['profile_pic']['error'] == 0) {
                 $msg = $this->uploadImage($_FILES);
                 switch ($msg) {
                     case "UF":
-                        $flag = false;
-                        break;
                     case "IF":
                         $flag = false;
                         break;
                     default:
                         $set['profile_pic'] = $msg;
                         $this->session->set_userdata('profile_pic', $msg);
-                        $m = "U";
+                        $this->db->update('user_mst', $set, array('user_id' => $this->userid));
+                        $flag = true;
                         break;
                 }
             } else {
-                return false;
+                $flag = false;
             }
         } else {
-            return false;
+            $flag = false;
         }
+        return $flag;
     }
 
     function uploadImage($file) {

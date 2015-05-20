@@ -61,7 +61,7 @@ class Profile extends CI_Controller {
     }
 
     function upload() {
-        $this->objprofile->upload();
+        echo ($this->objprofile->upload()) ? 1 : 0;
     }
 
 }
