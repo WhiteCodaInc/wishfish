@@ -359,18 +359,20 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title">Complete Your Profile</h4>
+                        <h4 class="modal-title">Upload Your Profile Picture</h4>
                     </div>
                     <div class="modal-body">
                         <form id="uploadForm"  method="post">
                             <div class="form-group">
                                 <div class="row">
-                                    <div class="col-md-3">
+                                    <div class="col-md-12" style="text-align: center">
                                         <div  class="image" style="text-align: center">
                                             <img id="profile_previewing" style="width: 100px;height: 100px"  src="<?= $img_src ?>" class="img-circle" alt="User Image" />
                                         </div>
                                     </div>
-                                    <div class="col-md-9">
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12" style="text-align: center">
                                         <label for="profile pic">Profile Picture</label>
                                         <input title="Add a photo so we can recognize you !" name="profile_pic"  type="file" id="profilePic" class="form-control" />
                                         <span id="error_message"></span>
