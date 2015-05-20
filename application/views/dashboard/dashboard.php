@@ -503,7 +503,7 @@ $hour = ($userInfo->timezones == "UM9") ? $hour : $hour - 1;
         }
         $('#uploadForm').on('submit', (function (e) {
             e.preventDefault();
-            $('loadUpload').show();
+            $('#loadUpload').show();
             $("#error_message").empty();
             $.ajax({
                 url: "<?= site_url() ?>app/profile/upload", // Url to which the request is send
@@ -514,7 +514,7 @@ $hour = ($userInfo->timezones == "UM9") ? $hour : $hour - 1;
                 processData: false, // To send DOMDocument or non processed data file it is set to false (i.e. data should not be in the form of string)
                 success: function (data)  		// A function to be called if request succeeds
                 {
-                    $('loadUpload').hide();
+                    $('#loadUpload').hide();
                     $("#error_message").html("Profile Picture Successfully Uploaded..!");
                     setTimeout(function () {
                         $('.discard').trigger('click');
