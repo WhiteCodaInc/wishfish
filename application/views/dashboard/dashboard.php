@@ -243,7 +243,7 @@
             </div><!-- /.box-header -->
             <div class="box-body">
                 <ul>
-                    <li style="task-success">
+                    <li class="task-success">
                         <i class="fa fa-check-square"></i>
                         Setup Your Account
                     </li>
