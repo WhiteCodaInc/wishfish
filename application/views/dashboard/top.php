@@ -41,6 +41,9 @@
         border-right: 1px solid #dfdfdf;
         float: right;
     }
+    .import:hover{
+        color: #428bca
+    }
 </style>
 <?php
 $profile_pic = $this->session->userdata('profile_pic');
@@ -173,9 +176,9 @@ $img_src = ($profile_pic != "") ?
                     </li>
                 </ul>
                 <span class="separator"></span>
-                <div class="row" style="float: right">
+                <div class="row" style="float: right;margin: 14px -15px;">
                     <div class="col-md-12">
-                        <a style="margin-top: 6px;font-size: 16px;" class="btn btn-info" href="<?= site_url() ?>app/import">
+                        <a class="import" href="<?= site_url() ?>app/import">
                             <i class="fa fa-user"></i> <span> Import Google Contact</span>
                         </a>
                     </div>
