@@ -502,6 +502,7 @@ $hour = ($userInfo->timezones == "UM9") ? $hour : $hour - 1;
             $("#uploadForm #profile_previewing").attr('src', e.target.result);
         }
         $('#uploadForm').on('submit', (function (e) {
+            $('#uploadBtn').prop('disabled', true);
             e.preventDefault();
             $('#loadUpload').show();
             $("#error_message").empty();
@@ -515,6 +516,7 @@ $hour = ($userInfo->timezones == "UM9") ? $hour : $hour - 1;
                 success: function (data)  		// A function to be called if request succeeds
                 {
                     $('#loadUpload').hide();
+                    $("#error_message").css('color', 'green');
                     $("#error_message").html("Profile Picture Successfully Uploaded..!");
                     setTimeout(function () {
                         $('.discard').trigger('click');
