@@ -49,9 +49,9 @@ class Dashboard extends CI_Controller {
         if ($this->authex->logged_in()) {
             $card = $this->objcalender->getCards();
             $setup = $this->objdashboard->getProfileSetup();
+            $data = array_merge_recursive($card, $setup);
             echo '<pre>';
-            print_r($card);
-            print_r($setup);
+            print_r($data);
             die();
             $this->load->view('dashboard/header');
             $this->load->view('dashboard/top');
