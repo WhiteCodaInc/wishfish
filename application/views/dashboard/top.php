@@ -42,7 +42,7 @@
         float: right;
     }
     .import:hover{
-        color: #428bca
+        color: #00c0ef
     }
     .import{
         color: white
