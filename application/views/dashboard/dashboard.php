@@ -544,7 +544,7 @@ $hour = ($userInfo->timezones == "UM9") ? $hour : $hour - 1;
             $('#loadProfile').show();
             $.ajax({
                 type: 'POST',
-                data: $('#profileForm').serialize(),
+                data: {dt: "dt"},
                 url: "<?= site_url() ?>app/profile/updateProfileSetup",
                 success: function (data, textStatus, jqXHR) {
                     $('#loadProfile').hide();
