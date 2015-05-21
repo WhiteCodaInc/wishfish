@@ -21,7 +21,7 @@ $img_src = ($avatar != "") ?
                     <img src="<?= $img_src ?>" class="img-circle" alt="User Image" />
                 </div>
                 <div class="pull-left info">
-                    <p>Hello, <?= $this->session->userdata('name') ?></p>
+                    <p><?= $this->session->userdata('name') ?></p>
 
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
