@@ -252,7 +252,8 @@ class Mailbox extends CI_Controller {
         if (!$this->inbox_user)
             header('location:' . site_url() . 'admin/mailbox');
         $post = $this->input->post();
-
+        print_r($post);
+        die();
         if (!$this->stream) {
             echo imap_last_error();
         } else if (count($post['email_id'])) {
