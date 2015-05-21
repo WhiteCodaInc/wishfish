@@ -319,6 +319,18 @@
                                             <input style="z-index: 0;" name="birthday" class="form-control form-control-inline input-medium default-date-picker" size="16" type="text">
                                         </div><!-- /.input group -->
                                     </div><!-- /.form group -->
+
+                                    <div class="form-group">
+                                        <label>Date Format</label>
+                                        <select name="date_format" id="date-format" class="form-control m-bot15">
+                                            <option value="mm-dd-yyyy">mm-dd-yyyy</option>
+                                            <option value="dd-mm-yyyy">dd-mm-yyyy</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group" id="select-timezone">
+                                        <label >Timezone </label>
+                                        <?= timezone_menu('UTC') ?>
+                                    </div>
                                 </div>
                             </div>
                             <span id="msgProfile"></span>
@@ -495,7 +507,8 @@ $hour = ($userInfo->timezones == "UM9") ? $hour : $hour - 1;
 ?>
 <script type="text/javascript" >
     $(function () {
-
+        $('select[name="timezones"]').addClass('form-control m-bot15');
+        //$('select[name="timezones"]').val('UTC');
         $('#contactForm .default-date-picker').datepicker({
             format: "<?= $this->session->userdata('date_format') ?>",
             todayBtn: "linked",
