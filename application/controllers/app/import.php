@@ -41,6 +41,7 @@ class Import extends CI_Controller {
         } else {
             die("Not Called");
         }
+        die();
         $authcode = $this->input->get('code');
         $clientid = $this->client->getClientId();
         $clientsecret = $this->client->getClientSecret();
