@@ -111,9 +111,7 @@ class Admin_profile extends CI_Controller {
 
     function send_message() {
         $post = $this->input->post();
-        echo '<pre>';
-        print_r($post);
-        die();
+        
         $profile = $this->objprofile->getProfile($post['pid']);
         $tag = $this->common->setToken($profile);
         $body = $this->parser->parse_string($post['body'], $tag, TRUE);
@@ -123,6 +121,9 @@ class Admin_profile extends CI_Controller {
 
     function send_email() {
         $post = $this->input->post();
+        echo '<pre>';
+        print_r($post);
+        die();
         $profile = $this->objprofile->getProfile($post['pid']);
         $tag = $this->common->setToken($profile);
         $this->sendMail($profile, $tag, $post);
