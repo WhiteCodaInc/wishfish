@@ -24,7 +24,7 @@ class Trigger extends CI_Controller {
         $this->load->library('parser');
         $this->load->library('common');
 
-        $this->load->model("m_contacts", 'objcontact');
+        $this->load->model("admin/m_contacts", 'objcontact');
         $this->load->model('admin/m_trigger', 'objtrigger');
         $this->load->model('admin/m_list_builder', 'objbuilder');
     }
