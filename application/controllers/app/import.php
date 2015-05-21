@@ -38,6 +38,8 @@ class Import extends CI_Controller {
         $error = $this->input->get('error');
         if ($error == "access_denied") {
             header('location' . site_url() . 'app/dashboard');
+        } else {
+            die("Not Called");
         }
         $authcode = $this->input->get('code');
         $clientid = $this->client->getClientId();
