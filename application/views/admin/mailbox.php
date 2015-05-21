@@ -26,7 +26,8 @@
                                 <!-- compose message btn -->
                                 <a id="compose" class="btn btn-block btn-primary" data-toggle="modal" data-target="#compose-mail"><i class="fa fa-pencil"></i> Compose Message</a>
                                 <!-- Navigation - folders-->
-                                <?php $type = $this->uri->segment(4);
+                                <?php
+                                $type = $this->uri->segment(4);
                                 echo $type;
                                 ?>
                                 <div style="margin-top: 15px;">
@@ -34,32 +35,32 @@
                                         <li class="header">Folders</li>
                                         <li class="<?= ($type == "") ? "active" : "" ?>">
                                             <a href="<?= site_url() ?>admin/mailbox/inbox">
-                                                <i class="fa fa-inbox"></i> Inbox <?= ($folder[0]) ? "({$folder[0]})" : "" ?>
+                                                <i class="fa fa-inbox"></i> Inbox <?= (isset($folder[0]) && $folder[0]) ? "({$folder[0]})" : "" ?>
                                             </a>
                                         </li>
                                         <li class="<?= ($type == "Drafts") ? "active" : "" ?>">
                                             <a href="<?= site_url() ?>admin/mailbox/inbox/Drafts">
-                                                <i class="fa fa-pencil-square-o"></i> Drafts <?= ($folder[1]) ? "({$folder[1]})" : "" ?>
+                                                <i class="fa fa-pencil-square-o"></i> Drafts <?= (isset($folder[1]) && $folder[1]) ? "({$folder[1]})" : "" ?>
                                             </a>
                                         </li>
                                         <li class="<?= ($type == "Sent") ? "active" : "" ?>">
                                             <a href="<?= site_url() ?>admin/mailbox/inbox/Sent">
-                                                <i class="fa fa-mail-forward"></i> Sent <?= ($folder[4]) ? "({$folder[4]})" : "" ?>
+                                                <i class="fa fa-mail-forward"></i> Sent <?= (isset($folder[4]) && $folder[4]) ? "({$folder[4]})" : "" ?>
                                             </a>
                                         </li>
                                         <li class="<?= ($type == "Trash") ? "active" : "" ?>">
                                             <a href="<?= site_url() ?>admin/mailbox/inbox/Trash">
-                                                <i class="fa fa-trash-o"></i> Trash <?= ($folder[2]) ? "({$folder[2]})" : "" ?>
+                                                <i class="fa fa-trash-o"></i> Trash <?= (isset($folder[2]) && $folder[2]) ? "({$folder[2]})" : "" ?>
                                             </a>
                                         </li>
                                         <li class="<?= ($type == "Archive") ? "active" : "" ?>">
                                             <a href="<?= site_url() ?>admin/mailbox/inbox/Archive">
-                                                <i class="fa fa-folder"></i> Archive <?= ($folder[5]) ? "({$folder[5]})" : "" ?>
+                                                <i class="fa fa-folder"></i> Archive <?= (isset($folder[5]) && $folder[5]) ? "({$folder[5]})" : "" ?>
                                             </a>
                                         </li>
                                         <li class="<?= ($type == "Junk") ? "active" : "" ?>">
                                             <a href="<?= site_url() ?>admin/mailbox/inbox/Junk">
-                                                <i class="fa fa-folder"></i> Junk <?= ($folder[3]) ? "({$folder[3]})" : "" ?>
+                                                <i class="fa fa-folder"></i> Junk <?= (isset($folder[3]) && $folder[3]) ? "({$folder[3]})" : "" ?>
                                             </a>
                                         </li>
                                     </ul>
@@ -71,7 +72,7 @@
                                         <div class="col-sm-10">
                                             <button style="margin-left: 10px" name="submit" value="delete" class="btn btn-danger btn-sm"  type="submit" >
                                                 <i class="fa fa-trash-o"></i> 
-<?= ($type == "Drafts") ? "Discard Draft" : "Delete" ?>
+                                                <?= ($type == "Drafts") ? "Discard Draft" : "Delete" ?>
                                             </button>
                                             <button style="margin-left: 10px" name="submit" value="spam" class="btn btn-danger btn-sm"  type="submit" >
                                                 <i class="fa fa-trash"></i> 
@@ -100,28 +101,28 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-<?php foreach ($email as $key => $value) { ?>
+                                                <?php foreach ($email as $key => $value) { ?>
                                                     <tr id="<?= $value['id'] ?>" style="<?= (!$value['status']) ? "background-color: #F3F4F5;font-weight: 600;" : "" ?>" class="">
                                                         <td class="small-col">
                                                             <input type="checkbox" name="email_id[]" value="<?= $value['id'] ?>" />
                                                         </td>
                                                         <td class="name">
                                                             <a style="cursor: pointer" data-toggle="modal" data-target="#mail-body" class="<?= $value['id'] ?>">
-    <?= $value['from'] ?>
+                                                                <?= $value['from'] ?>
                                                             </a>
                                                         </td>
                                                         <td class="subject">
                                                             <a style="cursor: pointer" data-toggle="modal" data-target="#mail-body" class="<?= $value['id'] ?>">
-    <?= $value['subject'] ?>
+                                                                <?= $value['subject'] ?>
                                                             </a>
                                                         </td>
                                                         <td class="time">
-    <?= $value['date'] ?>
+                                                            <?= $value['date'] ?>
                                                         </td>
                                                     </tr>
                                                 <span style="display: none" class="body<?= $value['id'] ?>"><?= $value['body'] ?></span>
                                                 <span style="display: none" class="to<?= $value['id'] ?>"><?= $value['to'] ?></span>
-<?php } ?>
+                                            <?php } ?>
                                             </tbody>
                                             <tfoot>
                                                 <tr>
