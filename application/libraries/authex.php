@@ -32,7 +32,7 @@ class Authex {
 
 
     function login($where) {
-        $query = $this->_CI->db->get_where("user_mst", $where);
+        $query = $this->_CI->db->get_where('wi_user_mst', $where);
         if ($query->num_rows() !== 1) {
             /* their username and password combination
              * were not found in the databse */
@@ -42,7 +42,7 @@ class Authex {
             $data = array(
                 "last_login" => $last_login
             );
-            $this->_CI->db->update("user_mst", $data, array('user_id' => $query->row()->user_id));
+            $this->_CI->db->update('wi_user_mst', $data, array('user_id' => $query->row()->user_id));
             $where['user_id'] = $query->row()->user_id;
             $query = $this->_CI->db->get_where('wi_user_mst', $where);
             $res = $query->row();
