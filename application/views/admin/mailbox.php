@@ -1,5 +1,5 @@
 <!-- Normal Checkbox -->
-<!--<link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/dashboard/css/checkbox.css"/>-->
+<link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/dashboard/css/checkbox.css"/>
 <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/dashboard/autocomplete/jquery-ui.css"/>
 <aside class="right-side">
     <!-- Content Header (Page header) -->
@@ -336,8 +336,7 @@ switch ($msg) {
     function BindControls(ar1, ar2) {
         contact = ar1;
         ids = ar2;
-        console.log(contact);
-        console.log(ids);
+
         $('#users').autocomplete({
             source: ar1,
             minLength: 0,
