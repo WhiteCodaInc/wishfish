@@ -35,14 +35,9 @@ class Import extends CI_Controller {
     }
 
     public function contacts() {
-        $error = $this->input->get('error');
-        if ($error == "access_denied") {
+        if ($this->input->get('error') == "access_denied") {
             header('location:' . site_url() . 'app/dashboard');
-            die('Called');
-        } else {
-            die("Not Called");
         }
-        die();
         $authcode = $this->input->get('code');
         $clientid = $this->client->getClientId();
         $clientsecret = $this->client->getClientSecret();
