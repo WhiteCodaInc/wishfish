@@ -21,7 +21,7 @@ class M_sms_template extends CI_Model {
     }
 
     function getTemplates() {
-        $query = $this->db->get_where('sms_template', array('user_id' => $this->userid));
+        $query = $this->db->get_where('wi_sms_template', array('user_id' => $this->userid));
         return $query->result();
     }
 
@@ -30,13 +30,13 @@ class M_sms_template extends CI_Model {
             'template_id' => $tid,
             'user_id' => $this->userid
         );
-        $query = $this->db->get_where('sms_template', $where);
+        $query = $this->db->get_where('wi_sms_template', $where);
         return $query->row();
     }
 
     function createTemplate($set) {
         $set['user_id'] = $this->userid;
-        $this->db->insert('sms_template', $set);
+        $this->db->insert('wi_sms_template', $set);
         return TRUE;
     }
 
@@ -47,7 +47,7 @@ class M_sms_template extends CI_Model {
             'template_id' => $tid,
             'user_id' => $this->userid
         );
-        $this->db->update('sms_template', $set, $where);
+        $this->db->update('wi_sms_template', $set, $where);
         return TRUE;
     }
 
@@ -57,7 +57,7 @@ class M_sms_template extends CI_Model {
                 'template_id' => $value,
                 'user_id' => $this->userid
             );
-            $this->db->delete('sms_template', $where);
+            $this->db->delete('wi_sms_template', $where);
         }
     }
 

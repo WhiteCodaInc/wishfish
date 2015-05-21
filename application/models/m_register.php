@@ -34,7 +34,7 @@ class M_register extends CI_Model {
         $this->db->trans_start();
         $planInfo = $this->common->getPlan(1);
 
-        $this->db->insert('user_mst', $post);
+        $this->db->insert('wi_user_mst', $post);
         $insertid = $this->db->insert_id();
 
         $this->session->set_userdata('d-userid', $insertid);
@@ -52,7 +52,7 @@ class M_register extends CI_Model {
             'start_date' => date('Y-m-d'),
             'expiry_date' => $this->common->getNextDate(date('Y-m-d'), "14 Days")
         );
-        $this->db->insert('plan_detail', $set);
+        $this->db->insert('wi_plan_detail', $set);
         $planid = $this->db->insert_id();
         //-------------------------------------------------//
         //---------------Add Customer To Stripe------------//
@@ -81,7 +81,7 @@ class M_register extends CI_Model {
             'user_unique_id' => $data['id'],
             'email' => $data['email']
         );
-        $query = $this->db->get_where('user_mst', $where);
+        $query = $this->db->get_where('wi_user_mst', $where);
         if ($query->num_rows() > 0) {
             return $query->row();
         } else {
@@ -98,7 +98,7 @@ class M_register extends CI_Model {
         );
         $this->db->trans_start();
 
-        $this->db->insert('user_mst', $set);
+        $this->db->insert('wi_user_mst', $set);
         $insertid = $this->db->insert_id();
 
         $d_userid = array(
@@ -121,7 +121,7 @@ class M_register extends CI_Model {
             'start_date' => date('Y-m-d'),
             'expiry_date' => $this->common->getNextDate(date('Y-m-d'), "14 Days")
         );
-        $this->db->insert('plan_detail', $plan_set);
+        $this->db->insert('wi_plan_detail', $plan_set);
         $pid = $this->db->insert_id();
         if ($this->addCustomerToStripe($set, $pid, $insertid)) {
             $this->db->trans_complete();
@@ -144,7 +144,7 @@ class M_register extends CI_Model {
             $this->s3->setAuth($this->accessKey, $this->secretKey);
             if ($this->s3->putObjectFile($ext_url, $this->bucket, $fname, "public-read")) {
                 unlink($ext_url);
-                $this->db->update('user_mst', array('profile_pic' => $fname), array('user_id' => $insertid));
+                $this->db->update('wi_user_mst', array('profile_pic' => $fname), array('user_id' => $insertid));
             }
         }
         return $flag;
@@ -218,7 +218,7 @@ class M_register extends CI_Model {
         if (!$success) {
             return FALSE;
         } else {
-            $this->db->update('user_mst', array('customer_id' => $customer->id), array('user_id' => $insertid));
+            $this->db->update('wi_user_mst', array('customer_id' => $customer->id), array('user_id' => $insertid));
             return TRUE;
         }
     }

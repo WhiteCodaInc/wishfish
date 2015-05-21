@@ -60,8 +60,8 @@ class Contacts extends CI_Controller {
             $data['contact'] = $res[0];
             $data['cgroup'] = $res[1];
             $data['groups'] = $this->objgroup->getContactGroups("simple");
-//        $data['sms_template'] = $this->objsmstemplate->getTemplates();
-//        $data['email_template'] = $this->objemailtemplate->getTemplates();
+//        $data['wi_sms_template'] = $this->objsmstemplate->getTemplates();
+//        $data['wi_email_template'] = $this->objemailtemplate->getTemplates();
             $this->load->view('dashboard/header');
             $this->load->view('dashboard/top');
 

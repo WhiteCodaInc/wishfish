@@ -113,7 +113,7 @@ class Import extends CI_Controller {
             ($post['email'][$value]) ? $set['email'] = $post['email'][$value] : '';
             ($post['phone'][$value]) ? $set['phone'] = $post['phone'][$value] : '';
 
-            $this->db->insert('contact_detail', $set);
+            $this->db->insert('wi_contact_detail', $set);
         }
         header('location:' . site_url() . 'app/contacts');
     }

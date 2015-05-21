@@ -25,7 +25,7 @@ class M_contact_groups extends CI_Model {
             'type' => $type,
             'user_id' => $this->userid
         );
-        $query = $this->db->get_where('contact_groups', $where);
+        $query = $this->db->get_where('wi_contact_groups', $where);
         return $query->result();
     }
 
@@ -34,13 +34,13 @@ class M_contact_groups extends CI_Model {
             'group_id' => $gid,
             'user_id' => $this->userid
         );
-        $query = $this->db->get_where('contact_groups', $where);
+        $query = $this->db->get_where('wi_contact_groups', $where);
         return ($query->num_rows() > 0) ? $query->row() : FALSE;
     }
 
     function createContactGroup($set) {
         $set['user_id'] = $this->userid;
-        $this->db->insert('contact_groups', $set);
+        $this->db->insert('wi_contact_groups', $set);
         return TRUE;
     }
 
@@ -51,14 +51,14 @@ class M_contact_groups extends CI_Model {
             'group_id' => $gid,
             'user_id' => $this->userid
         );
-        return ($this->db->update('contact_groups', $set, $where)) ? TRUE : FALSE;
+        return ($this->db->update('wi_contact_groups', $set, $where)) ? TRUE : FALSE;
     }
 
     function setAction() {
 
         $ids = $this->input->post('group');
         foreach ($ids as $value) {
-            $this->db->delete('contact_groups', array('group_id' => $value));
+            $this->db->delete('wi_contact_groups', array('group_id' => $value));
         }
     }
 

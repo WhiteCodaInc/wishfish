@@ -18,7 +18,7 @@ class M_faq extends CI_Model {
     }
 
     function search($queid) {
-        $query = $this->db->get_where('faqs', array('faq_id' => $queid));
+        $query = $this->db->get_where('wi_faqs', array('faq_id' => $queid));
         return ($query->num_rows() > 0) ? $query->result() : FALSE;
     }
 
@@ -27,7 +27,7 @@ class M_faq extends CI_Model {
         $display_json = array();
         $get = $this->input->get();
         $this->db->like('question', $get['term']);
-        $query = $this->db->get('faqs');
+        $query = $this->db->get('wi_faqs');
         if ($query->num_rows() > 0) {
             foreach ($query->result() as $value) {
                 $json_arr['url'] = site_url() . 'faq/search?id=' . $value->faq_id;
@@ -46,10 +46,10 @@ class M_faq extends CI_Model {
     function getFirst() {
         $this->db->limit(1);
         $this->db->order_by('order', 'asc');
-        $query = $this->db->get('faq_categories');
+        $query = $this->db->get('wi_faq_categories');
         if ($query->num_rows() > 0) {
             $res['category'] = $query->row();
-            $query = $this->db->get_where('faqs', array('category_id' => $res['category']->category_id));
+            $query = $this->db->get_where('wi_faqs', array('category_id' => $res['category']->category_id));
             $res['questions'] = $query->result();
             return $res;
         } else {
@@ -58,12 +58,12 @@ class M_faq extends CI_Model {
     }
 
     function getAllQuestions() {
-        $query = $this->db->get('faqs');
+        $query = $this->db->get('wi_faqs');
         return $query->result();
     }
 
     function getQuestions($catid) {
-        $query = $this->db->get_where('faqs', array('category_id' => $catid));
+        $query = $this->db->get_where('wi_faqs', array('category_id' => $catid));
         return $query->result();
     }
 
@@ -77,19 +77,19 @@ class M_faq extends CI_Model {
 
     function getFaq($fid) {
         $this->db->where('faq_id', $fid);
-        $query = $this->db->get('faqs');
+        $query = $this->db->get('wi_faqs');
         return $query->row();
     }
 
     function createFaq($set) {
-        $this->db->insert('faqs', $set);
+        $this->db->insert('wi_faqs', $set);
         return "I";
     }
 
     function updateFaq($set) {
         $faqid = $set['faqid'];
         unset($set['faqid']);
-        $this->db->update('faqs', $set, array('faq_id' => $faqid));
+        $this->db->update('wi_faqs', $set, array('faq_id' => $faqid));
         return "U";
     }
 
@@ -98,7 +98,7 @@ class M_faq extends CI_Model {
         $ids = $this->input->post('faq');
         if (is_array($ids) && count($ids) > 0) {
             foreach ($ids as $value) {
-                $this->db->delete('faqs', array('faq_id' => $value));
+                $this->db->delete('wi_faqs', array('faq_id' => $value));
             }
             $msg = "D";
         } else {
@@ -120,19 +120,19 @@ class M_faq extends CI_Model {
 
     function getFaqCategory($cid) {
         $this->db->where('category_id', $cid);
-        $query = $this->db->get('faq_categories');
+        $query = $this->db->get('wi_faq_categories');
         return $query->row();
     }
 
     function createFaqCategory($set) {
-        $this->db->insert('faq_categories', $set);
+        $this->db->insert('wi_faq_categories', $set);
         return TRUE;
     }
 
     function updateFaqCategory($set) {
         $cid = $set['categoryid'];
         unset($set['categoryid']);
-        $this->db->update('faq_categories', $set, array('category_id' => $cid));
+        $this->db->update('wi_faq_categories', $set, array('category_id' => $cid));
         return TRUE;
     }
 
@@ -143,13 +143,13 @@ class M_faq extends CI_Model {
             foreach ($post['catid'] as $key => $value) {
                 $set['order'] = $post['order'][$key];
                 $where['category_id'] = $value;
-                $this->db->update('faq_categories', $set, $where);
+                $this->db->update('wi_faq_categories', $set, $where);
             }
             $msg = "OU";
         } else if ($type == "Delete") {
             $ids = $post['category'];
             foreach ($ids as $value) {
-                $this->db->delete('faq_categories', array('category_id' => $value));
+                $this->db->delete('wi_faq_categories', array('category_id' => $value));
             }
             $msg = "D";
         }

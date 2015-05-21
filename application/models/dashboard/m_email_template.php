@@ -21,7 +21,7 @@ class M_email_template extends CI_Model {
     }
 
     function getTemplates() {
-        $query = $this->db->get_where('email_template', array('user_id' => $this->userid));
+        $query = $this->db->get_where('wi_email_template', array('user_id' => $this->userid));
         return $query->result();
     }
 
@@ -30,13 +30,13 @@ class M_email_template extends CI_Model {
             'template_id' => $tid,
             'user_id' => $this->userid
         );
-        $query = $this->db->get_where('email_template', $where);
+        $query = $this->db->get_where('wi_email_template', $where);
         return $query->row();
     }
 
     function createTemplate($set) {
         $set['user_id'] = $this->userid;
-        $this->db->insert('email_template', $set);
+        $this->db->insert('wi_email_template', $set);
         return TRUE;
     }
 
@@ -47,7 +47,7 @@ class M_email_template extends CI_Model {
             'template_id' => $tid,
             'user_id' => $this->userid
         );
-        $this->db->update('email_template', $set, $where);
+        $this->db->update('wi_email_template', $set, $where);
         return TRUE;
     }
 
@@ -57,7 +57,7 @@ class M_email_template extends CI_Model {
                 'template_id' => $value,
                 'user_id' => $this->userid
             );
-            $this->db->delete('email_template', $where);
+            $this->db->delete('wi_email_template', $where);
         }
     }
 

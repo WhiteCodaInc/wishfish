@@ -27,34 +27,34 @@ class Common {
     }
 
     function getUserInfo($userid) {
-        $query = $this->_CI->db->get_where('user_mst', array('user_id' => $userid));
+        $query = $this->_CI->db->get_where('wi_user_mst', array('user_id' => $userid));
         return $query->row();
     }
 
     function getContactInfo($contactid) {
-        $query = $this->_CI->db->get_where('contact_detail', array('contact_id' => $contactid));
+        $query = $this->_CI->db->get_where('wi_contact_detail', array('contact_id' => $contactid));
         return $query->row();
     }
 
 //    function getPlanInfo() {
-//        $query = $this->_CI->db->get_where('plan_detail', array('user_id' => $this->user_id, 'plan_status' => 2));
+//        $query = $this->_CI->db->get_where('wi_plan_detail', array('user_id' => $this->user_id, 'plan_status' => 2));
 //        return $query->row();
 //    }
 
     function getCurrentPlan($userid = NULL) {
         $uid = ($userid == NULL) ? $this->user_id : $userid;
-        $query = $this->_CI->db->get_where('plan_detail', array('user_id' => $uid, 'plan_status' => 1));
+        $query = $this->_CI->db->get_where('wi_plan_detail', array('user_id' => $uid, 'plan_status' => 1));
         return $query->row();
     }
 
     function getPlan($planid) {
-        $query = $this->_CI->db->get_where('plans', array('plan_id' => $planid));
+        $query = $this->_CI->db->get_where('wi_plans', array('plan_id' => $planid));
         return $query->row();
     }
 
     function getPlans() {
 //        $this->_CI->db->where_in('plan_id', array('2', '3'));
-        $query = $this->_CI->db->get('plans');
+        $query = $this->_CI->db->get('wi_plans');
         return $query->result();
     }
 
@@ -62,12 +62,12 @@ class Common {
         $uid = ($userid == NULL) ? $this->user_id : $userid;
         $this->_CI->db->limit(1);
         $this->_CI->db->order_by('register_date', 'desc');
-        $query = $this->_CI->db->get_where('plan_detail', array('user_id' => $uid));
+        $query = $this->_CI->db->get_where('wi_plan_detail', array('user_id' => $uid));
         return $query->row();
     }
 
     function getPaymentGatewayInfo($mname) {
-        $query = $this->_CI->db->get_where('general_setting', array('method_name' => $mname));
+        $query = $this->_CI->db->get_where('wi_general_setting', array('method_name' => $mname));
         return $query->row();
     }
 
@@ -152,7 +152,7 @@ class Common {
 //        echo $this->compid;
 //        die();
         $compid = ($companyid !== NULL) ? $companyid : $this->compid;
-        $query = $CI->db->get_where('general_setting', array('comp_id' => $compid));
+        $query = $CI->db->get_where('wi_general_setting', array('comp_id' => $compid));
         $res = $query->result_array();
         return $res[0];
     }
@@ -271,7 +271,7 @@ class Common {
             'start_date' => date('Y-m-d', $customer->subscriptions->data[0]->current_period_start),
             'expiry_date' => date('Y-m-d', $customer->subscriptions->data[0]->current_period_end)
         );
-        $this->db->insert('plan_detail', $plan_set);
+        $this->db->insert('wi_plan_detail', $plan_set);
         return $this->db->insert_id();
     }
 
@@ -286,12 +286,12 @@ class Common {
             'mc_fee' => ($amount * 0.029) + 0.30,
             'payment_date' => date('Y-m-d', $customer->subscriptions->data[0]->current_period_start)
         );
-        $this->db->insert('payment_mst', $insert_set);
+        $this->db->insert('wi_payment_mst', $insert_set);
     }
 
     //----------------------Admin Automail Template---------------------------//
     function getAutomailTemplate($type) {
-        $query = $this->_CI->db->get_where('automail_template', array('mail_type' => $type));
+        $query = $this->_CI->db->get_where('wi_automail_template', array('mail_type' => $type));
         $res = $query->result_array();
         return $res[0];
     }

@@ -41,7 +41,7 @@ class M_plan_stripe_webhooker extends CI_Model {
                         'is_set' => 1,
                         'register_date' => date('Y-m-d', $customer->subscriptions->data[0]->current_period_start)
                     );
-                    $this->db->insert('user_mst', $user_set);
+                    $this->db->insert('wi_user_mst', $user_set);
                     $uid = $this->db->insert_id();
 
                     $pid = $this->insertPlanDetail($uid, $planid, $customer);
@@ -67,7 +67,7 @@ class M_plan_stripe_webhooker extends CI_Model {
 
                 $userInfo = $this->common->getUserInfo($userid);
                 $this->db->select('*');
-                $query = $this->db->get_where('payment_mst', array('transaction_id' => $subsid));
+                $query = $this->db->get_where('wi_payment_mst', array('transaction_id' => $subsid));
                 $res = $query->row();
                 $set = array(
                     'plan_status' => 0,
@@ -76,7 +76,7 @@ class M_plan_stripe_webhooker extends CI_Model {
                 $where = array(
                     'id' => $res->id
                 );
-                $this->db->update('plan_detail', $set, $where);
+                $this->db->update('wi_plan_detail', $set, $where);
 
                 if ($this->isFreePlan($res)) {
                     if ($userInfo->is_bill) {
@@ -100,7 +100,7 @@ class M_plan_stripe_webhooker extends CI_Model {
                   'user_id' => $userid,
                   'plan_status' => 1
                   );
-                  $this->db->update('plan_detail', array('plan_status' => 0), $where);
+                  $this->db->update('wi_plan_detail', array('plan_status' => 0), $where);
                   }
                  * 
                  */
@@ -109,7 +109,7 @@ class M_plan_stripe_webhooker extends CI_Model {
     }
 
     function isFreePlan($res) {
-        $query = $this->db->get_where('plan_detail', array('id' => $res->id));
+        $query = $this->db->get_where('wi_plan_detail', array('id' => $res->id));
         return ($query->row()->plan_id == 1) ? TRUE : FALSE;
     }
 
@@ -132,7 +132,7 @@ class M_plan_stripe_webhooker extends CI_Model {
             'start_date' => date('Y-m-d', $customer->subscriptions->data[0]->current_period_start),
             'expiry_date' => date('Y-m-d', $customer->subscriptions->data[0]->current_period_end)
         );
-        $this->db->insert('plan_detail', $plan_set);
+        $this->db->insert('wi_plan_detail', $plan_set);
         return $this->db->insert_id();
     }
 
@@ -148,7 +148,7 @@ class M_plan_stripe_webhooker extends CI_Model {
             'gateway' => "STRIPE",
             'payment_date' => date('Y-m-d', $customer->subscriptions->data[0]->current_period_start)
         );
-        $this->db->insert('payment_mst', $insert_set);
+        $this->db->insert('wi_payment_mst', $insert_set);
     }
 
     function updateCardDetail($customer, $uid, $pid) {

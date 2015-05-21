@@ -51,7 +51,7 @@ class M_dashboard extends CI_Model {
             }
         }
         $m = "U";
-        $this->db->update('user_mst', $set, array('user_id' => $this->userid));
+        $this->db->update('wi_user_mst', $set, array('user_id' => $this->userid));
         return $m;
     }
 
@@ -76,10 +76,10 @@ class M_dashboard extends CI_Model {
         $where['user_id'] = $post['userid'];
         $set['password'] = $post['password'];
 
-        if ($this->db->update('user_mst', $set, $where)) {
+        if ($this->db->update('wi_user_mst', $set, $where)) {
             $this->session->unset_userdata('d-userid');
             $this->session->unset_userdata('d-name');
-            $query = $this->db->get_where('user_mst', $where);
+            $query = $this->db->get_where('wi_user_mst', $where);
             $login['email'] = $query->row()->email;
             $login['password'] = $query->row()->password;
             if ($post['type'] == "welcome") {

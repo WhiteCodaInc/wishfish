@@ -30,7 +30,7 @@ class M_contacts extends CI_Model {
 
     function getContactDetail() {
         $this->db->order_by('fname', 'asc');
-        $query = $this->db->get_where('contact_detail', array('user_id' => $this->userid));
+        $query = $this->db->get_where('wi_contact_detail', array('user_id' => $this->userid));
         return $query->result();
     }
 
@@ -83,7 +83,7 @@ class M_contacts extends CI_Model {
             'contact_id' => $cid,
             'user_id' => $this->userid
         );
-        $query = $this->db->get_where('contact_detail', $where);
+        $query = $this->db->get_where('wi_contact_detail', $where);
         return ($query->num_rows() > 0) ? $query->row() : FALSE;
     }
 
@@ -93,7 +93,7 @@ class M_contacts extends CI_Model {
             'contact_id' => $cid,
             'user_id' => $this->userid
         );
-        $query = $this->db->get_where('contact_detail', $where);
+        $query = $this->db->get_where('wi_contact_detail', $where);
         if ($query->num_rows() > 0) {
             $res[] = $query->row();
             $this->db->select('C.group_id');
@@ -122,7 +122,7 @@ class M_contacts extends CI_Model {
                 NULL;
         $set['user_id'] = $this->userid;
         unset($set['code']);
-        $this->db->insert('contact_detail', $set);
+        $this->db->insert('wi_contact_detail', $set);
         $insertid = $this->db->insert_id();
 
         $event_data = array(
@@ -137,7 +137,7 @@ class M_contacts extends CI_Model {
             'notify' => "them",
             'date' => $this->getFutureDate($set['birthday'])
         );
-        $this->db->insert('schedule', $event_data);
+        $this->db->insert('wi_schedule', $event_data);
         $m = "I";
         if (isset($_FILES['contact_avatar'])) {
             if ($_FILES['contact_avatar']['error'] == 0) {
@@ -151,7 +151,7 @@ class M_contacts extends CI_Model {
                         break;
                     default:
                         $set['contact_avatar'] = $msg;
-                        $this->db->update('contact_detail', $set, array('contact_id' => $insertid));
+                        $this->db->update('wi_contact_detail', $set, array('contact_id' => $insertid));
                         $m = "I";
                         break;
                 }
@@ -221,10 +221,10 @@ class M_contacts extends CI_Model {
                 'notify' => "them",
                 'date' => $this->getFutureDate($set['birthday'])
             );
-            $this->db->insert('schedule', $event_data);
+            $this->db->insert('wi_schedule', $event_data);
         }
         $m = "U";
-        $this->db->update('contact_detail', $set, array('contact_id' => $cid));
+        $this->db->update('wi_contact_detail', $set, array('contact_id' => $cid));
         //--------------Delete Existing Group---------------------------------//
         $this->db->select('M.id');
         $this->db->from('multiple_contact_group as M');
@@ -240,10 +240,10 @@ class M_contacts extends CI_Model {
         }
         if (count($ids) > 0) {
             $this->db->where_in('id', $ids, TRUE);
-            $this->db->delete('multiple_contact_group');
+            $this->db->delete('wi_multiple_contact_group');
         }
         //-------------------------Insert New Assign Group--------------------//
-        (count($data) > 0) ? $this->db->insert_batch('multiple_contact_group', $data) : '';
+        (count($data) > 0) ? $this->db->insert_batch('wi_multiple_contact_group', $data) : '';
         $this->db->trans_complete();
         return $m;
     }
@@ -268,7 +268,7 @@ class M_contacts extends CI_Model {
 
         $ids = $this->input->post('contact');
         foreach ($ids as $value) {
-            $this->db->delete('contact_detail', array('contact_id' => $value));
+            $this->db->delete('wi_contact_detail', array('contact_id' => $value));
         }
     }
 
@@ -280,7 +280,7 @@ class M_contacts extends CI_Model {
         $ids = (isset($post['contact_id'])) ? $post['contact_id'] : array();
 
         $this->db->trans_start();
-        $this->db->insert('contact_groups', $data);
+        $this->db->insert('wi_contact_groups', $data);
         $insertid = $this->db->insert_id();
 
         if (count($ids) > 0) {
@@ -290,7 +290,7 @@ class M_contacts extends CI_Model {
                     'group_id' => $insertid
                 );
             }
-            $this->db->insert_batch('multiple_contact_group', $set);
+            $this->db->insert_batch('wi_multiple_contact_group', $set);
         }
         $this->db->trans_complete();
         return TRUE;
@@ -311,20 +311,20 @@ class M_contacts extends CI_Model {
             unset($set['contact_id']);
         }
         $this->db->trans_start();
-        $this->db->update('contact_groups', $set, array('group_id' => $gid));
-        $this->db->delete('multiple_contact_group', array('group_id' => $gid));
-        (count($data) > 0) ? $this->db->insert_batch('multiple_contact_group', $data) : '';
+        $this->db->update('wi_contact_groups', $set, array('group_id' => $gid));
+        $this->db->delete('wi_multiple_contact_group', array('group_id' => $gid));
+        (count($data) > 0) ? $this->db->insert_batch('wi_multiple_contact_group', $data) : '';
         $this->db->trans_complete();
         return TRUE;
     }
 
     function getBlockContacts() {
         $res = array();
-        $query = $this->db->get_where('contact_groups', array('type' => "block"));
+        $query = $this->db->get_where('wi_contact_groups', array('type' => "block"));
         if ($query->num_rows() > 0) {
             $res[] = $query->row();
             $this->db->select('contact_id');
-            $query = $this->db->get_where('multiple_contact_group', array('group_id' => $res[0]->group_id));
+            $query = $this->db->get_where('wi_multiple_contact_group', array('group_id' => $res[0]->group_id));
             $contact = array();
             foreach ($query->result() as $value) {
                 $contact[] = $value->contact_id;
@@ -350,15 +350,15 @@ class M_contacts extends CI_Model {
     }
 
     function isBirthdaySchedule($cid, $set) {
-        $query = $this->db->get_where('contact_detail', array('contact_id' => $cid));
+        $query = $this->db->get_where('wi_contact_detail', array('contact_id' => $cid));
         $res = $query->row();
         $where = array(
             'event' => 'Birthday : ' . $set['fname'],
             'contact_id' => $cid
         );
-        $query = $this->db->get_where('schedule', $where);
+        $query = $this->db->get_where('wi_schedule', $where);
         if ($query->num_rows() > 0) {
-            $this->db->delete('schedule', array('event_id' => $query->row()->event_id));
+            $this->db->delete('wi_schedule', array('event_id' => $query->row()->event_id));
         }
         return FALSE;
     }
@@ -379,7 +379,7 @@ class M_contacts extends CI_Model {
 
     function checkTotalContact() {
         $planInfo = $this->common->getLatestPlan();
-        $tcontacts = $this->common->getTotal($this->userid, 'contact_detail');
+        $tcontacts = $this->common->getTotal($this->userid, 'wi_contact_detail');
         if ($planInfo->contacts == -1 || $tcontacts < $planInfo->contacts) {
             return true;
         } else {

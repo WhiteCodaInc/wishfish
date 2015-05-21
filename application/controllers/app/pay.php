@@ -120,7 +120,7 @@ class Pay extends CI_Controller {
             'gateway' => "PAYPAL",
             'is_set' => 1
         );
-        $this->db->update('user_mst', $user_set, array('user_id' => $this->userid));
+        $this->db->update('wi_user_mst', $user_set, array('user_id' => $this->userid));
     }
 
     function insertPlanDetail($planid, $data) {
@@ -141,7 +141,7 @@ class Pay extends CI_Controller {
             'start_date' => $start_dt,
             'expiry_date' => $expiry_date
         );
-        $this->db->insert('plan_detail', $plan_set);
+        $this->db->insert('wi_plan_detail', $plan_set);
         return true;
     }
 
@@ -175,7 +175,7 @@ class Pay extends CI_Controller {
     function isExistProfileId($currPlan) {
         $this->db->select('*');
         $this->db->limit(1);
-        $query = $this->db->get_where('payment_mst', array('id' => $currPlan->id));
+        $query = $this->db->get_where('wi_payment_mst', array('id' => $currPlan->id));
         return ($query->num_rows()) ? $query->row() : FALSE;
     }
 

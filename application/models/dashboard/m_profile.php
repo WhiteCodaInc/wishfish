@@ -34,7 +34,7 @@ class M_profile extends CI_Model {
     }
 
     function getProfile() {
-        $query = $this->db->get_where('user_mst', array('user_id' => $this->userid));
+        $query = $this->db->get_where('wi_user_mst', array('user_id' => $this->userid));
         return $query->row();
     }
 
@@ -84,7 +84,7 @@ class M_profile extends CI_Model {
         $this->session->set_userdata($sess_array);
         $this->db->trans_start();
         $m = "U";
-        $this->db->update('user_mst', $set, array('user_id' => $this->userid));
+        $this->db->update('wi_user_mst', $set, array('user_id' => $this->userid));
         $this->db->trans_complete();
         return $m;
     }
@@ -97,7 +97,7 @@ class M_profile extends CI_Model {
                 $this->common->getMySqlDate($set['birthday'], $this->session->userdata('date_format')) :
                 NULL;
          unset($set['code']);
-        return ($this->db->update('user_mst', $set, array('user_id' => $this->userid))) ? TRUE : FALSE;
+        return ($this->db->update('wi_user_mst', $set, array('user_id' => $this->userid))) ? TRUE : FALSE;
     }
 
     function upload() {
@@ -113,7 +113,7 @@ class M_profile extends CI_Model {
                     default:
                         $set['profile_pic'] = $msg;
                         $this->session->set_userdata('profile_pic', $msg);
-                        $this->db->update('user_mst', $set, array('user_id' => $this->userid));
+                        $this->db->update('wi_user_mst', $set, array('user_id' => $this->userid));
                         $flag = true;
                         break;
                 }
@@ -159,7 +159,7 @@ class M_profile extends CI_Model {
                 'gateway' => "STRIPE",
                 'is_set' => 1
             );
-            $this->db->update('user_mst', $user_set, array('user_id' => $this->userid));
+            $this->db->update('wi_user_mst', $user_set, array('user_id' => $this->userid));
             return TRUE;
         }
     }

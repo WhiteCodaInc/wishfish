@@ -132,7 +132,7 @@ class Upgrade extends CI_Controller {
 
     function isAllowToDowngrade() {
         $planInfo = $this->common->getPlan(2);
-        $tcontacts = $this->common->getTotal($this->userid, 'contact_detail');
+        $tcontacts = $this->common->getTotal($this->userid, 'wi_contact_detail');
         if ($planInfo->contacts == "-1" || $planInfo->contacts > $tcontacts) {
             echo 1;
         } else {

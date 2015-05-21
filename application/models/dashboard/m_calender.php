@@ -21,7 +21,7 @@ class M_calender extends CI_Model {
     }
 
     function getNormalEvent() {
-        $query = $this->db->get_where('schedule', array('user_id' => $this->userid, 'is_birthday' => 0));
+        $query = $this->db->get_where('wi_schedule', array('user_id' => $this->userid, 'is_birthday' => 0));
         return $query->result();
     }
 
@@ -30,7 +30,7 @@ class M_calender extends CI_Model {
             'template_id' => $tmpid,
             'user_id' => $this->userid
         );
-        $query = $this->db->get_where('sms_template', $where);
+        $query = $this->db->get_where('wi_sms_template', $where);
         $res = $query->result_array();
         echo json_encode($res[0]);
     }
@@ -40,7 +40,7 @@ class M_calender extends CI_Model {
             'template_id' => $tmpid,
             'user_id' => $this->userid
         );
-        $query = $this->db->get_where('email_template', $where);
+        $query = $this->db->get_where('wi_email_template', $where);
         $res = $query->result_array();
         echo json_encode($res[0]);
     }
@@ -50,7 +50,7 @@ class M_calender extends CI_Model {
             'contact_id' => $contactid,
             'user_id' => $this->userid
         );
-        $query = $this->db->get_where('contact_detail', $where);
+        $query = $this->db->get_where('wi_contact_detail', $where);
         if ($query->num_rows() == 1) {
             $res = $query->row();
         } else {
@@ -88,7 +88,7 @@ class M_calender extends CI_Model {
 
         $this->db->trans_start();
         $post['color'] = "#0073b7";
-        $this->db->insert('schedule', $post);
+        $this->db->insert('wi_schedule', $post);
         $insertid = $this->db->insert_id();
         if ($post['freq_type'] != "-1" && $post['freq_no'] != "-1" && is_numeric($post['occurance'])) {
             $post['refer_id'] = $insertid;
@@ -97,7 +97,7 @@ class M_calender extends CI_Model {
                 $post['is_repeat'] = 0;
                 $total = $post['freq_no'] * ($post['occurance'] - $i);
                 $post['date'] = $this->common->getNextDate($dt, $total . ' ' . $post['freq_type']);
-                $this->db->insert('schedule', $post);
+                $this->db->insert('wi_schedule', $post);
             }
         }
         $this->db->trans_complete();
@@ -123,7 +123,7 @@ class M_calender extends CI_Model {
             'user_id' => $this->userid
         );
         $this->db->select('event_id,event,date,color,concat(DATE_FORMAT(date,"%M %d")," at ",TIME_FORMAT(time, "%h:%i %p")) as format_date,DATE_FORMAT(date,"%d-%m-%Y") as cal_dt', FALSE);
-        $query = $this->db->get_where('schedule', $where);
+        $query = $this->db->get_where('wi_schedule', $where);
 //        $res['totalM'] = $query->row()->totalM;
         $res['totalM'] = $query->result();
 
@@ -133,7 +133,7 @@ class M_calender extends CI_Model {
             'user_id' => $this->userid
         );
         $this->db->select('event_id,event,date,color,concat(DATE_FORMAT(date,"%M %d")," at ",TIME_FORMAT(time, "%h:%i %p")) as format_date,DATE_FORMAT(date,"%d-%m-%Y") as cal_dt', FALSE);
-        $query = $this->db->get_where('schedule', $where);
+        $query = $this->db->get_where('wi_schedule', $where);
 //        $res['totalY'] = $query->row()->totalY;
         $res['totalY'] = $query->result();
 
@@ -144,7 +144,7 @@ class M_calender extends CI_Model {
             'user_id' => $this->userid
         );
         $this->db->select('event_id,event,date,color,concat(DATE_FORMAT(date,"%M %d")," at ",TIME_FORMAT(time, "%h:%i %p")) as format_date,DATE_FORMAT(date,"%d-%m-%Y") as cal_dt', FALSE);
-        $query = $this->db->get_where('schedule', $where);
+        $query = $this->db->get_where('wi_schedule', $where);
 //        $res['totalW'] = $query->row()->totalW;
         $res['totalW'] = $query->result();
 
@@ -154,7 +154,7 @@ class M_calender extends CI_Model {
             'user_id' => $this->userid
         );
         $this->db->select('event_id,event,date,color,concat(DATE_FORMAT(date,"%M %d")," at ",TIME_FORMAT(time, "%h:%i %p")) as format_date,DATE_FORMAT(date,"%d-%m-%Y") as cal_dt', FALSE);
-        $query = $this->db->get_where('schedule', $where);
+        $query = $this->db->get_where('wi_schedule', $where);
 //        $res['totalD'] = $query->row()->totalD;
         $res['totalD'] = $query->result();
         return $res;
@@ -170,7 +170,7 @@ class M_calender extends CI_Model {
             'user_id' => $this->userid
         );
         $this->db->select('event_id,event,concat(date," ",time) as date,color', FALSE);
-        $query = $this->db->get_where('schedule', $where);
+        $query = $this->db->get_where('wi_schedule', $where);
         echo json_encode($query->result_array());
     }
 
@@ -187,7 +187,7 @@ class M_calender extends CI_Model {
     }
 
     function deleteEvent($eid) {
-        if ($this->db->delete('schedule', array('event_id' => $eid))) {
+        if ($this->db->delete('wi_schedule', array('event_id' => $eid))) {
             return TRUE;
         } else {
             return FALSE;
@@ -200,7 +200,7 @@ class M_calender extends CI_Model {
         $msg = "";
         $eid = $set['eventid'];
         unset($set['eventid']);
-        $query = $this->db->get_where('schedule', array('event_id' => $eid));
+        $query = $this->db->get_where('wi_schedule', array('event_id' => $eid));
         $result = $query->result_array();
         $res = $result[0];
 
@@ -239,11 +239,11 @@ class M_calender extends CI_Model {
                     $set['end_type'] = NULL;
                 }
             } else if ($res['is_repeat'] == 1 && $set['is_repeat'] == 0) {
-                $this->db->delete('schedule', array('refer_id' => $eid));
+                $this->db->delete('wi_schedule', array('refer_id' => $eid));
                 $flag = FALSE;
             } else if ($res['is_repeat'] == 1 && $set['is_repeat'] == 1) {
                 if ($res['occurance'] != $set['occurance']) {
-                    $this->db->delete('schedule', array('refer_id' => $eid));
+                    $this->db->delete('wi_schedule', array('refer_id' => $eid));
                     $flag = TRUE;
                 }
             } else if ($res['is_repeat'] == 0 && $set['is_repeat'] == 0 && !is_null($res['refer_id'])) {
@@ -259,11 +259,11 @@ class M_calender extends CI_Model {
                 for ($i = $set['occurance'] - 1; $i > 0; $i--) {
                     $total = $set['freq_no'] * ($set['occurance'] - $i);
                     $res['date'] = $this->common->getNextDate($set['date'], $total . ' ' . $set['freq_type']);
-                    $this->db->insert('schedule', $res);
+                    $this->db->insert('wi_schedule', $res);
                 }
             }
             $set['color'] = "#0073b7";
-            $this->db->update('schedule', $set, array('event_id' => $eid));
+            $this->db->update('wi_schedule', $set, array('event_id' => $eid));
             $this->db->trans_complete();
             if ($this->db->trans_status()) {
                 $msg = "U";
@@ -280,7 +280,7 @@ class M_calender extends CI_Model {
         $res = array();
         $this->db->select('event_type,count(event_type) as total');
         $this->db->group_by('event_type');
-        $query = $this->db->get_where('schedule', array('contact_id' => $contactid));
+        $query = $this->db->get_where('wi_schedule', array('contact_id' => $contactid));
         foreach ($query->result() as $value) {
             $res[$value->event_type] = $value->total;
         }
@@ -289,7 +289,7 @@ class M_calender extends CI_Model {
 
     function checkTotalGroupEvent() {
         $this->db->select('count(event_id) as total');
-        $query = $this->db->get_where('schedule', array('user_id' => $this->userid, 'group_type' => 'simple'));
+        $query = $this->db->get_where('wi_schedule', array('user_id' => $this->userid, 'group_type' => 'simple'));
         return ($query->num_rows() == 1) ? $query->row() : FALSE;
     }
 

@@ -44,7 +44,7 @@ class Authex {
             );
             $this->_CI->db->update("user_mst", $data, array('user_id' => $query->row()->user_id));
             $where['user_id'] = $query->row()->user_id;
-            $query = $this->_CI->db->get_where('user_mst', $where);
+            $query = $this->_CI->db->get_where('wi_user_mst', $where);
             $res = $query->row();
             $this->_CI->session->set_userdata('userid', $res->user_id);
             $this->_CI->session->set_userdata('name', $res->name);
@@ -60,7 +60,7 @@ class Authex {
     function isActivePlan() {
         $userid = $this->_CI->session->userdata('userid');
         $this->_CI->db->select('id');
-        $query = $this->_CI->db->get_where('plan_detail', array('user_id' => $userid, 'plan_status' => 1));
+        $query = $this->_CI->db->get_where('wi_plan_detail', array('user_id' => $userid, 'plan_status' => 1));
         $query->result();
         return ($query->num_rows() > 0) ? true : false;
     }

@@ -137,7 +137,7 @@ class Dashboard extends CI_Controller {
             if ($this->common->sendSMS($phone, $str)) {
                 $userinfo = $this->common->getUserInfo($userid);
                 if ($userinfo->phone == NULL) {
-                    $this->db->update('user_mst', array('phone' => $phone), array('user_id' => $userid));
+                    $this->db->update('wi_user_mst', array('phone' => $phone), array('user_id' => $userid));
                 }
                 $this->session->set_userdata('verificationCode', $code);
                 echo 1;
@@ -159,7 +159,7 @@ class Dashboard extends CI_Controller {
             'user_id' => $userid
         );
         if ($code == $this->session->userdata('verificationCode')) {
-            $this->db->update('user_mst', $set, $where);
+            $this->db->update('wi_user_mst', $set, $where);
             $userInfo = $this->common->getUserInfo($userid);
             $msg1 = "Congratulations! You have verified your phone number successfully!";
             $this->common->sendSMS($userInfo->phone, $msg1);

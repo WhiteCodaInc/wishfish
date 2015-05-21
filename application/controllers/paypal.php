@@ -89,7 +89,7 @@ class Paypal extends CI_Controller {
             'is_set' => 1,
             'register_date' => date('Y-m-d H:i:s', strtotime($data['TIMESTAMP']))
         );
-        $this->db->insert('user_mst', $user_set);
+        $this->db->insert('wi_user_mst', $user_set);
         return $this->db->insert_id();
     }
 
@@ -112,7 +112,7 @@ class Paypal extends CI_Controller {
             'start_date' => $start_dt,
             'expiry_date' => $expiry_date
         );
-        $this->db->insert('plan_detail', $plan_set);
+        $this->db->insert('wi_plan_detail', $plan_set);
         return true;
     }
 

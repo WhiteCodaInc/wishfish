@@ -129,7 +129,7 @@ class Plan_ipn_listener extends CI_Controller {
                     break;
                 case "recurring_payment_profile_cancel":
                     $this->db->select('*');
-                    $query = $this->db->get_where('payment_mst', array('transaction_id' => $data['recurring_payment_id']));
+                    $query = $this->db->get_where('wi_payment_mst', array('transaction_id' => $data['recurring_payment_id']));
                     $res = $query->row();
                     $set = array(
                         'plan_status' => 0,
@@ -138,7 +138,7 @@ class Plan_ipn_listener extends CI_Controller {
                     $where = array(
                         'id' => $res->id
                     );
-                    $this->db->update('plan_detail', $set, $where);
+                    $this->db->update('wi_plan_detail', $set, $where);
                     break;
             }
             if (DEBUG == true) {
@@ -164,7 +164,7 @@ class Plan_ipn_listener extends CI_Controller {
             'gateway' => "PAYPAL",
             'payment_date' => date('Y-m-d', strtotime($data['payment_date']))
         );
-        $this->db->insert('payment_mst', $insert_set);
+        $this->db->insert('wi_payment_mst', $insert_set);
     }
 
 }
