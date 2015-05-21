@@ -35,6 +35,11 @@ class Import extends CI_Controller {
     }
 
     public function contacts() {
+
+        if ($this->input->get('error')) {
+            header('location' . site_url() . 'app/dashboard');
+        }
+
         $authcode = $this->input->get('code');
         $clientid = $this->client->getClientId();
         $clientsecret = $this->client->getClientSecret();
