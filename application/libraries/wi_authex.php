@@ -12,9 +12,6 @@ class Wi_authex {
         $this->_CI = & get_instance();
     }
 
-//    function Authex() {
-//    }
-
     function logged_in() {
         return ($this->_CI->session->userdata("userid") ) ? true : false;
     }
