@@ -76,7 +76,7 @@ class Wi_authex {
     }
 
     function can_register($email) {
-        $query = $this->_CI->db->get_where("user_mst", array("email" => $email));
+        $query = $this->_CI->db->get_where("wi_user_mst", array("email" => $email));
         return ($query->num_rows() > 0) ? FALSE : TRUE;
     }
 
@@ -87,7 +87,7 @@ class Wi_authex {
     }
 
     function loginBySocial($gid) {
-        $query = $this->_CI->db->get_where("user_mst", array("user_unique_id" => $gid));
+        $query = $this->_CI->db->get_where("wi_user_mst", array("user_unique_id" => $gid));
         $res = $query->row();
 
         if ($query->num_rows() == 1) {

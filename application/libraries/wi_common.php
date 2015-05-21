@@ -291,7 +291,7 @@ class Wi_common {
 
     //----------------------Admin Automail Template---------------------------//
     function getAutomailTemplate($type) {
-        $query = $this->_CI->db->get_where('wi_automail_template', array('mail_type' => $type));
+        $query = $this->_CI->db->get_where('automail_template', array('mail_type' => $type));
         $res = $query->result_array();
         return $res[0];
     }
