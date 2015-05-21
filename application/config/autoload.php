@@ -55,7 +55,7 @@ $autoload['packages'] = array();
   |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
  */
 
-$autoload['libraries'] = array('database', 'session', 'my_router', 'common', 'authex', 'encryption', 'parser', 'email');
+$autoload['libraries'] = array('database', 'session', 'my_router','common', 'wi_common', 'authex','wi_authex', 'encryption', 'parser', 'email');
 
 
 /*
