@@ -287,7 +287,7 @@
                         <h4 class="modal-title">Complete Your Profile</h4>
                     </div>
                     <div class="modal-body">
-                        <form id="profileForm">
+                        <form id="profileForm" method="post">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
@@ -371,7 +371,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <h4 class="modal-title">Upload Your Profile Picture</h4>
                     </div>
-                    <form id="uploadForm" action=""  method="post" enctype="multipart/form-data">
+                    <form id="uploadForm" method="post" enctype="multipart/form-data">
                         <div class="modal-body">
 
                             <div class="form-group">
@@ -645,14 +645,15 @@ $hour = ($userInfo->timezones == "UM9") ? $hour : $hour - 1;
         /*************************Complete Your Profile************************/
         $('#profileBtn').on('click', function () {
             var id = $(this).prop('id');
-            var bdate = $('#profileForm input[name="birthday"]').val();
-            var phone = $('#profileForm input[name="phone"]').val();
-            var code = $('#profileForm select[name="code"]').val();
+//            var bdate = $('#profileForm input[name="birthday"]').val();
+//            var phone = $('#profileForm input[name="phone"]').val();
+//            var code = $('#profileForm select[name="code"]').val();
             $('#' + id).prop('disabled', true);
             $('#loadProfile').show();
             $.ajax({
                 type: 'POST',
-                data: {birthday: bdate, phone: phone, code: code},
+//                data: {birthday: bdate, phone: phone, code: code},
+                data: $('profileForm').serialize(),
                 url: "<?= site_url() ?>app/profile/updateProfileSetup",
                 success: function (data, textStatus, jqXHR) {
                     $('#loadProfile').hide();
