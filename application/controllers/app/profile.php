@@ -16,11 +16,11 @@ class Profile extends CI_Controller {
     function __construct() {
         parent::__construct();
 
-        if (!$this->authex->logged_in()) {
+        if (!$this->wi_authex->logged_in()) {
             header('location:' . site_url() . 'home');
         } else {
-            $this->load->helper('date');
-            $this->load->library('parser');
+            
+            
             $this->load->model('dashboard/m_profile', 'objprofile');
         }
     }
@@ -28,7 +28,7 @@ class Profile extends CI_Controller {
     function index() {
         $data['user'] = $this->objprofile->getProfile();
         $data['card'] = $this->objprofile->getCardDetail();
-        $data['gatewayInfo'] = $this->common->getPaymentGatewayInfo("PAYPAL");
+        $data['gatewayInfo'] = $this->wi_common->getPaymentGatewayInfo("PAYPAL");
 
         $this->load->view('dashboard/header');
         $this->load->view('dashboard/top');

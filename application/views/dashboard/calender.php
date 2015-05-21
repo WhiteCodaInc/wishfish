@@ -887,7 +887,7 @@
     }
 </script>
 <!-- End Auto complete -->
-<?php $planInfo = $this->common->getCurrentPlan(); ?>
+<?php $planInfo = $this->wi_common->getCurrentPlan(); ?>
 <script type="text/javascript">
     var groupEvent = "<?= $planInfo->group_events ?>";
     var planid = "<?= $planInfo->plan_id ?>";

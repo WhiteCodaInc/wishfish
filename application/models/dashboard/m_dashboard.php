@@ -95,7 +95,7 @@ class M_dashboard extends CI_Model {
 
     function getProfileSetup() {
         $per = 20;
-        $userInfo = $this->common->getUserInfo($this->userid);
+        $userInfo = $this->wi_common->getUserInfo($this->userid);
         $setup['upload'] = ($userInfo->profile_pic != "") ? 1 : 0;
         $setup['profile'] = ($userInfo->phone != "" && $userInfo->birthday != "") ? 1 : 0;
         $contacts = $this->objcontact->getContactDetail();
@@ -110,8 +110,8 @@ class M_dashboard extends CI_Model {
     }
 
     function sendMail($userid, $type) {
-        $userInfo = $this->common->getUserInfo($userid);
-        $templateInfo = $this->common->getAutomailTemplate($type);
+        $userInfo = $this->wi_common->getUserInfo($userid);
+        $templateInfo = $this->wi_common->getAutomailTemplate($type);
 
         $tag = array(
             'NAME' => $userInfo->name,
@@ -125,7 +125,7 @@ class M_dashboard extends CI_Model {
         $from = ($templateInfo['from'] != "") ? $templateInfo['from'] : NULL;
         $name = ($templateInfo['name'] != "") ? $templateInfo['name'] : NULL;
 
-        return $this->common->sendAutoMail($userInfo->email, $subject, $body, $from, $name);
+        return $this->wi_common->sendAutoMail($userInfo->email, $subject, $body, $from, $name);
     }
 
 }

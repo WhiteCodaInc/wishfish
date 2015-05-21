@@ -9,8 +9,8 @@ class Pay extends CI_Controller {
 
     function __construct() {
         parent::__construct();
-        $gatewayInfo = $this->common->getPaymentGatewayInfo("STRIPE");
-        $paypalGatewayInfo = $this->common->getPaymentGatewayInfo("PAYPAL");
+        $gatewayInfo = $this->wi_common->getPaymentGatewayInfo("STRIPE");
+        $paypalGatewayInfo = $this->wi_common->getPaymentGatewayInfo("PAYPAL");
         require_once(FCPATH . 'stripe/lib/Stripe.php');
         Stripe::setApiKey($gatewayInfo->secret_key);
         $this->load->library('paypal_lib');
@@ -21,8 +21,8 @@ class Pay extends CI_Controller {
     }
 
     function index() {
-        $currPlan = $this->common->getLatestPlan($this->userid);
-        $userInfo = $this->common->getUserInfo($this->userid);
+        $currPlan = $this->wi_common->getLatestPlan($this->userid);
+        $userInfo = $this->wi_common->getUserInfo($this->userid);
 
         if (!$userInfo->is_set || ($userInfo->is_set && $this->isExistProfileId($currPlan))) {
             $post = $this->input->post();
@@ -67,7 +67,7 @@ class Pay extends CI_Controller {
             $checkoutDetails = $this->paypal_lib->request('GetExpressCheckoutDetails', array('TOKEN' => $this->input->get('token')));
             $planid = ($this->session->flashdata('item_name') == "wishfish-personal") ? 2 : 3;
 
-//            $currPlan = $this->common->getLatestPlan($this->userid);
+//            $currPlan = $this->wi_common->getLatestPlan($this->userid);
 //            $profileid = $this->isExistProfileId($currPlan);
 //            $this->getRecurringProfile($profileid->transaction_id)
 //            echo '<pre>';
@@ -88,11 +88,11 @@ class Pay extends CI_Controller {
             $response = $this->paypal_lib->request('CreateRecurringPaymentsProfile', $requestParams);
             if (is_array($response) && $response['ACK'] == 'Success') {
                 $response['AMT'] = $this->session->flashdata('amount');
-                $currPlan = $this->common->getLatestPlan($this->userid);
-                $userInfo = $this->common->getUserInfo($this->userid);
+                $currPlan = $this->wi_common->getLatestPlan($this->userid);
+                $userInfo = $this->wi_common->getUserInfo($this->userid);
                 if ($currPlan->plan_status == 1) {
                     if (!$userInfo->is_set) {
-                        $uInfo = $this->common->getUserInfo($this->userid);
+                        $uInfo = $this->wi_common->getUserInfo($this->userid);
                         $customer = Stripe_Customer::retrieve($uInfo->customer_id);
                         if (isset($customer->subscriptions->data[0]->id)) {
                             $subs = $customer->subscriptions->data[0]->id;
@@ -126,9 +126,9 @@ class Pay extends CI_Controller {
     function insertPlanDetail($planid, $data) {
 
         $start_dt = date('Y-m-d', strtotime($data['TIMESTAMP']));
-        $expiry_date = $this->common->getNextDate($start_dt, '1 months');
+        $expiry_date = $this->wi_common->getNextDate($start_dt, '1 months');
 
-        $planInfo = $this->common->getPlan(2);
+        $planInfo = $this->wi_common->getPlan(2);
         $plan_set = array(
             'user_id' => $this->userid,
             'plan_id' => $planid,

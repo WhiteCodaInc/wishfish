@@ -17,7 +17,7 @@ class Home extends CI_Controller {
         parent::__construct();
 
 
-        if ($this->authex->logged_in()) {
+        if ($this->wi_authex->logged_in()) {
             header('location:' . site_url() . 'app/dashboard');
         } else {
             $this->config->load('facebook');
@@ -26,11 +26,11 @@ class Home extends CI_Controller {
     }
 
     function index() {
-        $data['word'] = $this->common->getRandomDigit(5);
+        $data['word'] = $this->wi_common->getRandomDigit(5);
         $this->session->set_userdata('captchaWord', $data['word']);
-        $data['pdetail'] = $this->common->getPlans();
-        $data['stripe'] = $this->common->getPaymentGatewayInfo("STRIPE");
-        $data['paypal'] = $this->common->getPaymentGatewayInfo("PAYPAL");
+        $data['pdetail'] = $this->wi_common->getPlans();
+        $data['stripe'] = $this->wi_common->getPaymentGatewayInfo("STRIPE");
+        $data['paypal'] = $this->wi_common->getPaymentGatewayInfo("PAYPAL");
 
         $this->load->view('header');
         $this->load->view('navbar');
@@ -39,12 +39,12 @@ class Home extends CI_Controller {
     }
 
     function captcha_refresh() {
-        echo $this->common->getRandomDigit(5);
+        echo $this->wi_common->getRandomDigit(5);
     }
 
     function checkEmail() {
         $email = $this->input->post('email');
-        $res = $this->authex->can_register($email);
+        $res = $this->wi_authex->can_register($email);
         echo ($res) ? 0 : 1;
     }
 
@@ -52,7 +52,7 @@ class Home extends CI_Controller {
         $email = $this->input->post('email');
         $userInfo = $this->getUserInfo($email);
         $uid = $this->encryption->encode($userInfo->user_id);
-        $templateInfo = $this->common->getAutomailTemplate("FORGOT PASSWORD");
+        $templateInfo = $this->wi_common->getAutomailTemplate("FORGOT PASSWORD");
         $url = site_url() . 'app/dashboard?type=forgot&uid=' . $uid;
         $link = "<table border='0' align='center' cellpadding='0' cellspacing='0' class='mainBtn' style='margin-top: 0;margin-left: auto;margin-right: auto;margin-bottom: 0;padding-top: 0;padding-bottom: 0;padding-left: 0;padding-right: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-collapse: collapse;border-spacing: 0;'>";
         $link .= "<tr>";
@@ -76,7 +76,7 @@ class Home extends CI_Controller {
         $from = ($templateInfo['from'] != "") ? $templateInfo['from'] : NULL;
         $name = ($templateInfo['name'] != "") ? $templateInfo['name'] : NULL;
 
-        $res = $this->common->sendAutoMail($email, $subject, $body, $from, $name);
+        $res = $this->wi_common->sendAutoMail($email, $subject, $body, $from, $name);
         echo ($res) ? 1 : 0;
     }
 
@@ -130,7 +130,7 @@ class Home extends CI_Controller {
         $body .= "Subject : {$subject}<br>";
         $body .= "Email : {$email}<br>";
         $body .= "Message : {$msg}<br>";
-        if ($this->common->sendMail($address, $e_subject, $body)) {
+        if ($this->wi_common->sendMail($address, $e_subject, $body)) {
             echo "<fieldset>";
             echo "<div id='success_page'>";
             echo "<h1>Email Sent Successfully.</h1>";

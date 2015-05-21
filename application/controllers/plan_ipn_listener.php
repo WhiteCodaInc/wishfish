@@ -15,7 +15,7 @@ class Plan_ipn_listener extends CI_Controller {
 
     function __construct() {
         parent::__construct();
-//        $gatewayInfo = $this->common->getPaymentGatewayInfo("STRIPE");
+//        $gatewayInfo = $this->wi_common->getPaymentGatewayInfo("STRIPE");
 //        require_once(FCPATH . 'stripe/lib/Stripe.php');
 //        Stripe::setApiKey($gatewayInfo->secret_key);
     }
@@ -124,7 +124,7 @@ class Plan_ipn_listener extends CI_Controller {
             switch ($data['txn_type']) {
                 case "recurring_payment":
                     $userid = $data['rp_invoice_id'];
-                    $currPlan = $this->common->getLatestPlan($userid);
+                    $currPlan = $this->wi_common->getLatestPlan($userid);
                     $this->insertPaymentDetail($currPlan->id, $data);
                     break;
                 case "recurring_payment_profile_cancel":

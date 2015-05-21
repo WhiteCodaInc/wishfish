@@ -15,11 +15,11 @@ class Plan_stripe_webhooker extends CI_Controller {
 
     function __construct() {
         parent::__construct();
-        $this->load->library('email');
-        $this->load->library('parser');
-        $this->load->helper('date');
-        $this->load->library('common');
-        $this->load->library('authex');
+        
+        
+        
+        
+        
         $this->load->model('m_register', 'objregister');
         $this->load->model('m_plan_stripe_webhooker', 'objpayment');
     }
@@ -31,7 +31,7 @@ class Plan_stripe_webhooker extends CI_Controller {
 
         $event_json = json_decode(@file_get_contents('php://input', true));
 
-        $data = $this->common->getPaymentGatewayInfo("STRIPE");
+        $data = $this->wi_common->getPaymentGatewayInfo("STRIPE");
         Stripe::setApiKey($data->secret_key);
         //$customer_id = $event_json->data->object->customer;
         //$customer = Stripe_Customer::retrieve($customer_id);

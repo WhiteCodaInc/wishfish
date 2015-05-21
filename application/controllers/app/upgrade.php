@@ -23,7 +23,7 @@ class Upgrade extends CI_Controller {
         $this->output->set_header("Pragma: no-cache");
         $this->output->set_header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
 
-        if (!$this->authex->logged_in()) {
+        if (!$this->wi_authex->logged_in()) {
             header('location:' . site_url() . 'home');
         } else {
             $this->userid = $this->session->userdata('userid');
@@ -32,11 +32,11 @@ class Upgrade extends CI_Controller {
     }
 
     function index() {
-        $data['currPlan'] = $this->common->getLatestPlan();
-        $data['pdetail'] = $this->common->getPlans();
-        $data['stripe'] = $this->common->getPaymentGatewayInfo("STRIPE");
-        $data['paypal'] = $this->common->getPaymentGatewayInfo("PAYPAL");
-        $data['userInfo'] = $this->common->getUserInfo($this->userid);
+        $data['currPlan'] = $this->wi_common->getLatestPlan();
+        $data['pdetail'] = $this->wi_common->getPlans();
+        $data['stripe'] = $this->wi_common->getPaymentGatewayInfo("STRIPE");
+        $data['paypal'] = $this->wi_common->getPaymentGatewayInfo("PAYPAL");
+        $data['userInfo'] = $this->wi_common->getUserInfo($this->userid);
         $data['card'] = $this->objprofile->getCardDetail();
 //        echo '<pre>';
 //        print_r($data);
@@ -50,12 +50,12 @@ class Upgrade extends CI_Controller {
     function pay() {
         $success = 0;
         $set = $this->input->post();
-        $gatewayInfo = $this->common->getPaymentGatewayInfo("STRIPE");
+        $gatewayInfo = $this->wi_common->getPaymentGatewayInfo("STRIPE");
         require_once(FCPATH . 'stripe/lib/Stripe.php');
         Stripe::setApiKey($gatewayInfo->secret_key);
         if ($this->input->post('stripeToken') != "") {
             try {
-                $userInfo = $this->common->getUserInfo($this->userid);
+                $userInfo = $this->wi_common->getUserInfo($this->userid);
                 $customer = Stripe_Customer::retrieve($userInfo->customer_id);
                 $customer->sources->create(array("source" => $this->input->post('stripeToken')));
                 if ($customer->subscriptions->total_count) {
@@ -103,11 +103,11 @@ class Upgrade extends CI_Controller {
 
     function upgradePlan() {
         $plan = $this->input->post('plan');
-        $gatewayInfo = $this->common->getPaymentGatewayInfo("STRIPE");
+        $gatewayInfo = $this->wi_common->getPaymentGatewayInfo("STRIPE");
         require_once(FCPATH . 'stripe/lib/Stripe.php');
         Stripe::setApiKey($gatewayInfo->secret_key);
         try {
-            $userInfo = $this->common->getUserInfo($this->userid);
+            $userInfo = $this->wi_common->getUserInfo($this->userid);
             $customer = Stripe_Customer::retrieve($userInfo->customer_id);
 
             if ($customer->subscriptions->total_count) {
@@ -131,8 +131,8 @@ class Upgrade extends CI_Controller {
     }
 
     function isAllowToDowngrade() {
-        $planInfo = $this->common->getPlan(2);
-        $tcontacts = $this->common->getTotal($this->userid, 'wi_contact_detail');
+        $planInfo = $this->wi_common->getPlan(2);
+        $tcontacts = $this->wi_common->getTotal($this->userid, 'wi_contact_detail');
         if ($planInfo->contacts == "-1" || $planInfo->contacts > $tcontacts) {
             echo 1;
         } else {

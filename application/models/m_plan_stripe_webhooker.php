@@ -16,7 +16,7 @@ class M_plan_stripe_webhooker extends CI_Model {
 //put your code here
     function __construct() {
         parent::__construct();
-        $gatewayInfo = $this->common->getPaymentGatewayInfo("STRIPE");
+        $gatewayInfo = $this->wi_common->getPaymentGatewayInfo("STRIPE");
         require_once(FCPATH . 'stripe/lib/Stripe.php');
         Stripe::setApiKey($gatewayInfo->secret_key);
     }
@@ -65,7 +65,7 @@ class M_plan_stripe_webhooker extends CI_Model {
                 $subsid = $event_json->data->object->id;
                 $userid = $customer->metadata->userid;
 
-                $userInfo = $this->common->getUserInfo($userid);
+                $userInfo = $this->wi_common->getUserInfo($userid);
                 $this->db->select('*');
                 $query = $this->db->get_where('wi_payment_mst', array('transaction_id' => $subsid));
                 $res = $query->row();
@@ -90,7 +90,7 @@ class M_plan_stripe_webhooker extends CI_Model {
             case "customer.subscription.trial_will_end":
                 /*
                   $userid = $customer->metadata->userid;
-                  $userInfo = $this->common->getUserInfo($userid);
+                  $userInfo = $this->wi_common->getUserInfo($userid);
                   $subs = $customer->subscriptions->data[0]->id;
                   $customer->subscriptions->retrieve($subs)->cancel();
                   if ($userInfo->is_bill) {
@@ -119,7 +119,7 @@ class M_plan_stripe_webhooker extends CI_Model {
 
     function insertPlanDetail($userid, $planid, $customer) {
         $amount = $customer->subscriptions->data[0]->plan->amount / 100;
-        $planInfo = $this->common->getPlan($planid);
+        $planInfo = $this->wi_common->getPlan($planid);
         $plan_set = array(
             'user_id' => $userid,
             'plan_id' => $planid,
@@ -163,7 +163,7 @@ class M_plan_stripe_webhooker extends CI_Model {
 
     function sendMail($post, $userid) {
         $uid = $this->encryption->encode($userid);
-        $templateInfo = $this->common->getAutomailTemplate("NEW USER REGISTRATION");
+        $templateInfo = $this->wi_common->getAutomailTemplate("NEW USER REGISTRATION");
         $url = site_url() . 'app/dashboard?uid=' . $uid;
         $link = "<table border='0' align='center' cellpadding='0' cellspacing='0' class='mainBtn' style='margin-top: 0;margin-left: auto;margin-right: auto;margin-bottom: 0;padding-top: 0;padding-bottom: 0;padding-left: 0;padding-right: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-collapse: collapse;border-spacing: 0;'>";
         $link .= "<tr>";
@@ -187,7 +187,7 @@ class M_plan_stripe_webhooker extends CI_Model {
         $from = ($templateInfo['from'] != "") ? $templateInfo['from'] : NULL;
         $name = ($templateInfo['name'] != "") ? $templateInfo['name'] : NULL;
 
-        return $this->common->sendAutoMail($post['email'], $subject, $body, $from, $name);
+        return $this->wi_common->sendAutoMail($post['email'], $subject, $body, $from, $name);
     }
 
 }

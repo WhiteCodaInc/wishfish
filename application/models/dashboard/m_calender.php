@@ -76,7 +76,7 @@ class M_calender extends CI_Model {
             unset($post['contactid']);
         }
 
-        $post['date'] = $this->common->getMySqlDate($post['date'], $this->session->userdata('date_format'));
+        $post['date'] = $this->wi_common->getMySqlDate($post['date'], $this->session->userdata('date_format'));
         $post['is_repeat'] = (isset($post['is_repeat']) && $post['is_repeat'] == "on") ? 1 : 0;
         $post['body'] = ($post['event_type'] == "sms" || $post['event_type'] == "notification") ? $post['smsbody'] : $post['emailbody'];
         $post['notification'] = ($post['event_type'] == "notification") ? 0 : 1;
@@ -96,7 +96,7 @@ class M_calender extends CI_Model {
             for ($i = $post['occurance'] - 1; $i > 0; $i--) {
                 $post['is_repeat'] = 0;
                 $total = $post['freq_no'] * ($post['occurance'] - $i);
-                $post['date'] = $this->common->getNextDate($dt, $total . ' ' . $post['freq_type']);
+                $post['date'] = $this->wi_common->getNextDate($dt, $total . ' ' . $post['freq_type']);
                 $this->db->insert('wi_schedule', $post);
             }
         }
@@ -182,7 +182,7 @@ class M_calender extends CI_Model {
         $this->db->where('event_id', $eid);
         $query = $this->db->get();
         $result = $query->row();
-        $result->format_date = $this->common->getUTCDate($result->format_date);
+        $result->format_date = $this->wi_common->getUTCDate($result->format_date);
         return $result;
     }
 
@@ -205,7 +205,7 @@ class M_calender extends CI_Model {
         $res = $result[0];
 
         //---------------Check Total Event For Updating New Event-------------//
-        $currPlan = $this->common->getCurrentPlan();
+        $currPlan = $this->wi_common->getCurrentPlan();
         $total = $this->checkTotalEvent($res['contact_id']);
         switch ($set['event_type']) {
             case "email":
@@ -221,7 +221,7 @@ class M_calender extends CI_Model {
         if ($checkFlag) {
             $this->db->trans_start();
             $set['date'] = ($set['date'] != "") ?
-                    $this->common->getMySqlDate($set['date'], $this->session->userdata('date_format')) :
+                    $this->wi_common->getMySqlDate($set['date'], $this->session->userdata('date_format')) :
                     $res['date'];
             $set['is_repeat'] = (isset($set['is_repeat']) && $set['is_repeat'] == "on") ? 1 : 0;
             $set['body'] = ($set['event_type'] == "sms" || $set['event_type'] == "notification") ?
@@ -258,7 +258,7 @@ class M_calender extends CI_Model {
                 $res['is_repeat'] = 0;
                 for ($i = $set['occurance'] - 1; $i > 0; $i--) {
                     $total = $set['freq_no'] * ($set['occurance'] - $i);
-                    $res['date'] = $this->common->getNextDate($set['date'], $total . ' ' . $set['freq_type']);
+                    $res['date'] = $this->wi_common->getNextDate($set['date'], $total . ' ' . $set['freq_type']);
                     $this->db->insert('wi_schedule', $res);
                 }
             }

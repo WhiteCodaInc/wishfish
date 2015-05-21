@@ -18,9 +18,9 @@ class Calender extends CI_Controller {
         parent::__construct();
         $this->load->library("authex");
         $this->load->library("common");
-        if (!$this->authex->logged_in()) {
+        if (!$this->wi_authex->logged_in()) {
             header('location:' . site_url() . 'home');
-        } elseif (!$this->authex->isActivePlan()) {
+        } elseif (!$this->wi_authex->isActivePlan()) {
             header('location:' . site_url() . 'app/upgrade');
         } else {
             $this->load->model('dashboard/m_contacts', 'objcontact');
@@ -57,7 +57,7 @@ class Calender extends CI_Controller {
     }
 
     function allGroup() {
-        $currPlan = $this->common->getCurrentPlan();
+        $currPlan = $this->wi_common->getCurrentPlan();
         $res = $this->objcalender->checkTotalGroupEvent();
         if (!$res || $res->total < $currPlan->group_events) {
             $group = $this->objgroup->getContactGroups("simple");
@@ -74,7 +74,7 @@ class Calender extends CI_Controller {
     function allContacts($type) {
         $ids = $user = array();
         $individual = $this->objcontact->getContactDetail();
-        $currPlan = $this->common->getCurrentPlan();
+        $currPlan = $this->wi_common->getCurrentPlan();
         foreach ($individual as $key => $value) {
             $res = $this->objcalender->checkTotalEvent($value->contact_id);
             switch ($type) {

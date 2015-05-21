@@ -21,9 +21,9 @@ class Trigger extends CI_Controller {
 
     function __construct() {
         parent::__construct();
-        $this->load->helper('date');
-        $this->load->library('parser');
-        $this->load->library('common');
+        
+        
+        
 
         $this->load->model("dashboard/m_contacts", 'objcontact');
         $this->load->model('m_trigger', 'objtrigger');
@@ -37,7 +37,7 @@ class Trigger extends CI_Controller {
 
         foreach ($res as $value) {
 
-            $userInfo = $this->common->getUserInfo($value->user_id);
+            $userInfo = $this->wi_common->getUserInfo($value->user_id);
             $time = date('Y-m-d H:i:s', gmt_to_local(time(), $userInfo->timezones, TRUE));
 			//echo "<pre>";
 			//echo "FULL TIME : {$time}<br>";
@@ -61,9 +61,9 @@ class Trigger extends CI_Controller {
                 switch ($value->group_type) {
                     case 'individual':
                        // if (!in_array($value->contact_id, $blackList)) {
-                            $contact = $this->common->getContactInfo($value->contact_id);
+                            $contact = $this->wi_common->getContactInfo($value->contact_id);
 							print_r($contact);
-                            $tag = $this->common->setToken($contact);
+                            $tag = $this->wi_common->setToken($contact);
 							print_r($tag);
                             if ($value->event_type == "sms") {
                                 $body = $this->parser->parse_string($value->body, $tag, TRUE);
@@ -82,9 +82,9 @@ class Trigger extends CI_Controller {
                         $cids = $res[1];
                         foreach ($cids as $cid) {
                            // if (!in_array($cid, $blackList)) {
-                                $contact = $this->common->getContactInfo($cid);
+                                $contact = $this->wi_common->getContactInfo($cid);
 								print_r($contact);
-                                $tag = $this->common->setToken($contact);
+                                $tag = $this->wi_common->setToken($contact);
 								print_r($tag);
                                 if ($value->event_type == "sms") {
                                     $body = $this->parser->parse_string($value->body, $tag, TRUE);
@@ -112,7 +112,7 @@ class Trigger extends CI_Controller {
         if ($notify == "me") {
             $to = $this->session->userdata('phone');
         }
-        return $this->common->sendSMS($to, $body);
+        return $this->wi_common->sendSMS($to, $body);
     }
 
     function sendMail($contact, $tag, $post, $notify) {
@@ -123,7 +123,7 @@ class Trigger extends CI_Controller {
         }
         $subject = $this->parser->parse_string($post->subject, $tag, TRUE);
         $body = $this->parser->parse_string($post->body, $tag, TRUE);
-        return $this->common->sendMail($email, $subject, $body);
+        return $this->wi_common->sendMail($email, $subject, $body);
     }
 
 }

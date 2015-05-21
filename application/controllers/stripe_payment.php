@@ -20,7 +20,7 @@ class Stripe_payment extends CI_Controller {
         $this->output->set_header("Pragma: no-cache");
         $this->output->set_header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
 
-        /* if (!$this->authex->logged_in()) {
+        /* if (!$this->wi_authex->logged_in()) {
           header('location:' . site_url() . 'login');
           } */
     }
@@ -28,7 +28,7 @@ class Stripe_payment extends CI_Controller {
     function pay() {
         $success = 0;
         $set = $this->input->post();
-        $gatewayInfo = $this->common->getPaymentGatewayInfo("STRIPE");
+        $gatewayInfo = $this->wi_common->getPaymentGatewayInfo("STRIPE");
         require_once(FCPATH . 'stripe/lib/Stripe.php');
         Stripe::setApiKey($gatewayInfo->secret_key);
         if ($this->input->post('stripeToken') != "") {

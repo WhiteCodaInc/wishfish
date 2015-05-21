@@ -244,8 +244,8 @@
     </section>
 </aside>
 <?php
-$userInfo = $this->common->getUserInfo($this->session->userdata('userid'));
-$leftDay = $this->common->getDateDiff();
+$userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
+$leftDay = $this->wi_common->getDateDiff();
 ?>
 <?php
 $time = date('Y-m-d H:i:s', gmt_to_local(time(), $userInfo->timezones, TRUE));

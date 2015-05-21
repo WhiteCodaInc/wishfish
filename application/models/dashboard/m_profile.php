@@ -28,7 +28,7 @@ class M_profile extends CI_Model {
 
         $this->userid = $this->session->userdata('userid');
 
-        $gatewayInfo = $this->common->getPaymentGatewayInfo("STRIPE");
+        $gatewayInfo = $this->wi_common->getPaymentGatewayInfo("STRIPE");
         require_once(FCPATH . 'stripe/lib/Stripe.php');
         Stripe::setApiKey($gatewayInfo->secret_key);
     }
@@ -40,7 +40,7 @@ class M_profile extends CI_Model {
 
     function updateProfile($set) {
         $m = "";
-        $userInfo = $this->common->getUserInfo($this->userid);
+        $userInfo = $this->wi_common->getUserInfo($this->userid);
         if ($userInfo->customer_id != NULL) {
             if (isset($set['stripeToken'])) {
                 $this->createCard($userInfo, $set['stripeToken']);
@@ -53,7 +53,7 @@ class M_profile extends CI_Model {
                 str_replace(array('(', ')', ' ', '-'), '', $set['code'] . $set['phone']) :
                 NULL;
         $set['birthday'] = ($set['birthday'] != "") ?
-                $this->common->getMySqlDate($set['birthday'], $this->session->userdata('date_format')) :
+                $this->wi_common->getMySqlDate($set['birthday'], $this->session->userdata('date_format')) :
                 NULL;
         $set['is_bill'] = (isset($set['is_bill'])) ? 1 : 0;
 
@@ -94,7 +94,7 @@ class M_profile extends CI_Model {
                 str_replace(array('(', ')', ' ', '-'), '', $set['code'] . $set['phone']) :
                 NULL;
         $set['birthday'] = ($set['birthday'] != "") ?
-                $this->common->getMySqlDate($set['birthday'], $this->session->userdata('date_format')) :
+                $this->wi_common->getMySqlDate($set['birthday'], $this->session->userdata('date_format')) :
                 NULL;
          unset($set['code']);
         return ($this->db->update('wi_user_mst', $set, array('user_id' => $this->userid))) ? TRUE : FALSE;
@@ -166,7 +166,7 @@ class M_profile extends CI_Model {
 
     function updateCard($stripeToken) {
         try {
-            $uInfo = $this->common->getUserInfo($this->userid);
+            $uInfo = $this->wi_common->getUserInfo($this->userid);
             $customer = Stripe_Customer::retrieve($uInfo->customer_id);
             if ($customer->cards->total_count != 0) {
                 $cardid = $customer->cards->data[0]->id;
@@ -181,7 +181,7 @@ class M_profile extends CI_Model {
 
     function getCardDetail() {
         try {
-            $uInfo = $this->common->getUserInfo($this->userid);
+            $uInfo = $this->wi_common->getUserInfo($this->userid);
             $customer = Stripe_Customer::retrieve($uInfo->customer_id);
             if ($customer->cards->total_count != 0) {
                 $cardid = $customer->cards->data[0]->id;
@@ -203,7 +203,7 @@ class M_profile extends CI_Model {
     function cancelCurrentPlan() {
         try {
             $success = 0;
-            $uInfo = $this->common->getUserInfo($this->userid);
+            $uInfo = $this->wi_common->getUserInfo($this->userid);
             $customer = Stripe_Customer::retrieve($uInfo->customer_id);
             if (isset($customer->subscriptions->data[0]->id)) {
                 $subs = $customer->subscriptions->data[0]->id;

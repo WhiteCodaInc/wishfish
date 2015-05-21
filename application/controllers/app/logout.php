@@ -16,14 +16,14 @@ class Logout extends CI_Controller {
     //put your code here
     function __construct() {
         parent::__construct();
-        $this->load->library('authex');
+        
     }
 
     function index() {
 //        $this->session->unset_userdata('userid');
 //        $this->session->unset_userdata('name');
 //        $this->session->unset_userdata('email');
-        $this->authex->logout();
+        $this->wi_authex->logout();
         //header('location:' . site_url() . 'home');
     }
 

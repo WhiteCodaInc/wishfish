@@ -37,7 +37,7 @@ class Dashboard extends CI_Controller {
         if ($this->input->cookie('isLogin')) {
             $id = $this->input->cookie('isLogin', TRUE);
             delete_cookie('isLogin', '.wish-fish.com', '/');
-            $this->authex->loginBySocial($id);
+            $this->wi_authex->loginBySocial($id);
         }
 
         $this->load->model('dashboard/m_dashboard', 'objdashboard');
@@ -46,7 +46,7 @@ class Dashboard extends CI_Controller {
     }
 
     function index() {
-        if ($this->authex->logged_in()) {
+        if ($this->wi_authex->logged_in()) {
             $card = $this->objcalender->getCards();
             $setup = $this->objdashboard->getProfileSetup();
             $data = array_merge_recursive($card, $setup);
@@ -58,7 +58,7 @@ class Dashboard extends CI_Controller {
             $this->load->view('dashboard/dashboard', $data);
             $this->load->view('dashboard/footer');
         } else {
-            $userInfo = $this->common->getUserInfo($this->uid);
+            $userInfo = $this->wi_common->getUserInfo($this->uid);
             if ($this->uid != "" && count($userInfo) == 1) {
                 $data['flag'] = TRUE;
                 $data['userInfo'] = $userInfo;
@@ -95,7 +95,7 @@ class Dashboard extends CI_Controller {
 
     function updatePassword() {
         $login = $this->objdashboard->updatePassword();
-        if ($login && $this->authex->login($login)) {
+        if ($login && $this->wi_authex->login($login)) {
             header('location:' . site_url() . 'app/dashboard');
         } else {
             header('location:' . site_url() . 'app/dashboard?uid=' . $this->uid);
@@ -111,7 +111,7 @@ class Dashboard extends CI_Controller {
         $body .= "Customer Query : {$query}<br>";
 
 
-        $this->load->library('email');
+        
         $this->email->from($email, $name);
         $this->email->to("support@wish-fish.com");
 //        $this->email->to("vishaltesting7@gmail.com");
@@ -132,10 +132,10 @@ class Dashboard extends CI_Controller {
                 NULL;
 
         if ($phone) {
-            $code = $this->common->getRandomDigit(6);
+            $code = $this->wi_common->getRandomDigit(6);
             $str = "Hey,This is Wish-Fish ! Your Verification code is:{$code}";
-            if ($this->common->sendSMS($phone, $str)) {
-                $userinfo = $this->common->getUserInfo($userid);
+            if ($this->wi_common->sendSMS($phone, $str)) {
+                $userinfo = $this->wi_common->getUserInfo($userid);
                 if ($userinfo->phone == NULL) {
                     $this->db->update('wi_user_mst', array('phone' => $phone), array('user_id' => $userid));
                 }
@@ -160,11 +160,11 @@ class Dashboard extends CI_Controller {
         );
         if ($code == $this->session->userdata('verificationCode')) {
             $this->db->update('wi_user_mst', $set, $where);
-            $userInfo = $this->common->getUserInfo($userid);
+            $userInfo = $this->wi_common->getUserInfo($userid);
             $msg1 = "Congratulations! You have verified your phone number successfully!";
-            $this->common->sendSMS($userInfo->phone, $msg1);
+            $this->wi_common->sendSMS($userInfo->phone, $msg1);
             $msg2 = "Please save this number as 'Wish-Fish'.";
-            $this->common->sendSMS($userInfo->phone, $msg2);
+            $this->wi_common->sendSMS($userInfo->phone, $msg2);
             echo 1;
         } else {
             echo 0;
@@ -173,7 +173,7 @@ class Dashboard extends CI_Controller {
 
     function sendActivationEmail() {
         $uid = $this->session->userdata('d-userid');
-        $userInfo = $this->common->getUserInfo($uid);
+        $userInfo = $this->wi_common->getUserInfo($uid);
         $post = array(
             'name' => $userInfo->name,
             'email' => $userInfo->email

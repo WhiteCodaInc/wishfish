@@ -17,9 +17,9 @@ class Contact_groups extends CI_Controller {
         parent::__construct();
         $this->load->library("authex");
         $this->load->library("common");
-        if (!$this->authex->logged_in()) {
+        if (!$this->wi_authex->logged_in()) {
             header('location:' . site_url() . 'home');
-        } elseif (!$this->authex->isActivePlan()) {
+        } elseif (!$this->wi_authex->isActivePlan()) {
             header('location:' . site_url() . 'app/upgrade');
         } else {
             $this->load->model('dashboard/m_contact_groups', 'objgroup');

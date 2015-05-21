@@ -16,9 +16,9 @@ class Template extends CI_Controller {
     function __construct() {
         parent::__construct();
 
-        if (!$this->authex->logged_in()) {
+        if (!$this->wi_authex->logged_in()) {
             header('location:' . site_url() . 'home');
-        } elseif (!$this->authex->isActivePlan()) {
+        } elseif (!$this->wi_authex->isActivePlan()) {
             header('location:' . site_url() . 'app/upgrade');
         } else {
             $this->load->model('dashboard/m_email_template', 'objemailtemplate');

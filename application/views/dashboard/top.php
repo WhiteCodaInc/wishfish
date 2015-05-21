@@ -123,12 +123,12 @@ $img_src = ($profile_pic != "") ?
                     </li>
                     <?php
                     $userid = $this->session->userdata('userid');
-                    $currPlan = $this->common->getCurrentPlan($userid);
+                    $currPlan = $this->wi_common->getCurrentPlan($userid);
                     if (count($currPlan) && $currPlan->plan_id == 1) {
                         ?>
                         <li style="margin: 10px 60px;color: white;">
                             <span style="font-size: 20px">
-                                Days Left on Trial: <?= $this->common->getDateDiff($currPlan) ?>
+                                Days Left on Trial: <?= $this->wi_common->getDateDiff($currPlan) ?>
                             </span>
                         </li>
                     <?php } ?>
@@ -367,7 +367,7 @@ $img_src = ($profile_pic != "") ?
         </div><!-- /.container-fluid -->
     </nav>
 </header>
-<?php $userInfo = $this->common->getUserInfo($this->session->userdata('userid')); ?>
+<?php $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid')); ?>
 
 
 

@@ -34,7 +34,7 @@ class Login extends CI_Controller {
     }
 
     function index() {
-        if ($this->authex->logged_in()) {
+        if ($this->wi_authex->logged_in()) {
             header('location:' . site_url() . 'app/dashboard');
         } else {
             $from = $this->input->get('from');
@@ -51,7 +51,7 @@ class Login extends CI_Controller {
             if ($from != "" && $from == "home") {
                 header('location:' . $this->client->createAuthUrl());
             } else {
-                $data['word'] = $this->common->getRandomDigit(5);
+                $data['word'] = $this->wi_common->getRandomDigit(5);
                 $this->session->set_userdata('captchaWord', $data['word']);
                 $data['isLogin_f'] = (isset($fid) && $fid != "") ? TRUE : FALSE;
                 $data['url'] = $this->client->createAuthUrl();
@@ -71,11 +71,11 @@ class Login extends CI_Controller {
             unset($post['remember']);
         }
         if (is_array($post) && count($post) > 0) {
-            $is_login = $this->authex->login($post);
+            $is_login = $this->wi_authex->login($post);
             if ($is_login) {
                 if (isset($remember) && $remember == "on")
                     $this->storeCookie($post);
-                if ($this->authex->isActivePlan()) {
+                if ($this->wi_authex->isActivePlan()) {
                     header('location:' . site_url() . 'app/dashboard');
                 } else {
                     header('location:' . site_url() . 'app/upgrade');

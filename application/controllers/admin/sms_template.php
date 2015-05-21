@@ -1,0 +1,76 @@
+<?php
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ * Description of admin_profile
+ *
+ * @author Laxmisoft
+ */
+class Sms_template extends CI_Controller {
+
+    function __construct() {
+        parent::__construct();
+        $this->load->library("authex");
+        $this->load->library("common");
+
+        if (!$this->authex->logged_in()) {
+            header('location:' . site_url() . 'admin/admin_login');
+        } else if (!$this->common->getPermission()->sms) {
+            header('location:' . site_url() . 'admin/dashboard/error/500');
+        } else {
+            $this->load->model('admin/m_sms_template', 'objtemplate');
+        }
+    }
+
+    function index() {
+        $data['template'] = $this->objtemplate->getTemplates();
+        $this->load->view('admin/admin_header');
+        $this->load->view('admin/admin_top');
+        $this->load->view('admin/admin_navbar');
+        $this->load->view('admin/sms-template', $data);
+        $this->load->view('admin/admin_footer');
+    }
+
+    function addTemplate() {
+        $this->load->view('admin/admin_header');
+        $this->load->view('admin/admin_top');
+        $this->load->view('admin/admin_navbar');
+        $this->load->view('admin/add-sms-template');
+        $this->load->view('admin/admin_footer');
+    }
+
+    function createTemplate() {
+        $post = $this->input->post();
+        $this->objtemplate->createTemplate($post);
+        header('location:' . site_url() . 'admin/sms_template?msg=I');
+    }
+
+    function editTemplate($pid) {
+        $data['template'] = $this->objtemplate->getTemplate($pid);
+        $this->load->view('admin/admin_header');
+        $this->load->view('admin/admin_top');
+        $this->load->view('admin/admin_navbar');
+        $this->load->view('admin/add-sms-template', $data);
+        $this->load->view('admin/admin_footer');
+    }
+
+    function updateTemplate() {
+        $post = $this->input->post();
+        $this->objtemplate->updateTemplate($post);
+        header('location:' . site_url() . 'admin/sms_template?msg=U');
+    }
+
+    function action() {
+        $type = $this->input->post('actionType');
+        if ($type == "Delete") {
+            $this->objtemplate->setAction();
+        }
+        header('location:' . site_url() . 'admin/sms_template?msg=D');
+    }
+
+}

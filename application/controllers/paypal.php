@@ -13,7 +13,7 @@ class Paypal extends CI_Controller {
     function index() {
         $post = $this->input->post();
         $this->session->set_flashdata($post);
-        $gatewayInfo = $this->common->getPaymentGatewayInfo("PAYPAL");
+        $gatewayInfo = $this->wi_common->getPaymentGatewayInfo("PAYPAL");
         $this->paypal_lib->set_acct_info($gatewayInfo->api_username, $gatewayInfo->api_password, $gatewayInfo->api_signature);
 
         $requestParams = array(
@@ -41,7 +41,7 @@ class Paypal extends CI_Controller {
 
     function consolidate() {
         if ($this->input->get('token')) { // Token parameter exists
-            $gatewayInfo = $this->common->getPaymentGatewayInfo("PAYPAL");
+            $gatewayInfo = $this->wi_common->getPaymentGatewayInfo("PAYPAL");
             $this->paypal_lib->set_acct_info(
                     $gatewayInfo->api_username, $gatewayInfo->api_password, $gatewayInfo->api_signature
             );
@@ -96,10 +96,10 @@ class Paypal extends CI_Controller {
     function insertPlanDetail($userid, $planid, $data) {
 
         $start_dt = date('Y-m-d', strtotime($data['TIMESTAMP']));
-        $expiry_date = $this->common->getNextDate($start_dt, '1 months');
+        $expiry_date = $this->wi_common->getNextDate($start_dt, '1 months');
 
         $amount = $data['AMT'];
-        $planInfo = $this->common->getPlan($planid);
+        $planInfo = $this->wi_common->getPlan($planid);
         $plan_set = array(
             'user_id' => $userid,
             'plan_id' => $planid,
@@ -126,7 +126,7 @@ class Paypal extends CI_Controller {
 
     function sendMail($post, $userid) {
         $uid = $this->encryption->encode($userid);
-        $templateInfo = $this->common->getAutomailTemplate("NEW USER REGISTRATION");
+        $templateInfo = $this->wi_common->getAutomailTemplate("NEW USER REGISTRATION");
         $url = site_url() . 'app/dashboard?uid=' . $uid;
         $link = "<table border='0' align='center' cellpadding='0' cellspacing='0' class='mainBtn' style='margin-top: 0;margin-left: auto;margin-right: auto;margin-bottom: 0;padding-top: 0;padding-bottom: 0;padding-left: 0;padding-right: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-collapse: collapse;border-spacing: 0;'>";
         $link .= "<tr>";
@@ -150,7 +150,7 @@ class Paypal extends CI_Controller {
         $from = ($templateInfo['from'] != "") ? $templateInfo['from'] : NULL;
         $name = ($templateInfo['name'] != "") ? $templateInfo['name'] : NULL;
 
-        return $this->common->sendAutoMail($post['EMAIL'], $subject, $body, $from, $name);
+        return $this->wi_common->sendAutoMail($post['EMAIL'], $subject, $body, $from, $name);
     }
 
 }

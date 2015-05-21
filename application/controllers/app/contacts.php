@@ -16,12 +16,12 @@ class Contacts extends CI_Controller {
     function __construct() {
         parent::__construct();
 
-        if (!$this->authex->logged_in()) {
+        if (!$this->wi_authex->logged_in()) {
             header('location:' . site_url() . 'home');
-        } elseif (!$this->authex->isActivePlan()) {
+        } elseif (!$this->wi_authex->isActivePlan()) {
             header('location:' . site_url() . 'app/upgrade');
         } else {
-            $this->load->library('parser');
+            
             $this->load->model('dashboard/m_contacts', 'objcontact');
             $this->load->model('dashboard/m_contact_groups', 'objgroup');
 //            $this->load->model('m_sms_template', 'objsmstemplate');
@@ -32,7 +32,7 @@ class Contacts extends CI_Controller {
     function index() {
         $data['contacts'] = $this->objcontact->getContactDetail();
         $data['groups'] = $this->objgroup->getContactGroups("simple");
-        $data['zodiac'] = $this->common->getZodiacs();
+        $data['zodiac'] = $this->wi_common->getZodiacs();
         if (!$this->objcontact->checkTotalContact()) {
             $data['limit'] = 0;
         }
@@ -46,7 +46,7 @@ class Contacts extends CI_Controller {
     function search() {
         $data['searchResult'] = $this->objcontact->searchResult();
         $data['groups'] = $this->objgroup->getContactGroups("simple");
-        $data['zodiac'] = $this->common->getZodiacs();
+        $data['zodiac'] = $this->wi_common->getZodiacs();
         $this->load->view('dashboard/header');
         $this->load->view('dashboard/top');
 
@@ -94,7 +94,7 @@ class Contacts extends CI_Controller {
         $this->objcontact->createContact($post);
         if ($type != "" && $type == "ajax") {
             $post['birthday'] = ($post['birthday'] != "") ?
-                    $this->common->getMySqlDate($post['birthday'], $this->session->userdata('date_format')) :
+                    $this->wi_common->getMySqlDate($post['birthday'], $this->session->userdata('date_format')) :
                     NULL;
             $dt = $this->objcontact->getFutureDate($post['birthday']);
             header('location:' . site_url() . 'app/calender?date=' . $dt);
@@ -134,7 +134,7 @@ class Contacts extends CI_Controller {
     }
 
     function getZodiac($dt) {
-        $zodiac = $this->common->getZodiac($dt);
+        $zodiac = $this->wi_common->getZodiac($dt);
         echo $zodiac;
     }
 
@@ -143,7 +143,7 @@ class Contacts extends CI_Controller {
     function send_message() {
         $post = $this->input->post();
         $contact = $this->objcontact->getContactInfo($post['cid']);
-        $tag = $this->common->setToken($contact);
+        $tag = $this->wi_common->setToken($contact);
         $body = $this->parser->parse_string($post['body'], $tag, TRUE);
         $this->sendSMS($contact->phone, $body);
         header('location:' . site_url() . 'app/contacts/profile/' . $post['cid']);
@@ -152,19 +152,19 @@ class Contacts extends CI_Controller {
     function send_email() {
         $post = $this->input->post();
         $contact = $this->objcontact->getContactInfo($post['cid']);
-        $tag = $this->common->setToken($contact);
+        $tag = $this->wi_common->setToken($contact);
         $this->sendMail($contact, $tag, $post);
         header('location:' . site_url() . 'app/contacts/profile/' . $post['cid']);
     }
 
     function sendSMS($to, $body) {
-        return $this->common->sendSMS($to, $body);
+        return $this->wi_common->sendSMS($to, $body);
     }
 
     function sendMail($contact, $tag, $post) {
         $subject = $this->parser->parse_string($post['subject'], $tag, TRUE);
         $body = $this->parser->parse_string($post['body'], $tag, TRUE);
-        return $this->common->sendMail($contact->email, $subject, $body);
+        return $this->wi_common->sendMail($contact->email, $subject, $body);
     }
 
     //---------------Block Contacts------------------------------------------//

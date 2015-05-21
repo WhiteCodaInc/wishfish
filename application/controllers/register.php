@@ -24,8 +24,8 @@ class Register extends CI_Controller {
         require APPPATH . 'third_party/google-api/Google_Client.php';
         require APPPATH . 'third_party/google-api/contrib/Google_Oauth2Service.php';
         require_once APPPATH . 'third_party/facebook/facebook.php';
-        $this->load->library('authex');
-        $this->load->helper('cookie');
+        
+        
         $this->config->load('googleplus');
         $this->config->load('facebook');
         $this->load->model('m_register', 'objregister');
@@ -134,7 +134,7 @@ class Register extends CI_Controller {
 
     function createAccount() {
         $post = $this->input->post();
-        if ($this->authex->can_register($post['email'])) {
+        if ($this->wi_authex->can_register($post['email'])) {
             $flag = $this->objregister->register($post);
             if ($flag) {
                 header('location:' . site_url() . 'app/dashboard');

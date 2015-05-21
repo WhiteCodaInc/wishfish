@@ -54,10 +54,10 @@ class M_contacts extends CI_Model {
         ($email != "") ? $this->db->like('email', $email) : '';
         ($age != "") ? $where['age'] = $age : '';
         ($from != "") ?
-                        $where['birthday >='] = $this->common->getMySqlDate($from, $this->session->userdata('date_format')) :
+                        $where['birthday >='] = $this->wi_common->getMySqlDate($from, $this->session->userdata('date_format')) :
                         '';
         ($to != "") ?
-                        $where['birthday <='] = $this->common->getMySqlDate($to, $this->session->userdata('date_format')) :
+                        $where['birthday <='] = $this->wi_common->getMySqlDate($to, $this->session->userdata('date_format')) :
                         '';
         ($zodiac != "" && $zodiac != "-1") ? $where['zodiac'] = $zodiac : '';
         ($country != "") ? $this->db->like('country', $country) : '';
@@ -118,7 +118,7 @@ class M_contacts extends CI_Model {
                 str_replace(array('(', ')', ' ', '-'), '', $set['code'] . $set['phone']) :
                 NULL;
         $set['birthday'] = ($set['birthday'] != "") ?
-                $this->common->getMySqlDate($set['birthday'], $this->session->userdata('date_format')) :
+                $this->wi_common->getMySqlDate($set['birthday'], $this->session->userdata('date_format')) :
                 NULL;
         $set['user_id'] = $this->userid;
         unset($set['code']);
@@ -170,7 +170,7 @@ class M_contacts extends CI_Model {
                 str_replace(array('(', ')', ' ', '-'), '', $set['code'] . $set['phone']) :
                 NULL;
         $set['birthday'] = ($set['birthday'] != "") ?
-                $this->common->getMySqlDate($set['birthday'], $this->session->userdata('date_format')) :
+                $this->wi_common->getMySqlDate($set['birthday'], $this->session->userdata('date_format')) :
                 NULL;
 
         if (isset($set['group_id'])) {
@@ -378,8 +378,8 @@ class M_contacts extends CI_Model {
     }
 
     function checkTotalContact() {
-        $planInfo = $this->common->getLatestPlan();
-        $tcontacts = $this->common->getTotal($this->userid, 'wi_contact_detail');
+        $planInfo = $this->wi_common->getLatestPlan();
+        $tcontacts = $this->wi_common->getTotal($this->userid, 'wi_contact_detail');
         if ($planInfo->contacts == -1 || $tcontacts < $planInfo->contacts) {
             return true;
         } else {

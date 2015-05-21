@@ -81,7 +81,7 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
-                                    <input name="birthday" value="<?= isset($contacts) ? $this->common->getUTCDate($contacts->birthday) : '' ?>"  class="form-control form-control-inline input-medium default-date-picker" size="16" type="text">
+                                    <input name="birthday" value="<?= isset($contacts) ? $this->wi_common->getUTCDate($contacts->birthday) : '' ?>"  class="form-control form-control-inline input-medium default-date-picker" size="16" type="text">
                                 </div><!-- /.input group -->
                             </div><!-- /.form group -->
                             <div class="form-group">

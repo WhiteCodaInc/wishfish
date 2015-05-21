@@ -428,7 +428,7 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
-                                    <input style="z-index: 0" name="birthday" placeholder="Enter Birthdate" value="<?= isset($contacts) ? $this->common->getUTCDate($contacts->birthday) : '' ?>"  class="form-control form-control-inline input-medium default-date-picker" size="16" type="text" required="">
+                                    <input style="z-index: 0" name="birthday" placeholder="Enter Birthdate" value="<?= isset($contacts) ? $this->wi_common->getUTCDate($contacts->birthday) : '' ?>"  class="form-control form-control-inline input-medium default-date-picker" size="16" type="text" required="">
                                 </div><!-- /.input group -->
                             </div><!-- /.form group -->
                             <div class="form-group" id="add-phone">
@@ -482,7 +482,7 @@
 
     </section>
 </aside>
-<?php $userInfo = $this->common->getUserInfo($this->session->userdata('userid')); ?>
+<?php $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid')); ?>
 <?php
 $time = date('Y-m-d H:i:s', gmt_to_local(time(), $userInfo->timezones, TRUE));
 

@@ -43,6 +43,7 @@ if (!defined('BASEPATH'))
 
 $route['default_controller'] = "home";
 $route['404_override'] = '';
+$route['admin'] = "admin/admin_login";
 
 
 /* End of file routes.php */

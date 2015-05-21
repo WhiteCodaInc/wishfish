@@ -99,7 +99,7 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
-                                    <input style="z-index: 0;" name="birthday" value="<?= isset($user->birthday) ? $this->common->getUTCDate($user->birthday) : NULL ?>"  class="form-control form-control-inline input-medium default-date-picker" size="16" type="text">
+                                    <input style="z-index: 0;" name="birthday" value="<?= isset($user->birthday) ? $this->wi_common->getUTCDate($user->birthday) : NULL ?>"  class="form-control form-control-inline input-medium default-date-picker" size="16" type="text">
                                 </div><!-- /.input group -->
                             </div><!-- /.form group -->
                             <div class="form-group">
@@ -153,7 +153,7 @@
                                             </div>
                                         </div>
                                         <?php
-                                        $currPlan = $this->common->getCurrentPlan();
+                                        $currPlan = $this->wi_common->getCurrentPlan();
                                         if (count($currPlan) && $currPlan->plan_id == 1):
                                             ?>
                                             <div class="form-group">

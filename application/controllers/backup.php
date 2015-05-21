@@ -22,7 +22,7 @@ class Backup extends CI_Controller {
         parent::__construct();
         $this->load->dbutil();
         $this->load->library('zip');
-        $this->load->helper('file');
+        
         $this->load->library('amazons3');
 
         require_once APPPATH . 'third_party/mailgun-php/vendor/autoload.php';

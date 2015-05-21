@@ -206,7 +206,7 @@
                                             }
                                             ?>
                                             <td class="hidden-xs hidden-sm"><?= ($phone) ? $phone : 'N/A' ?></td>
-                                            <td class="hidden-xs hidden-sm"><?= ($value->birthday != NULL) ? $this->common->getUTCDate($value->birthday) : 'N/A' ?></td>
+                                            <td class="hidden-xs hidden-sm"><?= ($value->birthday != NULL) ? $this->wi_common->getUTCDate($value->birthday) : 'N/A' ?></td>
                                             <td class="hidden-xs hidden-sm"><?= $value->zodiac ?></td>
                                             <td class="hidden-xs hidden-sm"><?= ($value->rating != "-1") ? $value->rating : '' ?></td>
                                             <td >

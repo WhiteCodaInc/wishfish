@@ -32,7 +32,7 @@ class M_register extends CI_Model {
 //            'password' => $post['password']
 //        );
         $this->db->trans_start();
-        $planInfo = $this->common->getPlan(1);
+        $planInfo = $this->wi_common->getPlan(1);
 
         $this->db->insert('wi_user_mst', $post);
         $insertid = $this->db->insert_id();
@@ -50,7 +50,7 @@ class M_register extends CI_Model {
             'amount' => 0,
             'plan_status' => 1,
             'start_date' => date('Y-m-d'),
-            'expiry_date' => $this->common->getNextDate(date('Y-m-d'), "14 Days")
+            'expiry_date' => $this->wi_common->getNextDate(date('Y-m-d'), "14 Days")
         );
         $this->db->insert('wi_plan_detail', $set);
         $planid = $this->db->insert_id();
@@ -109,7 +109,7 @@ class M_register extends CI_Model {
         );
         $this->input->set_cookie($d_userid);
 
-        $planInfo = $this->common->getPlan(1);
+        $planInfo = $this->wi_common->getPlan(1);
         $plan_set = array(
             'plan_id' => 1,
             'user_id' => $insertid,
@@ -119,7 +119,7 @@ class M_register extends CI_Model {
             'amount' => 0,
             'plan_status' => 1,
             'start_date' => date('Y-m-d'),
-            'expiry_date' => $this->common->getNextDate(date('Y-m-d'), "14 Days")
+            'expiry_date' => $this->wi_common->getNextDate(date('Y-m-d'), "14 Days")
         );
         $this->db->insert('wi_plan_detail', $plan_set);
         $pid = $this->db->insert_id();
@@ -152,7 +152,7 @@ class M_register extends CI_Model {
 
     function sendMail($post, $userid) {
         $uid = $this->encryption->encode($userid);
-        $templateInfo = $this->common->getAutomailTemplate("NEW USER REGISTRATION");
+        $templateInfo = $this->wi_common->getAutomailTemplate("NEW USER REGISTRATION");
         $url = site_url() . 'app/dashboard?uid=' . $uid;
         $link = "<table border='0' align='center' cellpadding='0' cellspacing='0' class='mainBtn' style='margin-top: 0;margin-left: auto;margin-right: auto;margin-bottom: 0;padding-top: 0;padding-bottom: 0;padding-left: 0;padding-right: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-collapse: collapse;border-spacing: 0;'>";
         $link .= "<tr>";
@@ -176,11 +176,11 @@ class M_register extends CI_Model {
         $from = ($templateInfo['from'] != "") ? $templateInfo['from'] : NULL;
         $name = ($templateInfo['name'] != "") ? $templateInfo['name'] : NULL;
 
-        return $this->common->sendAutoMail($post['email'], $subject, $body, $from, $name);
+        return $this->wi_common->sendAutoMail($post['email'], $subject, $body, $from, $name);
     }
 
     function addCustomerToStripe($post, $planid, $insertid) {
-        $gatewayInfo = $this->common->getPaymentGatewayInfo("STRIPE");
+        $gatewayInfo = $this->wi_common->getPaymentGatewayInfo("STRIPE");
         require_once(FCPATH . 'stripe/lib/Stripe.php');
         Stripe::setApiKey($gatewayInfo->secret_key);
         try {
