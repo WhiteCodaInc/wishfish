@@ -36,7 +36,7 @@ class Import extends CI_Controller {
 
     public function contacts() {
 
-        if ($this->input->get('error')) {
+        if ($this->input->get('error') != "") {
             header('location' . site_url() . 'app/dashboard');
         }
 
