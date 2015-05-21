@@ -1,7 +1,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>M V K</title>
+        <title>Wish-Fish</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
         <link rel="shortcut icon" href="<?= base_url() ?>assets/dashboard/favicon2.ico" type="image/x-icon">
