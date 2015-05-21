@@ -34,7 +34,7 @@
                                 <label >Username</label>
                                 <div class="input-group">
                                     <input name="email" type="text" value="<?= (isset($name)) ? $name : '' ?>" class="form-control" placeholder="Username" <?= (isset($name)) ? 'disabled' : '' ?>>
-                                    <span class="input-group-addon">@mikhailkuznetsov.com</span>
+                                    <span class="input-group-addon">@wish-fish.com</span>
                                 </div>
                             </div>
                             <div class="form-group">
