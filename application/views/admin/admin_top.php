@@ -10,10 +10,7 @@
 </style>
 
 <!-- header logo: style can be found in header.less -->
-<?php
-$CI = & get_instance();
-$CI->load->library("common");
-?>
+
 <header class="header">
     <?php
     $avatar = $this->session->userdata('avatar');
@@ -42,12 +39,12 @@ $CI->load->library("common");
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-envelope"></i>
                         <span class="label label-success">
-                            <?= $CI->common->getTotalUnreadMsg() ?>
+                            <?= $this->common->getTotalUnreadMsg() ?>
                         </span>
                     </a>
-                    <?php $inbox = $CI->common->getUnreadMsg(); ?>
+                    <?php $inbox = $this->common->getUnreadMsg(); ?>
                     <ul class="dropdown-menu">
-                        <li class="header">You have <?= $CI->common->getTotalUnreadMsg() ?> messages</li>
+                        <li class="header">You have <?= $this->common->getTotalUnreadMsg() ?> messages</li>
                         <li>
                             <!-- inner menu: contains the actual data -->
                             <ul class="menu unreadSMS">
