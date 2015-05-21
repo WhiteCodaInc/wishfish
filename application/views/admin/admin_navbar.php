@@ -190,8 +190,6 @@ $img_src = ($avatar != "") ?
                         </ul>
                     </li>
                 <?php endif; ?>
-                
-
                 <?php if (isset($rule->setting) && $rule->setting): ?>
                     <li class="treeview" id="10">
                         <a href="#">

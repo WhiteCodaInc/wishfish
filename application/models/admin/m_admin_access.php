@@ -44,7 +44,6 @@ class M_admin_access extends CI_Model {
             'customers' => (isset($post['customers']) ? 1 : 0),
             'sms' => (isset($post['sms']) ? 1 : 0),
             'email' => (isset($post['email']) ? 1 : 0),
-            'cms' => (isset($post['cms']) ? 1 : 0),
             'calender' => (isset($post['calender']) ? 1 : 0),
             'setting' => (isset($post['setting']) ? 1 : 0),
         );

@@ -61,21 +61,16 @@
                                                                 <input name="customers" id="customers" class="simple"  type="checkbox" >
                                                                 <span class="lbl padding-8">Customers</span>
                                                             </label>
-                                                            <br/>
+                                                        </div>
+                                                        <div class="col-md-6">
                                                             <label>
                                                                 <input name="sms" id="sms" class="simple"  type="checkbox" >
                                                                 <span class="lbl padding-8">SMS</span>
                                                             </label>
-                                                        </div>
-                                                        <div class="col-md-6">
+                                                            <br/>
                                                             <label>
                                                                 <input name="email" id="email" class="simple"  type="checkbox" >
                                                                 <span class="lbl padding-8">Email</span>
-                                                            </label>
-                                                            <br/>
-                                                            <label>
-                                                                <input name="cms" id="cms" class="simple"  type="checkbox" >
-                                                                <span class="lbl padding-8">CMS</span>
                                                             </label>
                                                             <br/>
                                                             <label>
