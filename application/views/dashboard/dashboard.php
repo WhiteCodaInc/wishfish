@@ -287,7 +287,7 @@
                         <h4 class="modal-title">Complete Your Profile</h4>
                     </div>
                     <div class="modal-body">
-                        <form id="profileForm" method="post">
+                        <form id="cprofileForm" method="post">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
@@ -373,7 +373,6 @@
                     </div>
                     <form id="uploadForm" method="post" enctype="multipart/form-data">
                         <div class="modal-body">
-
                             <div class="form-group">
                                 <div class="row" style="margin-bottom: 5%">
                                     <div class="col-md-12" style="text-align: center">
@@ -389,7 +388,6 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                         <div class="modal-footer clearfix">
                             <div class="row">
@@ -422,7 +420,7 @@
                     </div>
                     <div class="modal-body">
                         <form id="contactForm" method="post">
-                            <div id="add-name" class="form-group">
+                            <div class="form-group">
                                 <div class="row">
                                     <div  class="col-md-6">
                                         <label>First Name</label>
@@ -434,7 +432,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group" id="add-birthday">
+                            <div class="form-group" >
                                 <label>Birthday</label>
                                 <div class="input-group">
                                     <div class="input-group-addon">
@@ -443,7 +441,7 @@
                                     <input style="z-index: 0" name="birthday" placeholder="Enter Birthdate" value="<?= isset($contacts) ? $this->wi_common->getUTCDate($contacts->birthday) : '' ?>"  class="form-control form-control-inline input-medium default-date-picker" size="16" type="text" required="">
                                 </div><!-- /.input group -->
                             </div><!-- /.form group -->
-                            <div class="form-group" id="add-phone">
+                            <div class="form-group" >
                                 <div class="row">
                                     <div class="col-sm-4">
                                         <label>Country Code</label>
@@ -518,7 +516,7 @@ $hour = ($userInfo->timezones == "UM9") ? $hour : $hour - 1;
             $('#contactForm input[name="birthday"]').focusout();
         });
 
-        $('#profileForm .default-date-picker').datepicker({
+        $('#cprofileForm .default-date-picker').datepicker({
             format: "<?= $this->session->userdata('date_format') ?>",
             todayBtn: "linked",
             autoclose: true,
@@ -645,15 +643,15 @@ $hour = ($userInfo->timezones == "UM9") ? $hour : $hour - 1;
         /*************************Complete Your Profile************************/
         $('#profileBtn').on('click', function () {
             var id = $(this).prop('id');
-//            var bdate = $('#profileForm input[name="birthday"]').val();
-//            var phone = $('#profileForm input[name="phone"]').val();
-//            var code = $('#profileForm select[name="code"]').val();
+//            var bdate = $('#cprofileForm input[name="birthday"]').val();
+//            var phone = $('#cprofileForm input[name="phone"]').val();
+//            var code = $('#cprofileForm select[name="code"]').val();
             $('#' + id).prop('disabled', true);
             $('#loadProfile').show();
             $.ajax({
                 type: 'POST',
 //                data: {birthday: bdate, phone: phone, code: code},
-                data: $('#profileForm').serialize(),
+                data: $('#cprofileForm').serialize(),
                 url: "<?= site_url() ?>app/profile/updateProfileSetup",
                 success: function (data, textStatus, jqXHR) {
                     $('#loadProfile').hide();
