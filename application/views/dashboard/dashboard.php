@@ -643,14 +643,10 @@ $hour = ($userInfo->timezones == "UM9") ? $hour : $hour - 1;
         /*************************Complete Your Profile************************/
         $('#profileBtn').on('click', function () {
             var id = $(this).prop('id');
-//            var bdate = $('#cprofileForm input[name="birthday"]').val();
-//            var phone = $('#cprofileForm input[name="phone"]').val();
-//            var code = $('#cprofileForm select[name="code"]').val();
             $('#' + id).prop('disabled', true);
             $('#loadProfile').show();
             $.ajax({
                 type: 'POST',
-//                data: {birthday: bdate, phone: phone, code: code},
                 data: $('#cprofileForm').serialize(),
                 url: "<?= site_url() ?>app/profile/updateProfileSetup",
                 success: function (data, textStatus, jqXHR) {
