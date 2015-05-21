@@ -21,14 +21,14 @@ class Import extends CI_Controller {
 
 //        $this->userid = $this->session->userdata('userid');
         //$_SESSION['userid'] = $this->userid;
-        $this->config->load('googlecontact');
+        $this->config->load('a_googlecontact');
 
         $this->client = new Google_Client();
-        $this->client->setApplicationName($this->config->item('application_name', 'googlecontact'));
-        $this->client->setClientId($this->config->item('client_id', 'googlecontact'));
-        $this->client->setClientSecret($this->config->item('client_secret', 'googlecontact'));
-        $this->client->setRedirectUri($this->config->item('redirect_uri', 'googlecontact'));
-        $this->client->setDeveloperKey($this->config->item('api_key', 'googlecontact'));
+        $this->client->setApplicationName($this->config->item('application_name', 'a_googlecontact'));
+        $this->client->setClientId($this->config->item('client_id', 'a_googlecontact'));
+        $this->client->setClientSecret($this->config->item('client_secret', 'a_googlecontact'));
+        $this->client->setRedirectUri($this->config->item('redirect_uri', 'a_googlecontact'));
+        $this->client->setDeveloperKey($this->config->item('api_key', 'a_googlecontact'));
         $this->client->setScopes("http://www.google.com/m8/feeds/");
     }
 
