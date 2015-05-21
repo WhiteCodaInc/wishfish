@@ -190,37 +190,7 @@ $img_src = ($avatar != "") ?
                         </ul>
                     </li>
                 <?php endif; ?>
-                <?php if (isset($rule->cms) && $rule->cms): ?>
-                    <li class="treeview" id="9">
-                        <a href="#">
-                            <i class="fa fa-envelope"></i>
-                            <span>CMS</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li>
-                                <a href="<?= site_url() ?>admin/cms">
-                                    <i class="fa fa-angle-double-right"></i> <span>Blog</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="<?= site_url() ?>admin/cms/blogcategory">
-                                    <i class="fa fa-angle-double-right"></i> <span>Blog Category</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="<?= site_url() ?>admin/comment">
-                                    <i class="fa fa-angle-double-right"></i> <span>Blog Comment</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="<?= site_url() ?>admin/cms/aboutus">
-                                    <i class="fa fa-angle-double-right"></i> <span>About Us</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                <?php endif; ?>
+                
 
                 <?php if (isset($rule->setting) && $rule->setting): ?>
                     <li class="treeview" id="10">
