@@ -26,7 +26,9 @@
                                 <!-- compose message btn -->
                                 <a id="compose" class="btn btn-block btn-primary" data-toggle="modal" data-target="#compose-mail"><i class="fa fa-pencil"></i> Compose Message</a>
                                 <!-- Navigation - folders-->
-                                <?php $type = $this->uri->segment(3); ?>
+                                <?php $type = $this->uri->segment(3);
+                                echo $type;
+                                ?>
                                 <div style="margin-top: 15px;">
                                     <ul class="nav nav-pills nav-stacked">
                                         <li class="header">Folders</li>
@@ -69,7 +71,7 @@
                                         <div class="col-sm-10">
                                             <button style="margin-left: 10px" name="submit" value="delete" class="btn btn-danger btn-sm"  type="submit" >
                                                 <i class="fa fa-trash-o"></i> 
-                                                <?= ($type == "Drafts") ? "Discard Draft" : "Delete" ?>
+<?= ($type == "Drafts") ? "Discard Draft" : "Delete" ?>
                                             </button>
                                             <button style="margin-left: 10px" name="submit" value="spam" class="btn btn-danger btn-sm"  type="submit" >
                                                 <i class="fa fa-trash"></i> 
@@ -98,28 +100,28 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php foreach ($email as $key => $value) { ?>
+<?php foreach ($email as $key => $value) { ?>
                                                     <tr id="<?= $value['id'] ?>" style="<?= (!$value['status']) ? "background-color: #F3F4F5;font-weight: 600;" : "" ?>" class="">
                                                         <td class="small-col">
                                                             <input type="checkbox" name="email_id[]" value="<?= $value['id'] ?>" />
                                                         </td>
                                                         <td class="name">
                                                             <a style="cursor: pointer" data-toggle="modal" data-target="#mail-body" class="<?= $value['id'] ?>">
-                                                                <?= $value['from'] ?>
+    <?= $value['from'] ?>
                                                             </a>
                                                         </td>
                                                         <td class="subject">
                                                             <a style="cursor: pointer" data-toggle="modal" data-target="#mail-body" class="<?= $value['id'] ?>">
-                                                                <?= $value['subject'] ?>
+    <?= $value['subject'] ?>
                                                             </a>
                                                         </td>
                                                         <td class="time">
-                                                            <?= $value['date'] ?>
+    <?= $value['date'] ?>
                                                         </td>
                                                     </tr>
                                                 <span style="display: none" class="body<?= $value['id'] ?>"><?= $value['body'] ?></span>
                                                 <span style="display: none" class="to<?= $value['id'] ?>"><?= $value['to'] ?></span>
-                                            <?php } ?>
+<?php } ?>
                                             </tbody>
                                             <tfoot>
                                                 <tr>
@@ -513,32 +515,7 @@ switch ($msg) {
             $('.close').trigger('click');
         });
 
-        /*$('button.send,button.draft').click(function () {
-         $('#load').css('display', 'block');
-         var val = $(this).val();
-         var body = CKEDITOR.instances['email_message'].getData();
-         $('#composeForm #email_message').text(body);
-         
-         $.ajax({
-         type: 'POST',
-         data: $('#composeForm').serialize(),
-         url: "<?= site_url() ?>admin/mailbox/send/" + val,
-         success: function (data, textStatus, jqXHR) {
-         $('#composeForm').trigger('reset');
-         $('#load').css('display', 'none');
-         $('.close').trigger('click');
-         if (data == 1) {
-         $('#composeForm').trigger('reset');
-         var msg = (val == "Send") ?
-         "Email has been successfully sent..!" :
-         "Email save as draft successfully..!";
-         alertify.success(msg);
-         } else {
-         alertify.error("Failed to sending Email..!");
-         }
-         }
-         });
-         });*/
+
         setTimeout(function () {
             $('.ui-autocomplete').css('z-index', '9999');
         }, 1000);
