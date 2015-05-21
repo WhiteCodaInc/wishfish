@@ -23,7 +23,7 @@ $img_src = ($avatar != "") ?
                 <div class="pull-left info">
                     <p><?= $this->session->userdata('name') ?></p>
 
-                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+<!--                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>-->
                 </div>
             </div>
             <!-- search form -->
