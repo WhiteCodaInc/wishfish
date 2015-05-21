@@ -1,7 +1,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>M V K</title>
+        <title>Wish-Fish</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
         <link rel="shortcut icon" href="<?= base_url() ?>assets/dashboard/favicon.ico" type="image/x-icon">
@@ -103,27 +103,19 @@
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="navbar-collapse">
-                        <ul class="nav navbar-nav">
+                        <ul class="nav navbar-nav menubar">
                             <li class="dropdown" id="wishfish-contact">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <a href="<?= site_url() ?>app/contacts" class="dropdown-toggle">
                                     <i class="fa fa-user"></i>
-                                    Contact Management 
-                                    <span class="caret"></span>
+                                    Contacts
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li>
+                                    <li id="create-contact">
                                         <a href="<?= site_url() ?>app/contacts/addContact">
                                             <i class="fa fa-plus"></i>
                                             <span>Create New Contact</span>
                                         </a>
                                     </li>
-                                    <!--<li class="divider"></li>-->
-                                    <li>
-                                        <a href="<?= site_url() ?>app/contacts">
-                                            <i class="fa fa-gear"></i> <span>Manage Contacts</span>
-                                        </a>
-                                    </li>
-                                    <!--<li class="divider"></li>-->
                                     <li>
                                         <a href="<?= site_url() ?>app/contact_groups">
                                             <i class="fa fa-users"></i> <span>Contact Groups</span>
@@ -133,18 +125,22 @@
                                     <li>
                                         <a href="<?= site_url() ?>app/contacts/block_list">
                                             <i class="fa fa-lock"></i>
-                                            <span>Lock Contacts</span>
+                                            <span>Contact Block List</span>
                                         </a>
                                     </li>
                                 </ul>
                             </li>
+                            <li>
+                                <a href="<?= site_url() ?>app/calender">
+                                    <i class="fa fa-th"></i> <span>Calender</span>
+                                </a>
+                            </li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <a href="<?= site_url() ?>app/template" class="dropdown-toggle">
                                     <i class="fa fa-credit-card"></i>
                                     Templates 
-                                    <span class="caret"></span>
                                 </a>
-                                <ul class="dropdown-menu" role="menu">
+                                <ul class="dropdown-menu" role="menu" >
                                     <li>
                                         <a href="<?= site_url() ?>app/sms_template">
                                             <i class="fa fa-mobile-phone"></i>
@@ -158,16 +154,6 @@
                                         </a>
                                     </li>
                                 </ul>
-                            </li>
-                            <li id="wishfish-calender">
-                                <a href="<?= site_url() ?>app/calender">
-                                    <i class="fa fa-th"></i> <span>Calender</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="<?= site_url() ?>app/import">
-                                    <i class="fa fa-th"></i> <span>Import Google Contact</span>
-                                </a>
                             </li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right" id="wishfish-profile">
