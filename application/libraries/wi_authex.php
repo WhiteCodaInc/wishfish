@@ -10,6 +10,7 @@ class Wi_authex {
 
     function Authex() {
         $this->_CI = & get_instance();
+        $this->_CI->load->library('session');
     }
 
     function logged_in() {
