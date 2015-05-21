@@ -111,22 +111,23 @@ class Admin_profile extends CI_Controller {
 
     function send_message() {
         $post = $this->input->post();
-        
         $profile = $this->objprofile->getProfile($post['pid']);
-        $tag = $this->common->setToken($profile);
-        $body = $this->parser->parse_string($post['body'], $tag, TRUE);
-        $this->sendSMS($profile->phone, $body);
+        if ($profile->phone) {
+            $tag = $this->common->setToken($profile);
+            $body = $this->parser->parse_string($post['body'], $tag, TRUE);
+            $this->sendSMS($profile->phone, $body);
+        }
+
         header('location:' . site_url() . 'admin/admin_profile/profile/' . $post['pid']);
     }
 
     function send_email() {
         $post = $this->input->post();
-        echo '<pre>';
-        print_r($post);
-        die();
         $profile = $this->objprofile->getProfile($post['pid']);
-        $tag = $this->common->setToken($profile);
-        $this->sendMail($profile, $tag, $post);
+        if ($profile->email) {
+            $tag = $this->common->setToken($profile);
+            $this->sendMail($profile, $tag, $post);
+        }
         header('location:' . site_url() . 'admin/admin_profile/profile/' . $post['pid']);
     }
 
