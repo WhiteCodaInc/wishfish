@@ -35,7 +35,7 @@ class Common {
 
     function sendMail($to = NULL, $subject, $body, $bcc = NULL) {
         $set = array(
-            'from' => 'Mikhail <info@mikhailkuznetsov.com>',
+            'from' => 'Wish-Fish <notification@wish-fish.com>',
             'subject' => $subject,
             'html' => $body
         );
@@ -49,7 +49,7 @@ class Common {
     }
 
     function AddMailMember($name, $email, $type) {
-        $result = $this->mgClient->post("lists/{$this->listAddress}/members", array(
+        $this->mgClient->post("lists/{$this->listAddress}/members", array(
             'address' => $email,
             'name' => $name,
             'description' => $type,
@@ -115,8 +115,8 @@ class Common {
             'subject' => $subject,
             'html' => $body
         );
-        $nm = ($name == NULL) ? "Mikhail " : $name . ' ';
-        $frm = ($from == NULL) ? "<notification@mikhailkuznetsov.com>" : $from;
+        $nm = ($name == NULL) ? "Wish-Fish " : $name . ' ';
+        $frm = ($from == NULL) ? "<notification@wish-fish.com>" : $from;
         $set['from'] = $nm . $frm;
         $result = $this->mgClient->sendMessage($this->domain, $set);
         if ($result->http_response_code == 200) {
