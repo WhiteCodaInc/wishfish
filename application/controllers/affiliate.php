@@ -7,7 +7,7 @@
  */
 
 /**
- * Description of mikhaill
+ * Description of Wish-Fish
  *
  * @author Laxmisoft
  */
@@ -32,12 +32,18 @@ class Affiliate extends CI_Controller {
     }
 
     function signup() {
+        header('location:' . site_url() . 'affiliate/join');
         $post = $this->input->post();
-        $msg = $this->objaffiliate->register($post);
-        header('location:' . site_url() . 'homepage?msg=' . $msg);
+        if ($this->objaffiliate->isAffiliateExist($post)) {
+            header('location:' . site_url() . 'affiliate/join?msg=R');
+        } else {
+            $msg = $this->objaffiliate->register($post);
+            header('location:' . site_url() . 'affiliate/login');
+        }
     }
 
     function signin() {
+        header('location:' . site_url() . 'affiliate/login');
         $post = $this->input->post();
         if ($this->objaffiliate->login($post)) {
             header('location:' . site_url() . 'homepage');

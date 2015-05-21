@@ -44,6 +44,18 @@ class M_affiliate extends CI_Model {
         return $msg;
     }
 
+    function isAffiliateExist($post) {
+        $where = array(
+            'email' => $post['email']
+        );
+        $query = $this->db->get_where('affiliate_detail', $where);
+        if ($query->num_rows() > 0) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+
     function generateRandomString($length = 5) {
         return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
     }
