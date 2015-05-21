@@ -18,9 +18,9 @@ class Mailbox extends CI_Controller {
             header('location:' . site_url() . 'admin/dashboard/error/500');
         } else {
             $this->ip = "50.28.18.90";
-            $this->uname = "mikhai";
+            $this->uname = "wishfish";
             $this->passwd = "vishal789";
-            $this->domain = "@mikhailkuznetsov.com";
+            $this->domain = "@wish-fish.com";
             $this->quota = "100";
 
             $this->cpmm = new cPanelEmailManager($this->uname, $this->passwd, $this->ip);
