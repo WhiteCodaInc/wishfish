@@ -25,7 +25,7 @@
                         <div class="box-body">
                             <div class="form-group">
                                 <label for="group name">Group Name</label>
-                                <input value="<?= isset($groups) ? $groups->group_name : '' ?>" type="text" name="group_name" autofocus="autofocus" class="form-control" placeholder="Group Name" />
+                                <input value="<?= isset($groups) ? $groups->group_name : '' ?>" type="text" name="group_name" autofocus="autofocus" class="form-control" placeholder="Group Name" required=""/>
                             </div>
                         </div><!-- /.box-body -->
                         <?php if (isset($groups)): ?>
