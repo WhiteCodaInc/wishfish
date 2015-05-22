@@ -175,10 +175,13 @@ switch ($msg) {
             $(".effect").toggle("slide", options, 500);
         }
         $('#inbox-data-table tbody tr').click(function () {
-            console.log($(this).find('span.status'));
-            $(this).find('td.status > span').removeClass('btn-danger');
-            $(this).find('td.status > span').addClass('btn-warning');
-            $(this).find('td.status > span').text("Read");
+            $msg = $(this).find('td.status > span').text();
+            if ($msg == "Unread") {
+                $(this).find('td.status > span').removeClass('btn-danger');
+                $(this).find('td.status > span').addClass('btn-warning');
+                $(this).find('td.status > span').text("Read");
+            }
+
             $(".effect").hide();
             var from = $(this).attr('id');
             $('#from').val(from);
