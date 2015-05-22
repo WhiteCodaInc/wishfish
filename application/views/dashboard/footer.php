@@ -62,6 +62,16 @@ if ($userid != "") {
 
 <!-- CK Editor -->
 <script src="https://cdn.ckeditor.com/4.4.3/standard/ckeditor.js"></script>
-
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.box-header').on('click', function () {
+            if ($(this).prev().hasClass('collapsed-box')){
+                console.log("CHE");
+            }else{
+                console.log("NATHI");
+            }
+        });
+    });
+</script>
 </body>
 </html>
