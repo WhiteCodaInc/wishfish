@@ -156,30 +156,35 @@
                 });
 
                 $('#a_personal').click(function () {
-                    console.log(cardFlag);
                     $('#planUpgrade .box-body button').prop('disabled', true);
                     $('.personal .overlay').show();
                     $('.personal .loading-img').show();
-                    $.ajax({
-                        type: 'POST',
-                        url: "<?= site_url() ?>app/upgrade/isAllowToDowngrade",
-                        success: function (data, textStatus, jqXHR) {
-//                            $('#a_personal').prop('disabled', false);
-                            $('#planUpgrade .box-body button').prop('disabled', false);
-                            $('.personal .overlay').hide();
-                            $('.personal .loading-img').hide();
-                            if (data == "1") {
-                                if (!cardFlag) {
-                                    $('#personal button').trigger('click');
+                    if (!cardFlag) {
+                        $('#personal button').trigger('click');
+                        $('#a_personal').prop('disabled', false);
+                        $('.personal .overlay').hide();
+                        $('.personal .loading-img').hide();
+                    } else {
+                        $.ajax({
+                            type: 'POST',
+                            url: "<?= site_url() ?>app/upgrade/isAllowToDowngrade",
+                            success: function (data, textStatus, jqXHR) {
+                                $('#planUpgrade .box-body button').prop('disabled', false);
+                                $('.personal .overlay').hide();
+                                $('.personal .loading-img').hide();
+                                if (data == "1") {
+                                    if (!cardFlag) {
+                                        $('#personal button').trigger('click');
+                                    } else {
+                                        upgradePlan();
+                                    }
                                 } else {
-                                    upgradePlan();
+                                    $('#error').show();
+                                    $('#error-msg').text("You can not downgrade your plan..! ");
                                 }
-                            } else {
-                                $('#error').show();
-                                $('#error-msg').text("You can not downgrade your plan..! ");
                             }
-                        }
-                    });
+                        });
+                    }
                 });
 
                 $('#a_enterprise').click(function () {
