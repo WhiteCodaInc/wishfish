@@ -47,10 +47,12 @@ $(function () {
     $("[data-widget='collapse']").click(function () {
         //Find the box parent        
         var box = $(this).parents(".box").first();
+        var body = $(this).next();
         //Find the body and the footer
         var bf = box.find(".box-body, .box-footer");
         if (!box.hasClass("collapsed-box")) {
             box.addClass("collapsed-box");
+            body.prop('display', 'none');
             //Convert minus into plus
             $(this).children(".fa-minus").removeClass("fa-minus").addClass("fa-plus");
             bf.slideUp();
