@@ -20,8 +20,8 @@ $to_src = ($avatar != "") ?
 </style>
 <?php
 foreach ($messages as $sms) {
-    if (($sms->from == $contactInfo->phone && $sms->to == "+17606422366") ||
-            ($sms->from == "+17606422366" && $sms->to == $contactInfo->phone)) {
+    if (($sms->from == $contactInfo->phone && $sms->to == $adminInfo->twilio_number) ||
+            ($sms->from == $adminInfo->twilio_number && $sms->to == $contactInfo->phone)) {
         $cls = ($sms->direction == "inbound") ? "in" : "out";
         $path = ($sms->direction == "inbound") ? $from_src : $to_src;
         $name = ($sms->direction == "inbound") ?
@@ -39,11 +39,11 @@ foreach ($messages as $sms) {
                     </small>
                     <?= $name ?>
                 </a>
-            <span class="body">
-                <?= str_ireplace("<p>,</p>", "", $sms->body) ?>
-            </span>
+                <span class="body">
+                    <?= str_ireplace("<p>,</p>", "", $sms->body) ?>
+                </span>
 
-        </p>
+            </p>
         </div><!-- /.item -->	
         <?php
     }

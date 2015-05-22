@@ -38,8 +38,8 @@
                     <div class="box-body chat" id="chat-box">
                         <?php
                         foreach ($messages as $sms) {
-                            if (($sms->from == $contactInfo->phone && $sms->to == "+17606422366") ||
-                                    ($sms->from == "+17606422366" && $sms->to == $contactInfo->phone)) {
+                            if (($sms->from == $contactInfo->phone && $sms->to == $adminInfo->twilio_number) ||
+                                    ($sms->from == $adminInfo->twilio_number && $sms->to == $contactInfo->phone)) {
                                 $cls = ($sms->direction == "inbound") ? "in" : "out";
                                 $path = ($sms->direction == "inbound") ? $from_src : $to_src;
                                 $name = ($sms->direction == "inbound") ?
