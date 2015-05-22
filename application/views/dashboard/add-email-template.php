@@ -98,6 +98,7 @@
                         <?php if (isset($template)): ?>
                             <input type="hidden" name="templateid" value="<?= $template->template_id ?>" />
                         <?php endif; ?>
+                        <input type="submit" style="display: none" class="submit"/>
                     </form>
                 </div><!-- /.box -->
             </div><!--/.col (left) -->
@@ -123,7 +124,8 @@
 <script type="text/javascript">
     $(document).ready(function (e) {
         $('#submitEmail').click(function () {
-            $('#templateForm').submit();
+//            $('#templateForm').submit();
+            $('.submit').trigger('click');
         });
     });
 </script>
