@@ -318,11 +318,13 @@ class Sms extends CI_Controller {
         foreach ($messages as $sms) {
             $msg[] = $sms;
         }
-        echo '<pre>';
-        print_r($msg);
-        die();
+
         $data['messages'] = array_reverse($msg);
         $data['contactInfo'] = $this->objsms->getProfilePics('+' . trim($from));
+
+        echo '<pre>';
+        print_r($data);
+        die();
 
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
