@@ -56,8 +56,7 @@ $(function () {
             //Convert minus into plus
             $(this).children(".fa-minus").removeClass("fa-minus").addClass("fa-plus");
             bf.slideUp();
-            body.removeAttr('style');
-            body.attr('display', 'none');
+            body.css('display', 'none');
         } else {
             box.removeClass("collapsed-box");
             //Convert plus into minus
