@@ -34,7 +34,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="name">Email</label>
-                                <input value="<?= isset($contacts) ? $contacts->email : '' ?>" type="email" name="email" class="form-control" placeholder="Email"/>
+                                <input value="<?= isset($contacts) ? $contacts->email : '' ?>" type="email" name="email" class="form-control" placeholder="Email" required=""/>
                             </div>
                             <div class="form-group">
                                 <div class="row">
@@ -193,6 +193,7 @@
                         </div><!-- /.box-body -->
 
                         <input type="hidden" name="contactid" value="<?= isset($contacts) ? $contacts->contact_id : '' ?>" />
+                        <input type="submit" style="display: none" class="submit"/>
                     </form>
                 </div><!-- /.box -->
             </div><!--/.col (left) -->
@@ -203,10 +204,7 @@
 </aside><!-- /.right-side -->
 </div><!-- ./wrapper -->
 
-<!-- InputMask -->
-<script src="<?= base_url() ?>assets/dashboard/js/plugins/input-mask/jquery.inputmask.js" type="text/javascript"></script>
-<script src="<?= base_url() ?>assets/dashboard/js/plugins/input-mask/jquery.inputmask.date.extensions.js" type="text/javascript"></script>
-<script src="<?= base_url() ?>assets/dashboard/js/plugins/input-mask/jquery.inputmask.extensions.js" type="text/javascript"></script>
+
 <!-- Multi Select -->
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/multi-select/js/jquery.multi-select.js" type="text/javascript"></script>
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/multi-select/js/jquery.quicksearch.js" type="text/javascript"></script>
@@ -226,7 +224,7 @@
     });
     $(document).ready(function () {
         $('#updateContact').click(function () {
-            $('#contactForm').submit();
+            $('.submit').trigger('click');
         });
 
 <?php if (isset($contacts)): ?>
