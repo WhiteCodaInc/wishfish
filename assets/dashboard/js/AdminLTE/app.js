@@ -62,6 +62,7 @@ $(function () {
             //Convert plus into minus
             $(this).children(".fa-plus").removeClass("fa-plus").addClass("fa-minus");
             bf.slideDown();
+            body.css('display', 'block');
         }
     });
 
