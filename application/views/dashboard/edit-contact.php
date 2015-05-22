@@ -204,7 +204,6 @@
 </aside><!-- /.right-side -->
 </div><!-- ./wrapper -->
 
-
 <!-- Multi Select -->
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/multi-select/js/jquery.multi-select.js" type="text/javascript"></script>
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/multi-select/js/jquery.quicksearch.js" type="text/javascript"></script>
