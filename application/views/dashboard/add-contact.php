@@ -81,7 +81,7 @@
                             </div><!-- /.form group -->
                             <div class="form-group">
                                 <label for="password">Email</label>
-                                <input name="email" type="email" class="form-control"  placeholder="Enter Their Email">
+                                <input name="email" type="email" class="form-control"  placeholder="Enter Their Email" required="">
                             </div>
                         </div><!-- /.box-body -->
                         <!--                        <div class="box-footer" id="save-contact">
