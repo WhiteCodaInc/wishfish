@@ -1,9 +1,25 @@
 <link rel="stylesheet" href="<?= base_url() ?>assets/dashboard/js/plugins/clock/css/experiment.css" />
 <aside class="right-side" >
     <section class="content-header">
-        <h1>
+        <h1 style="float: left">
             Dashboard
         </h1>
+        <a  href="<?= site_url() ?>app/contacts/addContact" class="btn btn-primary btn-sm create">
+            <i class="fa fa-plus"></i>
+            Create New Contact
+        </a>
+        <a  href="<?= site_url() ?>app/calender" class="btn btn-info btn-sm create">
+            <i class="fa fa-plus"></i>
+            Create New Event
+        </a>
+        <a  href="<?= site_url() ?>app/sms_template/addTemplate" class="btn btn-warning btn-sm create">
+            <i class="fa fa-plus"></i>
+            Create SMS Template
+        </a>
+        <a href="<?= site_url() ?>app/email_template/addTemplate" class="btn btn-danger btn-sm create">
+            <i class="fa fa-plus"></i>
+            Create Email Template
+        </a>
     </section>
 
     <!-- Main content -->
@@ -171,60 +187,6 @@
                                         <?php } ?>
                                     </ul>
                                 </div><!-- /.box-body -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="box box-primary">
-                    <div class="box-header ui-sortable-handle" style="cursor: move;">
-                        <i class="fa fa-clock-o"></i>
-                        <h3 class="box-title">Your Current Time</h3>
-                    </div><!-- /.box-header -->
-                    <div class="box-body">
-                        <div id="clock">
-                            <div id="hour"><img src="<?= base_url() ?>assets/dashboard/js/plugins/clock/images/hourHand.png" /></div>
-                            <div id="minute"><img src="<?= base_url() ?>assets/dashboard/js/plugins/clock/images/minuteHand.png" /></div>
-                            <div id="second"><img src="<?= base_url() ?>assets/dashboard/js/plugins/clock/images/secondHand.png" /></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="box box-primary">
-                    <div class="box-header ui-sortable-handle" style="cursor: move;">
-                        <i class="ion ion-clipboard"></i>
-                        <h3 class="box-title">Quick Link</h3>
-                    </div><!-- /.box-header -->
-                    <div class="box-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <a  href="<?= site_url() ?>app/contacts/addContact" class="btn btn-primary btn-sm create">
-                                    <i class="fa fa-plus"></i>
-                                    Create New Contact
-                                </a>
-                            </div>
-                            <div class="col-md-6">
-                                <a  href="<?= site_url() ?>app/calender" class="btn btn-info btn-sm create">
-                                    <i class="fa fa-plus"></i>
-                                    Create New Event
-                                </a>
-                            </div>
-                        </div>
-                        <br/>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <a  href="<?= site_url() ?>app/sms_template/addTemplate" class="btn btn-warning btn-sm create">
-                                    <i class="fa fa-plus"></i>
-                                    Create SMS Template
-                                </a>
-                            </div>
-                            <div class="col-md-6">
-                                <a href="<?= site_url() ?>app/email_template/addTemplate" class="btn btn-danger btn-sm create">
-                                    <i class="fa fa-plus"></i>
-                                    Create Email Template
-                                </a>
                             </div>
                         </div>
                     </div>
