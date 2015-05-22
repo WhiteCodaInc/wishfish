@@ -296,14 +296,16 @@ class Sms extends CI_Controller {
     }
 
     function viewconversation() {
+        $adminInfo = $this->common->getAdminInfo();
         $from = $this->input->post('from');
         $msg = array();
         $messages = $this->twilio->account->messages->getIterator(0, 50, array(
-            'From' => $from
+//            'to' => $adminInfo->twilio_number
         ));
         foreach ($messages as $sms) {
             $msg[] = $sms;
         }
+
         $data['messages'] = array_reverse($msg);
         $data['contactInfo'] = $this->objsms->getProfilePics($from);
         $this->load->view('admin/sms-chat', $data);
@@ -316,6 +318,9 @@ class Sms extends CI_Controller {
         foreach ($messages as $sms) {
             $msg[] = $sms;
         }
+        echo '<pre>';
+        print_r($msg);
+        die();
         $data['messages'] = array_reverse($msg);
         $data['contactInfo'] = $this->objsms->getProfilePics('+' . trim($from));
 
