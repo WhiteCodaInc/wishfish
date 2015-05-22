@@ -165,7 +165,7 @@
                         url: "<?= site_url() ?>app/upgrade/isAllowToDowngrade",
                         success: function (data, textStatus, jqXHR) {
 //                            $('#a_personal').prop('disabled', false);
-                            $('#planUpgrade .box-body button').prop('disabled', true);
+                            $('#planUpgrade .box-body button').prop('disabled', false);
                             $('.personal .overlay').hide();
                             $('.personal .loading-img').hide();
                             if (data == "1") {
