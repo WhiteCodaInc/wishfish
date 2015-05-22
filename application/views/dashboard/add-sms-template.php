@@ -12,8 +12,9 @@
     <!-- Main content -->
     <section class="content">
         <div class="row">
+            <div class="col-md-3"></div>
             <!-- left column -->
-            <div class="col-md-12">
+            <div class="col-md-6">
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="box-header">
@@ -91,6 +92,7 @@
                 </div><!-- /.box -->
             </div><!--/.col (left) -->
             <!-- right column -->
+            <div class="col-md-3"></div>
         </div>
     </section><!-- /.content -->
 </aside><!-- /.right-side -->
