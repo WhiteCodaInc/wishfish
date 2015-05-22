@@ -160,10 +160,12 @@
                     $('.personal .overlay').show();
                     $('.personal .loading-img').show();
                     if (!cardFlag) {
-                        $('#personal button').trigger('click');
-                        $('#a_personal').prop('disabled', false);
-                        $('.personal .overlay').hide();
-                        $('.personal .loading-img').hide();
+                        setTimeout(function () {
+                            $('#personal button').trigger('click');
+                            $('#planUpgrade .box-body button').prop('disabled', false);
+                            $('.personal .overlay').hide();
+                            $('.personal .loading-img').hide();
+                        }, 2000);
                     } else {
                         $.ajax({
                             type: 'POST',
