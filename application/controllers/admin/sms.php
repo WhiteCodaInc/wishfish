@@ -51,9 +51,10 @@ class Sms extends CI_Controller {
 
     function inbox() {
         $from = array();
+        $adminInfo = $this->common->getAdminInfo();
         $sms = $this->getInbox();
         foreach ($sms as $msg) {
-            if ($msg->direction == "inbound") {
+            if ($msg->direction == "inbound" && $msg->to == $adminInfo->twilio_number) {
                 if (!in_array($msg->from, $from)) {
                     $from[] = $msg->from;
                     $this->isExists($msg);
@@ -322,7 +323,7 @@ class Sms extends CI_Controller {
         $this->load->view('admin/sms-chat-mob', $data);
         $this->load->view('admin/admin_footer');
     }
-    
+
     function updateStatus($sid) {
         $this->objsms->updateStatus($sid);
     }
