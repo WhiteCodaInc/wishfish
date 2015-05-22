@@ -134,7 +134,8 @@ $img_src = ($profile_pic != "") ?
                         </li>
                     <?php } ?>
                     <li>
-                        <!--                        <div class="clock"></div>-->
+                        <!--<div class="clock"></div>-->
+                        <span style="font-size: 20px" id="curr_time"></span>
                     </li>  
                 </ul>
                 <ul class="nav navbar-nav navbar-right" id="wishfish-title">
@@ -405,10 +406,6 @@ $img_src = ($profile_pic != "") ?
             border: inherit;
         }
     </style>
-    <!-- InputMask -->
-    <script src="<?= base_url() ?>assets/dashboard/js/plugins/input-mask/jquery.inputmask.js" type="text/javascript"></script>
-    <script src="<?= base_url() ?>assets/dashboard/js/plugins/input-mask/jquery.inputmask.date.extensions.js" type="text/javascript"></script>
-    <script src="<?= base_url() ?>assets/dashboard/js/plugins/input-mask/jquery.inputmask.extensions.js" type="text/javascript"></script>
 
     <div class="row" style="background-color: #ecf0f5;margin: 0">
         <div class="col-md-12">
@@ -549,7 +546,45 @@ $img_src = ($profile_pic != "") ?
                     });
     </script>
 <?php endif; ?>
+<?php
+$time = date('Y-m-d H:i:s', gmt_to_local(time(), $userInfo->timezones, TRUE));
 
+
+$hour = date('H', strtotime($time));
+$minute = date('i', strtotime($time));
+$second = date('s', strtotime($time));
+
+
+if ($hour == 00) {
+    $hour = 23;
+} else {
+    $hour = ($userInfo->timezones == "UM9") ? $hour : $hour - 1;
+}
+//echo $time.'<br>';
+//echo $hour.'<br>';
+?>
+<script type="text/javascript">
+    var hours = <?= $hour ?>;
+    var minutes = <?= $minute ?>;
+    var seconds = <?= $second ?>;
+    setInterval(function () {
+        seconds++;
+        if (seconds > 59) {
+            minutes++;
+            seconds = 0;
+        }
+        if (minutes > 59) {
+            hours++;
+            minutes = 0;
+        }
+
+        var h = (hours < 10) ? "0" + hours : hours;
+        var m = (minutes < 10) ? "0" + minutes : minutes;
+        var s = (seconds < 10) ? "0" + seconds : seconds;
+        $currTime = h + " : " + m + " : " + s;
+        $('#curr_time').text($currTime);
+    }, 1000);
+</script>
 <!--<script type="text/javascript"  src="<?= base_url() ?>assets/dashboard/js/plugins/clock/js/flipclock.js"></script>-->
 <!--<script type="text/javascript">
                     var clock;

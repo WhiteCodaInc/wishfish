@@ -22,6 +22,11 @@ if ($userid != "") {
 <!--<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/morris/morris.min.js" type="text/javascript"></script>-->
 
+<!-- InputMask -->
+<script src="<?= base_url() ?>assets/dashboard/js/plugins/input-mask/jquery.inputmask.js" type="text/javascript"></script>
+<script src="<?= base_url() ?>assets/dashboard/js/plugins/input-mask/jquery.inputmask.date.extensions.js" type="text/javascript"></script>
+<script src="<?= base_url() ?>assets/dashboard/js/plugins/input-mask/jquery.inputmask.extensions.js" type="text/javascript"></script>
+
 <!-- Sparkline -->
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/sparkline/jquery.sparkline.min.js" type="text/javascript"></script>
 
