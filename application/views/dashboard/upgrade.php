@@ -194,8 +194,8 @@
                     if (!cardFlag) {
                         $('#enterprise button').trigger('click');
                         $('#a_enterprise').prop('disabled', false);
-                        $('.enterprise .overlay').hide();
-                        $('.enterprise .loading-img').hide();
+//                        $('.enterprise .overlay').hide();
+//                        $('.enterprise .loading-img').hide();
                     } else {
                         $.ajax({
                             type: 'POST',
