@@ -180,7 +180,7 @@
     display: inline-block;
     position: relative;
     width: 15px;
-    height: 10%; }
+    height: 30px; }
 
 .flip-clock-divider:first-child {
     width: 0; }
