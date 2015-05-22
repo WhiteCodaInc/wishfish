@@ -108,10 +108,6 @@ class Import extends CI_Controller {
 
     function addContacts() {
         $post = $this->input->post();
-        echo '<pre>';
-        print_r($post);
-        echo $this->userid;;
-        die();
         foreach ($post['contact'] as $value) {
             $name = explode(' ', $post['name'][$value]);
             $set = array(
