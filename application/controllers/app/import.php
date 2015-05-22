@@ -13,7 +13,7 @@
  */
 class Import extends CI_Controller {
 
-    var $sess_data = array();
+    var $sess_data = array(), $userid;
 
     //put your code here
     function __construct() {
@@ -28,6 +28,8 @@ class Import extends CI_Controller {
         $this->client->setRedirectUri($this->config->item('redirect_uri', 'googlecontact'));
         $this->client->setDeveloperKey($this->config->item('api_key', 'googlecontact'));
         $this->client->setScopes("http://www.google.com/m8/feeds/");
+
+        $this->userid = $this->session->userdata('userid');
     }
 
     function index() {
@@ -106,6 +108,10 @@ class Import extends CI_Controller {
 
     function addContacts() {
         $post = $this->input->post();
+        echo '<pre>';
+        print_r($post);
+        echo $this->userid;;
+        die();
         foreach ($post['contact'] as $value) {
             $name = explode(' ', $post['name'][$value]);
             $set = array(
