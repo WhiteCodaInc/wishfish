@@ -124,18 +124,18 @@
 
                 $('#pay_personal').click(function () {
                     $('#planUpgrade .box-body button').prop('disabled', true);
-                    $('.enterprise .overlay').show();
-                    $('.enterprise .loading-img').show();
+                    $('.personal .overlay').show();
+                    $('.personal .loading-img').show();
                     $.ajax({
                         type: 'POST',
                         url: "<?= site_url() ?>app/upgrade/isAllowToDowngrade",
                         success: function (data, textStatus, jqXHR) {
-                            $('#planUpgrade .box-body button').prop('disabled', false);
-                            $('.personal .overlay').hide();
-                            $('.personal .loading-img').hide();
                             if (data == "1") {
                                 upgradeWithPaypal();
                             } else {
+                                $('#planUpgrade .box-body button').prop('disabled', false);
+                                $('.personal .overlay').hide();
+                                $('.personal .loading-img').hide();
                                 $('#error').show();
                                 $('#error-msg').text("You can not downgrade your plan..! ");
                             }
@@ -231,17 +231,15 @@
                 });
 
                 function upgradeWithPaypal() {
-                    $('#planUpgrade .box-body button').prop('disabled', 'disabled');
-                    $('.personal .overlay').show();
-                    $('.personal .loading-img').show();
                     $.ajax({
                         type: 'POST',
                         url: "<?= site_url() ?>app/pay",
                         data: {item_name: "wishfish-personal", amount: "9.99", upgrade: "1"},
                         success: function (answer) {
-                            $('.personal .overlay').hide();
-                            $('.personal .loading-img').hide();
                             if (answer == "0") {
+                                $('.personal .overlay').hide();
+                                $('.personal .loading-img').hide();
+                                $('#planUpgrade .box-body button').prop('disabled', false);
                                 $('#error').show();
                                 $('#error-msg').text("You can not upgrade your plan until your first invoice was created.!");
                             } else {
