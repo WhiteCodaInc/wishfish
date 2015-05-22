@@ -33,6 +33,7 @@
                         <?php else : ?>
                             <input type="hidden" name="type" value="simple" />
                         <?php endif; ?>
+                        <input type="submit" style="display: none" class="submit"/>
                     </form>
                 </div><!-- /.box -->
             </div><!--/.col (left) -->
@@ -45,7 +46,7 @@
     $(document).ready(function (e) {
 
         $('#submitGroup').click(function () {
-            $('#groupForm').submit();
+            $('.submit').trigger('click');
         });
     });
 </script>
