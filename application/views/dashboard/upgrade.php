@@ -1,6 +1,6 @@
 <style type="text/css">
 
-    
+
 </style>
 <aside class="right-side">
     <!-- Content Header (Page header) -->
@@ -171,6 +171,7 @@
                 });
 
                 $('#a_personal').click(function () {
+                    console.log(cardFlag);
                     $('#planUpgrade .box-body button').prop('disabled', 'disabled');
                     $('.personal .overlay').show();
                     $('.personal .loading-img').show();
