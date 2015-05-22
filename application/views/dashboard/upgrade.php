@@ -157,14 +157,15 @@
 
                 $('#a_personal').click(function () {
                     console.log(cardFlag);
-                    $('#planUpgrade .box-body button').prop('disabled', 'disabled');
+                    $('#planUpgrade .box-body button').prop('disabled', true);
                     $('.personal .overlay').show();
                     $('.personal .loading-img').show();
                     $.ajax({
                         type: 'POST',
                         url: "<?= site_url() ?>app/upgrade/isAllowToDowngrade",
                         success: function (data, textStatus, jqXHR) {
-                            $('#a_personal').prop('disabled', false);
+//                            $('#a_personal').prop('disabled', false);
+                            $('#planUpgrade .box-body button').prop('disabled', true);
                             $('.personal .overlay').hide();
                             $('.personal .loading-img').hide();
                             if (data == "1") {
@@ -182,7 +183,7 @@
                 });
 
                 $('#a_enterprise').click(function () {
-                    $('#planUpgrade .box-body button').prop('disabled', 'disabled');
+                    $('#planUpgrade .box-body button').prop('disabled', true);
                     $('.enterprise .overlay').show();
                     $('.enterprise .loading-img').show();
                     if (!cardFlag) {
@@ -196,7 +197,7 @@
                             data: {plan: "wishfish-enterprise"},
                             url: "<?= site_url() ?>app/upgrade/upgradePlan",
                             success: function (data, textStatus, jqXHR) {
-                                $('#a_enterprise').prop('disabled', false);
+                                $('#planUpgrade .box-body button').prop('disabled', false);
                                 $('.enterprise .overlay').hide();
                                 $('.enterprise .loading-img').hide();
                                 if (data == 1) {
