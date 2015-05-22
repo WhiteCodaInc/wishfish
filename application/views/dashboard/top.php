@@ -134,7 +134,7 @@ $img_src = ($profile_pic != "") ?
                         </li>
                     <?php } ?>
                     <li>
-                        <div class="clock" style="margin:2em;"></div>
+                        <div class="clock"></div>
                     </li>  
                 </ul>
                 <ul class="nav navbar-nav navbar-right" id="wishfish-title">
