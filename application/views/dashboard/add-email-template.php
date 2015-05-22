@@ -12,8 +12,9 @@
     <!-- Main content -->
     <section class="content">
         <div class="row">
+            <div class="col-md-3"></div>
             <!-- left column -->
-            <div class="col-md-12">
+            <div class="col-md-6">
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="box-header">
@@ -28,7 +29,7 @@
                     <form id="templateForm" role="form" action="<?= site_url() . "app/{$c}/{$method}{$m}" ?>" method="post">
                         <div class="box-body">
                             <div class="row">
-                                <div class="col-md-7">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="title">Email Template</label>
                                         <input value="<?= isset($template) ? $template->name : '' ?>" type="text" autofocus="autofocus" name="name" class="form-control" placeholder="Email Template" required="" />
@@ -36,7 +37,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-7">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="title">Email Subject</label>
                                         <input value="<?= isset($template) ? $template->subject : '' ?>" type="text" name="subject" class="form-control" placeholder="Email Subject" required="" />
@@ -101,6 +102,7 @@
                 </div><!-- /.box -->
             </div><!--/.col (left) -->
             <!-- right column -->
+            <div class="col-md-3"></div>
         </div>
     </section><!-- /.content -->
 </aside><!-- /.right-side -->
