@@ -37,7 +37,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-7">
+                                <div class="col-md-8">
                                     <div class="form-group">
                                         <div class='row'>
                                             <div class='col-md-12'>
@@ -46,14 +46,14 @@
                                                         <h3 class='box-title'>Editor</h3>
                                                     </div><!-- /.box-header -->
                                                     <div class='box-body pad'>
-                                                        <textarea  name="body" rows="10" cols="80"><?= isset($template) ? $template->body : '' ?></textarea>
+                                                        <textarea  name="body" rows="10" cols="60"><?= isset($template) ? $template->body : '' ?></textarea>
                                                     </div>
                                                 </div><!-- /.box -->
                                             </div>
                                         </div><!-- /.box-body -->
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <!-- Default box -->
                                     <div class="box collapsed-box">
                                         <div class="box-header">
