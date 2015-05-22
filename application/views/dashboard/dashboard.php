@@ -1,4 +1,3 @@
-<!--<link rel="canonical" href="http://www.paulrhayes.com/experiments/clock/" />-->
 <link rel="stylesheet" href="<?= base_url() ?>assets/dashboard/js/plugins/clock/css/experiment.css" />
 <aside class="right-side" >
     <section class="content-header">

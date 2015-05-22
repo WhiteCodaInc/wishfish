@@ -1,5 +1,6 @@
 <!-- header logo: style can be found in header.less -->
 <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/dashboard/js/plugins/Qtip/css/jquery.qtip.css"/>
+<link rel="stylesheet" href="<?= base_url() ?>assets/dashboard/js/plugins/clock/css/flipclock.css" />
 <style type="text/css">
     #image_preview > img {
         z-index: 5;
@@ -132,6 +133,9 @@ $img_src = ($profile_pic != "") ?
                             </span>
                         </li>
                     <?php } ?>
+                    <li>
+                        <div class="clock" style="margin:2em;"></div>
+                    </li>  
                 </ul>
                 <ul class="nav navbar-nav navbar-right" id="wishfish-title">
                     <li class="dropdown user user-menu">
@@ -545,3 +549,15 @@ $img_src = ($profile_pic != "") ?
                     });
     </script>
 <?php endif; ?>
+
+<script type="text/javascript"  src="<?= base_url() ?>assets/dashboard/js/plugins/clock/js/flipclock.js"></script>
+<script type="text/javascript">
+                    var clock;
+                    $(document).ready(function () {
+                        var date = new Date('2014-01-01 05:02:12 pm');
+
+                        clock = $('.clock').FlipClock(date, {
+                            clockFace: 'TwentyFourHourClock'
+                        });
+                    });
+</script>
