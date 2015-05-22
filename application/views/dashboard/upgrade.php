@@ -192,10 +192,12 @@
                     $('.enterprise .overlay').show();
                     $('.enterprise .loading-img').show();
                     if (!cardFlag) {
-                        $('#enterprise button').trigger('click');
-                        $('#a_enterprise').prop('disabled', false);
-//                        $('.enterprise .overlay').hide();
-//                        $('.enterprise .loading-img').hide();
+                        setTimeout(function () {
+                            $('#enterprise button').trigger('click');
+                            $('#planUpgrade .box-body button').prop('disabled', true);
+                            $('.enterprise .overlay').hide();
+                            $('.enterprise .loading-img').hide();
+                        }, 2000);
                     } else {
                         $.ajax({
                             type: 'POST',
