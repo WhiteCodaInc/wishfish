@@ -21,6 +21,8 @@ class Pay extends CI_Controller {
     }
 
     function index() {
+        echo '0';
+        die();
         $currPlan = $this->wi_common->getLatestPlan($this->userid);
         $userInfo = $this->wi_common->getUserInfo($this->userid);
 
