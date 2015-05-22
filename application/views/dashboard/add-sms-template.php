@@ -88,6 +88,7 @@
                         <?php if (isset($template)): ?>
                             <input type="hidden" name="templateid" value="<?= $template->template_id ?>" />
                         <?php endif; ?>
+                        <input type="submit" style="display: none" class="submit"/>
                     </form>
                 </div><!-- /.box -->
             </div><!--/.col (left) -->
@@ -115,7 +116,7 @@
     $(document).ready(function (e) {
 
         $('#submitSMS').click(function () {
-            $('#templateForm').submit();
+            $('.submit').trigger('click');
         });
     });
 </script>

@@ -124,7 +124,6 @@
 <script type="text/javascript">
     $(document).ready(function (e) {
         $('#submitEmail').click(function () {
-//            $('#templateForm').submit();
             $('.submit').trigger('click');
         });
     });
