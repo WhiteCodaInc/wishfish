@@ -321,9 +321,6 @@ class Sms extends CI_Controller {
         $data['messages'] = array_reverse($msg);
         $data['contactInfo'] = $this->objsms->getProfilePics('+' . trim($from));
         $data['adminInfo'] = $this->common->getAdminInfo();
-        echo '<pre>';
-        print_r($data);
-        die();
 
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
