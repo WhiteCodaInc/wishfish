@@ -62,19 +62,5 @@ if ($userid != "") {
 
 <!-- CK Editor -->
 <script src="https://cdn.ckeditor.com/4.4.3/standard/ckeditor.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-//        $('.box-header').on('click', function () {
-//            if ($(this).next().hasClass('box-close')) {
-//                $(this).next().prop('display', 'none');
-//            } else {
-//                $(this).next().removeClass('box-close');
-//                $(this).next().addClass('box-open');
-//                $(this).next().removeProp('stype');
-//                ;
-//            }
-//        });
-    });
-</script>
 </body>
 </html>

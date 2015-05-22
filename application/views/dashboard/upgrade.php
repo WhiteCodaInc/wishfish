@@ -86,7 +86,7 @@
                     <input type="hidden" name="plan" value="wishfish-personal"/>
                     <script
                         src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                        data-key="<?= $gatewayInfo->publish_key ?>"
+                        data-key="<?= $stripe->publish_key ?>"
                         data-image="/square-image.png"
                         data-name="Personal"
                         data-description="Product"                    
@@ -98,7 +98,7 @@
                     <input type="hidden" name="plan" value="wishfish-enterprise"/>
                     <script
                         src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                        data-key="<?= $gatewayInfo->publish_key ?>"
+                        data-key="<?= $stripe->publish_key ?>"
                         data-image="/square-image.png"
                         data-name="Enterprise"
                         data-description="Product"                    
