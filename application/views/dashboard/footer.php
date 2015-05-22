@@ -65,10 +65,13 @@ if ($userid != "") {
 <script type="text/javascript">
     $(document).ready(function () {
         $('.box-header').on('click', function () {
-            if ($(this).prev().hasClass('collapsed-box')){
-                console.log("CHE");
-            }else{
-                console.log("NATHI");
+            if ($(this).next().hasClass('box-close')) {
+                $(this).next().prop('display', 'none');
+            } else {
+                $(this).next().removeClass('box-close');
+                $(this).next().addClass('box-open');
+                $(this).next().removeProp('stype');
+                ;
             }
         });
     });

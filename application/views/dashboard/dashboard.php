@@ -105,7 +105,7 @@
                             <div class="box-header" data-widget="collapse"  style="cursor: pointer">
                                 <h3 class="box-title">Events</h3>
                             </div>
-                            <div class="box-body" style="display: none">
+                            <div class="box-body box-close"  style="display: none">
                                 <div class="form-group-lg">
                                     <div class="box box-primary">
                                         <div class="box-header ui-sortable-handle" style="cursor: move;">
@@ -481,7 +481,7 @@
             todayBtn: "linked",
             autoclose: true,
             todayHighlight: true
-        });
+        }); 
     });
 </script>
 <script type="text/javascript">
