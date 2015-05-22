@@ -176,9 +176,9 @@ switch ($msg) {
         }
         $('#inbox-data-table tbody tr').click(function () {
             console.log($(this).find('span.status'));
-            $(this).find('span.status').removeClass('btn-danger');
-            $(this).find('span.status').addClass('btn-warning');
-            $(this).find('span.status').text("Read");
+            $(this).find('td.status > span').removeClass('btn-danger');
+            $(this).find('td.status > span').addClass('btn-warning');
+            $(this).find('td.status > span').text("Read");
             $(".effect").hide();
             var from = $(this).attr('id');
             $('#from').val(from);
