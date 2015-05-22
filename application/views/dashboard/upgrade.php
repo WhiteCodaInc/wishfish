@@ -152,9 +152,10 @@
                         url: "<?= site_url() ?>app/pay",
                         data: {item_name: "wishfish-enterprise", amount: "49.99", upgrade: "1"},
                         success: function (answer) {
-                            $('.enterprise .overlay').hide();
-                            $('.enterprise .loading-img').hide();
                             if (answer == "0") {
+                                $('#planUpgrade .box-body button').prop('disabled', false);
+                                $('.enterprise .overlay').hide();
+                                $('.enterprise .loading-img').hide();
                                 $('#error').show();
                                 $('#error-msg').text("You can not upgrade your plan until your first invoice was created.!");
                             } else {
