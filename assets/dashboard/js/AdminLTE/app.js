@@ -48,6 +48,7 @@ $(function () {
         //Find the box parent        
         var box = $(this).parents(".box").first();
         var body = $(this).next();
+        console.log(body);
         //Find the body and the footer
         var bf = box.find(".box-body, .box-footer");
         if (!box.hasClass("collapsed-box")) {
