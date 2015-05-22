@@ -115,12 +115,15 @@ class Plan_ipn_listener extends CI_Controller {
         // Inspect IPN validation result and act accordingly
 
         if (strcmp($res, "VERIFIED") == 0) {
-
             $data = $this->input->post();
-//            $myfile = fopen(FCPATH . 'paypal.txt', "a");
-//            fwrite($myfile, $data . "\n");
-//            $planid = ($data['item_name'] == "wishfish-personal") ? 2 : 3;
-
+            $myfile = fopen(FCPATH . 'paypal.txt', "a");
+            $cnt = 1;
+            fwrite($myfile, "-----------{$data['txn_type']}-------------- \n");
+            foreach ($data as $key => $value) {
+                fwrite($myfile, "{$cnt}. {$key} => {$value} \n");
+                $cnt++;
+            }
+            fwrite($myfile, "-----------END {$data['txn_type']}-------------- \n");
             switch ($data['txn_type']) {
                 case "recurring_payment":
                     $userid = $data['rp_invoice_id'];
