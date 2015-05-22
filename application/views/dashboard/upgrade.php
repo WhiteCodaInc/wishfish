@@ -122,25 +122,35 @@
                     cardFlag = true;
 <?php endif; ?>
 
-                $('#pay_personal,#pay_enterprise').click(function () {
-                    var id = $(this).prop('id');
-                    $(this).prop('disabled', 'disabled');
-                    var item_name = "";
-                    var amount = "";
-                    if (id == "wishfish-personal") {
-                        item_name = "wishfish-personal";
-                        amount = "9.99";
-                    } else {
-                        item_name = "wishfish-enterprise";
-                        amount = "49.99";
-                    }
-                    $('#planUpgrade .box-body button').prop('disabled', 'disabled');
+                $('#pay_personal').click(function () {
+                    $('#planUpgrade .box-body button').prop('disabled', true);
+                    $('.enterprise .overlay').show();
+                    $('.enterprise .loading-img').show();
+                    $.ajax({
+                        type: 'POST',
+                        url: "<?= site_url() ?>app/upgrade/isAllowToDowngrade",
+                        success: function (data, textStatus, jqXHR) {
+                            $('#planUpgrade .box-body button').prop('disabled', false);
+                            $('.personal .overlay').hide();
+                            $('.personal .loading-img').hide();
+                            if (data == "1") {
+                                upgradeWithPaypal();
+                            } else {
+                                $('#error').show();
+                                $('#error-msg').text("You can not downgrade your plan..! ");
+                            }
+                        }
+                    });
+                });
+
+                $('#pay_enterprise').click(function () {
+                    $('#planUpgrade .box-body button').prop('disabled', true);
                     $('.enterprise .overlay').show();
                     $('.enterprise .loading-img').show();
                     $.ajax({
                         type: 'POST',
                         url: "<?= site_url() ?>app/pay",
-                        data: {item_name: item_name, amount: amount, upgrade: "1"},
+                        data: {item_name: "wishfish-enterprise", amount: "49.99", upgrade: "1"},
                         success: function (answer) {
                             $('.enterprise .overlay').hide();
                             $('.enterprise .loading-img').hide();
@@ -150,7 +160,6 @@
                             } else {
                                 window.location = answer;
                             }
-
                         }
                     });
                 });
@@ -178,7 +187,7 @@
                                     if (!cardFlag) {
                                         $('#personal button').trigger('click');
                                     } else {
-                                        upgradePlan();
+                                        upgradeWithStripe();
                                     }
                                 } else {
                                     $('#error').show();
@@ -221,7 +230,28 @@
 
                 });
 
-                function upgradePlan() {
+                function upgradeWithPaypal() {
+                    $('#planUpgrade .box-body button').prop('disabled', 'disabled');
+                    $('.personal .overlay').show();
+                    $('.personal .loading-img').show();
+                    $.ajax({
+                        type: 'POST',
+                        url: "<?= site_url() ?>app/pay",
+                        data: {item_name: "wishfish-personal", amount: "9.99", upgrade: "1"},
+                        success: function (answer) {
+                            $('.personal .overlay').hide();
+                            $('.personal .loading-img').hide();
+                            if (answer == "0") {
+                                $('#error').show();
+                                $('#error-msg').text("You can not upgrade your plan until your first invoice was created.!");
+                            } else {
+                                window.location = answer;
+                            }
+                        }
+                    });
+                }
+
+                function upgradeWithStripe() {
                     $('#planUpgrade .box-body button').prop('disabled', 'disabled');
                     $('.personal .overlay').show();
                     $('.personal .loading-img').show();
