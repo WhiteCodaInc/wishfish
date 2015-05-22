@@ -53,10 +53,11 @@ $(function () {
         var bf = box.find(".box-body, .box-footer");
         if (!box.hasClass("collapsed-box")) {
             box.addClass("collapsed-box");
-            body.prop('display', 'none');
+            
             //Convert minus into plus
             $(this).children(".fa-minus").removeClass("fa-minus").addClass("fa-plus");
             bf.slideUp();
+            body.attr('display', 'none');
         } else {
             box.removeClass("collapsed-box");
             //Convert plus into minus
