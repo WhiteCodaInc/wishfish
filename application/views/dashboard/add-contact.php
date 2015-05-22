@@ -89,6 +89,7 @@
                                                 </div>-->
                         <input value="" name="zodiac" type="hidden" class="form-control" >
                         <input value="" name="age" type="hidden" class="form-control" >
+                        <input type="submit" style="display: none" class="submit"/>
                     </form>
                 </div><!-- /.box -->
             </div><!--/.col (left) -->
@@ -127,7 +128,7 @@
                 href = "<?= site_url() ?>app/contacts/createContact";
             }
             $('#contactForm').attr('action', href);
-            $('#contactForm').submit();
+            $('.submit').trigger('click');
         });
 
         $('input[name="fname"]').focusout(function () {
