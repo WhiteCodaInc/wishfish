@@ -462,17 +462,7 @@
 
     </section>
 </aside>
-<?php $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid')); ?>
-<?php
-$time = date('Y-m-d H:i:s', gmt_to_local(time(), $userInfo->timezones, TRUE));
 
-
-$hour = date('H', strtotime($time));
-$minute = date('i', strtotime($time));
-$second = date('s', strtotime($time));
-
-$hour = ($userInfo->timezones == "UM9") ? $hour : $hour - 1;
-?>
 <script type="text/javascript" >
     $(function () {
         $('select[name="timezones"]').addClass('form-control m-bot15');
@@ -492,41 +482,6 @@ $hour = ($userInfo->timezones == "UM9") ? $hour : $hour - 1;
             autoclose: true,
             todayHighlight: true
         });
-
-        var props = 'transform WebkitTransform MozTransform OTransform msTransform'.split(' '),
-                prop,
-                el = document.createElement('div');
-        for (var i = 0, l = props.length; i < l; i++) {
-            if (typeof el.style[props[i]] !== "undefined") {
-                prop = props[i];
-                break;
-            }
-        }
-        startClock();
-        function startClock() {
-            var angle = 360 / 60,
-                    hour = <?= $hour ?> % 12,
-                    minute = <?= $minute ?>,
-                    second = <?= $second ?>;
-
-            setInterval(function () {
-                second++;
-                if (second > 59) {
-                    minute++;
-                    second = 0;
-                }
-                if (minute > 59) {
-                    hour++;
-                    minute = 0;
-                }
-                hourAngle = (360 / 12) * hour + (360 / (12 * 60)) * minute;
-                if (prop) {
-                    $('#minute')[0].style[prop] = 'rotate(' + angle * minute + 'deg)';
-                    $('#second')[0].style[prop] = 'rotate(' + angle * second + 'deg)';
-                    $('#hour')[0].style[prop] = 'rotate(' + hourAngle + 'deg)';
-                }
-            }, 1000);
-        }
     });
 </script>
 <script type="text/javascript">
