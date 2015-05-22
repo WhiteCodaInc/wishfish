@@ -54,7 +54,7 @@
                                                         <h3 class='box-title'>Editor</h3>
                                                     </div><!-- /.box-header -->
                                                     <div class='box-body pad'>
-                                                        <textarea id="editor1" name="body" rows="10" cols="80">
+                                                        <textarea id="editor1" name="body" rows="10" cols="80" required="">
                                                             <?= isset($template) ? $template->body : '' ?>
                                                         </textarea>
                                                     </div>
