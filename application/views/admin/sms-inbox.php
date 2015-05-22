@@ -175,6 +175,7 @@ switch ($msg) {
             $(".effect").toggle("slide", options, 500);
         }
         $('#inbox-data-table tbody tr').click(function () {
+            console.log($(this).find('span.status'));
             $(this).find('span.status').removeClass('btn-danger');
             $(this).find('span.status').addClass('btn-warning');
             $(this).find('span.status').text("Read");
