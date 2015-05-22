@@ -194,7 +194,7 @@
                     if (!cardFlag) {
                         setTimeout(function () {
                             $('#enterprise button').trigger('click');
-                            $('#planUpgrade .box-body button').prop('disabled', true);
+                            $('#planUpgrade .box-body button').prop('disabled', false);
                             $('.enterprise .overlay').hide();
                             $('.enterprise .loading-img').hide();
                         }, 2000);
