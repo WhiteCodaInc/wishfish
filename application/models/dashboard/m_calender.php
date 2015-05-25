@@ -11,7 +11,7 @@
  *
  * @author Laxmisoft
  */
-class M_wi_calender extends CI_Model {
+class M_calender extends CI_Model {
 
     private $userid;
 

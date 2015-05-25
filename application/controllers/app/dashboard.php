@@ -46,7 +46,7 @@ class Dashboard extends CI_Controller {
             header('location:' . site_url() . 'app/upgrade');
         } else {
             $this->load->model('dashboard/m_dashboard', 'objdashboard');
-            $this->load->model('dashboard/m_wi_calender', 'objcalender');
+            $this->load->model('dashboard/m_calender', 'objcalender');
             $this->load->model('m_register', 'objregister');
         }
     }
