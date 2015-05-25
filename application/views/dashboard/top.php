@@ -446,6 +446,9 @@ $img_src = ($profile_pic != "") ?
                                 var isValid = true;
                                 $('.setup a').on('click', function () {
                                     var id = $(this).prop('id');
+                                    setTimeout(function () {
+                                        $('.modal-backdrop').css('z-index', '999');
+                                    }, 1000);
                                     switch (id) {
                                         case "upload":
                                             $('#uploadSetup .modal-title').text("Complete Your Profile");
