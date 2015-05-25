@@ -20,7 +20,7 @@
         right: 15px;
         bottom: 35px;
         border: 3px solid cornflowerblue !important;*/
-    margin-bottom: 0
+    margin-bottom: 0 !important
 }
 .booster ul li{
     line-height: 28px;
