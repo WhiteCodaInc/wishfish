@@ -81,8 +81,10 @@ class Import extends CI_Controller {
 
         //extracting access_token from response string
         $responseToken = json_decode($result);
+        if (isset($responseToken->access_token)) {
+            $accesstoken = $responseToken->access_token;
+        }
 
-        $accesstoken = $responseToken->access_token;
         if ($accesstoken != "")
             $this->session->set_userdata('token', $accesstoken);
 
