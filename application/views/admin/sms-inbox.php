@@ -93,7 +93,6 @@
                         <h3 class="box-title">Conversation</h3>
                     </div>
                     <div class="box-body chat" id="chat-box">
-
                     </div>
                     <div class="box-footer">
                         <form id="replyForm" method="post">
@@ -202,20 +201,6 @@ switch ($msg) {
 </script>
 <script type="text/javascript">
     $(document).ready(function () {
-
-        /*$('#test').bind('click', function () {
-         var from = $('#from').val();
-         var msg = $('#reply').val();
-         $clone = $('#chat-box').children('div.out:first').clone();
-         $time = "<i class='fa fa-clock-o'></i>";
-         $time = $time + "<?= date('D,j M Y H:i:s') ?>";
-         $clone.find('small.text-muted').html($time);
-         $clone.find('span.body').html(msg);
-         $('#chat-box').append($clone);
-         
-         });*/
-
-
         $('button[name="send"]').bind('click', function () {
             var from = $('#from').val();
             var msg = $('#reply').val();

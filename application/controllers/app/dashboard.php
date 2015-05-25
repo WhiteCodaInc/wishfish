@@ -40,9 +40,15 @@ class Dashboard extends CI_Controller {
             $this->wi_authex->loginBySocial($id);
         }
 
-        $this->load->model('dashboard/m_dashboard', 'objdashboard');
-        $this->load->model('dashboard/m_calender', 'objcalender');
-        $this->load->model('m_register', 'objregister');
+        if (!$this->wi_authex->logged_in()) {
+            header('location:' . site_url() . 'home');
+        } elseif (!$this->wi_authex->isActivePlan()) {
+            header('location:' . site_url() . 'app/upgrade');
+        } else {
+            $this->load->model('dashboard/m_dashboard', 'objdashboard');
+            $this->load->model('dashboard/m_calender', 'objcalender');
+            $this->load->model('m_register', 'objregister');
+        }
     }
 
     function index() {
@@ -111,7 +117,7 @@ class Dashboard extends CI_Controller {
         $body .= "Customer Query : {$query}<br>";
 
 
-        
+
         $this->email->from($email, $name);
         $this->email->to("support@wish-fish.com");
 //        $this->email->to("vishaltesting7@gmail.com");
