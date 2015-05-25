@@ -15,7 +15,13 @@ class Email_notification extends CI_Controller {
 
     function __construct() {
         parent::__construct();
-        $this->load->model('admin/m_email_notification', 'obnotification');
+        if (!$this->authex->logged_in()) {
+            header('location:' . site_url() . 'admin/admin_login');
+        } else if (!$this->common->getPermission()->email) {
+            header('location:' . site_url() . 'admin/dashboard/error/500');
+        } else {
+            $this->load->model('admin/m_email_notification', 'obnotification');
+        }
     }
 
     function index() {
