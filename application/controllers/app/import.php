@@ -83,29 +83,29 @@ class Import extends CI_Controller {
         $responseToken = json_decode($result);
         if (isset($responseToken->access_token)) {
             $accesstoken = $responseToken->access_token;
-        }
-
-        if ($accesstoken != "")
             $this->session->set_userdata('token', $accesstoken);
 
-        //passing accesstoken to obtain contact details
-        $url = 'https://www.google.com/m8/feeds/contacts/default/full?max-results=' . $max_result . '&alt=json&v=3.0&oauth_token=' . $this->session->userdata('token');
+            //passing accesstoken to obtain contact details
+            $url = 'https://www.google.com/m8/feeds/contacts/default/full?max-results=' . $max_result . '&alt=json&v=3.0&oauth_token=' . $this->session->userdata('token');
 
-        $response = $this->curl_file_get_contents($url);
-        $contacts = json_decode($response, true);
-        $gc = array();
-        foreach ($contacts['feed']['entry'] as $cnt) {
-            $name = $cnt['title']['$t'];
-            $email = (isset($cnt['gd$email'])) ? $cnt['gd$email']['0']['address'] : '';
-            $phone = (isset($cnt['gd$phoneNumber'])) ? $cnt['gd$phoneNumber']['0']['$t'] : '';
-            $gc[] = array('name' => $name, 'email' => $email, 'phone' => $phone);
+            $response = $this->curl_file_get_contents($url);
+            $contacts = json_decode($response, true);
+            $gc = array();
+            foreach ($contacts['feed']['entry'] as $cnt) {
+                $name = $cnt['title']['$t'];
+                $email = (isset($cnt['gd$email'])) ? $cnt['gd$email']['0']['address'] : '';
+                $phone = (isset($cnt['gd$phoneNumber'])) ? $cnt['gd$phoneNumber']['0']['$t'] : '';
+                $gc[] = array('name' => $name, 'email' => $email, 'phone' => $phone);
+            }
+            $data['gc'] = $gc;
+            $data['url'] = $this->client->createAuthUrl();
+
+            $this->load->view('dashboard/header');
+            $this->load->view('dashboard/import', $data);
+            $this->load->view('dashboard/footer');
+        } else {
+            header('location:' . site_url() . 'app/import');
         }
-        $data['gc'] = $gc;
-        $data['url'] = $this->client->createAuthUrl();
-
-        $this->load->view('dashboard/header');
-        $this->load->view('dashboard/import', $data);
-        $this->load->view('dashboard/footer');
     }
 
     function addContacts() {
