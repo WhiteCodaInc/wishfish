@@ -45,7 +45,6 @@ class Import extends CI_Controller {
         if ($this->input->get('error') == "access_denied") {
             header('location:' . site_url() . 'admin/contacts');
         }
-        die();
         $authcode = $this->input->get('code');
         $clientid = $this->client->getClientId();
         $clientsecret = $this->client->getClientSecret();
