@@ -33,8 +33,8 @@
                             <table id="template-data-table" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th style="font-size: 17px;padding-right: 18px;text-align: center;">
-                                            <i class="fa fa-level-down"></i>
+                                        <th style="padding: 10px;">
+                                            <input type="checkbox"/>
                                         </th>
                                         <th class="hidden-xs hidden-sm">No.</th>
                                         <th>SMS Title</th>
@@ -113,7 +113,18 @@ switch ($msg) {
 <!-- page script -->
 <script type="text/javascript">
     $(function () {
-        $("#template-data-table").dataTable();
+        $("#template-data-table").dataTable({
+            aLengthMenu: [
+                [25, 50, 100, 200, -1],
+                [25, 50, 100, 200, "All"]
+            ],
+            aoColumnDefs: [{
+                    bSortable: false,
+                    aTargets: [0, 1, 3]
+                }],
+            iDisplayLength: -1,
+            aaSorting: [[2, 'asc']]
+        });
     });
 </script>
 <script type="text/javascript">
