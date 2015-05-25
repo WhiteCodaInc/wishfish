@@ -20,6 +20,9 @@ class Wi_common {
         $this->_CI->load->helper('file');
         $this->user_id = $this->_CI->session->userdata('userid');
 
+        $this->_CI->load->model('dashboard/m_contacts', 'objcontact');
+        $this->_CI->load->model('dashboard/m_calender', 'objcalender');
+
         require_once APPPATH . 'third_party/mailgun-php/vendor/autoload.php';
         $this->mgClient = new Mailgun('key-acfdb718a88968c616bcea83e1020909');
         $this->listAddress = 'wish-fish@mg.mikhailkuznetsov.com';
@@ -29,6 +32,22 @@ class Wi_common {
     function getUserInfo($userid) {
         $query = $this->_CI->db->get_where('wi_user_mst', array('user_id' => $userid));
         return $query->row();
+    }
+
+    function getProfileSetup() {
+        $per = 20;
+        $userInfo = $this->getUserInfo($this->userid);
+        $setup['upload'] = ($userInfo->profile_pic != "") ? 1 : 0;
+        $setup['profile'] = ($userInfo->phone != "" && $userInfo->birthday != "") ? 1 : 0;
+        $contacts = $this->_CI->objcontact->getContactDetail();
+        $setup['contact'] = (count($contacts) > 0) ? 1 : 0;
+        $events = $this->_CI->objcalender->getNormalEvent();
+        $setup['event'] = (count($events) > 0) ? 1 : 0;
+        foreach ($setup as $value) {
+            $per += ($value) ? 20 : 0;
+        }
+        $setup['per'] = $per;
+        return $setup;
     }
 
     function getContactInfo($contactid) {
