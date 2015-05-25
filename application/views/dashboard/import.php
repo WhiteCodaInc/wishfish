@@ -10,11 +10,11 @@
         <h1 style="float: left">
             Google Contacts
         </h1>
-        <a href="<?= $url ?>" class="btn btn-success btn-sm">
+        <a style="background-color: #d2d6de;border-color: #D2D6FE;" href="<?= $url ?>" class="btn">
             <i class="fa fa-plus"></i>
             Import
         </a>
-        <button style="margin-left: 10px" value="Add" class="btn btn-danger btn-sm" id="Add" type="button" >Add Contacts</button>
+        <button style="margin-left: 10px" value="Add" class="btn btn-success" id="Add" type="button" >Add Selected Contacts</button>
     </section>
     <!-- Main content -->
     <section class="content">
