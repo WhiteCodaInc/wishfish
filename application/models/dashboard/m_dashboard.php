@@ -71,8 +71,7 @@ class M_dashboard extends CI_Model {
         }
     }
 
-    function updatePassword() {
-        $post = $this->input->post();
+    function updatePassword($post) {
         $where['user_id'] = $post['userid'];
         $set['password'] = $post['password'];
 
