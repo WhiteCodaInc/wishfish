@@ -30,12 +30,12 @@ class Dashboard extends CI_Controller {
     }
 
     function index() {
-        $card = $this->objcalender->getCards();
+        $data['card'] = $this->objcalender->getCards();
 
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');
-        $this->load->view('admin/admin-dashboard', $card);
+        $this->load->view('admin/admin-dashboard', $data);
         $this->load->view('admin/admin_footer');
     }
 
