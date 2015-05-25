@@ -171,7 +171,7 @@ $img_src = ($profile_pic != "") ?
                                 <h4 id='loading' style="display:none;">loading...</h4>
                                 <div id="msg"></div>
                             </li>
-                            <?php $setup = $this->common->getProfileSetup(); ?>
+                            <?php $setup = $this->wi_common->getProfileSetup(); ?>
                             <li>
                                 <?php if ($setup['per'] != "100"): ?>
                                     <div class="box box-solid booster">
