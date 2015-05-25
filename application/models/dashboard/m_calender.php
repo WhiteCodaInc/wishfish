@@ -176,7 +176,7 @@ class M_calender extends CI_Model {
 
     function getEvent($eid) {
         $this->db->select('*,concat(fname," ",lname) as name,concat(DATE_FORMAT(date,"%M %d")," at ",TIME_FORMAT(time, "%h:%i %p")) as date,date as format_date', FALSE);
-        $this->db->from('schedule as S');
+        $this->db->from('wi_schedule as S');
         $this->db->join('wi_contact_detail as C', 'S.contact_id = C.contact_id', 'left outer');
         $this->db->join('wi_contact_groups as G', 'S.group_id = G.group_id', 'left outer');
         $this->db->where('event_id', $eid);
