@@ -27,7 +27,7 @@ class Calender extends CI_Controller {
             $this->load->model('dashboard/m_contact_groups', 'objgroup');
             $this->load->model('dashboard/m_sms_template', 'objsmstemplate');
             $this->load->model('dashboard/m_email_template', 'objemailtemplate');
-            $this->load->model('dashboard/m_wi_calender', 'objcalender');
+            $this->load->model('dashboard/m_wi_calender', 'objcal');
         }
     }
 
@@ -41,7 +41,7 @@ class Calender extends CI_Controller {
 
     function createEvent($contactid) {
         $t = $this->input->get('type');
-        $res = $this->objcalender->createEvent($contactid);
+        $res = $this->objcal->createEvent($contactid);
         if ($res) {
             $data['individual'] = $this->objcontact->getContactDetail();
             $data['template'] = $this->objsmstemplate->getTemplates();
@@ -58,7 +58,7 @@ class Calender extends CI_Controller {
 
     function allGroup() {
         $currPlan = $this->wi_common->getCurrentPlan();
-        $res = $this->objcalender->checkTotalGroupEvent();
+        $res = $this->objcal->checkTotalGroupEvent();
         if (!$res || $res->total < $currPlan->group_events) {
             $group = $this->objgroup->getContactGroups("simple");
             echo '<select  name="group_id" class="form-control">';
@@ -76,7 +76,7 @@ class Calender extends CI_Controller {
         $individual = $this->objcontact->getContactDetail();
         $currPlan = $this->wi_common->getCurrentPlan();
         foreach ($individual as $key => $value) {
-            $res = $this->objcalender->checkTotalEvent($value->contact_id);
+            $res = $this->objcal->checkTotalEvent($value->contact_id);
             switch ($type) {
                 case "email":
                     if (!isset($res['email']) || (isset($res['email']) && $res['email'] < $currPlan->email_events + 1)) {
@@ -104,9 +104,9 @@ class Calender extends CI_Controller {
 
     function getTemplate($type, $tmpid) {
         if ($type == "sms" || $type == "notification") {
-            $this->objcalender->getSMSTemplate($tmpid);
+            $this->objcal->getSMSTemplate($tmpid);
         } else if ($type == "email") {
-            $this->objcalender->getEmailTemplate($tmpid);
+            $this->objcal->getEmailTemplate($tmpid);
         }
     }
 
@@ -128,7 +128,7 @@ class Calender extends CI_Controller {
 
     function addEvent() {
         $post = $this->input->post();
-        $data = $this->objcalender->addEvent($post);
+        $data = $this->objcal->addEvent($post);
         if ($data) {
             echo 1;
         } else {
@@ -138,23 +138,23 @@ class Calender extends CI_Controller {
 
     function getEvents() {
         $post = $this->input->post();
-        $this->objcalender->getEvents($post);
+        $this->objcal->getEvents($post);
     }
 
     function getCards() {
         $post = $this->input->post();
-        $this->objcalender->getCards($post);
+        $this->objcal->getCards($post);
     }
 
     function getEvent($eid) {
-        $event = $this->objcalender->getEvent($eid);
+        $event = $this->objcal->getEvent($eid);
         echo json_encode($event);
     }
 
     function updateEvent() {
         $set = $this->input->post();
         if (is_array($set)) {
-            $msg = $this->objcalender->updateEvent($set);
+            $msg = $this->objcal->updateEvent($set);
             switch ($msg) {
                 case "U":
                     echo 1;
@@ -173,7 +173,7 @@ class Calender extends CI_Controller {
     }
 
     function deleteEvent($eid) {
-        $flag = $this->objcalender->deleteEvent($eid);
+        $flag = $this->objcal->deleteEvent($eid);
         echo ($flag) ? 1 : 0;
     }
 
