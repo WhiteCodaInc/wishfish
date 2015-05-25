@@ -101,7 +101,11 @@ class Dashboard extends CI_Controller {
 
     function updatePassword() {
         $post = $this->input->post();
-        print_r($post);
+        if(isset($post)){
+            echo 'SET';
+        }else{
+            echo 'Not Set';
+        }
         die();
         if (count($post)) {
             $login = $this->objdashboard->updatePassword();
