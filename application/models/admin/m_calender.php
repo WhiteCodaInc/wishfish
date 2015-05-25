@@ -93,7 +93,9 @@ class M_calender extends CI_Model {
 
     function getCards() {
         $res = array();
-
+        echo '<pre>';
+        print_r($res);
+        die();
         $start = date('Y-m-01'); // hard-coded '01' for first day
         $end = date('Y-m-t');
 //        $start = ($post['start'] != "") ? gmdate("Y-m-d", $post['start']) : date('Y-m-01');
@@ -114,7 +116,7 @@ class M_calender extends CI_Model {
         $this->db->select('count(*) as totalY');
         $query = $this->db->get_where('schedule', $where);
         $res['totalY'] = $query->row()->totalY;
-        
+
 
         //-------------------Get Total Event In Week------------------------//
         $where = array(
@@ -132,9 +134,7 @@ class M_calender extends CI_Model {
         $this->db->select('count(*) as totalD');
         $query = $this->db->get_where('schedule', $where);
         $res['totalD'] = $query->row()->totalD;
-        echo '<pre>';
-        print_r($res);
-        die();
+
         return $res;
     }
 
