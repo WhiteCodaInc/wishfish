@@ -100,7 +100,7 @@ class Dashboard extends CI_Controller {
     }
 
     function updatePassword() {
-        if (isset($_POST) && count($_POST)) {
+        if (isset($this->input->post()) && count($this->input->post())) {
             $login = $this->objdashboard->updatePassword();
             if ($login && $this->wi_authex->login($login)) {
                 header('location:' . site_url() . 'app/dashboard');
