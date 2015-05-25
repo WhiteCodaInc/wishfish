@@ -68,10 +68,8 @@ if ($userid != "") {
 <!--pickers plugins-->
 <script type="text/javascript" src="<?= base_url() ?>assets/dashboard/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 
-</div><!-- ./wrapper -->
-
-<!-- iCheck -->
-<script src="<?= base_url() ?>assets/dashboard/js/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
+<!--<script src="<?= base_url() ?>assets/admin/js/plugins/iCheck/icheck.js" type="text/javascript"></script>-->
+<script src="<?= base_url() ?>assets/admin/js/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
 
 <!-- AdminLTE App -->
 <script src="<?= base_url() ?>assets/dashboard/js/AdminLTE/app.js" type="text/javascript"></script>
