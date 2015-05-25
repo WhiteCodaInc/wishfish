@@ -36,7 +36,7 @@ class Wi_common {
 
     function getProfileSetup() {
         $per = 20;
-        $userInfo = $this->getUserInfo($this->userid);
+        $userInfo = $this->getUserInfo($this->user_id);
         $setup['upload'] = ($userInfo->profile_pic != "") ? 1 : 0;
         $setup['profile'] = ($userInfo->phone != "" && $userInfo->birthday != "") ? 1 : 0;
         $contacts = $this->_CI->objcontact->getContactDetail();
