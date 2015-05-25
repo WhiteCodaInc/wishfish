@@ -175,9 +175,9 @@ $img_src = ($profile_pic != "") ?
                             <li>
                                 <?php if ($setup['per'] != "100"): ?>
                                     <div class="box box-solid booster">
-                                        <div class="box-header">
-                                            <h3>Profile <?= $setup['per'] ?>% completed</h3>
-                                            <div class="progress progress-striped">
+                                        <div class="box-header" style="padding: 0 10px;">
+                                            <h4>Profile <?= $setup['per'] ?>% completed</h4>
+                                            <div style="height: 10px;  margin-bottom: 10px;" class="progress progress-striped">
                                                 <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="<?= $setup['per'] ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?= $setup['per'] ?>%">
                                                     <span class="sr-only"><?= $setup['per'] ?>% Complete (success)</span>
                                                 </div>

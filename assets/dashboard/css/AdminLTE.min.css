@@ -15,21 +15,22 @@
     color: #00c875 !important
 }
 .booster{
-    width: 25% !important;
-    position: fixed !important;
-    right: 15px;
-    bottom: 35px;
-    border: 3px solid cornflowerblue !important;
+    /*    width: 25% !important;
+        position: fixed !important;
+        right: 15px;
+        bottom: 35px;
+        border: 3px solid cornflowerblue !important;*/
+    margin-bottom: 0
 }
 .booster ul li{
-    line-height: 50px;
+    line-height: 28px;
     border-bottom: 1px solid #dee2e4;
-    font-size: 16px;
+    font-size: 15px;
     padding: 0 15px
 }
 .booster ul li i{
     vertical-align: middle;
-    font-size: 20px
+    font-size: 15px
 }
 
 #planUpgrade ul li{
