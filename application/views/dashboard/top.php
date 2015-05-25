@@ -230,6 +230,376 @@ $img_src = ($profile_pic != "") ?
                                 </div>
                             </li>
                         </ul>
+                        <!---------------------------Complete Your Profile------------------------------->
+                        <div class="modal fade" id="profileSetup" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog" style="max-width: 400px">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title">Complete Your Profile</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form id="cprofileForm" method="post">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <div class="row">
+                                                            <div class="col-sm-4">
+                                                                <label>Country Code</label>
+                                                                <select name="code" class="form-control">
+                                                                    <option value="+1">+1</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-sm-8">
+                                                                <label>Phone Number</label>
+                                                                <i title="The coolest thing about Wish-Fish is that you can setup text message notification for yourself,These way you never miss an important event like a birthday or anniversary! We will only message you with the notifications you set,We promise." class="fa fa-question-circle"></i>
+                                                                <div class="input-group">
+                                                                    <div class="input-group-addon">
+                                                                        <i class="fa fa-phone"></i>
+                                                                    </div>
+                                                                    <input style="z-index: 0" type="text" name="phone" class="form-control" placeholder="Enter Phone Number" data-inputmask='"mask": "(999) 999-9999"' data-mask/>
+                                                                </div><!-- /.input group -->
+                                                            </div>
+                                                        </div>
+                                                    </div><!-- /.form group -->
+                                                    <div class="form-group">
+                                                        <label>Birthday</label>
+                                                        <div class="input-group">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-calendar"></i>
+                                                            </div>
+                                                            <input style="z-index: 0;" name="birthday" class="form-control form-control-inline input-medium default-date-picker" size="16" type="text">
+                                                        </div><!-- /.input group -->
+                                                    </div><!-- /.form group -->
+
+                                                    <div class="form-group">
+                                                        <label>Date Format</label>
+                                                        <select name="date_format" id="date-format" class="form-control m-bot15">
+                                                            <option value="mm-dd-yyyy">mm-dd-yyyy</option>
+                                                            <option value="dd-mm-yyyy">dd-mm-yyyy</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group" id="select-timezone">
+                                                        <label >Timezone </label>
+                                                        <?= timezone_menu('UTC') ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <span id="msgProfile"></span>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer clearfix">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <button type="button" id="profileBtn" class="btn btn-primary pull-left">Save Profile</button>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div id="loadProfile" style="display: none">
+                                                    <img src="<?= base_url() ?>assets/dashboard/img/load.GIF" alt="" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-7" style="text-align: right">
+                                                <button type="button" class="btn btn-danger discard" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </form>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div>
+                        <!-------------------------End Complete Your Profile------------------------------>
+
+                        <!-------------------------Upload Your Profile Photo------------------------------>
+                        <?php
+                        $path = $this->session->userdata('profile_pic');
+                        $img_src_setup = ($path != "") ?
+                                "http://mikhailkuznetsov.s3.amazonaws.com/" . $path :
+                                base_url() . 'assets/dashboard/img/default-avatar.png';
+                        ?>
+                        <div class="modal fade" id="uploadSetup" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog" style="max-width: 400px">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title">Upload Your Profile Picture</h4>
+                                    </div>
+                                    <form id="uploadForm" method="post" enctype="multipart/form-data">
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <div class="row" style="margin-bottom: 5%">
+                                                    <div class="col-md-12" style="text-align: center">
+                                                        <div  class="image" style="text-align: center">
+                                                            <img id="profile_previewing" style="width: 100px;height: 100px"  src="<?= $img_src_setup ?>" class="img-circle" alt="User Image" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12" style="text-align: center">
+                                                        <input title="Add a photo so we can recognize you !" name="profile_pic"  type="file" id="profilePic" class="form-control" />
+                                                        <span id="error_message"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer clearfix">
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <button type="submit" id="uploadBtn" class="btn btn-primary pull-left">Upload</button>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div id="loadUpload" style="display: none">
+                                                        <img src="<?= base_url() ?>assets/dashboard/img/load.GIF" alt="" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-7" style="text-align: right">
+                                                    <button type="button" class="btn btn-danger discard" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div>
+                        <!-----------------------End Upload Your Profile Photo---------------------------->
+
+                        <!---------------------------Add New Contact------------------------------->
+                        <div class="modal fade" id="contactSetup" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog" style="max-width: 400px">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title">Add New Contact</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form id="contactForm" method="post">
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div  class="col-md-6">
+                                                        <label>First Name</label>
+                                                        <input type="text" name="fname" autofocus="autofocus" class="form-control" placeholder="First Name" required=""/>
+                                                    </div>
+                                                    <div  class="col-md-6">
+                                                        <label>Last Name</label>
+                                                        <input type="text" name="lname" class="form-control" placeholder="Last Name" required=""/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group" >
+                                                <label>Birthday</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-calendar"></i>
+                                                    </div>
+                                                    <input style="z-index: 0" name="birthday" placeholder="Enter Birthdate" value="<?= isset($contacts) ? $this->wi_common->getUTCDate($contacts->birthday) : '' ?>"  class="form-control form-control-inline input-medium default-date-picker" size="16" type="text" required="">
+                                                </div><!-- /.input group -->
+                                            </div><!-- /.form group -->
+                                            <div class="form-group" >
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <label>Country Code</label>
+                                                        <select name="code" class="form-control">
+                                                            <option value="+1">+1</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-sm-8">
+                                                        <label>Phone Number </label>
+                                                        <i title="You can send your contact a pre scheduled text message.In case you`r busy or vacation,so you don`t miss an important date ! (its kind of magical!)" class="fa fa-question-circle"></i>
+                                                        <div class="input-group">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-phone"></i>
+                                                            </div>
+                                                            <input name="phone" type="text" class="form-control"  placeholder="Enter Phone Number" data-inputmask='"mask": "(999) 999-9999"' data-mask required=""/>
+                                                        </div><!-- /.input group -->
+                                                    </div>
+                                                </div>
+                                            </div><!-- /.form group -->
+                                            <div class="form-group">
+                                                <label for="password">Email</label>
+                                                <input name="email" type="email" class="form-control"  placeholder="Enter Their Email">
+                                            </div>
+                                            <span id="msgContact"></span>
+                                            <input value="" name="zodiac" type="hidden" class="form-control" >
+                                            <input value="" name="age" type="hidden" class="form-control" >
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer clearfix">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <button type="button" id="contactBtn" class="btn btn-primary pull-left">Save Profile</button>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div id="loadContact" style="display: none">
+                                                    <img src="<?= base_url() ?>assets/dashboard/img/load.GIF" alt="" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-7" style="text-align: right">
+                                                <button type="button" class="btn btn-danger discard" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div>
+                        <!-------------------------End Add Contact------------------------------>
+                        <script type="text/javascript">
+                            $(document).ready(function () {
+                                var isValid = true;
+                                $('.setup a').on('click', function () {
+                                    var id = $(this).prop('id');
+                                    switch (id) {
+                                        case "upload":
+                                            $('#uploadSetup .modal-title').text("Complete Your Profile");
+                                            break;
+                                        case "profile":
+                                            $('#profileSetup .modal-title').text("Upload Your Profile Photo");
+                                            break;
+                                        case "contact":
+                                            $('#contactSetup .modal-title').text("Complete Your Profile");
+                                            break;
+                                    }
+                                });
+
+                                /**************************Upload Profile Pic**************************/
+                                $("#uploadForm input:file").change(function () {
+                                    $("#uploadForm #error_message").empty(); // To remove the previous error message
+                                    var file = this.files[0];
+                                    var imagefile = file.type;
+                                    var match = ["image/jpeg", "image/png", "image/jpg", "image/gif"];
+                                    if (!((imagefile == match[0]) || (imagefile == match[1]) || (imagefile == match[2]) || (imagefile == match[3])))
+                                    {
+                                        $("#uploadForm #error_message").html("<p id='error' style='color:red'>Please Select A valid Image File.<br>" + "<span id='error_message'>Only jpeg, jpg and png Images type allowed</span></p>");
+                                        isValid = false;
+                                        return false;
+                                    }
+                                    else
+                                    {
+                                        var reader = new FileReader();
+                                        reader.onload = UploadImageIsLoaded;
+                                        reader.readAsDataURL(this.files[0]);
+                                        isValid = true;
+                                    }
+                                });
+
+                                function UploadImageIsLoaded(e) {
+                                    $("#uploadForm #profilePic").css("color", "green");
+                                    $("#uploadForm #profile_previewing").attr('src', e.target.result);
+                                }
+
+                                $('#uploadForm').on('submit', (function (e) {
+                                    if (!isValid)
+                                        return false;
+                                    $('#uploadBtn').prop('disabled', true);
+                                    e.preventDefault();
+                                    $('#loadUpload').show();
+                                    $("#error_message").empty();
+                                    $.ajax({
+                                        url: "<?= site_url() ?>app/profile/upload",
+                                        type: "POST",
+                                        data: new FormData(this), // Data sent to server, a set of key/value pairs representing form fields and values 
+                                        contentType: false, // The content type used when sending data to the server. Default is: "application/x-www-form-urlencoded"
+                                        cache: false, // To unable request pages to be cached
+                                        processData: false, // To send DOMDocument or non processed data file it is set to false (i.e. data should not be in the form of string)
+                                        success: function (data)
+                                        {
+                                            $('#loadUpload').hide();
+                                            if (data == "1") {
+                                                $("#uploadForm #error_message").css('color', 'green');
+                                                $("#uploadForm #error_message").html("Profile Picture Successfully Uploaded..!");
+                                                setTimeout(function () {
+                                                    $('.discard').trigger('click');
+                                                    location.reload(true);
+                                                }, 1000);
+                                            } else {
+                                                $('#uploadBtn').prop('disabled', false);
+                                                $("#uploadForm #error_message").css('color', 'red');
+                                                $("#uploadForm #error_message").html("Profile Picture Uploading Failed..!");
+                                            }
+                                        }
+                                    });
+                                }));
+                                /**********************************************************************/
+
+                                /*************************Complete Your Profile************************/
+                                $('#profileBtn').on('click', function () {
+                                    var id = $(this).prop('id');
+                                    $('#' + id).prop('disabled', true);
+                                    $('#loadProfile').show();
+                                    $.ajax({
+                                        type: 'POST',
+                                        data: $('#cprofileForm').serialize(),
+                                        url: "<?= site_url() ?>app/profile/updateProfileSetup",
+                                        success: function (data, textStatus, jqXHR) {
+                                            $('#loadProfile').hide();
+                                            if (data == "1") {
+                                                $("#msgProfile").css('color', 'green');
+                                                $("#msgProfile").html("Profile Successfully Updated..!");
+                                                setTimeout(function () {
+                                                    $('.discard').trigger('click');
+                                                    location.reload(true);
+                                                }, 1000);
+                                            } else {
+                                                $("#msgProfile").css('color', 'red');
+                                                $("#msgProfile").html("Profile has not been Updated..!");
+                                                $('#' + id).prop('disabled', false);
+                                            }
+                                        }
+                                    });
+                                });
+                                /**********************************************************************/
+                                /*************************Add New Contact************************/
+                                $('#contactSetup input[name="fname"]').focusout(function () {
+                                    var str = $(this).val() + "'s";
+                                    $('#contactSetup  input[name="birthday"]').attr('placeholder', 'Enter ' + str + ' Birthdate');
+                                    $('#contactSetup input[name="phone"]').attr('placeholder', 'Enter ' + str + ' Phone Number');
+                                });
+                                $('#contactSetup input[name="birthday"]').focusout(function () {
+                                    var dt = $(this).val();
+                                    var pastYear = dt.split('-');
+                                    var now = new Date();
+                                    var nowYear = now.getFullYear();
+                                    var age = nowYear - pastYear[2];
+                                    if (dt != "") {
+                                        $.ajax({
+                                            type: 'POST',
+                                            data: {birthdate: dt},
+                                            url: "<?= site_url() ?>app/contacts/getZodiac/" + dt,
+                                            success: function (data, textStatus, jqXHR) {
+                                                $('#contactSetup  input[name="zodiac"]').val(data);
+                                                $('#contactSetup  input[name="age"]').val(age);
+                                            }
+                                        });
+                                    } else {
+                                        $('#contactSetup  input[name="zodiac"]').val('');
+                                        $('#contactSetup  input[name="age"]').val('');
+                                    }
+                                });
+                                $('#contactSetup #contactBtn').on('click', function () {
+                                    var id = $(this).prop('id');
+                                    $('#' + id).prop('disabled', true);
+                                    $('#loadContact').show();
+                                    $.ajax({
+                                        type: 'POST',
+                                        data: $('#contactSetup #contactForm').serialize(),
+                                        url: "<?= site_url() ?>app/contacts/add_contact",
+                                        success: function (data, textStatus, jqXHR) {
+                                            $('#loadContact').hide();
+                                            if (data == "1") {
+                                                $("#contactSetup #msgContact").css('color', 'green');
+                                                $("#contactSetup #msgContact").html("Contact Successfully Added..!");
+                                                setTimeout(function () {
+                                                    $('.discard').trigger('click');
+                                                    location.reload(true);
+                                                }, 1000);
+                                            } else {
+                                                $("#contactSetup #msgContact").css('color', 'red');
+                                                $("#contactSetup #msgContact").html("Contact has not been Added..!");
+                                                $('#' + id).prop('disabled', false);
+                                            }
+                                        }
+                                    });
+                                });
+                            });
+                        </script>
                     </li>
                 </ul>
                 <span class="separator"></span>
@@ -249,7 +619,6 @@ $img_src = ($profile_pic != "") ?
                         </a>
                     </div>
                 </div>
-
 
                 <div class="modal fade" id="query-modal" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog" style="max-width: 400px">
@@ -297,25 +666,25 @@ $img_src = ($profile_pic != "") ?
                 </style>
                 <script src="<?= base_url() ?>assets/dashboard/js/plugins/Qtip/js/jquery.qtip.js" type="text/javascript"></script>
                 <script type="text/javascript">
-                    $(function () {
-                        $('#profile_pic').on('click', function () {
-                            $('#profile-image-upload').click();
-                        });
+                            $(function () {
+                                $('#profile_pic').on('click', function () {
+                                    $('#profile-image-upload').click();
+                                });
 
-                        $('#help').qtip({
-                            content: {
-                                text: "Have question or feddback?<br/> We`re always happy to hear from you!",
-                                title: {text: "Feddback / Support"}
-                            },
-                            position: {
-                                my: "top center",
-                                at: "left center",
-                                container: false,
-                                viewport: $(window)
-                            },
-                            style: {classes: 'tooltip-width'},
-                            hide: {fixed: true}
-                        });
+                                $('#help').qtip({
+                                    content: {
+                                        text: "Have question or feddback?<br/> We`re always happy to hear from you!",
+                                        title: {text: "Feddback / Support"}
+                                    },
+                                    position: {
+                                        my: "top center",
+                                        at: "left center",
+                                        container: false,
+                                        viewport: $(window)
+                                    },
+                                    style: {classes: 'tooltip-width'},
+                                    hide: {fixed: true}
+                                });
 //                        $('#help').tooltip({
 //                            position: {
 //                                my: "bottom center",
@@ -325,7 +694,7 @@ $img_src = ($profile_pic != "") ?
 //                            }
 //                        });
 
-                    });
+                            });
                 </script>
                 <script type="text/javascript">
                     $(document).ready(function (e) {
@@ -383,12 +752,12 @@ $img_src = ($profile_pic != "") ?
                             else
                             {
                                 var reader = new FileReader();
-                                reader.onload = imageIsLoaded;
+                                reader.onload = profileImageIsLoaded;
                                 reader.readAsDataURL(this.files[0]);
                             }
                             $('#profileForm').submit();
                         });
-                        function imageIsLoaded(e) {
+                        function profileImageIsLoaded(e) {
 
                             $("#image_preview").css("display", "block");
                             $("#profile_pic").attr('src', e.target.result);

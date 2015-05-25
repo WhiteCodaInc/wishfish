@@ -54,14 +54,14 @@ class Dashboard extends CI_Controller {
     function index() {
         if ($this->wi_authex->logged_in()) {
             $card = $this->objcalender->getCards();
-            $setup = $this->objdashboard->getProfileSetup();
-            $data = array_merge_recursive($card, $setup);
+//            $setup = $this->objdashboard->getProfileSetup();
+//            $data = array_merge_recursive($card, $setup);
 //            echo '<pre>';
 //            print_r($data);
 //            die();
             $this->load->view('dashboard/header');
             $this->load->view('dashboard/top');
-            $this->load->view('dashboard/dashboard', $data);
+            $this->load->view('dashboard/dashboard', $card);
             $this->load->view('dashboard/footer');
         } else {
             $userInfo = $this->wi_common->getUserInfo($this->uid);
