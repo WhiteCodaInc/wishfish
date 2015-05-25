@@ -17,9 +17,9 @@
         });
         $('table tbody :checkbox').on('ifChanged', function (event) {
             if ($('table tbody :checkbox').filter(':checked').length == $('table tbody :checkbox').length) {
-                $('table thead :checkbox').prop('checked', 'checked');
+                $('table thead :checkbox').prop('checked', true);
             } else {
-                $('table thead :checkbox').removeProp('checked');
+                $('table thead :checkbox').prop('checked', false);
             }
             $('table thead :checkbox').iCheck('update');
         });
