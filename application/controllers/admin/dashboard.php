@@ -25,12 +25,12 @@ class Dashboard extends CI_Controller {
         if (!$this->authex->logged_in()) {
             header('location:' . site_url() . 'admin/admin_login');
         } else {
-            $this->load->model('admin/m_calender', 'objcal');
+            $this->load->model('admin/m_calender', 'objcalender');
         }
     }
 
     function index() {
-        $data['card'] = $this->objcal->getCards();
+        $data['card'] = $this->objcalender->getCards();
         print_r($data);
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
