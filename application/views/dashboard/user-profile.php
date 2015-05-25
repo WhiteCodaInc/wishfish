@@ -315,7 +315,7 @@
 
         $('#userForm,#cardForm').on('submit', function () {
             cardForm = $(this).attr('id');
-//            console.log(cardForm);
+            console.log(cardForm);
             $('#save').attr('disabled', 'disabled');
             if (!cardFlag || cardForm == "cardForm") {
                 var error = false;
