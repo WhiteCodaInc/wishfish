@@ -100,11 +100,15 @@ class Dashboard extends CI_Controller {
     }
 
     function updatePassword() {
-        $login = $this->objdashboard->updatePassword();
-        if ($login && $this->wi_authex->login($login)) {
-            header('location:' . site_url() . 'app/dashboard');
+        if (isset($_POST)) {
+            $login = $this->objdashboard->updatePassword();
+            if ($login && $this->wi_authex->login($login)) {
+                header('location:' . site_url() . 'app/dashboard');
+            } else {
+                header('location:' . site_url() . 'app/dashboard?uid=' . $this->uid);
+            }
         } else {
-            header('location:' . site_url() . 'app/dashboard?uid=' . $this->uid);
+            header('location:' . site_url() . 'app/dashboard');
         }
     }
 
