@@ -314,6 +314,10 @@ switch ($msg) {
                 [25, 50, 100, 200, -1],
                 [25, 50, 100, 200, "All"]
             ],
+            aoColumnDefs: [{
+                    bSortable: false,
+                    aTargets: [0, 1, 3, 4, 7, 8]
+                }],
             iDisplayLength: -1,
             aaSorting: [[2, 'asc']]
         });
