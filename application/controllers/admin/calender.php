@@ -29,7 +29,7 @@ class Calender extends CI_Controller {
             $this->load->model('admin/m_email_template', 'objemailtemplate');
             $this->load->model('admin/m_sms', 'objsms');
             $this->load->model('admin/m_email', 'objemail');
-            $this->load->model('admin/m_calender', 'objcalender');
+            $this->load->model('admin/m_admin_calender', 'objcalender');
         }
     }
 
