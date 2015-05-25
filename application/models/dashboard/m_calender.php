@@ -110,7 +110,7 @@ class M_calender extends CI_Model {
 
     function getCards() {
         $res = array();
-
+        die();
         $start = date('Y-m-01'); // hard-coded '01' for first day
         $end = date('Y-m-t');
 //        $start = ($post['start'] != "") ? gmdate("Y-m-d", $post['start']) : date('Y-m-01');
