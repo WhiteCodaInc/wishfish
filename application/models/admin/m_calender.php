@@ -114,6 +114,9 @@ class M_calender extends CI_Model {
         $this->db->select('count(*) as totalY');
         $query = $this->db->get_where('schedule', $where);
         $res['totalY'] = $query->row()->totalY;
+        echo '<pre>';
+        print_r($query->row());
+        die();
 
         //-------------------Get Total Event In Week------------------------//
         $where = array(
