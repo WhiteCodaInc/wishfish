@@ -29,7 +29,7 @@ class Calender extends CI_Controller {
             $this->load->model('admin/m_email_template', 'objemailtemplate');
             $this->load->model('admin/m_sms', 'objsms');
             $this->load->model('admin/m_email', 'objemail');
-            $this->load->model('admin/m_calender', 'objcal');
+            $this->load->model('admin/m_calender', 'objcalender');
         }
     }
 
@@ -45,7 +45,7 @@ class Calender extends CI_Controller {
 
     function createEvent($type, $userid) {
         $t = $this->input->get('type');
-        $res = $this->objcal->createEvent($type, $userid);
+        $res = $this->objcalender->createEvent($type, $userid);
         if ($res) {
             $data['individual'] = $this->objcontact->getContactDetail();
             $data['template'] = $this->objsmstemplate->getTemplates();
@@ -105,7 +105,7 @@ class Calender extends CI_Controller {
 
     function addEvent() {
         $post = $this->input->post();
-        $data = $this->objcal->addEvent($post);
+        $data = $this->objcalender->addEvent($post);
         if ($data) {
             echo 1;
         } else {
@@ -115,25 +115,25 @@ class Calender extends CI_Controller {
 
     function getEvents() {
         $post = $this->input->post();
-        $this->objcal->getEvents($post);
+        $this->objcalender->getEvents($post);
     }
 
     function getCards() {
-        $this->objcal->getCards();
+        $this->objcalender->getCards();
     }
 
     function getEvent($eid) {
-        $event = $this->objcal->getEvent($eid);
+        $event = $this->objcalender->getEvent($eid);
         echo json_encode($event);
     }
 
     function updateEvent() {
-        $flag = $this->objcal->updateEvent();
+        $flag = $this->objcalender->updateEvent();
         echo ($flag) ? 1 : 0;
     }
 
     function deleteEvent($eid) {
-        $flag = $this->objcal->deleteEvent($eid);
+        $flag = $this->objcalender->deleteEvent($eid);
         echo ($flag) ? 1 : 0;
     }
 

@@ -27,7 +27,7 @@ class Calender extends CI_Controller {
             $this->load->model('dashboard/m_contact_groups', 'objgroup');
             $this->load->model('dashboard/m_sms_template', 'objsmstemplate');
             $this->load->model('dashboard/m_email_template', 'objemailtemplate');
-            $this->load->model('dashboard/m_calender', 'objcalender');
+            $this->load->model('dashboard/m_wi_calender', 'objcalender');
         }
     }
 
