@@ -43,85 +43,85 @@ class Import extends CI_Controller {
 
     public function contacts() {
         if ($this->input->get('error') == "access_denied") {
-            echo $this->input->get('error');
-            // header('location:' . site_url() . 'admin/contacts');
-        }
-        die();
-        $authcode = $this->input->get('code');
-        $clientid = $this->client->getClientId();
-        $clientsecret = $this->client->getClientSecret();
-        $redirecturi = $this->client->getRedirectUri();
-        $max_result = 100;
-        $userAgent = 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; .NET CLR 1.1.4322)';
-        $fields = array(
-            'code' => urlencode($authcode),
-            'client_id' => urlencode($clientid),
-            'client_secret' => urlencode($clientsecret),
-            'redirect_uri' => urlencode($redirecturi),
-            'grant_type' => urlencode('authorization_code')
-        );
-
-
-        $fields_string = "";
-        foreach ($fields as $key => $value) {
-            $fields_string .= $key . '=' . $value . '&';
-        }
-        $fields_string = rtrim($fields_string, '&');
-
-        //open connection
-        $ch = curl_init();
-
-        //set the url, number of POST vars, POST data
-        curl_setopt($ch, CURLOPT_URL, 'https://accounts.google.com/o/oauth2/token');
-        curl_setopt($ch, CURLOPT_POST, 5);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string);
-        // Set so curl_exec returns the result instead of outputting it.
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        //to trust any ssl certificates
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_USERAGENT, $userAgent);
-
-        //execute post
-        $result = curl_exec($ch);
-        //close connection
-        curl_close($ch);
-
-        //extracting access_token from response string
-        $responseToken = json_decode($result);
-
-        if (isset($responseToken->access_token)) {
-            $accesstoken = $responseToken->access_token;
-            $this->session->set_userdata('token', $accesstoken);
-
-            //passing accesstoken to obtain contact details
-            $url = 'https://www.google.com/m8/feeds/contacts/default/full?max-results=' . $max_result . '&alt=json&v=3.0&oauth_token=' . $this->session->userdata('token');
-
-            $response = $this->curl_file_get_contents($url);
-            $contacts = json_decode($response, true);
-
-            //echo '<pre>';
-            //print_r($contacts);
-            // die();
-
-            $gc = array();
-            foreach ($contacts['feed']['entry'] as $cnt) {
-                $name = $cnt['title']['$t'];
-                $email = (isset($cnt['gd$email'])) ? $cnt['gd$email']['0']['address'] : '';
-                $phone = (isset($cnt['gd$phoneNumber'])) ? $cnt['gd$phoneNumber']['0']['$t'] : '';
-                $gc[] = array('name' => $name, 'email' => $email, 'phone' => $phone);
-            }
-            $data['gc'] = $gc;
-            $data['url'] = $this->client->createAuthUrl();
-            $data['flag'] = TRUE;
-
-
-            $this->load->view('admin/admin_header');
-            //$this->load->view('admin/admin_top');
-            //$this->load->view('admin/admin_navbar');
-            $this->load->view('admin/import', $data);
-            $this->load->view('admin/admin_footer');
+//            echo $this->input->get('error');
+            header('location:' . site_url() . 'admin/contacts');
         } else {
-            header('location:' . site_url() . 'admin/dashboard');
+            $authcode = $this->input->get('code');
+            $clientid = $this->client->getClientId();
+            $clientsecret = $this->client->getClientSecret();
+            $redirecturi = $this->client->getRedirectUri();
+            $max_result = 100;
+            $userAgent = 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; .NET CLR 1.1.4322)';
+            $fields = array(
+                'code' => urlencode($authcode),
+                'client_id' => urlencode($clientid),
+                'client_secret' => urlencode($clientsecret),
+                'redirect_uri' => urlencode($redirecturi),
+                'grant_type' => urlencode('authorization_code')
+            );
+
+
+            $fields_string = "";
+            foreach ($fields as $key => $value) {
+                $fields_string .= $key . '=' . $value . '&';
+            }
+            $fields_string = rtrim($fields_string, '&');
+
+            //open connection
+            $ch = curl_init();
+
+            //set the url, number of POST vars, POST data
+            curl_setopt($ch, CURLOPT_URL, 'https://accounts.google.com/o/oauth2/token');
+            curl_setopt($ch, CURLOPT_POST, 5);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string);
+            // Set so curl_exec returns the result instead of outputting it.
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            //to trust any ssl certificates
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_USERAGENT, $userAgent);
+
+            //execute post
+            $result = curl_exec($ch);
+            //close connection
+            curl_close($ch);
+
+            //extracting access_token from response string
+            $responseToken = json_decode($result);
+
+            if (isset($responseToken->access_token)) {
+                $accesstoken = $responseToken->access_token;
+                $this->session->set_userdata('token', $accesstoken);
+
+                //passing accesstoken to obtain contact details
+                $url = 'https://www.google.com/m8/feeds/contacts/default/full?max-results=' . $max_result . '&alt=json&v=3.0&oauth_token=' . $this->session->userdata('token');
+
+                $response = $this->curl_file_get_contents($url);
+                $contacts = json_decode($response, true);
+
+                //echo '<pre>';
+                //print_r($contacts);
+                // die();
+
+                $gc = array();
+                foreach ($contacts['feed']['entry'] as $cnt) {
+                    $name = $cnt['title']['$t'];
+                    $email = (isset($cnt['gd$email'])) ? $cnt['gd$email']['0']['address'] : '';
+                    $phone = (isset($cnt['gd$phoneNumber'])) ? $cnt['gd$phoneNumber']['0']['$t'] : '';
+                    $gc[] = array('name' => $name, 'email' => $email, 'phone' => $phone);
+                }
+                $data['gc'] = $gc;
+                $data['url'] = $this->client->createAuthUrl();
+                $data['flag'] = TRUE;
+
+
+                $this->load->view('admin/admin_header');
+                //$this->load->view('admin/admin_top');
+                //$this->load->view('admin/admin_navbar');
+                $this->load->view('admin/import', $data);
+                $this->load->view('admin/admin_footer');
+            } else {
+                header('location:' . site_url() . 'admin/dashboard');
+            }
         }
     }
 
