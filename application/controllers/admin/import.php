@@ -120,7 +120,7 @@ class Import extends CI_Controller {
                 $this->load->view('admin/import', $data);
                 $this->load->view('admin/admin_footer');
             } else {
-                header('location:' . site_url() . 'admin/dashboard');
+                header('location:' . site_url() . 'admin/import');
             }
         }
     }
