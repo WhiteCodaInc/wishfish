@@ -104,7 +104,7 @@ class M_admin_calender extends CI_Model {
         $this->db->select('count(*) as totalM');
         $query = $this->db->get_where('schedule', $where);
         $res['totalM'] = $query->row()->totalM;
-
+            
         //-------------------Get Total Event In Year------------------------//
         $where = array(
             'YEAR(date)' => date('Y', strtotime($start))
