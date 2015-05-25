@@ -14,7 +14,29 @@ if ($userid != "") {
     }
 }
 ?>
-
+<script type="text/javascript">
+    $(function () {
+        //-----------------------------iCheck All-----------------------------//
+        $('table thead :checkbox').on('ifChecked ifUnchecked', function (event) {
+            if (event.type == 'ifChecked') {
+                $('.icheckbox_minimal').iCheck('check');
+            } else {
+                $('.icheckbox_minimal').iCheck('uncheck');
+            }
+        });
+        $('table tbody :checkbox').on('ifChanged', function (event) {
+            if ($('table tbody :checkbox').filter(':checked').length == $('table tbody :checkbox').length) {
+                $('table thead :checkbox').prop('checked', 'checked');
+            } else {
+                $('table thead :checkbox').removeProp('checked');
+            }
+            $('table thead :checkbox').iCheck('update');
+        });
+        $('.paging_bootstrap').on('click', function () {
+            $('.icheckbox_minimal').iCheck('uncheck');
+        });
+    });
+</script>
 <!-- Bootstrap Slider -->
 <!--<script src="<?= base_url() ?>assets/dashboard/js/plugins/bootstrap-slider/bootstrap-slider.js" type="text/javascript"></script>-->
 
