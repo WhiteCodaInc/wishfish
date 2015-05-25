@@ -101,7 +101,7 @@ class Dashboard extends CI_Controller {
 
     function updatePassword() {
         $post = $this->input->post();
-        if(isset($post)){
+        if(isset($post) && is_array($post)){
             echo 'SET';
         }else{
             echo 'Not Set';
