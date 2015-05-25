@@ -35,8 +35,8 @@
                             <table id="contact-data-table" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th style="font-size: 17px;padding-right: 18px;text-align: center;">
-                                            <i class="fa fa-level-down"></i>
+                                        <th style="padding: 10px;">
+                                            <input type="checkbox"/>
                                         </th>
                                         <th>Contact Name</th>
                                         <th>Contact Email</th>
