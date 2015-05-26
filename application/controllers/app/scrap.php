@@ -26,11 +26,8 @@ class Scrap extends CI_Controller {
 
     function index() {
         $url = $this->input->get('query');
-//       $html = file_get_html($url);
-//       echo $html->find('span#fb-timeline-cover-name');
-        $dom = new DOMDocument;
-        $dom->loadHTML($url);
-        echo $dom->getElementById('fb-timeline-cover-name');
+        $html = file_get_contents($url);
+        echo $html;
     }
 
 }
