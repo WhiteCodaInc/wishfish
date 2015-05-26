@@ -40,11 +40,12 @@ class Dashboard extends CI_Controller {
             $id = $this->input->cookie('isLogin', TRUE);
             delete_cookie('isLogin', '.wish-fish.com', '/');
             $this->wi_authex->loginBySocial($id);
+            $flag = FALSE;
         }
 
-        if (!$this->wi_authex->logged_in()) {
+        if (!$flag && !$this->wi_authex->logged_in()) {
             header('location:' . site_url() . 'home');
-        } elseif (!$this->wi_authex->isActivePlan()) {
+        } elseif (!$flag && !$this->wi_authex->isActivePlan()) {
             header('location:' . site_url() . 'app/upgrade');
         } else {
             $this->load->model('dashboard/m_dashboard', 'objdashboard');
