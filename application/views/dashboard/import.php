@@ -102,7 +102,7 @@
 <script type="text/javascript">
     $(function () {
 //        $("#contact-data-table").dataTable();
-        $("#contact-data-table").dataTable({
+        oTable = $("#contact-data-table").dataTable({
             aLengthMenu: [
                 [25, 50, 100, 200, -1],
                 [25, 50, 100, 200, "All"]
@@ -112,10 +112,11 @@
                     aTargets: [0, 2, 3]
                 }],
             iDisplayLength: -1,
-            aaSorting: [[1, 'asc']]
+            aaSorting: [[1, 'asc']],
+            bFilter: false
         });
         $("#searchbox").on("keyup search input paste cut", function () {
-            $("#contact-data-table").dataTable.fnFilter(this.value);
+            oTable.search($(this).val()).draw();
         });
     });
 </script>
