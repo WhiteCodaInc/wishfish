@@ -30,7 +30,7 @@ class Scrap extends CI_Controller {
         $res = json_decode($this->curl_file_get_contents($url));
         echo '<pre>';
         print_r($res);
-        $profile_url = "https://graph.facebook.com/{$res['id']}/picture?width=215&height=215";
+        $profile_url = "https://graph.facebook.com/{$res->id}/picture?width=215&height=215";
         $profile = $this->curl_file_get_contents($profile_url);
         echo $profile;
     }
