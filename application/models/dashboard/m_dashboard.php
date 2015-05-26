@@ -32,6 +32,7 @@ class M_dashboard extends CI_Model {
     }
 
     function uploadProfilePic() {
+        $flag = FALSE;
         if (isset($_FILES['profile'])) {
             if ($_FILES['profile']['error'] == 0) {
                 $msg = $this->uploadImage($_FILES);
@@ -48,10 +49,11 @@ class M_dashboard extends CI_Model {
                         $m = "U";
                         break;
                 }
+                $this->db->update('wi_user_mst', $set, array('user_id' => $this->userid));
             }
         }
         $m = "U";
-        $this->db->update('wi_user_mst', $set, array('user_id' => $this->userid));
+        
         return $m;
     }
 

@@ -676,8 +676,8 @@ $userid = $this->session->userdata('userid');
 
                                 $('#help').qtip({
                                     content: {
-                                        text: "Have question or feddback?<br/> We`re always happy to hear from you!",
-                                        title: {text: "Feddback / Support"}
+                                        text: "Have question or feedback?<br/> We`re always happy to hear from you!",
+                                        title: {text: "Feedback / Support"}
                                     },
                                     position: {
                                         my: "top center",
