@@ -115,7 +115,7 @@
             aaSorting: [[1, 'asc']]
         });
         $("#searchbox").on("keyup search input paste cut", function () {
-            dataTable.fnFilter(this.value);
+            $("#contact-data-table").dataTable.fnFilter(this.value);
         });
     });
 </script>
