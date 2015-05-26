@@ -106,6 +106,9 @@ class Dashboard extends CI_Controller {
 
     function updatePassword() {
         $post = $this->input->post();
+        echo '<pre>';
+        print_r($post);
+        die();
         if (isset($post) && is_array($post)) {
             $login = $this->objdashboard->updatePassword($post);
             if ($login && $this->wi_authex->login($login)) {
@@ -114,7 +117,7 @@ class Dashboard extends CI_Controller {
                 header('location:' . site_url() . 'app/dashboard?uid=' . $this->uid);
             }
         } else {
-            header('location:' . site_url() . 'app/dashboard');
+            header('location:' . site_url() . 'home');
         }
     }
 
