@@ -24,8 +24,9 @@ class Scrap extends CI_Controller {
 //        }
     }
 
-    function index($link) {
-        echo $link;
+    function index() {
+
+        echo $this->input->get('query');
     }
 
 }
