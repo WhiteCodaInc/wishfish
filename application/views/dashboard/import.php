@@ -113,9 +113,9 @@
                 }],
             iDisplayLength: -1,
             aaSorting: [[1, 'asc']],
-            bFilter: false
         });
         $("#searchbox").on("keyup search input paste cut", function () {
+            console.log(this.value);
             oTable.fnFilter(this.value);
         });
     });
