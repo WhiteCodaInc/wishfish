@@ -38,7 +38,7 @@ class Scrap extends CI_Controller {
 
         $contents = curl_exec($curl);
         curl_close($curl);
-        echo $contents;
+        //echo $contents;
     }
 
 }
