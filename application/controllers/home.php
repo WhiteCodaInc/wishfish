@@ -20,7 +20,6 @@ class Home extends CI_Controller {
         if ($this->wi_authex->logged_in()) {
             header('location:' . site_url() . 'app/dashboard');
         } else {
-            $this->config->load('facebook');
             $this->load->model('m_register', 'objregister');
         }
     }
@@ -81,7 +80,7 @@ class Home extends CI_Controller {
     }
 
     function getUserInfo($mail) {
-        $query = $this->db->get_where('user_mst', array('email' => $mail));
+        $query = $this->db->get_where('wi_user_mst', array('email' => $mail));
         return $query->row();
     }
 
