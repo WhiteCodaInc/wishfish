@@ -55,6 +55,7 @@ $profile_pic = $this->session->userdata('profile_pic');
 $img_src = ($profile_pic != "") ?
         "http://mikhailkuznetsov.s3.amazonaws.com/" . $profile_pic :
         base_url() . 'assets/dashboard/img/default-avatar.png';
+$userid = $this->session->userdata('userid');
 ?>
 <header class="main-header">
     <nav class="navbar navbar-static-top">
@@ -123,7 +124,6 @@ $img_src = ($profile_pic != "") ?
                         </ul>
                     </li>
                     <?php
-                    $userid = $this->session->userdata('userid');
                     $currPlan = $this->wi_common->getCurrentPlan($userid);
                     if (count($currPlan) && $currPlan->plan_id == 1) {
                         ?>
@@ -171,7 +171,7 @@ $img_src = ($profile_pic != "") ?
                                 <h4 id='loading' style="display:none;">loading...</h4>
                                 <div id="msg"></div>
                             </li>
-                            <?php $setup = $this->wi_common->getProfileSetup(); ?>
+                            <?php $setup = $this->wi_common->getProfileSetup($userid); ?>
                             <li>
                                 <?php if ($setup['per'] != "100"): ?>
                                     <div class="box box-solid booster">
