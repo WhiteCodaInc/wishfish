@@ -15,7 +15,14 @@
             Import
         </a>
         <button style="margin-left: 10px" value="Add" class="btn btn-success" id="Add" type="button" >Add Selected Contacts</button>
-        <label>Search: <input type="text" id="searchbox"></label>
+        <div class="row">
+            <div class="col-md-2">
+                <label>Search:</label>
+            </div>
+            <div class="col-md-6">
+                <input class="form-control" type="text" id="searchbox">
+            </div>
+        </div>
     </section>
     <!-- Main content -->
     <section class="content">
@@ -112,10 +119,9 @@
                     aTargets: [0, 2, 3]
                 }],
             iDisplayLength: -1,
-            aaSorting: [[1, 'asc']],
+            aaSorting: [[1, 'asc']]
         });
         $("#searchbox").on("keyup search input paste cut", function () {
-            console.log(this.value);
             oTable.fnFilter(this.value);
         });
     });
