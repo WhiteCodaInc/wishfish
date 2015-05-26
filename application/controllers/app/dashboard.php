@@ -43,16 +43,15 @@ class Dashboard extends CI_Controller {
             $flag = TRUE;
         }
 
-//        if (!$flag && !$this->wi_authex->logged_in()) {
-//            header('location:' . site_url() . 'home');
-//        } elseif (!$flag && !$this->wi_authex->isActivePlan()) {
-//            header('location:' . site_url() . 'app/upgrade');
-//        } else {
+        if (!$flag && !$this->wi_authex->logged_in()) {
+            header('location:' . site_url() . 'home');
+        } elseif (!$flag && !$this->wi_authex->isActivePlan()) {
+            header('location:' . site_url() . 'app/upgrade');
+        } else {
             $this->load->model('dashboard/m_dashboard', 'objdashboard');
             $this->load->model('dashboard/m_calender', 'objcalender');
             $this->load->model('m_register', 'objregister');
-//        }
-//        $this->load->library('wi_common');
+        }
     }
 
     function index() {
