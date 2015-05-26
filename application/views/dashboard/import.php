@@ -15,14 +15,12 @@
             Import
         </a>
         <button style="margin-left: 10px" value="Add" class="btn btn-success" id="Add" type="button" >Add Selected Contacts</button>
-        <div class="row">
-            <div class="col-md-2">
-                <label>Search:</label>
+        <div style="float:right;width: 25%;">
+            <div style="float: left;padding: 8px;width: 20%;"><label>Search:</label></div>
+            <div style="float: left;width: 78%;">
+                <input class="form-control" type="text" id="searchbox" style="float: left;">
             </div>
-            <div class="col-md-6">
-                <input class="form-control" type="text" id="searchbox">
-            </div>
-        </div>
+        </div>    
     </section>
     <!-- Main content -->
     <section class="content">
