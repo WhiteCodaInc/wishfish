@@ -15,6 +15,9 @@
             Import
         </a>
         <button style="margin-left: 10px" value="Add" class="btn btn-success" id="Add" type="button" >Add Selected Contacts</button>
+        <div class="dataTables_filter" id="contact-data-table_filter">
+            <label>Search: <input type="text" aria-controls="contact-data-table"></label>
+        </div>
     </section>
     <!-- Main content -->
     <section class="content">
