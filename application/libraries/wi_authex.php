@@ -89,7 +89,6 @@ class Wi_authex {
     function loginBySocial($gid) {
         $query = $this->_CI->db->get_where("wi_user_mst", array("user_unique_id" => $gid));
         $res = $query->row();
-
         if ($query->num_rows() == 1) {
             $this->_CI->session->set_userdata('userid', $res->user_id);
             $this->_CI->session->set_userdata('name', $res->name);
