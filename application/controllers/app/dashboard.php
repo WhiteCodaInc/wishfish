@@ -26,44 +26,29 @@ class Dashboard extends CI_Controller {
         $userid = $this->input->get('uid');
         $this->type = $this->input->get('type');
         $this->uid = ($userid != "") ? $this->encryption->decode($userid) : '';
-//        $flag = FALSE;
         if ($this->session->userdata('d-userid')) {
             $this->duid = $this->session->userdata('d-userid');
-//            $flag = TRUE;
         } else if ($this->input->cookie('d-userid')) {
             $this->duid = $this->input->cookie('d-userid', TRUE);
             delete_cookie('d-userid', '.wish-fish.com', '/');
-//            $flag = TRUE;
         } else if ($this->uid) {
-//            $flag = TRUE;
+            
         }
 
         if ($this->input->cookie('isLogin')) {
             $id = $this->input->cookie('isLogin', TRUE);
             delete_cookie('isLogin', '.wish-fish.com', '/');
             $this->wi_authex->loginBySocial($id);
-//            $flag = TRUE;
         }
 
-//        if (!$flag && !$this->wi_authex->logged_in()) {
-//            header('location:' . site_url() . 'home');
-//        } elseif (!$flag && !$this->wi_authex->isActivePlan()) {
-//            header('location:' . site_url() . 'app/upgrade');
-//        } else {
         $this->load->model('dashboard/m_dashboard', 'objdashboard');
         $this->load->model('dashboard/m_calender', 'objcalender');
         $this->load->model('m_register', 'objregister');
-//        }
     }
 
     function index() {
         if ($this->wi_authex->logged_in()) {
             $card = $this->objcalender->getCards();
-//            $setup = $this->objdashboard->getProfileSetup();
-//            $data = array_merge_recursive($card, $setup);
-//            echo '<pre>';
-//            print_r($data);
-//            die();
             $this->load->view('dashboard/header');
             $this->load->view('dashboard/top');
             $this->load->view('dashboard/dashboard', $card);
