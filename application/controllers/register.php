@@ -24,8 +24,8 @@ class Register extends CI_Controller {
         require APPPATH . 'third_party/google-api/Google_Client.php';
         require APPPATH . 'third_party/google-api/contrib/Google_Oauth2Service.php';
         require_once APPPATH . 'third_party/facebook/facebook.php';
-
-
+        
+        
         $this->config->load('googleplus');
         $this->config->load('facebook');
         $this->load->model('m_register', 'objregister');
@@ -105,12 +105,7 @@ class Register extends CI_Controller {
         $user = $facebook->getUser();
         if ($user) {
             try {
-                $user_profile = $facebook->api('/me/friends');  //Get the facebook user profile data
-
-                echo '<pre>';
-                print_r($user_profile);
-                die();
-
+                $user_profile = $facebook->api('/me');  //Get the facebook user profile data
                 $is_user = $this->objregister->isUserExist($user_profile);
                 if (!$is_user && $this->objregister->registerWithSocial($user_profile)) {
                     $facebookid = array(
