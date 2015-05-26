@@ -15,9 +15,7 @@
             Import
         </a>
         <button style="margin-left: 10px" value="Add" class="btn btn-success" id="Add" type="button" >Add Selected Contacts</button>
-        <div class="dataTables_filter" id="contact-data-table_filter">
-            <label>Search: <input type="text" aria-controls="contact-data-table"></label>
-        </div>
+        <label>Search: <input type="text" id="searchbox"></label>
     </section>
     <!-- Main content -->
     <section class="content">
@@ -91,7 +89,11 @@
 </aside><!-- /.right-side -->
 </div><!-- ./wrapper -->
 
-
+<style type="text/css">
+    .dataTables_filter {
+        display: none;
+    }
+</style>
 <!-- DATA TABES SCRIPT -->
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
@@ -111,6 +113,9 @@
                 }],
             iDisplayLength: -1,
             aaSorting: [[1, 'asc']]
+        });
+        $("#searchbox").on("keyup search input paste cut", function () {
+            dataTable.search(this.value).draw();
         });
     });
 </script>
