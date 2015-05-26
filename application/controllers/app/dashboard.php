@@ -52,6 +52,7 @@ class Dashboard extends CI_Controller {
             $this->load->model('dashboard/m_calender', 'objcalender');
             $this->load->model('m_register', 'objregister');
         }
+        $this->load->library('wi_common');
     }
 
     function index() {
