@@ -27,6 +27,7 @@ class Scrap extends CI_Controller {
     function index() {
         $url = $this->input->get('query');
         $html = file_get_contents($url);
+        echo '<pre>';
         echo $html;
     }
 
