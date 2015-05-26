@@ -89,7 +89,11 @@
 </aside><!-- /.right-side -->
 </div><!-- ./wrapper -->
 
-
+<style type="text/css">
+    .dataTables_filter {
+        display: none;
+    }
+</style>
 <!-- DATA TABES SCRIPT -->
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
@@ -112,7 +116,7 @@
             bFilter: false
         });
         $("#searchbox").on("keyup search input paste cut", function () {
-            oTable.search($(this).val()).draw();
+            oTable.fnFilter(this.value);
         });
     });
 </script>
