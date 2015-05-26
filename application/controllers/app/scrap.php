@@ -27,6 +27,15 @@ class Scrap extends CI_Controller {
     function index() {
 
         $url = "http://graph.facebook.com/" . $this->input->get('query');
+        $res = json_decode($this->curl_file_get_contents($url));
+        echo '<pre>';
+        print_r($res);
+        $profile_url = "https://graph.facebook.com/{$res['id']}/picture?width=215&height=215";
+        $profile = $this->curl_file_get_contents($profile_url);
+        echo $profile;
+    }
+
+    function curl_file_get_contents($url) {
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url); //The URL to fetch. This can also be set when initializing a session with curl_init().
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE); //TRUE to return the transfer as a string of the return value of curl_exec() instead of outputting it out directly.
@@ -35,10 +44,9 @@ class Scrap extends CI_Controller {
         curl_setopt($curl, CURLOPT_AUTOREFERER, TRUE); //To automatically set the Referer: field in requests where it follows a Location: redirect.
         curl_setopt($curl, CURLOPT_TIMEOUT, 10); //The maximum number of seconds to allow cURL functions to execute.
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE); //To stop cURL from verifying the peer's certificate.
-
         $contents = curl_exec($curl);
         curl_close($curl);
-        echo $contents;
+        return $contents;
     }
 
 }
