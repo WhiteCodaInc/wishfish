@@ -69,7 +69,7 @@ class Scrap extends CI_Controller {
             $fname = 'wish-fish/admin/contacts/contact_avatar_' . $insertid . '.jpg';
             $this->s3->setAuth($this->accessKey, $this->secretKey);
             if ($this->s3->putObjectFile($img_url, $this->bucket, $fname, "public-read")) {
-                $this->db->update('contact_detail', array('profile_pic' => $fname), array('contact_id' => $insertid));
+                $this->db->update('contact_detail', array('contact_avatar' => $fname), array('contact_id' => $insertid));
             }
             unlink($img_url);
             echo 1;
