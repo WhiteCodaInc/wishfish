@@ -40,9 +40,10 @@
                                 </div>
                                 <div class="col-md-2"></div>
                             </div>
+                            <br/>
                             <div class="row">
                                 <div class="col-md-2"></div>
-                                <div class="col-md-8">
+                                <div style="text-align: right" class="col-md-8">
                                     <button class="btn btn-success" type="submit" id="parse">Get Contact</button>
                                 </div>
                                 <div class="col-md-2"></div>
