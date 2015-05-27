@@ -48,10 +48,9 @@
                                 </div>
                                 <div class="col-md-2"></div>
                             </div>
-                            <div style="display: none;background-color: mistyrose !important;border-color: mintcream;color: red !important;" class="alert alert-danger alert-dismissable">
-                                <i class="fa fa-ban"></i>
+                            <div style="display: none;" class="alert alert-danger alert-dismissable">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                <b>Error!</b><span class="errorMsg"></span> 
+                                <span class="errorMsg"></span> 
                             </div>
                         </form>
                     </div>
@@ -92,7 +91,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <button class="btn btn-danger btn-sm cancel" type="button">
-                                            Cancel
+                                            Go Back
                                         </button> 
                                     </div>
                                 </div>
@@ -123,6 +122,23 @@
             $('#type').val("facebook");
             $('#url').val('');
             $('.parse').show();
+        });
+
+        $('.contactInfo .save').on('click', function () {
+            $('.parse .overlay').show();
+            $('.parse .loading-img').show();
+            $.ajax({
+                type: 'POST',
+                data: {
+                    fname: $('.fname').text(),
+                    lname: $('.lname').text(),
+                    url: $('.picture').prop('src')
+                },
+                url: "<?= site_url() ?>admin/scrap/addContact",
+                success: function (data, textStatus, jqXHR) {
+
+                }
+            });
         });
 
         $('#parseForm').submit(function () {
