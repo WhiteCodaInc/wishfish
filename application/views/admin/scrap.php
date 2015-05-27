@@ -129,8 +129,8 @@
         });
 
         $('.contactInfo .save').on('click', function () {
-            $('.parse .overlay').show();
-            $('.parse .loading-img').show();
+            $('.contactInfo .overlay').show();
+            $('.contactInfo .loading-img').show();
             $.ajax({
                 type: 'POST',
                 data: {
@@ -139,8 +139,8 @@
                 },
                 url: "<?= site_url() ?>admin/scrap/addContact",
                 success: function (data, textStatus, jqXHR) {
-                    $('.parse .overlay').hide();
-                    $('.parse .loading-img').hide();
+                    $('.contactInfo .overlay').hide();
+                    $('.contactInfo .loading-img').hide();
                     $('.save').hide();
                     $('.contactInfo .alert').show();
                     $('span.successMsg').text("Contact has been successfully created..!");
