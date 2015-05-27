@@ -64,29 +64,29 @@
                     </div>
                     <div class="box-body">
                         <div class="row">
-                            <div class="col-md-3">
-                                <h4><label>First Name</label></h4>
+                            <div class="col-md-4">
+                                <img style="width: 100px" class="picture" src="#" alt="profile picture" />
                             </div>
-                            <div class="col-md-9">
-                                <h4 class="fname"></h4>
+                            <div class="col-md-8">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <h4><label>First Name</label></h4>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <h4 class="fname"></h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <h4><label>Last Name</label></h4>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <h4 class="lname"></h4>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-3">
-                                <h4><label>Last Name</label></h4>
-                            </div>
-                            <div class="col-md-9">
-                                <h4 class="lname"></h4>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-3">
-                                <h4><label>Profile Pic</label></h4>
-                            </div>
-                            <div class="col-md-9">
-                                <img style="width: 200px" class="picture" src="#" alt="profile picture" />
-                            </div>
-                        </div>
+
                     </div><!-- /.box-body -->
                     <div class="overlay" style="display: none"></div>
                     <div class="loading-img" style="display: none"></div>
