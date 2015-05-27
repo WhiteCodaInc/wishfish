@@ -40,6 +40,13 @@
                                 </div>
                                 <div class="col-md-2"></div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-8">
+                                    <button type="submit" id="parse">Get Contact</button>
+                                </div>
+                                <div class="col-md-2"></div>
+                            </div>
                         </form>
                     </div>
                 </div>
