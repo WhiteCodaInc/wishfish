@@ -155,22 +155,37 @@
         });
 
         function linkedin() {
+
             $.ajax({
-                type: 'POST',
-                data: {url: $('#url').val()},
-                url: "<?= site_url() ?>admin/scrap/linkedin",
-                success: function (data, textStatus, jqXHR) {
-                    $('.parse .overlay').hide();
-                    $('.parse .loading-img').hide();
-//                    $('.linkedin').html(data);
-                    console.log(data.find('span.full-name').text());
-//                    $('.parse').hide();
-//                    $('.fname').text(json.first_name);
-//                    $('.lname').text(json.last_name);
-//                    $('.picture').prop('src', json.profile);
-//                    $('.contactInfo').show();
+                url: $('#url').val(),
+                type: 'get',
+                dataType: 'html',
+                success: function (data)
+                {
+                    var _html = $(data);
+                    console.log(_html.find('span.full-name').text());
+                    //do some thing with html eg: _html.find('div').addClass('red')
+//                    $('#target').html(_html);
                 }
             });
+
+//            $.ajax({
+//                type: 'POST',
+//                data: {url: $('#url').val()},
+//                url: "<?= site_url() ?>admin/scrap/linkedin",
+//                success: function (data, textStatus, jqXHR) {
+//                    $page = data;
+//                    $('.parse .overlay').hide();
+//                    $('.parse .loading-img').hide();
+////                    $('.linkedin').html(data);
+//                    console.log($page.find('span.full-name').text());
+////                    $('.parse').hide();
+////                    $('.fname').text(json.first_name);
+////                    $('.lname').text(json.last_name);
+////                    $('.picture').prop('src', json.profile);
+////                    $('.contactInfo').show();
+//                }
+//            });
         }
 
         function facebook() {
