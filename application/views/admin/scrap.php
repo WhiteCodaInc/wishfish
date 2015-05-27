@@ -163,6 +163,7 @@
                     $('.parse .overlay').hide();
                     $('.parse .loading-img').hide();
                     $('.linkedin').html(data);
+                    console.log(data.find('span.full-name').text());
 //                    $('.parse').hide();
 //                    $('.fname').text(json.first_name);
 //                    $('.lname').text(json.last_name);
