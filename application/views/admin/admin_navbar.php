@@ -90,8 +90,14 @@ $img_src = ($avatar != "") ?
                             </li>
                             <li>
                                 <a href="<?= site_url() ?>admin/contacts/block_list">
-                                    <i class="fa fa-lock"></i>
+                                    <i class="fa fa-angle-double-right"></i>
                                     <span>Contact Block List</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?= site_url() ?>admin/scrap">
+                                    <i class="fa fa-lock"></i>
+                                    <span>Scrap Contacts</span>
                                 </a>
                             </li>
                         </ul>

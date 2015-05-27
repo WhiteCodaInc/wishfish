@@ -1,4 +1,3 @@
-<link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/dashboard/css/checkbox.css"/>
 <aside class="right-side">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -110,13 +109,6 @@
         </div>
     </section><!-- /.content -->
 </aside><!-- /.right-side -->
-
-<!-- InputMask -->
-<script src="<?= base_url() ?>assets/dashboard/js/plugins/input-mask/jquery.inputmask.js" type="text/javascript"></script>
-<script src="<?= base_url() ?>assets/dashboard/js/plugins/input-mask/jquery.inputmask.date.extensions.js" type="text/javascript"></script>
-<script src="<?= base_url() ?>assets/dashboard/js/plugins/input-mask/jquery.inputmask.extensions.js" type="text/javascript"></script>
-
-
 <!-- /.modal -->
 <script type="text/javascript">
     $(document).ready(function () {
