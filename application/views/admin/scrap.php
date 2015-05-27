@@ -50,6 +50,21 @@
                             </div>
                         </form>
                     </div>
+                    <div class="overlay"></div>
+                    <div class="loading-img"></div>
+                </div>
+                <div class="box box-solid box-primary collapsed-box">
+                    <div class="box-header">
+                        <h3 class="box-title">Contact Information</h3>
+                    </div>
+                    <div class="box-body" style="display: none;">
+                        Box class: <code>.box.box-solid.box-primary</code>
+                        <p>
+                            amber, microbrewery abbey hydrometer, brewpub ale lauter tun saccharification oxidized barrel.
+                            berliner weisse wort chiller adjunct hydrometer alcohol aau!
+                            sour/acidic sour/acidic chocolate malt ipa ipa hydrometer.
+                        </p>
+                    </div><!-- /.box-body -->
                 </div>
             </div>
             <div class="col-md-3"></div>
@@ -73,10 +88,10 @@
                     data: {userid: $('#url').val()},
                     url: "<?= site_url() ?>admin/scrap/facebook",
                     success: function (data, textStatus, jqXHR) {
-                        if(data != "0"){
+                        if (data != "0") {
                             var json = JSON.parse(data);
                             console.log(json);
-                        }else{
+                        } else {
                             console.log("Error");
                         }
                     }
