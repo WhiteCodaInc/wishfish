@@ -58,12 +58,27 @@
                         <h3 class="box-title">Contact Information</h3>
                     </div>
                     <div class="box-body">
-                        Box class: <code>.box.box-solid.box-primary</code>
-                        <p>
-                            amber, microbrewery abbey hydrometer, brewpub ale lauter tun saccharification oxidized barrel.
-                            berliner weisse wort chiller adjunct hydrometer alcohol aau!
-                            sour/acidic sour/acidic chocolate malt ipa ipa hydrometer.
-                        </p>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label>First Name</label>
+                                    </div>
+                                    <div class="col-md-8 fname"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label>Last Name</label>
+                                    </div>
+                                    <div class="col-md-8 lname">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <img class="picture" src="#" alt="profile picture" />
+                            </div>
+                        </div>
                     </div><!-- /.box-body -->
                 </div>
             </div>
