@@ -128,7 +128,7 @@ class M_admin_profile extends CI_Model {
         $ext = explode('/', $file['admin_avatar']['type']);
         if (in_array($ext[1], $valid_formats)) {
             $this->s3->setAuth($this->accessKey, $this->secretKey);
-            $fname = 'avatars/admin_avatar_' . $pid . '.' . $ext[1];
+            $fname = 'wish-fish/admin/avatars/admin_avatar_' . $pid . '.' . $ext[1];
             if ($this->s3->putObjectFile($file['admin_avatar']['tmp_name'], $this->bucket, $fname, "public-read")) {
                 return $fname;
             } else {

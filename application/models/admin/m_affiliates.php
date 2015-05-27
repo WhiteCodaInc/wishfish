@@ -199,7 +199,7 @@ class M_affiliates extends CI_Model {
         $ext = explode('/', $file['affiliate_avatar']['type']);
         if (in_array($ext[1], $valid_formats)) {
             $this->s3->setAuth($this->accessKey, $this->secretKey);
-            $fname = 'affiliates/affiliate_avatar_' . $aid . '.' . $ext[1];
+            $fname = 'wish-fish/admin/affiliates/affiliate_avatar_' . $aid . '.' . $ext[1];
             if ($this->s3->putObjectFile($file['affiliate_avatar']['tmp_name'], $this->bucket, $fname, "public-read")) {
                 return $fname;
             } else {

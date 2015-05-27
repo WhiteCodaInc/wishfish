@@ -199,7 +199,7 @@ class M_customers extends CI_Model {
         $ext = explode('/', $file['customer_avatar']['type']);
         if (in_array($ext[1], $valid_formats)) {
             $this->s3->setAuth($this->accessKey, $this->secretKey);
-            $fname = 'customers/customer_avatar_' . $cid . '.' . $ext[1];
+            $fname = 'wish-fish/admin/customers/customer_avatar_' . $cid . '.' . $ext[1];
             if ($this->s3->putObjectFile($file['customer_avatar']['tmp_name'], $this->bucket, $fname, "public-read")) {
                 return $fname;
             } else {

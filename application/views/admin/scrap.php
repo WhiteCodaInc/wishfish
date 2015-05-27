@@ -48,7 +48,7 @@
                                 </div>
                                 <div class="col-md-2"></div>
                             </div>
-                            <div style="display: none;" class="alert alert-danger alert-dismissable">
+                            <div style="display: none;margin-top: 10px" class="alert alert-danger alert-dismissable">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                                 <span class="errorMsg"></span> 
                             </div>
@@ -94,6 +94,10 @@
                                             Go Back
                                         </button> 
                                     </div>
+                                </div>
+                                <div style="display: none;margin-top: 10px" class="alert alert-success alert-dismissable">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                    <span class="successMsg"></span> 
                                 </div>
                             </div>
                         </div>

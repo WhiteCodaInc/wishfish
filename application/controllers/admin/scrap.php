@@ -72,6 +72,9 @@ class Scrap extends CI_Controller {
                 $this->db->update('contact_detail', array('profile_pic' => $fname), array('contact_id' => $insertid));
             }
             unlink($img_url);
+            echo 1;
+        } else {
+            header('location:' . site_url() . 'admin/scrap');
         }
     }
 

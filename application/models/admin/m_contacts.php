@@ -262,7 +262,7 @@ class M_contacts extends CI_Model {
         $ext = explode('/', $file['contact_avatar']['type']);
         if (in_array($ext[1], $valid_formats)) {
             $this->s3->setAuth($this->accessKey, $this->secretKey);
-            $fname = 'contacts/contact_avatar_' . $cid . '.' . $ext[1];
+            $fname = 'wish-fish/admin/contacts/contact_avatar_' . $cid . '.' . $ext[1];
             if ($this->s3->putObjectFile($file['contact_avatar']['tmp_name'], $this->bucket, $fname, "public-read")) {
                 return $fname;
             } else {
