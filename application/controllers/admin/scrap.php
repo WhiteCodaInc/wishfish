@@ -40,6 +40,13 @@ class Scrap extends CI_Controller {
         echo $html;
     }
 
+    function twitter() {
+        $base_url = "https://twitter.com/";
+        $userid = $this->input->post('userid');
+        $html = $this->curl_file_get_contents($base_url . $userid);
+        echo $html;
+    }
+
     function facebook() {
         $base_url = "http://graph.facebook.com/";
         $userid = $this->input->post('userid');

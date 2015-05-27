@@ -131,9 +131,11 @@
         $('#type').change(function () {
             var type = $(this).val();
             if (type == "facebook") {
-                $('#title').text("Username");
+                $('#title').text("Facebook Username");
             } else if (type == "linkedin") {
                 $('#title').text("LinkedIn Profile Url");
+            } else {
+                $('#title').text("Twitter Username");
             }
         });
 
@@ -145,31 +147,13 @@
                 facebook();
             } else if (type == "linkedin") {
                 linkedin();
+            } else {
+                twitter();
             }
             return false;
         });
 
-        function linkedin() {
 
-            $.ajax({
-                type: 'POST',
-                data: {url: $('#url').val()},
-                url: "<?= site_url() ?>admin/scrap/linkedin",
-                success: function (data, textStatus, jqXHR) {
-                    var _html = $(data);
-
-                    $('.parse .overlay').hide();
-                    $('.parse .loading-img').hide();
-                    console.log();
-                    var name = _html.find('span.full-name').text().split(' ');
-                    $('.parse').hide();
-                    $('.fname').text(name[0]);
-                    $('.lname').text(name[1]);
-                    $('.picture').prop('src', _html.find('.profile-picture img').prop('src'));
-                    $('.contactInfo').show();
-                }
-            });
-        }
 
         function facebook() {
             $.ajax({
@@ -194,6 +178,49 @@
                 }
             });
         }
+
+        function linkedin() {
+            $.ajax({
+                type: 'POST',
+                data: {url: $('#url').val()},
+                url: "<?= site_url() ?>admin/scrap/linkedin",
+                success: function (data, textStatus, jqXHR) {
+                    var _html = $(data);
+
+                    $('.parse .overlay').hide();
+                    $('.parse .loading-img').hide();
+                    console.log();
+                    var name = _html.find('span.full-name').text().split(' ');
+                    $('.parse').hide();
+                    $('.fname').text(name[0]);
+                    $('.lname').text(name[1]);
+                    $('.picture').prop('src', _html.find('.profile-picture img').prop('src'));
+                    $('.contactInfo').show();
+                }
+            });
+        }
+
+        function twitter() {
+            $.ajax({
+                type: 'POST',
+                data: {userid: $('#url').val()},
+                url: "<?= site_url() ?>admin/scrap/twitter",
+                success: function (data, textStatus, jqXHR) {
+                    var _html = $(data);
+
+                    $('.parse .overlay').hide();
+                    $('.parse .loading-img').hide();
+                    console.log();
+                    var name = _html.find('h1.ProfileHeaderCard-name a').text().split(' ');
+                    $('.parse').hide();
+                    $('.fname').text(name[0]);
+                    $('.lname').text(name[1]);
+                    $('.picture').prop('src', _html.find('.ProfileAvatar img').prop('src'));
+                    $('.contactInfo').show();
+                }
+            });
+        }
+
         $('.contactInfo .save').on('click', function () {
             $('.contactInfo .overlay').show();
             $('.contactInfo .loading-img').show();
