@@ -46,7 +46,7 @@ class Scrap extends CI_Controller {
         if (!isset($res->error)) {
             $img_path = FCPATH . "user.jpg";
             copy("{$url}/picture?width=215&height=215", $img_path);
-            $res->userid = $img_path;
+            $res->profile = $img_path;
             echo json_encode($res);
         } else {
             echo 0;

@@ -12,7 +12,7 @@
             <div class="col-md-3"></div>
             <div class="col-md-6">
                 <!-- general form elements -->
-                <div class="box box-primary">
+                <div class="box box-primary parse">
                     <div class="box-header">
                         <h3 class="box-title">Import Contact</h3>
                     </div><!-- /.box-header -->
@@ -48,18 +48,23 @@
                                 </div>
                                 <div class="col-md-2"></div>
                             </div>
+                            <div style="background-color: mistyrose !important;border-color: mintcream;color: red !important;" class="alert alert-danger alert-dismissable">
+                                <i class="fa fa-ban"></i>
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <b>Error!</b><span class="errorMsg"></span> 
+                            </div>
                         </form>
                     </div>
-                    <div class="overlay"></div>
-                    <div class="loading-img"></div>
+                    <div class="overlay" style="display: none"></div>
+                    <div class="loading-img" style="display: none"></div>
                 </div>
-                <div class="box box-solid box-primary">
+                <div class="box box-solid box-primary contactInfo" style="display: none">
                     <div class="box-header">
                         <h3 class="box-title">Contact Information</h3>
                     </div>
                     <div class="box-body">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-7">
                                 <div class="row">
                                     <div class="col-md-4">
                                         <label>First Name</label>
@@ -75,11 +80,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-5">
                                 <img class="picture" src="#" alt="profile picture" />
                             </div>
                         </div>
                     </div><!-- /.box-body -->
+                    <div class="overlay" style="display: none"></div>
+                    <div class="loading-img" style="display: none"></div>
                 </div>
             </div>
             <div class="col-md-3"></div>
@@ -97,6 +104,8 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $('#parseForm').submit(function () {
+            $('.parse .overlay').show();
+            $('.parse .loading-img').show();
             if ($('#type').val() == "facebook") {
                 $.ajax({
                     type: 'POST',
@@ -105,9 +114,16 @@
                     success: function (data, textStatus, jqXHR) {
                         if (data != "0") {
                             var json = JSON.parse(data);
-                            console.log(json);
+                            $('.parse .overlay').hide();
+                            $('.parse .loading-img').hide();
+                            $('.parse').hide();
+                            $('.fname').text(json.first_name);
+                            $('.lname').text(json.last_name);
+                            $('.picture').prop('src',json.profile);
+                            $('.contactInfo').show();
+
                         } else {
-                            console.log("Error");
+                            $('span.errorMsg').text("Please Enter Valid Username..!");
                         }
                     }
                 });
