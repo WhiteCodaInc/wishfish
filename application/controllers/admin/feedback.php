@@ -24,7 +24,7 @@ class Feedback extends CI_Controller {
     }
 
     function index() {
-        $data['comments'] = $this->objfeedback->getFeedbackDetail();
+        $data['feedback'] = $this->objfeedback->getFeedbackDetail();
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');
