@@ -73,7 +73,12 @@
                     data: {userid: $('#url').val()},
                     url: "<?= site_url() ?>admin/scrap/facebook",
                     success: function (data, textStatus, jqXHR) {
-                        console.log(data);
+                        if(data != "0"){
+                            var json = JSON.parse(data);
+                            console.log(json);
+                        }else{
+                            console.log("Error");
+                        }
                     }
                 });
             }
