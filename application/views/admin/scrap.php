@@ -64,23 +64,23 @@
                     </div>
                     <div class="box-body">
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <img style="width: 100px" class="picture" src="#" alt="profile picture" />
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-md-9">
                                 <div class="row">
-                                    <div class="col-md-3">
+                                    <div class="col-md-4">
                                         <h4><label>First Name</label></h4>
                                     </div>
-                                    <div class="col-md-9">
+                                    <div class="col-md-8">
                                         <h4 class="fname"></h4>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-3">
+                                    <div class="col-md-4">
                                         <h4><label>Last Name</label></h4>
                                     </div>
-                                    <div class="col-md-9">
+                                    <div class="col-md-8">
                                         <h4 class="lname"></h4>
                                     </div>
                                 </div>
