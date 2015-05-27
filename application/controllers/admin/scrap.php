@@ -15,13 +15,15 @@ class Scrap extends CI_Controller {
 
     function __construct() {
         parent::__construct();
-//        if (!$this->wi_authex->logged_in()) {
-//            header('location:' . site_url() . 'home');
-//        } elseif (!$this->wi_authex->isActivePlan()) {
-//            header('location:' . site_url() . 'app/upgrade');
-//        } else {
-//            $this->load->model('dashboard/m_contact_groups', 'objgroup');
-//        }
+        if (!$this->authex->logged_in()) {
+            header('location:' . site_url() . 'admin/admin_login');
+        } else {
+            $this->load->library('amazons3');
+            $this->config->load('aws');
+            $this->bucket = $this->encryption->decode($this->config->item('bucket', 'aws'));
+            $this->accessKey = $this->encryption->decode($this->config->item('accessKey', 'aws'));
+            $this->secretKey = $this->encryption->decode($this->config->item('secretKey', 'aws'));
+        }
     }
 
     function index() {
@@ -50,6 +52,26 @@ class Scrap extends CI_Controller {
             echo json_encode($res);
         } else {
             echo 0;
+        }
+    }
+
+    function addContact() {
+        $post = $this->input->post();
+        if (is_array($post) && count($post)) {
+            $set = array(
+                'fname' => $post['name'],
+                'lname' => $post['name']
+            );
+            $this->db->insert('contact_detail', $set);
+            $insertid = $this->db->insert_id();
+
+            $img_url = FCPATH . "user.jpg";
+            $fname = 'wish-fish/users/profile_' . $insertid . '.jpg';
+            $this->s3->setAuth($this->accessKey, $this->secretKey);
+            if ($this->s3->putObjectFile($img_url, $this->bucket, $fname, "public-read")) {
+                $this->db->update('contact_detail', array('profile_pic' => $fname), array('contact_id' => $insertid));
+            }
+            unlink($img_url);
         }
     }
 

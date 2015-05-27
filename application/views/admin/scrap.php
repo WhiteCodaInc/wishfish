@@ -84,9 +84,15 @@
                                         <h4 class="lname"></h4>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button class="btn btn-success save" type="button">
+                                            Add in Contact List
+                                        </button> 
+                                    </div>
+                                </div>
                             </div>
                         </div>
-
                     </div><!-- /.box-body -->
                     <div class="overlay" style="display: none"></div>
                     <div class="loading-img" style="display: none"></div>
