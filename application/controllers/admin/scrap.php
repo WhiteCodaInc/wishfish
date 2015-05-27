@@ -17,6 +17,8 @@ class Scrap extends CI_Controller {
         parent::__construct();
         if (!$this->authex->logged_in()) {
             header('location:' . site_url() . 'admin/admin_login');
+        } else if (!$this->common->getPermission()->contacts) {
+            header('location:' . site_url() . 'admin/dashboard/error/500');
         } else {
             $this->load->library('amazons3');
             $this->config->load('aws');
