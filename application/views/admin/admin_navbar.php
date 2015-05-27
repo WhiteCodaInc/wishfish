@@ -224,7 +224,7 @@ $img_src = ($avatar != "") ?
                 <?php endif; ?>
                 <li class="" id="11">
                     <a href="<?= site_url() ?>admin/feedback">
-                        <i class="fa fa-angle-double-right"></i> <span>Calender</span>
+                        <i class="fa fa-angle-double-right"></i> <span>Feedback/Support</span>
                     </a>
                 </li>
             </ul>
