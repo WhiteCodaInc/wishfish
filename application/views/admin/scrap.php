@@ -22,7 +22,7 @@
                                 <div class="col-md-2"></div>
                                 <div class="col-md-8">
                                     <div class="form-group">
-                                        <label>Inmport From</label>
+                                        <label>Import From</label>
                                         <select name="type" id="type"  class="form-control" required="">
                                             <option value="facebook" selected="">Facebook</option>
                                             <option value="linkedin">LinkedIn</option>
@@ -57,8 +57,6 @@
                     <div class="overlay" style="display: none"></div>
                     <div class="loading-img" style="display: none"></div>
                 </div>
-
-
                 <div class="box box-solid box-primary contactInfo" style="display: none">
                     <div class="box-header">
                         <h3 class="box-title">Contact Information</h3>
@@ -110,6 +108,11 @@
             </div>
             <div class="col-md-3"></div>
         </div>
+        <div class="row">
+            <div class="col-md-12 linkedin">
+
+            </div>
+        </div>
     </section><!-- /.content -->
 </aside><!-- /.right-side -->
 
@@ -159,7 +162,7 @@
                 success: function (data, textStatus, jqXHR) {
                     $('.parse .overlay').hide();
                     $('.parse .loading-img').hide();
-
+                    $('.linkedin').html(data);
 //                    $('.parse').hide();
 //                    $('.fname').text(json.first_name);
 //                    $('.lname').text(json.last_name);
