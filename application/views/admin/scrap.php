@@ -115,7 +115,9 @@
 
         $('.contactInfo .cancel').click(function () {
             $('.contactInfo').hide();
+            $('span.successMsg').hide();
             $('#type').val("facebook");
+            $('.save').show();
             $('#title').val("Facebook Username");
             $('#url').val('');
             $('.picture').prop('src', '#');
@@ -203,7 +205,6 @@
 
                     $('.parse .overlay').hide();
                     $('.parse .loading-img').hide();
-                    console.log();
                     var name = _html.find('h1.ProfileHeaderCard-name a').text().split(' ');
                     $('.parse').hide();
                     $('.fname').text(name[0]);
@@ -220,8 +221,10 @@
             $.ajax({
                 type: 'POST',
                 data: {
+                    type: $('#type').val(),
                     fname: $('.fname').text(),
-                    lname: $('.lname').text()
+                    lname: $('.lname').text(),
+                    url: $('.picture').prop('src')
                 },
                 url: "<?= site_url() ?>admin/scrap/addContact",
                 success: function (data, textStatus, jqXHR) {

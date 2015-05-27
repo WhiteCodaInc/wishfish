@@ -69,6 +69,7 @@ class Scrap extends CI_Controller {
 
     function addContact() {
         $post = $this->input->post();
+
         if (is_array($post) && count($post)) {
             $set = array(
                 'fname' => $post['fname'],
@@ -77,8 +78,14 @@ class Scrap extends CI_Controller {
             $this->db->insert('contact_detail', $set);
             $insertid = $this->db->insert_id();
 
-            $img_url = FCPATH . "user.jpg";
-            $fname = 'wish-fish/admin/contacts/contact_avatar_' . $insertid . '.jpg';
+            if ($post['type'] != "facebook") {
+                $img_url = FCPATH . "user.jpg";
+                copy($post['url'], $img_url);
+            } else {
+                $img_url = FCPATH . "user.jpg";
+            }
+
+            $fname = 'contacts/contact_avatar_' . $insertid . '.jpg';
             $this->s3->setAuth($this->accessKey, $this->secretKey);
             if ($this->s3->putObjectFile($img_url, $this->bucket, $fname, "public-read")) {
                 $this->db->update('contact_detail', array('contact_avatar' => $fname), array('contact_id' => $insertid));
