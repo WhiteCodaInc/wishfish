@@ -64,24 +64,27 @@
                     </div>
                     <div class="box-body">
                         <div class="row">
-                            <div class="col-md-7">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <label>First Name</label>
-                                    </div>
-                                    <div class="col-md-8 fname"></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <label>Last Name</label>
-                                    </div>
-                                    <div class="col-md-8 lname">
-
-                                    </div>
-                                </div>
+                            <div class="col-md-3">
+                                <h4><label>First Name</label></h4>
                             </div>
-                            <div class="col-md-5">
-                                <img class="picture" src="#" alt="profile picture" />
+                            <div class="col-md-9">
+                                <h4 class="fname"></h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h4><label>Last Name</label></h4>
+                            </div>
+                            <div class="col-md-9">
+                                <h4 class="lname"></h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h4><label>Profile Pic</label></h4>
+                            </div>
+                            <div class="col-md-9">
+                                <img style="width: 200px" class="picture" src="#" alt="profile picture" />
                             </div>
                         </div>
                     </div><!-- /.box-body -->
