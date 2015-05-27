@@ -108,11 +108,6 @@
             </div>
             <div class="col-md-3"></div>
         </div>
-        <div class="row">
-            <div class="col-md-12 linkedin">
-
-            </div>
-        </div>
     </section><!-- /.content -->
 </aside><!-- /.right-side -->
 
@@ -157,37 +152,23 @@
         function linkedin() {
 
             $.ajax({
-//                url: $('#url').val(),
-                type: 'post',
+                type: 'POST',
                 data: {url: $('#url').val()},
                 url: "<?= site_url() ?>admin/scrap/linkedin",
-                dataType: 'html',
-                success: function (data)
-                {
+                success: function (data, textStatus, jqXHR) {
                     var _html = $(data);
-                    console.log(_html.find('span.full-name').text());
-                    //do some thing with html eg: _html.find('div').addClass('red')
-//                    $('#target').html(_html);
+
+                    $('.parse .overlay').hide();
+                    $('.parse .loading-img').hide();
+                    console.log();
+                    var name = _html.find('span.full-name').text().split(' ');
+                    $('.parse').hide();
+                    $('.fname').text(name[0]);
+                    $('.lname').text(name[1]);
+                    $('.picture').prop('src', _html.find('.profile-picture img').prop('src'));
+                    $('.contactInfo').show();
                 }
             });
-
-//            $.ajax({
-//                type: 'POST',
-//                data: {url: $('#url').val()},
-//                url: "<?= site_url() ?>admin/scrap/linkedin",
-//                success: function (data, textStatus, jqXHR) {
-//                    $page = data;
-//                    $('.parse .overlay').hide();
-//                    $('.parse .loading-img').hide();
-////                    $('.linkedin').html(data);
-//                    console.log($page.find('span.full-name').text());
-////                    $('.parse').hide();
-////                    $('.fname').text(json.first_name);
-////                    $('.lname').text(json.last_name);
-////                    $('.picture').prop('src', json.profile);
-////                    $('.contactInfo').show();
-//                }
-//            });
         }
 
         function facebook() {
