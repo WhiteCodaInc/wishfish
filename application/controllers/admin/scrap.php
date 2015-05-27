@@ -24,6 +24,13 @@ class Scrap extends CI_Controller {
 //        }
     }
 
+    function index() {
+        $this->load->view('dashboard/header');
+        $this->load->view('dashboard/top');
+        $this->load->view('dashboard/scrap');
+        $this->load->view('dashboard/footer');
+    }
+
     function linkedin() {
         $url = $this->input->get('query');
         $html = $this->curl_file_get_contents($url);
