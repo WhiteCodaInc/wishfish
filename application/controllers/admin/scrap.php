@@ -42,10 +42,10 @@ class Scrap extends CI_Controller {
         $base_url = "http://graph.facebook.com/";
         $userid = $this->input->post('userid');
         $url = $base_url . $userid;
-        $res = $this->curl_file_get_contents($url);
+        $res = json_decode($this->curl_file_get_contents($url));
         $img_path = FCPATH . "user.jpg";
         copy("{$url}/picture?width=215&height=215", $img_path);
-        $res->{"userid"} = $img_path;
+        $res->userid = $img_path;
         echo '<pre>';
         print_r($res);
         die();
