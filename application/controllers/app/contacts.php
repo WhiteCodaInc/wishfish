@@ -30,6 +30,7 @@ class Contacts extends CI_Controller {
     }
 
     function index() {
+        die("User Contact Called");
         $data['contacts'] = $this->objcontact->getContactDetail();
         $data['groups'] = $this->objgroup->getContactGroups("simple");
         $data['zodiac'] = $this->wi_common->getZodiacs();
