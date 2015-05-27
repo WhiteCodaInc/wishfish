@@ -85,9 +85,14 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-12">
-                                        <button class="btn btn-success save" type="button">
+                                    <div class="col-md-4">
+                                        <button class="btn btn-success btn-sm save" type="button">
                                             Add in Contact List
+                                        </button> 
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button class="btn btn-danger btn-sm save" type="button">
+                                            Cancel
                                         </button> 
                                     </div>
                                 </div>
@@ -112,6 +117,14 @@
 <!-- /.modal -->
 <script type="text/javascript">
     $(document).ready(function () {
+
+        $('.contactInfo .cancel').click(function () {
+            $('.contactInfo').hide();
+            $('#type').val("facebook");
+            $('#url').val('');
+            $('.parse').show();
+        });
+
         $('#parseForm').submit(function () {
             $('.parse .overlay').show();
             $('.parse .loading-img').show();
