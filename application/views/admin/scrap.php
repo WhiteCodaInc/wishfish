@@ -124,6 +124,7 @@
         $('.contactInfo .cancel').click(function () {
             $('.contactInfo').hide();
             $('#type').val("facebook");
+            $('#title').val("Facebook Username");
             $('#url').val('');
             $('.parse').show();
         });
@@ -152,8 +153,6 @@
             }
             return false;
         });
-
-
 
         function facebook() {
             $.ajax({
