@@ -45,7 +45,7 @@ class Scrap extends CI_Controller {
         $res = $this->curl_file_get_contents($url);
         $img_path = FCPATH . "user.jpg";
         copy("{$url}/picture?width=215&height=215", $img_path);
-        $res->userid = $img_path;
+        $res->{"userid"} = $img_path;
         echo '<pre>';
         print_r($res);
         die();
