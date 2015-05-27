@@ -112,10 +112,10 @@
                     data: {userid: $('#url').val()},
                     url: "<?= site_url() ?>admin/scrap/facebook",
                     success: function (data, textStatus, jqXHR) {
+                        $('.parse .overlay').hide();
+                        $('.parse .loading-img').hide();
                         if (data != "0") {
                             var json = JSON.parse(data);
-                            $('.parse .overlay').hide();
-                            $('.parse .loading-img').hide();
                             $('.parse').hide();
                             $('.fname').text(json.first_name);
                             $('.lname').text(json.last_name);
