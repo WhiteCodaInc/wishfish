@@ -54,6 +54,9 @@ class Scrap extends CI_Controller {
         $res = json_decode($this->curl_file_get_contents($url));
         if (!isset($res->error)) {
             $img_path = FCPATH . "user.jpg";
+            if (file_exists($img_path)) {
+                unlink($img_path);
+            }
             copy("{$url}/picture?width=215&height=215", $img_path);
             $res->profile = base_url() . 'user.jpg';
             echo json_encode($res);
