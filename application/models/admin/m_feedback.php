@@ -19,7 +19,7 @@ class M_feedback extends CI_Model {
     }
 
     function getFeedbackDetail() {
-        $this->db->order_by('date', 'desc');
+        $this->db->order_by('name', 'desc');
         $query = $this->db->get('feedback');
         return $query->result();
     }
