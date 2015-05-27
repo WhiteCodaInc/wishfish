@@ -25,10 +25,11 @@ class Scrap extends CI_Controller {
     }
 
     function index() {
-        $this->load->view('dashboard/header');
-        $this->load->view('dashboard/top');
-        $this->load->view('dashboard/scrap');
-        $this->load->view('dashboard/footer');
+        $this->load->view('admin/admin_header');
+        $this->load->view('admin/admin_top');
+        $this->load->view('admin/admin_navbar');
+        $this->load->view('admin/scrap');
+        $this->load->view('admin/admin_footer');
     }
 
     function linkedin() {
