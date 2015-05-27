@@ -157,8 +157,10 @@
         function linkedin() {
 
             $.ajax({
-                url: $('#url').val(),
-                type: 'get',
+//                url: $('#url').val(),
+                type: 'post',
+                data: {url: $('#url').val()},
+                url: "<?= site_url() ?>admin/scrap/linkedin",
                 dataType: 'html',
                 success: function (data)
                 {
