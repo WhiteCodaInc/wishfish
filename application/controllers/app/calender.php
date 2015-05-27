@@ -32,6 +32,7 @@ class Calender extends CI_Controller {
     }
 
     function index() {
+        die("User Called");
         $data['template'] = $this->objsmstemplate->getTemplates();
         $this->load->view('dashboard/header');
         $this->load->view('dashboard/top');
