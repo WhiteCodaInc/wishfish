@@ -95,11 +95,11 @@
                                         </button> 
                                     </div>
                                 </div>
-                                <div style="display: none;margin-top: 10px" class="alert alert-success alert-dismissable">
-                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                    <span class="successMsg"></span> 
-                                </div>
                             </div>
+                        </div>
+                        <div style="display: none;margin-top: 10px" class="alert alert-success alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <span class="successMsg"></span> 
                         </div>
                     </div><!-- /.box-body -->
                     <div class="overlay" style="display: none"></div>

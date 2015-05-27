@@ -59,8 +59,8 @@ class Scrap extends CI_Controller {
         $post = $this->input->post();
         if (is_array($post) && count($post)) {
             $set = array(
-                'fname' => $post['name'],
-                'lname' => $post['name']
+                'fname' => $post['fname'],
+                'lname' => $post['lname']
             );
             $this->db->insert('contact_detail', $set);
             $insertid = $this->db->insert_id();
