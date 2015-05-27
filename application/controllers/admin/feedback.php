@@ -19,35 +19,25 @@ class Feedback extends CI_Controller {
         if (!$this->authex->logged_in()) {
             header('location:' . site_url() . 'admin/admin_login');
         } else {
-            $this->load->model('admin/m_comment', 'objcomment');
+            $this->load->model('admin/m_feedback', 'objfeedback');
         }
     }
 
     function index() {
-        $data['comments'] = $this->objcomment->getCommentDetail();
+        $data['comments'] = $this->objfeedback->getFeedbackDetail();
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');
-        $this->load->view('admin/comments', $data);
-        $this->load->view('admin/admin_footer');
-    }
-
-    function search() {
-        $data['searchResult'] = $this->objcomment->searchResult();
-        $data['blogs'] = $this->objcms->getBlogDetail();
-        $this->load->view('admin/admin_header');
-        $this->load->view('admin/admin_top');
-        $this->load->view('admin/admin_navbar');
-        $this->load->view('admin/comments', $data);
+        $this->load->view('admin/feedback', $data);
         $this->load->view('admin/admin_footer');
     }
 
     function action() {
         $type = $this->input->post('actionType');
-        if ($type == "Delete" || $type == "Approve" || $type == "Disapprove") {
-            $msg = $this->objcomment->setAction($type);
+        if ($type == "Delete") {
+            $msg = $this->objfeedback->setAction($type);
         }
-        header('location:' . site_url() . 'admin/comment?msg=' . $msg);
+        header('location:' . site_url() . 'admin/feedback?msg=' . $msg);
     }
 
 }

@@ -222,6 +222,11 @@ $img_src = ($avatar != "") ?
                         </ul>
                     </li>
                 <?php endif; ?>
+                <li class="" id="11">
+                    <a href="<?= site_url() ?>admin/feedback">
+                        <i class="fa fa-angle-double-right"></i> <span>Calender</span>
+                    </a>
+                </li>
             </ul>
             <script type="text/javascript">
                 $(document).ready(function () {
