@@ -91,7 +91,7 @@
                                         </button> 
                                     </div>
                                     <div class="col-md-4">
-                                        <button class="btn btn-danger btn-sm save" type="button">
+                                        <button class="btn btn-danger btn-sm cancel" type="button">
                                             Cancel
                                         </button> 
                                     </div>
