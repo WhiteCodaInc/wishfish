@@ -135,12 +135,15 @@
                 type: 'POST',
                 data: {
                     fname: $('.fname').text(),
-                    lname: $('.lname').text(),
-                    url: $('.picture').prop('src')
+                    lname: $('.lname').text()
                 },
                 url: "<?= site_url() ?>admin/scrap/addContact",
                 success: function (data, textStatus, jqXHR) {
-
+                    $('.parse .overlay').hide();
+                    $('.parse .loading-img').hide();
+                    $('.save').hide();
+                    $('.contactInfo .alert').show();
+                    $('span.successMsg').text("Contact has been successfully created..!");
                 }
             });
         });
