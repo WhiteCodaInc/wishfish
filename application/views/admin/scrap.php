@@ -57,6 +57,8 @@
                     <div class="overlay" style="display: none"></div>
                     <div class="loading-img" style="display: none"></div>
                 </div>
+
+
                 <div class="box box-solid box-primary contactInfo" style="display: none">
                     <div class="box-header">
                         <h3 class="box-title">Contact Information</h3>
@@ -128,6 +130,74 @@
             $('.parse').show();
         });
 
+        $('#type').change(function () {
+            var type = $(this).val();
+            if (type == "facebook") {
+                $('#title').text("Username");
+            } else if (type == "linkedin") {
+                $('#title').text("LinkedIn Profile Url");
+            }
+        });
+
+        $('#parseForm').submit(function () {
+            var type = $('#type').val();
+            $('.parse .overlay').show();
+            $('.parse .loading-img').show();
+            if (type == "facebook") {
+                facebook();
+            } else if (type == "linkedin") {
+                linkedin();
+            }
+            return false;
+        });
+
+        function linkedin() {
+            $.ajax({
+                type: 'POST',
+                data: {url: $('#url').val()},
+                url: "<?= site_url() ?>admin/scrap/linkedin",
+                success: function (data, textStatus, jqXHR) {
+                    $('.parse .overlay').hide();
+                    $('.parse .loading-img').hide();
+                    if (data != "0") {
+                        var json = JSON.parse(data);
+                        $('.parse').hide();
+                        $('.fname').text(json.first_name);
+                        $('.lname').text(json.last_name);
+                        $('.picture').prop('src', json.profile);
+                        $('.contactInfo').show();
+
+                    } else {
+                        $('.parse .alert').show();
+                        $('span.errorMsg').text("Please Enter Valid Username..!");
+                    }
+                }
+            });
+        }
+
+        function facebook() {
+            $.ajax({
+                type: 'POST',
+                data: {userid: $('#url').val()},
+                url: "<?= site_url() ?>admin/scrap/facebook",
+                success: function (data, textStatus, jqXHR) {
+                    $('.parse .overlay').hide();
+                    $('.parse .loading-img').hide();
+                    if (data != "0") {
+                        var json = JSON.parse(data);
+                        $('.parse').hide();
+                        $('.fname').text(json.first_name);
+                        $('.lname').text(json.last_name);
+                        $('.picture').prop('src', json.profile);
+                        $('.contactInfo').show();
+
+                    } else {
+                        $('.parse .alert').show();
+                        $('span.errorMsg').text("Please Enter Valid Username..!");
+                    }
+                }
+            });
+        }
         $('.contactInfo .save').on('click', function () {
             $('.contactInfo .overlay').show();
             $('.contactInfo .loading-img').show();
@@ -146,35 +216,6 @@
                     $('span.successMsg').text("Contact has been successfully created..!");
                 }
             });
-        });
-
-        $('#parseForm').submit(function () {
-            $('.parse .overlay').show();
-            $('.parse .loading-img').show();
-            if ($('#type').val() == "facebook") {
-                $.ajax({
-                    type: 'POST',
-                    data: {userid: $('#url').val()},
-                    url: "<?= site_url() ?>admin/scrap/facebook",
-                    success: function (data, textStatus, jqXHR) {
-                        $('.parse .overlay').hide();
-                        $('.parse .loading-img').hide();
-                        if (data != "0") {
-                            var json = JSON.parse(data);
-                            $('.parse').hide();
-                            $('.fname').text(json.first_name);
-                            $('.lname').text(json.last_name);
-                            $('.picture').prop('src', json.profile);
-                            $('.contactInfo').show();
-
-                        } else {
-                            $('.parse .alert').show();
-                            $('span.errorMsg').text("Please Enter Valid Username..!");
-                        }
-                    }
-                });
-            }
-            return false;
         });
     });
 </script>
