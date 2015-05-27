@@ -53,7 +53,7 @@ class M_dashboard extends CI_Model {
             }
         }
         $m = "U";
-        
+
         return $m;
     }
 
@@ -126,6 +126,20 @@ class M_dashboard extends CI_Model {
         $name = ($templateInfo['name'] != "") ? $templateInfo['name'] : NULL;
 
         return $this->wi_common->sendAutoMail($userInfo->email, $subject, $body, $from, $name);
+    }
+
+    function addFeedback($query) {
+        $uid = $this->userid;
+        $name = $this->session->userdata('name');
+        $email = $this->session->userdata('email');
+        $set = array(
+            'user_id' => $uid,
+            'name' => $name,
+            'email' => $email,
+            'query' => $query
+        );
+        $this->db->insert('feedback', $set);
+        return true;
     }
 
 }

@@ -117,6 +117,7 @@ class Dashboard extends CI_Controller {
         if ($this->wi_authex->logged_in()) {
             $query = $this->input->post('query');
             if (isset($_POST['query'])) {
+                $this->objdashboard->addFeedback($query);
                 $name = $this->session->userdata('name');
                 $email = $this->session->userdata('email');
                 $body = "Customer Name : {$name}<br>";
