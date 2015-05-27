@@ -29,6 +29,7 @@ class M_contacts extends CI_Model {
     }
 
     function getContactDetail() {
+        die();
         $this->db->order_by('fname', 'asc');
         $query = $this->db->get_where('wi_contact_detail', array('user_id' => $this->userid));
         return $query->result();
