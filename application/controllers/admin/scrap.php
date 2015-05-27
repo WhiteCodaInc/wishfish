@@ -35,7 +35,7 @@ class Scrap extends CI_Controller {
     }
 
     function linkedin() {
-        $url = $this->input->get('query');
+        $url = $this->input->post('url');
         $html = $this->curl_file_get_contents($url);
         echo $html;
     }
