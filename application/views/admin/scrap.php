@@ -48,7 +48,7 @@
                                 </div>
                                 <div class="col-md-2"></div>
                             </div>
-                            <div style="background-color: mistyrose !important;border-color: mintcream;color: red !important;" class="alert alert-danger alert-dismissable">
+                            <div style="display: none;background-color: mistyrose !important;border-color: mintcream;color: red !important;" class="alert alert-danger alert-dismissable">
                                 <i class="fa fa-ban"></i>
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                                 <b>Error!</b><span class="errorMsg"></span> 
@@ -119,10 +119,11 @@
                             $('.parse').hide();
                             $('.fname').text(json.first_name);
                             $('.lname').text(json.last_name);
-                            $('.picture').prop('src',json.profile);
+                            $('.picture').prop('src', json.profile);
                             $('.contactInfo').show();
 
                         } else {
+                            $('.parse .alert').show();
                             $('span.errorMsg').text("Please Enter Valid Username..!");
                         }
                     }
