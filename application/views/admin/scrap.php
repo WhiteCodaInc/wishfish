@@ -35,7 +35,7 @@
                             <div class="row">
                                 <div class="col-md-2"></div>
                                 <div class="col-md-8">
-                                    <label id="title">Username</label>
+                                    <label id="title">Facebook Username</label>
                                     <input name="url" id="url"  type="text" class="form-control" required=""/>
                                 </div>
                                 <div class="col-md-2"></div>
