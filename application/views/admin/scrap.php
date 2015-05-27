@@ -126,7 +126,9 @@
             $('#type').val("facebook");
             $('#title').val("Facebook Username");
             $('#url').val('');
+            $('.picture').prop('src', '#');
             $('.parse').show();
+
         });
 
         $('#type').change(function () {
