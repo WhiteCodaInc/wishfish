@@ -21,7 +21,7 @@ class Contacts extends CI_Controller {
         } elseif (!$this->wi_authex->isActivePlan()) {
             header('location:' . site_url() . 'app/upgrade');
         } else {
-            
+
             $this->load->model('dashboard/m_contacts', 'objcontact');
             $this->load->model('dashboard/m_contact_groups', 'objgroup');
 //            $this->load->model('m_sms_template', 'objsmstemplate');
@@ -30,7 +30,6 @@ class Contacts extends CI_Controller {
     }
 
     function index() {
-        die("User Contact Called");
         $data['contacts'] = $this->objcontact->getContactDetail();
         $data['groups'] = $this->objgroup->getContactGroups("simple");
         $data['zodiac'] = $this->wi_common->getZodiacs();
