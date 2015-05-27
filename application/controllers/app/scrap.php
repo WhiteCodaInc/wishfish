@@ -24,8 +24,13 @@ class Scrap extends CI_Controller {
 //        }
     }
 
-    function index() {
+    function linkedin() {
+        $url = $this->input->get('query');
+        $html = $this->curl_file_get_contents($url);
+        echo $html;
+    }
 
+    function facebook() {
         $url = "http://graph.facebook.com/" . $this->input->get('query');
         $res = json_decode($this->curl_file_get_contents($url));
         echo '<pre>';
