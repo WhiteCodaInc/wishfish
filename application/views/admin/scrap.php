@@ -159,6 +159,7 @@
                 success: function (data, textStatus, jqXHR) {
                     $('.parse .overlay').hide();
                     $('.parse .loading-img').hide();
+
 //                    $('.parse').hide();
 //                    $('.fname').text(json.first_name);
 //                    $('.lname').text(json.last_name);
