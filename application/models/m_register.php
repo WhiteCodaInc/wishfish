@@ -250,12 +250,13 @@ class M_register extends CI_Model {
                         $name = $e->plaintext;
                     foreach ($html->find('.profile-picture img') as $e)
                         $src = $e->src;
-                    echo $name.'<br>';
-                    echo $src.'<br>';
-                    die();
-//                    copy($src, FCPATH . "user.jpg");
-//                    $this->updateProfile($res, $name);
-                    return TRUE;
+                    if (isset($name) && isset($src)) {
+                        copy($src, FCPATH . "user.jpg");
+                        $this->updateProfile($res, $name);
+                        return TRUE;
+                    } else {
+                        return FALSE;
+                    }
                 } else {
                     return FALSE;
                 }
