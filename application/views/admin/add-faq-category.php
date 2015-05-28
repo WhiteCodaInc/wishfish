@@ -20,7 +20,7 @@
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     <?php $method = (isset($category)) ? "updateFaqCategory" : "createFaqCategory" ?>
-                    <form role="form" action="<?= site_url() ?>faq/<?= $method ?>" method="post">
+                    <form role="form" action="<?= site_url() ?>admin/faq/<?= $method ?>" method="post">
                         <div class="box-body">
                             <div class="form-group">
                                 <label >Category Name</label>

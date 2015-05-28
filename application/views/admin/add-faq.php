@@ -18,7 +18,7 @@
                     </div><!-- /.box-header -->
                     <?php $method = (isset($faqs)) ? "updateFaq" : "createFaq" ?>
                     <!-- form start -->
-                    <form role="form" action="<?= site_url() ?>faq/<?= $method ?>" method="post">
+                    <form role="form" action="<?= site_url() ?>admin/faq/<?= $method ?>" method="post">
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-md-6">
