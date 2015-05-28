@@ -15,7 +15,7 @@ class Faq extends CI_Controller {
 
     function __construct() {
         parent::__construct();
-        $this->load->model('m_faq', 'objfaq');
+        $this->load->model('admin/m_faq', 'objfaq');
     }
 
     function index() {
@@ -73,16 +73,20 @@ class Faq extends CI_Controller {
 
     function faqs() {
         $data['faqs'] = $this->objfaq->getFaqDetail();
-        $this->load->view('dashboard/header');
-        $this->load->view('faqs', $data);
-        $this->load->view('dashboard/footer');
+        $this->load->view('admin/admin_header');
+        $this->load->view('admin/admin_top');
+        $this->load->view('admin/admin_navbar');
+        $this->load->view('admin/faqs', $data);
+        $this->load->view('admin/admin_footer');
     }
 
     function addFaq() {
         $data['category'] = $this->objfaq->getFaqCategoryDetail();
-        $this->load->view('dashboard/header');
-        $this->load->view('add-faq', $data);
-        $this->load->view('dashboard/footer');
+        $this->load->view('admin/admin_header');
+        $this->load->view('admin/admin_top');
+        $this->load->view('admin/admin_navbar');
+        $this->load->view('admin/add-faq', $data);
+        $this->load->view('admin/admin_footer');
     }
 
     function createFaq() {
@@ -94,9 +98,11 @@ class Faq extends CI_Controller {
     function editFaq($fid) {
         $data['category'] = $this->objfaq->getFaqCategoryDetail();
         $data['faqs'] = $this->objfaq->getFaq($fid);
-        $this->load->view('dashboard/header');
-        $this->load->view('add-faq', $data);
-        $this->load->view('dashboard/footer');
+        $this->load->view('admin/admin_header');
+        $this->load->view('admin/admin_top');
+        $this->load->view('admin/admin_navbar');
+        $this->load->view('admin/add-faq', $data);
+        $this->load->view('admin/admin_footer');
     }
 
     function updateFaq() {
@@ -121,15 +127,19 @@ class Faq extends CI_Controller {
 
     function faqCategory() {
         $data['category'] = $this->objfaq->getFaqCategoryDetail();
-        $this->load->view('dashboard/header');
-        $this->load->view('faq-category', $data);
-        $this->load->view('dashboard/footer');
+        $this->load->view('admin/admin_header');
+        $this->load->view('admin/admin_top');
+        $this->load->view('admin/admin_navbar');
+        $this->load->view('admin/faq-category', $data);
+        $this->load->view('admin/admin_footer');
     }
 
     function addFaqCategory() {
-        $this->load->view('dashboard/header');
-        $this->load->view('add-faq-category');
-        $this->load->view('dashboard/footer');
+        $this->load->view('admin/admin_header');
+        $this->load->view('admin/admin_top');
+        $this->load->view('admin/admin_navbar');
+        $this->load->view('admin/add-faq-category');
+        $this->load->view('admin/admin_footer');
     }
 
     function createFaqCategory() {
@@ -140,9 +150,11 @@ class Faq extends CI_Controller {
 
     function editFaqCategory($cid) {
         $data['category'] = $this->objfaq->getFaqCategory($cid);
-        $this->load->view('dashboard/header');
-        $this->load->view('add-faq-category', $data);
-        $this->load->view('dashboard/footer');
+        $this->load->view('admin/admin_header');
+        $this->load->view('admin/admin_top');
+        $this->load->view('admin/admin_navbar');
+        $this->load->view('admin/add-faq-category', $data);
+        $this->load->view('admin/admin_footer');
     }
 
     function updateFaqCategory() {

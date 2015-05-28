@@ -227,6 +227,11 @@ $img_src = ($avatar != "") ?
                         <i class="fa fa-angle-double-right"></i> <span>Feedback/Support</span>
                     </a>
                 </li>
+                <li class="" id="12">
+                    <a href="<?= site_url() ?>admin/faq">
+                        <i class="fa fa-angle-double-right"></i> <span>FAQ</span>
+                    </a>
+                </li>
             </ul>
             <script type="text/javascript">
                 $(document).ready(function () {
