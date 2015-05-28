@@ -44,6 +44,7 @@ class Profile extends CI_Controller {
         } else {
             $error = "{$post['profile_link']} is not valid..!";
             $this->session->set_flashdata('error', $error);
+            header('location:' . site_url() . 'app/profile');
         }
     }
 
