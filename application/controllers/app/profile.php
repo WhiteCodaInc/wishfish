@@ -37,6 +37,9 @@ class Profile extends CI_Controller {
 
     function updateProfile() {
         $post = $this->input->post();
+        echo '<pre>';
+        print_r($post);
+        die();
         $msg = $this->objprofile->updateProfile($post);
         header('location:' . site_url() . 'app/dashboard');
     }
@@ -65,12 +68,6 @@ class Profile extends CI_Controller {
     function updateProfileSetup() {
         $post = $this->input->post();
         echo ($this->objprofile->updateProfileSetup($post)) ? 1 : 0;
-    }
-
-    function linkToProfile() {
-        $email = $this->session->userdata('email');
-        echo 1;
-//        echo ($this->objregister->linkToProfile($email)) ? 1 : 0;
     }
 
 }

@@ -270,6 +270,7 @@
 
         Stripe.setPublishableKey('pk_test_qVqwj9LKS3yljQVTRh15YB2K');
 
+
         $('.default-date-picker').datepicker({
             format: "<?= $this->session->userdata('date_format') ?>",
             todayBtn: "linked",
@@ -339,77 +340,68 @@
 
         $('#userForm,#cardForm').on('submit', function () {
             cardForm = $(this).attr('id');
+            console.log(cardForm);
             $('#save').attr('disabled', 'disabled');
-
-            if (linkToProfile()) {
-                alert("TRUE");
-            } else {
-                alert("FALSE");
-            }
-            return false;
             if (gatewayFlag && (!cardFlag || cardForm == "cardForm")) {
-<?php if ($user->is_set && $user->gateway == "STRIPE") : ?>
-                    var error = false;
-                    var ccNum = $(this).find('.card_number').val(),
-                            cvcNum = $(this).find('.cvc').val(),
-                            expMonth = $(this).find('.month').val(),
-                            expYear = $(this).find('.year').val();
+                var error = false;
+                var ccNum = $(this).find('.card_number').val(),
+                        cvcNum = $(this).find('.cvc').val(),
+                        expMonth = $(this).find('.month').val(),
+                        expYear = $(this).find('.year').val();
 
-                    if (ccNum.trim() != "" || cvcNum.trim() != "" ||
-                            expMonth.trim() != "" || expYear.trim() != "") {
-                        // Validate the number:
-                        if (!Stripe.card.validateCardNumber(ccNum)) {
-                            error = true;
-                            (cardForm == "userForm") ?
-                                    reportError('The credit card number appears to be invalid.') :
-                                    $('#msgCard').text('The credit card number appears to be invalid.');
-                            $('#msgCard').show();
-                            $('#save').prop('disabled', false);
-                            return false;
-                        }
-                        // Validate the CVC:
-                        if (!Stripe.card.validateCVC(cvcNum)) {
-                            error = true;
-                            (cardForm == "userForm") ?
-                                    reportError('The CVC number appears to be invalid.') :
-                                    $('#msgCard').text('The CVC number appears to be invalid.');
-                            $('#msgCard').show();
-                            $('#save').prop('disabled', false);
-                            return false;
-                        }
-                        // Validate the expiration:
-                        if (!Stripe.card.validateExpiry(expMonth, expYear)) {
-                            error = true;
-                            (cardForm == "userForm") ?
-                                    reportError('The expiration date appears to be invalid.') :
-                                    $('#msgCard').text('The expiration date appears to be invalid.');
-                            $('#msgCard').show();
-                            $('#save').prop('disabled', false);
-                            return false;
-                        }
-                        // Check for errors:
-                        if (!error) {
-                            // Get the Stripe token:
-                            $('#msgCard').hide();
-                            $('#error').hide();
-                            Stripe.card.createToken({
-                                number: ccNum,
-                                cvc: cvcNum,
-                                exp_month: expMonth,
-                                exp_year: expYear
-                            }, stripeResponseHandler);
-                        } else {
-                            $('#error').show();
-                            $('#msgCard').show();
-                        }
+                if (ccNum.trim() != "" || cvcNum.trim() != "" ||
+                        expMonth.trim() != "" || expYear.trim() != "") {
+                    // Validate the number:
+                    if (!Stripe.card.validateCardNumber(ccNum)) {
+                        error = true;
+                        (cardForm == "userForm") ?
+                                reportError('The credit card number appears to be invalid.') :
+                                $('#msgCard').text('The credit card number appears to be invalid.');
+                        $('#msgCard').show();
+                        $('#save').prop('disabled', false);
                         return false;
-                        // Prevent the form from submitting:
-                    } else {
-                        return (cardForm == "cardForm") ? false : true;
                     }
-<?php endif; ?>
+                    // Validate the CVC:
+                    if (!Stripe.card.validateCVC(cvcNum)) {
+                        error = true;
+                        (cardForm == "userForm") ?
+                                reportError('The CVC number appears to be invalid.') :
+                                $('#msgCard').text('The CVC number appears to be invalid.');
+                        $('#msgCard').show();
+                        $('#save').prop('disabled', false);
+                        return false;
+                    }
+                    // Validate the expiration:
+                    if (!Stripe.card.validateExpiry(expMonth, expYear)) {
+                        error = true;
+                        (cardForm == "userForm") ?
+                                reportError('The expiration date appears to be invalid.') :
+                                $('#msgCard').text('The expiration date appears to be invalid.');
+                        $('#msgCard').show();
+                        $('#save').prop('disabled', false);
+                        return false;
+                    }
+                    // Check for errors:
+                    if (!error) {
+                        // Get the Stripe token:
+                        $('#msgCard').hide();
+                        $('#error').hide();
+                        Stripe.card.createToken({
+                            number: ccNum,
+                            cvc: cvcNum,
+                            exp_month: expMonth,
+                            exp_year: expYear
+                        }, stripeResponseHandler);
+                    } else {
+                        $('#error').show();
+                        $('#msgCard').show();
+                    }
+                    return false;
+                    // Prevent the form from submitting:
+                } else {
+                    return (cardForm == "cardForm") ? false : true;
+                }
             }
-
         });
         // Function handles the Stripe response:
         function stripeResponseHandler(status, response) {
@@ -454,14 +446,16 @@
             $("#profile_previewing").attr('src', e.target.result);
         }
 
-        function linkToProfile() {
-            $.ajax({
-                type: 'POST',
-                url: "<?= site_url() ?>app/profile/linkToProfile",
-                success: function (data) {
-                    return (data == "1") ? true : false;
+        $('#cancel-account').on('click', function () {
+            alertify.confirm("Are you sure want to cancel your current plan?", function (e) {
+                if (e) {
+                    window.location.assign("<?= site_url() ?>app/profile/cancelAccount");
+                    return true;
+                }
+                else {
+                    return false;
                 }
             });
-        }
+        });
     });
 </script>
