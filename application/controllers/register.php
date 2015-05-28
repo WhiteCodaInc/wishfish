@@ -20,12 +20,10 @@ class Register extends CI_Controller {
     function __construct() {
         parent::__construct();
 
-
         require APPPATH . 'third_party/google-api/Google_Client.php';
         require APPPATH . 'third_party/google-api/contrib/Google_Oauth2Service.php';
         require_once APPPATH . 'third_party/facebook/facebook.php';
-        
-        
+
         $this->config->load('googleplus');
         $this->config->load('facebook');
         $this->load->model('m_register', 'objregister');
