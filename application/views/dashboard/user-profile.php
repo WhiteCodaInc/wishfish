@@ -270,7 +270,6 @@
 
         Stripe.setPublishableKey('pk_test_qVqwj9LKS3yljQVTRh15YB2K');
 
-
         $('.default-date-picker').datepicker({
             format: "<?= $this->session->userdata('date_format') ?>",
             todayBtn: "linked",
@@ -340,9 +339,13 @@
 
         $('#userForm,#cardForm').on('submit', function () {
             cardForm = $(this).attr('id');
-            console.log(cardForm);
             $('#save').attr('disabled', 'disabled');
 
+            if (linkToProfile()) {
+                alert("TRUE");
+            } else {
+                alert("FALSE");
+            }
             if (gatewayFlag && (!cardFlag || cardForm == "cardForm")) {
 <?php if ($user->is_set && $user->gateway == "STRIPE") : ?>
                     var error = false;
@@ -450,16 +453,14 @@
             $("#profile_previewing").attr('src', e.target.result);
         }
 
-        $('#cancel-account').on('click', function () {
-            alertify.confirm("Are you sure want to cancel your current plan?", function (e) {
-                if (e) {
-                    window.location.assign("<?= site_url() ?>app/profile/cancelAccount");
-                    return true;
-                }
-                else {
-                    return false;
+        function linkToProfile() {
+            $.ajax({
+                type: 'POST',
+                url: "<?= site_url() ?>profile/linkToProfile",
+                success: function (data) {
+                    return (data == "1") ? true : false;
                 }
             });
-        });
+        }
     });
 </script>

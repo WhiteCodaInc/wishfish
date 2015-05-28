@@ -249,6 +249,9 @@ class M_register extends CI_Model {
                         $src = $e->src;
                     copy($src, FCPATH . "user.jpg");
                     $this->updateProfile($res, $name);
+                    return TRUE;
+                } else {
+                    return FALSE;
                 }
                 break;
             case "twitter":
@@ -261,10 +264,13 @@ class M_register extends CI_Model {
                         $src = $e->src;
                     copy($src, FCPATH . "user.jpg");
                     $this->updateProfile($res, $name);
+                    return TRUE;
+                } else {
+                    return FALSE;
                 }
                 break;
             default:
-                break;
+                return FALSE;
         }
     }
 

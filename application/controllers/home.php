@@ -15,7 +15,6 @@ class Home extends CI_Controller {
 
     function __construct() {
         parent::__construct();
-
         if ($this->wi_authex->logged_in()) {
             header('location:' . site_url() . 'app/dashboard');
         } else {

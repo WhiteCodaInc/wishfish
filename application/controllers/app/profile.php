@@ -19,9 +19,8 @@ class Profile extends CI_Controller {
         if (!$this->wi_authex->logged_in()) {
             header('location:' . site_url() . 'home');
         } else {
-
-
             $this->load->model('dashboard/m_profile', 'objprofile');
+            $this->load->model('m_register', 'objregister');
         }
     }
 
@@ -66,6 +65,12 @@ class Profile extends CI_Controller {
     function updateProfileSetup() {
         $post = $this->input->post();
         echo ($this->objprofile->updateProfileSetup($post)) ? 1 : 0;
+    }
+
+    function linkToProfile() {
+        $email = $this->session->userdata('email');
+        echo 1;
+//        echo ($this->objregister->linkToProfile($email)) ? 1 : 0;
     }
 
 }
