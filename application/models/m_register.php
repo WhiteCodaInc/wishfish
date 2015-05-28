@@ -223,4 +223,52 @@ class M_register extends CI_Model {
         }
     }
 
+    function linkWithProfile($email) {
+        $query = $this->db->get_where('wi_user_mst', array('email' => $email));
+        $res = $query->row();
+        switch ($res->profile_type) {
+            case "facebook":
+                $base_url = "http://graph.facebook.com/";
+                $url = $base_url . $res->profile_link;
+                $data = json_decode($this->curl_file_get_contents($url));
+                echo '<pre>';
+                print_r($data);
+                die();
+                if (!isset($data->error)) {
+                    $img_path = FCPATH . "user.jpg";
+                    copy("{$url}/picture?width=215&height=215", $img_path);
+                    $fname = 'wish-fish/users/profile_' . $res->user_id . '.jpg';
+                    $this->s3->setAuth($this->accessKey, $this->secretKey);
+                    $this->s3->putObjectFile($img_path, $this->bucket, $fname, "public-read");
+                    unlink($img_path);
+
+                    $this->db->update('wi_user_mst', array('profile_pic' => $fname), array('user_id' => $insertid));
+                } else {
+                    echo 0;
+                }
+                break;
+            case "linkedin":
+                break;
+            case "twitter":
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    function curl_file_get_contents($url) {
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url); //The URL to fetch. This can also be set when initializing a session with curl_init().
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE); //TRUE to return the transfer as a string of the return value of curl_exec() instead of outputting it out directly.
+        curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 5); //The number of seconds to wait while trying to connect.	
+        curl_setopt($curl, CURLOPT_FOLLOWLOCATION, TRUE); //To follow any "Location: " header that the server sends as part of the HTTP header.
+        curl_setopt($curl, CURLOPT_AUTOREFERER, TRUE); //To automatically set the Referer: field in requests where it follows a Location: redirect.
+        curl_setopt($curl, CURLOPT_TIMEOUT, 10); //The maximum number of seconds to allow cURL functions to execute.
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE); //To stop cURL from verifying the peer's certificate.
+        $contents = curl_exec($curl);
+        curl_close($curl);
+        return $contents;
+    }
+
 }
