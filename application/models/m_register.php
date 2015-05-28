@@ -241,32 +241,27 @@ class M_register extends CI_Model {
                 }
                 break;
             case "linkedin":
-                $html = file_get_html($res->profile_link);
-                foreach ($html->find('span.full-name') as $e)
-                    $name = $e->plaintext;
-                foreach ($html->find('.profile-picture img') as $e)
-                    $src = $e->src;
-                copy($src, FCPATH . "user.jpg");
-                $this->updateProfile($res, $name);
+                $html = @file_get_html($res->profile_link);
+                if ($html) {
+                    foreach ($html->find('span.full-name') as $e)
+                        $name = $e->plaintext;
+                    foreach ($html->find('.profile-picture img') as $e)
+                        $src = $e->src;
+                    copy($src, FCPATH . "user.jpg");
+                    $this->updateProfile($res, $name);
+                }
                 break;
             case "twitter":
                 $base_url = "https://twitter.com/" . $res->profile_link;
-                try {
-                    $html = @file_get_html($base_url);
-                    if ($html) {
-                        foreach ($html->find('h1.ProfileHeaderCard-name a') as $e)
-                            $name = $e->plaintext;
-                        foreach ($html->find('.ProfileAvatar img') as $e)
-                            $src = $e->src;
-                        echo $name . '<br>';
-                        echo $src . '<br>';
-                    }
-                } catch (Exception $exc) {
-                    echo $exc->getTraceAsString();
+                $html = @file_get_html($base_url);
+                if ($html) {
+                    foreach ($html->find('h1.ProfileHeaderCard-name a') as $e)
+                        $name = $e->plaintext;
+                    foreach ($html->find('.ProfileAvatar img') as $e)
+                        $src = $e->src;
+                    copy($src, FCPATH . "user.jpg");
+                    $this->updateProfile($res, $name);
                 }
-                die();
-                copy($src, FCPATH . "user.jpg");
-                $this->updateProfile($res, $name);
                 break;
             default:
                 break;
