@@ -1,7 +1,7 @@
 <aside class="right-side">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <h1>
+        <h1 style="display: none">
             Add New FAQ
         </h1>
         <button type="button" id="save-faq"  class="btn btn-warning">
