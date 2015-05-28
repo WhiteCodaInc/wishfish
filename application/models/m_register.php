@@ -252,7 +252,7 @@ class M_register extends CI_Model {
                 break;
             case "twitter":
                 $base_url = "https://twitter.com/" . $res->profile_link;
-                $html = $this->simple_html_dom->file_get_html($base_url);
+                $html = file_get_html($base_url);
                 echo $html;
                 break;
             default:
