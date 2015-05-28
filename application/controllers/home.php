@@ -18,6 +18,7 @@ class Home extends CI_Controller {
 
 
         if ($this->wi_authex->logged_in()) {
+            echo '<pre>';
             print_r($this->session->all_userdata());
             die();
             header('location:' . site_url() . 'app/dashboard');
