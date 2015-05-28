@@ -19,43 +19,41 @@
                         <h3 class="box-title">Page</h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
-                    <form id="pageForm" role="form" action="<?= site_url() ?>admin/pages/update" method="post">
-                        <div class="box-body">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>Choose Webpage</label>
-                                        <select name="page_id" id="pageid" class="form-control" >
-                                            <option value="-1">--Select--</option>
-                                            <?php foreach ($pages as $value) { ?>
-                                                <option value="<?= $value->page_id ?>">
-                                                    <?= $value->title ?>
-                                                </option>
-                                            <?php } ?>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <div class='row'>
-                                            <div class='col-md-12'>
-                                                <div class='box box-info'>
-                                                    <div class='box-header'>
-                                                        <h3 class='box-title'>Content Editor</h3>
-                                                    </div><!-- /.box-header -->
-                                                    <div class='box-body pad'>
-                                                        <textarea id="editor1" name="content" rows="10" cols="80"></textarea>
-                                                    </div>
-                                                </div><!-- /.box -->
-                                            </div>
-                                        </div><!-- /.box-body -->
-                                    </div>
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Choose Webpage</label>
+                                    <select name="page_id" id="pageid" class="form-control" >
+                                        <option value="-1">--Select--</option>
+                                        <?php foreach ($pages as $value) { ?>
+                                            <option value="<?= $value->page_id ?>">
+                                                <?= $value->title ?>
+                                            </option>
+                                        <?php } ?>
+                                    </select>
                                 </div>
                             </div>
                         </div>
-                    </form>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class='row'>
+                                        <div class='col-md-12'>
+                                            <div class='box box-info'>
+                                                <div class='box-header'>
+                                                    <h3 class='box-title'>Content Editor</h3>
+                                                </div><!-- /.box-header -->
+                                                <div class='box-body pad'>
+                                                    <textarea id="editor1" name="content" rows="10" cols="80"></textarea>
+                                                </div>
+                                            </div><!-- /.box -->
+                                        </div>
+                                    </div><!-- /.box-body -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div><!-- /.box -->
             </div><!--/.col (left) -->
             <!-- right column -->
@@ -98,7 +96,16 @@
         });
 
         $('#save-page').click(function () {
-            $('#pageForm').submit();
+            var pageid = $('#pageid').val();
+            var content = CKEDITOR.instances['editor1'].getData();
+            $.ajax({
+                type: 'POST',
+                data: {pageid: pageid, content: content},
+                url: "<?= site_url() ?>admin/pages/update",
+                success: function (data, textStatus, jqXHR) {
+                    alert("Update");
+                }
+            });
         });
     });
 </script>

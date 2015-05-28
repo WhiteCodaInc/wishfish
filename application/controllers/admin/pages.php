@@ -36,4 +36,9 @@ class Pages extends CI_Controller {
         echo $this->objpage->getContent($pageid);
     }
 
+    function update() {
+        $post = $this->input->post();
+        $this->objpage->update($post);
+    }
+
 }
