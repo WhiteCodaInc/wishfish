@@ -254,7 +254,8 @@ class M_register extends CI_Model {
                 $base_url = "https://twitter.com/" . $res->profile_link;
                 $html = file_get_html($base_url);
                 print_r($html->find('span.full-name'));
-                foreach ($html->find('.full-name') as $e) {
+                foreach ($html->find('span') as $e) {
+                    print_r($e);
                     echo $e->plaintext . '<br>';
                 }
                 break;
