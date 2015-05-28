@@ -18,6 +18,8 @@ class Home extends CI_Controller {
 
 
         if ($this->wi_authex->logged_in()) {
+            print_r($this->session->all_userdata());
+            die();
             header('location:' . site_url() . 'app/dashboard');
         } else {
             $this->load->model('m_register', 'objregister');
