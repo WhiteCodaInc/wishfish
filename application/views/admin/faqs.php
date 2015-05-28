@@ -7,9 +7,12 @@
 <aside class="right-side">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <h1>
-            FAQs
-        </h1>
+        <h1 style="display: none">FAQs</h1>
+        <a style="float: left" href="<?= site_url() ?>admin/faq/addFaq" class="btn btn-success btn-sm">
+            <i class="fa fa-plus"></i>
+            Create New FAQ Question
+        </a>
+        <button value="Delete" class="btn btn-danger btn-sm" id="Delete" type="button" >Delete</button>
     </section>
 
     <!-- Main content -->
@@ -23,11 +26,7 @@
                     </div><!-- /.box-header -->
                     <div class="row">
                         <div class="col-xs-12" style="margin-left: 1%">
-                            <a href="<?= site_url() ?>admin/faq/addFaq" class="btn btn-success btn-sm">
-                                <i class="fa fa-plus"></i>
-                                Create New FAQ Question
-                            </a>
-                            <button style="margin-left: 10px" value="Delete" class="btn btn-danger btn-sm" id="Delete" type="button" >Delete</button>
+
                         </div>
                     </div>
 
