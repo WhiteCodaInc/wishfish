@@ -231,9 +231,6 @@ class M_register extends CI_Model {
                 $base_url = "http://graph.facebook.com/";
                 $url = $base_url . $res->profile_link;
                 $data = json_decode($this->curl_file_get_contents($url));
-                echo '<pre>';
-                print_r($data);
-                die();
                 if (!isset($data->error)) {
                     $img_path = FCPATH . "user.jpg";
                     copy("{$url}/picture?width=215&height=215", $img_path);
@@ -241,10 +238,14 @@ class M_register extends CI_Model {
                     $this->s3->setAuth($this->accessKey, $this->secretKey);
                     $this->s3->putObjectFile($img_path, $this->bucket, $fname, "public-read");
                     unlink($img_path);
-
-                    $this->db->update('wi_user_mst', array('profile_pic' => $fname), array('user_id' => $insertid));
+                    $set = array(
+                        'name' => $data['name'],
+                        'profile_pic' => $fname
+                    );
+                    $this->db->update('wi_user_mst', $set, array('user_id' => $res->user_id));
+                    return true;
                 } else {
-                    echo 0;
+                    return false;
                 }
                 break;
             case "linkedin":
