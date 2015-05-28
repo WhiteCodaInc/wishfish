@@ -238,25 +238,34 @@ class M_register extends CI_Model {
                     $this->s3->setAuth($this->accessKey, $this->secretKey);
                     $this->s3->putObjectFile($img_path, $this->bucket, $fname, "public-read");
                     unlink($img_path);
-                    $set = array(
-                        'name' => $data->name,
-                        'profile_pic' => $fname
-                    );
-                    $this->session->set_userdata($set);
-                    $this->db->update('wi_user_mst', $set, array('user_id' => $res->user_id));
+                    $this->updateProfile($res->user_id, $data->name, $fname);
                     return true;
                 } else {
                     return false;
                 }
                 break;
             case "linkedin":
+                $html = str_get_html($res->profile_link);
+                echo $html;
+//                $html = $this->curl_file_get_contents($res->profile_link);
                 break;
             case "twitter":
+                $base_url = "https://twitter.com/" . $res->profile_link;
+                $html = str_get_html($base_url);
+                echo $html;
                 break;
-
             default:
                 break;
         }
+    }
+
+    function updateProfile($userid, $name, $profile_pic) {
+        $set = array(
+            'name' => $name,
+            'profile_pic' => $profile_pic
+        );
+        $this->session->set_userdata($set);
+        $this->db->update('wi_user_mst', $set, array('user_id' => $userid));
     }
 
     function curl_file_get_contents($url) {
