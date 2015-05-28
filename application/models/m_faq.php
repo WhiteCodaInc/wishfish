@@ -69,8 +69,8 @@ class M_faq extends CI_Model {
 
     function getFaqDetail() {
         $this->db->select('*');
-        $this->db->from('faqs as F');
-        $this->db->join('faq_categories as C', 'F.category_id = C.category_id');
+        $this->db->from('wi_faqs as F');
+        $this->db->join('wi_faq_categories as C', 'F.category_id = C.category_id');
         $query = $this->db->get();
         return $query->result();
     }
@@ -110,8 +110,8 @@ class M_faq extends CI_Model {
     //----------------------------Blog Category-------------------------------//
     function getFaqCategoryDetail() {
         $this->db->select('C.category_id,category_name,order,count(F.category_id) as totalQ');
-        $this->db->from('faq_categories as C');
-        $this->db->join('faqs as F', 'C.category_id = F.category_id', 'left outer');
+        $this->db->from('wi_faq_categories as C');
+        $this->db->join('wi_faqs as F', 'C.category_id = F.category_id', 'left outer');
         $this->db->group_by('F.category_id');
         $this->db->order_by('order', 'asc');
         $query = $this->db->get();
