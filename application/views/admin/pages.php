@@ -86,7 +86,14 @@
             if (val == "-1") {
                 CKEDITOR.instances['editor1'].setData("");
             } else {
-                
+                $.ajax({
+                    type: 'POST',
+                    data: {pageid: val},
+                    url: "<?= site_url() ?>admin/pages/getContent",
+                    success: function (data, textStatus, jqXHR) {
+                        CKEDITOR.instances['editor1'].setData(data);
+                    }
+                });
             }
         });
 

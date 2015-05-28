@@ -22,4 +22,9 @@ class M_pages extends CI_Model {
         return $query->result();
     }
 
+    function getContent($pageid) {
+        $query = $this->db->get_where('pages', array('page_id' => $pageid));
+        return $query->row()->content;
+    }
+
 }

@@ -31,4 +31,9 @@ class Pages extends CI_Controller {
         $this->load->view('admin/admin_footer');
     }
 
+    function getContent() {
+        $pageid = $this->input->post('pageid');
+        echo $this->objpage->getContent($pageid);
+    }
+
 }
