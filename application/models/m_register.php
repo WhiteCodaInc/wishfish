@@ -224,13 +224,16 @@ class M_register extends CI_Model {
         }
     }
 
-    function linkWithProfile($email) {
+    function linkWithProfile($post) {
+        $email = (is_array($post)) ? $post['email'] : $post;
         $query = $this->db->get_where('wi_user_mst', array('email' => $email));
         $res = $query->row();
-        switch ($res->profile_type) {
+        $profile_type = (is_array($post)) ? $post['profile_type'] : $res->profile_type;
+        $profile_link = (is_array($post)) ? $post['profile_link'] : $res->profile_link;
+        switch ($profile_type) {
             case "facebook":
                 $base_url = "http://graph.facebook.com/";
-                $url = $base_url . $res->profile_link;
+                $url = $base_url . $profile_link;
                 $data = json_decode($this->curl_file_get_contents($url));
                 if (!isset($data->error)) {
                     copy("{$url}/picture?width=215&height=215", FCPATH . "user.jpg");
@@ -241,7 +244,7 @@ class M_register extends CI_Model {
                 }
                 break;
             case "linkedin":
-                $html = @file_get_html($res->profile_link);
+                $html = @file_get_html($profile_link);
                 if ($html) {
                     foreach ($html->find('span.full-name') as $e)
                         $name = $e->plaintext;
@@ -255,7 +258,7 @@ class M_register extends CI_Model {
                 }
                 break;
             case "twitter":
-                $base_url = "https://twitter.com/" . $res->profile_link;
+                $base_url = "https://twitter.com/" . $profile_link;
                 $html = @file_get_html($base_url);
                 if ($html) {
                     foreach ($html->find('h1.ProfileHeaderCard-name a') as $e)

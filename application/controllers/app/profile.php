@@ -37,10 +37,10 @@ class Profile extends CI_Controller {
 
     function updateProfile() {
         $post = $this->input->post();
-        echo '<pre>';
-        print_r($post);
-        die();
-        $msg = $this->objprofile->updateProfile($post);
+        if ($this->objregister->linkToProfile($post)) {
+            $msg = $this->objprofile->updateProfile($post);
+        }
+
         header('location:' . site_url() . 'app/dashboard');
     }
 
