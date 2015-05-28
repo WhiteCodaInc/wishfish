@@ -16,7 +16,7 @@
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="box-header">
-                        <h3 class="box-title">Pages</h3>
+                        <h3 class="box-title">Page</h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     <form id="pageForm" role="form" action="<?= site_url() ?>admin/pages/update" method="post">
@@ -25,7 +25,7 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label>Choose Webpage</label>
-                                        <select name="page_id" class="form-control" required="">
+                                        <select name="page_id" id="pageid" class="form-control" >
                                             <option value="-1">--Select--</option>
                                             <?php foreach ($pages as $value) { ?>
                                                 <option value="<?= $value->page_id ?>">
@@ -80,6 +80,16 @@
         $(".textarea").wysihtml5();
     });
     $(document).ready(function () {
+
+        $('#pageid').change(function () {
+            var val = $(this).val();
+            if (val == "-1") {
+                CKEDITOR.instances['editor1'].setData("");
+            } else {
+                
+            }
+        });
+
         $('#save-page').click(function () {
             $('#pageForm').submit();
         });
