@@ -19,8 +19,8 @@ class Profile extends CI_Controller {
         if (!$this->wi_authex->logged_in()) {
             header('location:' . site_url() . 'home');
         } else {
-            
-            
+
+
             $this->load->model('dashboard/m_profile', 'objprofile');
         }
     }
@@ -32,7 +32,6 @@ class Profile extends CI_Controller {
 
         $this->load->view('dashboard/header');
         $this->load->view('dashboard/top');
-
         $this->load->view('dashboard/user-profile', $data);
         $this->load->view('dashboard/footer');
     }
