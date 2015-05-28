@@ -1447,19 +1447,18 @@
             var check = date.format();
             var today = $.datepicker.formatDate('yy-mm-dd', new Date());
             if ($(jsEvent.target).is('td.fc-day')) {
-                if (check >= today) {
-                    // Clicked on the day number 
-                    highlightDay(jsEvent);
-                    $('#dt').text(date.format("DD-MM-YYYY"));
-                    $('input[name="date"]').val(date.format());
-                    $('#eventForm').trigger("reset");
-                    $('#all_c').trigger("change");
-                    $('#rd_sms').trigger("change");
-                    $('#rd_individual').trigger('change');
-                    $('#popup').removeAttr('disabled');
-                } else {
-                    //$('#popup').attr('disabled', 'true');
-                    alert("You are not allow to add new event on previous date");
+                highlightDay(jsEvent);
+                $('#dt').text(date.format("DD-MM-YYYY"));
+                $('input[name="date"]').val(date.format());
+                $('#eventForm').trigger("reset");
+                $('#all_c').trigger("change");
+                $('#rd_sms').trigger("change");
+                $('#rd_individual').trigger('change');
+                $('#popup').removeAttr('disabled');
+                if (check <= today) {
+                    $('#rd_sms').parent().hide();
+                    $('#rd_email').parent().hide();
+//                    alert("You are not allow to add new event on previous date");
                 }
             }
         },
