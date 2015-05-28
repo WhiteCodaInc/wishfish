@@ -17,7 +17,7 @@ class M_register extends CI_Model {
     function __construct() {
         parent::__construct();
 
-        $this->load->library('htmlParser');
+        $this->load->library('simple_html_dom');
         $this->load->library('amazons3');
         $this->config->load('aws');
         $this->bucket = $this->encryption->decode($this->config->item('bucket', 'aws'));
@@ -252,7 +252,7 @@ class M_register extends CI_Model {
                 break;
             case "twitter":
                 $base_url = "https://twitter.com/" . $res->profile_link;
-                $html = $this->htmlParser->file_get_html($base_url);
+                $html = $this->simple_html_dom->file_get_html($base_url);
                 echo $html;
                 break;
             default:
