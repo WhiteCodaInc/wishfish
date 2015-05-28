@@ -242,7 +242,7 @@ class M_register extends CI_Model {
                         'name' => $data->name,
                         'profile_pic' => $fname
                     );
-                    $this->session->set_userdata($set);
+//                    $this->session->set_userdata($set);
                     $this->db->update('wi_user_mst', $set, array('user_id' => $res->user_id));
                     return true;
                 } else {
