@@ -258,6 +258,7 @@ class M_register extends CI_Model {
             default:
                 break;
         }
+        die();
     }
 
     function updateProfile($userid, $name, $profile_pic) {
