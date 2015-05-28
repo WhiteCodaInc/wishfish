@@ -4,7 +4,9 @@
         <h1>
             <?= (isset($category)) ? "Edit" : "Add New" ?> FAQ Category
         </h1>
-
+        <button type="button" id="save-fcat" class="btn btn-primary">
+            <?= (isset($category)) ? "Update Existing FAQ Category" : "Create New FAQ Category" ?>
+        </button>
     </section>
 
     <!-- Main content -->
@@ -20,18 +22,13 @@
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     <?php $method = (isset($category)) ? "updateFaqCategory" : "createFaqCategory" ?>
-                    <form role="form" action="<?= site_url() ?>admin/faq/<?= $method ?>" method="post">
+                    <form id="fcatForm" role="form" action="<?= site_url() ?>admin/faq/<?= $method ?>" method="post">
                         <div class="box-body">
                             <div class="form-group">
                                 <label >Category Name</label>
                                 <input type="text" name="category_name" value="<?= (isset($category)) ? $category->category_name : '' ?>" autofocus="autofocus" class="form-control" placeholder="Category Name" />
                             </div>
                         </div><!-- /.box-body -->
-                        <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">
-                                <?= (isset($category)) ? "Update Existing FAQ Category" : "Create New FAQ Category" ?>
-                            </button>
-                        </div>
                         <?php if (isset($category)): ?>
                             <input type="hidden" name="categoryid" value="<?= isset($category) ? $category->category_id : '' ?>" />
                         <?php endif; ?>
@@ -44,3 +41,10 @@
     </section><!-- /.content -->
 </aside><!-- /.right-side -->
 </div><!-- ./wrapper -->
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#save-fcat').click(function () {
+            $('#fcatForm').submit();
+        });
+    });
+</script>

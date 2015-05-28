@@ -4,7 +4,9 @@
         <h1>
             Add New FAQ
         </h1>
-
+        <button type="button" id="save-faq"  class="btn btn-warning">
+            <?= isset($faqs) ? 'Update' : 'Save' ?>
+        </button>
     </section>
     <!-- Main content -->
     <section class="content">
@@ -18,7 +20,7 @@
                     </div><!-- /.box-header -->
                     <?php $method = (isset($faqs)) ? "updateFaq" : "createFaq" ?>
                     <!-- form start -->
-                    <form role="form" action="<?= site_url() ?>admin/faq/<?= $method ?>" method="post">
+                    <form id="faqForm" role="form" action="<?= site_url() ?>admin/faq/<?= $method ?>" method="post">
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-md-6">
@@ -70,15 +72,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="box-footer">
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        <button type="submit"  class="btn btn-warning">
-                                            <?= isset($faqs) ? 'Update' : 'Save' ?>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                         <?php if (isset($faqs)): ?>
                             <input type="hidden" name="faqid" value="<?= $faqs->faq_id ?>" />
@@ -106,5 +99,10 @@
         CKEDITOR.replace('editor1');
         //bootstrap WYSIHTML5 - text editor
         $(".textarea").wysihtml5();
+    });
+    $(document).ready(function () {
+        $('#save-faq').click(function () {
+            $('#faqForm').submit();
+        });
     });
 </script>
