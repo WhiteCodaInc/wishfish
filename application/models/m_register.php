@@ -233,51 +233,48 @@ class M_register extends CI_Model {
                 $url = $base_url . $res->profile_link;
                 $data = json_decode($this->curl_file_get_contents($url));
                 if (!isset($data->error)) {
-                    $img_path = FCPATH . "user.jpg";
-                    copy("{$url}/picture?width=215&height=215", $img_path);
-                    $fname = 'wish-fish/users/profile_' . $res->user_id . '.jpg';
-                    $this->s3->setAuth($this->accessKey, $this->secretKey);
-                    $this->s3->putObjectFile($img_path, $this->bucket, $fname, "public-read");
-                    unlink($img_path);
-                    $this->updateProfile($res->user_id, $data->name, $fname);
+                    copy("{$url}/picture?width=215&height=215", FCPATH . "user.jpg");
+                    $this->updateProfile($res, $data->name);
                     return true;
                 } else {
                     return false;
                 }
                 break;
             case "linkedin":
-                $html = str_get_html($res->profile_link);
-                echo $html;
-//                $html = $this->curl_file_get_contents($res->profile_link);
+                $html = file_get_html($res->profile_link);
+                foreach ($html->find('span.full-name') as $e)
+                    $name = $e->plaintext;
+                foreach ($html->find('.profile-picture img') as $e)
+                    $src = $e->src;
+                copy($src, FCPATH . "user.jpg");
+                $this->updateProfile($res, $name);
                 break;
             case "twitter":
                 $base_url = "https://twitter.com/" . $res->profile_link;
                 $html = file_get_html($base_url);
-
-                print_r($html->find('h1.ProfileHeaderCard-name a', 0));
-
-                foreach ($html->find('h1.ProfileHeaderCard-name a') as $e) {
+                foreach ($html->find('h1.ProfileHeaderCard-name a') as $e)
                     $name = $e->plaintext;
-                }
-                foreach ($html->find('.ProfileAvatar img') as $e) {
+                foreach ($html->find('.ProfileAvatar img') as $e)
                     $src = $e->src;
-                }
-                echo $name . '<br>';
-                echo $src . '<br>';
+                copy($src, FCPATH . "user.jpg");
+                $this->updateProfile($res, $name);
                 break;
             default:
                 break;
         }
-        die();
     }
 
-    function updateProfile($userid, $name, $profile_pic) {
+    function updateProfile($res, $name) {
+        $fname = 'wish-fish/users/profile_' . $res->user_id . '.jpg';
+        $this->s3->setAuth($this->accessKey, $this->secretKey);
+        $this->s3->putObjectFile(FCPATH . "user.jpg", $this->bucket, $fname, "public-read");
+        unlink(FCPATH . "user.jpg");
         $set = array(
             'name' => $name,
-            'profile_pic' => $profile_pic
+            'profile_pic' => $fname
         );
         $this->session->set_userdata($set);
-        $this->db->update('wi_user_mst', $set, array('user_id' => $userid));
+        $this->db->update('wi_user_mst', $set, array('user_id' => $res->user_id));
     }
 
     function curl_file_get_contents($url) {
