@@ -260,13 +260,14 @@ class M_register extends CI_Model {
             case "twitter":
                 $base_url = "https://twitter.com/" . $profile_link;
                 $html = @file_get_html($base_url);
-                echo $html;
-                die();
                 if ($html) {
                     foreach ($html->find('h1.ProfileHeaderCard-name a') as $e)
                         $name = $e->plaintext;
                     foreach ($html->find('.ProfileAvatar img') as $e)
                         $src = $e->src;
+                    echo $name . '<br>';
+                    echo $src . '<br>';
+                    die();
                     copy($src, FCPATH . "user.jpg");
                     $this->updateProfile($res, $name);
                     return TRUE;
