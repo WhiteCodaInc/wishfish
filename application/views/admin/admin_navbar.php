@@ -227,10 +227,21 @@ $img_src = ($avatar != "") ?
                         <i class="fa fa-angle-double-right"></i> <span>Feedback/Support</span>
                     </a>
                 </li>
-                <li class="" id="12">
-                    <a href="<?= site_url() ?>admin/faq">
-                        <i class="fa fa-angle-double-right"></i> <span>FAQ</span>
+                <li class="treeview" id="12">
+                    <a style="float: right" href="#">
+                        <i class="fa fa-angle-left pull-right"></i>
                     </a>
+                    <a  href="<?= site_url() ?>admin/faq">
+                        <i class="fa fa-angle-double-right"></i>
+                        <span>FAQ'S</span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li>
+                            <a href="<?= site_url() ?>admin/faq/faqCategory">
+                                <i class="fa fa-angle-double-right"></i> <span>FAQ'S Category</span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
             <script type="text/javascript">

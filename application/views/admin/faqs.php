@@ -23,7 +23,7 @@
                     </div><!-- /.box-header -->
                     <div class="row">
                         <div class="col-xs-12" style="margin-left: 1%">
-                            <a href="<?= site_url() ?>faq/addFaq" class="btn btn-success btn-sm">
+                            <a href="<?= site_url() ?>admin/faq/addFaq" class="btn btn-success btn-sm">
                                 <i class="fa fa-plus"></i>
                                 Create New FAQ Question
                             </a>
@@ -60,7 +60,7 @@
                                             <td class="hidden-xs hidden-sm"><?= $value->category_name ?></td>
                                             <td><?= $value->question ?></td>
                                             <td>
-                                                <a href="<?= site_url() ?>faq/editFaq/<?= $value->faq_id ?>" class="btn bg-navy btn-xs">
+                                                <a href="<?= site_url() ?>admin/faq/editFaq/<?= $value->faq_id ?>" class="btn bg-navy btn-xs">
                                                     <i class="fa fa-edit"></i>
                                                     Edit
                                                 </a>
@@ -72,7 +72,7 @@
                                     <tr>
                                         <th></th>
                                         <th class="hidden-xs hidden-sm">No.</th>
-                                        
+
                                         <th class="hidden-xs hidden-sm">FAQ Category</th>
                                         <th>FAQ Question</th>
                                         <th>Action</th>
@@ -152,7 +152,7 @@ switch ($msg) {
         });
         function action(actiontype) {
             $('#actionType').val(actiontype);
-            $('#checkForm').attr('action', "<?= site_url() ?>faq/action");
+            $('#checkForm').attr('action', "<?= site_url() ?>admin/faq/action");
             $('#checkForm').submit();
         }
     });

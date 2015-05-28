@@ -27,7 +27,7 @@
                     </div><!-- /.box-header -->
                     <div class="row">
                         <div class="col-md-12" style="margin-left: 1%">
-                            <a href="<?= site_url() ?>faq/addFaqCategory" class="btn btn-success btn-sm">
+                            <a href="<?= site_url() ?>admin/faq/addFaqCategory" class="btn btn-success btn-sm">
                                 <i class="fa fa-plus"></i>
                                 Create New FAQ Category
                             </a>
@@ -70,7 +70,7 @@
                                             <td><?= $value->category_name ?></td>
                                             <td><?= $value->totalQ ?></td>
                                             <td>
-                                                <a href="<?= site_url() ?>faq/editFaqCategory/<?= $value->category_id ?>" class="btn bg-navy btn-xs">
+                                                <a href="<?= site_url() ?>admin/faq/editFaqCategory/<?= $value->category_id ?>" class="btn bg-navy btn-xs">
                                                     <i class="fa fa-edit"></i>
                                                     Edit
                                                 </a>
@@ -171,7 +171,7 @@ switch ($msg) {
 
         function action(actiontype) {
             $('#actionType').val(actiontype);
-            $('#checkForm').attr('action', "<?= site_url() ?>faq/delete");
+            $('#checkForm').attr('action', "<?= site_url() ?>admin/faq/delete");
             $('#checkForm').submit();
         }
     });
