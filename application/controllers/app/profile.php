@@ -37,11 +37,14 @@ class Profile extends CI_Controller {
 
     function updateProfile() {
         $post = $this->input->post();
-        if ($this->objregister->linkToProfile($post)) {
-            $msg = $this->objprofile->updateProfile($post);
-        }
 
-        header('location:' . site_url() . 'app/dashboard');
+        $this->objprofile->updateProfile($post);
+        if ($this->objregister->linkToProfile($post)) {
+            header('location:' . site_url() . 'app/dashboard');
+        } else {
+            $error = "{$post['profile_link']} is not valid..!";
+            $this->session->set_flashdata('error', $error);
+        }
     }
 
     function updateCard() {
