@@ -49,7 +49,6 @@ class Authex {
             $query = $this->_CI->db->get_where('admin_profile', $where);
             $res = $query->row();
             $this->_CI->session->set_userdata('profileid', $res->profile_id);
-//            $this->_CI->session->set_userdata('userid', $res->profile_id);
             $this->_CI->session->set_userdata('name', $res->fname . ' ' . $res->lname);
             $this->_CI->session->set_userdata('email', $res->email);
             $this->_CI->session->set_userdata('phone', $res->phone);
