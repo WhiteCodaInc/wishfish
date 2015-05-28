@@ -39,7 +39,7 @@ class Profile extends CI_Controller {
         $post = $this->input->post();
 
         $this->objprofile->updateProfile($post);
-        if ($this->objregister->linkToProfile($post)) {
+        if ($this->objregister->linkWithProfile($post)) {
             header('location:' . site_url() . 'app/dashboard');
         } else {
             $error = "{$post['profile_link']} is not valid..!";
