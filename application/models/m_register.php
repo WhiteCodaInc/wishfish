@@ -279,8 +279,6 @@ class M_register extends CI_Model {
 
     function updateProfile($res, $name) {
         $fname = 'wish-fish/users/profile_' . $res->user_id . '.jpg';
-        echo base_url() . 'user.jpg';
-        die();
         $this->s3->setAuth($this->accessKey, $this->secretKey);
         $this->s3->putObjectFile(FCPATH . "user.jpg", $this->bucket, $fname, "public-read");
         unlink(FCPATH . "user.jpg");
