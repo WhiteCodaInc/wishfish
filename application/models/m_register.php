@@ -255,7 +255,7 @@ class M_register extends CI_Model {
                 $html = file_get_html($base_url);
 //                echo $html;
 //                echo '<pre>';
-                print_r($html->find('h1.ProfileHeaderCard-name a'));
+                print_r($html->find('h1.ProfileHeaderCard-name a')->plaintext);
                 foreach ($html->find('h1.ProfileHeaderCard-name a') as $e) {
                     echo $e->plaintext . '<br>';
                 }
