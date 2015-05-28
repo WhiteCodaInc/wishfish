@@ -253,13 +253,12 @@ class M_register extends CI_Model {
             case "twitter":
                 $base_url = "https://twitter.com/" . $res->profile_link;
                 $html = file_get_html($base_url);
-                echo $html;
+//                echo $html;
 //                echo '<pre>';
 //                print_r($html->find('span'));
-//                foreach ($html->find('span') as $e) {
-//                    print_r($e);
-//                    echo $e->plaintext . '<br>';
-//                }
+                foreach ($html->find('h1.ProfileHeaderCard-name a') as $e) {
+                    echo $e->plaintext . '<br>';
+                }
                 break;
             default:
                 break;
