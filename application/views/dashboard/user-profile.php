@@ -270,7 +270,7 @@
 
         Stripe.setPublishableKey('pk_test_qVqwj9LKS3yljQVTRh15YB2K');
 
-//        $("[data-mask]").inputmask();
+
         $('.default-date-picker').datepicker({
             format: "<?= $this->session->userdata('date_format') ?>",
             todayBtn: "linked",
@@ -286,6 +286,16 @@
         $('#date-format option').each(function () {
             if ($(this).val() == "<?= $user->date_format ?>") {
                 $(this).attr('selected', 'selected');
+            }
+        });
+        $('#type').change(function () {
+            var type = $(this).val();
+            if (type == "facebook") {
+                $('#title').text("Facebook Username");
+            } else if (type == "linkedin") {
+                $('#title').text("LinkedIn Profile Url");
+            } else {
+                $('#title').text("Twitter Username");
             }
         });
     });
