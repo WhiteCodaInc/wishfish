@@ -134,6 +134,7 @@ class Login extends CI_Controller {
                 if (!$is_user) {
                     header('location: ' . site_url() . 'login?msg=NR');
                 } else {
+                    $this->objregister->linkWithProfile($user_profile['email']);
                     $is_login = array(
                         'name' => 'isLogin',
                         'value' => $user_profile['id'],
