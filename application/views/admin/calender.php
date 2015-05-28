@@ -36,7 +36,7 @@
             Calendar
             <small>Control panel</small>
         </h1>
-        <button disabled=""  class="btn btn-success btn-sm create" id="popup" data-toggle="modal" data-target="#compose-modal">
+        <button class="btn btn-success btn-sm create" id="popup" data-toggle="modal" data-target="#compose-modal">
             <i class="fa fa-plus"></i>
             Create New Event
         </button>
@@ -1456,10 +1456,9 @@
                     $('#all_c').trigger("change");
                     $('#rd_sms').trigger("change");
                     $('#rd_individual').trigger('change');
-                    $('#popup').removeAttr('disabled');
                 } else {
                     //$('#popup').attr('disabled', 'true');
-                    alert("You are not allow to add new event on previous date");
+//                    alert("You are not allow to add new event on previous date");
                 }
             }
         },
