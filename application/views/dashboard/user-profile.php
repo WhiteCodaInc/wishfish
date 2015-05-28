@@ -294,8 +294,10 @@
                 $('#title').text("Facebook Username");
             } else if (type == "linkedin") {
                 $('#title').text("LinkedIn Profile Url");
-            } else {
+            } else if (type == "twitter") {
                 $('#title').text("Twitter Username");
+            } else {
+                $('#title').text("Url");
             }
         });
     });
