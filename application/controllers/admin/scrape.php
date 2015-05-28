@@ -11,7 +11,7 @@
  *
  * @author Laxmisoft
  */
-class Scrap extends CI_Controller {
+class Scrape extends CI_Controller {
 
     function __construct() {
         parent::__construct();
@@ -32,7 +32,7 @@ class Scrap extends CI_Controller {
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');
-        $this->load->view('admin/scrap');
+        $this->load->view('admin/scrape');
         $this->load->view('admin/admin_footer');
     }
 
@@ -93,7 +93,7 @@ class Scrap extends CI_Controller {
             unlink($img_url);
             echo 1;
         } else {
-            header('location:' . site_url() . 'admin/scrap');
+            header('location:' . site_url() . 'admin/scrape');
         }
     }
 

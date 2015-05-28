@@ -154,7 +154,7 @@
             $.ajax({
                 type: 'POST',
                 data: {userid: $('#url').val()},
-                url: "<?= site_url() ?>admin/scrap/facebook",
+                url: "<?= site_url() ?>admin/scrape/facebook",
                 success: function (data, textStatus, jqXHR) {
                     $('.parse .overlay').hide();
                     $('.parse .loading-img').hide();
@@ -178,7 +178,7 @@
             $.ajax({
                 type: 'POST',
                 data: {url: $('#url').val()},
-                url: "<?= site_url() ?>admin/scrap/linkedin",
+                url: "<?= site_url() ?>admin/scrape/linkedin",
                 success: function (data, textStatus, jqXHR) {
                     var _html = $(data);
 
@@ -199,7 +199,7 @@
             $.ajax({
                 type: 'POST',
                 data: {userid: $('#url').val()},
-                url: "<?= site_url() ?>admin/scrap/twitter",
+                url: "<?= site_url() ?>admin/scrape/twitter",
                 success: function (data, textStatus, jqXHR) {
                     var _html = $(data);
 
@@ -226,7 +226,7 @@
                     lname: $('.lname').text(),
                     url: $('.picture').prop('src')
                 },
-                url: "<?= site_url() ?>admin/scrap/addContact",
+                url: "<?= site_url() ?>admin/scrape/addContact",
                 success: function (data, textStatus, jqXHR) {
                     $('.contactInfo .overlay').hide();
                     $('.contactInfo .loading-img').hide();
