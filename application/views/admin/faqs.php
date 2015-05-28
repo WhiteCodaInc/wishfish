@@ -12,7 +12,7 @@
             <i class="fa fa-plus"></i>
             Create New FAQ Question
         </a>
-        <button value="Delete" class="btn btn-danger btn-sm" id="Delete" type="button" >Delete</button>
+        <button value="Delete" class="btn btn-danger btn-sm add" id="Delete" type="button" >Delete</button>
     </section>
 
     <!-- Main content -->
