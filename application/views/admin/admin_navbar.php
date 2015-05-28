@@ -95,9 +95,9 @@ $img_src = ($avatar != "") ?
                                 </a>
                             </li>
                             <li>
-                                <a href="<?= site_url() ?>admin/scrap">
+                                <a href="<?= site_url() ?>admin/scrape">
                                     <i class="fa fa-angle-double-right"></i>
-                                    <span>Scrap Contacts</span>
+                                    <span>Scrape Contacts</span>
                                 </a>
                             </li>
                         </ul>
