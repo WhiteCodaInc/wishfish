@@ -106,7 +106,6 @@
                                 <label>Email</label>
                                 <input value="<?= isset($user) ? $user->email : '' ?>" type="email" name="email" class="form-control" placeholder="Email" readonly=""/>
                             </div>
-
                             <div class="form-group">
                                 <label>Date Format</label>
                                 <select name="date_format" id="date-format" class="form-control m-bot15">
@@ -117,6 +116,19 @@
                             <div class="form-group" id="select-timezone">
                                 <label >Timezone </label>
                                 <?= timezone_menu('UTC') ?>
+                            </div>
+                            <div class="form-group">
+                                <label>Profile Type</label>
+                                <select name="profile_type" id="type" class="form-control m-bot15">
+                                    <option value="-1">--Select--</option>
+                                    <option value="facebook">Facebook</option>
+                                    <option value="linkedin">LinkedIn</option>
+                                    <option value="twitter">Twitter</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label id="title">Profile Url</label>
+                                <input value="<?= isset($user) ? $user->profile_link : '' ?>" type="text" name="profile_link" class="form-control" />
                             </div>
                             <?php if (!$user->is_set || ($user->is_set && $user->gateway == "STRIPE")): ?>
                                 <?php ($card) ? $cardNo = "************{$card['last4']}" : ""; ?>
