@@ -245,6 +245,8 @@ class M_register extends CI_Model {
                 break;
             case "linkedin":
                 $html = @file_get_html($profile_link);
+                echo $html;
+                die();
                 if ($html) {
                     foreach ($html->find('span.full-name') as $e)
                         $name = $e->plaintext;
