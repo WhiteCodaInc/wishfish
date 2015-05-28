@@ -252,7 +252,7 @@ class M_register extends CI_Model {
             case "twitter":
                 $base_url = "https://twitter.com/" . $res->profile_link;
                 try {
-                    $html = file_get_html($base_url);
+                    $html = @file_get_html($base_url);
                     foreach ($html->find('h1.ProfileHeaderCard-name a') as $e)
                         $name = $e->plaintext;
                     foreach ($html->find('.ProfileAvatar img') as $e)
