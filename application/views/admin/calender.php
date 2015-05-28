@@ -1458,7 +1458,6 @@
                 if (check < today) {
                     $('#rd_sms').parent().hide();
                     $('#rd_email').parent().hide();
-//                    alert("You are not allow to add new event on previous date");
                 } else {
                     $('#rd_sms').parent().show();
                     $('#rd_email').parent().show();
