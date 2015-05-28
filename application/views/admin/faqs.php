@@ -8,11 +8,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1 style="display: none">FAQs</h1>
-        <a style="float: left" href="<?= site_url() ?>admin/faq/addFaq" class="btn btn-success btn-sm">
+        <a style="float: left" href="<?= site_url() ?>admin/faq/addFaq" class="btn btn-success btn-sm create">
             <i class="fa fa-plus"></i>
             Create New FAQ Question
         </a>
-        <button value="Delete" class="btn btn-danger btn-sm add" id="Delete" type="button" >Delete</button>
+        <button value="Delete" class="btn btn-danger btn-sm delete" id="Delete" type="button" >Delete</button>
     </section>
 
     <!-- Main content -->
