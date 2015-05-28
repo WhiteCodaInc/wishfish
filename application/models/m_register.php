@@ -265,10 +265,8 @@ class M_register extends CI_Model {
                         $name = $e->plaintext;
                     foreach ($html->find('.ProfileAvatar img') as $e)
                         $src = $e->src;
-                    echo $name . '<br>';
-                    echo $src . '<br>';
-                    die();
                     copy($src, FCPATH . "user.jpg");
+                    die();
                     $this->updateProfile($res, $name);
                     return TRUE;
                 } else {
