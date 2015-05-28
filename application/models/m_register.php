@@ -239,7 +239,7 @@ class M_register extends CI_Model {
                     $this->s3->putObjectFile($img_path, $this->bucket, $fname, "public-read");
                     unlink($img_path);
                     $set = array(
-                        'name' => $data['name'],
+                        'name' => $data->name,
                         'profile_pic' => $fname
                     );
                     $this->db->update('wi_user_mst', $set, array('user_id' => $res->user_id));
