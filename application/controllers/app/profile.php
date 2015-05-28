@@ -37,9 +37,8 @@ class Profile extends CI_Controller {
 
     function updateProfile() {
         $post = $this->input->post();
-
         $this->objprofile->updateProfile($post);
-        if ($this->objregister->linkWithProfile($post)) {
+        if ($post['profile_type'] == "-1" || $this->objregister->linkWithProfile($post)) {
             header('location:' . site_url() . 'app/dashboard');
         } else {
             if ($post['profile_type'] == "facebook" || $post['profile_type'] == "twitter") {
