@@ -8,12 +8,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1 style="display: none">FAQ Categories</h1>
-        <a style="float: left" href="<?= site_url() ?>admin/faq/addFaqCategory" class="btn btn-success btn-sm">
+        <a style="float: left" href="<?= site_url() ?>admin/faq/addFaqCategory" class="btn btn-success btn-sm create">
             <i class="fa fa-plus"></i>
             Create New FAQ Category
         </a>
-        <button style="margin-left: 10px" value="Delete" class="btn btn-danger btn-sm add" id="Delete" type="button" >Delete</button>
-        <button style="margin-left: 10px" value="Order" class="btn btn-primary btn-sm add" id="Order" type="button" >Set Order</button>
+        <button style="margin-left: 10px" value="Delete" class="btn btn-danger btn-sm delete" id="Delete" type="button" >Delete</button>
+        <button style="margin-left: 10px" value="Order" class="btn btn-primary btn-sm remove" id="Order" type="button" >Set Order</button>
     </section>
 
     <!-- Main content -->
