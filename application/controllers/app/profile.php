@@ -42,7 +42,11 @@ class Profile extends CI_Controller {
         if ($this->objregister->linkWithProfile($post)) {
             header('location:' . site_url() . 'app/dashboard');
         } else {
-            $error = "{$post['profile_link']} is not valid..!";
+            if ($post['profile_type'] == "facebook" || $post['profile_type'] == "twitter") {
+                $error = "Your {$post['profile_type']} username {$post['profile_link']} is not valid..!";
+            } else {
+                $error = "Your LinkedIn Profile Url is not valid..!";
+            }
             $this->session->set_flashdata('error', $error);
             header('location:' . site_url() . 'app/profile');
         }
