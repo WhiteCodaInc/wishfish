@@ -346,6 +346,7 @@
             } else {
                 alert("FALSE");
             }
+            return false;
             if (gatewayFlag && (!cardFlag || cardForm == "cardForm")) {
 <?php if ($user->is_set && $user->gateway == "STRIPE") : ?>
                     var error = false;
@@ -456,7 +457,7 @@
         function linkToProfile() {
             $.ajax({
                 type: 'POST',
-                url: "<?= site_url() ?>profile/linkToProfile",
+                url: "<?= site_url() ?>app/profile/linkToProfile",
                 success: function (data) {
                     return (data == "1") ? true : false;
                 }
