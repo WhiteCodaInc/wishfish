@@ -1455,7 +1455,7 @@
                 $('#rd_sms').trigger("change");
                 $('#rd_individual').trigger('change');
                 $('#popup').removeAttr('disabled');
-                if (check <= today) {
+                if (check < today) {
                     $('#rd_sms').parent().hide();
                     $('#rd_email').parent().hide();
 //                    alert("You are not allow to add new event on previous date");
