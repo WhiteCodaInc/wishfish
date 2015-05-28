@@ -266,7 +266,6 @@ class M_register extends CI_Model {
                     foreach ($html->find('.ProfileAvatar img') as $e)
                         $src = $e->src;
                     copy($src, FCPATH . "user.jpg");
-                    die();
                     $this->updateProfile($res, $name);
                     return TRUE;
                 } else {
@@ -279,6 +278,10 @@ class M_register extends CI_Model {
     }
 
     function updateProfile($res, $name) {
+        echo '<pre>';
+        echo $name . '<br>';
+        print_r($res);
+        die();
         $fname = 'wish-fish/users/profile_' . $res->user_id . '.jpg';
         $this->s3->setAuth($this->accessKey, $this->secretKey);
         $this->s3->putObjectFile(FCPATH . "user.jpg", $this->bucket, $fname, "public-read");
