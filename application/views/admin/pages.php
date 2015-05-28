@@ -107,8 +107,8 @@
                 data: {pageid: pageid, content: content},
                 url: "<?= site_url() ?>admin/pages/update",
                 success: function (data, textStatus, jqXHR) {
-//                    $('.overlay').hide();
-//                    $('.loading-img').hide();
+                    $('.overlay').hide();
+                    $('.loading-img').hide();
                     alertify.success("Content Successfully Updated..!");
                 }
             });
