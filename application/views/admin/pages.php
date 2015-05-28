@@ -54,6 +54,8 @@
                             </div>
                         </div>
                     </div>
+                    <div style="display: none" class="overlay"></div>
+                    <div style="display: none" class="loading-img"></div>
                 </div><!-- /.box -->
             </div><!--/.col (left) -->
             <!-- right column -->
@@ -96,6 +98,8 @@
         });
 
         $('#save-page').click(function () {
+            $('.overlay').show();
+            $('.loading-img').show();
             var pageid = $('#pageid').val();
             var content = CKEDITOR.instances['editor1'].getData();
             $.ajax({
@@ -103,7 +107,9 @@
                 data: {pageid: pageid, content: content},
                 url: "<?= site_url() ?>admin/pages/update",
                 success: function (data, textStatus, jqXHR) {
-                    alert("Update");
+//                    $('.overlay').hide();
+//                    $('.loading-img').hide();
+                    alertify.success("Content Successfully Updated..!");
                 }
             });
         });
