@@ -278,6 +278,7 @@
             todayHighlight: true
         });
         $('select[name="timezones"]').addClass('form-control m-bot15');
+        $('#type').val("<?= $user->profile_type ?>");
         $('select[name="timezones"] option').each(function () {
             if ($(this).val() == "<?= $user->timezones ?>") {
                 $(this).attr('selected', 'selected');
