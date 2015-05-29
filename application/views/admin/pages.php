@@ -1,3 +1,8 @@
+<style type="text/css">
+    .cke_contents{
+        height: 350px !important;
+    } 
+</style>
 <aside class="right-side">
     <!-- Content Header (Page header) -->
     <section class="content-header">
