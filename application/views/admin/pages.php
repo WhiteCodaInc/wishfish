@@ -87,15 +87,20 @@
     $(document).ready(function () {
 
         $('#pageid').change(function () {
+
             var val = $(this).val();
             if (val == "-1") {
                 CKEDITOR.instances['editor1'].setData("");
             } else {
+                $('.overlay').show();
+                $('.loading-img').show();
                 $.ajax({
                     type: 'POST',
                     data: {pageid: val},
                     url: "<?= site_url() ?>admin/pages/getContent",
                     success: function (data, textStatus, jqXHR) {
+                        $('.overlay').hide();
+                        $('.loading-img').hide();
                         CKEDITOR.instances['editor1'].setData(data);
                     }
                 });
