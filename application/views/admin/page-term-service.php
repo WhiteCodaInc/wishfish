@@ -64,4 +64,10 @@
         //bootstrap WYSIHTML5 - text editor
         $(".textarea").wysihtml5();
     });
+    $(document).ready(function () {
+        $('#save-page').click(function () {
+            $('#termFrom').submit();
+        });
+    });
 </script>
+
