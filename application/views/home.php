@@ -105,8 +105,8 @@
                             <div class="form-group">
                                 <p class="legal">
                                     By clicking Register, I agree to the 
-                                    <a href="#">Terms of Service</a> and 
-                                    <a href="#">Privacy Policy</a>.
+                                    <a href="<?= site_url() ?>terms-of-services">Terms of Service</a> and 
+                                    <a href="<?= site_url() ?>privacy-policy">Privacy Policy</a>.
                                 </p>
                             </div>
                             <div style="text-align: center" class="form-group">
