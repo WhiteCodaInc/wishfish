@@ -1,9 +1,9 @@
 <!-- Describe Section-->
-<section id="describe" class="sections page-cotent">
+<section class="sections page-cotent">
     <div class="container">
         <div class="row">
             <div class="details-full-width">
-                <div class="col-sm-8 col-sm-offset-2 text-center wow fadeIn animated" data-wow-offset="120" data-wow-duration="1.5s">
+                <div class="col-sm-8 col-sm-offset-2">
                     <!--  Heading-->
                     <div class="heading black-text">
                         <div class="title"><h2><?= $page->title ?></h2></div>
