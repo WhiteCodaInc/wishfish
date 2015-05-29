@@ -233,7 +233,7 @@
                 <div class="col-md-10 col-md-offset-1">
                     <div class="home-intro-subscribe">
                         <!--Header text -->
-                        <h1>Discover the easiest way to scheduling event with <b>Wish-Fish</b></h1>
+                        <h1>Discover the easiest way to schedule events with <b>Wish-Fish</b></h1>
                         <h3>Never Again Forget <span  id="typed" style="white-space:pre;color: #1ac6ff;"></span></h3>
                         <!--DOWNLOAD BUTTON -->
                         <div class=" home-subscribe center-block">
