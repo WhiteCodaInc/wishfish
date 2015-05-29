@@ -1,32 +1,19 @@
-<!-- MENU Section-->
-<header>
-    <nav class="navbar fixed-nav-dark navbar-inverse  navbar-fixed-top" id="main-navbar" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-
-                <a href="index.html" class="navbar-brand top-logo"><img src="images/logo-light.png" alt="logo"></a>
-            </div>  <!--end navbar-header -->
-
-            <div class="collapse navbar-collapse" id="navbar-collapse">
-                <a href="#" class="btn btn-primary navbar-btn navbar-right">Register</a>
-                <a href="#" class="btn btn-default btn-dark navbar-btn navbar-right"> Login </a>
-                <ul class="nav navbar-nav navbar-left">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#describe">Why Us</a></li>
-                    <li><a href="#screenshot">Screenshot</a></li>
-                    <li><a href="#service">service</a></li>
-                    <li><a href="#team">Our team</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-
-            </div>  <!--end collapse -->
-        </div>  <!--end container -->
-    </nav>
-</header>
+<!-- Describe Section-->
+<section id="describe" class="sections">
+    <div class="container">
+        <div class="row">
+            <div class="details-full-width">
+                <div class="col-sm-8 col-sm-offset-2 text-center wow fadeIn animated" data-wow-offset="120" data-wow-duration="1.5s">
+                    <!--  Heading-->
+                    <div class="heading black-text">
+                        <div class="title"><h2>Build your Love with <b>wow</b> Landing Page Builder</h2></div>
+                        <div class="subtitle"><h5>This is subtile. lorem ipsum dolar shit amet</h5></div>
+                    </div>
+                    <p class=" wow fadeInUp animated" data-wow-offset="10" data-wow-duration="1.5s">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
