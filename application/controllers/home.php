@@ -22,7 +22,11 @@ class Home extends CI_Controller {
         }
     }
 
-    function index() {
+    function index($term) {
+        
+        echo $term;
+        die();
+        
         $data['word'] = $this->wi_common->getRandomDigit(5);
         $this->session->set_userdata('captchaWord', $data['word']);
         $data['pdetail'] = $this->wi_common->getPlans();
