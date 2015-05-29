@@ -2,7 +2,7 @@
     <div class="container">
         <div class="col-sm-12" style="text-align: center">
             <div class="additional-links editContent">
-                <a style="text-decoration: none" href="#">Privacy Policy</a> | <a style="text-decoration: none" href="#">Terms of Service</a> |
+                <a style="text-decoration: none" href="<?= site_url() ?>privacy-policy">Privacy Policy</a> | <a style="text-decoration: none" href="<?= site_url() ?>terms-of-services">Terms of Service</a> |
                 <span class="footer-entry last">
                     Copyright 2015 White Coda Inc. All rights reserved.
                 </span>
