@@ -1,15 +1,5 @@
 <style type="text/css">
-    html, body {
-        height: 100%;
-    }
-    section {
-        min-height: 100%;
-        height: auto !important; /*min-height hack*/
-        height: 100%;            /*min-height hack*/
-    }
-    footer {
-        height: 4em;
-    }
+
 </style>
 <!-- MENU Section-->
 <header>

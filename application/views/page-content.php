@@ -17,3 +17,17 @@
         </div>
     </div>
 </section>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        function setHeight() {
+            windowHeight = $(window).innerHeight();
+            $('html,body').css('min-height', windowHeight);
+        }
+        setHeight();
+
+        $(window).resize(function () {
+            setHeight();
+        });
+    });
+</script>
