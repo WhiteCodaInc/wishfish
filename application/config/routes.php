@@ -56,6 +56,16 @@ $route['deactivate-my-account'] = "home/index/deactivate-my-account";
 $route['cookie-information'] = "home/index/cookie-information";
 $route['customer-support'] = "home/index/customer-support";
 $route['terms-of-services'] = "home/index/terms-of-services";
+$route['ip-compliance-program'] = "home/index/ip-compliance-program";
+
+$route['property-of-white-coda-inc'] = "home/index/property-of-white-coda-inc";
+$route['content'] = "home/index/content";
+$route['terms'] = "home/index/terms";
+$route['terms-of-use'] = "home/index/terms-of-use";
+$route['data-policy'] = "home/index/data-policy";
+$route['software'] = "home/index/software";
+$route['tasks'] = "home/index/tasks";
+$route['service'] = "home/index/service";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
