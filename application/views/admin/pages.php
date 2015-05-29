@@ -98,21 +98,30 @@
         });
 
         $('#save-page').click(function () {
-            $('.overlay').show();
-            $('.loading-img').show();
-            var pageid = $('#pageid').val();
+
             var content = CKEDITOR.instances['editor1'].getData();
-            $.ajax({
-                dataType: 'text',
-                type: 'POST',
-                data: {pageid: pageid, content: content},
-                url: "<?= site_url() ?>admin/pages/update",
-                success: function (data, textStatus, jqXHR) {
-                    $('.overlay').hide();
-                    $('.loading-img').hide();
-                    alertify.success("Content Successfully Updated..!");
-                }
-            });
+            xmlhttp.open("POST", "<?= site_url() ?>admin/pages/update", true);
+            var payload = "content=" + content;
+            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xmlhttp.setRequestHeader("Connection", "close");
+            xmlhttp.setRequestHeader("Content-length", payload.length);
+            xmlhttp.send(payload);
+
+//            $('.overlay').show();
+//            $('.loading-img').show();
+//            var pageid = $('#pageid').val();
+//            var content = CKEDITOR.instances['editor1'].getData();
+//            $.ajax({
+//                dataType: 'text',
+//                type: 'POST',
+//                data: {pageid: pageid, content: content},
+//                url: "<?= site_url() ?>admin/pages/update",
+//                success: function (data, textStatus, jqXHR) {
+//                    $('.overlay').hide();
+//                    $('.loading-img').hide();
+//                    alertify.success("Content Successfully Updated..!");
+//                }
+//            });
         });
     });
 </script>
