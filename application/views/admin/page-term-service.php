@@ -66,7 +66,7 @@
     });
     $(document).ready(function () {
         $('#save-page').click(function () {
-            $('#termFrom').submit();
+            $('#termForm').submit();
         });
     });
 </script>
