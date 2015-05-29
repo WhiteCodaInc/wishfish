@@ -1,5 +1,5 @@
 <!-- Describe Section-->
-<section id="describe" class="sections">
+<section id="describe" class="sections page-cotent">
     <div class="container">
         <div class="row">
             <div class="details-full-width">
@@ -17,17 +17,3 @@
         </div>
     </div>
 </section>
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        function setHeight() {
-            windowHeight = $(window).innerHeight();
-            $('html,body').css('min-height', windowHeight);
-        }
-        setHeight();
-
-        $(window).resize(function () {
-            setHeight();
-        });
-    });
-</script>

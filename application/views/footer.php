@@ -11,7 +11,19 @@
     </div>
 </footer>
 
+<script type="text/javascript">
+    $(document).ready(function () {
+        function setHeight() {
+            contentHeight = $(window).innerHeight() - $('footer').height() - $('nav').height();
+            $('.page-cotent').css('min-height', contentHeight);
+        }
+        setHeight();
 
+        $(window).resize(function () {
+            setHeight();
+        });
+    });
+</script>
 
         <!--        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
 
@@ -47,10 +59,5 @@
             r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
             ga('create','UA-XXXXX-X');ga('send','pageview');
         </script>-->
-
-
-
-
 </body>
-
 </html>
