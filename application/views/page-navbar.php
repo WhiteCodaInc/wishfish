@@ -10,7 +10,7 @@
                     <span class="icon-bar"></span>
                 </button>
 
-                <a href="index.html" class="navbar-brand top-logo"><img src="<?= base_url() ?>assets/wow/images/logo-light.png" alt="logo"></a>
+                <a href="<?= site_url() ?>" class="navbar-brand top-logo"><img src="<?= base_url() ?>assets/wow/images/logo-light.png" alt="logo"></a>
             </div>  <!--end navbar-header -->
 
             <div class="collapse navbar-collapse" id="navbar-collapse">
