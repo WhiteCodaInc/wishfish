@@ -103,6 +103,7 @@
             var pageid = $('#pageid').val();
             var content = CKEDITOR.instances['editor1'].getData();
             $.ajax({
+                dataType: 'text',
                 type: 'POST',
                 data: {pageid: pageid, content: content},
                 url: "<?= site_url() ?>admin/pages/update",
