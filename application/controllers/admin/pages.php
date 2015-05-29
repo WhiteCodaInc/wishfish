@@ -36,9 +36,23 @@ class Pages extends CI_Controller {
         echo $this->objpage->getContent($pageid);
     }
 
+    function getTerm() {
+        $data['page'] = $this->objpage->getTerm();
+        $this->load->view('admin/admin_header');
+        $this->load->view('admin/admin_top');
+        $this->load->view('admin/admin_navbar');
+        $this->load->view('admin/page-term-service', $data);
+        $this->load->view('admin/admin_footer');
+    }
+
     function update() {
         $post = $this->input->post();
         $this->objpage->update($post);
+    }
+
+    function updateTerm() {
+        $post = $this->input->post();
+        $this->objpage->updateTerm($post);
     }
 
 }
