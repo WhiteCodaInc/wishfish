@@ -155,5 +155,4 @@ switch ($msg) {
             $('#checkForm').submit();
         }
     });
-
 </script>
