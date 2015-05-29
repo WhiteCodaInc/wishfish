@@ -40,11 +40,11 @@ if (!defined('BASEPATH'))
   | in the URL cannot be matched to a valid route.
   |
  */
-
+//$route['(.*)'] = "home/index/$1";
 $route['default_controller'] = "home";
 $route['404_override'] = '';
 $route['admin'] = "admin/admin_login";
-$route["/(:any)"] = "home/$1";
+$route["(:any)"] = "home/index/$1";
 
 
 /* End of file routes.php */
