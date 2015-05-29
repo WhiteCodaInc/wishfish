@@ -45,17 +45,17 @@ $route['404_override'] = '';
 $route['admin'] = "admin/admin_login";
 
 //--------------Web Pages---------------------//
-$route['whats-new'] = "home/index/$1";
-$route['privacy-policy'] = "home/index/$1";
-$route['commercial-terms'] = "home/index/$1";
-$route['user-guidelines'] = "home/index/$1";
-$route['sms-compliance-program'] = "home/index/$1";
-$route['wishfish-business'] = "home/index/$1";
-$route['3rd-party-app-permission'] = "home/index/$1";
-$route['deactivate-my-account'] = "home/index/$1";
-$route['cookie-information'] = "home/index/$1";
-$route['customer-support'] = "home/index/$1";
-$route['terms-of-services'] = "home/index/$1";
+$route['whats-new'] = "home/index/whats-new";
+$route['privacy-policy'] = "home/index/privacy-policy";
+$route['commercial-terms'] = "home/index/commercial-terms";
+$route['user-guidelines'] = "home/index/user-guidelines";
+$route['sms-compliance-program'] = "home/index/sms-compliance-program";
+$route['wishfish-business'] = "home/index/wishfish-business";
+$route['3rd-party-app-permission'] = "home/index/3rd-party-app-permission";
+$route['deactivate-my-account'] = "home/index/deactivate-my-account";
+$route['cookie-information'] = "home/index/cookie-information";
+$route['customer-support'] = "home/index/customer-support";
+$route['terms-of-services'] = "home/index/terms-of-services";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
