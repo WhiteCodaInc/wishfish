@@ -23,17 +23,31 @@ class Home extends CI_Controller {
     }
 
     function index($term = NULL) {
+        $flag = TRUE;
+        if ($term != NULL) {
+            $data['page'] = $this->objregister->getPageContent($term);
+            if ($data['page']) {
+                $this->load->view('header');
+                $this->load->view('page-navbar');
+                $this->load->view('page-content', $data);
+                $this->load->view('footer');
+                $flag = FALSE;
+            } else {
+                $flag = TRUE;
+            }
+        }
+        if ($flag) {
+            $data['word'] = $this->wi_common->getRandomDigit(5);
+            $this->session->set_userdata('captchaWord', $data['word']);
+            $data['pdetail'] = $this->wi_common->getPlans();
+            $data['stripe'] = $this->wi_common->getPaymentGatewayInfo("STRIPE");
+            $data['paypal'] = $this->wi_common->getPaymentGatewayInfo("PAYPAL");
 
-        $data['word'] = $this->wi_common->getRandomDigit(5);
-        $this->session->set_userdata('captchaWord', $data['word']);
-        $data['pdetail'] = $this->wi_common->getPlans();
-        $data['stripe'] = $this->wi_common->getPaymentGatewayInfo("STRIPE");
-        $data['paypal'] = $this->wi_common->getPaymentGatewayInfo("PAYPAL");
-
-        $this->load->view('header');
-        $this->load->view('navbar');
-        $this->load->view('home', $data);
-        $this->load->view('footer');
+            $this->load->view('header');
+            $this->load->view('navbar');
+            $this->load->view('home', $data);
+            $this->load->view('footer');
+        }
     }
 
     function captcha_refresh() {

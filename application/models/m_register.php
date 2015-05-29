@@ -25,6 +25,15 @@ class M_register extends CI_Model {
         $this->secretKey = $this->encryption->decode($this->config->item('secretKey', 'aws'));
     }
 
+    function getPageContent($pname) {
+        $query = $this->db->get_where('pages', array('name' => $pname));
+        if ($query->num_rows()) {
+            return $query->row();
+        } else {
+            return FALSE;
+        }
+    }
+
     function register($post) {
         $flag = FALSE;
         $post['password'] = $this->generateRandomString(5);
