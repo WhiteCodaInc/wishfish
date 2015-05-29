@@ -53,6 +53,7 @@ class Pages extends CI_Controller {
     function updateTerm() {
         $post = $this->input->post();
         $this->objpage->updateTerm($post);
+        header('location:' . site_url() . 'admin/pages/getTerm');
     }
 
 }
