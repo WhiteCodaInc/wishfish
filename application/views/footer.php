@@ -17,7 +17,7 @@
         console.log($('footer').height());
         console.log($('nav').height());
         function setHeight() {
-            contentHeight = $(window).innerHeight() - $('footer').height() - $('nav').height();
+            contentHeight = $(window).innerHeight() - $('nav').height();
             $('.page-cotent').css('min-height', contentHeight);
         }
         setHeight();
