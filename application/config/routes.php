@@ -40,12 +40,22 @@ if (!defined('BASEPATH'))
   | in the URL cannot be matched to a valid route.
   |
  */
-//$route['(.*)'] = "home/index/$1";
 $route['default_controller'] = "home";
 $route['404_override'] = '';
 $route['admin'] = "admin/admin_login";
-$route["(:any)"] = "home/index/$1";
 
+//--------------Web Pages---------------------//
+$route['whats-new'] = "home/$1";
+$route['privacy-policy'] = "home/$1";
+$route['commercial-terms'] = "home/$1";
+$route['user-guidelines'] = "home/$1";
+$route['sms-compliance-program'] = "home/$1";
+$route['wishfish-business'] = "home/$1";
+$route['3rd-party-app-permission'] = "home/$1";
+$route['deactivate-my-account'] = "home/$1";
+$route['cookie-information'] = "home/$1";
+$route['customer-support'] = "home/$1";
+$route['terms-of-services'] = "home/$1";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
