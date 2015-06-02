@@ -111,7 +111,7 @@ class Mailbox extends CI_Controller {
             } else if (!$imap_obj->Nmsgs) {
                 $mailbox = array();
             } else {
-                $display = ($post['type'] == "Inbox" || $post['type'] == "Trash") ? 2 : 1;
+                $display = ($post['type'] == "Inbox") ? 2 : 1;
                 imap_reopen($this->stream, $url);
                 $emails = imap_search($this->stream, 'ALL');
                 if (is_array($emails)) {
