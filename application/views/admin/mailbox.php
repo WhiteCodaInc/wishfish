@@ -1,6 +1,15 @@
 <!-- Normal Checkbox -->
 <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/dashboard/css/checkbox.css"/>
 <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/dashboard/autocomplete/jquery-ui.css"/>
+<style type="text/css">
+    #inbox-data-table tr > td > a {
+        color: #444;
+        cursor: pointer;
+    }
+    #accordion .box-title{
+        font-size: 15px
+    }
+</style>
 <aside class="right-side">
     <!-- Content Header (Page header) -->
     <section class="content-header no-margin" style="display: none">
@@ -26,10 +35,7 @@
                                 <!-- compose message btn -->
                                 <a id="compose" class="btn btn-block btn-primary" data-toggle="modal" data-target="#compose-mail"><i class="fa fa-pencil"></i> Compose Message</a>
                                 <!-- Navigation - folders-->
-                                <?php
-                                $type = $this->uri->segment(4);
-                                echo $type;
-                                ?>
+                                <?php $type = $this->uri->segment(4); ?>
                                 <div style="margin-top: 15px;">
                                     <ul class="nav nav-pills nav-stacked">
                                         <li class="header">Folders</li>
@@ -101,28 +107,38 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php foreach ($email as $key => $value) { ?>
-                                                    <tr id="<?= $value['id'] ?>" style="<?= (!$value['status']) ? "background-color: #F3F4F5;font-weight: 600;" : "" ?>" class="">
+                                                <?php
+                                                $cnt = 0;
+                                                foreach ($threads as $key => $mail) {
+                                                    $emailids = "";
+                                                    $counter = 1;
+                                                    $trid = str_replace(' ', '-', $key);
+                                                    foreach ($mail as $key => $value) {
+                                                        if ($counter++ != count($mail))
+                                                            $emailids .= $value['id'] . '-';
+                                                        else
+                                                            $emailids .= $value['id'];
+                                                    }
+                                                    ?>
+                                                    <tr id="<?= ++$cnt ?>" class="<?= $trid ?>" style="<?= (!$mail[0]['status']) ? "background-color: #F3F4F5;font-weight: 600;" : "" ?>">
                                                         <td class="small-col">
-                                                            <input type="checkbox" name="email_id[]" value="<?= $value['id'] ?>" />
+                                                            <input type="checkbox" name="email_id[]" value="<?= $emailids ?>" />
                                                         </td>
                                                         <td class="name">
-                                                            <a style="cursor: pointer" data-toggle="modal" data-target="#mail-body" class="<?= $value['id'] ?>">
-                                                                <?= $value['from'] ?>
+                                                            <a style="font-weight: 600" data-toggle="modal" data-target="#mail-body">
+                                                                <?= $mail[0]['from'] ?>
                                                             </a>
                                                         </td>
                                                         <td class="subject">
-                                                            <a style="cursor: pointer" data-toggle="modal" data-target="#mail-body" class="<?= $value['id'] ?>">
-                                                                <?= $value['subject'] ?>
+                                                            <a data-toggle="modal" data-target="#mail-body">
+                                                                <?= $mail[0]['subject'] ?>
                                                             </a>
                                                         </td>
                                                         <td class="time">
-                                                            <?= $value['date'] ?>
+                                                            <?= $mail[0]['date'] ?>
                                                         </td>
                                                     </tr>
-                                                <span style="display: none" class="body<?= $value['id'] ?>"><?= $value['body'] ?></span>
-                                                <span style="display: none" class="to<?= $value['id'] ?>"><?= $value['to'] ?></span>
-                                            <?php } ?>
+                                                <?php } ?>
                                             </tbody>
                                             <tfoot>
                                                 <tr>
@@ -233,12 +249,12 @@
                             <input name="email_subject" type="text" class="form-control" placeholder="Email Subject">
                         </div>
                     </div>
-                    <div id="msg_txt" class="form-group" style="display: none">
-                        <div class="input-group">
-                            <label>Message</label>
-                            <p></p>
-                        </div>
-                    </div>
+                    <!--                    <div id="msg_txt" class="form-group" style="display: none">
+                                            <div class="input-group">
+                                                <label>Message</label>
+                                                <p></p>
+                                            </div>
+                                        </div>-->
                     <div class="form-group">
                         <textarea name="message" id="email_message" class="form-control" placeholder="Message" style="height: 120px;"></textarea>
                     </div>
@@ -272,25 +288,29 @@
                 <h4 class="modal-title"><i class="fa fa-envelope-o"></i> View Email</h4>
             </div>
             <div class="modal-body">
-                <div class="input-group" style="width: 100%">
-                    <h4 style="float: left;padding-right: 5px;"><label>Subject :</label></h4>
-                    <h4 id="subject"></h4>
-                </div>
-                <div class="input-group" style="width: 100%">
-                    <h4 style="float: left;padding-right: 5px;"><label>From :</label></h4>
-                    <h4 id="from"></h4>
-                </div>
-                <div class="input-group" style="width: 100%">
-                    <h4 style="float: left;padding-right: 5px;"><label>Date :</label></h4>
-                    <h4 id="date"></h4>
-                </div>
-                <div class="input-group" style="width: 100%">
-                    <h4 style="float: left;padding-right: 5px;"><label>To :</label></h4>
-                    <h4 id="to"></h4>
-                </div>
-                <div class="form-group">
-                    <!--<textarea name="message" id="body" class="form-control" placeholder="Message" style="height: 120px;"></textarea>-->
-                    <div class="" id="body"></div>
+                <div class="box box-solid conversation">
+                    <div class="box-body" style="min-height: 100px;">
+                        <div class="box-group" id="accordion">
+                            <div class="panel box box-primary demo" style="display: none">
+                                <div class="box-header">
+                                    <h4 style="width: 100%" class="box-title">
+                                        <a style="float: left" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed">
+                                            Collapsible Group Item #1
+                                        </a>
+                                        <div style="text-align: right" id="time">
+                                            06-02-2015 01:00
+                                        </div>
+                                    </h4>
+                                </div>
+                                <div id="collapseOne" class="panel-collapse collapse" style="height: 0px;">
+                                    <div class="box-body">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- /.box-body -->
+                    <div class="overlay"></div>
+                    <div class="loading-img"></div>
                 </div>
             </div>
             <div class="modal-footer clearfix">
@@ -489,25 +509,40 @@ switch ($msg) {
         });
 
         $('td > a').click(function () {
-            var id = $(this).attr('class');
-            $('button.reply').attr('id', id);
-            $('#mail-body #subject').text($('tr#' + id + ' td.subject').text());
-            $('#mail-body #from').text($('tr#' + id + ' td.name').text());
-            $('#mail-body #date').text($('tr#' + id + ' td.time').text());
-            $('#mail-body #to').text($('span.to' + id).text());
-            $('#mail-body #body').text($('span.body' + id).text());
+            $('.conversation .loading-img').show();
+            $('.conversation .overlay').show();
+            var cls = $(this).parents('tr').prop('class');
+            var id = $(this).parents('tr').prop('id');
+            $('#accordion').children().not('div.demo').remove();
+            $.ajax({
+                type: 'POST',
+                data: {subject: cls, type: $('input[name="type"]').val()},
+                url: "<?= site_url() ?>admin/mailbox/getConversation",
+                success: function (data, textStatus, jqXHR) {
+                    $('.conversation .loading-img').hide();
+                    $('.conversation .overlay').hide();
+                    var json = JSON.parse(data);
+                    $.each(json, function (i, item) {
+                        $acordian = $('#accordion .demo').clone();
+                        $acordian.removeClass('demo');
+                        $acordian.removeAttr('style');
+                        $acordian.find('h4 > a').prop('href', "#collapse" + item.id);
+                        $acordian.find('#collapseOne .box-body').html(item.body);
+                        $acordian.find('h4 > a').html(item.from);
+                        $acordian.find('#collapseOne').prop('id', "collapse" + item.id);
+                        $acordian.find('#time').text(item.date);
+                        $('#accordion .demo').before($acordian);
+                    });
+                }
+            });
+            $('button.reply').prop('value', id);
         });
 
         $('button.reply').click(function () {
             $('.close').trigger('click');
-            var id = $(this).attr('id');
-//            is_reply = true;
-            $('#composeForm #msg_txt').show();
-            $('#composeForm input[name="email_to"]').val($('tr#' + id + ' td.name').text().trim());
-            $('#composeForm input[name="email_subject"]').val($('tr#' + id + ' td.subject').text().trim());
-            $('#composeForm #msg_txt p').text($('span.body' + id).text().trim());
-//            CKEDITOR.instances['email_message'].setData($('span.body' + id).text().trim(), true);
-//            editor.setValue($('span.body' + id).text().trim(), true);
+            var val = $(this).val();
+            $('#composeForm input[name="email_to"]').val($('tr#' + val + ' td.name').text().trim());
+            $('#composeForm input[name="email_subject"]').val($('tr#' + val + ' td.subject').text().trim());
             $('a#compose').trigger('click');
         });
 

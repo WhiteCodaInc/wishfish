@@ -60,9 +60,9 @@ class Mailbox extends CI_Controller {
 
         $imap_obj = imap_check($this->stream);
         if (!$imap_obj) {
-            $data['email'] = array();
+            $mailbox = array();
         } else if (!$imap_obj->Nmsgs) {
-            $data['email'] = array();
+            $mailbox = array();
         } else {
             imap_reopen($this->stream, $url);
             $emails = imap_search($this->stream, 'ALL');
@@ -71,20 +71,20 @@ class Mailbox extends CI_Controller {
                 $data = array();
                 foreach ($emails as $key => $email_id) {
                     $overview = imap_fetch_overview($this->stream, $email_id, 0);
-                    $data['email'][$key]['id'] = $overview[0]->uid;
-                    $data['email'][$key]['subject'] = $this->decode_imap_text($overview[0]->subject);
-                    $data['email'][$key]['from'] = $this->decode_imap_text($overview[0]->from);
-                    $data['email'][$key]['to'] = $this->decode_imap_text($overview[0]->to);
-                    $data['email'][$key]['date'] = date('m-d-Y H:i', strtotime($overview[0]->date));
-                    $data['email'][$key]['status'] = ($overview[0]->seen) ? 1 : 0;
-                    $data['email'][$key]['body'] = imap_fetchbody($this->stream, $email_id, 1);
+                    $mailbox[$key]['id'] = $overview[0]->uid;
+                    $mailbox[$key]['subject'] = $this->decode_imap_text($overview[0]->subject);
+                    $mailbox[$key]['from'] = $this->decode_imap_text($overview[0]->from);
+                    $mailbox[$key]['to'] = $this->decode_imap_text($overview[0]->to);
+                    $mailbox[$key]['date'] = date('m-d-Y H:i', strtotime($overview[0]->date));
+                    $mailbox[$key]['status'] = ($overview[0]->seen) ? 1 : 0;
+                    $mailbox[$key]['body'] = imap_fetchbody($this->stream, $email_id, 1);
                 }
             } else {
-                $data['email'] = array();
+                $mailbox = array();
             }
         }
-//        imap_close($this->stream);
         $data['folder'] = $this->getInboxFolder();
+        $data['threads'] = $this->makeThreads($mailbox);
 //        echo '<pre>';
 //        print_r($data);
 //        die();
@@ -93,6 +93,63 @@ class Mailbox extends CI_Controller {
         $this->load->view('admin/admin_navbar');
         $this->load->view('admin/mailbox', $data);
         $this->load->view('admin/admin_footer');
+    }
+
+    function getConversation() {
+        if (!$this->is_login())
+            header('location:' . site_url() . 'admin/mailbox');
+        $post = $this->input->post();
+
+        if ($post['subject'] != "") {
+            $subject = str_replace('-', ' ', $post['subject']);
+            $url = ($post['type'] != "Inbox") ?
+                    "{mail.mikhailkuznetsov.com:143/notls}INBOX.{$post['type']}" :
+                    "{mail.mikhailkuznetsov.com:143/notls}INBOX";
+            $imap_obj = imap_check($this->stream);
+            if (!$imap_obj) {
+                $mailbox = array();
+            } else if (!$imap_obj->Nmsgs) {
+                $mailbox = array();
+            } else {
+                $display = ($post['type'] == "Inbox" || $post['type'] == "Trash") ? 2 : 1;
+                imap_reopen($this->stream, $url);
+                $emails = imap_search($this->stream, 'ALL');
+                if (is_array($emails)) {
+                    rsort($emails);
+                    foreach ($emails as $key => $email_id) {
+                        $overview = imap_fetch_overview($this->stream, $email_id, 0);
+                        $mailbox[$key]['id'] = $overview[0]->uid;
+                        $mailbox[$key]['subject'] = $this->decode_imap_text($overview[0]->subject);
+                        $mailbox[$key]['from'] = $this->decode_imap_text($overview[0]->from);
+                        $mailbox[$key]['to'] = $this->decode_imap_text($overview[0]->to);
+                        $mailbox[$key]['date'] = date('m-d-Y H:i', strtotime($overview[0]->date));
+                        $mailbox[$key]['status'] = ($overview[0]->seen) ? 1 : 0;
+                        $mailbox[$key]['body'] = imap_fetchbody($this->stream, $email_id, $display);
+                    }
+                }
+            }
+            $threads = $this->makeThreads($mailbox);
+            echo json_encode(array_reverse($threads[$subject]));
+        } else {
+            header('location:' . site_url() . 'admin/mailbox/inbox');
+        }
+    }
+
+    function makeThreads($mailbox) {
+        $threads = array();
+        foreach ($mailbox as $value) {
+            $flag = TRUE;
+            foreach ($mailbox as $val) {
+                if ($val['subject'] == "Re: " . $value['subject']) {
+                    $flag = FALSE;
+                    break;
+                }
+            }
+            if ($flag) {
+                $threads[$value['subject']][] = $value;
+            }
+        }
+        return $threads;
     }
 
     function decode_imap_text($str) {
@@ -272,16 +329,12 @@ class Mailbox extends CI_Controller {
 //                    }
 //                    break;
                 case "delete":
-//                    echo '<pre>';
-//                    print_r($post);
-//                    die();
                     foreach ($post['email_id'] as $email_id) {
-                        if ($post['type'] == "Trash") {
-                            imap_delete($this->stream, $email_id, FT_UID);
-//                            echo 'DELETE';
-                        } else {
-                            imap_mail_move($this->stream, $email_id, 'INBOX.Trash', CP_UID);
-//                            echo 'TRASH';
+                        $ids = explode('-', $email_id);
+                        foreach ($ids as $value) {
+                            ($post['type'] == "Trash") ?
+                                            imap_delete($this->stream, $value, FT_UID) :
+                                            imap_mail_move($this->stream, $value, 'INBOX.Trash', CP_UID);
                         }
                     }
                     break;
@@ -365,10 +418,16 @@ class Mailbox extends CI_Controller {
         foreach ($boxes as $box) {
             imap_reopen($this->stream, $box);
             $emails = imap_search($this->stream, "ALL");
-            if (is_array($emails))
-                $folder[] = count($emails);
-            else
+            $mailbox = array();
+            if (is_array($emails)) {
+                foreach ($emails as $key => $email_id) {
+                    $overview = imap_fetch_overview($this->stream, $email_id, 0);
+                    $mailbox[$key]['subject'] = $this->decode_imap_text($overview[0]->subject);
+                }
+                $folder[] = count($this->makeThreads($mailbox, "NORMAL"));
+            } else {
                 $folder[] = 0;
+            }
         }
 //        imap_close($this->stream);
         return $folder;
