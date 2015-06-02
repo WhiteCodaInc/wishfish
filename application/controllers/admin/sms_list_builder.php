@@ -25,7 +25,7 @@ class Sms_list_builder extends CI_Controller {
         } else {
             $this->load->model('admin/m_list_builder', 'objbuilder');
             $this->load->model('admin/m_admin_contacts', 'objcontact');
-            $this->load->model('admin/m_contact_groups', 'objgroup');
+            $this->load->model('admin/m_admin_contact_groups', 'objgrp');
         }
     }
 
@@ -74,7 +74,7 @@ class Sms_list_builder extends CI_Controller {
         $data['group'] = $res[0];
         $data['subgroup'] = $res[1];
         if (count($res[0]) > 0) {
-            $data['groups'] = $this->objgroup->getContactGroups("simple");
+            $data['groups'] = $this->objgrp->getContactGroups("simple");
             $this->load->view('admin/admin_header');
             $this->load->view('admin/admin_top');
             $this->load->view('admin/admin_navbar');

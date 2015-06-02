@@ -26,8 +26,8 @@ class Customers extends CI_Controller {
             $this->load->library('parser');
             $this->load->model('admin/m_customers', 'objcustomer');
             $this->load->model('admin/m_customer_groups', 'objgroup');
-            $this->load->model('admin/m_sms_template', 'objsmstemplate');
-            $this->load->model('admin/m_email_template', 'objemailtemplate');
+            $this->load->model('admin/m_admin_sms_template', 'objsmstmplt');
+            $this->load->model('admin/m_admin_email_template', 'objemailtemplate');
         }
     }
 
@@ -61,7 +61,7 @@ class Customers extends CI_Controller {
 
         $data['groups'] = $this->objgroup->getCustomerGroups();
         $data['sms_template'] = $this->objsmstemplate->getTemplates();
-        $data['email_template'] = $this->objemailtemplate->getTemplates();
+        $data['email_template'] = $this->objemailtmplt->getTemplates();
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');

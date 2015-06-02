@@ -24,9 +24,9 @@ class Calender extends CI_Controller {
             header('location:' . site_url() . 'admin/dashboard/error/500');
         } else {
             $this->load->model('admin/m_admin_contacts', 'objcontact');
-            $this->load->model('admin/m_contact_groups', 'objgroup');
-            $this->load->model('admin/m_sms_template', 'objsmstemplate');
-            $this->load->model('admin/m_email_template', 'objemailtemplate');
+            $this->load->model('admin/m_admin_contact_groups', 'objgrp');
+            $this->load->model('admin/m_admin_sms_template', 'objsmstmplt');
+            $this->load->model('admin/m_admin_email_template', 'objemailtemplate');
             $this->load->model('admin/m_sms', 'objsms');
             $this->load->model('admin/m_email', 'objemail');
             $this->load->model('admin/m_admin_calender', 'objcal');
@@ -62,7 +62,7 @@ class Calender extends CI_Controller {
     }
 
     function allGroup() {
-        $group = $this->objgroup->getContactGroups("simple");
+        $group = $this->objgrp->getContactGroups("simple");
         echo '<select  name="group_id" class="form-control">';
         foreach ($group as $value) {
             echo "<option value='$value->group_id'>$value->group_name</option>";
@@ -71,7 +71,7 @@ class Calender extends CI_Controller {
     }
 
     function allSMSList() {
-        $group = $this->objgroup->getContactGroups("sms");
+        $group = $this->objgrp->getContactGroups("sms");
         echo '<select  name="group_id" class="form-control">';
         foreach ($group as $value) {
             echo "<option value='$value->group_id'>$value->group_name</option>";
@@ -91,7 +91,7 @@ class Calender extends CI_Controller {
         if ($type == "sms" || $type == "notification") {
             $templates = $this->objsmstemplate->getTemplates();
         } else if ($type == "email") {
-            $templates = $this->objemailtemplate->getTemplates();
+            $templates = $this->objemailtmplt->getTemplates();
         } else {
             echo 0;
         }

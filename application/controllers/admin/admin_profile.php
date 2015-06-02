@@ -29,8 +29,8 @@ class Admin_profile extends CI_Controller {
             $this->load->library('parser');
             $this->load->model('admin/m_admin_profile', 'objprofile');
             $this->load->model('admin/m_admin_access', 'objclass');
-            $this->load->model('admin/m_sms_template', 'objsmstemplate');
-            $this->load->model('admin/m_email_template', 'objemailtemplate');
+            $this->load->model('admin/m_admin_sms_template', 'objsmstmplt');
+            $this->load->model('admin/m_admin_email_template', 'objemailtemplate');
             $this->load->model('admin/m_cpanel', 'objcpanel');
         }
     }
@@ -59,7 +59,7 @@ class Admin_profile extends CI_Controller {
     function profile($pid) {
         $data['profile'] = $this->objprofile->getProfile($pid);
         $data['sms_template'] = $this->objsmstemplate->getTemplates();
-        $data['email_template'] = $this->objemailtemplate->getTemplates();
+        $data['email_template'] = $this->objemailtmplt->getTemplates();
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');

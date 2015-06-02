@@ -23,12 +23,12 @@ class Email_template extends CI_Controller {
         } else if (!$this->common->getPermission()->email) {
             header('location:' . site_url() . 'admin/dashboard/error/500');
         } else {
-            $this->load->model('admin/m_email_template', 'objtemplate');
+            $this->load->model('admin/m_admin_email_template', 'objtmplt');
         }
     }
 
     function index() {
-        $data['template'] = $this->objtemplate->getTemplates();
+        $data['template'] = $this->objtmplt->getTemplates();
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');
@@ -46,12 +46,12 @@ class Email_template extends CI_Controller {
 
     function createTemplate() {
         $post = $this->input->post();
-        $this->objtemplate->createTemplate($post);
+        $this->objtmplt->createTemplate($post);
         header('location:' . site_url() . 'admin/email_template?msg=I');
     }
 
     function editTemplate($pid) {
-        $data['template'] = $this->objtemplate->getTemplate($pid);
+        $data['template'] = $this->objtmplt->getTemplate($pid);
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');
@@ -61,14 +61,14 @@ class Email_template extends CI_Controller {
 
     function updateTemplate() {
         $post = $this->input->post();
-        $this->objtemplate->updateTemplate($post);
+        $this->objtmplt->updateTemplate($post);
         header('location:' . site_url() . 'admin/email_template?msg=U');
     }
 
     function action() {
         $type = $this->input->post('actionType');
         if ($type == "Delete") {
-            $this->objtemplate->setAction();
+            $this->objtmplt->setAction();
         }
         header('location:' . site_url() . 'admin/email_template?msg=D');
     }

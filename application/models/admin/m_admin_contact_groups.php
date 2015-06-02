@@ -11,7 +11,7 @@
  *
  * @author Laxmisoft
  */
-class M_contact_groups extends CI_Model {
+class M_admin_contact_groups extends CI_Model {
 
     private $profileid;
 

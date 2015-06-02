@@ -31,17 +31,17 @@ class Sms extends CI_Controller {
             $this->load->model('admin/m_admin_contacts', 'objcontact');
             $this->load->model('admin/m_affiliates', 'objaffiliate');
             $this->load->model('admin/m_customers', 'objcustomer');
-            $this->load->model('admin/m_contact_groups', 'objcontactgroup');
+            $this->load->model('admin/m_admin_contact_groups', 'objcongroup');
             $this->load->model('admin/m_affiliate_groups', 'objaffiliategroup');
             $this->load->model('admin/m_customer_groups', 'objcustomergroup');
-            $this->load->model('admin/m_sms_template', 'objtemplate');
+            $this->load->model('admin/m_admin_sms_template', 'objtmplt');
             $this->load->model('admin/m_list_builder', 'objbuilder');
         }
     }
 
     function send_sms() {
         $data['individual'] = $this->objprofile->getProfiles();
-        $data['template'] = $this->objtemplate->getTemplates();
+        $data['template'] = $this->objtmplt->getTemplates();
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');
@@ -141,7 +141,7 @@ class Sms extends CI_Controller {
     function allGroup($type) {
         switch ($type) {
             case 2:
-                $group = $this->objcontactgroup->getContactGroups("simple");
+                $group = $this->objcongroup->getContactGroups("simple");
                 break;
             case 3:
                 $group = $this->objaffiliategroup->getAffiliateGroups();
@@ -158,7 +158,7 @@ class Sms extends CI_Controller {
     }
 
     function allSMSList() {
-        $group = $this->objcontactgroup->getContactGroups("sms");
+        $group = $this->objcongroup->getContactGroups("sms");
         echo '<select  name="group_id" class="form-control">';
         foreach ($group as $value) {
             echo "<option value='$value->group_id'>$value->group_name</option>";

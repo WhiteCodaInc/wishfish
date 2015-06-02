@@ -25,16 +25,16 @@ class Contacts extends CI_Controller {
         } else {
             $this->load->library('parser');
             $this->load->model('admin/m_admin_contacts', 'objcon');
-            $this->load->model('admin/m_contact_groups', 'objgroup');
+            $this->load->model('admin/m_admin_contact_groups', 'objgrp');
             $this->load->model('admin/m_sms', 'objsms');
-            $this->load->model('admin/m_sms_template', 'objsmstemplate');
-            $this->load->model('admin/m_email_template', 'objemailtemplate');
+            $this->load->model('admin/m_admin_sms_template', 'objsmstmplt');
+            $this->load->model('admin/m_admin_email_template', 'objemailtemplate');
         }
     }
 
     function index() {
         $data['contacts'] = $this->objcon->getContactDetail();
-        $data['groups'] = $this->objgroup->getContactGroups("simple");
+        $data['groups'] = $this->objgrp->getContactGroups("simple");
         $data['zodiac'] = $this->common->getZodiacs();
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
@@ -45,7 +45,7 @@ class Contacts extends CI_Controller {
 
     function search() {
         $data['searchResult'] = $this->objcon->searchResult();
-        $data['groups'] = $this->objgroup->getContactGroups("simple");
+        $data['groups'] = $this->objgrp->getContactGroups("simple");
         $data['zodiac'] = $this->common->getZodiacs();
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
@@ -59,9 +59,9 @@ class Contacts extends CI_Controller {
         $data['contact'] = $res[0];
         $data['cgroup'] = $res[1];
 
-        $data['groups'] = $this->objgroup->getContactGroups("simple");
+        $data['groups'] = $this->objgrp->getContactGroups("simple");
         $data['sms_template'] = $this->objsmstemplate->getTemplates();
-        $data['email_template'] = $this->objemailtemplate->getTemplates();
+        $data['email_template'] = $this->objemailtmplt->getTemplates();
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');
@@ -70,7 +70,7 @@ class Contacts extends CI_Controller {
     }
 
     function addContact() {
-        $data['groups'] = $this->objgroup->getContactGroups("simple");
+        $data['groups'] = $this->objgrp->getContactGroups("simple");
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');
@@ -88,7 +88,7 @@ class Contacts extends CI_Controller {
         $res = $this->objcon->getContact($cid, 'simple');
         $data['contacts'] = $res[0];
         $data['cgroup'] = $res[1];
-        $data['groups'] = $this->objgroup->getContactGroups("simple");
+        $data['groups'] = $this->objgrp->getContactGroups("simple");
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');

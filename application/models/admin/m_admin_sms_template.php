@@ -11,7 +11,7 @@
  *
  * @author Laxmisoft
  */
-class M_email_template extends CI_Model {
+class M_admin_sms_template extends CI_Model {
 
     private $profileid;
 
@@ -21,24 +21,24 @@ class M_email_template extends CI_Model {
     }
 
     function getTemplates() {
-        $query = $this->db->get('email_template');
+        $query = $this->db->get('sms_template');
         return $query->result();
     }
 
     function getTemplate($tid) {
-        $query = $this->db->get_where('email_template', array('template_id' => $tid));
+        $query = $this->db->get_where('sms_template', array('template_id' => $tid));
         return $query->row();
     }
 
     function createTemplate($set) {
-        $this->db->insert('email_template', $set);
+        $this->db->insert('sms_template', $set);
         return TRUE;
     }
 
     function updateTemplate($set) {
         $tid = $set['templateid'];
         unset($set['templateid']);
-        $this->db->update('email_template', $set, array('template_id' => $tid));
+        $this->db->update('sms_template', $set, array('template_id' => $tid));
         return TRUE;
     }
 
@@ -46,7 +46,7 @@ class M_email_template extends CI_Model {
 
         $ids = $this->input->post('template');
         foreach ($ids as $value) {
-            $this->db->delete('email_template', array('template_id' => $value));
+            $this->db->delete('sms_template', array('template_id' => $value));
         }
     }
 

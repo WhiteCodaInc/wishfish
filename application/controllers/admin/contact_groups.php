@@ -23,12 +23,12 @@ class Contact_groups extends CI_Controller {
         } else if (!$this->common->getPermission()->contacts) {
             header('location:' . site_url() . 'admin/dashboard/error/500');
         } else {
-            $this->load->model('admin/m_contact_groups', 'objgroup');
+            $this->load->model('admin/m_admin_contact_groups', 'objgrp');
         }
     }
 
     function index() {
-        $data['groups'] = $this->objgroup->getContactGroups("simple");
+        $data['groups'] = $this->objgrp->getContactGroups("simple");
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');
@@ -46,12 +46,12 @@ class Contact_groups extends CI_Controller {
 
     function createContactGroup() {
         $post = $this->input->post();
-        $this->objgroup->createContactGroup($post);
+        $this->objgrp->createContactGroup($post);
         header('location:' . site_url() . 'admin/contact_groups?msg=I');
     }
 
     function editContactGroup($gid) {
-        $data['groups'] = $this->objgroup->getContactGroup($gid);
+        $data['groups'] = $this->objgrp->getContactGroup($gid);
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');
@@ -61,14 +61,14 @@ class Contact_groups extends CI_Controller {
 
     function updateContactGroup() {
         $post = $this->input->post();
-        $this->objgroup->updateContactGroup($post);
+        $this->objgrp->updateContactGroup($post);
         header('location:' . site_url() . 'admin/contact_groups?msg=U');
     }
 
     function action() {
         $type = $this->input->post('actionType');
         if ($type == "Delete") {
-            $this->objgroup->setAction();
+            $this->objgrp->setAction();
         }
         header('location:' . site_url() . 'admin/contact_groups?msg=D');
     }
