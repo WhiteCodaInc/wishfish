@@ -24,7 +24,7 @@ class Contacts extends CI_Controller {
             header('location:' . site_url() . 'admin/dashboard/error/500');
         } else {
             $this->load->library('parser');
-            $this->load->model('admin/m_admin_contacts', 'objcontact');
+            $this->load->model('admin/m_admin_contacts', 'objcon');
             $this->load->model('admin/m_contact_groups', 'objgroup');
             $this->load->model('admin/m_sms', 'objsms');
             $this->load->model('admin/m_sms_template', 'objsmstemplate');
@@ -33,7 +33,7 @@ class Contacts extends CI_Controller {
     }
 
     function index() {
-        $data['contacts'] = $this->objcontact->getContactDetail();
+        $data['contacts'] = $this->objcon->getContactDetail();
         $data['groups'] = $this->objgroup->getContactGroups("simple");
         $data['zodiac'] = $this->common->getZodiacs();
         $this->load->view('admin/admin_header');
