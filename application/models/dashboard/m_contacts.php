@@ -11,7 +11,7 @@
  *
  * @author Laxmisoft
  */
-class M_wi_contacts extends CI_Model {
+class M_contacts extends CI_Model {
 
     private $userid;
     private $bucket;

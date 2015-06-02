@@ -23,7 +23,7 @@ class Calender extends CI_Controller {
         } elseif (!$this->wi_authex->isActivePlan()) {
             header('location:' . site_url() . 'app/upgrade');
         } else {
-            $this->load->model('dashboard/m_wi_contacts', 'objcontact');
+            $this->load->model('dashboard/m_contacts', 'objcontact');
             $this->load->model('dashboard/m_contact_groups', 'objgroup');
             $this->load->model('dashboard/m_sms_template', 'objsmstemplate');
             $this->load->model('dashboard/m_email_template', 'objemailtemplate');

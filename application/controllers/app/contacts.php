@@ -22,7 +22,7 @@ class Contacts extends CI_Controller {
             header('location:' . site_url() . 'app/upgrade');
         } else {
 
-            $this->load->model('dashboard/m_wi_contacts', 'objcon');
+            $this->load->model('dashboard/m_contacts', 'objcontact');
             $this->load->model('dashboard/m_contact_groups', 'objgroup');
 //            $this->load->model('m_sms_template', 'objsmstemplate');
 //            $this->load->model('m_email_template', 'objemailtemplate');
