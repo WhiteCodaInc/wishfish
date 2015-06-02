@@ -29,6 +29,7 @@ class M_admin_contacts extends CI_Model {
     }
 
     function getContactDetail() {
+        die();
         $this->db->order_by('fname', 'asc');
         $query = $this->db->get('contact_detail');
         $res = $query->result();
