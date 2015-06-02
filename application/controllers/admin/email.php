@@ -29,7 +29,7 @@ class Email extends CI_Controller {
             $this->load->library('common');
             $this->load->model('admin/m_email', 'objemail');
             $this->load->model('admin/m_admin_profile', 'objprofile');
-            $this->load->model('admin/m_contacts', 'objcontact');
+            $this->load->model('admin/m_admin_contacts', 'objcontact');
             $this->load->model('admin/m_affiliates', 'objaffiliate');
             $this->load->model('admin/m_customers', 'objcustomer');
             $this->load->model('admin/m_contact_groups', 'objcontactgroup');

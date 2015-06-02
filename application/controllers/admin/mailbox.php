@@ -31,7 +31,7 @@ class Mailbox extends CI_Controller {
                 $this->stream = imap_open('{mail.mikhailkuznetsov.com:143/notls}', $this->inbox_user, $this->inbox_passwd);
             $this->load->model('admin/m_cpanel', 'objcpanel');
             $this->load->model('admin/m_admin_profile', 'objprofile');
-            $this->load->model('admin/m_contacts', 'objcontact');
+            $this->load->model('admin/m_admin_contacts', 'objcontact');
             $this->load->model('admin/m_affiliates', 'objaffiliate');
             $this->load->model('admin/m_customers', 'objcustomer');
             $this->load->model('admin/m_list_builder', 'objbuilder');

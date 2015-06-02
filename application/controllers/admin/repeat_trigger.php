@@ -24,7 +24,7 @@ class Repeat_trigger extends CI_Controller {
         $this->load->library('parser');
         $this->load->library('common');
 
-        $this->load->model("m_contacts", 'objcontact');
+        $this->load->model("admin/m_admin_contacts", 'objcontact');
         $this->load->model('admin/m_trigger', 'objtrigger');
     }
 

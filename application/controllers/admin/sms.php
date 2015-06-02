@@ -28,7 +28,7 @@ class Sms extends CI_Controller {
         } else {
             $this->load->model('admin/m_sms', 'objsms');
             $this->load->model('admin/m_admin_profile', 'objprofile');
-            $this->load->model('admin/m_contacts', 'objcontact');
+            $this->load->model('admin/m_admin_contacts', 'objcontact');
             $this->load->model('admin/m_affiliates', 'objaffiliate');
             $this->load->model('admin/m_customers', 'objcustomer');
             $this->load->model('admin/m_contact_groups', 'objcontactgroup');

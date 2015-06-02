@@ -23,7 +23,7 @@ class Calender extends CI_Controller {
         } else if (!$this->common->getPermission()->calender) {
             header('location:' . site_url() . 'admin/dashboard/error/500');
         } else {
-            $this->load->model('admin/m_contacts', 'objcontact');
+            $this->load->model('admin/m_admin_contacts', 'objcontact');
             $this->load->model('admin/m_contact_groups', 'objgroup');
             $this->load->model('admin/m_sms_template', 'objsmstemplate');
             $this->load->model('admin/m_email_template', 'objemailtemplate');

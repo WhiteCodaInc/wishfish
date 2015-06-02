@@ -11,7 +11,7 @@
  *
  * @author Laxmisoft
  */
-class M_contacts extends CI_Model {
+class M_admin_contacts extends CI_Model {
 
     private $profileid;
     private $bucket;
