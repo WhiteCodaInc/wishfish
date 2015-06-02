@@ -13,9 +13,6 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        console.log($(window).innerHeight());
-        console.log($('footer').height());
-        console.log($('nav').height());
         function setHeight() {
             contentHeight = $(window).innerHeight() - $('nav').height();
             $('.page-cotent').css('min-height', contentHeight);
