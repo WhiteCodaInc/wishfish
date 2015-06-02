@@ -32,9 +32,6 @@ class M_admin_contacts extends CI_Model {
         $this->db->order_by('fname', 'asc');
         $query = $this->db->get('contact_detail');
         $res = $query->result();
-        echo '<pre>';
-        print_r($res);
-        die();
         foreach ($res as $key => $value) {
             $group_name = "";
             $this->db->select('C.group_id,C.group_name');
