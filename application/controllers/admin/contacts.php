@@ -44,7 +44,7 @@ class Contacts extends CI_Controller {
     }
 
     function search() {
-        $data['searchResult'] = $this->objcontact->searchResult();
+        $data['searchResult'] = $this->objcon->searchResult();
         $data['groups'] = $this->objgroup->getContactGroups("simple");
         $data['zodiac'] = $this->common->getZodiacs();
         $this->load->view('admin/admin_header');
@@ -55,7 +55,7 @@ class Contacts extends CI_Controller {
     }
 
     function profile($cid) {
-        $res = $this->objcontact->getContact($cid, 'simple');
+        $res = $this->objcon->getContact($cid, 'simple');
         $data['contact'] = $res[0];
         $data['cgroup'] = $res[1];
 
@@ -80,12 +80,12 @@ class Contacts extends CI_Controller {
 
     function createContact() {
         $post = $this->input->post();
-        $this->objcontact->createContact($post);
+        $this->objcon->createContact($post);
         header('location:' . site_url() . 'admin/contacts?msg=I');
     }
 
     function editContact($cid) {
-        $res = $this->objcontact->getContact($cid, 'simple');
+        $res = $this->objcon->getContact($cid, 'simple');
         $data['contacts'] = $res[0];
         $data['cgroup'] = $res[1];
         $data['groups'] = $this->objgroup->getContactGroups("simple");
@@ -98,7 +98,7 @@ class Contacts extends CI_Controller {
 
     function updateContact() {
         $post = $this->input->post();
-        $msg = $this->objcontact->updateContact($post);
+        $msg = $this->objcon->updateContact($post);
         header('location:' . site_url() . 'admin/contacts?msg=' . $msg);
     }
 
@@ -106,7 +106,7 @@ class Contacts extends CI_Controller {
         $post = $this->input->post();
         $type = $post['actionType'];
         if ($type == "Delete" || $type == "Add" || $type == "Remove") {
-            $msg = $this->objcontact->setAction($post);
+            $msg = $this->objcon->setAction($post);
         } else {
             $msg = "F";
         }
@@ -122,17 +122,17 @@ class Contacts extends CI_Controller {
 
     function send_message() {
         $post = $this->input->post();
-        $contact = $this->objcontact->getContactInfo($post['cid']);
+        $contact = $this->objcon->getContactInfo($post['cid']);
         if ($contact->phone != NULL) {
             $tag = $this->common->setToken($contact);
             $body = $this->parser->parse_string($post['body'], $tag, TRUE);
 
             $sid = $this->sendSMS($contact->phone, $body);
             if ($sid) {
-                if ($this->objcontact->isExist($contact->phone)) {
+                if ($this->objcon->isExist($contact->phone)) {
                     $this->objsms->updateInbox($contact->phone, $body);
                 } else if ($sid != "") {
-                    $this->objcontact->addMsgInbox($contact, $body, $sid);
+                    $this->objcon->addMsgInbox($contact, $body, $sid);
                 }
                 header('location:' . site_url() . 'admin/contacts/profile/' . $post['cid'] . '?msg=T');
             } else {
@@ -145,7 +145,7 @@ class Contacts extends CI_Controller {
 
     function send_email() {
         $post = $this->input->post();
-        $contact = $this->objcontact->getContactInfo($post['cid']);
+        $contact = $this->objcon->getContactInfo($post['cid']);
         $tag = $this->common->setToken($contact);
         $this->sendMail($contact, $tag, $post);
         header('location:' . site_url() . 'admin/contacts/profile/' . $post['cid']);
@@ -163,8 +163,8 @@ class Contacts extends CI_Controller {
 
     //---------------Block Contacts------------------------------------------//
     function block_list() {
-        $res = $this->objcontact->getBlockContacts();
-        $data['contacts'] = $this->objcontact->getContactDetail();
+        $res = $this->objcon->getBlockContacts();
+        $data['contacts'] = $this->objcon->getContactDetail();
         if ($res) {
             $data['group'] = $res[0];
             $data['gcontacts'] = $res[1];
@@ -178,13 +178,13 @@ class Contacts extends CI_Controller {
 
     function createList() {
         $post = $this->input->post();
-        $this->objcontact->createList($post);
+        $this->objcon->createList($post);
         header('location:' . site_url() . 'admin/contacts/block_list?msg=I');
     }
 
     function updateList() {
         $post = $this->input->post();
-        $this->objcontact->updateList($post);
+        $this->objcon->updateList($post);
         header('location:' . site_url() . 'admin/contacts/block_list?msg=U');
     }
 
