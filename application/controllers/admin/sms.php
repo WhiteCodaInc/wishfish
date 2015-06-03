@@ -74,36 +74,32 @@ class Sms extends CI_Controller {
     }
 
     function isExists($msg) {
-        $where = array(
-            'from' => $msg->from
-        );
-        $query = $this->db->get_where('inbox', $where);
-        if ($query->num_rows() == 1) {
-            if ($query->row()->from == $msg->from && $query->row()->sid != $msg->sid) {
-                $this->db->delete('inbox', array('from' => $msg->from));
-                $flag = TRUE;
-            } else {
-                $flag = FALSE;
-            }
-        } else {
-            $flag = TRUE;
-        }
-        if ($flag) {
-            $userInfo = $this->objsms->getProfilePics($msg->from);
-            echo '<pre>';
-            print_r($msg);
-            print_r($userInfo);
-            
-            $set = array(
-                'from' => $msg->from,
-                'sid' => $msg->sid,
-                'body' => $msg->body,
-                'date_sent' => $msg->date_sent,
-                'contact_id' => $userInfo->contact_id
+        $userInfo = $this->objsms->getProfilePics($msg->from);
+        if (count($userInfo)) {
+            $where = array(
+                'from' => $msg->from
             );
-            print_r($set);
-            die();
-            $this->db->insert('inbox', $set);
+            $query = $this->db->get_where('inbox', $where);
+            if ($query->num_rows() == 1) {
+                if ($query->row()->from == $msg->from && $query->row()->sid != $msg->sid) {
+                    $this->db->delete('inbox', array('from' => $msg->from));
+                    $flag = TRUE;
+                } else {
+                    $flag = FALSE;
+                }
+            } else {
+                $flag = TRUE;
+            }
+            if ($flag) {
+                $set = array(
+                    'from' => $msg->from,
+                    'sid' => $msg->sid,
+                    'body' => $msg->body,
+                    'date_sent' => $msg->date_sent,
+                    'contact_id' => $userInfo->contact_id
+                );
+                $this->db->insert('inbox', $set);
+            }
         }
     }
 
