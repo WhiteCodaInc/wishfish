@@ -206,7 +206,7 @@ switch ($msg) {
                     $('#inbox-data-table tbody').html(data);
                 }
             });
-        }, 60000);
+        }, 30000);
 
         $('button[name="send"]').bind('click', function () {
             var from = $('#from').val();
