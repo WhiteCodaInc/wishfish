@@ -260,8 +260,6 @@ switch ($msg) {
 
         $('#rd_individual').trigger('click');
         $('#smsForm').submit(function () {
-            if ($('#body').val().trim() == "")
-                alertify.error("Please add some sms content..!");
             $('input[name="user_id"]').val(ids[contact.indexOf($('#users').val())]);
         });
 

@@ -179,6 +179,9 @@ class Sms extends CI_Controller {
     function send_message() {
         $is_send = FALSE;
         $post = $this->input->post();
+        echo '<pre>';
+        print_r($post);
+        die();
         $blackList = $this->objcon->getBlackList();
         switch ($post['assign']) {
             case 'all_c':
