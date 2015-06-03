@@ -275,7 +275,9 @@ class Sms extends CI_Controller {
             $flag = FALSE;
         }
         if ($this->common->sendSMS($to, $body)) {
-            $this->objsms->updateInbox($to, $body);
+            $set = array('status' => 0, 'body' => $body);
+            $where = array('from' => $to);
+            $this->objsms->updateStatus($set, $where);
             if ($flag && !isset($post['ver'])) {
                 $data['inbox'] = $this->objsms->getInbox();
                 $this->load->view('admin/sms-inbox-view', $data);
@@ -311,6 +313,9 @@ class Sms extends CI_Controller {
         foreach ($messages as $sms) {
             $msg[] = $sms;
         }
+        $set = array('status' => 2);
+        $where = array('from' => $from, 'status' => 1);
+        $this->objsms->updateStatus($set, $where);
         $data['adminInfo'] = $this->common->getAdminInfo();
         $data['messages'] = array_reverse($msg);
         $data['contactInfo'] = $this->objsms->getProfilePics($from);
@@ -336,7 +341,9 @@ class Sms extends CI_Controller {
     }
 
     function updateStatus($sid) {
-        $this->objsms->updateStatus($sid);
+        $where['sid'] = $sid;
+        $set['status'] = 2;
+        $this->objsms->updateStatus($set, $where);
     }
 
     function smsNotification() {

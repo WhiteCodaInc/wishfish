@@ -39,7 +39,6 @@ class m_sms extends CI_Model {
     }
 
     function getProfilePics($phone) {
-//        $this->db->update('inbox', array('status' => 2), array('from' => $phone, 'status' => 1));
         $this->db->select('*');
         $query = $this->db->get_where('contact_detail', array('phone' => $phone));
         return $query->row();
@@ -54,12 +53,8 @@ class m_sms extends CI_Model {
         return $query->result();
     }
 
-    function updateInbox($to, $body) {
-        $this->db->update('inbox', array('status' => 0, 'body' => $body), array('from' => $to));
-    }
-
-    function updateStatus($sid) {
-        $this->db->update('inbox', array('status' => 2), array('sid' => $sid));
+    function updateStatus($set, $where) {
+        $this->db->update('inbox', $set, $where);
     }
 
 }
