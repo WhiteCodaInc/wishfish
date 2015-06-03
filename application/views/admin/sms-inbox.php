@@ -198,16 +198,16 @@ switch ($msg) {
         }
         setInterval(function () {
             $.ajax({
-                url: "<?= site_url() ?>admin/sms/smsNotification",
-                success: function (data, textStatus, jqXHR) {
-                    $('li.sms-notification').html(data);
-                }
-            });
-            $.ajax({
                 url: "<?= site_url() ?>admin/sms/inbox?type=ajax",
                 success: function (data, textStatus, jqXHR) {
                     $('#inbox-data-table tbody').html(data);
                     trClick();
+                }
+            });
+            $.ajax({
+                url: "<?= site_url() ?>admin/sms/smsNotification",
+                success: function (data, textStatus, jqXHR) {
+                    $('li.sms-notification').html(data);
                 }
             });
         }, 30000);
