@@ -159,12 +159,6 @@ switch ($msg) {
             //aaSorting: [[1, 'asc']]
         });
     });
-    $(function () {
-
-
-
-
-    });
 </script>
 <script type="text/javascript">
     $(document).ready(function () {
