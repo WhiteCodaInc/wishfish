@@ -90,6 +90,9 @@ class Sms extends CI_Controller {
         }
         if ($flag) {
             $userInfo = $this->objsms->getProfilePics($msg->from);
+            echo '<pre>';
+            print_r($userInfo);
+            die();
             $set = array(
                 'from' => $msg->from,
                 'sid' => $msg->sid,
