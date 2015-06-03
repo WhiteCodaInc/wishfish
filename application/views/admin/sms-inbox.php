@@ -103,9 +103,6 @@
                                 <div class="col-md-2">
                                     <button name="send" type="button" class="btn btn-success">Send</button>
                                 </div>
-                                <!--<div class="col-md-2">
-    <button id="test" type="button" class="btn btn-danger">Test</button>
-</div>-->
                                 <div style="display:none;" id="loadReply" class="col-md-2">
                                     <img src="<?= base_url() ?>assets/dashboard/img/load.GIF" alt="" />
                                 </div>
@@ -201,6 +198,11 @@ switch ($msg) {
 </script>
 <script type="text/javascript">
     $(document).ready(function () {
+        var cnt = 0;
+        setInterval(function () {
+            console.log(++cnt);
+        }, 1000);
+
         $('button[name="send"]').bind('click', function () {
             var from = $('#from').val();
             var msg = $('#reply').val();
