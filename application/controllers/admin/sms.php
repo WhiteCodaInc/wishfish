@@ -62,15 +62,19 @@ class Sms extends CI_Controller {
             }
         }
         $data['inbox'] = $this->objsms->getInbox();
-        $this->load->view('admin/admin_header');
-        $this->load->view('admin/admin_top');
-        $this->load->view('admin/admin_navbar');
-        if ($this->input->get('ver') != "mobile") {
-            $this->load->view('admin/sms-inbox', $data);
+        if ($this->input->get('type') == "ajax") {
+            $this->load->view('admin/sms-inbox-view', $data);
         } else {
-            $this->load->view('admin/sms-inbox-mob', $data);
+            $this->load->view('admin/admin_header');
+            $this->load->view('admin/admin_top');
+            $this->load->view('admin/admin_navbar');
+            if ($this->input->get('ver') != "mobile") {
+                $this->load->view('admin/sms-inbox', $data);
+            } else {
+                $this->load->view('admin/sms-inbox-mob', $data);
+            }
+            $this->load->view('admin/admin_footer');
         }
-        $this->load->view('admin/admin_footer');
     }
 
     function isExists($msg) {

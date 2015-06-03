@@ -200,7 +200,12 @@ switch ($msg) {
     $(document).ready(function () {
         var cnt = 0;
         setInterval(function () {
-            console.log(++cnt);
+            $.ajax({
+                url: "<?= site_url() ?>admin/sms/inbox?type=ajax",
+                success: function (data, textStatus, jqXHR) {
+                    $('#inbox-data-table tbody').html(data);
+                }
+            });
         }, 60000);
 
         $('button[name="send"]').bind('click', function () {
