@@ -179,9 +179,6 @@ class Sms extends CI_Controller {
     function send_message() {
         $is_send = FALSE;
         $post = $this->input->post();
-        echo '<pre>';
-        print_r($post);
-        die();
         $blackList = $this->objcon->getBlackList();
         switch ($post['assign']) {
             case 'all_c':
@@ -203,12 +200,10 @@ class Sms extends CI_Controller {
                         $user = $this->objcustomer->getCustomerInfo($post['user_id']);
                         break;
                 }
-                if ($user->phone != NULL) {
-                    if (count($user) > 0) {
-                        $tag = $this->common->setToken($user);
-                        $body = $this->parser->parse_string($post['body'], $tag, TRUE);
-                        $is_send = $this->sendSMS($user->phone, $body);
-                    }
+                if (count($user) && $user->phone != NULL) {
+                    $tag = $this->common->setToken($user);
+                    $body = $this->parser->parse_string($post['body'], $tag, TRUE);
+                    $is_send = $this->sendSMS($user->phone, $body);
                 } else {
                     $phoneNotExist = "F";
                 }
