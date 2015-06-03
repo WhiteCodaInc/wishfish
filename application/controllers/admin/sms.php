@@ -92,7 +92,7 @@ class Sms extends CI_Controller {
             $userInfo = $this->objsms->getProfilePics($msg->from);
             echo '<pre>';
             print_r($userInfo);
-            die();
+            
             $set = array(
                 'from' => $msg->from,
                 'sid' => $msg->sid,
@@ -100,6 +100,8 @@ class Sms extends CI_Controller {
                 'date_sent' => $msg->date_sent,
                 'contact_id' => $userInfo->contact_id
             );
+            print_r($set);
+            die();
             $this->db->insert('inbox', $set);
         }
     }
