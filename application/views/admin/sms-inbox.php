@@ -160,7 +160,7 @@ switch ($msg) {
         });
     });
     $(function () {
-
+        trClick();
         function scrollDown() {
             $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
         }
@@ -170,29 +170,32 @@ switch ($msg) {
             // run the effect
             $(".effect").toggle("slide", options, 500);
         }
-        $('#inbox-data-table tbody tr').on('click', function () {
-            $msg = $(this).find('td.status > span').text();
-            if ($msg == "Unread") {
-                $(this).find('td.status > span').removeClass('btn-danger');
-                $(this).find('td.status > span').addClass('btn-warning');
-                $(this).find('td.status > span').text("Read");
-            }
-            $(".effect").hide();
-            var from = $(this).attr('id');
-            $('#from').val(from);
-            var loadMsg = "<div id='loadMsg' class='reply'><img src='<?= base_url() ?>assets/dashboard/img/load.GIF' alt='' /></div>";
-            $('#chat-box').html(loadMsg);
-            $.ajax({
-                type: 'POST',
-                data: {from: from},
-                url: "<?= site_url() ?>admin/sms/viewconversation",
-                success: function (data, textStatus, jqXHR) {
-                    $('#chat-box').html(data);
-                    scrollDown();
+
+        function trClick() {
+            $('#inbox-data-table tbody tr').bind('click', function () {
+                $msg = $(this).find('td.status > span').text();
+                if ($msg == "Unread") {
+                    $(this).find('td.status > span').removeClass('btn-danger');
+                    $(this).find('td.status > span').addClass('btn-warning');
+                    $(this).find('td.status > span').text("Read");
                 }
+                $(".effect").hide();
+                var from = $(this).attr('id');
+                $('#from').val(from);
+                var loadMsg = "<div id='loadMsg' class='reply'><img src='<?= base_url() ?>assets/dashboard/img/load.GIF' alt='' /></div>";
+                $('#chat-box').html(loadMsg);
+                $.ajax({
+                    type: 'POST',
+                    data: {from: from},
+                    url: "<?= site_url() ?>admin/sms/viewconversation",
+                    success: function (data, textStatus, jqXHR) {
+                        $('#chat-box').html(data);
+                        scrollDown();
+                    }
+                });
+                runEffect();
             });
-            runEffect();
-        });
+        }
     });
 </script>
 <script type="text/javascript">
@@ -208,6 +211,7 @@ switch ($msg) {
                 url: "<?= site_url() ?>admin/sms/inbox?type=ajax",
                 success: function (data, textStatus, jqXHR) {
                     $('#inbox-data-table tbody').html(data);
+                    trClick();
                 }
             });
         }, 30000);
@@ -227,6 +231,7 @@ switch ($msg) {
                         alertify.error("SMS Sending Failed..!");
                     } else {
                         $('#inbox-data-table tbody').html(data);
+                        trClick();
                         //-------------------chat-Box----------------------//
                         $clone = $('#chat-box').children('div.out:first').clone();
                         $time = "<i class='fa fa-clock-o'></i>";
