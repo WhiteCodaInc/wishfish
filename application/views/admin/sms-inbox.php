@@ -198,20 +198,20 @@ switch ($msg) {
 </script>
 <script type="text/javascript">
     $(document).ready(function () {
-//        setInterval(function () {
-//            $.ajax({
-//                url: "<?= site_url() ?>admin/sms/smsNotification",
-//                success: function (data, textStatus, jqXHR) {
-//                    $('li.sms-notification').html(data);
-//                }
-//            });
-//            $.ajax({
-//                url: "<?= site_url() ?>admin/sms/inbox?type=ajax",
-//                success: function (data, textStatus, jqXHR) {
-//                    $('#inbox-data-table tbody').html(data);
-//                }
-//            });
-//        }, 30000);
+        setInterval(function () {
+            $.ajax({
+                url: "<?= site_url() ?>admin/sms/smsNotification",
+                success: function (data, textStatus, jqXHR) {
+                    $('li.sms-notification').html(data);
+                }
+            });
+            $.ajax({
+                url: "<?= site_url() ?>admin/sms/inbox?type=ajax",
+                success: function (data, textStatus, jqXHR) {
+                    $('#inbox-data-table tbody').html(data);
+                }
+            });
+        }, 30000);
 
         $('button[name="send"]').bind('click', function () {
             var from = $('#from').val();
