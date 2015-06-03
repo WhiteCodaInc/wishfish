@@ -141,11 +141,9 @@ class Email extends CI_Controller {
                         $user = $this->objcustomer->getCustomerInfo($post['user_id']);
                         break;
                 }
-                if ($user->email != NULL || $user->email != "") {
-                    if (count($user) > 0) {
-                        $tag = $this->common->setToken($user);
-                        $is_send = $this->sendMail($user, $tag, $post);
-                    }
+                if (count($user) && ($user->email != NULL || $user->email != "")) {
+                    $tag = $this->common->setToken($user);
+                    $is_send = $this->sendMail($user, $tag, $post);
                 } else {
                     $phoneNotExist = "F";
                 }
