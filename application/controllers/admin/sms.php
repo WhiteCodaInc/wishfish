@@ -231,6 +231,9 @@ class Sms extends CI_Controller {
                         $flag = FALSE;
                         break;
                 }
+                echo '<pre>';
+                print_r($ids);
+                die();
                 foreach ($ids as $value) {
                     if ($flag && !in_array($value, $blackList)) {
                         $user = $this->objcon->getContactInfo($value);
