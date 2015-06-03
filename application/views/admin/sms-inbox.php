@@ -161,15 +161,7 @@ switch ($msg) {
     });
     $(function () {
 
-        function scrollDown() {
-            $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
-        }
 
-        function runEffect() {
-            var options = {};
-            // run the effect
-            $(".effect").toggle("slide", options, 500);
-        }
 
 
     });
@@ -177,6 +169,14 @@ switch ($msg) {
 <script type="text/javascript">
     $(document).ready(function () {
         trClick();
+        function scrollDown() {
+            $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
+        }
+        function runEffect() {
+            var options = {};
+            // run the effect
+            $(".effect").toggle("slide", options, 500);
+        }
         function trClick() {
             $('#inbox-data-table tbody tr').bind('click', function () {
                 $msg = $(this).find('td.status > span').text();
