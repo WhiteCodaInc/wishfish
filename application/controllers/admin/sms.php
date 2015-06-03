@@ -336,4 +336,8 @@ class Sms extends CI_Controller {
         $this->objsms->updateStatus($sid);
     }
 
+    function smsNotification() {
+        $this->load->view('admin/sms-notification-view');
+    }
+
 }

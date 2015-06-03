@@ -198,8 +198,13 @@ switch ($msg) {
 </script>
 <script type="text/javascript">
     $(document).ready(function () {
-        var cnt = 0;
         setInterval(function () {
+            $.ajax({
+                url: "<?= site_url() ?>admin/sms/smsNotification",
+                success: function (data, textStatus, jqXHR) {
+                    $('li.sms-notification').html(data);
+                }
+            });
             $.ajax({
                 url: "<?= site_url() ?>admin/sms/inbox?type=ajax",
                 success: function (data, textStatus, jqXHR) {
