@@ -201,7 +201,7 @@ switch ($msg) {
         var cnt = 0;
         setInterval(function () {
             console.log(++cnt);
-        }, 1000);
+        }, 60000);
 
         $('button[name="send"]').bind('click', function () {
             var from = $('#from').val();
