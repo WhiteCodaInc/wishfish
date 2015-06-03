@@ -170,7 +170,7 @@ switch ($msg) {
             // run the effect
             $(".effect").toggle("slide", options, 500);
         }
-        $('#inbox-data-table tbody tr').on('click', function () {
+        $('#inbox-data-table tbody tr').bind('live', function () {
             $msg = $(this).find('td.status > span').text();
             if ($msg == "Unread") {
                 $(this).find('td.status > span').removeClass('btn-danger');
