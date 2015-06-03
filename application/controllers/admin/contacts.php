@@ -28,7 +28,7 @@ class Contacts extends CI_Controller {
             $this->load->model('admin/m_admin_contact_groups', 'objgrp');
             $this->load->model('admin/m_sms', 'objsms');
             $this->load->model('admin/m_admin_sms_template', 'objsmstmplt');
-            $this->load->model('admin/m_admin_email_template', 'objemailtemplate');
+            $this->load->model('admin/m_admin_email_template', 'objemailtmplt');
         }
     }
 
