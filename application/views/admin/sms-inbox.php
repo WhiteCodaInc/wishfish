@@ -160,7 +160,7 @@ switch ($msg) {
         });
     });
     $(function () {
-        trClick();
+
         function scrollDown() {
             $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
         }
@@ -171,6 +171,12 @@ switch ($msg) {
             $(".effect").toggle("slide", options, 500);
         }
 
+
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        trClick();
         function trClick() {
             $('#inbox-data-table tbody tr').bind('click', function () {
                 $msg = $(this).find('td.status > span').text();
@@ -196,10 +202,6 @@ switch ($msg) {
                 runEffect();
             });
         }
-    });
-</script>
-<script type="text/javascript">
-    $(document).ready(function () {
         setInterval(function () {
             $.ajax({
                 url: "<?= site_url() ?>admin/sms/smsNotification",
