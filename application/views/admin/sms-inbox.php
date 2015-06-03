@@ -170,14 +170,13 @@ switch ($msg) {
             // run the effect
             $(".effect").toggle("slide", options, 500);
         }
-        $('#inbox-data-table tbody tr').click(function () {
+        $('#inbox-data-table tbody tr').on('click', function () {
             $msg = $(this).find('td.status > span').text();
             if ($msg == "Unread") {
                 $(this).find('td.status > span').removeClass('btn-danger');
                 $(this).find('td.status > span').addClass('btn-warning');
                 $(this).find('td.status > span').text("Read");
             }
-
             $(".effect").hide();
             var from = $(this).attr('id');
             $('#from').val(from);
