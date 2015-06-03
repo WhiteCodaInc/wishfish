@@ -35,7 +35,7 @@ class Calender extends CI_Controller {
 
     function index() {
         $data['individual'] = $this->objcontact->getContactDetail();
-        $data['template'] = $this->objsmstemplate->getTemplates();
+        $data['template'] = $this->objsmstmplt->getTemplates();
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');
@@ -48,7 +48,7 @@ class Calender extends CI_Controller {
         $res = $this->objcal->createEvent($type, $userid);
         if ($res) {
             $data['individual'] = $this->objcontact->getContactDetail();
-            $data['template'] = $this->objsmstemplate->getTemplates();
+            $data['template'] = $this->objsmstmplt->getTemplates();
             $data['contactInfo'] = $res;
         } else {
             $data['contactInfo'] = FALSE;
@@ -89,7 +89,7 @@ class Calender extends CI_Controller {
 
     function getTemplates($type) {
         if ($type == "sms" || $type == "notification") {
-            $templates = $this->objsmstemplate->getTemplates();
+            $templates = $this->objsmstmplt->getTemplates();
         } else if ($type == "email") {
             $templates = $this->objemailtmplt->getTemplates();
         } else {
