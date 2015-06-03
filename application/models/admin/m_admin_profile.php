@@ -29,6 +29,7 @@ class M_admin_profile extends CI_Model {
     }
 
     function getProfiles() {
+        die();
         $this->db->order_by('fname', 'asc');
         $query = $this->db->get_where('admin_profile');
         return $query->result();
