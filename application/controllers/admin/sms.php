@@ -25,7 +25,7 @@ class Sms extends CI_Controller {
         } else {
             $this->load->model('admin/m_sms', 'objsms');
             $this->load->model('admin/m_admin_profile', 'objprofile');
-            $this->load->model('admin/m_admin_contacts', 'objcontact');
+            $this->load->model('admin/m_admin_contacts', 'objcon');
             $this->load->model('admin/m_affiliates', 'objaffiliate');
             $this->load->model('admin/m_customers', 'objcustomer');
             $this->load->model('admin/m_admin_contact_groups', 'objcongroup');
@@ -118,7 +118,7 @@ class Sms extends CI_Controller {
                 }
                 break;
             case 2:
-                $individual = $this->objcontact->getContactDetail();
+                $individual = $this->objcon->getContactDetail();
                 foreach ($individual as $key => $value) {
                     $user[$key] = $value->fname . '  ' . $value->lname . ' || ' . $value->phone;
                     $ids[$key] = $value->contact_id;
@@ -179,7 +179,7 @@ class Sms extends CI_Controller {
     function send_message() {
         $is_send = FALSE;
         $post = $this->input->post();
-        $blackList = $this->objcontact->getBlackList();
+        $blackList = $this->objcon->getBlackList();
         switch ($post['assign']) {
             case 'all_c':
                 switch ($post['user']) {
@@ -188,7 +188,7 @@ class Sms extends CI_Controller {
                         break;
                     case 2:
                         if (!in_array($post['user_id'], $blackList)) {
-                            $user = $this->objcontact->getContactInfo($post['user_id']);
+                            $user = $this->objcon->getContactInfo($post['user_id']);
                         } else {
                             $user = array();
                         }
@@ -235,7 +235,7 @@ class Sms extends CI_Controller {
                 }
                 foreach ($ids as $value) {
                     if ($flag && !in_array($value, $blackList)) {
-                        $user = $this->objcontact->getContactInfo($value);
+                        $user = $this->objcon->getContactInfo($value);
                     } else if ($post['user'] == 3 && !$flag) {
                         $user = $this->objaffiliate->getAffiliateInfo($value);
                     } else if ($post['user'] == 4 && !$flag) {

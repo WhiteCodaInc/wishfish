@@ -17,8 +17,6 @@ class Email extends CI_Controller {
 
     function __construct() {
         parent::__construct();
-        $this->load->library("authex");
-        $this->load->library("common");
 
         if (!$this->authex->logged_in()) {
             header('location:' . site_url() . 'admin/admin_login');

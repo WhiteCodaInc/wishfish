@@ -24,7 +24,7 @@ class Repeat_trigger extends CI_Controller {
         $this->load->library('parser');
         $this->load->library('common');
 
-        $this->load->model("admin/m_admin_contacts", 'objcontact');
+        $this->load->model("admin/m_admin_contacts", 'objcon');
         $this->load->model('admin/m_trigger', 'objtrigger');
     }
 
@@ -34,7 +34,7 @@ class Repeat_trigger extends CI_Controller {
         $this->date = date('Y-m-d', strtotime($datetime));
         $this->hour = date('H', strtotime($datetime));
         $this->minute = date('i', strtotime($datetime));
-        //$blackList = $this->objcontact->getBlackList();
+        //$blackList = $this->objcon->getBlackList();
         //--------------------------------------------------------------------//
         $res = $this->objtrigger->getRepeatedEvent();
         echo '<pre>';
@@ -64,7 +64,7 @@ class Repeat_trigger extends CI_Controller {
 //                switch ($value->group_type) {
 //                    case 'individual':
 //                        if (!in_array($value->contact_id, $blackList)) {
-//                            $contact = $this->objcontact->getContactInfo($value->contact_id);
+//                            $contact = $this->objcon->getContactInfo($value->contact_id);
 //                            $tag = $this->common->setToken($contact);
 //                            if ($value->event_type == "sms") {
 //                                $body = $this->parser->parse_string($value->body, $tag, TRUE);
@@ -83,7 +83,7 @@ class Repeat_trigger extends CI_Controller {
 //                        $cids = $res[1];
 //                        foreach ($cids as $cid) {
 //                            if (!in_array($cid, $blackList)) {
-//                                $contact = $this->objcontact->getContactInfo($cid);
+//                                $contact = $this->objcon->getContactInfo($cid);
 //                                $tag = $this->common->setToken($contact);
 //                                if ($value->event_type == "sms") {
 //                                    $body = $this->parser->parse_string($value->body, $tag, TRUE);
@@ -102,7 +102,7 @@ class Repeat_trigger extends CI_Controller {
 //                        $cids = $this->objbuilder->getSubGroupContact($value->group_id);
 //                        foreach ($cids as $cid) {
 //                            if (!in_array($cid, $blackList)) {
-//                                $contact = $this->objcontact->getContactInfo($cid);
+//                                $contact = $this->objcon->getContactInfo($cid);
 //                                $tag = $this->common->setToken($contact);
 //                                if ($value->event_type == "sms") {
 //                                    $body = $this->parser->parse_string($value->body, $tag, TRUE);

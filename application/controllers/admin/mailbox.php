@@ -31,7 +31,7 @@ class Mailbox extends CI_Controller {
                 $this->stream = imap_open('{mail.mikhailkuznetsov.com:143/notls}', $this->inbox_user, $this->inbox_passwd);
             $this->load->model('admin/m_cpanel', 'objcpanel');
             $this->load->model('admin/m_admin_profile', 'objprofile');
-            $this->load->model('admin/m_admin_contacts', 'objcontact');
+            $this->load->model('admin/m_admin_contacts', 'objcon');
             $this->load->model('admin/m_affiliates', 'objaffiliate');
             $this->load->model('admin/m_customers', 'objcustomer');
             $this->load->model('admin/m_list_builder', 'objbuilder');
@@ -217,7 +217,7 @@ class Mailbox extends CI_Controller {
     }
 
     function sendToExistContact($post, $headers, $folder) {
-        $blackList = $this->objcontact->getBlackList();
+        $blackList = $this->objcon->getBlackList();
         $flag = FALSE;
         switch ($post['assign']) {
             case 'all_c':
@@ -227,7 +227,7 @@ class Mailbox extends CI_Controller {
                         break;
                     case 2:
                         if (!in_array($post['user_id'], $blackList)) {
-                            $user = $this->objcontact->getContactInfo($post['user_id']);
+                            $user = $this->objcon->getContactInfo($post['user_id']);
                         } else {
                             $user = array();
                         }
@@ -277,7 +277,7 @@ class Mailbox extends CI_Controller {
                 }
                 foreach ($ids as $value) {
                     if ($f && !in_array($value, $blackList)) {
-                        $user = $this->objcontact->getContactInfo($value);
+                        $user = $this->objcon->getContactInfo($value);
                     } else if ($post['user'] == 3 && !$f) {
                         $user = $this->objaffiliate->getAffiliateInfo($value);
                     } else if ($post['user'] == 4 && !$f) {
