@@ -39,7 +39,7 @@ class m_sms extends CI_Model {
     }
 
     function getProfilePics($phone) {
-        $this->db->update('inbox', array('status' => 2), array('from' => $phone, 'status' => 1));
+//        $this->db->update('inbox', array('status' => 2), array('from' => $phone, 'status' => 1));
         $this->db->select('*');
         $query = $this->db->get_where('contact_detail', array('phone' => $phone));
         return $query->row();
