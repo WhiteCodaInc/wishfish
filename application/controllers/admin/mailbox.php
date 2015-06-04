@@ -316,7 +316,7 @@ class Mailbox extends CI_Controller {
                     "{mail.mikhailkuznetsov.com:143/notls}INBOX.{$post['type']}" :
                     "{mail.mikhailkuznetsov.com:143/notls}INBOX";
             imap_reopen($this->stream, $url);
-
+            
             switch ($post['submit']) {
 //                case "unread":
 //                    foreach ($post['email_id'] as $email_id) {
@@ -344,6 +344,9 @@ class Mailbox extends CI_Controller {
                     }
                     break;
                 case "archive":
+                    echo '<pre>';
+                    print_r($post);
+                    die();
                     foreach ($post['email_id'] as $email_id) {
                         imap_mail_move($this->stream, $email_id, 'INBOX.Archive', CP_UID);
                     }
