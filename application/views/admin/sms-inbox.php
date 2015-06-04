@@ -11,6 +11,9 @@
         top: 40%;
         left: 50%;
     }
+    .slimScrollDiv,#chat-box{
+        height: 600px !important;
+    }
 </style>
 <!-- Right side column. Contains the navbar and content of the page -->
 <aside class="right-side">
@@ -174,8 +177,9 @@ switch ($msg) {
         function trClick() {
             $('#inbox-data-table tbody tr').bind('click', function () {
                 var position = $(this).offset();
-                console.log(position.top - $(this).height());
-                $('.effect').css('top', position.top - $(this).height() * 2);
+                var top = position.top - ($(this).height() * 4);
+                (top < 0) ? top = 0 : "";
+                $('.effect').css('top', top);
                 $msg = $(this).find('td.status > span').text();
                 if ($msg == "Unread") {
                     $(this).find('td.status > span').removeClass('btn-danger');
