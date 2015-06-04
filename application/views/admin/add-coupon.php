@@ -47,7 +47,7 @@
                                     </select>
                                 </div>
                                 <div class="col-md-6">
-                                    <label>Amount</label>
+                                    <label class="lbl_type">Amount</label>
                                     <input type="text" name="disc_amount" value="<?= isset($coupon) ? $coupon->disc_amount : '' ?>" placeholder="Amount" class="form-control" required="" />
                                     <span class="error msgamt"></span>
                                 </div>
@@ -118,6 +118,18 @@
         $('#addCoupon').click(function () {
             $('.coupon-submit').trigger('click');
         });
+
+        $('select[name="disc_type"]').change(function () {
+            var type = $(this).val();
+            if (type == "P") {
+                $('.lbl_type').text("Percentage");
+                $('input[name="disc_amount"]').prop('placeholder', 'Enter Percentage');
+            } else {
+                $('.lbl_type').text("Amount");
+                $('input[name="disc_amount"]').prop('placeholder', 'Enter Amount');
+            }
+        });
+
         $('input[name="coupon_code"]').focusout(function () {
             var code = $(this).val().trim();
             var rgex_code = /^[A-Za-z0-9]+$/;
@@ -129,6 +141,7 @@
                 c_code = 1;
             }
         });
+
         $('input[name="disc_amount"]').focusout(function () {
             var amt = $(this).val();
             var dtype = $('select[name="disc_type"]').val();
@@ -149,6 +162,7 @@
                 }
             }
         });
+
         $('select[name="coupon_validity"]').change(function () {
             var validity = $(this).val();
             if (validity == "2") {
@@ -159,6 +173,7 @@
                 $('input[name="month_duration"]').prop('disabled', true);
             }
         });
+
         $('input[name="month_duration"]').focusout(function () {
             var month = $(this).val();
             var rgex_month = /^\d+$/;
@@ -170,6 +185,7 @@
                 $('.msgduration').empty();
             }
         });
+
         $('input[name="no_of_use"]').focusout(function () {
             var use = $(this).val();
             var rgex_use = /^\d+$/;
@@ -181,6 +197,7 @@
                 $('.msguse').empty();
             }
         });
+
         $('#couponForm').submit(function () {
 //            alert(c_code + " " + c_amt + " " + c_month + " " + c_use);
             if ((c_code === 0 || c_amt === 0 || c_month === 0 || c_use === 0)) {
