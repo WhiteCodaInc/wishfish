@@ -83,11 +83,14 @@ class Mailbox extends CI_Controller {
                 $mailbox = array();
             }
         }
+        echo '<pre>';
+        print_r($mailbox);
+        echo $url;
         $data['folder'] = $this->getInboxFolder();
         $data['threads'] = $this->makeThreads($mailbox);
 //        echo '<pre>';
-//        print_r($data);
-//        die();
+        print_r($data);
+        die();
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');
@@ -315,10 +318,6 @@ class Mailbox extends CI_Controller {
             $url = ($post['type'] != "Inbox") ?
                     "{mail.mikhailkuznetsov.com:143/notls}INBOX.{$post['type']}" :
                     "{mail.mikhailkuznetsov.com:143/notls}INBOX";
-//            echo '<pre>';
-//            print_r($post);
-//            echo $url;
-//            die();
             imap_reopen($this->stream, $url);
 
             switch ($post['submit']) {
