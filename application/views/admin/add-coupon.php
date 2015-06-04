@@ -48,7 +48,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label class="lbl_type">Amount</label>
-                                    <input type="text" name="disc_amount" value="<?= isset($coupon) ? $coupon->disc_amount : '' ?>" placeholder="Amount" class="form-control" required="" />
+                                    <input type="text" name="disc_amount" value="<?= isset($coupon) ? $coupon->disc_amount : '' ?>" placeholder="Enter Amount" class="form-control" required="" />
                                     <span class="error msgamt"></span>
                                 </div>
                             </div>
