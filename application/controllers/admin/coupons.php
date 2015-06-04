@@ -11,7 +11,7 @@
  *
  * @author Laxmisoft
  */
-class Coupens extends CI_Controller {
+class Coupons extends CI_Controller {
 
     function __construct() {
         parent::__construct();
@@ -21,56 +21,56 @@ class Coupens extends CI_Controller {
 //        } else if (!$rule->affiliates) {
 //            header('location:' . site_url() . 'admin/dashboard/error/500');
         } else {
-            $this->load->model('admin/m_coupens', 'objcoupen');
+            $this->load->model('admin/m_coupons', 'objcoupon');
         }
     }
 
     function index() {
-        $data['coupens'] = $this->objcoupen->getCoupens();
+        $data['coupons'] = $this->objcoupon->getCoupons();
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');
-        $this->load->view('admin/coupens', $data);
+        $this->load->view('admin/coupons', $data);
         $this->load->view('admin/admin_footer');
     }
 
-    function addCoupen() {
+    function addCoupon() {
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');
-        $this->load->view('admin/add-coupen');
+        $this->load->view('admin/add-coupon');
         $this->load->view('admin/admin_footer');
     }
 
-    function createCoupen() {
+    function createCoupon() {
         $post = $this->input->post();
-        $this->objcoupen->createCoupen($post);
-        header('location:' . site_url() . 'admin/coupens?msg=I');
+        $this->objcoupon->createCoupon($post);
+        header('location:' . site_url() . 'admin/coupons?msg=I');
     }
 
-    function editCoupen($cid) {
-        $data['coupen'] = $this->objcoupen->getCoupen($cid);
+    function editCoupon($cid) {
+        $data['coupon'] = $this->objcoupon->getCoupon($cid);
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');
-        $this->load->view('admin/add-coupen', $data);
+        $this->load->view('admin/add-coupon', $data);
         $this->load->view('admin/admin_footer');
     }
 
-    function updateCoupen() {
+    function updateCoupon() {
         $post = $this->input->post();
-        $this->objcoupen->updateCoupen($post);
-        header('location:' . site_url() . 'admin/coupens?msg=U');
+        $this->objcoupon->updateCoupon($post);
+        header('location:' . site_url() . 'admin/coupons?msg=U');
     }
 
     function action() {
         $type = $this->input->post('actionType');
-        $ids = $this->input->post('coupen');
+        $ids = $this->input->post('coupon');
         if (($type == "Delete" || $type == "Active" || $type == "Deactive") && count($ids)) {
-            $msg = $this->objcoupen->setAction($type, $ids);
-            header('location:' . site_url() . 'admin/coupens?msg=' . $msg);
+            $msg = $this->objcoupon->setAction($type, $ids);
+            header('location:' . site_url() . 'admin/coupons?msg=' . $msg);
         } else {
-            header('location:' . site_url() . 'admin/coupens');
+            header('location:' . site_url() . 'admin/coupons');
         }
     }
 

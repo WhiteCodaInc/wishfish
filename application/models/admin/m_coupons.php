@@ -11,7 +11,7 @@
  *
  * @author Laxmisoft
  */
-class M_coupens extends CI_Model {
+class M_coupons extends CI_Model {
 
     private $profileid;
 
@@ -20,45 +20,45 @@ class M_coupens extends CI_Model {
         $this->profileid = $this->session->userdata('profile_id');
     }
 
-    function getCoupens() {
-        $query = $this->db->get('coupens');
+    function getCoupons() {
+        $query = $this->db->get('coupons');
         return $query->result();
     }
 
-    function getCoupen($gid) {
-        $query = $this->db->get_where('coupens', array('coupen_id' => $gid));
+    function getCoupon($gid) {
+        $query = $this->db->get_where('coupons', array('coupon_id' => $gid));
         return $query->row();
     }
 
-    function createCoupen($set) {
+    function createCoupon($set) {
         $set['expiry_date'] = date('Y-m-d', strtotime($set['expiry_date']));
-        $this->db->insert('coupens', $set);
+        $this->db->insert('coupons', $set);
         return TRUE;
     }
 
-    function updateCoupen($set) {
-        $gid = $set['coupenid'];
-        unset($set['coupenid']);
-        $this->db->update('coupens', $set, array('coupen_id' => $gid));
+    function updateCoupon($set) {
+        $gid = $set['couponid'];
+        unset($set['couponid']);
+        $this->db->update('coupons', $set, array('coupon_id' => $gid));
         return TRUE;
     }
 
     function setAction($type, $ids) {
         $msg = "";
 
-        $this->db->where('coupen_id in (' . implode(',', $ids) . ')');
+        $this->db->where('coupon_id in (' . implode(',', $ids) . ')');
         switch ($type) {
             case "Active":
-                $this->db->update('coupens', array('status' => 1));
+                $this->db->update('coupons', array('status' => 1));
                 $msg = "A";
                 break;
             case "Deactive":
-                $this->db->update('coupens', array('status' => 0));
+                $this->db->update('coupons', array('status' => 0));
                 $msg = "DA";
                 break;
             case "Delete":
                 foreach ($ids as $value) {
-                    $this->db->delete('coupens', array('coupen_id' => $value));
+                    $this->db->delete('coupons', array('coupon_id' => $value));
                 }
                 $msg = "D";
                 break;

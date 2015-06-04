@@ -7,10 +7,10 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1 style="display: none">
-            <?= isset($coupen) ? "Edit" : "Add New" ?> Coupen
+            <?= isset($coupon) ? "Edit" : "Add New" ?> Coupon
         </h1>
-        <button type="button" id="addCoupen" class="btn btn-primary">
-            <?= isset($coupen) ? 'Update Existing Coupen' : 'Create New Coupen' ?>
+        <button type="button" id="addCoupon" class="btn btn-primary">
+            <?= isset($coupon) ? 'Update Existing Coupon' : 'Create New Coupon' ?>
         </button>
     </section>
     <!-- Main content -->
@@ -22,20 +22,20 @@
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="box-header">
-                        <h3 class="box-title"><?= isset($coupen) ? "Existing" : "New" ?> Coupen</h3>
+                        <h3 class="box-title"><?= isset($coupon) ? "Existing" : "New" ?> Coupon</h3>
                     </div><!-- /.box-header -->
-                    <?php $method = isset($coupen) ? "updateCoupen" : "createCoupen"; ?>
+                    <?php $method = isset($coupon) ? "updateCoupon" : "createCoupon"; ?>
                     <!-- form start -->
-                    <form id="coupenForm" role="form" action="<?= site_url() ?>admin/coupens/<?= $method ?>" method="post">
+                    <form id="couponForm" role="form" action="<?= site_url() ?>admin/coupons/<?= $method ?>" method="post">
                         <div class="box-body">
                             <div class="form-group">
-                                <label>Coupen Name</label>
-                                <input type="text" name="coupen_name" value="<?= isset($coupen) ? $coupen->coupen_name : '' ?>" placeholder="Coupen Name" autofocus="autofocus" class="form-control" required=""/>
+                                <label>Coupon Name</label>
+                                <input type="text" name="coupon_name" value="<?= isset($coupon) ? $coupon->coupon_name : '' ?>" placeholder="Coupon Name" autofocus="autofocus" class="form-control" required=""/>
                                 <span class="error msgcname"></span>
                             </div>
                             <div class="form-group">
-                                <label>Coupen Code</label>
-                                <input type="text" name="coupen_code" value="<?= isset($coupen) ? $coupen->coupen_code : '' ?>" placeholder="Coupen Code" class="form-control" required="" />
+                                <label>Coupon Code</label>
+                                <input type="text" name="coupon_code" value="<?= isset($coupon) ? $coupon->coupon_code : '' ?>" placeholder="Coupon Code" class="form-control" required="" />
                                 <span class="error msgcode"></span>
                             </div>
                             <div class="row">
@@ -48,14 +48,14 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label>Amount</label>
-                                    <input type="text" name="disc_amount" value="<?= isset($coupen) ? $coupen->disc_amount : '' ?>" placeholder="Amount" class="form-control" required="" />
+                                    <input type="text" name="disc_amount" value="<?= isset($coupon) ? $coupon->disc_amount : '' ?>" placeholder="Amount" class="form-control" required="" />
                                     <span class="error msgamt"></span>
                                 </div>
                             </div>
                             <br/>
                             <div class="form-group">
-                                <label>Coupen Validity</label>
-                                <select name="coupen_validity" class="form-control">
+                                <label>Coupon Validity</label>
+                                <select name="coupon_validity" class="form-control">
                                     <option value="1">One Time</option>
                                     <option value="2">Disc For x Month</option>
                                     <option value="3">LifeTime</option>
@@ -63,7 +63,7 @@
                             </div>
                             <div class="form-group month-duration" style="display: none">
                                 <label>Month</label>
-                                <input type="text" name="month_duration" value="<?= isset($coupen) ? $coupen->month_duration : '' ?>" placeholder="Month" class="form-control" disabled="" required=""  />
+                                <input type="text" name="month_duration" value="<?= isset($coupon) ? $coupon->month_duration : '' ?>" placeholder="Month" class="form-control" disabled="" required=""  />
                                 <span class="error msgduration"></span>
                             </div>
                             <div class="form-group">
@@ -72,20 +72,20 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
-                                    <input name="expiry_date" value="<?= isset($coupen) ? date('d-m-Y', strtotime($coupen->expiry_date)) : '' ?>"  class="form-control form-control-inline input-medium default-date-picker" size="16" type="text" required="">
+                                    <input name="expiry_date" value="<?= isset($coupon) ? date('d-m-Y', strtotime($coupon->expiry_date)) : '' ?>"  class="form-control form-control-inline input-medium default-date-picker" size="16" type="text" required="">
                                 </div><!-- /.input group -->
                             </div><!-- /.form group -->
                             <div class="form-group">
                                 <label>User For</label>
-                                <input type="text" name="no_of_use" value="<?= isset($coupen) ? $coupen->no_of_use : '' ?>" placeholder="Number Of Use" class="form-control" required="" />
+                                <input type="text" name="no_of_use" value="<?= isset($coupon) ? $coupon->no_of_use : '' ?>" placeholder="Number Of Use" class="form-control" required="" />
                                 <span class="error msguse"></span>
                             </div>
                             <div class="box-footer" style="display: none">
-                                <button type="submit" class="coupen-submit"></button>
+                                <button type="submit" class="coupon-submit"></button>
                             </div>
                         </div><!-- /.box-body -->
-                        <?php if (isset($coupen)): ?>
-                            <input type="hidden" name="coupenid" value="<?= $coupen->coupen_id ?>" />
+                        <?php if (isset($coupon)): ?>
+                            <input type="hidden" name="couponid" value="<?= $coupon->coupon_id ?>" />
                         <?php endif; ?>
                     </form>
                 </div><!-- /.box -->
@@ -104,10 +104,10 @@
             autoclose: true,
             todayHighlight: true
         });
-<?php if (isset($coupen)): ?>
-            $('select[name="disc_type"]').val("<?= $coupen->disc_type ?>");
-            $('select[name="coupen_validity"]').val("<?= $coupen->coupen_validity ?>");
-            if ("<?= $coupen->coupen_validity ?>" == "2")
+<?php if (isset($coupon)): ?>
+            $('select[name="disc_type"]').val("<?= $coupon->disc_type ?>");
+            $('select[name="coupon_validity"]').val("<?= $coupon->coupon_validity ?>");
+            if ("<?= $coupon->coupon_validity ?>" == "2")
                 $('.month-duration').show();
 
 <?php endif; ?>
@@ -115,14 +115,14 @@
     });
     $(document).ready(function () {
         var c_code = 1, c_amt = 1, c_use = 1, c_month = 1;
-        $('#addCoupen').click(function () {
-            $('.coupen-submit').trigger('click');
+        $('#addCoupon').click(function () {
+            $('.coupon-submit').trigger('click');
         });
-        $('input[name="coupen_code"]').focusout(function () {
+        $('input[name="coupon_code"]').focusout(function () {
             var code = $(this).val().trim();
             var rgex_code = /^[A-Za-z0-9]+$/;
             if (code != "" && !rgex_code.test(code)) {
-                $('.msgcode').text("Please Enter Valid Coupen Code..!");
+                $('.msgcode').text("Please Enter Valid Coupon Code..!");
                 c_code = 0;
             } else {
                 $('.msgcode').empty();
@@ -149,7 +149,7 @@
                 }
             }
         });
-        $('select[name="coupen_validity"]').change(function () {
+        $('select[name="coupon_validity"]').change(function () {
             var validity = $(this).val();
             if (validity == "2") {
                 $('.month-duration').show();
@@ -181,7 +181,7 @@
                 $('.msguse').empty();
             }
         });
-        $('#coupenForm').submit(function () {
+        $('#couponForm').submit(function () {
 //            alert(c_code + " " + c_amt + " " + c_month + " " + c_use);
             if ((c_code === 0 || c_amt === 0 || c_month === 0 || c_use === 0)) {
                 return false;

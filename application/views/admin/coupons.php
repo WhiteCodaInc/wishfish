@@ -1,5 +1,5 @@
 <style type="text/css">
-    #coupen-data-table tr td,#coupen-data-table tr th{
+    #coupon-data-table tr td,#coupon-data-table tr th{
         text-align: center;
     }
 </style>
@@ -8,11 +8,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1 style="display: none">
-            Coupens
+            Coupons
         </h1>
-        <a href="<?= site_url() ?>admin/coupens/addCoupen" class="create btn btn-success btn-sm">
+        <a href="<?= site_url() ?>admin/coupons/addCoupon" class="create btn btn-success btn-sm">
             <i class="fa fa-plus"></i>&nbsp;
-            Create New Coupen
+            Create New Coupon
         </a>
         <button value="Active" class="add btn btn-info btn-sm" id="Active" type="button" >Active</button>
         <button value="Deactive" class="remove btn btn-warning btn-sm" id="Deactive" type="button" >Deactive</button>
@@ -25,13 +25,13 @@
             <div class="col-xs-12">
                 <div class="box" >
                     <div class="box-header">
-                        <h3 class="box-title">Coupen Detail</h3>
+                        <h3 class="box-title">Coupon Detail</h3>
                     </div><!-- /.box-header -->
                     <div class="row">
                         <div class="col-xs-12" style="margin-left: 1%">
-<!--                            <a href="<?= site_url() ?>admin/coupens/addCoupen" class="create btn btn-success btn-sm">
+<!--                            <a href="<?= site_url() ?>admin/coupons/addCoupon" class="create btn btn-success btn-sm">
                                 <i class="fa fa-plus"></i>
-                                Create New Coupen
+                                Create New Coupon
                             </a>
                             <button style="margin-left: 10px" value="Delete" class="delete btn btn-danger btn-sm" id="Delete" type="button" >Delete</button>-->
                         </div>
@@ -40,16 +40,16 @@
                     <form name="checkForm" id="checkForm" action="" method="post">
                         <div class="box-body table-responsive" id="data-panel">
 
-                            <table id="coupen-data-table" class="table table-bordered table-striped">
+                            <table id="coupon-data-table" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
                                         <th style="padding: 10px;">
                                             <input type="checkbox"/>
                                         </th>
-                                        <th class="hidden-xs hidden-sm">Coupen Name</th>
-                                        <th>Coupen Code</th>
+                                        <th class="hidden-xs hidden-sm">Coupon Name</th>
+                                        <th>Coupon Code</th>
                                         <th>Discount</th>
-                                        <th>Coupen Validity</th>
+                                        <th>Coupon Validity</th>
                                         <th>Valid Till</th>
                                         <th>No. of Use</th>
                                         <th>Status</th>
@@ -57,25 +57,25 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($coupens as $value) { ?>
+                                    <?php foreach ($coupons as $value) { ?>
                                         <tr>
                                             <td>
                                                 <div>
                                                     <label>
-                                                        <input type="checkbox" name="coupen[]" value="<?= $value->coupen_id ?>"/>
+                                                        <input type="checkbox" name="coupon[]" value="<?= $value->coupon_id ?>"/>
                                                     </label>
                                                 </div>
                                             </td>
-                                            <td class="hidden-xs hidden-sm"><?= $value->coupen_name ?></td>
-                                            <td><?= $value->coupen_code ?></td>
+                                            <td class="hidden-xs hidden-sm"><?= $value->coupon_name ?></td>
+                                            <td><?= $value->coupon_code ?></td>
                                             <?php
                                             $disc = ($value->disc_type == "F") ?
                                                     "$ {$value->disc_amount}" : "{$value->disc_amount} %";
                                             ?>
                                             <td><?= $disc ?></td>
                                             <?php
-                                            $validity = ($value->coupen_validity == "1") ?
-                                                    "One Time" : (($value->coupen_validity == "2") ?
+                                            $validity = ($value->coupon_validity == "1") ?
+                                                    "One Time" : (($value->coupon_validity == "2") ?
                                                             "Disc For {$value->month_duration} Month" : "Life Time");
                                             ?>
                                             <td><?= $validity ?></td>
@@ -89,7 +89,7 @@
                                                 <?php endif; ?>
                                             </td>
                                             <td>
-                                                <a href="<?= site_url() ?>admin/coupens/editCoupen/<?= $value->coupen_id ?>" class="btn bg-navy btn-xs">
+                                                <a href="<?= site_url() ?>admin/coupons/editCoupon/<?= $value->coupon_id ?>" class="btn bg-navy btn-xs">
                                                     <i class="fa fa-edit"></i>
                                                     Edit
                                                 </a>
@@ -100,10 +100,10 @@
                                 <tfoot>
                                     <tr>
                                         <th></th>
-                                        <th class="hidden-xs hidden-sm">Coupen Name</th>
-                                        <th>Coupen Code</th>
+                                        <th class="hidden-xs hidden-sm">Coupon Name</th>
+                                        <th>Coupon Code</th>
                                         <th>Discount</th>
-                                        <th>Coupen Validity</th>
+                                        <th>Coupon Validity</th>
                                         <th>Valid Till</th>
                                         <th>No. of Use</th>
                                         <th>Status</th>
@@ -124,15 +124,15 @@
 <?php
 switch ($msg) {
     case "I":
-        $m = "Coupen Successfully Created..!";
+        $m = "Coupon Successfully Created..!";
         $t = "success";
         break;
     case "U":
-        $m = "Coupen Successfully Updated..!";
+        $m = "Coupon Successfully Updated..!";
         $t = "success";
         break;
     case "D":
-        $m = "Coupen(s) Successfully Deleted..!";
+        $m = "Coupon(s) Successfully Deleted..!";
         $t = "error";
         break;
     default:
@@ -154,7 +154,7 @@ switch ($msg) {
 <!-- page script -->
 <script type="text/javascript">
     $(function () {
-        $("#coupen-data-table").dataTable({
+        $("#coupon-data-table").dataTable({
             aLengthMenu: [
                 [25, 50, 100, 200, -1],
                 [25, 50, 100, 200, "All"]
@@ -181,14 +181,14 @@ switch ($msg) {
         $('button.delete').click(function (e) {
             var agroup = "";
             var act = $(this).val();
-            $('#coupen-data-table tbody tr').each(function () {
+            $('#coupon-data-table tbody tr').each(function () {
                 if ($(this).children('td:first').find('div.checked').length) {
                     $txt = $(this).children('td:nth-child(3)').text();
                     agroup += $txt.trim() + ",";
                 }
             });
             agroup = agroup.substring(0, agroup.length - 1);
-            alertify.confirm("Are you sure want to delete coupen(s):<br/>" + agroup, function (e) {
+            alertify.confirm("Are you sure want to delete coupon(s):<br/>" + agroup, function (e) {
                 if (e) {
                     action(act);
                     return true;
@@ -200,7 +200,7 @@ switch ($msg) {
         });
         function action(actiontype) {
             $('#actionType').val(actiontype);
-            $('#checkForm').attr('action', "<?= site_url() ?>admin/coupens/action");
+            $('#checkForm').attr('action', "<?= site_url() ?>admin/coupons/action");
             $('#checkForm').submit();
         }
     });
