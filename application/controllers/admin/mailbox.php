@@ -57,8 +57,9 @@ class Mailbox extends CI_Controller {
         $url = ($folder != "INBOX") ?
                 "{mail.mikhailkuznetsov.com:143/notls}INBOX.{$folder}" :
                 "{mail.mikhailkuznetsov.com:143/notls}INBOX";
-
+        echo $url . '<br>';
         $imap_obj = imap_check($this->stream);
+        echo '<pre>';
         if (!$imap_obj) {
             $mailbox = array();
         } else if (!$imap_obj->Nmsgs) {
@@ -66,6 +67,7 @@ class Mailbox extends CI_Controller {
         } else {
             imap_reopen($this->stream, $url);
             $emails = imap_search($this->stream, 'ALL');
+            print_r($emails);
             if (is_array($emails)) {
                 rsort($emails);
                 $data = array();
@@ -83,12 +85,9 @@ class Mailbox extends CI_Controller {
                 $mailbox = array();
             }
         }
-
         $data['folder'] = $this->getInboxFolder();
         $data['threads'] = $this->makeThreads($mailbox);
-        echo '<pre>';
         print_r($mailbox);
-        echo $url . '<br>';
         die();
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
