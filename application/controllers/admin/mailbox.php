@@ -315,10 +315,10 @@ class Mailbox extends CI_Controller {
             $url = ($post['type'] != "Inbox") ?
                     "{mail.mikhailkuznetsov.com:143/notls}INBOX.{$post['type']}" :
                     "{mail.mikhailkuznetsov.com:143/notls}INBOX";
-            echo '<pre>';
-            print_r($post);
-            echo $url;
-            die();
+//            echo '<pre>';
+//            print_r($post);
+//            echo $url;
+//            die();
             imap_reopen($this->stream, $url);
 
             switch ($post['submit']) {
