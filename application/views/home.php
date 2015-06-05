@@ -547,6 +547,7 @@
                                 <a href="javascript:void(0);" id="<?= $id ?>" class="btn  btn-primary"><?= $lable ?></a>
                                 <?php if ($plan->plan_id != 1): ?>
                                     <a href="javascript:void(0);" id="<?= $pname ?>" class="btn btn-primary">Sign Up With Paypal</a>
+                                    Have you a coupon code? <a href="javascript:void(0);" id="coupan">Click Here</a>
                                 <?php endif; ?>
                             </div><!-- /.bottom -->
                         </div><!-- /.pricing2 -->
@@ -642,6 +643,7 @@
 </form>
 <form style="display: none" id="personal" action="<?= site_url() ?>stripe_payment/pay" method="post">
     <input type="hidden" name="plan" value="wishfish-personal"/>
+    <input type="hidden" name="coupon" value=""/>
     <script
         src="https://checkout.stripe.com/checkout.js" class="stripe-button"
         data-key="<?= $stripe->publish_key ?>"
@@ -655,6 +657,7 @@
 
 <form style="display: none" id="enterprise" action="<?= site_url() ?>stripe_payment/pay" method="post">
     <input type="hidden" name="plan" value="wishfish-enterprise"/>
+    <input type="hidden" name="coupon" value=""/>
     <script
         src="https://checkout.stripe.com/checkout.js" class="stripe-button"
         data-key="<?= $stripe->publish_key ?>"
