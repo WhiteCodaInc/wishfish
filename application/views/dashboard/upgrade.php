@@ -143,7 +143,7 @@
 <?php else: ?>
                     cardFlag = true;
 <?php endif; ?>
-
+                var code = "";
                 $('.coupon').click(function () {
                     var id = $(this).parents().eq(1).prop('id');
                     $('#' + id + ' .link').hide();
@@ -151,7 +151,7 @@
                 });
                 $('button.apply').click(function () {
                     var id = $(this).parents().eq(2).prop('id');
-                    var code = $('#' + id + ' .couponcode').val().trim();
+                    code = $('#' + id + ' .couponcode').val().trim();
                     var rgex_code = /^[A-Za-z0-9]+$/;
                     if (code != "" && !rgex_code.test(code)) {
                         $('#' + id + ' .msgCoupon').text("Please Enter Valid Coupon Code..!");
@@ -275,7 +275,7 @@
                     } else {
                         $.ajax({
                             type: 'POST',
-                            data: {plan: "wishfish-enterprise"},
+                            data: {plan: "wishfish-enterprise", code: code},
                             url: "<?= site_url() ?>app/upgrade/upgradePlan",
                             success: function (data, textStatus, jqXHR) {
                                 $('#planUpgrade .box-body button').prop('disabled', false);
