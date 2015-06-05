@@ -700,9 +700,7 @@
         $('button.apply').click(function () {
             var id = $(this).parents().eq(2).prop('id');
             var code = $('#' + id + ' .couponcode').val().trim();
-
             console.log(code);
-
             var rgex_code = /^[A-Za-z0-9]+$/;
             if (code != "" && !rgex_code.test(code)) {
                 $('#' + id + ' .msgCoupon').text("Please Enter Valid Coupon Code..!");
@@ -717,8 +715,8 @@
                     url: "<?= site_url() ?>home/checkCoupon",
                     success: function (data, textStatus, jqXHR) {
                         if (data == "1") {
-                            $row.hide();
-                            $('span.' + val).text(code + " was apply successfully..!");
+                            $('#' + id + ' div.couponbox').hide();
+                            $('#' + id + ' span.success').text(code + " was apply successfully..!");
                             if (id == "p_coupon")
                                 $('form#personal input[name="coupon"]').val(code);
                             else if (id == "e_coupon")
