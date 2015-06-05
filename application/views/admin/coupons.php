@@ -51,7 +51,7 @@
                                         <th>Discount</th>
                                         <th>Duration</th>
                                         <th>Expired On</th>
-                                        <th>No. of Use</th>
+                                        <th>Max Redemption</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -105,7 +105,7 @@
                                         <th>Discount</th>
                                         <th>Duration</th>
                                         <th>Expired On</th>
-                                        <th>No. of Use</th>
+                                        <th>Max Redemption</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>

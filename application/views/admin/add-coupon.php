@@ -76,7 +76,7 @@
                                 </div><!-- /.input group -->
                             </div><!-- /.form group -->
                             <div class="form-group">
-                                <label>Uses For</label>
+                                <label>Redemption</label>
                                 <input type="text" name="no_of_use" value="<?= isset($coupon) ? $coupon->no_of_use : '' ?>" placeholder="Number Of Use" class="form-control" required="" />
                                 <span class="error msguse"></span>
                             </div>
