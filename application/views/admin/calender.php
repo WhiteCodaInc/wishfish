@@ -1094,8 +1094,10 @@
                     var occur = parseInt($('#editForm input[name="occurance"]').val());
                     if (!/^[0-9]+$/.test(occur)) {
                         alertify.error("Please Enter Valid Occurance Number..!");
+                        return false;
                     } else if (occur <= 0) {
                         alertify.error("Occurance Must be greater than 0..!");
+                        return false;
                     }
                 }
             }

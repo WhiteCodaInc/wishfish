@@ -104,7 +104,7 @@ class M_admin_calender extends CI_Model {
         $this->db->select('count(*) as totalM');
         $query = $this->db->get_where('schedule', $where);
         $res['totalM'] = $query->row()->totalM;
-            
+
         //-------------------Get Total Event In Year------------------------//
         $where = array(
             'YEAR(date)' => date('Y', strtotime($start))
@@ -200,6 +200,7 @@ class M_admin_calender extends CI_Model {
     function updateEvent() {
         $flag = FALSE;
         $set = $this->input->post();
+
         $eid = $set['eventid'];
         unset($set['eventid']);
         $query = $this->db->get_where('schedule', array('event_id' => $eid));
@@ -216,35 +217,44 @@ class M_admin_calender extends CI_Model {
             unset($set['smsbody']);
             unset($set['emailbody']);
 
-            //print_r($res);
-            //print_r($set);
+//            print_r($res);
+//            print_r($set);
             if ($res['is_repeat'] == 0 && is_null($res['refer_id'])) {
-                if ($set['is_repeat']) {
+                if ($set['is_repeat'] && $set['end_type'] == "after") {
                     $flag = TRUE;
                 } else {
                     $set['occurance'] = NULL;
-                    $set['end_type'] = NULL;
                 }
-            } else if ($res['is_repeat'] == 1 && $set['is_repeat'] == 0) {
+//                die("RES[IS_REPEAT] : 0 && RES[IS_REPEAT] == NULL");
+            } else if ($res['is_repeat'] == 1 && ($set['is_repeat'] == 0 || $set['end_type'] == "never")) {
                 $this->db->delete('schedule', array('refer_id' => $eid));
+                $set['occurance'] = NULL;
                 $flag = FALSE;
-                //die("RES[IS_REPEAT] : 1 && SET[IS_REPEAT] == 0");
+//                die("RES[IS_REPEAT] : 1 && SET[IS_REPEAT] == 0");
             } else if ($res['is_repeat'] == 1 && $set['is_repeat'] == 1) {
-                if ($res['occurance'] != $set['occurance']) {
+                if ($set['end_type'] == "after" && $res['occurance'] != $set['occurance']) {
                     $this->db->delete('schedule', array('refer_id' => $eid));
                     $flag = TRUE;
+                } else {
+                    $this->db->delete('schedule', array('refer_id' => $eid));
+                    $set['occurance'] = NULL;
+                    $flag = FALSE;
                 }
-                //die("IS REPEAT : 1 && SET[IS_REPEAT] == 1");
+//                die("IS REPEAT : 1 && SET[IS_REPEAT] == 1");
             } else if ($res['is_repeat'] == 0 && $set['is_repeat'] == 0 && !is_null($res['refer_id'])) {
                 $set['occurance'] = NULL;
                 $set['end_type'] = NULL;
                 $flag = FALSE;
-                //die("RES[IS REPEAT] : 0 && SET[IS_REPEAT] == 0 && RES[REFER_ID] != NULL");
+//                die("RES[IS REPEAT] : 0 && SET[IS_REPEAT] == 0 && RES[REFER_ID] != NULL");
             }
             //print_r($res);
             //print_r($set);
             //die();
-
+//            echo '<pre>';
+//            print_r($res);
+//            echo ($flag) ? "TRUE<br>" : "FALSE<br>";
+//            print_r($set);
+//            die();
             if ($flag) {
                 $res = array_merge($res, $set);
                 $res['refer_id'] = $res['event_id'];
