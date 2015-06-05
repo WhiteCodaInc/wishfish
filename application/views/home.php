@@ -694,7 +694,7 @@
         });
         $('.coupon').click(function () {
             var id = $(this).parents().eq(1).prop('id');
-            $('#' + id + ' link').hide();
+            $('#' + id + ' .link').hide();
             $('#' + id + ' div.couponbox').show();
         });
         $('button.apply').click(function () {
