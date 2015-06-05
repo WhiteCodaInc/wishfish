@@ -28,6 +28,7 @@ class Upgrade extends CI_Controller {
         } else {
             $this->userid = $this->session->userdata('userid');
             $this->load->model('dashboard/m_profile', 'objprofile');
+            $this->load->model('m_register', 'objregister');
         }
     }
 
@@ -138,6 +139,11 @@ class Upgrade extends CI_Controller {
         } else {
             echo 0;
         }
+    }
+
+    function checkCoupon() {
+        $code = $this->input->post('code');
+        echo ($this->objregister->checkCoupon($code)) ? 1 : 0;
     }
 
     /* function checkout() {

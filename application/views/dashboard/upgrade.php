@@ -163,7 +163,7 @@
                         $.ajax({
                             type: 'POST',
                             data: {code: code},
-                            url: "<?= site_url() ?>home/checkCoupon",
+                            url: "<?= site_url() ?>app/upgrade/checkCoupon",
                             success: function (data, textStatus, jqXHR) {
                                 if (data == "1") {
                                     $('#' + id + ' div.couponbox').hide();
