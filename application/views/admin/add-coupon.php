@@ -54,7 +54,7 @@
                             </div>
                             <br/>
                             <div class="form-group">
-                                <label>Coupon Validity</label>
+                                <label>Duration</label>
                                 <select name="coupon_validity" class="form-control">
                                     <option value="1">One Time</option>
                                     <option value="2">Disc For x Month</option>
@@ -67,7 +67,7 @@
                                 <span class="error msgduration"></span>
                             </div>
                             <div class="form-group">
-                                <label>Valid Till</label>
+                                <label>Expired On</label>
                                 <div class="input-group">
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
@@ -76,7 +76,7 @@
                                 </div><!-- /.input group -->
                             </div><!-- /.form group -->
                             <div class="form-group">
-                                <label>User For</label>
+                                <label>Uses For</label>
                                 <input type="text" name="no_of_use" value="<?= isset($coupon) ? $coupon->no_of_use : '' ?>" placeholder="Number Of Use" class="form-control" required="" />
                                 <span class="error msguse"></span>
                             </div>

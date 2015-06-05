@@ -49,8 +49,8 @@
                                         <th class="hidden-xs hidden-sm">Coupon Name</th>
                                         <th>Coupon Code</th>
                                         <th>Discount</th>
-                                        <th>Coupon Validity</th>
-                                        <th>Valid Till</th>
+                                        <th>Duration</th>
+                                        <th>Expired On</th>
                                         <th>No. of Use</th>
                                         <th>Status</th>
                                         <th>Action</th>
@@ -103,8 +103,8 @@
                                         <th class="hidden-xs hidden-sm">Coupon Name</th>
                                         <th>Coupon Code</th>
                                         <th>Discount</th>
-                                        <th>Coupon Validity</th>
-                                        <th>Valid Till</th>
+                                        <th>Duration</th>
+                                        <th>Expired On</th>
                                         <th>No. of Use</th>
                                         <th>Status</th>
                                         <th>Action</th>
