@@ -74,7 +74,7 @@
         background-color: #ca3523;
         border-color: rgba(0, 0, 0, 0.2);
     }
-    .pricing2 .bottom > a {
+    .pricing2 .bottom > a:not(:last-child){
         margin: 5% 16%;
         display: block;
         width: 75%;
