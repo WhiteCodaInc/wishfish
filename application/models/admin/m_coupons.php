@@ -37,8 +37,7 @@ class M_coupons extends CI_Model {
         $date = new DateTime($set['expiry_date']);
         $coupon = array(
             "id" => $set['coupon_code'],
-//            "max_redemptions" => $set['no_of_use'],
-            "max_redemptions" => -1,
+            "max_redemptions" => $set['no_of_use'],
             "redeem_by" => $date->getTimestamp()
         );
         $coupon['duration'] = ($set['coupon_validity'] == "1") ? "once" :
@@ -49,19 +48,15 @@ class M_coupons extends CI_Model {
                         $coupon['amount_off'] = $set['disc_amount'] * 100 :
                         $coupon['percent_off'] = $set['disc_amount'];
         ($set['disc_type'] == "F") ? $coupon['currency'] = "USD" : "";
-
         try {
-            $res = Stripe_Coupon::create($coupon);
-            echo '<pre>';
-            print_r($res);
-            die();
+            Stripe_Coupon::create($coupon);
+            $set['expiry_date'] = date('Y-m-d', strtotime($set['expiry_date']));
+            $this->db->insert('coupons', $set);
+            return TRUE;
         } catch (Stripe_Error $e) {
-            print_r($e->getMessage());
+//            $error = $e->getMessage();
+            return FALSE;
         }
-        die();
-        $set['expiry_date'] = date('Y-m-d', strtotime($set['expiry_date']));
-        $this->db->insert('coupons', $set);
-        return TRUE;
     }
 
     function updateCoupon($set) {

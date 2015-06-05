@@ -127,6 +127,10 @@ switch ($msg) {
         $m = "Coupon Successfully Created..!";
         $t = "success";
         break;
+    case "IF":
+        $m = "Coupon has not been created..!";
+        $t = "error";
+        break;
     case "U":
         $m = "Coupon Successfully Updated..!";
         $t = "success";
