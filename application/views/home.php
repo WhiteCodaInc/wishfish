@@ -532,11 +532,13 @@
                                         $lable = "Sign Up Now";
                                         break;
                                     case 2:
+                                        $couponbox = "p_coupon";
                                         $id = "a_personal";
                                         $pname = "wishfish-personal";
                                         $lable = "Sign Up With Credit Card";
                                         break;
                                     case 3:
+                                        $couponbox = "e_coupon";
                                         $id = "a_enterprise";
                                         $pname = "wishfish-enterprise";
                                         $lable = "Sign Up With Credit Card";
@@ -546,19 +548,21 @@
                                 <a href="javascript:void(0);" id="<?= $id ?>" class="btn  btn-primary"><?= $lable ?></a>
                                 <?php if ($plan->plan_id != 1): ?>
                                     <a href="javascript:void(0);" id="<?= $pname ?>" class="btn btn-primary">Sign Up With Paypal</a>
-                                    <span style="padding: 55px;line-height: 3">
-                                        Have you a coupon code? 
-                                        <a href="javascript:void(0);" class="coupon">Click Here</a>
-                                    </span>
-                                    <span style="padding: 55px;color:green;display: none;line-height: 3" class="<?= $id ?>"></span>
-                                    <div class="row couponbox" style="padding: 10px;display: none">
-                                        <div class="col-md-9">
-                                            <input style="height: 35px" type="text" class="form-control couponcode" placeholder="Coupon Code" />
-                                            <span style="color: red" class="msgCoupon"></span>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <button value="<?= $id ?>" class="btn btn-success apply" type="button" >Apply</button>
-                                            <img style="display: none" src="<?= base_url() ?>assets/dashboard/img/load.GIF" />
+                                    <div id="<?= $couponbox ?>">
+                                        <span class="link" style="padding: 55px;line-height: 3">
+                                            Have you a coupon code? 
+                                            <a href="javascript:void(0);">Click Here</a>
+                                        </span>
+                                        <span style="padding: 55px;color:green;display: none;line-height: 3" class="success"></span>
+                                        <div class="row couponbox" style="padding: 10px;display: none">
+                                            <div class="col-md-9">
+                                                <input style="height: 35px" type="text" class="form-control couponcode" placeholder="Coupon Code" />
+                                                <span style="color: red" class="msgCoupon"></span>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <button value="<?= $id ?>" class="btn btn-success apply" type="button" >Apply</button>
+                                                <img style="display: none" src="<?= base_url() ?>assets/dashboard/img/load.GIF" />
+                                            </div>
                                         </div>
                                     </div>
                                 <?php endif; ?>
@@ -689,24 +693,22 @@
             $('input[name="remember"]').trigger('click');
         });
         $('.coupon').click(function () {
-            $(this).parent().hide();
-            $(this).parent().find('div.couponbox').show();
+            var id = $(this).parents().eq(1).prop('id');
+            $('#' + id + ' link').hide();
+            $('#' + id + ' div.couponbox').show();
         });
         $('button.apply').click(function () {
-            var val = $(this).val();
-            $row = $(this).parents().eq(1);
-            var code = $row.find('.couponcode').val().trim();
+            var id = $(this).parents().eq(2).prop('id');
+            var code = $('#' + id + ' .couponcode').val().trim();
 
-            console.log($row);
-            console.log(val);
             console.log(code);
 
             var rgex_code = /^[A-Za-z0-9]+$/;
             if (code != "" && !rgex_code.test(code)) {
-                $row.find('.msgCoupon').text("Please Enter Valid Coupon Code..!");
+                $('#' + id + ' .msgCoupon').text("Please Enter Valid Coupon Code..!");
                 return false;
             } else {
-                $row.find('.msgCoupon').empty();
+                $('#' + id + ' .msgCoupon').empty();
                 $(this).hide();
                 $(this).next().show();
                 $.ajax({
@@ -717,9 +719,9 @@
                         if (data == "1") {
                             $row.hide();
                             $('span.' + val).text(code + " was apply successfully..!");
-                            if (val == "a_personal")
+                            if (id == "p_coupon")
                                 $('form#personal input[name="coupon"]').val(code);
-                            else
+                            else if (id == "e_coupon")
                                 $('form#enterprise input[name="coupon"]').val(code);
                         }
                     }
