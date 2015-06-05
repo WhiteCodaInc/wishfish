@@ -553,7 +553,7 @@
                                     <div class="row couponbox" style="padding: 10px;display: none">
                                         <div class="col-md-9">
                                             <input style="height: 35px" type="text" class="form-control couponcode" placeholder="Coupon Code" />
-                                            <span class="msgCoupon"></span>
+                                            <span style="color: red" class="msgCoupon"></span>
                                         </div>
                                         <div class="col-md-3">
                                             <button value="<?= $id ?>" class="btn btn-success apply" type="button" >Apply</button>
