@@ -74,7 +74,7 @@
         background-color: #ca3523;
         border-color: rgba(0, 0, 0, 0.2);
     }
-    .pricing2 .bottom > a:not(:last-child){
+    .pricing2 .bottom > a {
         margin: 5% 16%;
         display: block;
         width: 75%;
@@ -547,7 +547,10 @@
                                 <a href="javascript:void(0);" id="<?= $id ?>" class="btn  btn-primary"><?= $lable ?></a>
                                 <?php if ($plan->plan_id != 1): ?>
                                     <a href="javascript:void(0);" id="<?= $pname ?>" class="btn btn-primary">Sign Up With Paypal</a>
-                                    Have you a coupon code? <a href="javascript:void(0);" id="coupan">Click Here</a>
+                                    <span style="padding-left:10px ">
+                                        Have you a coupon code? 
+                                        <a href="javascript:void(0);" id="coupan">Click Here</a>
+                                    </span>
                                 <?php endif; ?>
                             </div><!-- /.bottom -->
                         </div><!-- /.pricing2 -->
