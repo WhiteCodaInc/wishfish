@@ -551,7 +551,7 @@
                                     <div id="<?= $couponbox ?>">
                                         <span class="link" style="padding: 55px;line-height: 3">
                                             Have you a coupon code? 
-                                            <a href="javascript:void(0);">Click Here</a>
+                                            <a href="javascript:void(0);" class="coupon">Click Here</a>
                                         </span>
                                         <span style="padding: 55px;color:green;display: none;line-height: 3" class="success"></span>
                                         <div class="row couponbox" style="padding: 10px;display: none">
