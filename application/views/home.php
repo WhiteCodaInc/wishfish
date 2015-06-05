@@ -552,12 +552,12 @@
                                     </span>
                                     <div class="row couponbox" style="padding: 10px;display: none">
                                         <div class="col-md-9">
-                                            <input style="height: 35px" type="text" id="couponcode" class="form-control" placeholder="Coupon Code" />
+                                            <input style="height: 35px" type="text" class="form-control couponcode" placeholder="Coupon Code" />
                                             <span class="msgCoupon"></span>
                                         </div>
                                         <div class="col-md-3">
                                             <button value="<?= $id ?>" class="btn btn-success apply" type="button" >Apply</button>
-                                            <img src="<?= base_url() ?>assets/dashboard/img/load.GIF" />
+                                            <img style="display: none" src="<?= base_url() ?>assets/dashboard/img/load.GIF" />
                                         </div>
                                     </div>
                                 <?php endif; ?>
@@ -687,16 +687,34 @@
         $('#remember').click(function () {
             $('input[name="remember"]').trigger('click');
         });
-
         $('.coupon').click(function () {
             $(this).parent().hide();
             $(this).parent().next().show();
         });
         $('button.apply').click(function () {
             var val = $(this).val();
-            console.log(val);
-            $(this).hide();
-            $(this).next().show();
+            var code = $(this).parent().prev().children('.couponcode').val().trim();
+            var rgex_code = /^[A-Za-z0-9]+$/;
+            if (code != "" && !rgex_code.test(code)) {
+                $('.msgCoupon').text("Please Enter Valid Coupon Code..!");
+                return false;
+            } else {
+                $('.msgCoupon').empty();
+                console.log(val);
+                console.log(code);
+                $(this).hide();
+                $(this).next().show();
+                $.ajax({
+                    type: 'POST',
+                    data: {code: code},
+                    url: "<?= site_url() ?>home/checkCoupon",
+                    success: function (data, textStatus, jqXHR) {
+
+                    }
+                });
+            }
+
+
         });
 
         var emailV = 1;
