@@ -54,7 +54,7 @@
                             </div>
                             <br/>
                             <div class="form-group">
-                                <label>Duration</label>
+                                <label>Duration in Month</label>
                                 <select name="coupon_validity" class="form-control">
                                     <option value="1">One Time</option>
                                     <option value="2">Disc For x Month</option>
