@@ -328,4 +328,16 @@ class M_register extends CI_Model {
         return ($query->num_rows()) ? TRUE : FALSE;
     }
 
+    function updateCoupon($code) {
+        $where = array(
+            'coupon_code' => $code
+        );
+        $query = $this->db->get_where('coupons', $where);
+        $set = array(
+            'no_of_use >' => $query->row()->no_of_use - 1
+        );
+        $this->db->update('coupons', $set, $where);
+        return TRUE;
+    }
+
 }
