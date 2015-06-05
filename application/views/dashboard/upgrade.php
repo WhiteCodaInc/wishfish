@@ -65,18 +65,18 @@
                             <?php } ?>
                             <?php if (!($currPlan->plan_id == $plan->plan_id && $currPlan->plan_status != 0)): ?>
                                 <div id="<?= $couponbox ?>">
-                                    <span class="link" style="padding: 55px;line-height: 3">
+                                    <span class="link" style="line-height: 3">
                                         Have you a coupon code? 
                                         <a href="javascript:void(0);" class="coupon">Click Here</a>
                                     </span>
-                                    <span style="padding: 0 37px;color:green;display: none;line-height: 3" class="success"></span>
-                                    <div class="row couponbox" style="padding: 10px;display: none">
-                                        <div class="col-md-9">
-                                            <input style="height: 35px" type="text" class="form-control couponcode" placeholder="Coupon Code" />
+                                    <span style="color:green;display: none;line-height: 3" class="success"></span>
+                                    <div class="row couponbox" style="display: none">
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control couponcode" placeholder="Coupon Code" />
                                             <span style="color: red" class="msgCoupon"></span>
                                         </div>
-                                        <div class="col-md-3">
-                                            <button class="btn btn-success apply" type="button" >Apply</button>
+                                        <div class="col-md-4">
+                                            <button class="btn btn-success btn-xs apply" type="button" >Apply</button>
                                             <img style="display: none" src="<?= base_url() ?>assets/dashboard/img/load.GIF" />
                                         </div>
                                     </div>
