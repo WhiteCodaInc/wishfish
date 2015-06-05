@@ -34,7 +34,7 @@ class M_coupons extends CI_Model {
     }
 
     function createCoupon($set) {
-        $date = new DateTime($set['expire_date']);
+        $date = new DateTime($set['expiry_date']);
         $coupon = array(
             "id" => $set['coupon_code'],
             "max_redemptions" => $set['no_of_use'],
@@ -45,7 +45,7 @@ class M_coupons extends CI_Model {
         ($set['coupon_validity'] == "2") ?
                         $coupon['duration_in_months'] = $set['month_duration'] : "";
         ($set['disc_type'] == "F") ?
-                        $coupon['amount_off'] = $set['disc_amount'] :
+                        $coupon['amount_off'] = $set['disc_amount'] * 100 :
                         $coupon['percent_off'] = $set['disc_amount'];
         ($set['disc_type'] == "F") ? $coupon['currency'] = "USD" : "";
 
