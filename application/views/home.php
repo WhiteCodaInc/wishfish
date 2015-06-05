@@ -547,19 +547,19 @@
                                 <a href="javascript:void(0);" id="<?= $id ?>" class="btn  btn-primary"><?= $lable ?></a>
                                 <?php if ($plan->plan_id != 1): ?>
                                     <a href="javascript:void(0);" id="<?= $pname ?>" class="btn btn-primary">Sign Up With Paypal</a>
-                                    <span style="padding-left:10px ">
+                                    <span style="padding: 55px;">
                                         Have you a coupon code? 
                                         <a href="javascript:void(0);" id="coupan">Click Here</a>
                                     </span>
+                                    <div class="row" style="padding: 10px;">
+                                        <div class="col-md-9">
+                                            <input style="height: 35px" type="text" id="couponcode" class="form-control" placeholder="Coupon Code" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <button id="apply" class="btn btn-success" type="button" >Apply</button>
+                                        </div>
+                                    </div>
                                 <?php endif; ?>
-                                <div class="row">
-                                    <div class="col-md-8">
-                                        <input type="text" id="couponcode" placeholder="Coupon Code" />
-                                    </div>
-                                    <div class="col-md-4">
-                                        <button id="apply" class="btn btn-success btn-xs" type="button" >Apply</button>
-                                    </div>
-                                </div>
                             </div><!-- /.bottom -->
                         </div><!-- /.pricing2 -->
                     </div><!-- /.col-md-4 col -->
