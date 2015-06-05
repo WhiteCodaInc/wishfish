@@ -39,13 +39,13 @@ class M_coupons extends CI_Model {
     function updateCoupon($set) {
         $gid = $set['couponid'];
         unset($set['couponid']);
+        $set['expiry_date'] = date('Y-m-d', strtotime($set['expiry_date']));
         $this->db->update('coupons', $set, array('coupon_id' => $gid));
         return TRUE;
     }
 
     function setAction($type, $ids) {
         $msg = "";
-
         $this->db->where('coupon_id in (' . implode(',', $ids) . ')');
         switch ($type) {
             case "Active":

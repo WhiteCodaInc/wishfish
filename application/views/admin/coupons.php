@@ -135,6 +135,14 @@ switch ($msg) {
         $m = "Coupon(s) Successfully Deleted..!";
         $t = "error";
         break;
+    case "DA":
+        $m = "Coupon(s) Successfully Deactivated..!";
+        $t = "error";
+        break;
+    case "A":
+        $m = "Coupon(s) Successfully Activated..!";
+        $t = "success";
+        break;
     default:
         $m = 0;
         break;
