@@ -548,15 +548,16 @@
                                     <a href="javascript:void(0);" id="<?= $pname ?>" class="btn btn-primary">Sign Up With Paypal</a>
                                     <span style="padding: 55px;">
                                         Have you a coupon code? 
-                                        <a href="javascript:void(0);" id="coupan">Click Here</a>
+                                        <a href="javascript:void(0);" class="coupon">Click Here</a>
                                     </span>
-                                    <div id="couponbox" class="row" style="padding: 10px;display: none">
+                                    <div class="row couponbox" style="padding: 10px;display: none">
                                         <div class="col-md-9">
                                             <input style="height: 35px" type="text" id="couponcode" class="form-control" placeholder="Coupon Code" />
                                             <span class="msgCoupon"></span>
                                         </div>
                                         <div class="col-md-3">
-                                            <button id="apply" class="btn btn-success" type="button" >Apply</button>
+                                            <button value="<?= $id ?>" class="btn btn-success apply" type="button" >Apply</button>
+                                            <img src="<?= base_url() ?>assets/dashboard/img/load.GIF" />
                                         </div>
                                     </div>
                                 <?php endif; ?>
@@ -687,9 +688,12 @@
             $('input[name="remember"]').trigger('click');
         });
 
-        $('#coupan').click(function () {
+        $('.coupan').click(function () {
             $(this).parent().hide();
-            $('#couponbox').show();
+            $(this).parent().next('div.couponbox').show();
+        });
+        $('.apply').click(function () {
+
         });
 
         var emailV = 1;
