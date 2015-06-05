@@ -107,8 +107,10 @@
 <?php if (isset($coupon)): ?>
             $('select[name="disc_type"]').val("<?= $coupon->disc_type ?>");
             $('select[name="coupon_validity"]').val("<?= $coupon->coupon_validity ?>");
-            if ("<?= $coupon->coupon_validity ?>" == "2")
+            if ("<?= $coupon->coupon_validity ?>" == "2") {
                 $('.month-duration').show();
+                $('input[name="month_duration"]').prop('disabled', false);
+            }
 
 <?php endif; ?>
 
