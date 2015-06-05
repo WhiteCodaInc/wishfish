@@ -134,7 +134,8 @@ class Upgrade extends CI_Controller {
                 }
                 $customer->subscriptions->create(array(
                     "plan" => $plan,
-                    "metadata" => array("userid" => $this->userid)
+                    "metadata" => array("userid" => $this->userid),
+                    "coupon" => $code
                 ));
                 $this->objregister->updateCoupon($code);
                 $success = 1;
