@@ -723,8 +723,8 @@
                             else if (id == "e_coupon")
                                 $('form#enterprise input[name="coupon"]').val(code);
                         } else {
-                            $('#' + id + ' .button').show();
-                            $('#' + id + ' .img').hide();
+                            $('#' + id + ' button').show();
+                            $('#' + id + ' img').hide();
                             $('#' + id + ' .msgCoupon').text("Coupon Code is Invalid..!");
                         }
                     }
