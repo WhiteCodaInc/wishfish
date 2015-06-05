@@ -697,6 +697,7 @@
             $row = $(this).parents().eq(1);
             var code = $row.find('.couponcode').val().trim();
 
+            console.log($row);
             console.log(val);
             console.log(code);
 
