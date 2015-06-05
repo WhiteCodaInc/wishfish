@@ -37,7 +37,8 @@ class M_coupons extends CI_Model {
         $date = new DateTime($set['expiry_date']);
         $coupon = array(
             "id" => $set['coupon_code'],
-            "max_redemptions" => $set['no_of_use'],
+//            "max_redemptions" => $set['no_of_use'],
+            "max_redemptions" => -1,
             "redeem_by" => $date->getTimestamp()
         );
         $coupon['duration'] = ($set['coupon_validity'] == "1") ? "once" :
@@ -54,10 +55,9 @@ class M_coupons extends CI_Model {
             echo '<pre>';
             print_r($res);
             die();
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
+        } catch (Stripe_Error $e) {
+            echo $e->getMessage();
         }
-
         $set['expiry_date'] = date('Y-m-d', strtotime($set['expiry_date']));
         $this->db->insert('coupons', $set);
         return TRUE;
