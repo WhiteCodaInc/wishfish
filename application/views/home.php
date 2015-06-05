@@ -692,8 +692,9 @@
             $(this).parent().hide();
             $(this).parent().next('div.couponbox').show();
         });
-        $('.apply').click(function () {
-
+        $('button.apply').click(function () {
+            var val = $(this).val();
+            console.log(val);
         });
 
         var emailV = 1;
