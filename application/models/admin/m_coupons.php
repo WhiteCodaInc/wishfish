@@ -17,6 +17,9 @@ class M_coupons extends CI_Model {
 
     function __construct() {
         parent::__construct();
+        $gatewayInfo = $this->wi_common->getPaymentGatewayInfo("STRIPE");
+        require_once(FCPATH . 'stripe/lib/Stripe.php');
+        Stripe::setApiKey($gatewayInfo->secret_key);
         $this->profileid = $this->session->userdata('profile_id');
     }
 
@@ -31,6 +34,30 @@ class M_coupons extends CI_Model {
     }
 
     function createCoupon($set) {
+        $date = new DateTime($set['expire_date']);
+        $coupon = array(
+            "id" => $set['coupon_code'],
+            "max_redemptions" => $set['no_of_use'],
+            "redeem_by" => $date->getTimestamp()
+        );
+        $coupon['duration'] = ($set['coupon_validity'] == "1") ? "once" :
+                (($set['coupon_validity'] == "2") ? "repeating" : "forever");
+        ($set['coupon_validity'] == "2") ?
+                        $coupon['duration_in_months'] = $set['month_duration'] : "";
+        ($set['disc_type'] == "F") ?
+                        $coupon['amount_off'] = $set['disc_amount'] :
+                        $coupon['percent_off'] = $set['disc_amount'];
+        ($set['disc_type'] == "F") ? $coupon['currency'] = "USD" : "";
+
+        try {
+            $res = Stripe_Coupon::create($coupon);
+            echo '<pre>';
+            print_r($res);
+            die();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+
         $set['expiry_date'] = date('Y-m-d', strtotime($set['expiry_date']));
         $this->db->insert('coupons', $set);
         return TRUE;

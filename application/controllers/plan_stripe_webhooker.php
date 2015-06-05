@@ -15,11 +15,6 @@ class Plan_stripe_webhooker extends CI_Controller {
 
     function __construct() {
         parent::__construct();
-        
-        
-        
-        
-        
         $this->load->model('m_register', 'objregister');
         $this->load->model('m_plan_stripe_webhooker', 'objpayment');
     }
@@ -27,8 +22,6 @@ class Plan_stripe_webhooker extends CI_Controller {
     function index() {
 
         require_once(FCPATH . 'stripe/lib/Stripe.php');
-
-
         $event_json = json_decode(@file_get_contents('php://input', true));
 
         $data = $this->wi_common->getPaymentGatewayInfo("STRIPE");
