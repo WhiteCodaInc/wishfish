@@ -690,7 +690,7 @@
         });
         $('.coupon').click(function () {
             $(this).parent().hide();
-            $(this).parent().next().show();
+            $(this).parent().next('div.couponbox').show();
         });
         $('button.apply').click(function () {
             var val = $(this).val();
