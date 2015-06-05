@@ -553,7 +553,7 @@
                                             Have you a coupon code? 
                                             <a href="javascript:void(0);" class="coupon">Click Here</a>
                                         </span>
-                                        <span style="padding: 55px;color:green;display: none;line-height: 3" class="success"></span>
+                                        <span style="padding: 0 37px;color:green;display: none;line-height: 3" class="success"></span>
                                         <div class="row couponbox" style="padding: 10px;display: none">
                                             <div class="col-md-9">
                                                 <input style="height: 35px" type="text" class="form-control couponcode" placeholder="Coupon Code" />
