@@ -76,7 +76,7 @@
                                             <span style="color: red" class="msgCoupon"></span>
                                         </div>
                                         <div class="col-md-4">
-                                            <button class="btn btn-success btn-xs apply" type="button" >Apply</button>
+                                            <button class="btn btn-success btn-xxs apply" type="button" >Apply</button>
                                             <img style="display: none" src="<?= base_url() ?>assets/dashboard/img/load.GIF" />
                                         </div>
                                     </div>

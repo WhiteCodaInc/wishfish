@@ -63,7 +63,7 @@
     padding: 1px;
 }
 
-#planUpgrade .box-body button{
+#planUpgrade .box-body button.btn-lg{
     /*        width: 65%;
             margin: 5%;*/
     margin: 3% 13%;
