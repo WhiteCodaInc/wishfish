@@ -70,7 +70,7 @@
                                         <a href="javascript:void(0);" class="coupon">Click Here</a>
                                     </span>
                                     <span style="color:green;display: none;line-height: 3" class="success"></span>
-                                    <div class="row couponbox" style="display: none">
+                                    <div class="row couponbox" style="padding: 10px;display: none">
                                         <div class="col-md-8">
                                             <input type="text" class="form-control couponcode" placeholder="Coupon Code" />
                                             <span style="color: red" class="msgCoupon"></span>
