@@ -260,7 +260,6 @@
             </div>
         </div>
     </div>
-</div>
 </section>
 
 <section id="service" class="sections colorsbg">
@@ -551,9 +550,10 @@
                                         Have you a coupon code? 
                                         <a href="javascript:void(0);" id="coupan">Click Here</a>
                                     </span>
-                                    <div class="row" style="padding: 10px;">
+                                    <div id="couponbox" class="row" style="padding: 10px;display: none">
                                         <div class="col-md-9">
                                             <input style="height: 35px" type="text" id="couponcode" class="form-control" placeholder="Coupon Code" />
+                                            <span class="msgCoupon"></span>
                                         </div>
                                         <div class="col-md-3">
                                             <button id="apply" class="btn btn-success" type="button" >Apply</button>
@@ -685,6 +685,11 @@
 
         $('#remember').click(function () {
             $('input[name="remember"]').trigger('click');
+        });
+
+        $('#coupan').click(function () {
+            $(this).parent().hide();
+            $('#couponbox').show();
         });
 
         var emailV = 1;
