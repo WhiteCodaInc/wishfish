@@ -63,7 +63,7 @@
                                     <?= ($userInfo->is_set) ? "Upgrade" : "Upgrade With Paypal" ?>
                                 </button>
                             <?php } ?>
-                            <?php if ($currPlan->plan_id == $plan->plan_id && $currPlan->plan_status != 0): ?>
+                            <?php if (!($currPlan->plan_id == $plan->plan_id && $currPlan->plan_status != 0)): ?>
                                 <div id="<?= $couponbox ?>">
                                     <span class="link" style="padding: 55px;line-height: 3">
                                         Have you a coupon code? 
