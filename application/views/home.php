@@ -546,10 +546,11 @@
                                 <a href="javascript:void(0);" id="<?= $id ?>" class="btn  btn-primary"><?= $lable ?></a>
                                 <?php if ($plan->plan_id != 1): ?>
                                     <a href="javascript:void(0);" id="<?= $pname ?>" class="btn btn-primary">Sign Up With Paypal</a>
-                                    <span style="padding: 55px;">
+                                    <span style="padding: 55px;line-height: 3">
                                         Have you a coupon code? 
                                         <a href="javascript:void(0);" class="coupon">Click Here</a>
                                     </span>
+                                    <span style="padding: 55px;color:green;display: none;line-height: 3" class="<?= $id ?>"></span>
                                     <div class="row couponbox" style="padding: 10px;display: none">
                                         <div class="col-md-9">
                                             <input style="height: 35px" type="text" class="form-control couponcode" placeholder="Coupon Code" />
@@ -694,16 +695,17 @@
         $('button.apply').click(function () {
             var val = $(this).val();
             $row = $(this).parents().eq(1);
-            console.log($row);
-            var code = $(this).parent().prev().children('.couponcode').val().trim();
+            var code = $row.find('.couponcode').val().trim();
+
+            console.log(val);
+            console.log(code);
+
             var rgex_code = /^[A-Za-z0-9]+$/;
             if (code != "" && !rgex_code.test(code)) {
-                $('.msgCoupon').text("Please Enter Valid Coupon Code..!");
+                $row.find('.msgCoupon').text("Please Enter Valid Coupon Code..!");
                 return false;
             } else {
-                $('.msgCoupon').empty();
-                console.log(val);
-                console.log(code);
+                $row.find('.msgCoupon').empty();
                 $(this).hide();
                 $(this).next().show();
                 $.ajax({
@@ -712,7 +714,12 @@
                     url: "<?= site_url() ?>home/checkCoupon",
                     success: function (data, textStatus, jqXHR) {
                         if (data == "1") {
-
+                            $row.hide();
+                            $('span.' + val).text(code + " was apply successfully..!");
+                            if (val == "a_personal")
+                                $('form#personal input[name="coupon"]').val(code);
+                            else
+                                $('form#enterprise input[name="coupon"]').val(code);
                         }
                     }
                 });
