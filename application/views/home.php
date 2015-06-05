@@ -695,6 +695,8 @@
         $('button.apply').click(function () {
             var val = $(this).val();
             console.log(val);
+            $(this).hide();
+            $(this).next().show();
         });
 
         var emailV = 1;
