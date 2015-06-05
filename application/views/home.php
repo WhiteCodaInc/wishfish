@@ -657,6 +657,7 @@
 <form id="paypal" action="<?= site_url() ?>app/pay">
     <input type="hidden" name="item_name" value="">
     <input type="hidden" name="amount" value="">
+    <input type="hidden" name="coupon" value="">
 </form>
 <form style="display: none" id="personal" action="<?= site_url() ?>stripe_payment/pay" method="post">
     <input type="hidden" name="plan" value="wishfish-personal"/>
@@ -718,6 +719,7 @@
                             $('#' + id + ' div.couponbox').hide();
                             $('#' + id + ' span.success').html("Coupon <b style='color:#1ac6ff'>" + code + "</b> was apply successfully..!");
                             $('#' + id + ' span.success').show();
+                            $('form#paypal input[name="coupon"]').val(code);
                             if (id == "p_coupon")
                                 $('form#personal input[name="coupon"]').val(code);
                             else if (id == "e_coupon")
