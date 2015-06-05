@@ -54,6 +54,11 @@ class Home extends CI_Controller {
         echo $this->wi_common->getRandomDigit(5);
     }
 
+    function checkCoupon() {
+        $code = $this->input->post('code');
+        echo ($this->objregister->checkCoupon($code)) ? 1 : 0;
+    }
+
     function checkEmail() {
         $email = $this->input->post('email');
         $res = $this->wi_authex->can_register($email);

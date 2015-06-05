@@ -693,6 +693,8 @@
         });
         $('button.apply').click(function () {
             var val = $(this).val();
+            $row = $(this).parents().eq(2);
+            console.log($row);
             var code = $(this).parent().prev().children('.couponcode').val().trim();
             var rgex_code = /^[A-Za-z0-9]+$/;
             if (code != "" && !rgex_code.test(code)) {
@@ -709,7 +711,9 @@
                     data: {code: code},
                     url: "<?= site_url() ?>home/checkCoupon",
                     success: function (data, textStatus, jqXHR) {
-
+                        if (data == "1") {
+                            
+                        }
                     }
                 });
             }

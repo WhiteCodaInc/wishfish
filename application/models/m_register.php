@@ -317,4 +317,15 @@ class M_register extends CI_Model {
         return $contents;
     }
 
+    function checkCoupon($code) {
+        $where = array(
+            'coupon_code' => $code,
+            'status' => 1,
+            'no_of_use >' => 0,
+            'expiry_date >' => date('Y-m-d'),
+        );
+        $query = $this->db->get_where('coupons', $where);
+        return ($query->num_rows()) ? TRUE : FALSE;
+    }
+
 }
