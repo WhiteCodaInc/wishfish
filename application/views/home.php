@@ -688,9 +688,9 @@
             $('input[name="remember"]').trigger('click');
         });
 
-        $('.coupan').click(function () {
+        $('.coupon').click(function () {
             $(this).parent().hide();
-            $(this).parent().next('div.couponbox').show();
+            $(this).parent().next().show();
         });
         $('button.apply').click(function () {
             var val = $(this).val();
