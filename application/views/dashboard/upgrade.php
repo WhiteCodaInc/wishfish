@@ -47,6 +47,7 @@
                             </ul>
                             <?php
                             $prop = ($currPlan->plan_id == $plan->plan_id && $currPlan->plan_status != 0) ? 'disabled' : '';
+                            $couponbox = ($plan->plan_id == 2) ? "p_coupon" : "e_coupon";
                             if (!$userInfo->is_set || $userInfo->gateway == "STRIPE") {
                                 $id = ($plan->plan_id == 2) ? "a_personal" : "a_enterprise";
                                 ?>
@@ -62,6 +63,25 @@
                                     <?= ($userInfo->is_set) ? "Upgrade" : "Upgrade With Paypal" ?>
                                 </button>
                             <?php } ?>
+                            <?php if ($currPlan->plan_id == $plan->plan_id && $currPlan->plan_status != 0): ?>
+                                <div id="<?= $couponbox ?>">
+                                    <span class="link" style="padding: 55px;line-height: 3">
+                                        Have you a coupon code? 
+                                        <a href="javascript:void(0);" class="coupon">Click Here</a>
+                                    </span>
+                                    <span style="padding: 0 37px;color:green;display: none;line-height: 3" class="success"></span>
+                                    <div class="row couponbox" style="padding: 10px;display: none">
+                                        <div class="col-md-9">
+                                            <input style="height: 35px" type="text" class="form-control couponcode" placeholder="Coupon Code" />
+                                            <span style="color: red" class="msgCoupon"></span>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <button class="btn btn-success apply" type="button" >Apply</button>
+                                            <img style="display: none" src="<?= base_url() ?>assets/dashboard/img/load.GIF" />
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
                         </div><!-- /.box-body -->
                         <div style="display: none" class="overlay"></div>
                         <div style="display: none" class="loading-img"></div>
@@ -84,6 +104,7 @@
             <?php if (!$card): ?>
                 <form style="display: none" id="personal" action="<?= site_url() ?>app/upgrade/pay" method="post">
                     <input type="hidden" name="plan" value="wishfish-personal"/>
+                    <input type="hidden" name="coupon" value="">
                     <script
                         src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                         data-key="<?= $stripe->publish_key ?>"
@@ -96,6 +117,7 @@
                 </form>
                 <form style="display: none" id="enterprise" action="<?= site_url() ?>app/upgrade/pay" method="post">
                     <input type="hidden" name="plan" value="wishfish-enterprise"/>
+                    <input type="hidden" name="coupon" value="">
                     <script
                         src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                         data-key="<?= $stripe->publish_key ?>"
@@ -121,6 +143,46 @@
 <?php else: ?>
                     cardFlag = true;
 <?php endif; ?>
+
+                $('.coupon').click(function () {
+                    var id = $(this).parents().eq(1).prop('id');
+                    $('#' + id + ' .link').hide();
+                    $('#' + id + ' div.couponbox').show();
+                });
+                $('button.apply').click(function () {
+                    var id = $(this).parents().eq(2).prop('id');
+                    var code = $('#' + id + ' .couponcode').val().trim();
+                    var rgex_code = /^[A-Za-z0-9]+$/;
+                    if (code != "" && !rgex_code.test(code)) {
+                        $('#' + id + ' .msgCoupon').text("Please Enter Valid Coupon Code..!");
+                        return false;
+                    } else {
+                        $('#' + id + ' .msgCoupon').empty();
+                        $(this).hide();
+                        $(this).next().show();
+                        $.ajax({
+                            type: 'POST',
+                            data: {code: code},
+                            url: "<?= site_url() ?>home/checkCoupon",
+                            success: function (data, textStatus, jqXHR) {
+                                if (data == "1") {
+                                    $('#' + id + ' div.couponbox').hide();
+                                    $('#' + id + ' span.success').html("Coupon <b style='color:#1ac6ff'>" + code + "</b> was apply successfully..!");
+                                    $('#' + id + ' span.success').show();
+                                    $('form#paypal input[name="coupon"]').val(code);
+                                    if (id == "p_coupon")
+                                        $('form#personal input[name="coupon"]').val(code);
+                                    else if (id == "e_coupon")
+                                        $('form#enterprise input[name="coupon"]').val(code);
+                                } else {
+                                    $('#' + id + ' button').show();
+                                    $('#' + id + ' img').hide();
+                                    $('#' + id + ' .msgCoupon').text("Coupon Code is Invalid..!");
+                                }
+                            }
+                        });
+                    }
+                });
 
                 $('#pay_personal').click(function () {
                     $('#planUpgrade .box-body button').prop('disabled', true);

@@ -560,7 +560,7 @@
                                                 <span style="color: red" class="msgCoupon"></span>
                                             </div>
                                             <div class="col-md-3">
-                                                <button value="<?= $id ?>" class="btn btn-success apply" type="button" >Apply</button>
+                                                <button class="btn btn-success apply" type="button" >Apply</button>
                                                 <img style="display: none" src="<?= base_url() ?>assets/dashboard/img/load.GIF" />
                                             </div>
                                         </div>
@@ -689,7 +689,6 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-
         $('#remember').click(function () {
             $('input[name="remember"]').trigger('click');
         });
@@ -701,7 +700,6 @@
         $('button.apply').click(function () {
             var id = $(this).parents().eq(2).prop('id');
             var code = $('#' + id + ' .couponcode').val().trim();
-            console.log(code);
             var rgex_code = /^[A-Za-z0-9]+$/;
             if (code != "" && !rgex_code.test(code)) {
                 $('#' + id + ' .msgCoupon').text("Please Enter Valid Coupon Code..!");
@@ -732,8 +730,6 @@
                     }
                 });
             }
-
-
         });
 
         var emailV = 1;
