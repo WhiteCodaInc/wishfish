@@ -56,8 +56,9 @@ class M_coupons extends CI_Model {
             print_r($res);
             die();
         } catch (Stripe_Error $e) {
-            echo $e->getMessage();
+            print_r($e->getMessage());
         }
+        die();
         $set['expiry_date'] = date('Y-m-d', strtotime($set['expiry_date']));
         $this->db->insert('coupons', $set);
         return TRUE;
