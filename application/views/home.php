@@ -716,7 +716,8 @@
                     success: function (data, textStatus, jqXHR) {
                         if (data == "1") {
                             $('#' + id + ' div.couponbox').hide();
-                            $('#' + id + ' span.success').text(code + " was apply successfully..!");
+                            $('#' + id + ' span.success').text("<b style='color:#1ac6ff'>" + code + "</b> was apply successfully..!");
+                            $('#' + id + ' span.success').show();
                             if (id == "p_coupon")
                                 $('form#personal input[name="coupon"]').val(code);
                             else if (id == "e_coupon")
