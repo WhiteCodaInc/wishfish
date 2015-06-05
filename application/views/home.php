@@ -552,6 +552,14 @@
                                         <a href="javascript:void(0);" id="coupan">Click Here</a>
                                     </span>
                                 <?php endif; ?>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <input type="text" id="couponcode" placeholder="Coupon Code" />
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button id="apply" class="btn btn-success btn-xs" type="button" >Apply</button>
+                                    </div>
+                                </div>
                             </div><!-- /.bottom -->
                         </div><!-- /.pricing2 -->
                     </div><!-- /.col-md-4 col -->
