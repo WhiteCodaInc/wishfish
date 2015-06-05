@@ -236,15 +236,19 @@ class M_calender extends CI_Model {
                     $flag = TRUE;
                 } else {
                     $set['occurance'] = NULL;
-                    $set['end_type'] = NULL;
                 }
-            } else if ($res['is_repeat'] == 1 && $set['is_repeat'] == 0) {
+            } else if ($res['is_repeat'] == 1 && ($set['is_repeat'] == 0 || $set['end_type'] == "never")) {
                 $this->db->delete('wi_schedule', array('refer_id' => $eid));
+                $set['occurance'] = NULL;
                 $flag = FALSE;
             } else if ($res['is_repeat'] == 1 && $set['is_repeat'] == 1) {
-                if ($res['occurance'] != $set['occurance']) {
+                if ($set['end_type'] == "after" && $res['occurance'] != $set['occurance']) {
                     $this->db->delete('wi_schedule', array('refer_id' => $eid));
                     $flag = TRUE;
+                } else {
+                    $this->db->delete('wi_schedule', array('refer_id' => $eid));
+                    $set['occurance'] = NULL;
+                    $flag = FALSE;
                 }
             } else if ($res['is_repeat'] == 0 && $set['is_repeat'] == 0 && !is_null($res['refer_id'])) {
                 $set['occurance'] = NULL;
