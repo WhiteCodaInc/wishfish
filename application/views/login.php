@@ -242,6 +242,10 @@ and open the template in the editor.
                 $m = "Your Email address not register..!";
                 $t = "error";
                 break;
+            case "RS":
+                $m = "Please Check Your Email To Get Started..!";
+                $t = "success";
+                break;
             default:
                 $m = 0;
                 break;
@@ -254,7 +258,6 @@ and open the template in the editor.
         </script>
         <script type="text/javascript">
             $(document).ready(function () {
-
                 var emailV = 1;
                 var captchaV = 1;
                 var sess_word = "<?= $this->session->userdata('captchaWord') ?>";
