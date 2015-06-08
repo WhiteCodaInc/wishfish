@@ -17,8 +17,9 @@ class Paypal extends CI_Controller {
         $code = $this->session->flashdata('code');
         $coupon = $this->objregister->checkCoupon($code);
         echo '<pre>';
+        echo $code;
         print_r($coupon);
-        if ($code != "" && is_object($coupon)) {
+        if ($code != "" && !empty($coupon)) {
             echo 'TRUE';
             print_r($coupon);
             die();
