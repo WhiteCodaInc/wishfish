@@ -1,14 +1,14 @@
 <?php
 
-//if (!defined('BASEPATH'))
-//    exit('No direct script access allowed');
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
 
 class Paypal extends CI_Controller {
 
     function __construct() {
         parent::__construct();
-        $this->load->library('paypal_lib');
         $this->load->model('m_register', 'objregister');
+        $this->load->library('paypal_lib');
     }
 
     function index() {
