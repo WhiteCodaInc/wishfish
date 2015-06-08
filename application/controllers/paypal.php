@@ -8,13 +8,11 @@ class Paypal extends CI_Controller {
     function __construct() {
         parent::__construct();
         $this->load->library('paypal_lib');
+        $this->load->model('m_register', 'objregister');
     }
 
     function index() {
         $post = $this->input->post();
-        echo '<pre>';
-        print_r($post);
-        die();
         $this->session->set_flashdata($post);
         $gatewayInfo = $this->wi_common->getPaymentGatewayInfo("PAYPAL");
         $this->paypal_lib->set_acct_info($gatewayInfo->api_username, $gatewayInfo->api_password, $gatewayInfo->api_signature);
@@ -49,8 +47,16 @@ class Paypal extends CI_Controller {
                     $gatewayInfo->api_username, $gatewayInfo->api_password, $gatewayInfo->api_signature
             );
             $checkoutDetails = $this->paypal_lib->request('GetExpressCheckoutDetails', array('TOKEN' => $this->input->get('token')));
-            $uid = $this->insertUser($checkoutDetails);
 
+            $code = $this->session->flashdata('code');
+            $coupon = $this->objregister->checkCoupon($code);
+            if ($code != "" && count($coupon)) {
+                echo '<pre>';
+                print_r($coupon);
+                die();
+            }
+            die();
+            $uid = $this->insertUser($checkoutDetails);
             $planid = ($this->session->flashdata('item_name') == "wishfish-personal") ? 2 : 3;
 
             // Complete the checkout transaction
