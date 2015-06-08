@@ -142,7 +142,7 @@ $userid = $this->session->userdata('userid');
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-plus"></i>
-                            Import Contacts 
+                            Import Contact(s)
                         </a>
                         <ul class="dropdown-menu" role="menu" >
                             <li>
