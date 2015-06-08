@@ -159,7 +159,7 @@ $userid = $this->session->userdata('userid');
                             </li>
                         </ul>
                         <div class="modal fade" id="scrapeContact" tabindex="-1" role="dialog" aria-hidden="true">
-                            <div class="modal-dialog" style="max-width: 400px">
+                            <div class="modal-dialog" style="max-width: 490px">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
