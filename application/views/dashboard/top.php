@@ -152,7 +152,7 @@ $userid = $this->session->userdata('userid');
                                 </a>
                             </li>
                             <li>
-                                <a href="javascript:void(0)" data-toggle="modal" data-target="scrapeContact">
+                                <a href="javascript:void(0)" data-toggle="modal" data-target="#scrapeContact">
                                     <i class="fa fa-users"></i>
                                     <span>Import Contacts</span>
                                 </a>
