@@ -91,7 +91,7 @@ class Paypal extends CI_Controller {
             if (is_array($response) && $response['ACK'] == 'Success') {
                 if ($code != "")
                     $this->objregister->updateCoupon($code);
-                if (!empty($coupon)) {
+                if (!empty($coupon) && $coupon->coupon_validity != '3') {
                     $response['AMT'] = $requestParams['TRIALAMT'];
                 } else {
                     $response['AMT'] = $requestParams['AMT'];
