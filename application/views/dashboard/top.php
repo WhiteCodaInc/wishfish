@@ -625,14 +625,14 @@ $userid = $this->session->userdata('userid');
                     </li>
                 </ul>
                 <span class="separator"></span>
-                <div class="row" style="float: right;margin: 14px -15px;">
-                    <div class="col-md-12">
-                        <a class="import" href="<?= site_url() ?>app/import">
-                            <i class="fa fa-plus"></i> <span> Import Google Contact</span>
-                        </a>
-                    </div>
-                </div>
-                <span class="separator"></span>
+                <!--                <div class="row" style="float: right;margin: 14px -15px;">
+                                    <div class="col-md-12">
+                                        <a class="import" href="<?= site_url() ?>app/import">
+                                            <i class="fa fa-plus"></i> <span> Import Google Contact</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <span class="separator"></span>-->
                 <div class="row" style="float: right">
                     <div class="col-md-12">
                         <a style="margin-top: 6px;font-size: 16px;" class="btn btn-info" href="<?= site_url() ?>app/upgrade">
