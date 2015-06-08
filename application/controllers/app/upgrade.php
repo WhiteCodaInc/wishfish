@@ -73,9 +73,17 @@ class Upgrade extends CI_Controller {
                         "metadata" => array("userid" => $this->userid),
                     );
                     ($set['coupon'] != "") ? $stripe['coupon'] = $set['coupon'] : '';
+
                     $customer->subscriptions->create($stripe);
+
                     if ($set['coupon'] != "")
                         $this->objregister->updateCoupon($set['coupon']);
+
+                    $user_set = array(
+                        'gateway' => "STRIPE",
+                        'is_set' => 1
+                    );
+                    $this->db->update('wi_user_mst', $user_set, array('user_id' => $this->userid));
                     $success = 1;
                 } catch (Stripe_CardError $e) {
                     $error = $e->getMessage();
