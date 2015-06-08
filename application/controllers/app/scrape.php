@@ -20,6 +20,7 @@ class Scrape extends CI_Controller {
         } else {
             $this->load->library('amazons3');
             $this->config->load('aws');
+            $this->userid = $this->session->userdata('userid');
             $this->bucket = $this->encryption->decode($this->config->item('bucket', 'aws'));
             $this->accessKey = $this->encryption->decode($this->config->item('accessKey', 'aws'));
             $this->secretKey = $this->encryption->decode($this->config->item('secretKey', 'aws'));
@@ -62,10 +63,11 @@ class Scrape extends CI_Controller {
 
         if (is_array($post) && count($post)) {
             $set = array(
+                'user_id' => $this->userid,
                 'fname' => $post['fname'],
                 'lname' => $post['lname']
             );
-            $this->db->insert('contact_detail', $set);
+            $this->db->insert('wi_contact_detail', $set);
             $insertid = $this->db->insert_id();
 
             if ($post['type'] != "facebook") {
@@ -75,15 +77,15 @@ class Scrape extends CI_Controller {
                 $img_url = FCPATH . "user.jpg";
             }
 
-            $fname = 'contacts/contact_avatar_' . $insertid . '.jpg';
+            $fname = 'wish-fish/contacts/contact_avatar_' . $insertid . '.jpg';
             $this->s3->setAuth($this->accessKey, $this->secretKey);
             if ($this->s3->putObjectFile($img_url, $this->bucket, $fname, "public-read")) {
-                $this->db->update('contact_detail', array('contact_avatar' => $fname), array('contact_id' => $insertid));
+                $this->db->update('wi_contact_detail', array('contact_avatar' => $fname), array('contact_id' => $insertid));
             }
             unlink($img_url);
             echo 1;
         } else {
-            header('location:' . site_url() . 'admin/scrape');
+            header('location:' . site_url() . 'app/dashboard');
         }
     }
 
