@@ -11,11 +11,11 @@ class Paypal extends CI_Controller {
     }
 
     function index() {
-        $this->load->model('m_register', 'objreg');
+        $this->load->model('m_register');
         //$post = $this->input->post();
         //$this->session->set_flashdata($post);
         ///$code = $this->session->flashdata('code');
-        $coupon = $this->objreg->checkCoupon("FC5");
+        $coupon = $this->m_register->checkCoupon("FC5");
         if (count($coupon)) {
             echo '<pre>';
             print_r($coupon);
