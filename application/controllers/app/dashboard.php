@@ -197,7 +197,7 @@ class Dashboard extends CI_Controller {
     }
 
     function sendActivationEmail() {
-        if ($this->wi_authex->logged_in()) {
+        if ($this->duid != "") {
             $uid = $this->session->userdata('d-userid');
             $userInfo = $this->wi_common->getUserInfo($uid);
             $post = array(
