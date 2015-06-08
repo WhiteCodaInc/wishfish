@@ -73,8 +73,8 @@ class Paypal extends CI_Controller {
                 $requestParams['TRIALBILLINGPERIOD'] = 'Month';
                 $requestParams['TRIALBILLINGFREQUENCY'] = 1;
                 $requestParams['TRIALAMT'] = ($coupon->disc_type == "F") ?
-                        $planAmt - $coupon->dic_amount :
-                        $planAmt - ($planAmt * ($coupon->dic_amount / 100));
+                        $planAmt - $coupon->disc_amount :
+                        $planAmt - ($planAmt * ($coupon->disc_amount / 100));
                 $requestParams['TRIALTOTALBILLINGCYCLES'] = ($coupon->coupon_validity == "1") ?
                         1 : (($coupon->coupon_validity == "2") ? $coupon->month_duration : 0);
             }
