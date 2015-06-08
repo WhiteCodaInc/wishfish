@@ -302,7 +302,7 @@
                             if (answer == "0") {
                                 $('.personal .overlay').hide();
                                 $('.personal .loading-img').hide();
-                                $('#planUpgrade .box-body button').prop('disabled', false);
+                                $('#pay_personal').prop('disabled', false);
                                 $('#error').show();
                                 $('#error-msg').text("You can not upgrade your plan until your first invoice was created.!");
                             } else {
