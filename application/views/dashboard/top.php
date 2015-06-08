@@ -965,7 +965,7 @@ $userid = $this->session->userdata('userid');
                             $('#supportForm .msg').text('');
                             setTimeout(function () {
                                 $('.modal-backdrop').css('z-index', '999');
-                            }, 1000);
+                            }, 700);
                         });
                         $('#send').click(function () {
                             var query = $('#query').val();
