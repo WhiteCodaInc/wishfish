@@ -138,7 +138,7 @@ $userid = $this->session->userdata('userid');
                         <span style="font-size: 20px;color: white" id="curr_time"></span>
                     </li>  
                 </ul>
-                <ul class="nav navbar-nav navbar-right" id="wishfish-title">
+                <ul class="nav navbar-nav navbar-right" >
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-plus"></i>
@@ -147,18 +147,17 @@ $userid = $this->session->userdata('userid');
                         <ul class="dropdown-menu" role="menu" >
                             <li>
                                 <a class="import" href="<?= site_url() ?>app/import">
-                                    <i class="fa fa-plus"></i> <span> Import Google Contact</span>
+                                    Import Google Contact
                                 </a>
                             </li>
-                            <!--<li class="divider"></li>-->
-                            <!--                            <li>
-                                                            <a href="<?= site_url() ?>app/email_template">
-                                                                <i class="fa fa-envelope"></i> <span>Email Template</span>
-                                                            </a>
-                                                        </li>-->
+                            <li>
+                                <a href="<?= site_url() ?>app/import">
+                                    <span>Import Contacts</span>
+                                </a>
+                            </li>
                         </ul>
                     </li>
-                    <li class="dropdown user user-menu">
+                    <li class="dropdown user user-menu" id="wishfish-title">
                         <a style="padding: 10px" href="#" class="dropdown-toggle" data-toggle="dropdown">
 <!--                            <i class="glyphicon glyphicon-user"></i>-->
                             <img style="width: 30px;border-radius: 50%;" src="<?= $img_src ?>"  />
@@ -625,14 +624,6 @@ $userid = $this->session->userdata('userid');
                     </li>
                 </ul>
                 <span class="separator"></span>
-                <!--                <div class="row" style="float: right;margin: 14px -15px;">
-                                    <div class="col-md-12">
-                                        <a class="import" href="<?= site_url() ?>app/import">
-                                            <i class="fa fa-plus"></i> <span> Import Google Contact</span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <span class="separator"></span>-->
                 <div class="row" style="float: right">
                     <div class="col-md-12">
                         <a style="margin-top: 6px;font-size: 16px;" class="btn btn-info" href="<?= site_url() ?>app/upgrade">
