@@ -85,6 +85,7 @@ class Paypal extends CI_Controller {
 
             $response = $this->paypal_lib->request('CreateRecurringPaymentsProfile', $requestParams);
             echo '<pre>';
+            print_r($requestParams);
             print_r($response);
             die();
             if (is_array($response) && $response['ACK'] == 'Success') {
