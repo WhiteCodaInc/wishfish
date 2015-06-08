@@ -234,18 +234,11 @@ class M_register extends CI_Model {
     }
 
     function linkWithProfile($post) {
-//        echo '<pre>';
-//        print_r($post);
         $email = (is_array($post)) ? $post['email'] : $post;
         $query = $this->db->get_where('wi_user_mst', array('email' => $email));
         $res = $query->row();
-//        print_r($res);
         $profile_type = (is_array($post)) ? $post['profile_type'] : $res->profile_type;
         $profile_link = (is_array($post)) ? $post['profile_link'] : $res->profile_link;
-
-//        echo 'EMPTY';
-//        print_r($profile_link);
-//        die();
         if ($profile_type != "" && $profile_link != "") {
             switch ($profile_type) {
                 case "facebook":
@@ -279,11 +272,8 @@ class M_register extends CI_Model {
                     }
                     break;
                 case "twitter":
-//                    echo $profile_link . '<br>';
                     $base_url = "https://twitter.com/" . $profile_link;
                     $html = @file_get_html($base_url);
-//                    echo $html;
-//                    die();
                     if ($html) {
                         foreach ($html->find('h1.ProfileHeaderCard-name a') as $e)
                             $name = $e->plaintext;
