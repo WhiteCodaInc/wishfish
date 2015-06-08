@@ -260,21 +260,6 @@ $userid = $this->session->userdata('userid');
                                             <div class="loading-img" style="display: none"></div>
                                         </div>
                                     </div>
-                                    <!--                                        <div class="modal-footer clearfix">
-                                                                                <div class="row">
-                                                                                    <div class="col-md-3">
-                                                                                        <button type="submit" id="uploadBtn" class="btn btn-primary pull-left">Upload</button>
-                                                                                    </div>
-                                                                                    <div class="col-md-2">
-                                                                                        <div id="loadUpload" style="display: none">
-                                                                                            <img src="<?= base_url() ?>assets/dashboard/img/load.GIF" alt="" />
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="col-md-7" style="text-align: right">
-                                                                                        <button type="button" class="btn btn-danger discard" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>-->
                                 </div><!-- /.modal-content -->
                             </div><!-- /.modal-dialog -->
                         </div>
@@ -321,7 +306,7 @@ $userid = $this->session->userdata('userid');
                                     $.ajax({
                                         type: 'POST',
                                         data: {userid: $('#scrapeContact #url').val()},
-                                        url: "<?= site_url() ?>admin/scrape/facebook",
+                                        url: "<?= site_url() ?>app/scrape/facebook",
                                         success: function (data, textStatus, jqXHR) {
                                             $('#scrapeContact .parse .overlay').hide();
                                             $('#scrapeContact .parse .loading-img').hide();
@@ -344,7 +329,7 @@ $userid = $this->session->userdata('userid');
                                     $.ajax({
                                         type: 'POST',
                                         data: {url: $('#url').val()},
-                                        url: "<?= site_url() ?>admin/scrape/linkedin",
+                                        url: "<?= site_url() ?>app/scrape/linkedin",
                                         success: function (data, textStatus, jqXHR) {
                                             var _html = $(data);
 
@@ -365,7 +350,7 @@ $userid = $this->session->userdata('userid');
                                     $.ajax({
                                         type: 'POST',
                                         data: {userid: $('#url').val()},
-                                        url: "<?= site_url() ?>admin/scrape/twitter",
+                                        url: "<?= site_url() ?>app/scrape/twitter",
                                         success: function (data, textStatus, jqXHR) {
                                             var _html = $(data);
 
@@ -392,7 +377,7 @@ $userid = $this->session->userdata('userid');
                                             lname: $('.lname').text(),
                                             url: $('.picture').prop('src')
                                         },
-                                        url: "<?= site_url() ?>admin/scrape/addContact",
+                                        url: "<?= site_url() ?>app/scrape/addContact",
                                         success: function (data, textStatus, jqXHR) {
                                             $('.contactInfo .overlay').hide();
                                             $('.contactInfo .loading-img').hide();
@@ -959,8 +944,6 @@ $userid = $this->session->userdata('userid');
                 </script>
                 <script type="text/javascript">
                     $(document).ready(function (e) {
-
-
                         $('.scrape-contact,.query_popup').click(function () {
                             $('#supportForm .msg').text('');
                             setTimeout(function () {
