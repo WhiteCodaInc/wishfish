@@ -212,7 +212,7 @@
                     $.ajax({
                         type: 'POST',
                         url: "<?= site_url() ?>app/pay",
-                        data: {item_name: "wishfish-enterprise", amount: "49.99", upgrade: "1"},
+                        data: {item_name: "wishfish-enterprise", amount: "49.99", upgrade: "1", code: code},
                         success: function (answer) {
                             if (answer == "0") {
                                 $('#planUpgrade .box-body button').prop('disabled', false);

@@ -13,6 +13,7 @@ class Pay extends CI_Controller {
         $paypalGatewayInfo = $this->wi_common->getPaymentGatewayInfo("PAYPAL");
         require_once(FCPATH . 'stripe/lib/Stripe.php');
         Stripe::setApiKey($gatewayInfo->secret_key);
+        $this->load->model('m_register', 'objregister');
         $this->load->library('paypal_lib');
         $this->userid = $this->session->userdata('userid');
         $this->api_username = $paypalGatewayInfo->api_username;
@@ -65,29 +66,56 @@ class Pay extends CI_Controller {
                     $this->api_username, $this->api_password, $this->api_signature
             );
             $checkoutDetails = $this->paypal_lib->request('GetExpressCheckoutDetails', array('TOKEN' => $this->input->get('token')));
-            $planid = ($this->session->flashdata('item_name') == "wishfish-personal") ? 2 : 3;
 
-//            $currPlan = $this->wi_common->getLatestPlan($this->userid);
-//            $profileid = $this->isExistProfileId($currPlan);
-//            $this->getRecurringProfile($profileid->transaction_id)
-//            echo '<pre>';
+
+            $planid = ($this->session->flashdata('item_name') == "wishfish-personal") ? 2 : 3;
+            $planAmt = $this->session->flashdata('amount');
+            $code = $this->session->flashdata('code');
+
             // Complete the checkout transaction
             $requestParams = array(
                 'TOKEN' => $this->input->get('token'),
                 'PROFILESTARTDATE' => $checkoutDetails['TIMESTAMP'],
                 'DESC' => $this->session->flashdata('item_name'),
                 'BILLINGPERIOD' => 'Month',
-                'PROFILEREFERENCE' => $this->userid,
+                'PROFILEREFERENCE' => $uid,
                 'BILLINGFREQUENCY' => 1,
                 'TOTALBILLINGCYCLES' => 0,
-                'AMT' => $this->session->flashdata('amount'),
+                'AMT' => $planAmt,
                 'CURRENCYCODE' => 'USD',
                 'MAXFAILEDPAYMENTS' => 3,
                 'FAILEDINITAMTACTION' => 'CancelOnFailure'
             );
+
+            $coupon = $this->objregister->checkCoupon($code);
+            if (!empty($coupon) && $coupon->coupon_validity != '3') {
+                $requestParams['TRIALBILLINGPERIOD'] = 'Month';
+                $requestParams['TRIALBILLINGFREQUENCY'] = 1;
+                $amt = ($coupon->disc_type == "F") ?
+                        $planAmt - $coupon->disc_amount :
+                        $planAmt - ($planAmt * ($coupon->disc_amount / 100));
+                $requestParams['TRIALAMT'] = number_format($amt, 2);
+                $requestParams['TRIALTOTALBILLINGCYCLES'] = ($coupon->coupon_validity == '1') ?
+                        1 : $coupon->month_duration;
+            } else {
+                $amt = ($coupon->disc_type == "F") ?
+                        $planAmt - $coupon->disc_amount :
+                        $planAmt - ($planAmt * ($coupon->disc_amount / 100));
+                $requestParams['AMT'] = number_format($amt, 2);
+            }
+
             $response = $this->paypal_lib->request('CreateRecurringPaymentsProfile', $requestParams);
             if (is_array($response) && $response['ACK'] == 'Success') {
-                $response['AMT'] = $this->session->flashdata('amount');
+
+                if ($code != "")
+                    $this->objregister->updateCoupon($code);
+
+                if (!empty($coupon) && $coupon->coupon_validity != '3') {
+                    $response['AMT'] = $requestParams['TRIALAMT'];
+                } else {
+                    $response['AMT'] = $requestParams['AMT'];
+                }
+
                 $currPlan = $this->wi_common->getLatestPlan($this->userid);
                 $userInfo = $this->wi_common->getUserInfo($this->userid);
                 if ($currPlan->plan_status == 1) {
