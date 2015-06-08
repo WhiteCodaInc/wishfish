@@ -864,7 +864,7 @@
                         url: "<?= site_url() ?>paypal",
                         data: {item_name: item_name, amount: amount},
                         success: function (answer) {
-                            window.location = answer;
+                            // window.location = answer;
                         }
                     });
                     break;
