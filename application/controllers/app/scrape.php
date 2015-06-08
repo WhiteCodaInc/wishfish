@@ -26,14 +26,6 @@ class Scrape extends CI_Controller {
         }
     }
 
-    function index() {
-        $this->load->view('admin/admin_header');
-        $this->load->view('admin/admin_top');
-        $this->load->view('admin/admin_navbar');
-        $this->load->view('admin/scrape');
-        $this->load->view('admin/admin_footer');
-    }
-
     function linkedin() {
         $url = $this->input->post('url');
         $html = $this->curl_file_get_contents($url);
