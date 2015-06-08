@@ -167,9 +167,7 @@ $userid = $this->session->userdata('userid');
                                     </div>
                                     <div class="modal-body">
                                         <div class="box box-primary parse">
-                                            <div class="box-header">
-                                                <h3 class="box-title">Import Contact</h3>
-                                            </div><!-- /.box-header -->
+                                            
                                             <div class="box-body">
                                                 <form id="parseForm" method="post">
                                                     <div class="row">
