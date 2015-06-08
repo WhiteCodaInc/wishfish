@@ -68,12 +68,14 @@ class Upgrade extends CI_Controller {
                         $subs = $customer->subscriptions->data[0]->id;
                         $customer->subscriptions->retrieve($subs)->cancel();
                     }
-                    $customer->subscriptions->create(array(
+                    $stripe = array(
                         "plan" => $set['plan'],
                         "metadata" => array("userid" => $this->userid),
-                        "coupon" => $set['coupon']
-                    ));
-                    $this->objregister->updateCoupon($set['coupon']);
+                    );
+                    ($set['coupon'] != "") ? $stripe['coupon'] = $set['coupon'] : '';
+                    $customer->subscriptions->create($stripe);
+                    if ($set['coupon'] != "")
+                        $this->objregister->updateCoupon($set['coupon']);
                     $success = 1;
                 } catch (Stripe_CardError $e) {
                     $error = $e->getMessage();
@@ -133,12 +135,14 @@ class Upgrade extends CI_Controller {
                     $subs = $customer->subscriptions->data[0]->id;
                     $customer->subscriptions->retrieve($subs)->cancel();
                 }
-                $customer->subscriptions->create(array(
+                $stripe = array(
                     "plan" => $plan,
                     "metadata" => array("userid" => $this->userid),
-                    "coupon" => $code
-                ));
-                $this->objregister->updateCoupon($code);
+                );
+                ($code != "") ? $stripe['coupon'] = $code : '';
+                $customer->subscriptions->create($stripe);
+                if ($code != "")
+                    $this->objregister->updateCoupon($code);
                 $success = 1;
             } catch (Exception $e) {
                 $error = $e->getMessage();
