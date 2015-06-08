@@ -122,7 +122,6 @@
             $('#url').val('');
             $('.picture').prop('src', '#');
             $('.parse').show();
-
         });
 
         $('#type').change(function () {
