@@ -221,7 +221,7 @@
                                 $('#error').show();
                                 $('#error-msg').text("You can not upgrade your plan until your first invoice was created.!");
                             } else {
-                                //window.location = answer;
+                                window.location = answer;
                             }
                         }
                     });
