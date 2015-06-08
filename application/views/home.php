@@ -866,7 +866,7 @@
                         url: "<?= site_url() ?>paypal",
                         data: {item_name: item_name, amount: amount, code: couponCode},
                         success: function (answer) {
-                            // window.location = answer;
+                            window.location = answer;
                         }
                     });
                     break;
