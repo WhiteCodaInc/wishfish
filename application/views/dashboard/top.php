@@ -959,12 +959,15 @@ $userid = $this->session->userdata('userid');
                 </script>
                 <script type="text/javascript">
                     $(document).ready(function (e) {
-                        $('.modal-backdrop').css('z-index', '1');
+                        setTimeout(function () {
+                            $('.modal-backdrop').css('z-index', '1');
+                        }, 1000);
+
                         $('.query_popup').click(function () {
                             $('#supportForm .msg').text('');
-                            setTimeout(function () {
-                                $('.modal-backdrop').css('z-index', '999');
-                            }, 1000);
+//                            setTimeout(function () {
+//                                $('.modal-backdrop').css('z-index', '999');
+//                            }, 1000);
                         });
                         $('#send').click(function () {
                             var query = $('#query').val();
