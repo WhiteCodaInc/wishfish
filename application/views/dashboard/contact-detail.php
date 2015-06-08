@@ -190,7 +190,9 @@
                                                 </div>
                                             </td>
                                             <td >
-                                                <img style="width:60px;height:60px" src="<?= $img_src ?>" class="img-circle" alt="User Image" />
+                                                <a href="<?= site_url() . 'app/contacts/profile/' . $value->contact_id ?>" class="name">
+                                                    <img style="width:60px;height:60px" src="<?= $img_src ?>" class="img-circle" alt="User Image" />
+                                                </a>
                                             </td>
                                             <td>
                                                 <a href="<?= site_url() . 'app/contacts/profile/' . $value->contact_id ?>" class="name">
