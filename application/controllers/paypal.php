@@ -1,7 +1,7 @@
 <?php
 
-if (!defined('BASEPATH'))
-    exit('No direct script access allowed');
+//if (!defined('BASEPATH'))
+//    exit('No direct script access allowed');
 
 class Paypal extends CI_Controller {
 
@@ -49,13 +49,6 @@ class Paypal extends CI_Controller {
     }
 
     function consolidate() {
-        $coupon = $this->objregister->checkCoupon("FC5");
-        if (count($coupon)) {
-            echo '<pre>';
-            print_r($coupon);
-            die();
-        }
-        die();
         if ($this->input->get('token')) { // Token parameter exists
             $gatewayInfo = $this->wi_common->getPaymentGatewayInfo("PAYPAL");
             $this->paypal_lib->set_acct_info(
