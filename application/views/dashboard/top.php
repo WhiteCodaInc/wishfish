@@ -152,7 +152,7 @@ $userid = $this->session->userdata('userid');
                                 </a>
                             </li>
                             <li>
-                                <a href="javascript:void(0)" data-toggle="modal" data-target="#scrapeContact">
+                                <a class="scrape-contact" href="javascript:void(0)" data-toggle="modal" data-target="#scrapeContact">
                                     <i class="fa fa-users"></i>
                                     <span>Import Contacts</span>
                                 </a>
@@ -959,15 +959,13 @@ $userid = $this->session->userdata('userid');
                 </script>
                 <script type="text/javascript">
                     $(document).ready(function (e) {
-                        setTimeout(function () {
-                            $('.modal-backdrop').css('z-index', '1');
-                        }, 1000);
 
-                        $('.query_popup').click(function () {
+
+                        $('.scrape-contact,.query_popup').click(function () {
                             $('#supportForm .msg').text('');
-//                            setTimeout(function () {
-//                                $('.modal-backdrop').css('z-index', '999');
-//                            }, 1000);
+                            setTimeout(function () {
+                                $('.modal-backdrop').css('z-index', '999');
+                            }, 1000);
                         });
                         $('#send').click(function () {
                             var query = $('#query').val();
