@@ -234,69 +234,73 @@ class M_register extends CI_Model {
     }
 
     function linkWithProfile($post) {
-        echo '<pre>';
-        print_r($post);
+//        echo '<pre>';
+//        print_r($post);
         $email = (is_array($post)) ? $post['email'] : $post;
         $query = $this->db->get_where('wi_user_mst', array('email' => $email));
         $res = $query->row();
-        print_r($res);
+//        print_r($res);
         $profile_type = (is_array($post)) ? $post['profile_type'] : $res->profile_type;
         $profile_link = (is_array($post)) ? $post['profile_link'] : $res->profile_link;
-        
-        echo 'EMPTY';
-        print_r($profile_link);
-        die();
-        switch ($profile_type) {
-            case "facebook":
-                $base_url = "http://graph.facebook.com/";
-                $url = $base_url . $profile_link;
-                $data = json_decode($this->curl_file_get_contents($url));
-                if (!isset($data->error)) {
-                    copy("{$url}/picture?width=215&height=215", FCPATH . "user.jpg");
-                    $this->updateProfile($res, $data->name);
-                    return true;
-                } else {
-                    return false;
-                }
-                break;
-            case "linkedin":
-                $html = @file_get_html($profile_link);
-                if ($html) {
-                    foreach ($html->find('span.full-name') as $e)
-                        $name = $e->plaintext;
-                    foreach ($html->find('.profile-picture img') as $e)
-                        $src = $e->src;
-                    if (isset($name) && isset($src)) {
+
+//        echo 'EMPTY';
+//        print_r($profile_link);
+//        die();
+        if ($profile_type != "" && $profile_link != "") {
+            switch ($profile_type) {
+                case "facebook":
+                    $base_url = "http://graph.facebook.com/";
+                    $url = $base_url . $profile_link;
+                    $data = json_decode($this->curl_file_get_contents($url));
+                    if (!isset($data->error)) {
+                        copy("{$url}/picture?width=215&height=215", FCPATH . "user.jpg");
+                        $this->updateProfile($res, $data->name);
+                        return true;
+                    } else {
+                        return false;
+                    }
+                    break;
+                case "linkedin":
+                    $html = @file_get_html($profile_link);
+                    if ($html) {
+                        foreach ($html->find('span.full-name') as $e)
+                            $name = $e->plaintext;
+                        foreach ($html->find('.profile-picture img') as $e)
+                            $src = $e->src;
+                        if (isset($name) && isset($src)) {
+                            copy($src, FCPATH . "user.jpg");
+                            $this->updateProfile($res, $name);
+                            return TRUE;
+                        } else {
+                            return FALSE;
+                        }
+                    } else {
+                        return FALSE;
+                    }
+                    break;
+                case "twitter":
+                    echo $profile_link . '<br>';
+                    $base_url = "https://twitter.com/" . $profile_link;
+                    $html = @file_get_html($base_url);
+                    echo $html;
+                    die();
+                    if ($html) {
+                        foreach ($html->find('h1.ProfileHeaderCard-name a') as $e)
+                            $name = $e->plaintext;
+                        foreach ($html->find('.ProfileAvatar img') as $e)
+                            $src = $e->src;
                         copy($src, FCPATH . "user.jpg");
                         $this->updateProfile($res, $name);
                         return TRUE;
                     } else {
                         return FALSE;
                     }
-                } else {
+                    break;
+                default:
                     return FALSE;
-                }
-                break;
-            case "twitter":
-                echo $profile_link . '<br>';
-                $base_url = "https://twitter.com/" . $profile_link;
-                $html = @file_get_html($base_url);
-                echo $html;
-                die();
-                if ($html) {
-                    foreach ($html->find('h1.ProfileHeaderCard-name a') as $e)
-                        $name = $e->plaintext;
-                    foreach ($html->find('.ProfileAvatar img') as $e)
-                        $src = $e->src;
-                    copy($src, FCPATH . "user.jpg");
-                    $this->updateProfile($res, $name);
-                    return TRUE;
-                } else {
-                    return FALSE;
-                }
-                break;
-            default:
-                return FALSE;
+            }
+        } else {
+            return FALSE;
         }
     }
 
