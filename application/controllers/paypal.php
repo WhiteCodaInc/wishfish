@@ -16,12 +16,10 @@ class Paypal extends CI_Controller {
         $this->session->set_flashdata($post);
         $code = $this->session->flashdata('code');
         $coupon = $this->objregister->checkCoupon($code);
-        echo '<pre>';
-        print_r($coupon);
-        die();
-
-        if ($code != "" && count($coupon)) {
-            
+        if ($code != "" && is_object($coupon)) {
+            echo '<pre>';
+            print_r($coupon);
+            die();
         }
         die();
         $gatewayInfo = $this->wi_common->getPaymentGatewayInfo("PAYPAL");
