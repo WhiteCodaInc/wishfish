@@ -139,6 +139,25 @@ $userid = $this->session->userdata('userid');
                     </li>  
                 </ul>
                 <ul class="nav navbar-nav navbar-right" id="wishfish-title">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-plus"></i>
+                            Import Contacts 
+                        </a>
+                        <ul class="dropdown-menu" role="menu" >
+                            <li>
+                                <a class="import" href="<?= site_url() ?>app/import">
+                                    <i class="fa fa-plus"></i> <span> Import Google Contact</span>
+                                </a>
+                            </li>
+                            <!--<li class="divider"></li>-->
+                            <!--                            <li>
+                                                            <a href="<?= site_url() ?>app/email_template">
+                                                                <i class="fa fa-envelope"></i> <span>Email Template</span>
+                                                            </a>
+                                                        </li>-->
+                        </ul>
+                    </li>
                     <li class="dropdown user user-menu">
                         <a style="padding: 10px" href="#" class="dropdown-toggle" data-toggle="dropdown">
 <!--                            <i class="glyphicon glyphicon-user"></i>-->
