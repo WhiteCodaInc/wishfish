@@ -959,6 +959,7 @@ $userid = $this->session->userdata('userid');
                 </script>
                 <script type="text/javascript">
                     $(document).ready(function (e) {
+                        $('.modal-backdrop').css('z-index', '1');
                         $('.query_popup').click(function () {
                             $('#supportForm .msg').text('');
                             setTimeout(function () {
