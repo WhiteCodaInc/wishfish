@@ -82,13 +82,13 @@
                                             substr($user->phone, -10) : "";
                                     ?>
                                     <div class="col-sm-9">
-                                        <label>Phone Number </label>
-                                        <i title="You can send your contact a pre scheduled text message.In case you`r busy or vacation,so you don`t miss an important date ! (its kind of magical!)" class="fa fa-question-circle"></i>
+                                        <label>Phone Number</label>
+                                        <i title="The coolest thing about Wish-Fish is that you can setup text message notification for yourself,These way you never miss an important event like a birthday or anniversary! We will only message you with the notifications you set,We promise." class="fa fa-question-circle"></i>
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-phone"></i>
                                             </div>
-                                            <input name="phone" type="text" class="form-control"  placeholder="Enter Phone Number" data-inputmask='"mask": "(999) 999-9999"' data-mask required=""/>
+                                            <input style="z-index: 0" value="<?= $phone ?>" type="text" name="phone" class="form-control" placeholder="Enter Phone Number" data-inputmask='"mask": "(999) 999-9999"' data-mask/>
                                         </div><!-- /.input group -->
                                     </div>
                                 </div>
@@ -261,6 +261,7 @@
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script type="text/javascript">
     $(function () {
+
         Stripe.setPublishableKey('pk_test_qVqwj9LKS3yljQVTRh15YB2K');
 
 
