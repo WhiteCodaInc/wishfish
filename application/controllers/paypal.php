@@ -89,6 +89,12 @@ class Paypal extends CI_Controller {
 
             $response = $this->paypal_lib->request('CreateRecurringPaymentsProfile', $requestParams);
             if (is_array($response) && $response['ACK'] == 'Success') {
+                
+                echo '<pre>';
+                echo $code.'<br>';
+                print_r($requestParams);
+                print_r($coupon);
+                die();
                 if ($code != "")
                     $this->objregister->updateCoupon($code);
                 if (!empty($coupon) && $coupon->coupon_validity != '3') {
