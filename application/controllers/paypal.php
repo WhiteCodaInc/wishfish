@@ -47,6 +47,8 @@ class Paypal extends CI_Controller {
                     $gatewayInfo->api_username, $gatewayInfo->api_password, $gatewayInfo->api_signature
             );
             $checkoutDetails = $this->paypal_lib->request('GetExpressCheckoutDetails', array('TOKEN' => $this->input->get('token')));
+
+            $this->db->trans_start();
             $uid = $this->insertUser($checkoutDetails);
 
             $planid = ($this->session->flashdata('item_name') == "wishfish-personal") ? 2 : 3;
@@ -93,8 +95,10 @@ class Paypal extends CI_Controller {
                 $this->session->set_userdata('d-userid', $uid);
                 $this->session->set_userdata('d-name', $checkoutDetails['FIRSTNAME'] . ' ' . $checkoutDetails['LASTNAME']);
                 $this->sendMail($checkoutDetails, $uid);
+                $this->db->trans_complete();
                 header('Location:' . site_url() . 'app/dashboard');
             } else {
+                $this->db->trans_off();
                 header('Location:' . site_url() . 'home');
             }
         }
