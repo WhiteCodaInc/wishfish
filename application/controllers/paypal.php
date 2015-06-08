@@ -14,16 +14,6 @@ class Paypal extends CI_Controller {
     function index() {
         $post = $this->input->post();
         $this->session->set_flashdata($post);
-        $code = $this->session->flashdata('code');
-        $coupon = $this->objregister->checkCoupon($code);
-        print_r($coupon);
-        if (!empty($coupon)) {
-            print_r($coupon);
-            die("TRUE");
-        } else {
-            die("FALSE");
-        }
-        die();
         $gatewayInfo = $this->wi_common->getPaymentGatewayInfo("PAYPAL");
         $this->paypal_lib->set_acct_info($gatewayInfo->api_username, $gatewayInfo->api_password, $gatewayInfo->api_signature);
 
@@ -57,17 +47,11 @@ class Paypal extends CI_Controller {
                     $gatewayInfo->api_username, $gatewayInfo->api_password, $gatewayInfo->api_signature
             );
             $checkoutDetails = $this->paypal_lib->request('GetExpressCheckoutDetails', array('TOKEN' => $this->input->get('token')));
-
-            $code = $this->session->flashdata('code');
-            $coupon = $this->objregister->checkCoupon($code);
-            if ($code != "" && count($coupon)) {
-                echo '<pre>';
-                print_r($coupon);
-                die();
-            }
-            die();
             $uid = $this->insertUser($checkoutDetails);
+
             $planid = ($this->session->flashdata('item_name') == "wishfish-personal") ? 2 : 3;
+            $planAmt = $this->session->flashdata('amount');
+            $code = $this->session->flashdata('code');
 
             // Complete the checkout transaction
             $requestParams = array(
@@ -78,15 +62,31 @@ class Paypal extends CI_Controller {
                 'PROFILEREFERENCE' => $uid,
                 'BILLINGFREQUENCY' => 1,
                 'TOTALBILLINGCYCLES' => 0,
-                'AMT' => $this->session->flashdata('amount'),
+                'AMT' => $planAmt,
                 'CURRENCYCODE' => 'USD',
                 'MAXFAILEDPAYMENTS' => 3,
                 'FAILEDINITAMTACTION' => 'CancelOnFailure'
             );
+
+            $coupon = $this->objregister->checkCoupon($code);
+            if (!empty($coupon)) {
+                $requestParams['TRIALBILLINGPERIOD'] = 'Month';
+                $requestParams['TRIALBILLINGFREQUENCY'] = 1;
+                $requestParams['TRIALAMT'] = ($coupon->disc_type == "F") ?
+                        $planAmt - $coupon->dic_amount :
+                        $planAmt - ($planAmt * ($coupon->dic_amount / 100));
+                $requestParams['TRIALTOTALBILLINGCYCLES'] = ($coupon->coupon_validity == "1") ?
+                        1 : (($coupon->coupon_validity == "2") ? $coupon->month_duration : 0);
+            }
+
             $response = $this->paypal_lib->request('CreateRecurringPaymentsProfile', $requestParams);
 
             if (is_array($response) && $response['ACK'] == 'Success') {
-                $response['AMT'] = $this->session->flashdata('amount');
+                if (!empty($coupon)) {
+                    $response['AMT'] = $requestParams['TRIALAMT'];
+                } else {
+                    $response['AMT'] = $requestParams['AMT'];
+                }
                 $this->insertPlanDetail($uid, $planid, $response);
                 $this->session->set_userdata('d-userid', $uid);
                 $this->session->set_userdata('d-name', $checkoutDetails['FIRSTNAME'] . ' ' . $checkoutDetails['LASTNAME']);
