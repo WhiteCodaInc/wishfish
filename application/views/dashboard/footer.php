@@ -16,6 +16,7 @@ if ($userid != "") {
 ?>
 <script type="text/javascript">
     $(function () {
+        $("[data-mask]").inputmask();
         //-----------------------------iCheck All-----------------------------//
         $('table thead :checkbox').on('ifChecked ifUnchecked', function (event) {
             if (event.type == 'ifChecked') {
