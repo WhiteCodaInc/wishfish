@@ -689,6 +689,7 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        var couponCode = "";
         $('#remember').click(function () {
             $('input[name="remember"]').trigger('click');
         });
@@ -714,6 +715,7 @@
                     url: "<?= site_url() ?>home/checkCoupon",
                     success: function (data, textStatus, jqXHR) {
                         if (data == "1") {
+                            couponCode = code;
                             $('#' + id + ' div.couponbox').hide();
                             $('#' + id + ' span.success').html("Coupon <b style='color:#1ac6ff'>" + code + "</b> was apply successfully..!");
                             $('#' + id + ' span.success').show();
@@ -862,7 +864,7 @@
                     $.ajax({
                         type: 'POST',
                         url: "<?= site_url() ?>paypal",
-                        data: {item_name: item_name, amount: amount},
+                        data: {item_name: item_name, amount: amount, code: couponCode},
                         success: function (answer) {
                             // window.location = answer;
                         }
