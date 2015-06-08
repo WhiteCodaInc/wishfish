@@ -8,10 +8,10 @@ class Paypal extends CI_Controller {
     function __construct() {
         parent::__construct();
         $this->load->library('paypal_lib');
-        $this->load->model('m_register', 'objregister');
     }
 
     function index() {
+        $this->load->model('m_register', 'objregister');
         //$post = $this->input->post();
         //$this->session->set_flashdata($post);
         ///$code = $this->session->flashdata('code');
