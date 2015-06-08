@@ -147,11 +147,13 @@ $userid = $this->session->userdata('userid');
                         <ul class="dropdown-menu" role="menu" >
                             <li>
                                 <a class="import" href="<?= site_url() ?>app/import">
-                                    Import Google Contact
+                                    <i class="fa fa-google"></i>
+                                    <span>Import Google Contacts</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="<?= site_url() ?>app/import">
+                                    <i class="fa fa-users"></i>
                                     <span>Import Contacts</span>
                                 </a>
                             </li>
