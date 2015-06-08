@@ -25,11 +25,7 @@ class Pay extends CI_Controller {
         $currPlan = $this->wi_common->getLatestPlan($this->userid);
         $userInfo = $this->wi_common->getUserInfo($this->userid);
 
-        $post = $this->input->post();
-        echo '<pre>';
-        print_r($post);
-        die();
-        
+
         if (!$userInfo->is_set || ($userInfo->is_set && $this->isExistProfileId($currPlan))) {
             $post = $this->input->post();
             $this->session->set_flashdata($post);
@@ -83,7 +79,7 @@ class Pay extends CI_Controller {
                 'PROFILESTARTDATE' => $checkoutDetails['TIMESTAMP'],
                 'DESC' => $this->session->flashdata('item_name'),
                 'BILLINGPERIOD' => 'Month',
-                'PROFILEREFERENCE' => $uid,
+                'PROFILEREFERENCE' => $this->userid,
                 'BILLINGFREQUENCY' => 1,
                 'TOTALBILLINGCYCLES' => 0,
                 'AMT' => $planAmt,
