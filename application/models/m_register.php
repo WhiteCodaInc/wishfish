@@ -239,6 +239,9 @@ class M_register extends CI_Model {
         $res = $query->row();
         $profile_type = (is_array($post)) ? $post['profile_type'] : $res->profile_type;
         $profile_link = (is_array($post)) ? $post['profile_link'] : $res->profile_link;
+        echo '<pre>';
+        print_r($profile_link);
+        die();
         switch ($profile_type) {
             case "facebook":
                 $base_url = "http://graph.facebook.com/";
