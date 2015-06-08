@@ -18,9 +18,10 @@ class Paypal extends CI_Controller {
         $coupon = $this->objregister->checkCoupon($code);
         print_r($coupon);
         if (!empty($coupon)) {
-            echo 'TRUE';
             print_r($coupon);
-            die();
+            die("TRUE");
+        } else {
+            die("FALSE");
         }
         die();
         $gatewayInfo = $this->wi_common->getPaymentGatewayInfo("PAYPAL");
