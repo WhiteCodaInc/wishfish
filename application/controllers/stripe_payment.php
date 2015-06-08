@@ -38,15 +38,16 @@ class Stripe_payment extends CI_Controller {
             Stripe::setApiKey($gatewayInfo->secret_key);
             if ($this->input->post('stripeToken') != "") {
                 try {
-                    $customer = Stripe_Customer::create(
-                                    array(
-                                        "card" => $this->input->post('stripeToken'),
-                                        "email" => $this->input->post('stripeEmail'),
-                                        "metadata" => array(),
-                                        "coupon" => $set['coupon'],
-                                        "plan" => $set['plan'])
+                    $stripe = array(
+                        "card" => $this->input->post('stripeToken'),
+                        "email" => $this->input->post('stripeEmail'),
+                        "metadata" => array(),
+                        "plan" => $set['plan']
                     );
-                    $this->objregister->updateCoupon($set['coupon']);
+                    ($set['coupon'] != "") ? $stripe['coupon'] = $set['coupon'] : '';
+                    $customer = Stripe_Customer::create($stripe);
+                    if ($set['coupon'] != "")
+                        $this->objregister->updateCoupon($set['coupon']);
                     $success = 1;
                 } catch (Stripe_CardError $e) {
                     $error = $e->getMessage();
