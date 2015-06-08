@@ -8,14 +8,14 @@ class Paypal extends CI_Controller {
     function __construct() {
         parent::__construct();
         $this->load->library('paypal_lib');
+        $this->load->model('m_register', 'objregister');
     }
 
     function index() {
-        $this->load->model('m_register');
         //$post = $this->input->post();
         //$this->session->set_flashdata($post);
         ///$code = $this->session->flashdata('code');
-        $coupon = $this->m_register->checkCoupon("FC5");
+        $coupon = $this->objregister->checkCoupon("FC5");
         if (count($coupon)) {
             echo '<pre>';
             print_r($coupon);
