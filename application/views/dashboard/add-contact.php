@@ -106,7 +106,7 @@
 
 <script type="text/javascript">
     $(function () {
-//        $("[data-mask]").inputmask();
+        $("[data-mask]").inputmask();
         $('.default-date-picker').datepicker({
             format: "<?= $this->session->userdata('date_format') ?>",
             todayBtn: "linked",
