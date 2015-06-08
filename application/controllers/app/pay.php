@@ -24,8 +24,7 @@ class Pay extends CI_Controller {
     function index() {
         $currPlan = $this->wi_common->getLatestPlan($this->userid);
         $userInfo = $this->wi_common->getUserInfo($this->userid);
-
-
+        
         if (!$userInfo->is_set || ($userInfo->is_set && $this->isExistProfileId($currPlan))) {
             $post = $this->input->post();
             $this->session->set_flashdata($post);

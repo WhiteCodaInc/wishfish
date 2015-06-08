@@ -39,9 +39,9 @@ class Upgrade extends CI_Controller {
         $data['paypal'] = $this->wi_common->getPaymentGatewayInfo("PAYPAL");
         $data['userInfo'] = $this->wi_common->getUserInfo($this->userid);
         $data['card'] = $this->objprofile->getCardDetail();
-//        echo '<pre>';
-//        print_r($data);
-//        die();
+        echo '<pre>';
+        print_r($data);
+        die();
         $this->load->view('dashboard/header');
         $this->load->view('dashboard/top');
         $this->load->view('dashboard/upgrade', $data);
