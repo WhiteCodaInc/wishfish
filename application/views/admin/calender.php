@@ -679,7 +679,7 @@
                         </div>
                     </div>
                     <br/>
-                    <div class="row">
+                    <div class="row choose">
                         <div class="col-md-5">
                             <label>Choose <span id="lbl_select">Contact </span></label>
                             <div class="form-group" id="user-tag">
@@ -928,7 +928,7 @@
                 if (!validateContact(user)) {
                     $msg = (event_type == "notification" || event_type == "sms") ?
                             "Can not SMS this user because no phone number is assigned!" :
-                            "Can not Email this user because no phone number is assigned!";
+                            "Can not Email this user because no email address is assigned!";
                     $('.msgChoose').text($msg);
                 } else {
                     $('.msgChoose').empty();
@@ -938,6 +938,7 @@
     }
 
     $('input[name="assign"]').change(function () {
+        $('.msgChoose').empty();
         var user = $('#user').val();
         var event_type = $('input[name="event_type"]:checked').val();
         var type = (event_type == "sms" || event_type == "notification") ? "sms" : "email";

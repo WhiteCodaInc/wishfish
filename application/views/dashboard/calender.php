@@ -911,7 +911,7 @@
                 if (!validateContact(user)) {
                     $msg = (event_type == "notification" || event_type == "sms") ?
                             "Can not SMS this user because no phone number is assigned!" :
-                            "Can not Email this user because no phone number is assigned!";
+                            "Can not Email this user because no email address is assigned!";
                     $('.msgChoose').text($msg);
                 } else {
                     $('.msgChoose').empty();
@@ -923,6 +923,7 @@
     var groupEvent = "<?= $planInfo->group_events ?>";
     var planid = "<?= $planInfo->plan_id ?>";
     $('#eventForm input[name="assign"]').change(function () {
+        $('.msgChoose').empty();
         var event_type = $('#eventForm input[name="event_type"]:checked').val();
         if ($(this).val() == "all_c") {
             $.ajax({
