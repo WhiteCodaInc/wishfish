@@ -127,8 +127,9 @@ class Common {
     }
 
     //-----------------------------Admin Side Function--------------------------------//
-    function getAdminInfo() {
-        $query = $this->_CI->db->get_where('admin_profile', array('profile_id' => $this->profile_id));
+    function getAdminInfo($adminid = NULL) {
+        $aid = ($adminid != NULL) ? $adminid : $this->profile_id;
+        $query = $this->_CI->db->get_where('admin_profile', array('profile_id' => $aid));
         return $query->row();
     }
 
@@ -162,7 +163,11 @@ class Common {
     }
 
     function sendSMS($to, $body) {
-        $adminInfo = $this->getAdminInfo();
+        if ($this->profile_id) {
+            $adminInfo = $this->getAdminInfo();
+        } else {
+            $adminInfo = $this->getAdminInfo(2);
+        }
         try {
             $msg = $this->_CI->twilio->account->messages->create(
                     array(

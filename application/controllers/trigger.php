@@ -63,11 +63,12 @@ class Trigger extends CI_Controller {
                         print_r($tag);
                         if ($value->event_type == "sms") {
                             $body = $this->parser->parse_string($value->body, $tag, TRUE);
-                            if ($this->sendSMS($contact->phone, $body, $value->notify)) {
+
+                            if ($this->sendSMS($contact->phone, $body, $value->notify, $value->user_id)) {
                                 $this->objtrigger->updateStatus($value->event_id);
                             }
                         } else if ($value->event_type == "email") {
-                            if ($this->sendMail($contact, $tag, $value, $value->notify)) {
+                            if ($this->sendMail($contact, $tag, $value, $value->notify, $value->user_id)) {
                                 $this->objtrigger->updateStatus($value->event_id);
                             }
                         }
@@ -104,16 +105,18 @@ class Trigger extends CI_Controller {
         }
     }
 
-    function sendSMS($to, $body, $notify) {
+    function sendSMS($to, $body, $notify, $userid) {
         if ($notify == "me") {
-            $to = $this->session->userdata('phone');
+            $userInfo = $this->wi_common->getUserInfo($userid);
+            $to = $userInfo->phone;
         }
         return $this->wi_common->sendSMS($to, $body);
     }
 
-    function sendMail($contact, $tag, $post, $notify) {
+    function sendMail($contact, $tag, $post, $notify, $userid) {
         if ($notify == "me") {
-            $email = $this->session->userdata('email');
+            $userInfo = $this->wi_common->getUserInfo($userid);
+            $email = $userInfo->email;
         } else {
             $email = $contact->email;
         }
