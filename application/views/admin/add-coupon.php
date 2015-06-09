@@ -40,6 +40,7 @@
                                     <span class="error msgcode"></span>
                                 </div>
                                 <div class="col-md-3">
+                                    <br/>
                                     <button type="button" class="btn btn-primary" id="randomCode">Generate</button>
                                 </div>
 
