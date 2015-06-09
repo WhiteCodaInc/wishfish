@@ -895,8 +895,8 @@
 
     function chooseContact() {
         $('div.choose input:text').focusout(function () {
-            console.log(contact);
-            console.log($('#users').val());
+            var con = $('#users').val().split('||');
+            console.log(con);
         });
     }
 
