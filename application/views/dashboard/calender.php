@@ -1257,6 +1257,7 @@
                 $('#e_subject').css('display', 'block');
             }
             $('#rd_individual').trigger('change');
+            $('.msgChoose').empty();
             $.ajax({
                 type: 'POST',
                 url: "<?= site_url() ?>app/calender/getTemplates/" + $type,
