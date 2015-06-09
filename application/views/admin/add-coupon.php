@@ -15,7 +15,10 @@
     </section>
     <!-- Main content -->
     <section class="content">
-        <?php $error = $this->session->flashdata('error'); ?>
+        <?php
+        $error = $this->session->flashdata('error');
+        echo $error;
+        ?>
         <?php if ($error): ?>
             <div  class="row">
                 <div class="col-md-3"></div>
