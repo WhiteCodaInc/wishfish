@@ -32,7 +32,7 @@ class Trigger extends CI_Controller {
     function index() {
         // UM =  - to UTC 
         // UP = UTC to + 
-        $this->timezone = "UTC";
+        $this->timezone = "UM8";
         $datetime = date('Y-m-d H:i:s', gmt_to_local(time(), $this->timezone, TRUE));
         $this->date = date('Y-m-d', strtotime($datetime));
         $this->hour = date('H', strtotime($datetime));
@@ -42,30 +42,11 @@ class Trigger extends CI_Controller {
         $res = $this->objtrigger->getEvents($this->date);
 
         foreach ($res as $value) {
-            //if ($this->hour == $value->h && $this->minute == $value->m) {
-            switch ($value->group_type) {
-                case 'individual':
-                    if (!in_array($value->user_id, $blackList)) {
-                        $contact = $this->objcon->getContactInfo($value->user_id);
-                        $tag = $this->common->setToken($contact);
-                        if ($value->event_type == "sms") {
-                            $body = $this->parser->parse_string($value->body, $tag, TRUE);
-                            if ($this->sendSMS($contact->phone, $body, $value->notify)) {
-                                $this->objtrigger->updateStatus($value->event_id);
-                            }
-                        } else if ($value->event_type == "email") {
-                            if ($this->sendMail($contact, $tag, $value, $value->notify)) {
-                                $this->objtrigger->updateStatus($value->event_id);
-                            }
-                        }
-                    }
-                    break;
-                case 'simple':
-                    $res = $this->objbuilder->getGroupContact($value->group_id);
-                    $cids = $res[1];
-                    foreach ($cids as $cid) {
-                        if (!in_array($cid, $blackList)) {
-                            $contact = $this->objcon->getContactInfo($cid);
+            if ($this->hour == $value->h && $this->minute == $value->m) {
+                switch ($value->group_type) {
+                    case 'individual':
+                        if (!in_array($value->user_id, $blackList)) {
+                            $contact = $this->objcon->getContactInfo($value->user_id);
                             $tag = $this->common->setToken($contact);
                             if ($value->event_type == "sms") {
                                 $body = $this->parser->parse_string($value->body, $tag, TRUE);
@@ -78,31 +59,50 @@ class Trigger extends CI_Controller {
                                 }
                             }
                         }
-                    }
-                    break;
-                case 'sms':
-                    $cids = $this->objbuilder->getSubGroupContact($value->group_id);
-                    foreach ($cids as $cid) {
-                        if (!in_array($cid, $blackList)) {
-                            $contact = $this->objcon->getContactInfo($cid);
-                            $tag = $this->common->setToken($contact);
-                            if ($value->event_type == "sms") {
-                                $body = $this->parser->parse_string($value->body, $tag, TRUE);
-                                if ($this->sendSMS($contact->phone, $body, $value->notify)) {
-                                    $this->objtrigger->updateStatus($value->event_id);
-                                }
-                            } else if ($value->event_type == "email") {
-                                if ($this->sendMail($contact, $tag, $value, $value->notify)) {
-                                    $this->objtrigger->updateStatus($value->event_id);
+                        break;
+                    case 'simple':
+                        $res = $this->objbuilder->getGroupContact($value->group_id);
+                        $cids = $res[1];
+                        foreach ($cids as $cid) {
+                            if (!in_array($cid, $blackList)) {
+                                $contact = $this->objcon->getContactInfo($cid);
+                                $tag = $this->common->setToken($contact);
+                                if ($value->event_type == "sms") {
+                                    $body = $this->parser->parse_string($value->body, $tag, TRUE);
+                                    if ($this->sendSMS($contact->phone, $body, $value->notify)) {
+                                        $this->objtrigger->updateStatus($value->event_id);
+                                    }
+                                } else if ($value->event_type == "email") {
+                                    if ($this->sendMail($contact, $tag, $value, $value->notify)) {
+                                        $this->objtrigger->updateStatus($value->event_id);
+                                    }
                                 }
                             }
                         }
-                    }
-                    break;
-                default:
-                    break;
+                        break;
+                    case 'sms':
+                        $cids = $this->objbuilder->getSubGroupContact($value->group_id);
+                        foreach ($cids as $cid) {
+                            if (!in_array($cid, $blackList)) {
+                                $contact = $this->objcon->getContactInfo($cid);
+                                $tag = $this->common->setToken($contact);
+                                if ($value->event_type == "sms") {
+                                    $body = $this->parser->parse_string($value->body, $tag, TRUE);
+                                    if ($this->sendSMS($contact->phone, $body, $value->notify)) {
+                                        $this->objtrigger->updateStatus($value->event_id);
+                                    }
+                                } else if ($value->event_type == "email") {
+                                    if ($this->sendMail($contact, $tag, $value, $value->notify)) {
+                                        $this->objtrigger->updateStatus($value->event_id);
+                                    }
+                                }
+                            }
+                        }
+                        break;
+                    default:
+                        break;
+                }
             }
-            //  }
         }
     }
 
