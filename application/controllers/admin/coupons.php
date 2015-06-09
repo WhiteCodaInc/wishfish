@@ -44,10 +44,12 @@ class Coupons extends CI_Controller {
 
     function createCoupon() {
         $post = $this->input->post();
-        if ($this->objcoupon->createCoupon($post))
+        if ($this->objcoupon->createCoupon($post)) {
             header('location:' . site_url() . 'admin/coupons?msg=I');
-        else
-            header('location:' . site_url() . 'admin/coupons?msg=IF');
+        } else {
+            $this->session->keep_flashdata('error');
+            header('location:' . site_url() . 'admin/coupons/addCoupon');
+        }
     }
 
     function editCoupon($cid) {

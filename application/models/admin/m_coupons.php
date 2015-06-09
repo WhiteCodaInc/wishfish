@@ -54,7 +54,8 @@ class M_coupons extends CI_Model {
             $this->db->insert('coupons', $set);
             return TRUE;
         } catch (Stripe_Error $e) {
-//            $error = $e->getMessage();
+            $error = $e->getMessage();
+            $this->session->set_flashdata('error', $error);
             return FALSE;
         }
     }
