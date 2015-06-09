@@ -172,7 +172,7 @@
                     $('.msgamt').text("Your Amount Must be Greater Than 0..!");
                     c_amt = 0;
                 } else if (dtype == "P" && (amt < 1 || amt >= 100)) {
-                    $('.msgamt').text("Percentage Value Must Between  1 to 100..!");
+                    $('.msgamt').text("Percentage Value Must Between  1 to 99..!");
                     c_amt = 0;
                 } else {
                     $('.msgamt').empty();
