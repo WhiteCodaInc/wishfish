@@ -880,7 +880,6 @@
     function BindControls(ar1, ar2) {
         contact = ar1;
         ids = ar2;
-        console.log(contact);
         $('#users').autocomplete({
             source: contact,
             minLength: 0,
@@ -978,7 +977,7 @@
 <?php endif; ?>
 
         $('.choose input#users').focusout(function () {
-
+            console.log(ids[contact.indexOf($('#users').val())]);
         });
 
         $('#freq_type,#e_freq_type,#n_freq_type').change(function () {
