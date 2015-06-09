@@ -47,10 +47,6 @@ class Coupons extends CI_Controller {
         if ($this->objcoupon->createCoupon($post)) {
             header('location:' . site_url() . 'admin/coupons?msg=I');
         } else {
-            echo $this->session->userdata('error');
-            $this->session->unset_userdata('error');
-            die();
-            $this->session->keep_flashdata('error');
             header('location:' . site_url() . 'admin/coupons/addCoupon');
         }
     }

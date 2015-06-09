@@ -16,8 +16,8 @@
     <!-- Main content -->
     <section class="content">
         <?php
-        $error = $this->session->flashdata('error');
-        echo $error;
+        $error = $this->session->userdata('error');
+        $this->session->unset_userdata('error');
         ?>
         <?php if ($error): ?>
             <div  class="row">
