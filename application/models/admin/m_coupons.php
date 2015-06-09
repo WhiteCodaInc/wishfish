@@ -55,6 +55,8 @@ class M_coupons extends CI_Model {
             return TRUE;
         } catch (Stripe_Error $e) {
             $error = $e->getMessage();
+            echo $error;
+            die();
             $this->session->set_flashdata('error', $error);
             return FALSE;
         }
