@@ -14,6 +14,11 @@
     .slimScrollDiv,#chat-box{
         height: 600px !important;
     }
+    #chatbox{
+        width: 34%;
+        position: absolute;
+        right: 10px;
+    }
 </style>
 <!-- Right side column. Contains the navbar and content of the page -->
 <aside class="right-side">
@@ -26,7 +31,7 @@
 
     <!-- Main content -->
     <section class="content">
-        <div class="row">
+        <div class="row" style="float: left">
             <div class="col-xs-7" >
                 <div class="box">
                     <div class="box-header">
@@ -88,34 +93,35 @@
                     </div><!-- /.box-body -->
                 </div><!-- /.box -->
             </div>
-            <div class="col-md-5" id="chatbox">
-                <!-- Chat box -->
-                <div style="display:none" class="box box-success effect">
-                    <div class="box-header">
-                        <i class="fa fa-comments-o"></i>
-                        <h3 class="box-title">Conversation</h3>
-                    </div>
-                    <div class="box-body chat" id="chat-box">
-                    </div>
-                    <div class="box-footer">
-                        <form id="replyForm" method="post">
-                            <div class="form-group">
-                                <textarea id="reply" name="msg" class="form-control" rows="3" placeholder="Type message..."></textarea>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <button name="send" type="button" class="btn btn-success">Send</button>
-                                </div>
-                                <div style="display:none;" id="loadReply" class="col-md-2">
-                                    <img src="<?= base_url() ?>assets/dashboard/img/load.GIF" alt="" />
-                                </div>
-                            </div>
-                            <input id="from" name="to" value="" type="hidden" />
-                        </form>
-                    </div>
+        </div>
+        <div id="chatbox">
+            <!-- Chat box -->
+            <div style="display:none" class="box box-success effect">
+                <div class="box-header">
+                    <i class="fa fa-comments-o"></i>
+                    <h3 class="box-title">Conversation</h3>
                 </div>
-                <!-- /.box (chat box) -->
+                <div class="box-body chat" id="chat-box">
+                </div>
+                <div class="box-footer">
+                    <form id="replyForm" method="post">
+                        <div class="form-group">
+                            <textarea id="reply" name="msg" class="form-control" rows="3" placeholder="Type message..."></textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <button name="send" type="button" class="btn btn-success">Send</button>
+                            </div>
+                            <div style="display:none;" id="loadReply" class="col-md-2">
+                                <img src="<?= base_url() ?>assets/dashboard/img/load.GIF" alt="" />
+                            </div>
+                        </div>
+                        <input id="from" name="to" value="" type="hidden" />
+                    </form>
+                </div>
             </div>
+            <!-- /.box (chat box) -->
+        </div>
         </div>
     </section><!-- /.content -->
 </aside><!-- /.right-side -->
@@ -167,7 +173,8 @@ switch ($msg) {
     $(document).ready(function () {
         trClick();
         function scrollDown() {
-            $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
+            var scrollTo_val = $('#chat-box').prop('scrollHeight') + 'px';
+            $('#chat-box').slimScroll({scrollTo: scrollTo_val});
         }
         function runEffect() {
             var options = {};
