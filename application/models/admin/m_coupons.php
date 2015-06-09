@@ -81,16 +81,16 @@ class M_coupons extends CI_Model {
                 $msg = "DA";
                 break;
             case "Delete":
-                foreach ($post['code'] as $value) {
+                foreach ($post['coupon'] as $key => $value) {
                     try {
-                        $cpn = Stripe_Coupon::retrieve($value);
-                        $cpn->delete();
+                        $this->db->delete('coupons', array('coupon_id' => $value));
+//                        $cpn = Stripe_Coupon::retrieve($post['code'][$key]);
+//                        $cpn->delete();
                         return TRUE;
                     } catch (Stripe_Error $e) {
                         return FALSE;
                     }
                 }
-                $this->db->delete('coupons');
                 $msg = "D";
                 break;
         }
