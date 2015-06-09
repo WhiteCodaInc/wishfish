@@ -56,7 +56,7 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
-                                    <input style="z-index: 0" name="birthday" placeholder="Enter Birthdate" value="<?= isset($contacts) ? $this->wi_common->getUTCDate($contacts->birthday) : '' ?>"  class="form-control form-control-inline input-medium default-date-picker" size="16" type="text" required="">
+                                    <input style="z-index: 0" name="birthday" placeholder="Enter Birthdate" value="<?= isset($contacts) ? $this->wi_common->getUTCDate($contacts->birthday) : '' ?>"  class="form-control form-control-inline input-medium default-date-picker" size="16" type="text" >
                                 </div><!-- /.input group -->
                             </div><!-- /.form group -->
                             <div class="form-group" id="add-phone">
@@ -74,14 +74,14 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-phone"></i>
                                             </div>
-                                            <input name="phone" type="text" class="form-control"  placeholder="Enter Phone Number" data-inputmask='"mask": "(999) 999-9999"' data-mask required=""/>
+                                            <input name="phone" type="text" class="form-control"  placeholder="Enter Phone Number" data-inputmask='"mask": "(999) 999-9999"' data-mask />
                                         </div><!-- /.input group -->
                                     </div>
                                 </div>
                             </div><!-- /.form group -->
                             <div class="form-group">
                                 <label for="password">Email</label>
-                                <input name="email" type="email" class="form-control"  placeholder="Enter Their Email" required="">
+                                <input name="email" type="email" class="form-control"  placeholder="Enter Their Email">
                             </div>
                         </div><!-- /.box-body -->
                         <!--                        <div class="box-footer" id="save-contact">
