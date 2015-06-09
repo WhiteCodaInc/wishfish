@@ -68,9 +68,9 @@ class Coupons extends CI_Controller {
 
     function action() {
         $type = $this->input->post('actionType');
-        $ids = $this->input->post('coupon');
-        if (($type == "Delete" || $type == "Active" || $type == "Deactive") && count($ids)) {
-            $msg = $this->objcoupon->setAction($type, $ids);
+        $post = $this->input->post();
+        if (($type == "Delete" || $type == "Active" || $type == "Deactive") && count($post['coupon'])) {
+            $msg = $this->objcoupon->setAction($type, $post);
             header('location:' . site_url() . 'admin/coupons?msg=' . $msg);
         } else {
             header('location:' . site_url() . 'admin/coupons');

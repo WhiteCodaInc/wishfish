@@ -67,15 +67,22 @@ class M_coupons extends CI_Model {
         return TRUE;
     }
 
-    function setAction($type, $ids) {
+    function setAction($type, $post) {
         $msg = "";
-        $this->db->where('coupon_id in (' . implode(',', $ids) . ')');
+        $where = 'coupon_id in (' . implode(',', $post['coupon']) . ')';
+        $where_code = 'coupon_code in (' . implode(',', $post['code']) . ')';
+        echo '<pre>';
+        print_r($where_code);
+        print_r($where);
+        die();
         switch ($type) {
             case "Active":
+                $this->db->where($where);
                 $this->db->update('coupons', array('status' => 1));
                 $msg = "A";
                 break;
             case "Deactive":
+                $this->db->where($where);
                 $this->db->update('coupons', array('status' => 0));
                 $msg = "DA";
                 break;

@@ -39,7 +39,6 @@
 
                     <form name="checkForm" id="checkForm" action="" method="post">
                         <div class="box-body table-responsive" id="data-panel">
-
                             <table id="coupon-data-table" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
@@ -62,6 +61,7 @@
                                                 <div>
                                                     <label>
                                                         <input type="checkbox" name="coupon[]" value="<?= $value->coupon_id ?>"/>
+                                                        <input type="hidden" name="code[]" value="<?= $value->coupon_code ?>"/>
                                                     </label>
                                                 </div>
                                             </td>
