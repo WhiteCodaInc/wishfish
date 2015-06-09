@@ -976,7 +976,8 @@
             alertify.error('User Not Available..!');
 <?php endif; ?>
 
-        $('.choose input:text').focusout(function () {
+        $('div.choose input:text').focusout(function () {
+            console.log(contact);
             console.log(ids[contact.indexOf($('#users').val())]);
         });
 
