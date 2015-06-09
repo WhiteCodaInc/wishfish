@@ -896,7 +896,7 @@
     function chooseContact() {
         $('div.choose input:text').focusout(function () {
             console.log(contact);
-            console.log(ids[contact.indexOf($('#users').val())]);
+            console.log($('#users').val());
         });
     }
 
