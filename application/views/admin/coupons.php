@@ -53,7 +53,6 @@
                                         <th>Expires On</th>
                                         <th>Max Redemption</th>
                                         <th>Status</th>
-                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -88,12 +87,6 @@
                                                     <span class="btn btn-danger btn-xs">Deactive</span>
                                                 <?php endif; ?>
                                             </td>
-                                            <td>
-                                                <a href="<?= site_url() ?>admin/coupons/editCoupon/<?= $value->coupon_id ?>" class="btn bg-navy btn-xs">
-                                                    <i class="fa fa-edit"></i>
-                                                    Edit
-                                                </a>
-                                            </td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
@@ -107,7 +100,6 @@
                                         <th>Expires On</th>
                                         <th>Max Redemption</th>
                                         <th>Status</th>
-                                        <th>Action</th>
                                     </tr>
                                 </tfoot>
                             </table>
