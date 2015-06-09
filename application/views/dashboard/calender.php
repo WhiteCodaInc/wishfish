@@ -892,6 +892,14 @@
 <!-- End Auto complete -->
 <?php $planInfo = $this->wi_common->getCurrentPlan(); ?>
 <script type="text/javascript">
+
+    function chooseContact() {
+        $('div.choose input:text').focusout(function () {
+            console.log(contact);
+            console.log(ids[contact.indexOf($('#users').val())]);
+        });
+    }
+
     var groupEvent = "<?= $planInfo->group_events ?>";
     var planid = "<?= $planInfo->plan_id ?>";
     $('#eventForm input[name="assign"]').change(function () {
@@ -906,6 +914,7 @@
                     var ar1 = data['user'];
                     var ar2 = data['ids'];
                     $('#user-tag').html('<input type="text" class="form-control"  id="users" />');
+                    chooseContact();
                     BindControls(ar1, ar2);
                 }
             });
@@ -976,10 +985,7 @@
             alertify.error('User Not Available..!');
 <?php endif; ?>
 
-        $('div.choose input:text').focusout(function () {
-            console.log(contact);
-            console.log(ids[contact.indexOf($('#users').val())]);
-        });
+
 
         $('#freq_type,#e_freq_type,#n_freq_type').change(function () {
             var type = $(this).val();
