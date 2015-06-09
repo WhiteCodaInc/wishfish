@@ -77,7 +77,12 @@ class Coupons extends CI_Controller {
     }
 
     function getCouponCode() {
-        echo substr(str_shuffle("ABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 6);
+        $code = substr(str_shuffle("ABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 6);
+        if (!$this->objcoupon->isExistCoupon($code)) {
+            echo $code;
+        } else {
+            $this->getCouponCode();
+        }
     }
 
 }

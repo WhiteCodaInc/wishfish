@@ -89,4 +89,9 @@ class M_coupons extends CI_Model {
         return $msg;
     }
 
+    function isExistCoupon($code) {
+        $query = $this->db->get_where('coupons', array('coupon_code' => $code));
+        return ($query->num_rows()) ? TRUE : FALSE;
+    }
+
 }
