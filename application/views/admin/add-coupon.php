@@ -145,7 +145,7 @@
                 success: function (data, textStatus, jqXHR) {
                     $('input[name="coupon_code"]').val(data);
                     c_use = 1;
-                    $('.msguse').empty();
+                    $('.msgcode').empty();
                 }
             });
         });
