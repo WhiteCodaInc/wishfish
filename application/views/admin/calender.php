@@ -686,6 +686,9 @@
                                 <input type="text" class="form-control"  id="users" />
                             </div>
                         </div>
+                        <div class="col-md-7" style="margin-top: 20px">
+                            <span style="color: red" class="msgChoose"></span>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md-5">
@@ -896,7 +899,7 @@
         contact = ar1;
         ids = ar2;
         $('#users').autocomplete({
-            source: ar1,
+            source: contact,
             minLength: 0,
             scroll: true
         }).focus(function () {
@@ -907,6 +910,32 @@
 <!-- End Auto complete -->
 
 <script type="text/javascript">
+
+    function validateContact(user) {
+        var con = user.split('||');
+        if (con[1].trim() == "") {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    function chooseContact() {
+        $('div.choose input:text').focusout(function () {
+            var event_type = $('#eventForm input[name="event_type"]:checked').val();
+            var user = $('#users').val().trim();
+            if (user != "") {
+                if (!validateContact(user)) {
+                    $msg = (event_type == "notification" || event_type == "sms") ?
+                            "Can not SMS this user because no phone number is assigned!" :
+                            "Can not Email this user because no phone number is assigned!";
+                    $('.msgChoose').text($msg);
+                } else {
+                    $('.msgChoose').empty();
+                }
+            }
+        });
+    }
 
     $('input[name="assign"]').change(function () {
         var user = $('#user').val();
@@ -937,6 +966,7 @@
                     }
                     $("#lbl_select").text(lbl);
                     $('#user-tag').html('<input type="text" class="form-control"  id="users" />');
+                    chooseContact();
                     BindControls(ar1, ar2);
                 }
             });
@@ -1188,7 +1218,11 @@
                 form = "neweventForm";
 <?php else: ?>
                 form = "eventForm";
-                $('input[name="user_id"]').val(ids[contact.indexOf($('#users').val())]);
+                if (validateContact($('#users').val())) {
+                    $('input[name="user_id"]').val(ids[contact.indexOf($('#users').val())]);
+                } else {
+                    return false;
+                }
 <?php endif; ?>
             $('#' + id).prop('disabled', 'disabled');
             $.ajax({
@@ -1245,6 +1279,7 @@
                 $('#n_subject').css('display', 'block');
                 $('#e_subject').css('display', 'block');
             }
+            $('.msgChoose').empty();
             $.ajax({
                 type: 'POST',
                 url: "<?= site_url() ?>admin/calender/getTemplates/" + $type,
