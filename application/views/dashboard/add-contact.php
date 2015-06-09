@@ -21,7 +21,7 @@
                         <h3 class="box-title">New Contact</h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
-                    <form id="contactForm" role="form" action="" enctype="multipart/form-data" method="post">
+                    <form id="contactForm" role="form" action="<?= site_url() ?>contacts/createContact" enctype="multipart/form-data" method="post">
                         <div class="box-body">
                             <div class="form-group" id="add-profile-pic">
                                 <div class="row">
