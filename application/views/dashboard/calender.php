@@ -660,12 +660,15 @@
                         </div>
                     </div>
                     <br/>
-                    <div class="row">
+                    <div class="row choose">
                         <div class="col-md-5">
                             <label>Choose <span id="lbl_select">Contact</span></label>
                             <div class="form-group" id="user-tag">
                                 <input type="text" class="form-control"  id="users" />
                             </div>
+                        </div>
+                        <div class="col-md-7">
+                            <span style="color: red" class="msgChoose"></span>
                         </div>
                     </div>
                     <div class="row">
@@ -893,6 +896,7 @@
     var planid = "<?= $planInfo->plan_id ?>";
     $('#eventForm input[name="assign"]').change(function () {
         var event_type = $('#eventForm input[name="event_type"]:checked').val();
+        alert(event_type);
         if ($(this).val() == "all_c") {
             $.ajax({
                 type: 'POST',
@@ -966,11 +970,17 @@
     });
 
     $(document).ready(function () {
+
 <?php if (isset($contactInfo) && $contactInfo): ?>
             $('#create_event').trigger('click');
 <?php elseif (isset($contactInfo) && !$contactInfo): ?>
             alertify.error('User Not Available..!');
 <?php endif; ?>
+
+        $('.choose input#users').focusout(function () {
+
+        });
+
         $('#freq_type,#e_freq_type,#n_freq_type').change(function () {
             var type = $(this).val();
             $msg = type.charAt(0).toUpperCase() + type.substring(1);
@@ -984,6 +994,7 @@
                 $('#n_txt_freq_type').text("");
             }
         });
+
         $('#is_repeat,#e_is_repeat,#n_is_repeat').change(function () {
             if (planid == "1") {
                 $(this).removeAttr('checked');
