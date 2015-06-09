@@ -199,7 +199,7 @@
                                                     <?= $value->fname . ' ' . $value->lname ?>
                                                 </a>
                                             </td>
-                                            <td class="hidden-xs hidden-sm"><?= $value->email ?></td>
+                                            <td class="hidden-xs hidden-sm"><?= (trim($value->email)) ? $value->email : 'N/A' ?></td>
                                             <?php
                                             if ($value->phone) {
                                                 $phone = "(" . substr($value->phone, 0, 2) . ') ';
