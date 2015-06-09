@@ -39,8 +39,7 @@
                                     <input type="text" name="coupon_code" value="<?= isset($coupon) ? $coupon->coupon_code : '' ?>" placeholder="Coupon Code" class="form-control" required="" readonly="" />
                                     <span class="error msgcode"></span>
                                 </div>
-                                <div class="col-md-3">
-                                    <label>&nbsp;</label>
+                                <div class="col-md-3" style="margin-top: 25px">
                                     <button type="button" class="btn btn-primary" id="randomCode">Generate</button>
                                 </div>
 
