@@ -667,7 +667,7 @@
                                 <input type="text" class="form-control"  id="users" />
                             </div>
                         </div>
-                        <div class="col-md-7">
+                        <div class="col-md-7" style="margin-top: 30px">
                             <span style="color: red" class="msgChoose"></span>
                         </div>
                     </div>
@@ -893,17 +893,26 @@
 <?php $planInfo = $this->wi_common->getCurrentPlan(); ?>
 <script type="text/javascript">
 
+
+    function validateContact(user) {
+        var con = user.split('||');
+        if (con[1].trim() == "") {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     function chooseContact() {
         $('div.choose input:text').focusout(function () {
             var event_type = $('#eventForm input[name="event_type"]:checked').val();
-            var user = $('#users').val();
+            var user = $('#users').val().trim();
             if (user != "") {
-                var con = user.split('||');
-                if (con[1].trim() == "") {
-                    if (event_type == "notification" || event_type == "sms")
-                        $('.msgChoose').text("SMS Number does not exists of selected contact..!")
-                    else
-                        $('.msgChoose').text("Email does not exists of selected contact..!")
+                if (!validateContact(user)) {
+                    $msg = (event_type == "notification" || event_type == "sms") ?
+                            "Can not SMS this user because no phone number is assigned!" :
+                            "Can not Email this user because no phone number is assigned!";
+                    $('.msgChoose').text($msg);
                 } else {
                     $('.msgChoose').empty();
                 }
@@ -1188,7 +1197,11 @@
                 form = "neweventForm";
 <?php else: ?>
                 form = "eventForm";
-                $('input[name="contact_id"]').val(ids[contact.indexOf($('#users').val())]);
+                if (validateContact($('#users').val())) {
+                    $('input[name="contact_id"]').val(ids[contact.indexOf($('#users').val())]);
+                } else {
+                    return false;
+                }
 <?php endif; ?>
             $('#' + id).prop('disabled', 'disabled');
             $.ajax({
