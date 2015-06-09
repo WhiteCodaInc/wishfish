@@ -144,6 +144,8 @@
                 url: "<?= site_url() ?>admin/coupons/getCouponCode",
                 success: function (data, textStatus, jqXHR) {
                     $('input[name="coupon_code"]').val(data);
+                    c_use = 1;
+                    $('.msguse').empty();
                 }
             });
         });
