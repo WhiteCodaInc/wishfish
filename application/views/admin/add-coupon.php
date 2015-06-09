@@ -73,7 +73,7 @@
                                 <span class="error msgduration"></span>
                             </div>
                             <div class="form-group">
-                                <label>Expired On</label>
+                                <label>Expires On</label>
                                 <div class="input-group">
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
