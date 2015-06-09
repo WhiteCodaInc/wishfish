@@ -70,29 +70,27 @@ class M_coupons extends CI_Model {
     function setAction($type, $post) {
         $msg = "";
         $where = 'coupon_id in (' . implode(',', $post['coupon']) . ')';
-        $where_code = 'coupon_code in (' . implode(',', $post['code']) . ')';
-        echo '<pre>';
-//        print_r($where_code);
-//        print_r($where);
-//        die();
+        $this->db->where($where);
         switch ($type) {
             case "Active":
-                $this->db->where($where);
                 $this->db->update('coupons', array('status' => 1));
                 $msg = "A";
                 break;
             case "Deactive":
-                $this->db->where($where);
                 $this->db->update('coupons', array('status' => 0));
                 $msg = "DA";
                 break;
             case "Delete":
-                $query = $this->db->get_where('coupons', $where_code);
-                print_r($query->result());
-                die();
-                foreach ($ids as $value) {
-                    $this->db->delete('coupons', array('coupon_id' => $value));
+                foreach ($post['code'] as $value) {
+                    try {
+                        $cpn = Stripe_Coupon::retrieve($value);
+                        $cpn->delete();
+                        return TRUE;
+                    } catch (Stripe_Error $e) {
+                        return FALSE;
+                    }
                 }
+                $this->db->delete('coupons');
                 $msg = "D";
                 break;
         }
