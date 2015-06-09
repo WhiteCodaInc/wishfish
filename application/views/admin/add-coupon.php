@@ -33,16 +33,22 @@
                                 <input type="text" name="coupon_name" value="<?= isset($coupon) ? $coupon->coupon_name : '' ?>" placeholder="Coupon Name" autofocus="autofocus" class="form-control" required=""/>
                                 <span class="error msgcname"></span>
                             </div>
-                            <div class="form-group">
-                                <label>Coupon Code</label>
-                                <input type="text" name="coupon_code" value="<?= isset($coupon) ? $coupon->coupon_code : '' ?>" placeholder="Coupon Code" class="form-control" required="" />
-                                <span class="error msgcode"></span>
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <label>Coupon Code</label>
+                                    <input type="text" name="coupon_code" value="<?= isset($coupon) ? $coupon->coupon_code : '' ?>" placeholder="Coupon Code" class="form-control" required="" readonly="" />
+                                    <span class="error msgcode"></span>
+                                </div>
+                                <div class="col-md-3">
+                                    <button type="button" id="randomCode">Generate</button>
+                                </div>
+
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <label>Discount Type</label>
                                     <select name="disc_type" class="form-control">
-                                        <option value="F">Flate</option>
+                                        <option value="F">Flate Rate</option>
                                         <option value="P">Percentage</option>
                                     </select>
                                 </div>

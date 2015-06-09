@@ -50,7 +50,7 @@
                                         <th>Coupon Code</th>
                                         <th>Discount</th>
                                         <th>Duration</th>
-                                        <th>Expired On</th>
+                                        <th>Expires On</th>
                                         <th>Max Redemption</th>
                                         <th>Status</th>
                                         <th>Action</th>
@@ -104,7 +104,7 @@
                                         <th>Coupon Code</th>
                                         <th>Discount</th>
                                         <th>Duration</th>
-                                        <th>Expired On</th>
+                                        <th>Expires On</th>
                                         <th>Max Redemption</th>
                                         <th>Status</th>
                                         <th>Action</th>
