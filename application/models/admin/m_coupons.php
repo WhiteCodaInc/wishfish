@@ -72,9 +72,9 @@ class M_coupons extends CI_Model {
         $where = 'coupon_id in (' . implode(',', $post['coupon']) . ')';
         $where_code = 'coupon_code in (' . implode(',', $post['code']) . ')';
         echo '<pre>';
-        print_r($where_code);
-        print_r($where);
-        die();
+//        print_r($where_code);
+//        print_r($where);
+//        die();
         switch ($type) {
             case "Active":
                 $this->db->where($where);
@@ -87,6 +87,9 @@ class M_coupons extends CI_Model {
                 $msg = "DA";
                 break;
             case "Delete":
+                $query = $this->db->get_where('coupons', $where_code);
+                print_r($query->result());
+                die();
                 foreach ($ids as $value) {
                     $this->db->delete('coupons', array('coupon_id' => $value));
                 }
