@@ -880,8 +880,9 @@
     function BindControls(ar1, ar2) {
         contact = ar1;
         ids = ar2;
+        console.log(contact);
         $('#users').autocomplete({
-            source: ar1,
+            source: contact,
             minLength: 0,
             scroll: true
         }).focus(function () {
@@ -896,7 +897,6 @@
     var planid = "<?= $planInfo->plan_id ?>";
     $('#eventForm input[name="assign"]').change(function () {
         var event_type = $('#eventForm input[name="event_type"]:checked').val();
-        alert(event_type);
         if ($(this).val() == "all_c") {
             $.ajax({
                 type: 'POST',
