@@ -895,8 +895,19 @@
 
     function chooseContact() {
         $('div.choose input:text').focusout(function () {
-            var con = $('#users').val().split('||');
-            console.log(con);
+            var event_type = $('#eventForm input[name="event_type"]:checked').val();
+            var user = $('#users').val();
+            if (user != "") {
+                var con = user.split('||');
+                if (con[1].trim() == "") {
+                    if (event_type == "notification" || event_type == "sms")
+                        $('.msgChoose').text("SMS Number does not exists of selected contact..!")
+                    else
+                        $('.msgChoose').text("Email does not exists of selected contact..!")
+                } else {
+                    $('.msgChoose').empty();
+                }
+            }
         });
     }
 
