@@ -138,6 +138,16 @@
             }
         });
 
+        $('#randomCode').on('click', function () {
+            $.ajax({
+                type: 'POST',
+                url: "<?= site_url() ?>admin/coupons/getCouponCode",
+                success: function (data, textStatus, jqXHR) {
+                    $('input[name="coupon_code"]').val(data);
+                }
+            });
+        });
+
         $('input[name="coupon_code"]').focusout(function () {
             var code = $(this).val().trim();
             var rgex_code = /^[A-Za-z0-9]+$/;

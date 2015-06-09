@@ -76,4 +76,8 @@ class Coupons extends CI_Controller {
         }
     }
 
+    function getCouponCode() {
+        echo substr(str_shuffle("ABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 6);
+    }
+
 }
