@@ -157,8 +157,10 @@
         $('input[name="expire"]').change(function () {
             var val = $('input[name="expire"]:checked').val();
             if (val == "expire") {
+                $('input[name="expiry_date"]').prop('disabled', false);
                 $('.expiry-date').show();
             } else {
+                $('input[name="expiry_date"]').prop('disabled', true);
                 $('.expiry-date').hide();
             }
         });

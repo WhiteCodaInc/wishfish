@@ -34,6 +34,9 @@ class M_coupons extends CI_Model {
     }
 
     function createCoupon($set) {
+        echo '<pre>';
+        print_r($set);
+        die();
         $date = new DateTime($set['expiry_date']);
         $coupon = array(
             "id" => $set['coupon_code'],
