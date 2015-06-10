@@ -42,20 +42,20 @@
         </button>
     </section>
     <style type="text/css">
-        .alert {
+        .alert1 {
             position: relative;
             padding: 10px 35px;
             margin: 20px;
             border: 1px solid transparent;
             border-radius: 4px;
         }
-        .alert-danger {
+        .alert-danger1 {
             color: #a94442;
             background-color: #f2dede;
             border-color: #ebccd1;
         }
 
-        .alert > .fa, .alert > .glyphicon {
+        .alert1 > .fa, .alert1 > .glyphicon {
             position: absolute;
             left: -15px;
             top: -15px;
@@ -74,7 +74,7 @@
     <section class="content">
         <div class="row">
             <div class="col-md-12">
-                <div class="alert alert-danger">
+                <div class="alert1 alert1-danger">
                     <i class="fa fa-ban"></i>
                     <div class="row">
                         <div class="col-md-3">
