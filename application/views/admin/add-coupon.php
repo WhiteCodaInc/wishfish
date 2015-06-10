@@ -89,7 +89,7 @@
                                 <label>Month</label>
                                 <input type="text" name="month_duration" value="<?= isset($coupon) ? $coupon->month_duration : '' ?>" placeholder="Month" class="form-control" disabled="" required=""  />
                                 <span class="error msgduration"></span>
-                            </div><br/>
+                            </div>
                             <div class="form-group">
                                 <div style="float: left;padding-right: 20px;">
                                     <input  type="radio" value="expire" name="expire" class="simple" checked="">
