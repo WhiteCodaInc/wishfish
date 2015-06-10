@@ -219,7 +219,7 @@
                 color: white
             }
         </style>
-        <aside class="right-side" >
+        <aside class="right-side" style="min-height: 542px;">
             <div class="overlay" style="">
                 <div class="msg">
                     <div class="welcome" style="display: none">
