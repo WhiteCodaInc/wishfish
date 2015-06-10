@@ -34,12 +34,6 @@ class M_coupons extends CI_Model {
     }
 
     function createCoupon($set) {
-        echo '<pre>';
-        print_r($set);
-        die();
-
-
-
 
         $coupon = array(
             "id" => $set['coupon_code'],
@@ -59,6 +53,12 @@ class M_coupons extends CI_Model {
                         $coupon['amount_off'] = $set['disc_amount'] * 100 :
                         $coupon['percent_off'] = $set['disc_amount'];
         ($set['disc_type'] == "F") ? $coupon['currency'] = "USD" : "";
+
+        echo '<pre>';
+        print_r($set);
+        print_r($coupon);
+        die();
+
         try {
             Stripe_Coupon::create($coupon);
             $set['expiry_date'] = date('Y-m-d', strtotime($set['expiry_date']));
