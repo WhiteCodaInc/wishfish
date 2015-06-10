@@ -36,8 +36,7 @@ ErrorDocument 404 /index.php
 RewriteEngine On
 RewriteCond %{HTTPS} off
 RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R,L]
-ModPagespeedFetchHttps enable
-ModPagespeedEnableFilters inline_google_font_css
+
 <IfModule mod_filter.c>
 AddOutputFilterByType DEFLATE application/atom+xml 
 AddOutputFilterByType DEFLATE application/javascript 
