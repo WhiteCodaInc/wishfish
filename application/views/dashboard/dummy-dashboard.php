@@ -224,7 +224,7 @@
                 <div class="msg">
                     <div class="welcome" style="display: none">
                         <h1 style="text-align: center">Welcome to Wish-Fish!<br/>Please click the 'Activate Your Account' Button in your Email To Get Started!</h1>
-                        <h3>Didn't get our Email? No worries, <a href="javascript:void(0);" id="active">Click Here</a> To Active Your Account.</h3>
+                        <h3 style="text-align: center">Didn't get our Email? No worries, <a href="javascript:void(0);" id="active">Click Here</a> To Active Your Account.</h3>
                     </div>
                     <div class="row set-passwd" style="display: none" >
                         <div class="col-md-3"></div>
