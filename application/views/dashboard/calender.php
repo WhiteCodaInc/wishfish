@@ -74,7 +74,7 @@
     <section class="content">
         <div class="row">
             <div class="col-md-12">
-                <div class="alert1 alert1-danger">
+                <div class="alert1 alert-danger1">
                     <i class="fa fa-ban"></i>
                     <div class="row">
                         <div class="col-md-3">
