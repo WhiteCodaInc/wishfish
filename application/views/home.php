@@ -659,7 +659,7 @@
     <input type="hidden" name="amount" value="">
     <input type="hidden" name="coupon" value="">
 </form>
-<form style="display: none" id="personal" action="<?= site_url() ?>stripe_payment/pay" method="post">
+<!--<form style="display: none" id="personal" action="<?= site_url() ?>stripe_payment/pay" method="post">
     <input type="hidden" name="plan" value="wishfish-personal"/>
     <input type="hidden" name="coupon" value=""/>
     <script
@@ -671,9 +671,9 @@
         data-label="Stripe"                    
         >
     </script>
-</form>
+</form>-->
 
-<form style="display: none" id="enterprise" action="<?= site_url() ?>stripe_payment/pay" method="post">
+<!--<form style="display: none" id="enterprise" action="<?= site_url() ?>stripe_payment/pay" method="post">
     <input type="hidden" name="plan" value="wishfish-enterprise"/>
     <input type="hidden" name="coupon" value=""/>
     <script
@@ -685,7 +685,7 @@
         data-label="Stripe"                    
         >
     </script>
-</form>
+</form>-->
 
 <script type="text/javascript">
     $(document).ready(function () {
