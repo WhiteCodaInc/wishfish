@@ -92,7 +92,7 @@
                             </div><br/>
                             <div class="form-group">
                                 <div style="float: left;padding-right: 20px;">
-                                    <input  type="radio" value="expire" name="expire" class="simple">
+                                    <input  type="radio" value="expire" name="expire" class="simple" checked="">
                                     <span class="lbl padding-8">
                                         Expire On
                                     </span>
@@ -156,9 +156,9 @@
 
         $('input[name="expire"]').change(function () {
             var val = $('input[name="expire"]:checked').val();
-            if(val == "expire"){
+            if (val == "expire") {
                 $('.expiry-date').show();
-            }else{
+            } else {
                 $('.expiry-date').hide();
             }
         });
