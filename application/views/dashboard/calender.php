@@ -41,54 +41,8 @@
             Create New Event
         </button>
     </section>
-    <style type="text/css">
-        .alert1 {
-            position: relative;
-            padding: 10px 35px;
-            margin: 20px;
-            border: 1px solid transparent;
-            border-radius: 4px;
-        }
-        .alert-danger1 {
-            color: #a94442;
-            background-color: #f2dede;
-            border-color: #ebccd1;
-        }
-
-        .alert1 > .fa, .alert1 > .glyphicon {
-            position: absolute;
-            left: -15px;
-            top: -15px;
-            width: 35px;
-            height: 35px;
-            -webkit-border-radius: 50%;
-            -moz-border-radius: 50%;
-            border-radius: 50%;
-            line-height: 35px;
-            text-align: center;
-            background: inherit;
-            border: inherit;
-        }
-    </style>
     <!-- Main content -->
     <section class="content">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="alert1 alert-danger1">
-                    <i class="fa fa-ban"></i>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <h4>Please Verify Your Email.</h4>
-                        </div>
-                        <div class="col-md-2">
-                            <a style="color: white;  margin: 2px -48px;" class="btn btn-info" data-toggle="modal" data-target="#varify-modal">
-                                Send Verification Email
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="row">
             <div class="col-md-12">
                 <div class="box box-primary">
