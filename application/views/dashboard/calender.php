@@ -889,7 +889,11 @@
     }
 </script>
 <!-- End Auto complete -->
-<?php $planInfo = $this->wi_common->getCurrentPlan(); ?>
+<?php
+$planInfo = $this->wi_common->getCurrentPlan();
+$userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
+?>
+
 <script type="text/javascript">
 
 
@@ -964,8 +968,8 @@
         } else {
             return false;
         }
-    });
-</script>
+    });</script>
+
 
 <script type="text/javascript">
 
@@ -987,7 +991,6 @@
             autoclose: true,
             todayHighlight: true
         });
-
         $('.set_repeat').click(function () {
             var id = $(this).prev().attr('id');
             $('#' + id).trigger('click');
@@ -996,7 +999,6 @@
             $(this).css('cursor', 'pointer');
         });
     });
-
     $(document).ready(function () {
 
 <?php if (isset($contactInfo) && $contactInfo): ?>
@@ -1005,8 +1007,16 @@
             alertify.error('User Not Available..!');
 <?php endif; ?>
 
-
-
+        $('#popup').click(function () {
+<?php if (!$userInfo->email_verification): ?>
+                alertify.confirm("You have not schedule events until verify your email.<br/>\n\
+                                     <a href='javascript:void(0);' id='sendAgain'>Click Here</a> to send verification email.",
+                        function (e) {
+                            return false;
+                        }
+                );
+<?php endif; ?>
+        });
         $('#freq_type,#e_freq_type,#n_freq_type').change(function () {
             var type = $(this).val();
             $msg = type.charAt(0).toUpperCase() + type.substring(1);
@@ -1020,7 +1030,6 @@
                 $('#n_txt_freq_type').text("");
             }
         });
-
         $('#is_repeat,#e_is_repeat,#n_is_repeat').change(function () {
             if (planid == "1") {
                 $(this).removeAttr('checked');
@@ -1047,7 +1056,6 @@
                 }
             }
         });
-
         $('input[name="end_type"]').change(function () {
             var end = $(this).val();
             if (end == "never") {
@@ -1060,9 +1068,7 @@
                 $('#n_end_block').css('display', 'block');
             }
         });
-
         $('#rd_individual').trigger('click');
-
         $('#delete').click(function () {
             var eid = $(this).val();
             $.ajax({
@@ -1079,7 +1085,6 @@
                 }
             });
         });
-
         $('#edit').click(function () {
             var id = $(this).prop('id');
             if ($('#editForm input[name="date"]').val().trim() == "") {
@@ -1128,7 +1133,6 @@
                 }
             });
         });
-
         $('#insert,#n_insert').click(function () {
             var id = $(this).prop('id');
             if (id == "insert") {
@@ -1185,7 +1189,6 @@
                 }
             }
             var form = "";
-
             if (id == "insert") {
                 var data = CKEDITOR.instances['emailbody'].getData();
                 $('#emailbody').val(data);
@@ -1223,7 +1226,6 @@
                 }
             });
         });
-
         $('#neweventForm input[name="event_type"],#eventForm input[name="event_type"],#editForm input[name="event_type"]').change(function ()
         {
 
@@ -1268,7 +1270,6 @@
                 }
             });
         });
-
         $('#e_template,#n_template,#template').change(function () {
             if ($(this).attr('id') == "template") {
                 var event_type = $('#eventForm input[name="event_type"]:checked').val();
@@ -1313,9 +1314,7 @@
                 });
             }
         });
-
-    });
-</script>
+    });</script>
 
 <!-- fullCalendar -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.min.js" type="text/javascript"></script>
@@ -1376,7 +1375,6 @@
                     // Clicked on the day number 
                     $('#rd_sms').removeAttr("disabled");
                     $('#rd_email').removeAttr("disabled");
-
                 } else {
                     $('#rd_sms').attr("disabled", "true");
                     $('#rd_email').attr("disabled", "true");
