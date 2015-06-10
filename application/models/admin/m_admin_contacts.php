@@ -143,9 +143,9 @@ class M_admin_contacts extends CI_Model {
             'event_type' => "notification",
             'group_type' => "individual",
             'user_id' => $insertid,
-            'user' => "2",
+            'user' => 2,
             'color' => "#BDBDBD",
-            'notification' => "0",
+            'notification' => 0,
             'notify' => "them",
             'date' => $this->getFutureDate($set['birthday'])
         );
@@ -217,15 +217,15 @@ class M_admin_contacts extends CI_Model {
         }
 
         $this->db->trans_start();
-        if (!$this->isBirthdaySchedule($cid, $set)) {
+        if ($this->isBirthdaySchedule($cid, $set)) {
             $event_data = array(
                 'event' => 'Birthday : ' . $set['fname'],
                 'event_type' => "notification",
                 'group_type' => "individual",
                 'user_id' => $cid,
-                'user' => "2",
+                'user' => 2,
                 'color' => "#BDBDBD",
-                'notification' => "0",
+                'notification' => 0,
                 'notify' => "them",
                 'date' => $this->getFutureDate($set['birthday'])
             );
@@ -306,6 +306,11 @@ class M_admin_contacts extends CI_Model {
             case "Delete":
                 foreach ($ids as $value) {
                     $this->db->delete('contact_detail', array('contact_id' => $value));
+                    $where = array(
+                        'user_id' => $value,
+                        'user' => 2
+                    );
+                    $this->db->delete('schedule', $where);
                 }
                 $msg = "D";
                 break;
@@ -406,7 +411,7 @@ class M_admin_contacts extends CI_Model {
         if ($query->num_rows() > 0) {
             $this->db->delete('schedule', array('event_id' => $query->row()->event_id));
         }
-        return FALSE;
+        return TRUE;
     }
 
     function getFutureDate($bdt) {
