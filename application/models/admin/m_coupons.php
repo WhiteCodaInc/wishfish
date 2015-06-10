@@ -42,6 +42,7 @@ class M_coupons extends CI_Model {
         if ($set['expire'] == "expire") {
             $date = new DateTime($set['expiry_date']);
             $coupon['redeem_by'] = $date->getTimestamp();
+            $set['expiry_date'] = date('Y-m-d', strtotime($set['expiry_date']));
         }
         unset($set['expire']);
         $coupon['duration'] = ($set['coupon_validity'] == "1") ? "once" :
@@ -60,7 +61,7 @@ class M_coupons extends CI_Model {
 
         try {
             Stripe_Coupon::create($coupon);
-            $set['expiry_date'] = date('Y-m-d', strtotime($set['expiry_date']));
+
             $this->db->insert('coupons', $set);
             return TRUE;
         } catch (Stripe_Error $e) {
