@@ -42,7 +42,6 @@ class M_coupons extends CI_Model {
         if ($set['expire'] == "expire") {
             $date = new DateTime($set['expiry_date']);
             $coupon['redeem_by'] = $date->getTimestamp();
-            unset($set['expiry_date']);
         }
         unset($set['expire']);
         $coupon['duration'] = ($set['coupon_validity'] == "1") ? "once" :
