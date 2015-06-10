@@ -36,7 +36,7 @@ class M_register extends CI_Model {
 
     function register($post) {
         $flag = FALSE;
-        $post['password'] = $this->generateRandomString(5);
+//        $post['password'] = $this->generateRandomString(5);
 //        $login = array(
 //            'email' => $post['email'],
 //            'password' => $post['password']
