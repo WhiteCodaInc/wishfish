@@ -60,8 +60,8 @@
                                 <div class="col-md-3" style="margin-top: 25px">
                                     <button type="button" class="btn btn-primary" id="randomCode">Generate</button>
                                 </div>
-
                             </div>
+                            <br/>
                             <div class="row">
                                 <div class="col-md-6">
                                     <label>Discount Type</label>
