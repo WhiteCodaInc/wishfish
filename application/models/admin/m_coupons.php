@@ -54,11 +54,6 @@ class M_coupons extends CI_Model {
                         $coupon['percent_off'] = $set['disc_amount'];
         ($set['disc_type'] == "F") ? $coupon['currency'] = "USD" : "";
 
-        echo '<pre>';
-        print_r($set);
-        print_r($coupon);
-        die();
-
         try {
             Stripe_Coupon::create($coupon);
 
