@@ -91,13 +91,13 @@
                             </div>
                             <div class="form-group">
                                 <div style="float: left;padding-right: 5px;cursor: pointer">
-                                    <input  type="radio" value="expire" name="expire"  class="simple">                          
+                                    <input  type="radio" value="expire" name="expire">
                                     <span class="lbl padding-8">
                                         Expire On
                                     </span>
                                 </div>
-                                <div  style="float: left;padding:0 5px;cursor: pointer;">
-                                    <input type="radio" value="never" name="expire" class="simple">                          
+                                <div style="padding:0 5px;cursor: pointer;">
+                                    <input type="radio" value="never" name="expire">                          
                                     <span class="lbl padding-8">
                                         Never Expired
                                     </span>
