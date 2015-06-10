@@ -17,7 +17,7 @@ if (!defined('BASEPATH'))
   | path to your installation.
   |
  */
-$config['base_url'] = 'https://wish-fish.com/';
+$config['base_url'] = 'http://wish-fish.com/';
 
 /*
   |--------------------------------------------------------------------------
