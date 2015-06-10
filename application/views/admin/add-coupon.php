@@ -90,6 +90,20 @@
                                 <span class="error msgduration"></span>
                             </div>
                             <div class="form-group">
+                                <div style="float: left;padding-right: 5px;cursor: pointer">
+                                    <input  type="radio" value="expire" name="expire"  class="simple">                          
+                                    <span class="lbl padding-8">
+                                        Expire On
+                                    </span>
+                                </div>
+                                <div  style="float: left;padding:0 5px;cursor: pointer;">
+                                    <input type="radio" value="never" name="expire" class="simple">                          
+                                    <span class="lbl padding-8">
+                                        Never Expired
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label>Expires On</label>
                                 <div class="input-group">
                                     <div class="input-group-addon">
