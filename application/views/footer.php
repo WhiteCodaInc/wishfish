@@ -41,7 +41,7 @@
 <script src="<?= base_url() ?>assets/wow/js/jquery.counterup.min.js"></script>
 <script src="<?= base_url() ?>assets/wow/js/jquery.easypiechart.min.js"></script>
 <script src="<?= base_url() ?>assets/wow/js/owl.carousel.min.js"></script>
-<script type="text/javascript" src="<?= base_url() ?>assets/wow/js/twitterFetcher_min.js"></script>
+<!--<script type="text/javascript" src="<?= base_url() ?>assets/wow/js/twitterFetcher_min.js"></script>-->
 <script src="<?= base_url() ?>assets/wow/js/main.js"></script>
 
 <!--canvas file-->
