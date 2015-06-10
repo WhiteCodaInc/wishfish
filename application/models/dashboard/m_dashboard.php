@@ -142,4 +142,8 @@ class M_dashboard extends CI_Model {
         return true;
     }
 
+    function verifyEmail($uid) {
+        $this->db->update('wi_user_mst', array('email_verification' => 1), array('user_id' => $uid));
+    }
+
 }

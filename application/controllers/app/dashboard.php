@@ -47,6 +47,9 @@ class Dashboard extends CI_Controller {
     }
 
     function index() {
+        if ($this->uid) {
+            $this->objdashboard->verifyEmail($this->uid);
+        }
         if ($this->wi_authex->logged_in()) {
             $card = $this->objcalender->getCards();
             $this->load->view('dashboard/header');
@@ -56,10 +59,22 @@ class Dashboard extends CI_Controller {
         } else {
             $userInfo = $this->wi_common->getUserInfo($this->uid);
             if ($this->uid != "" && count($userInfo) == 1) {
-                $data['flag'] = TRUE;
-                $data['userInfo'] = $userInfo;
-                $data['isForgot'] = ($this->type != "" && $this->type == "forgot") ? TRUE : FALSE;
-                $this->load->view('dashboard/dummy-dashboard', $data);
+                if ($userInfo->password != NULL) {
+                    $login = array(
+                        'email' => $userInfo->email,
+                        'password' => $userInfo->password
+                    );
+                    if ($this->wi_authex->login($login)) {
+                        header('location:' . site_url() . 'app/dashboard');
+                    } else {
+                        header('location:' . site_url() . 'app/login');
+                    }
+                } else {
+                    $data['flag'] = TRUE;
+                    $data['userInfo'] = $userInfo;
+                    $data['isForgot'] = ($this->type != "" && $this->type == "forgot") ? TRUE : FALSE;
+                    $this->load->view('dashboard/dummy-dashboard', $data);
+                }
             } else if ($this->duid != "") {
                 $data['flag'] = FALSE;
                 $data['userInfo'] = FALSE;
@@ -69,14 +84,6 @@ class Dashboard extends CI_Controller {
             }
         }
     }
-
-//    function error($error) {
-//        $this->load->view('header');
-//        $this->load->view('top');
-//        $this->load->view('navbar');
-//        $this->load->view($error);
-//        $this->load->view('footer');
-//    }
 
     function uploadProfilePic() {
         if ($this->wi_authex->logged_in()) {
