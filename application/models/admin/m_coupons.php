@@ -37,12 +37,20 @@ class M_coupons extends CI_Model {
         echo '<pre>';
         print_r($set);
         die();
-        $date = new DateTime($set['expiry_date']);
+
+
+
+
         $coupon = array(
             "id" => $set['coupon_code'],
-            "max_redemptions" => $set['no_of_use'],
-            "redeem_by" => $date->getTimestamp()
+            "max_redemptions" => $set['no_of_use']
         );
+        if ($set['expire'] == "expire") {
+            $date = new DateTime($set['expiry_date']);
+            $coupon['redeem_by'] = $date->getTimestamp();
+            unset($set['expiry_date']);
+        }
+        unset($set['expire']);
         $coupon['duration'] = ($set['coupon_validity'] == "1") ? "once" :
                 (($set['coupon_validity'] == "2") ? "repeating" : "forever");
         ($set['coupon_validity'] == "2") ?
