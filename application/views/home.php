@@ -606,7 +606,7 @@
             <div class="row">
                 <div class="col-sm-10 col-sm-offset-1 text-center">
                     <div class="twitter-icon"><i class="fa fa-twitter"></i></div>
-                    <div id="tweet"></div>
+                    <!--<div id="tweet"></div>-->
                 </div>
             </div>
         </div>
