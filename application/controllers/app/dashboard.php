@@ -203,18 +203,4 @@ class Dashboard extends CI_Controller {
         }
     }
 
-    function sendActivationEmail() {
-        if ($this->duid != "") {
-            $uid = $this->session->userdata('d-userid');
-            $userInfo = $this->wi_common->getUserInfo($uid);
-            $post = array(
-                'name' => $userInfo->name,
-                'email' => $userInfo->email
-            );
-            echo ($this->objregister->sendMail($post, $uid)) ? 1 : 0;
-        } else {
-            header('location:' . site_url() . 'home');
-        }
-    }
-
 }

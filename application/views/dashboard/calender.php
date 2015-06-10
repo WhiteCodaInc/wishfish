@@ -1013,6 +1013,21 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
                 return false;
 <?php endif; ?>
         });
+
+        $('#sendAgain').on('click', function () {
+            $.ajax({
+                type: 'POST',
+                url: "<?= site_url() ?>app/calender/sendActivationEmail",
+                success: function (data, textStatus, jqXHR) {
+                    if (data == 1) {
+                        alertify.success("Email has been successfully sent..!");
+                    } else {
+                        alertify.error("Email sending failed! Try Again..!");
+                    }
+                }
+            });
+        });
+
         $('#freq_type,#e_freq_type,#n_freq_type').change(function () {
             var type = $(this).val();
             $msg = type.charAt(0).toUpperCase() + type.substring(1);

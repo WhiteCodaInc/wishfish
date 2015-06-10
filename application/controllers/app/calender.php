@@ -28,6 +28,7 @@ class Calender extends CI_Controller {
             $this->load->model('dashboard/m_sms_template', 'objsmstemplate');
             $this->load->model('dashboard/m_email_template', 'objemailtemplate');
             $this->load->model('dashboard/m_calender', 'objcal');
+            $this->load->model('m_register', 'objregister');
         }
     }
 
@@ -175,6 +176,16 @@ class Calender extends CI_Controller {
     function deleteEvent($eid) {
         $flag = $this->objcal->deleteEvent($eid);
         echo ($flag) ? 1 : 0;
+    }
+
+    function sendActivationEmail() {
+        $uid = $this->session->userdata('userid');
+        $userInfo = $this->wi_common->getUserInfo($uid);
+        $post = array(
+            'name' => $userInfo->name,
+            'email' => $userInfo->email
+        );
+        echo ($this->objregister->sendMail($post, $uid)) ? 1 : 0;
     }
 
 }
