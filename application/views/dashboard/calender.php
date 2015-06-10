@@ -41,6 +41,35 @@
             Create New Event
         </button>
     </section>
+    <style type="text/css">
+        .alert {
+            position: relative;
+            padding: 10px 35px;
+            margin: 20px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+        .alert-danger {
+            color: #a94442;
+            background-color: #f2dede;
+            border-color: #ebccd1;
+        }
+
+        .alert > .fa, .alert > .glyphicon {
+            position: absolute;
+            left: -15px;
+            top: -15px;
+            width: 35px;
+            height: 35px;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            border-radius: 50%;
+            line-height: 35px;
+            text-align: center;
+            background: inherit;
+            border: inherit;
+        }
+    </style>
     <!-- Main content -->
     <section class="content">
         <div class="row">
