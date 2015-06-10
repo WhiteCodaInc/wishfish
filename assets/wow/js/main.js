@@ -222,41 +222,41 @@ $('.portfolio a').nivoLightbox({
  ---=  Twitter                ------
  ---------------------------------------------------= */
 
-var xs_tweet = {
-    "id": '569000074533814272',
-    "domId": 'tweet',
-    "maxTweets": 3,
-    "enableLinks": true,
-    "showUser": true,
-    "showTime": true,
-    "dateFunction": '',
-    "showRetweet": false,
-    "customCallback": handleTweets,
-    "showInteraction": false
-};
-
-function handleTweets(tweets) {
-    var x = tweets.length;
-    var n = 0;
-    var element = document.getElementById('tweet');
-    var html = '<div class="slides">';
-    while (n < x) {
-        html += '<div>' + tweets[n] + '</div>';
-        n++;
-    }
-    html += '</div>';
-    element.innerHTML = html;
-    /* Twits attached to owl-carousel */
-    $("#tweet .slides").owlCarousel({
-        responsiveClass: true,
-        autoplay: true,
-        items: 1,
-        autoplayHoverPause: true,
-        loop: true,
-    });
-}
-
-twitterFetcher.fetch(xs_tweet);
+//var xs_tweet = {
+//    "id": '569000074533814272',
+//    "domId": 'tweet',
+//    "maxTweets": 3,
+//    "enableLinks": true,
+//    "showUser": true,
+//    "showTime": true,
+//    "dateFunction": '',
+//    "showRetweet": false,
+//    "customCallback": handleTweets,
+//    "showInteraction": false
+//};
+//
+//function handleTweets(tweets) {
+//    var x = tweets.length;
+//    var n = 0;
+//    var element = document.getElementById('tweet');
+//    var html = '<div class="slides">';
+//    while (n < x) {
+//        html += '<div>' + tweets[n] + '</div>';
+//        n++;
+//    }
+//    html += '</div>';
+//    element.innerHTML = html;
+//    /* Twits attached to owl-carousel */
+//    $("#tweet .slides").owlCarousel({
+//        responsiveClass: true,
+//        autoplay: true,
+//        items: 1,
+//        autoplayHoverPause: true,
+//        loop: true,
+//    });
+//}
+//
+//twitterFetcher.fetch(xs_tweet);
 
 
 
