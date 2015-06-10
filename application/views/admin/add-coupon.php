@@ -88,15 +88,15 @@
                                 <label>Month</label>
                                 <input type="text" name="month_duration" value="<?= isset($coupon) ? $coupon->month_duration : '' ?>" placeholder="Month" class="form-control" disabled="" required=""  />
                                 <span class="error msgduration"></span>
-                            </div>
+                            </div><br/>
                             <div class="form-group">
-                                <div style="float: left;padding-right: 5px;cursor: pointer">
+                                <div style="float: left;padding-right: 20px;">
                                     <input  type="radio" value="expire" name="expire">
                                     <span class="lbl padding-8">
                                         Expire On
                                     </span>
                                 </div>
-                                <div style="padding:0 5px;cursor: pointer;">
+                                <div>
                                     <input type="radio" value="never" name="expire">                          
                                     <span class="lbl padding-8">
                                         Never Expired
