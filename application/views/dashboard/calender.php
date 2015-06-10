@@ -896,6 +896,21 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
 
 <script type="text/javascript">
 
+    function varifyEmail() {
+        $('#sendAgain').on('click', function () {
+            $.ajax({
+                type: 'POST',
+                url: "<?= site_url() ?>app/calender/sendActivationEmail",
+                success: function (data, textStatus, jqXHR) {
+                    if (data == 1) {
+                        alertify.success("Email has been successfully sent..!");
+                    } else {
+                        alertify.error("Email sending failed! Try Again..!");
+                    }
+                }
+            });
+        });
+    }
 
     function validateContact(user) {
         var con = user.split('||');
@@ -1010,23 +1025,12 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
         $('#popup').click(function () {
 <?php if (!$userInfo->email_verification): ?>
                 alertify.alert("You have not schedule events until verify your email.<br/><a href='javascript:void(0);' id='sendAgain'>Click Here</a> to send verification email.");
+                varifyEmail();
                 return false;
 <?php endif; ?>
         });
 
-        $('#sendAgain').on('click', function () {
-            $.ajax({
-                type: 'POST',
-                url: "<?= site_url() ?>app/calender/sendActivationEmail",
-                success: function (data, textStatus, jqXHR) {
-                    if (data == 1) {
-                        alertify.success("Email has been successfully sent..!");
-                    } else {
-                        alertify.error("Email sending failed! Try Again..!");
-                    }
-                }
-            });
-        });
+
 
         $('#freq_type,#e_freq_type,#n_freq_type').change(function () {
             var type = $(this).val();
