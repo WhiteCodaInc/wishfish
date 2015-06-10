@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/dashboard/css/checkbox.css"/>
 <style type="text/css">
     .error{
         color: red
@@ -91,13 +92,13 @@
                             </div><br/>
                             <div class="form-group">
                                 <div style="float: left;padding-right: 20px;">
-                                    <input  type="radio" value="expire" name="expire">
+                                    <input  type="radio" value="expire" name="expire" class="simple">
                                     <span class="lbl padding-8">
                                         Expire On
                                     </span>
                                 </div>
                                 <div>
-                                    <input type="radio" value="never" name="expire">                          
+                                    <input type="radio" value="never" name="expire" class="simple">                          
                                     <span class="lbl padding-8">
                                         Never Expired
                                     </span>
