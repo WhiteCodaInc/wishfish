@@ -1044,7 +1044,7 @@
         });
 
         $('.set_repeat').click(function () {
-            var id = $(this).prev().attr('id');
+            var id = $(this).prev().prop('id');
             $('#' + id).trigger('click');
         });
 
@@ -1134,7 +1134,7 @@
             }
             var data = CKEDITOR.instances['e_emailbody'].getData();
             $('#e_emailbody').val(data);
-            $('#' + id).prop('disabled', 'disabled');
+            $('#' + id).prop('disabled', true);
             $.ajax({
                 type: 'POST',
                 data: $('#editForm').serialize(),
@@ -1155,7 +1155,7 @@
         $('#insert,#n_insert').click(function () {
             var id = $(this).prop('id');
             if (id == "insert") {
-                if ($("#rd_individual").prop("checked")) {
+                if ($("#rd_individual").is(':checked')) {
                     var cnt = $('#users').val();
                     if (cnt.trim() == "") {
                         alertify.error("Please Select Contact..!");
@@ -1225,7 +1225,7 @@
                     return false;
                 }
 <?php endif; ?>
-            $('#' + id).prop('disabled', 'disabled');
+            $('#' + id).prop('disabled', true);
             $.ajax({
                 type: 'POST',
                 data: $('#' + form).serialize(),
@@ -1295,7 +1295,7 @@
 
         $('#user').change(function () {
             var user = $(this).val();
-            $('#rd_individual').removeAttr('checked');
+            $('#rd_individual').prop('checked', false);
             switch (user) {
                 case "1":
                     $("#lbl_select").text("Admin");
@@ -1328,11 +1328,11 @@
         });
 
         $('#e_template,#n_template,#template').change(function () {
-            if ($(this).attr('id') == "template") {
+            if ($(this).prop('id') == "template") {
                 var event_type = $('#eventForm input[name="event_type"]:checked').val();
-            } else if ($(this).attr('id') == "n_template") {
+            } else if ($(this).prop('id') == "n_template") {
                 var event_type = $('#neweventForm input[name="event_type"]:checked').val();
-            } else if ($(this).attr('id') == "e_template") {
+            } else if ($(this).prop('id') == "e_template") {
                 var event_type = $('#editForm input[name="event_type"]:checked').val();
             }
             var tempid = $(this).val();
@@ -1374,7 +1374,7 @@
 
 //        $('#color-chooser li > a,#e_color-chooser li > a,#n_color-chooser li > a').click(function () {
 //
-//            var color = $(this).parent().attr('id');
+//            var color = $(this).parent().prop('id');
 //            console.log(color);
 //            $('input[name="color"]').val(color);
 //            $('#e_color').val(color);
@@ -1492,7 +1492,7 @@
                 $('#all_c').trigger("change");
                 $('#rd_sms').trigger("change");
                 $('#rd_individual').trigger('change');
-                $('#popup').removeAttr('disabled');
+                $('#popup').prop('disabled', false);
                 if (check < today) {
                     $('#rd_sms').parent().hide();
                     $('#rd_email').parent().hide();
@@ -1522,8 +1522,8 @@
                                 "http://mikhailkuznetsov.s3.amazonaws.com/" + data.contact_avatar :
                                 "<?= base_url() . 'assets/dashboard/img/default-avatar.png' ?>";
                         $href = "<?= site_url() ?>admin/contacts/profile/" + data.user_id;
-                        $('#e_user_img').attr('href', $href);
-                        $('#e_user_img img').attr('src', $url);
+                        $('#e_user_img').prop('href', $href);
+                        $('#e_user_img img').prop('src', $url);
                         $('#e_user_img').css('display', 'block');
                         $('#e_user_img').css('float', 'left');
                         $('#event_status').css('margin', '0 0 0 50px');
@@ -1574,10 +1574,10 @@
                     if (!data.refer_id) {
                         $('#e_check_block').css('display', 'block');
                         if (data.is_repeat == 1) {
-                            $('#e_is_repeat').attr('checked', 'true');
+                            $('#e_is_repeat').prop('checked', true);
                             $('#e_repeat_block').css('display', 'block');
                         } else {
-                            $('#e_is_repeat').removeAttr('checked');
+                            $('#e_is_repeat').prop('checked', false);
                             $('#e_repeat_block').css('display', 'none');
                         }
                         $('#e_freq_type').val(data.freq_type);
@@ -1588,13 +1588,13 @@
                         }
                         $('#e_freq_no').val(data.freq_no);
                         if (data.end_type == "never") {
-                            $('#rd_never').attr('checked', 'true');
-                            $('#rd_after').removeAttr('checked');
+                            $('#rd_never').prop('checked', true);
+                            $('#rd_after').prop('checked', false);
                             $('#e_end_block').css('display', 'none');
                         } else {
-                            $('#rd_after').attr('checked', 'true');
+                            $('#rd_after').prop('checked', true);
                             $('#e_end_block').css('display', 'block');
-                            $('#rd_never').removeAttr('checked');
+                            $('#rd_never').prop('checked', false);
                         }
                         $('input[name="occurance"]').val(data.occurance);
                     } else {
@@ -1647,7 +1647,7 @@
                     $(this).css('border', '1px solid darkorchid');
                 }
             } else {
-                $(this).removeAttr('style');
+                $(this).removeProp('style');
             }
         });
     }
