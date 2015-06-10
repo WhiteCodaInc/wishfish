@@ -156,7 +156,11 @@
 
         $('input[name="expire"]').change(function () {
             var val = $('input[name="expire"]:checked').val();
-            console.log(val);
+            if(val == "expire"){
+                $('.expiry-date').show();
+            }else{
+                $('.expiry-date').hide();
+            }
         });
 
         var c_code = 1, c_amt = 1, c_use = 1, c_month = 1;
