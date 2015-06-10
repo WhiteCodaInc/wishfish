@@ -104,8 +104,7 @@
                                     </span>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label>Expires On</label>
+                            <div class="form-group expiry-date">
                                 <div class="input-group">
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
@@ -154,6 +153,12 @@
 
     });
     $(document).ready(function () {
+
+        $('input[name="expire"]').change(function () {
+            var val = $('input[name="expire"]:checked').val();
+            console.log(val);
+        });
+
         var c_code = 1, c_amt = 1, c_use = 1, c_month = 1;
         $('#addCoupon').click(function () {
             $('.coupon-submit').trigger('click');
