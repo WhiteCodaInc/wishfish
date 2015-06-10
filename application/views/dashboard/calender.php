@@ -45,6 +45,23 @@
     <section class="content">
         <div class="row">
             <div class="col-md-12">
+                <div class="alert alert-danger">
+                    <i class="fa fa-ban"></i>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h4>Please Verify Your Email.</h4>
+                        </div>
+                        <div class="col-md-2">
+                            <a style="color: white;  margin: 2px -48px;" class="btn btn-info" data-toggle="modal" data-target="#varify-modal">
+                                Send Verification Email
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
                 <div class="box box-primary">
                     <div class="box-body no-padding">
                         <!-- THE CALENDAR -->
@@ -56,7 +73,6 @@
     </section><!-- /.content -->
 </aside><!-- /.right-side -->
 
-<span style="display: none" id="popup" data-toggle="modal" data-target="#compose-modal"></span>
 <span style="display: none" id="event_desc" data-toggle="modal" data-target="#event-description"></span>
 <span style="display: none" id="create_event" data-toggle="modal" data-target="#new-event"></span>
 
