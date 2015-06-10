@@ -1009,12 +1009,8 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
 
         $('#popup').click(function () {
 <?php if (!$userInfo->email_verification): ?>
-                alertify.confirm("You have not schedule events until verify your email.<br/>\n\
-                                     <a href='javascript:void(0);' id='sendAgain'>Click Here</a> to send verification email.",
-                        function (e) {
-                            return false;
-                        }
-                );
+                alertify.alert("You have not schedule events until verify your email.<br/><a href='javascript:void(0);' id='sendAgain'>Click Here</a> to send verification email.");
+                return false;
 <?php endif; ?>
         });
         $('#freq_type,#e_freq_type,#n_freq_type').change(function () {
