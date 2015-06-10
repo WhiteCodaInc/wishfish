@@ -37,7 +37,7 @@
 <script src="<?= base_url() ?>assets/wow/js/nivo-lightbox.min.js"></script>
 <script src="<?= base_url() ?>assets/wow/js/jquery.ajaxchimp.min.js"></script>
 <script src="<?= base_url() ?>assets/wow/js/jquery.fitvids.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
 <script src="<?= base_url() ?>assets/wow/js/jquery.counterup.min.js"></script>
 <script src="<?= base_url() ?>assets/wow/js/jquery.easypiechart.min.js"></script>
 <script src="<?= base_url() ?>assets/wow/js/owl.carousel.min.js"></script>
