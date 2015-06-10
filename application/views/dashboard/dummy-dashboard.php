@@ -224,7 +224,8 @@
                 <div class="msg">
                     <?php if (!$flag): ?>
                         <!--<h1>Please check your email to get started..!</h1>-->
-                        <h1 style="text-align: center">Welcome to Wish-Fish!<br/>Please click <a href="javascript:void(0);" id="sendAgain">Here</a> To Activate Your Account</h1>
+                        <h1 style="text-align: center">Welcome to Wish-Fish!<br/>Please click the 'Activate Your Account' Button in your Email To Get Started!</h1>
+                        <h3>Didn't get our Email? No worries, <a href="javascript:void(0);" id="sendAgain">Click Here</a> and We'll send you another one!</h3>
                     <?php else : ?>
                         <div class="row" >
                             <div class="col-md-3"></div>
