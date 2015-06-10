@@ -662,10 +662,10 @@
 <form style="display: none" id="personal" action="<?= site_url() ?>stripe_payment/pay" method="post">
     <input type="hidden" name="plan" value="wishfish-personal"/>
     <input type="hidden" name="coupon" value=""/>
+    <!--data-image="/square-image.png"-->
     <script
         src="https://checkout.stripe.com/checkout.js" class="stripe-button"
         data-key="<?= $stripe->publish_key ?>"
-        data-image="/square-image.png"
         data-name="Personal"
         data-description="Product"                    
         data-label="Stripe"                    
@@ -679,7 +679,6 @@
     <script
         src="https://checkout.stripe.com/checkout.js" class="stripe-button"
         data-key="<?= $stripe->publish_key ?>"
-        data-image="/square-image.png"
         data-name="Enterprise"
         data-description="Product"                    
         data-label="Stripe"                    
