@@ -137,13 +137,15 @@ $img_src = ($avatar != "") ?
                         </a>
                         <ul class="treeview-menu">
                             <li>
-                                <a href="<?= site_url() ?>admin/customers/addCustomer">
+                                <!--<a href="<?= site_url() ?>admin/customers/addCustomer">-->
+                                <a href="#">
                                     <i class="fa fa-plus"></i>
                                     <span>Create New Customer</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="<?= site_url() ?>admin/customer_groups">
+                                <!--<a href="<?= site_url() ?>admin/customer_groups">-->
+                                <a href="#">
                                     <i class="fa fa-angle-double-right"></i> <span>Customer Groups</span>
                                 </a>
                             </li>
