@@ -79,7 +79,7 @@
                             <div class="row">
                                 <div class="col-md-4"><label>Profile Type</label></div>
                                 <div class="col-md-8">
-                                    <span class="title"><?= ($customer->profile_type != NULL) ? $customer->profile_type : 'N/A' ?></span>
+                                    <span class="title"><?= ($customer->profile_type != "-1") ? $customer->profile_type : 'N/A' ?></span>
                                 </div>
                             </div>
                         </div>
