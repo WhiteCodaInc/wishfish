@@ -37,7 +37,7 @@ class Wi_authex {
             /* their username and password combination
              * were not found in the databse */
             return FALSE;
-        } else {
+        } else if ($query->row()->status) {
             $last_login = date("Y-m-d H-i-s");
             $data = array(
                 "last_login" => $last_login
@@ -54,6 +54,8 @@ class Wi_authex {
             $this->_CI->session->set_userdata('date_format', $res->date_format);
             unset($res);
             return TRUE;
+        } else {
+            return -1;
         }
     }
 

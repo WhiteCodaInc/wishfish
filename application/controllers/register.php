@@ -19,7 +19,8 @@ class Register extends CI_Controller {
     //put your code here
     function __construct() {
         parent::__construct();
-
+        echo (-1) ? "TRUE" : "FALSE";
+        die();
         require APPPATH . 'third_party/google-api/Google_Client.php';
         require APPPATH . 'third_party/google-api/contrib/Google_Oauth2Service.php';
         require_once APPPATH . 'third_party/facebook/facebook.php';
