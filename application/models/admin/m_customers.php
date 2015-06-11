@@ -72,6 +72,7 @@ class M_customers extends CI_Model {
         $this->db->from('wi_user_mst as U');
         $this->db->join('wi_plan_detail as PD', 'U.user_id = PD.user_id', 'left outer');
         $this->db->join('wi_plans as P', 'PD.plan_id = P.plan_id');
+        $this->db->where('PD.plan_status', 1);
         $this->db->where('U.user_id', $cid);
         $query = $this->db->get();
         return $query->row();
