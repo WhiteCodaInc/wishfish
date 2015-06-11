@@ -18,12 +18,15 @@
     .dl-horizontal dt {
         width: 88px
     }
-    .fc-event:hover{
+    #calendar table tbody tr td{
         cursor: pointer
     }
-    .fc-day-number:hover{
-        cursor: pointer
-    }
+    /*    .fc-event:hover{
+            cursor: pointer
+        }
+        .fc-day-number:hover{
+            cursor: pointer
+        }*/
     .fc-widget-content:hover{
         border: 1px solid darkturquoise;
     }
