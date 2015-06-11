@@ -38,7 +38,7 @@ class Dashboard extends CI_Controller {
         if ($this->input->cookie('isLogin')) {
             $id = $this->input->cookie('isLogin', TRUE);
             delete_cookie('isLogin', '.wish-fish.com', '/');
-            $this->wi_authex->loginBySocial($id);
+            $login =$this->wi_authex->loginBySocial($id);
         }
 
         $this->load->model('dashboard/m_dashboard', 'objdashboard');

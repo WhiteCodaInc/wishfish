@@ -91,7 +91,9 @@ class Wi_authex {
     function loginBySocial($gid) {
         $query = $this->_CI->db->get_where("wi_user_mst", array("user_unique_id" => $gid));
         $res = $query->row();
-        if ($query->num_rows() == 1) {
+        if ($query->num_rows() !== 1) {
+            return false;
+        } else if ($res->status) {
             $this->_CI->session->set_userdata('userid', $res->user_id);
             $this->_CI->session->set_userdata('name', $res->name);
             $this->_CI->session->set_userdata('email', $res->email);
@@ -100,7 +102,7 @@ class Wi_authex {
             $this->_CI->session->set_userdata('date_format', $res->date_format);
             return TRUE;
         } else {
-            return FALSE;
+            return -1;
         }
     }
 
