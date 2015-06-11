@@ -9,19 +9,19 @@
         <h1 style=" display: none">
             Customer Profile
         </h1>
-<!--        <a style="margin-left: 10px" href="<?= site_url() ?>admin/customers/editCustomer/<?= $customer->customer_id ?>" class="create btn bg-navy">
+<!--        <a style="margin-left: 10px" href="<?= site_url() ?>admin/customers/editCustomer/<?= $customer->user_id ?>" class="create btn bg-navy">
             <i class="fa fa-edit"></i>
             Edit
         </a>-->
 
-<!--        <a href="<?= site_url() ?>admin/calender/createEvent/customer/<?= $customer->customer_id ?>" class="create btn btn-success">
+<!--        <a href="<?= site_url() ?>admin/calender/createEvent/customer/<?= $customer->user_id ?>" class="create btn btn-success">
             <i class="fa fa-plus"></i>
             Create Calender Event
         </a>-->
     </section>
     <?php
     $img_src = ($customer->profile_pic != "") ?
-            "http://mikhailkuznetsov.s3.amazonaws.com/" . $customer->customer_avatar :
+            "http://mikhailkuznetsov.s3.amazonaws.com/" . $customer->profile_pic :
             base_url() . 'assets/dashboard/img/default-avatar.png';
     ?>
     <!-- Main content -->
@@ -129,7 +129,7 @@
                             <div class="row">
                                 <div class="col-md-4"><label>Join Via</label></div>
                                 <div class="col-md-8">
-                                    <span class="title"><?= ($customer->joined_via != NULL) ? $customer->joined_via : 'N/A' ?></span>
+                                    <span class="title"><?= ($customer->join_via != NULL) ? $customer->join_via : 'N/A' ?></span>
                                 </div>
                             </div>
                         </div>
