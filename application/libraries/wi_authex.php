@@ -16,21 +16,6 @@ class Wi_authex {
         return ($this->_CI->session->userdata("userid") ) ? true : false;
     }
 
-//    function clogged_in() {
-//        $CI = & get_instance();
-//        return ($CI->session->userdata("clientid")) ? true : false;
-//    }
-//
-//    function slogged_in() {
-//        $CI = & get_instance();
-//        return ($CI->session->userdata("staffid")) ? true : false;
-//    }
-//    function alogged_in() {
-//        $CI = & get_instance();
-//        return ($CI->session->userdata("uname")) ? true : false;
-//    }
-
-
     function login($where) {
         $query = $this->_CI->db->get_where('wi_user_mst', $where);
         if ($query->num_rows() !== 1) {
@@ -106,19 +91,4 @@ class Wi_authex {
         }
     }
 
-//    function loginByFacebook($fid) {
-//        $query = $this->_CI->db->get_where("user_mst", array("user_unique_id" => $fid));
-//        $res = $query->row();
-//        if ($query->num_rows() == 1) {
-//            $this->_CI->session->set_userdata('userid', $res->user_id);
-//            $this->_CI->session->set_userdata('name', $res->name);
-//            $this->_CI->session->set_userdata('email', $res->email);
-//            $this->_CI->session->set_userdata('profile_pic', $res->profile_pic);
-//            $this->_CI->session->set_userdata('timezone', $res->timezones);
-//            $this->_CI->session->set_userdata('date_format', $res->date_format);
-//            return TRUE;
-//        } else {
-//            return FALSE;
-//        }
-//    }
 }
