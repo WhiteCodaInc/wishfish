@@ -82,7 +82,7 @@
                                     <select name="status_search" class="form-control m-bot15">
                                         <option value="-1">--Select--</option>
                                         <option value="1">Active</option>
-                                        <option value="2">Deactivated</option>
+                                        <option value="0">Deactivated</option>
                                     </select>
                                 </div>
                             </div>
