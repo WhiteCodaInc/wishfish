@@ -56,7 +56,9 @@ class M_customers extends CI_Model {
         ($join != "" && $join != "-1") ? $where['join_via'] = $join : '';
         ($status != "" && $status != "-1") ? $where['U.status'] = $status : '';
         ($plan != "" && $plan != "-1") ? $where['P.plan_id'] = $plan : '';
-
+        echo '<pre>';
+        print_r($where);
+        die();
         $this->db->select('U.user_id,profile_pic,U.register_date,name,email,P.plan_name,join_via,status');
         $this->db->from('wi_user_mst as U');
         $this->db->join('wi_plan_detail as PD', 'U.user_id = PD.user_id', 'left outer');
