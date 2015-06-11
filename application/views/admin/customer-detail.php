@@ -62,7 +62,7 @@
                                     <select name="plan_search" class="form-control m-bot15">
                                         <option value="-1">--Select--</option>
                                         <?php foreach ($plans as $value) { ?>
-                                            <option value="<?= $value->plan_id_id ?>">
+                                            <option value="<?= $value->plan_id ?>">
                                                 <?= $value->plan_name ?></option>
                                         <?php } ?>
                                     </select>
