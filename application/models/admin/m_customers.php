@@ -57,6 +57,7 @@ class M_customers extends CI_Model {
         ($status != "" && $status != "-1") ? $where['U.status'] = $status : '';
         ($plan != "" && $plan != "-1") ? $where['P.plan_id'] = $plan : '';
         echo '<pre>';
+        print_r($post);
         print_r($where);
         die();
         $this->db->select('U.user_id,profile_pic,U.register_date,name,email,P.plan_name,join_via,status');
