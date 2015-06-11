@@ -110,10 +110,12 @@
                 $(window).scroll(function () {
                     if ($(window).scrollTop() > stickyHeaderTop) {
                         $('.content-header').css({position: 'fixed', top: '0px'});
+                        $('.content-header div.search').css('float', 'left');
                         //$('.box .create,.box .delete,.box .default,.box .publish,.box .draft').hide();
                         //$('.content-header .create,.content-header .delete,.content-header .default,.content-header .publish,.content-header .draft').show();
                     } else {
                         $('.content-header').css({position: 'static', top: '0px'});
+                        $('.content-header div.search').css('float', 'right');
 //                        $('.content-header > h1').removeAttr('style');
                         //$('.box .create,.box .delete,.box .default,.box .publish,.box .draft').show();
                         //$('.content-header .create,.content-header .delete,.content-header .default,.content-header .publish,.content-header .draft').hide();

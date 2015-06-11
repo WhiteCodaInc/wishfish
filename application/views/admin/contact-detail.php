@@ -2,6 +2,9 @@
     #contact-data-table tr td,#contact-data-table tr th{
         text-align: center;
     }
+    .dataTables_wrapper > div.row:first-child{
+        display: none
+    }
 </style>
 <!-- Right side column. Contains the navbar and content of the page -->
 <aside class="right-side">
@@ -27,6 +30,16 @@
         <a class="btn btn-primary btn-sm create" href="<?= site_url() ?>admin/import">
             <span> Import Google Contact</span>
         </a>
+        <div class="search" style="float:right;width: 25%">
+            <select id="page_length" class="form-control" style="float: left;width: 30%">
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+                <option value="200">200</option>
+                <option value="-1" selected="">All</option>
+            </select>
+            <input class="form-control" type="text" id="searchbox" placeholder="Search" style="float: left;width: 70%">
+        </div>
     </section>
     <!-- Main content -->
     <section class="content">
@@ -138,20 +151,6 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="box" >
-                    <div class="box-header">
-                        <h3 class="box-title">Contact Detail</h3>
-                    </div><!-- /.box-header -->
-                    <div class="row">
-                        <div class="col-md-12" style="margin-left: 10px">
-                            <!--<a href="<?= site_url() ?>admin/contacts/addContact" class="btn btn-success btn-sm create">
-                                <i class="fa fa-plus"></i>
-                                Create New Contact
-                            </a>
-                            <button style="margin-left: 10px" value="Delete" class="btn btn-danger btn-sm delete" id="Delete" type="button" >Delete</button>
-                            -->
-                        </div>
-                    </div>
-
                     <form name="checkForm" id="checkForm" action="" method="post">
                         <div class="box-body table-responsive" id="data-panel">
 
@@ -305,7 +304,7 @@ switch ($msg) {
 <!-- page script -->
 <script type="text/javascript">
     $(function () {
-        $("#contact-data-table").dataTable({
+        oTable = $("#contact-data-table").dataTable({
             aLengthMenu: [
                 [25, 50, 100, 200, -1],
                 [25, 50, 100, 200, "All"]
@@ -316,6 +315,16 @@ switch ($msg) {
                 }],
             iDisplayLength: -1,
             aaSorting: [[2, 'asc']]
+        });
+        $("#searchbox").on("keyup search input paste cut", function () {
+            oTable.fnFilter(this.value);
+        });
+        $('#page_length').change(function () {
+            var length = parseInt($(this).val());
+            console.log(length);
+            var oSettings = oTable.fnSettings();
+            oSettings._iDisplayLength = length;
+            oTable.fnPageChange("first");
         });
     });
 </script>
