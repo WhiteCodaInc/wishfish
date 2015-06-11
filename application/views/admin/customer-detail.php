@@ -260,7 +260,14 @@ switch ($msg) {
         $('#customer-data-table tbody tr').each(function () {
             $(this).children('td.sorting_1').find('div.checked');
         });
-
+        $('button.add').click(function (e) {
+            action($(this).val());
+            e.preventDefault();
+        });
+        $('button.remove').click(function (e) {
+            action($(this).val());
+            e.preventDefault();
+        });
         $('button.delete').click(function (e) {
             var customer = "";
             var act = $(this).val();
@@ -270,7 +277,6 @@ switch ($msg) {
                     customer += $txt.trim() + ",";
                 }
             });
-
             customer = customer.substring(0, customer.length - 1);
             alertify.confirm("Are you sure want to delete customer(s):<br/>" + customer, function (e) {
                 if (e) {
@@ -282,7 +288,6 @@ switch ($msg) {
                 }
             });
         });
-
         function action(actiontype) {
             $('#actionType').val(actiontype);
             $('#checkForm').attr('action', "<?= site_url() ?>admin/customers/action");
