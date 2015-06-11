@@ -21,12 +21,6 @@
     #calendar table tbody tr td{
         cursor: pointer
     }
-    /*    .fc-event:hover{
-            cursor: pointer
-        }
-        .fc-day-number:hover{
-            cursor: pointer
-        }*/
     .fc-widget-content:hover{
         border: 1px solid darkturquoise;
     }
