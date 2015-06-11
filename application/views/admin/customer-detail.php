@@ -266,7 +266,7 @@ switch ($msg) {
             var act = $(this).val();
             $('#customer-data-table tbody tr').each(function () {
                 if ($(this).children('td:first').find('div.checked').length) {
-                    $txt = $(this).children('td:nth-child(4)').children('a').text();
+                    $txt = $(this).children('td:nth-child(4)').text();
                     customer += $txt.trim() + ",";
                 }
             });
