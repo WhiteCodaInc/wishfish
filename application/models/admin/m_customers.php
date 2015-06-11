@@ -84,12 +84,10 @@ class M_customers extends CI_Model {
         $this->db->where($where);
         switch ($type) {
             case "Active":
-
                 $this->db->update('wi_user_mst', array('status' => 1));
                 $msg = "A";
                 break;
             case "Deactive":
-
                 $this->db->update('wi_user_mst', array('status' => 0));
                 $msg = "DA";
                 break;
