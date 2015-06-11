@@ -80,7 +80,7 @@ class M_customers extends CI_Model {
     function setAction($type) {
         $ids = $this->input->post('customer');
         $msg = "";
-        $where = 'usre_id in (' . implode(',', $ids) . ')';
+        $where = 'user_id in (' . implode(',', $ids) . ')';
         $this->db->where($where);
         switch ($type) {
             case "Active":
