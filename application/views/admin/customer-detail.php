@@ -147,7 +147,7 @@
                                             </td>
                                             <td><?= date('d-m-Y H:i:s', strtotime($value->register_date)) ?></td>
                                             <td>
-                                                <a href="<?= site_url() . 'admin/customers/profile/' . $value->customer_id ?>" class="name">
+                                                <a href="<?= site_url() . 'admin/customers/profile/' . $value->user_id ?>" class="name">
                                                     <?= $value->name ?>
                                                 </a>
                                             </td>
