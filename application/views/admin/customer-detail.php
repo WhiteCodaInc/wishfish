@@ -13,8 +13,8 @@
         <h1 style=" display: none">
             Customers
         </h1>
-        <button value="Active" class="active btn btn-success btn-sm" id="Active" type="button" >Active</button>
-        <button value="Deactive" class="active btn btn-warning btn-sm" id="Deactive" type="button" >Deactive</button>
+        <button value="Active" class="add btn btn-success btn-sm" id="Active" type="button" >Active</button>
+        <button value="Deactive" class="remove btn btn-warning btn-sm" id="Deactive" type="button" >Deactive</button>
         <button value="Delete" class="delete btn btn-danger btn-sm" id="Delete" type="button" >Delete</button>
         <div class="search" style="float:right;width: 25%">
             <select id="page_length" class="form-control" style="float: left;width: 30%">
