@@ -99,7 +99,9 @@ class Import extends CI_Controller {
             }
             $data['gc'] = $gc;
             $data['url'] = $this->client->createAuthUrl();
-
+            echo '<pre>';
+            print_r($data);
+            die();
             $this->load->view('dashboard/header');
             $this->load->view('dashboard/import', $data);
             $this->load->view('dashboard/footer');
