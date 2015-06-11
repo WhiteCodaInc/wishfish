@@ -223,21 +223,13 @@
 <?php $data = $this->input->post(); ?>
 <?php
 switch ($msg) {
-    case "I":
-        $m = "Customer Profile Successfully Created..!";
+    case "A":
+        $m = "Customer Profile Successfully Activated..!";
         $t = "success";
         break;
-    case "U":
-        $m = "Customer Profile Successfully Updated..!";
+    case "DA":
+        $m = "Customer Profile Successfully Deactivated..!";
         $t = "success";
-        break;
-    case "UF":
-        $m = "Customer Avatar not uploaded..!";
-        $t = "error";
-        break;
-    case "IF":
-        $m = "Invalid File Format..!";
-        $t = "error";
         break;
     case "D":
         $m = "Customer Profile(s) Successfully Deleted..!";
@@ -274,10 +266,10 @@ switch ($msg) {
             ],
             aoColumnDefs: [{
                     bSortable: false,
-                    aTargets: [0, 1, 4, 5, 6, 8]
+                    aTargets: [0, 1, 2, 4, 5, 6, 7]
                 }],
             iDisplayLength: -1,
-            aaSorting: [[2, 'asc']]
+            aaSorting: [[3, 'asc']]
         });
         $("#searchbox").on("keyup search input paste cut", function () {
             oTable.fnFilter(this.value);
