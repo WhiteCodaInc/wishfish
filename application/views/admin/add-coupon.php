@@ -186,7 +186,7 @@
                 url: "<?= site_url() ?>admin/coupons/getCouponCode",
                 success: function (data, textStatus, jqXHR) {
                     $('input[name="coupon_code"]').val(data);
-                    c_use = 1;
+                    c_code = 1;
                     $('.msgcode').empty();
                 }
             });
@@ -200,7 +200,6 @@
                 return false;
             } else {
                 $('.msgcode').empty();
-                c_code = 1;
                 $.ajax({
                     type: 'POST',
                     data: {code: code},
@@ -216,7 +215,6 @@
                     }
                 });
             }
-
         });
 
         $('input[name="disc_amount"]').focusout(function () {
@@ -276,13 +274,13 @@
         });
 
         $('#couponForm').submit(function () {
-            if ($('input[name="coupon_code"]').val().trim() == "") {
-                $('.msgcode').text("Coupon Code can not be empty..!");
-                c_code = 0;
-            } else {
-                $('.msgcode').empty();
-                c_code = 1;
-            }
+//            if ($('input[name="coupon_code"]').val().trim() == "") {
+//                $('.msgcode').text("Coupon Code can not be empty..!");
+//                c_code = 0;
+//            } else {
+//                $('.msgcode').empty();
+//                c_code = 1;
+//            }
 
 //            alert(c_code + " " + c_amt + " " + c_month + " " + c_use);
             if ((c_code === 0 || c_amt === 0 || c_month === 0 || c_use === 0)) {
