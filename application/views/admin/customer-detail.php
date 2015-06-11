@@ -141,10 +141,16 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                <img style="width:60px;height:60px" src="<?= $img_src ?>" class="img-circle" alt="User Image" />
+                                                <a href="<?= site_url() . 'admin/customers/profile/' . $value->user_id ?>">
+                                                    <img style="width:60px;height:60px" src="<?= $img_src ?>" class="img-circle" alt="User Image" />
+                                                </a>
                                             </td>
                                             <td><?= date('d-m-Y H:i:s', strtotime($value->register_date)) ?></td>
-                                            <td><?= $value->name ?></td>
+                                            <td>
+                                                <a href="<?= site_url() . 'admin/customers/profile/' . $value->customer_id ?>" class="name">
+                                                    <?= $value->name ?>
+                                                </a>
+                                            </td>
                                             <td><?= $value->email ?></td>
 
                                             <td><?= $value->plan_name ?></td>
