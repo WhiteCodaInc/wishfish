@@ -143,7 +143,7 @@
                                             <td>
                                                 <img style="width:60px;height:60px" src="<?= $img_src ?>" class="img-circle" alt="User Image" />
                                             </td>
-                                            <td><?= date('m-d-Y H:i:s', strtotime($value->register_date)) ?></td>
+                                            <td><?= date('d-m-Y H:i:s', strtotime($value->register_date)) ?></td>
                                             <td><?= $value->name ?></td>
                                             <td><?= $value->email ?></td>
 
