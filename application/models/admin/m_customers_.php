@@ -29,13 +29,8 @@ class M_customers extends CI_Model {
     }
 
     function getCustomerDetail() {
-        $this->db->select('U.user_id,register_date,name,email,P.plan_name,join_via,status');
-        $this->db->from('wi_user_mst as U');
-        $this->db->join('wi_plan_detail as PD', 'U.user_id = PD.user_id', 'left outer');
-        $this->db->join('wi_plans as P', 'PD.plan_id = P.plan_id');
-        $this->db->where('PD.plan_status', 1);
-        $this->db->order_by('name', 'asc');
-        $query = $this->db->get();
+        $this->db->order_by('fname', 'asc');
+        $query = $this->db->get('customer_detail');
         return $query->result();
     }
 
