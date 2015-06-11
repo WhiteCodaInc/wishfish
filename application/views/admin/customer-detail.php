@@ -40,30 +40,7 @@
                         <form action="<?= site_url() ?>admin/customers/search" method="post">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label>First Name</label>
-                                            <input name="fname_search" class="form-control" placeholder="First Name" type="text">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label>Last Name</label>
-                                            <input name="lname_search" class="form-control" placeholder="Last Name" type="text">
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="col-md-4">
-                                    <label>Email</label>
-                                    <input name="email_search" class="form-control" placeholder="Email" type="text">
-                                </div>
-                                <div class="col-md-4">
-                                    <label>Age</label>
-                                    <input name="age_search" class="form-control" placeholder="Age" type="text">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <label>Birthday</label>
+                                    <label>Registration</label>
                                     <div class="input-group input-large input-daterange" >
                                         <input type="text" na class="form-control" name="from_search">
                                         <span class="input-group-addon">To</span>
@@ -71,54 +48,41 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <label>Customer Group</label>
-                                    <select name="group_search" class="form-control m-bot15">
-                                        <option value="-1">--Select--</option>
-                                        <?php foreach ($groups as $value) { ?>
-                                            <option value="<?= $value->group_id ?>">
-                                                <?= $value->group_name ?></option>
-                                        <?php } ?>
-                                    </select>
+                                    <label>First Name</label>
+                                    <input name="fname_search" class="form-control" placeholder="Full " type="text">
                                 </div>
                                 <div class="col-md-4">
-                                    <label>Zodiac</label>
-                                    <select name="zodiac_search" class="form-control m-bot15">
-                                        <option value="-1">--Select--</option>
-                                        <?php foreach ($zodiac as $value) { ?>
-                                            <option value="<?= $value->zodiac_name ?>"><?= $value->zodiac_name ?></option>
-                                        <?php } ?>
-                                    </select>
+                                    <label>Email</label>
+                                    <input name="email_search" class="form-control" placeholder="Email" type="text">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-4">
-                                    <label>Country</label>
-                                    <input name="country_search" class="form-control" placeholder="Country" type="text">
-                                </div>
-                                <div class="col-md-4">
-                                    <label>City</label>
-                                    <input name="city_search" class="form-control" placeholder="City" type="text">
-                                </div>
-                                <div class="col-md-4">
-                                    <label>Address</label>
-                                    <input name="address_search" class="form-control" placeholder="Address" type="text">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <label>Profile Rating(1-10)</label>
-                                    <select name="rating_search" class="form-control m-bot15">
+                                    <label>Plan</label>
+                                    <select name="plan_search" class="form-control m-bot15">
                                         <option value="-1">--Select--</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
+                                        <?php foreach ($plans as $value) { ?>
+                                            <option value="<?= $value->plan_id_id ?>">
+                                                <?= $value->plan_name ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Join Via</label>
+                                    <select name="join_search" class="form-control m-bot15">
+                                        <option value="-1">--Select--</option>
+                                        <option value="Join Now">Join Now</option>
+                                        <option value="Register">Register</option>
+                                        <option value="Google">Google</option>
+                                        <option value="Facebook">Facebook</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Status</label>
+                                    <select name="status_search" class="form-control m-bot15">
+                                        <option value="-1">--Select--</option>
+                                        <option value="1">Active</option>
+                                        <option value="2">Deactivated</option>
                                     </select>
                                 </div>
                             </div>
@@ -139,7 +103,6 @@
                 <div class="box" >
                     <form name="checkForm" id="checkForm" action="" method="post">
                         <div class="box-body table-responsive" id="data-panel">
-
                             <table id="customer-data-table" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
@@ -286,18 +249,13 @@ switch ($msg) {
 <script type="text/javascript">
     $(document).ready(function () {
 <?php if (is_array($data)) { ?>
-            $('input[name="fname_search"]').val("<?= $data['fname_search'] ?>");
-            $('input[name="lname_search"]').val("<?= $data['lname_search'] ?>");
+            $('input[name="name_search"]').val("<?= $data['name_search'] ?>");
             $('input[name="email_search"]').val("<?= $data['email_search'] ?>");
-            $('input[name="age_search"]').val("<?= $data['age_search'] ?>");
             $('input[name="from_search"]').val("<?= $data['from_search'] ?>");
             $('input[name="to_search"]').val("<?= $data['to_search'] ?>");
-            $('select[name="group_search"]').val("<?= $data['group_search'] ?>");
-            $('select[name="zodiac_search"]').val("<?= $data['zodiac_search'] ?>");
-            $('input[name="country_search"]').val("<?= $data['country_search'] ?>");
-            $('input[name="city_search"]').val("<?= $data['city_search'] ?>");
-            $('input[name="address_search"]').val("<?= $data['address_search'] ?>");
-            $('select[name="rating_search"]').val("<?= $data['rating_search'] ?>");
+            $('select[name="plan_search"]').val("<?= $data['plan_search'] ?>");
+            $('select[name="join_search"]').val("<?= $data['join_search'] ?>");
+            $('select[name="status_search"]').val("<?= $data['status_search'] ?>");
 <?php } ?>
         $('#customer-data-table tbody tr').each(function () {
             $(this).children('td.sorting_1').find('div.checked');
@@ -308,13 +266,12 @@ switch ($msg) {
             var act = $(this).val();
             $('#customer-data-table tbody tr').each(function () {
                 if ($(this).children('td:first').find('div.checked').length) {
-                    $txt = $(this).children('td:nth-child(3)').children('a').text();
+                    $txt = $(this).children('td:nth-child(4)').children('a').text();
                     customer += $txt.trim() + ",";
                 }
             });
 
             customer = customer.substring(0, customer.length - 1);
-
             alertify.confirm("Are you sure want to delete customer(s):<br/>" + customer, function (e) {
                 if (e) {
                     action(act);
