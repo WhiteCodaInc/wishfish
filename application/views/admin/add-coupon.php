@@ -272,16 +272,7 @@
                 $('.msguse').empty();
             }
         });
-
         $('#couponForm').submit(function () {
-//            if ($('input[name="coupon_code"]').val().trim() == "") {
-//                $('.msgcode').text("Coupon Code can not be empty..!");
-//                c_code = 0;
-//            } else {
-//                $('.msgcode').empty();
-//                c_code = 1;
-//            }
-
 //            alert(c_code + " " + c_amt + " " + c_month + " " + c_use);
             if ((c_code === 0 || c_amt === 0 || c_month === 0 || c_use === 0)) {
                 return false;
