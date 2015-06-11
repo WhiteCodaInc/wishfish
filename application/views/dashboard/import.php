@@ -56,21 +56,21 @@
                                             <td>
                                                 <div>
                                                     <label>
-                                                        <input type="checkbox" name="contact[]" value="<?= $key ?>"/>
+                                                        <input type="checkbox" name="contact[<?= $key ?>]" value="<?= $key ?>"/>
                                                     </label>
                                                 </div>
                                             </td>
                                             <td>
                                                 <?= ($value['name'] != "") ? $value['name'] : 'N/A' ?>
-                                                <input type="hidden" name="name[]" value="<?= $value['name'] ?>" />
+                                                <input type="hidden" name="name[<?= $key ?>]" value="<?= $value['name'] ?>" />
                                             </td>
                                             <td>
                                                 <?= ($value['email'] != "") ? $value['email'] : 'N/A' ?>
-                                                <input type="hidden" name="email[]" value="<?= $value['email'] ?>" />
+                                                <input type="hidden" name="email[<?= $key ?>]" value="<?= $value['email'] ?>" />
                                             </td>
                                             <td>
                                                 <?= ($value['phone'] != "") ? $value['phone'] : 'N/A' ?>
-                                                <input type="hidden" name="phone[]" value="<?= $value['phone'] ?>" />
+                                                <input type="hidden" name="phone[<?= $key ?>]" value="<?= $value['phone'] ?>" />
                                             </td>
                                         </tr>
                                     <?php } ?>
