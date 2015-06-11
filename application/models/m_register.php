@@ -36,11 +36,6 @@ class M_register extends CI_Model {
 
     function register($post) {
         $flag = FALSE;
-//        $post['password'] = $this->generateRandomString(5);
-//        $login = array(
-//            'email' => $post['email'],
-//            'password' => $post['password']
-//        );
         $this->db->trans_start();
         $planInfo = $this->wi_common->getPlan(1);
 
