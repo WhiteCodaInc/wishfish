@@ -145,7 +145,7 @@
                                                     <img style="width:60px;height:60px" src="<?= $img_src ?>" class="img-circle" alt="User Image" />
                                                 </a>
                                             </td>
-                                            <td><?= date('d-m-Y H:i:s', strtotime($value->register_date)) ?></td>
+                                            <td><?= date('m-d-Y H:i:s', strtotime($value->register_date)) ?></td>
                                             <td>
                                                 <a href="<?= site_url() . 'admin/customers/profile/' . $value->user_id ?>" class="name">
                                                     <?= $value->name ?>
@@ -214,7 +214,7 @@ switch ($msg) {
         alertify.<?= $t ?>("<?= $m ?>");
 <?php endif; ?>
     $('.input-daterange').datepicker({
-        format: "dd-mm-yyyy",
+        format: "mm-dd-yyyy",
         todayBtn: "linked",
         autoclose: true,
         todayHighlight: true
