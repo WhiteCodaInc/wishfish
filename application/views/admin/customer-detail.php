@@ -49,7 +49,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label>First Name</label>
-                                    <input name="fname_search" class="form-control" placeholder="Full " type="text">
+                                    <input name="name_search" class="form-control" placeholder="Full Name" type="text">
                                 </div>
                                 <div class="col-md-4">
                                     <label>Email</label>
