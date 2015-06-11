@@ -86,4 +86,9 @@ class Coupons extends CI_Controller {
         }
     }
 
+    function isExistCouponCode() {
+        $code = $this->input->post('code');
+        echo ($this->objcoupon->isExistCoupon($code)) ? 1 : 0;
+    }
+
 }

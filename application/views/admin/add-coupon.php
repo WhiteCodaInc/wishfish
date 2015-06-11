@@ -54,7 +54,7 @@
                             <div class="row">
                                 <div class="col-md-9">
                                     <label>Coupon Code</label>
-                                    <input type="text" name="coupon_code" value="<?= isset($coupon) ? $coupon->coupon_code : '' ?>" placeholder="Coupon Code" class="form-control" required="" readonly="" />
+                                    <input type="text" name="coupon_code" value="<?= isset($coupon) ? $coupon->coupon_code : '' ?>" placeholder="Coupon Code" class="form-control" required="" />
                                     <span class="error msgcode"></span>
                                 </div>
                                 <div class="col-md-3" style="margin-top: 25px">
@@ -148,7 +148,6 @@
                 $('.month-duration').show();
                 $('input[name="month_duration"]').prop('disabled', false);
             }
-
 <?php endif; ?>
 
     });
@@ -192,17 +191,32 @@
                 }
             });
         });
-
-        $('input[name="coupon_code"]').focusout(function () {
+        $('input[name="coupon_code"]').on('focusout', function () {
             var code = $(this).val().trim();
-            var rgex_code = /^[A-Za-z0-9]+$/;
+            var rgex_code = /^[A-Z0-9]+$/;
             if (code != "" && !rgex_code.test(code)) {
                 $('.msgcode').text("Please Enter Valid Coupon Code..!");
                 c_code = 0;
+                return false;
             } else {
                 $('.msgcode').empty();
                 c_code = 1;
+                $.ajax({
+                    type: 'POST',
+                    data: {code: code},
+                    url: "<?= site_url() ?>admin/coupons/isExistCouponCode",
+                    success: function (data, textStatus, jqXHR) {
+                        if (data == "1") {
+                            $('.msgcode').text("Coupon Code already exists..!");
+                            c_code = 0;
+                        } else {
+                            $('.msgcode').empty();
+                            c_code = 1;
+                        }
+                    }
+                });
             }
+
         });
 
         $('input[name="disc_amount"]').focusout(function () {
