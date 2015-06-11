@@ -130,6 +130,7 @@
                             </a>
                         </div>
                     </div>
+                    <input type="hidden" name="join_via" value="Register">
                 </form>
 
                 <form id="loginForm" action="<?= site_url() ?>login/signin" method="post" class="login" novalidate="novalidate">
@@ -250,6 +251,7 @@
                                         <button style="margin: 0;padding: 13px 30px;width: 100%" type="submit" id="subscribe-button" class="btn btn-primary btn-lg">Join Now!</button>
                                     </div>
                                 </div>
+                                <input type="hidden" name="join_via" value="Join Now">
                             </form>
                         </div>
                         <!-- SUBSCRIBE BUTTON -->

@@ -141,6 +141,7 @@ and open the template in the editor.
                                         </div>
                                     </div>
                                 </fieldset>
+                                <input type="hidden" name="join_via" value="Register">
                             </form>
                         </div>
                         <div class="row" style="margin-top: 15px">
