@@ -51,8 +51,8 @@ class M_customers extends CI_Model {
 
         ($name != "") ? $this->db->like('name', $name) : '';
         ($email != "") ? $this->db->like('email', $email) : '';
-        ($from != "") ? $where['DATE(U.register_date) >='] = date('Y-m-d', strtotime($from)) : '';
-        ($to != "") ? $where['DATE(U.register_date) <='] = date('Y-m-d', strtotime($to)) : '';
+        ($from != "") ? $where['DATE(U.register_date) >='] = $this->common->getMySqlDate($from, "mm-dd-yyyy") : '';
+        ($to != "") ? $where['DATE(U.register_date) <='] = $this->common->getMySqlDate($to, "mm-dd-yyyy") : '';
         ($join != "" && $join != "-1") ? $where['join_via'] = $join : '';
         ($status != "" && $status != "-1") ? $where['U.status'] = $status : '';
         ($plan != "" && $plan != "-1") ? $where['P.plan_id'] = $plan : '';
