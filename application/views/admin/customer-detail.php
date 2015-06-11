@@ -115,7 +115,7 @@
                                         <th>Email</th>
                                         <th>Plan</th>
                                         <th class="hidden-xs hidden-sm">Join Via</th>
-                                        <th>status</th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -174,7 +174,7 @@
                                         <th>Email</th>
                                         <th>Plan</th>
                                         <th class="hidden-xs hidden-sm">Join Via</th>
-                                        <th>status</th>
+                                        <th>Status</th>
                                     </tr>
                                 </tfoot>
                             </table>

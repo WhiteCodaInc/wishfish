@@ -21,9 +21,6 @@ class Customers extends CI_Controller {
             header('location:' . site_url() . 'admin/dashboard/error/500');
         } else {
             $this->load->model('admin/m_customers', 'objcustomer');
-            $this->load->model('admin/m_customer_groups', 'objgroup');
-            $this->load->model('admin/m_admin_sms_template', 'objsmstmplt');
-            $this->load->model('admin/m_admin_email_template', 'objemailtmplt');
         }
     }
 
@@ -69,23 +66,4 @@ class Customers extends CI_Controller {
         }
     }
 
-    /*
-      function editCustomer($aid) {
-      $res = $this->objcustomer->getCustomer($aid);
-      $data['customers'] = $res[0];
-      $data['cgroup'] = $res[1];
-      $data['groups'] = $this->objgroup->getCustomerGroups();
-      $this->load->view('admin/admin_header');
-      $this->load->view('admin/admin_top');
-      $this->load->view('admin/admin_navbar');
-      $this->load->view('admin/edit-customer', $data);
-      $this->load->view('admin/admin_footer');
-      }
-
-      function updateCustomer() {
-      $post = $this->input->post();
-      $msg = $this->objcustomer->updateCustomer($post);
-      header('location:' . site_url() . 'admin/customers?msg=' . $msg);
-      }
-     */
 }
