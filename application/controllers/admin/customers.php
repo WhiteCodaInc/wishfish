@@ -29,6 +29,7 @@ class Customers extends CI_Controller {
 
     function index() {
         $data['customers'] = $this->objcustomer->getCustomerDetail();
+        $data['plans'] = $this->wi_common->getPlans();
 //        echo '<pre>';
 //        print_r($data);
 //        die();
@@ -41,8 +42,7 @@ class Customers extends CI_Controller {
 
     function search() {
         $data['searchResult'] = $this->objcustomer->searchResult();
-        $data['groups'] = $this->objgroup->getCustomerGroups();
-        $data['zodiac'] = $this->common->getZodiacs();
+        $data['plans'] = $this->wi_common->getPlans();
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');
@@ -51,13 +51,7 @@ class Customers extends CI_Controller {
     }
 
     function profile($cid) {
-        $res = $this->objcustomer->getCustomer($cid);
-        $data['customer'] = $res[0];
-        $data['cgroup'] = $res[1];
-
-        $data['groups'] = $this->objgroup->getCustomerGroups();
-        $data['sms_template'] = $this->objsmstemplate->getTemplates();
-        $data['email_template'] = $this->objemailtemplate->getTemplates();
+        $data['customer'] = $this->objcustomer->getCustomerInfo($cid);
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');
@@ -65,78 +59,33 @@ class Customers extends CI_Controller {
         $this->load->view('admin/admin_footer');
     }
 
-    function addCustomer() {
-        $this->load->view('admin/admin_header');
-        $this->load->view('admin/admin_top');
-        $this->load->view('admin/admin_navbar');
-        $this->load->view('admin/add-customer');
-        $this->load->view('admin/admin_footer');
-    }
-
-    function createCustomer() {
-        $post = $this->input->post();
-        $this->objcustomer->createCustomer($post);
-        header('location:' . site_url() . 'admin/customers?msg=I');
-    }
-
-    function editCustomer($aid) {
-        $res = $this->objcustomer->getCustomer($aid);
-        $data['customers'] = $res[0];
-        $data['cgroup'] = $res[1];
-        $data['groups'] = $this->objgroup->getCustomerGroups();
-        $this->load->view('admin/admin_header');
-        $this->load->view('admin/admin_top');
-        $this->load->view('admin/admin_navbar');
-        $this->load->view('admin/edit-customer', $data);
-        $this->load->view('admin/admin_footer');
-    }
-
-    function updateCustomer() {
-        $post = $this->input->post();
-        $msg = $this->objcustomer->updateCustomer($post);
-        header('location:' . site_url() . 'admin/customers?msg=' . $msg);
-    }
-
     function action() {
         $type = $this->input->post('actionType');
-        if ($type == "Delete") {
-            $this->objcustomer->setAction();
+        if ($type == "Delete" || $type == "Active" || $type == "Deactive") {
+            $msg = $this->objcustomer->setAction($type);
+            header('location:' . site_url() . 'admin/customers?msg=' . $msg);
+        } else {
+            header('location:' . site_url() . 'admin/customers');
         }
-        header('location:' . site_url() . 'admin/customers?msg=D');
     }
 
-    function getZodiac($dt) {
-        $zodiac = $this->common->getZodiac($dt);
-        echo $zodiac;
-    }
+    /*
+      function editCustomer($aid) {
+      $res = $this->objcustomer->getCustomer($aid);
+      $data['customers'] = $res[0];
+      $data['cgroup'] = $res[1];
+      $data['groups'] = $this->objgroup->getCustomerGroups();
+      $this->load->view('admin/admin_header');
+      $this->load->view('admin/admin_top');
+      $this->load->view('admin/admin_navbar');
+      $this->load->view('admin/edit-customer', $data);
+      $this->load->view('admin/admin_footer');
+      }
 
-    //----------------Customer Profile Functionality--------------------------//
-
-    function send_message() {
-        $post = $this->input->post();
-        $customer = $this->objcustomer->getCustomerInfo($post['cid']);
-        $tag = $this->common->setToken($customer);
-        $body = $this->parser->parse_string($post['body'], $tag, TRUE);
-        $this->sendSMS($customer->phone, $body);
-        header('location:' . site_url() . 'admin/customers/profile/' . $post['cid']);
-    }
-
-    function send_email() {
-        $post = $this->input->post();
-        $customer = $this->objcustomer->getCustomerInfo($post['cid']);
-        $tag = $this->common->setToken($customer);
-        $this->sendMail($customer, $tag, $post);
-        header('location:' . site_url() . 'admin/customers/profile/' . $post['cid']);
-    }
-
-    function sendSMS($to, $body) {
-        return $this->common->sendSMS($to, $body);
-    }
-
-    function sendMail($customer, $tag, $post) {
-        $subject = $this->parser->parse_string($post['subject'], $tag, TRUE);
-        $body = $this->parser->parse_string($post['body'], $tag, TRUE);
-        return $this->common->sendMail($customer->email, $subject, $body);
-    }
-
+      function updateCustomer() {
+      $post = $this->input->post();
+      $msg = $this->objcustomer->updateCustomer($post);
+      header('location:' . site_url() . 'admin/customers?msg=' . $msg);
+      }
+     */
 }

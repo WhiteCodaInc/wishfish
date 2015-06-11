@@ -41,94 +41,64 @@ class M_customers extends CI_Model {
 
     function searchResult() {
         $post = $this->input->post();
-        $fname = $post['fname_search'];
-        $lname = $post['lname_search'];
+        $name = $post['name_search'];
         $email = $post['email_search'];
-        $age = $post['age_search'];
         $from = $post['from_search'];
         $to = $post['to_search'];
-        $group = $post['group_search'];
-        $zodiac = $post['zodiac_search'];
-        $country = $post['country_search'];
-        $city = $post['city_search'];
-        $address = $post['address_search'];
-        $rating = $post['rating_search'];
+        $plan = $post['plan_search'];
+        $join = $post['join_search'];
+        $status = $post['status_search'];
 
-        ($fname != "") ? $this->db->like('fname', $fname) : '';
-        ($lname != "") ? $this->db->like('lname', $lname) : '';
+        ($name != "") ? $this->db->like('name', $name) : '';
         ($email != "") ? $this->db->like('email', $email) : '';
-        ($age != "") ? $where['age'] = $age : '';
-        ($from != "") ? $where['birthday >='] = date('Y-m-d', strtotime($from)) : '';
-        ($to != "") ? $where['birthday <='] = date('Y-m-d', strtotime($to)) : '';
-        ($zodiac != "" && $zodiac != "-1") ? $where['zodiac'] = $zodiac : '';
-        ($country != "") ? $this->db->like('country', $country) : '';
-        ($city != "") ? $this->db->like('city', $city) : '';
-        ($address != "") ? $this->db->like('address', $address) : '';
-        ($rating != "" && $rating != "-1") ? $where['rating'] = $rating : '';
-        ($group != "" && $group != "-1") ? $where['group_id'] = $group : '';
+        ($from != "") ? $where['DATE(U.register_date) >='] = date('Y-m-d', strtotime($from)) : '';
+        ($to != "") ? $where['DATE(U.register_date) <='] = date('Y-m-d', strtotime($to)) : '';
+        ($join != "" && $join != "-1") ? $where['join_via'] = $join : '';
+        ($status != "" && $status != "-1") ? $where['U.status'] = $status : '';
+        ($plan != "" && $plan != "-1") ? $where['P.plan_id'] = $plan : '';
 
-        $this->db->select('*');
-        $this->db->from('customer_detail as C');
-        $this->db->join('multiple_customer_group as M', 'C.customer_Id = M.customer_id', 'left outer');
-        $this->db->group_by('C.customer_id');
+        $this->db->select('U.user_id,profile_pic,U.register_date,name,email,P.plan_name,join_via,status');
+        $this->db->from('wi_user_mst as U');
+        $this->db->join('wi_plan_detail as PD', 'U.user_id = PD.user_id', 'left outer');
+        $this->db->join('wi_plans as P', 'PD.plan_id = P.plan_id');
+        $this->db->where('PD.plan_status', 1);
         (isset($where) && is_array($where)) ? $this->db->where($where) : '';
-
         $query = $this->db->get();
         return $query->result();
     }
 
     function getCustomerInfo($cid) {
-        $query = $this->db->get_where('customer_detail', array('customer_id' => $cid));
+        $this->db->select('*,U.user_id,U.register_date');
+        $this->db->from('wi_user_mst as U');
+        $this->db->join('wi_plan_detail as PD', 'U.user_id = PD.user_id', 'left outer');
+        $this->db->join('wi_plans as P', 'PD.plan_id = P.plan_id');
+        $this->db->where('U.user_id', $cid);
+        $query = $this->db->get();
         return $query->row();
     }
 
-    function getCustomer($cid) {
-        $res = array();
-        $query = $this->db->get_where('customer_detail', array('customer_id' => $cid));
-        $res[] = $query->row();
+    function setAction($type) {
+        $ids = $this->input->post('customer');
+        $msg = "";
+        $where = 'usre_id in (' . implode(',', $ids) . ')';
+        $this->db->where($where);
+        switch ($type) {
+            case "Active":
 
-        $this->db->select('C.group_id');
-        $this->db->from('customer_groups as C');
-        $this->db->join('multiple_customer_group as MC', 'C.group_id = MC.group_id');
-        $this->db->where('customer_id', $cid);
-        $query = $this->db->get();
-        $cgroup = array();
-        foreach ($query->result() as $value) {
-            $cgroup[] = $value->group_id;
+                $this->db->update('wi_user_mst', array('status' => 1));
+                $msg = "A";
+                break;
+            case "Deactive":
+
+                $this->db->update('wi_user_mst', array('status' => 0));
+                $msg = "DA";
+                break;
+            case "Delete":
+                $this->db->delete('wi_user_mst');
+                $msg = "D";
+                break;
         }
-        $res[] = $cgroup;
-        return $res;
-    }
-
-    function createCustomer($set) {
-
-        $set['birthday'] = ($set['birthday'] != "") ? date('Y-m-d', strtotime($set['birthday'])) : NULL;
-        $set['phone'] = (preg_match('/^\(?\d{3}\)?[- ]?\d{3}[- ]?\d{4}$/', $set['phone'])) ?
-                str_replace(array('(', ')', ' ', '-'), '', $set['code'] . $set['phone']) :
-                NULL;
-        unset($set['code']);
-        $this->db->insert('customer_detail', $set);
-        $insertid = $this->db->insert_id();
-        $m = "I";
-        if (isset($_FILES['customer_avatar'])) {
-            if ($_FILES['customer_avatar']['error'] == 0) {
-                $msg = $this->uploadImage($_FILES, $insertid);
-                switch ($msg) {
-                    case "UF":
-                        $m = "UF";
-                        break;
-                    case "IF":
-                        $m = "IF";
-                        break;
-                    default:
-                        $set['customer_avatar'] = $msg;
-                        $this->db->update('customer_detail', $set, array('customer_id' => $insertid));
-                        $m = "I";
-                        break;
-                }
-            }
-        }
-        return $m;
+        return $msg;
     }
 
     function updateCustomer($set) {
@@ -212,14 +182,6 @@ class M_customers extends CI_Model {
             }
         } else {
             return "IF";
-        }
-    }
-
-    function setAction() {
-
-        $ids = $this->input->post('customer');
-        foreach ($ids as $value) {
-            $this->db->delete('customer_detail', array('customer_id' => $value));
         }
     }
 
