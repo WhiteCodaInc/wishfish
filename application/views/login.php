@@ -126,12 +126,16 @@ and open the template in the editor.
                                         </div>
                                     </div>
                                     <?php $msg = $this->input->get('msg'); ?>
-                                    <?php if (isset($msg) && $msg == "F"): ?>
+                                    <?php if ($msg == "F" || $msg == "DA"): ?>
                                         <div class="row m-bot15">
                                             <div class="col-md-12" style="text-align: center">
-
-                                                <span style="color:red">Username or Passsword is invalid..!</span>
-
+                                                <span style="color:red">
+                                                    <?=
+                                                    ($msg == "F") ?
+                                                            "Username or Passsword is invalid..!" :
+                                                            "Account is deactivated by Administrator..!"
+                                                    ?>
+                                                </span>
                                             </div>
                                         </div>
                                         <br/>

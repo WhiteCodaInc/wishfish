@@ -72,7 +72,9 @@ class Login extends CI_Controller {
         }
         if (is_array($post) && count($post) > 0) {
             $is_login = $this->wi_authex->login($post);
-            if ($is_login) {
+            if ($is_login == -1) {
+                header('location:' . site_url() . 'login?msg=DA');
+            } else if ($is_login) {
                 $this->objregister->linkWithProfile($post['email']);
                 if (isset($remember) && $remember == "on")
                     $this->storeCookie($post);
