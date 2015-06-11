@@ -13,8 +13,10 @@
         <h1 style=" display: none">
             Customers
         </h1>
-        <button value="Active" class="active btn btn-danger btn-sm" id="Active" type="button" >Active</button>
-        <button value="Deactive" class="active btn btn-danger btn-sm" id="Deactive" type="button" >Deactive</button>
+        <a href="<?= site_url() ?>admin/customers/addCustomer" class="create btn btn-success btn-sm">
+            <i class="fa fa-plus"></i>
+            Create New Customer
+        </a>
         <button value="Delete" class="delete btn btn-danger btn-sm" id="Delete" type="button" >Delete</button>
         <div class="search" style="float:right;width: 25%">
             <select id="page_length" class="form-control" style="float: left;width: 30%">
@@ -147,12 +149,13 @@
                                             <input type="checkbox"/>
                                         </th>
                                         <th>Profile</th>
-                                        <th class="hidden-xs hidden-sm">Date & Time</th>
                                         <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Plan</th>
-                                        <th class="hidden-xs hidden-sm">Join Via</th>
-                                        <th>status</th>
+                                        <th class="hidden-xs hidden-sm">Email</th>
+                                        <th class="hidden-xs hidden-sm">Phone</th>
+                                        <th class="hidden-xs hidden-sm">Birthday</th>
+                                        <th class="hidden-xs hidden-sm">Zodiac</th>
+                                        <th class="hidden-xs hidden-sm">Profile Rating(1-10)</th>
+                                        <th>Edit</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -165,33 +168,46 @@
                                     ?>
                                     <?php foreach ($result as $value) { ?>
                                         <?php
-                                        $img_src = ($value->profile_pic != "") ?
-                                                "http://mikhailkuznetsov.s3.amazonaws.com/" . $value->profile_pic :
+                                        $img_src = ($value->customer_avatar != "") ?
+                                                "http://mikhailkuznetsov.s3.amazonaws.com/" . $value->customer_avatar :
                                                 base_url() . 'assets/dashboard/img/default-avatar.png';
                                         ?>
                                         <tr>
                                             <td>
                                                 <div>
                                                     <label>
-                                                        <input type="checkbox" class="check"  name="customer[]" value="<?= $value->user_id ?>"/>
+                                                        <input type="checkbox" class="check"  name="customer[]" value="<?= $value->customer_id ?>"/>
                                                     </label>
                                                 </div>
                                             </td>
-                                            <td>
+                                            <td >
                                                 <img style="width:60px;height:60px" src="<?= $img_src ?>" class="img-circle" alt="User Image" />
                                             </td>
-                                            <td><?= date('m-d-Y H:i:s', strtotime($value->register_date)) ?></td>
-                                            <td><?= $value->name ?></td>
-                                            <td><?= $value->email ?></td>
-
-                                            <td><?= $value->plan_name ?></td>
-                                            <td><?= $value->join_via ?></td>
-                                            <td class="hidden-xs hidden-sm">
-                                                <?php if ($value->status): ?>
-                                                    <span class="btn btn-success btn-xs">Active</span>
-                                                <?php else : ?>
-                                                    <span class="btn btn-danger btn-xs">Deactive</span>
-                                                <?php endif; ?>
+                                            <td>
+                                                <a href="<?= site_url() . 'admin/customers/profile/' . $value->customer_id ?>" class="name">
+                                                    <?= $value->fname . ' ' . $value->lname ?>
+                                                </a>
+                                            </td>
+                                            <td class="hidden-xs hidden-sm"><?= $value->email ?></td>
+                                            <?php
+                                            if ($value->phone) {
+                                                $phone = "(" . substr($value->phone, 0, 2) . ') ';
+                                                $phone .= substr($value->phone, 2, 3) . '-';
+                                                $phone .= substr($value->phone, 5, 3) . '-';
+                                                $phone .= substr($value->phone, 8, 4);
+                                            } else {
+                                                $phone = "N/A";
+                                            }
+                                            ?>
+                                            <td class="hidden-xs hidden-sm"><?= $phone ?></td>
+                                            <td class="hidden-xs hidden-sm"><?= ($value->birthday != NULL) ? date('d-m-Y', strtotime($value->birthday)) : 'N/A' ?></td>
+                                            <td class="hidden-xs hidden-sm"><?= $value->zodiac ?></td>
+                                            <td class="hidden-xs hidden-sm"><?= ($value->rating != "-1") ? $value->rating : '' ?></td>
+                                            <td>
+                                                <a href="<?= site_url() ?>admin/customers/editCustomer/<?= $value->customer_id ?>" class="btn bg-navy btn-xs">
+                                                    <i class="fa fa-edit"></i>
+                                                    Edit
+                                                </a>
                                             </td>
                                         </tr>
                                     <?php } ?>
@@ -200,12 +216,13 @@
                                     <tr>
                                         <th></th>
                                         <th>Profile</th>
-                                        <th class="hidden-xs hidden-sm">Date & Time</th>
                                         <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Plan</th>
-                                        <th class="hidden-xs hidden-sm">Join Via</th>
-                                        <th>status</th>
+                                        <th class="hidden-xs hidden-sm">Email</th>
+                                        <th class="hidden-xs hidden-sm">Phone</th>
+                                        <th class="hidden-xs hidden-sm">Birthday</th>
+                                        <th class="hidden-xs hidden-sm">Zodiac</th>
+                                        <th class="hidden-xs hidden-sm">Profile Rating(1-10)</th>
+                                        <th>Edit</th>
                                     </tr>
                                 </tfoot>
                             </table>

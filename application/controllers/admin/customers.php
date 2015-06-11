@@ -29,9 +29,9 @@ class Customers extends CI_Controller {
 
     function index() {
         $data['customers'] = $this->objcustomer->getCustomerDetail();
-        echo '<pre>';
-        print_r($data);
-        die();
+//        echo '<pre>';
+//        print_r($data);
+//        die();
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');
