@@ -210,7 +210,7 @@ class Dashboard extends CI_Controller {
         $ev = array();
         foreach ($events as $key => $value) {
             $ev[$key]['id'] = "event{$value->event_id}";
-            $ev[$key]['title'] = $value->event;
+            $ev[$key]['title'] = $value->event . '(' . strtoupper($value->event_type) . ')';
             $ev[$key]['description'] = $value->body;
             $ev[$key]['startdate'] = $value->date . ' ' . $value->time;
             $ev[$key]['high_threshold'] = 50;
@@ -232,7 +232,6 @@ class Dashboard extends CI_Controller {
             array("title" => "Individual Event", "icon" => "square_blue.png"),
             array("title" => "Group Event", "icon" => "circle_purple.png"),
         );
-
         $initialize = array(
             "id" => "timeline",
             "title" => "Birthday Events Timeline",
@@ -241,10 +240,14 @@ class Dashboard extends CI_Controller {
             "events" => $ev,
             "legend" => $legend
         );
-//        echo '<pre>';
-//        print_r(json_encode($initialize));
-//        die();
+        echo '<pre>';
+        print_r(json_encode($initialize));
+        die();
         echo "[" . json_encode($initialize) . "]";
+    }
+
+    function get12HourFormat($time) {
+        $t = explode(':', $time);
     }
 
 }
