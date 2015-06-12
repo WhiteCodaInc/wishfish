@@ -224,7 +224,7 @@ class Dashboard extends CI_Controller {
             "initial_zoom" => "39",
             "events" => $ev
         );
-        echo json_encode("[" . $initialize . "]");
+        echo "[" . json_encode($initialize) . "]";
     }
 
 }
