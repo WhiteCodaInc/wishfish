@@ -4,16 +4,15 @@
     </div><!-- /.container -->
 </footer>
 <?php
-//$userid = $this->session->userdata('userid');
-//if ($userid != "") {
-//    $userInfo = $this->wi_common->getUserInfo($userid);
-//    if ($userInfo->phone_verification) {
-//        
-?>
-<!--<script type="text/javascript" src="//<?= base_url() ?>assets/hopscotch/demo.js"></script>-->
-//<?php
-//    }
-//}
+$userid = $this->session->userdata('userid');
+if ($userid != "") {
+    $userInfo = $this->wi_common->getUserInfo($userid);
+    if ($userInfo->phone_verification) {
+        ?>
+        <script type="text/javascript" src="<?= base_url() ?>assets/hopscotch/demo.js"></script>
+        <?php
+    }
+}
 ?>
 <script type="text/javascript">
     $(function () {
@@ -71,8 +70,8 @@
 <script type="text/javascript" src="<?= base_url() ?>assets/dashboard/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 
 <!-- iCheck -->
-<!--<script src="<?= base_url() ?>assets/dashboard/js/plugins/iCheck/icheck.js" type="text/javascript"></script>-->
-<script src="<?= base_url() ?>assets/dashboard/js/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
+<script src="<?= base_url() ?>assets/dashboard/js/plugins/iCheck/icheck.js" type="text/javascript"></script>
+<!--<script src="<?= base_url() ?>assets/dashboard/js/plugins/iCheck/icheck.min.js" type="text/javascript"></script>-->
 
 <!-- AdminLTE App -->
 <script src="<?= base_url() ?>assets/dashboard/js/AdminLTE/app.js" type="text/javascript"></script>
