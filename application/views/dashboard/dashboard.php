@@ -287,16 +287,15 @@
     $(function () {
         var tg_instance = {};
         var jsonEvent = "";
-        $.ajax({
+        $.post("<?= site_url() ?>app/dashboard/getTimelineEvent", function (data) {
+            jsonEvent = data;
         });
         tg1 = $("#p1").timeline({
             "min_zoom": 1,
             "max_zoom": 50,
             "timezone": "-06:00",
             "icon_folder": "<?= base_url() ?>assets/dashboard/timeline/timeglider/icons/",
-            "data_source": $.post("<?= site_url() ?>app/dashboard/getTimelineEvent", function (data) {
-                return data;
-            }),
+            "data_source": jsonEvent,
             "show_footer": true,
             "display_zoom_level": true,
             "mousewheel": "zoom", // zoom | pan | none
