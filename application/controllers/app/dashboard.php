@@ -230,8 +230,8 @@ class Dashboard extends CI_Controller {
         );
 
         echo '<pre>';
-        print_r($ev);
-        print_r($timeline);
+//        print_r($ev);
+        print_r(json_encode($timeline));
         die();
     }
 
