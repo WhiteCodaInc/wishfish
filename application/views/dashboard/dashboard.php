@@ -256,11 +256,6 @@
     </section>
 </aside>
 
-<!--<script src="<?= base_url() ?>assets/dashboard/timeline/js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>-->
-<!-- jquery-1.9.1.min.js  OR  jquery-1.10.1.min.js -->
-<!--<script src="<?= base_url() ?>assets/dashboard/timeline/js/jquery-ui-1.10.3.custom.min.js" type="text/javascript" charset="utf-8"></script>-->
-
-
 <script src="<?= base_url() ?>assets/dashboard/timeline/js/underscore-min.js" type="text/javascript" charset="utf-8"></script>
 <script src="<?= base_url() ?>assets/dashboard/timeline/js/backbone-min.js" type="text/javascript" charset="utf-8"></script>
 <script src="<?= base_url() ?>assets/dashboard/timeline/js/jquery.tmpl.js" type="text/javascript" charset="utf-8"></script>
@@ -289,20 +284,7 @@
 <script src="<?= base_url() ?>assets/dashboard/timeline/js/jquery.ui.sortable.js" type="text/javascript" charset="utf-8"></script>
 
 <script type='text/javascript'>
-
-
-    var ico = window.ico;
-
-//    window.pizzaShack = {
-//        clicker: function (tg_event) {
-//            alert("you clicked on " + tg_event.title);
-//        }
-//    };
-//
-//    var tg1 = window.tg1 = "";
-
     $(function () {
-
         var tg_instance = {};
         var json = [
             {
@@ -560,17 +542,13 @@
             "loaded": function () {
                 // loaded callback function
             }
-
         }).resizable({
             stop: function () {
                 // $(this).data("timeline").resize();
             }
         });
 
-
-
         tg_instance = tg1.data("timeline");
-
 
         $(".goto").click(function () {
             var d = $(this).attr("date");
@@ -583,15 +561,8 @@
             tg_instance.zoom(z);
         });
 
-
-//        tg_instance.panButton($(".pan-left"), "left");
-//        tg_instance.panButton($(".pan-right"), "right");
-
-
         $("#getScope").click(function () {
-
             var so = tg_instance.getScope();
-
             var ml = "RETURNS: <br><br>container (jquery dom object): " + so.container.toString()
                     + "<br>focusDateSec (tg sec):" + so.focusDateSec
                     + "<br>focusMS (js timestamp): " + so.focusMS
@@ -602,48 +573,33 @@
                     + "<br>spp (seconds per pixel): " + so.spp
                     + "<br>timelineBounds (object, left- & right-most in tg sec): " + JSON.stringify(so.timelineBounds)
                     + "<br>timelines (array of ids): " + JSON.stringify(so.timelines);
-
             var d = new Date(so.focusMS);
-
             ml += "<br><br>Date using focusMS:" + d.toString('yyyy-MM-dd');
-
             $(".scope-view").html(ml);
-
         });
 
-
         $("#loadData").click(function () {
-
             var src = $("#loadDataSrc").val();
-
             var cb_fn = function (args, timeline) {
                 // called after parsing data, after load
 //                debug.log("args", args, "timeline", timeline[0].id);
             };
-
             var cb_args = {}; // {display:true};
-
             tg_instance.getMediator().emptyData();
             tg_instance.loadTimeline(src, function () {
 //                debug.log("cb!");
             }, true);
-
             $("#reloadDataDiv").hide();
         });
-
 
         $("#reloadTimeline").click(function () {
             tg_instance.reloadTimeline("js_history", json);
         });
 
-
-
         $("#refresh").click(function () {
             debug.log("timeline refreshed!");
             tg_instance.refresh();
         });
-
-
 
         $("#scrolldown").bind("click", function () {
             $(".timeglider-timeline-event").animate({top: "+=100"});
@@ -652,9 +608,6 @@
         $("#scrollup").bind("click", function () {
             $(".timeglider-timeline-event").animate({top: "-=100"});
         });
-
-
-
 
         timeglider.eventActions = {
             nagavigateTo: function (obj) {
@@ -669,25 +622,16 @@
                     $el = $(".timeglider-timeline-event#" + obj.id);
                     $el.find(".timeglider-event-spanner").css({"border": "1px solid green"}); // 
                 }, 50);
-
             }
         }
-
-
-
 
         $("#adjustNow").click(function () {
             tg_instance.adjustNowEvents();
         });
 
-
-
-
         $("#addEvent").click(function () {
-
             var rando = Math.floor((Math.random() * 1000) + 1);
             var impo = Math.floor((Math.random() * 50) + 20);
-
             var obj = {
                 id: "new_" + rando,
                 title: "New Event!",
@@ -695,50 +639,27 @@
                 importance: impo,
                 icon: "star_red.png",
                 timelines: ["js_history"]
-            }
-
+            };
             tg_instance.addEvent(obj, true);
-
         });
 
-
-
-
         $("#updateEvent").click(function () {
-
             var updatedEventModel = {
                 id: "deathofflash",
                 title: "Flash struggles to survive in the age of HTML5."
             }
-
             tg_instance.updateEvent(updatedEventModel);
-
         });
-
 
         $(".method").each(function () {
             $(this).find("h4").addClass("clearfix");
             $(this).prepend("<div class='dragger'>drag me</div>");
         });
 
-
         $("#sorters").sortable({"handle": ".dragger"});
         $("#sorters").disableSelection();
-
-
-
     }); // end document-ready
-
-
-
-
-
-
-
 </script>
-
-
-
 <script type="text/javascript" >
     $(function () {
         $('select[name="timezones"]').addClass('form-control m-bot15');

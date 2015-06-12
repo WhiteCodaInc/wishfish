@@ -38,7 +38,7 @@ class Dashboard extends CI_Controller {
         if ($this->input->cookie('isLogin')) {
             $id = $this->input->cookie('isLogin', TRUE);
             delete_cookie('isLogin', '.wish-fish.com', '/');
-            $login =$this->wi_authex->loginBySocial($id);
+            $login = $this->wi_authex->loginBySocial($id);
         }
 
         $this->load->model('dashboard/m_dashboard', 'objdashboard');
@@ -201,6 +201,13 @@ class Dashboard extends CI_Controller {
         } else {
             header('location:' . site_url() . 'home');
         }
+    }
+
+    function getTimelineEvent() {
+        $events = $this->objcalender->getTimelineEvent();
+        echo '<pre>';
+        print_r($events);
+        die();
     }
 
 }

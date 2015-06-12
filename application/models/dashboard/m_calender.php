@@ -25,6 +25,11 @@ class M_calender extends CI_Model {
         return $query->result();
     }
 
+    function getTimelineEvent() {
+        $query = $this->db->get_where('wi_schedule', array('user_id' => $this->userid));
+        return $query->result();
+    }
+
     function getSMSTemplate($tmpid) {
         $where = array(
             'template_id' => $tmpid,
