@@ -154,7 +154,7 @@
     color:#333;
 }
 
-.tg-datepicker > .panel-footer {
+#tg-datepicker div.panel-footer {
     position: absolute;
     bottom: 0;
     width:150px;
