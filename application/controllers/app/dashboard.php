@@ -208,17 +208,31 @@ class Dashboard extends CI_Controller {
         $dt = $this->wi_common->getUTCDate();
         $currDate = $this->wi_common->getMySqlDate($dt, $this->session->userdata('date_format'));
 
-        echo '<pre>';
-        print_r($events);
-        die();
-        
+        $ev = array();
+        foreach ($events as $key => $value) {
+            $ev[$key]['id'] = "event{$value->event_id}";
+            $ev[$key]['title'] = $value->event;
+            $ev[$key]['description'] = $value->body;
+            $ev[$key]['startdate'] = $value->date . ' ' . $value->time;
+            $ev[$key]['high_threshold'] = 50;
+            $ev[$key]['importance'] = "30";
+            $ev[$key]['icon'] = "triangle_orange.png";
+        }
+
+
+
         $timeline = array(
             "id" => "timeline",
             "title" => "Birthday Events Timeline",
             "focus_date" => $currDate . " 12:00:00",
             "initial_zoom" => "39",
-            "events" => json_encode($timeline)
+            "events" => json_encode($ev)
         );
+
+        echo '<pre>';
+        print_r($ev);
+        print_r($timeline);
+        die();
     }
 
 }
