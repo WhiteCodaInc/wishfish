@@ -288,30 +288,28 @@
         var tg_instance = {};
         var jsonEvent = "";
         $.post("<?= site_url() ?>app/dashboard/getTimelineEvent", function (data) {
-            jsonEvent = data;
+            tg1 = $("#p1").timeline({
+                "min_zoom": 1,
+                "max_zoom": 50,
+                "timezone": "-06:00",
+                "icon_folder": "<?= base_url() ?>assets/dashboard/timeline/timeglider/icons/",
+                "data_source": data,
+                "show_footer": true,
+                "display_zoom_level": true,
+                "mousewheel": "zoom", // zoom | pan | none
+                "constrain_to_data": true,
+                "image_lane_height": 100,
+                "legend": {type: "default"}, // default | checkboxes
+                "loaded": function () {
+                    // loaded callback function
+                }
+            }).resizable({
+                stop: function () {
+                    // $(this).data("timeline").resize();
+                }
+            });
+            tg_instance = tg1.data("timeline");
         });
-        tg1 = $("#p1").timeline({
-            "min_zoom": 1,
-            "max_zoom": 50,
-            "timezone": "-06:00",
-            "icon_folder": "<?= base_url() ?>assets/dashboard/timeline/timeglider/icons/",
-            "data_source": jsonEvent,
-            "show_footer": true,
-            "display_zoom_level": true,
-            "mousewheel": "zoom", // zoom | pan | none
-            "constrain_to_data": true,
-            "image_lane_height": 100,
-            "legend": {type: "default"}, // default | checkboxes
-            "loaded": function () {
-                // loaded callback function
-            }
-        }).resizable({
-            stop: function () {
-                // $(this).data("timeline").resize();
-            }
-        });
-
-        tg_instance = tg1.data("timeline");
 
         $(".goto").click(function () {
             var d = $(this).attr("date");
