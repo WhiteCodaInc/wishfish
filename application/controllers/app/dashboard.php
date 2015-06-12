@@ -215,25 +215,34 @@ class Dashboard extends CI_Controller {
             $ev[$key]['startdate'] = $value->date . ' ' . $value->time;
             $ev[$key]['high_threshold'] = 50;
             $ev[$key]['importance'] = "35";
-            
-            $ev[$key]['icon'] = "triangle_orange.png";
+
             if ($value->group_type == "individual") {
+                $ev[$key]['icon'] = "square_blue.png";
                 $contactInfo = $this->wi_common->getContactInfo($value->contact_id);
                 $img_src = ($contactInfo->contact_avatar != "") ?
                         "http://mikhailkuznetsov.s3.amazonaws.com/" . $value->contact_avatar :
                         base_url() . 'assets/dashboard/img/default-avatar.png';
                 $ev[$key]['image'] = $img_src;
+            } else {
+                $ev[$key]['icon'] = "circle_purple.png";
             }
         }
+
+        $legend = array(
+            array("title" => "Individual Event", "icon" => "square_blue.png"),
+            array("title" => "Group Event", "icon" => "circle_purple.png"),
+        );
+
         $initialize = array(
             "id" => "timeline",
             "title" => "Birthday Events Timeline",
             "focus_date" => $currDate . " 12:00:00",
             "initial_zoom" => "39",
-            "events" => $ev
+            "events" => $ev,
+            "legend" => $legend
         );
         echo '<pre>';
-        print_r($events);
+        print_r(json_encode($initialize));
         die();
         echo "[" . json_encode($initialize) . "]";
     }
