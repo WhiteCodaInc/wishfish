@@ -267,7 +267,7 @@
 
 
 
-<script src="<?= base_url() ?>assets/dashboard/timeline/timeglider/TG_Date.js" type="text/javascript" charset="utf-8"></script>
+<!--<script src="<?= base_url() ?>assets/dashboard/timeline/timeglider/TG_Date.js" type="text/javascript" charset="utf-8"></script>-->
 <script src="<?= base_url() ?>assets/dashboard/timeline/timeglider/TG_Org.js" type="text/javascript" charset="utf-8"></script>
 <script src="<?= base_url() ?>assets/dashboard/timeline/timeglider/TG_Timeline.js" type="text/javascript" charset="utf-8"></script> 
 <script src="<?= base_url() ?>assets/dashboard/timeline/timeglider/TG_TimelineView.js" type="text/javascript" charset="utf-8"></script>
@@ -355,10 +355,6 @@
 //                debug.log("cb!");
             }, true);
             $("#reloadDataDiv").hide();
-        });
-
-        $("#reloadTimeline").click(function () {
-            tg_instance.reloadTimeline("js_history", json);
         });
 
         $("#refresh").click(function () {
