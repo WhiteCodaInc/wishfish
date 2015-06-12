@@ -296,7 +296,7 @@
             "icon_folder": "<?= base_url() ?>assets/dashboard/timeline/timeglider/icons/",
             "data_source": $.post("<?= site_url() ?>app/dashboard/getTimelineEvent", function (data) {
                 return data;
-            }); ,
+            }),
             "show_footer": true,
             "display_zoom_level": true,
             "mousewheel": "zoom", // zoom | pan | none
