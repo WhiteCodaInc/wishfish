@@ -16,7 +16,7 @@
         line-height: 50px;
         text-align: center;
         padding: 0 10px;
-        width: 220px;
+        width: 180px;
         font-family: 'Kaushan Script', cursive;
         font-weight: 500;
         height: 50px;
@@ -166,7 +166,7 @@ $userid = $this->session->userdata('userid');
                                     </div>
                                     <div class="modal-body">
                                         <div class="box box-primary parse">
-                                            
+
                                             <div class="box-body">
                                                 <form id="parseForm" method="post">
                                                     <div class="row">
