@@ -214,8 +214,15 @@ class Dashboard extends CI_Controller {
             $ev[$key]['description'] = $value->body;
             $ev[$key]['startdate'] = $value->date . ' ' . $value->time;
             $ev[$key]['high_threshold'] = 50;
-            $ev[$key]['importance'] = "30";
+            $ev[$key]['importance'] = "35";
             $ev[$key]['icon'] = "triangle_orange.png";
+            if ($value->group_type == "individual") {
+                $contactInfo = $this->wi_common->getContactInfo($value->contact_id);
+                $img_src = ($contactInfo->contact_avatar != "") ?
+                        "http://mikhailkuznetsov.s3.amazonaws.com/" . $value->contact_avatar :
+                        base_url() . 'assets/dashboard/img/default-avatar.png';
+                $ev[$key]['image'] = $img_src;
+            }
         }
         $initialize = array(
             "id" => "timeline",
@@ -224,8 +231,8 @@ class Dashboard extends CI_Controller {
             "initial_zoom" => "39",
             "events" => $ev
         );
-        echo '<pre>';
-        print_r($events);
+//        echo '<pre>';
+//        print_r($events);
         echo "[" . json_encode($initialize) . "]";
     }
 
