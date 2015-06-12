@@ -1891,7 +1891,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c6c6c6', end
 }
 
 
-.panel-footer .button-group {
+.date-footer .button-group {
 	margin:0 16px;
 	padding-top:4px;
 }
@@ -1907,7 +1907,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c6c6c6', end
 	height:24px;
 }
 
-.panel-footer .button {
+.date-footer .button {
 	margin:8px 0 4px 8px;
 	float:right;
 	font-size:11px;
