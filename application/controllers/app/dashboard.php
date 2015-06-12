@@ -221,17 +221,17 @@ class Dashboard extends CI_Controller {
 
 
 
-        $timeline = array(
+        $initialize = array(
             "id" => "timeline",
             "title" => "Birthday Events Timeline",
             "focus_date" => $currDate . " 12:00:00",
-            "initial_zoom" => "39",
-            "events" => json_encode($ev)
+            "initial_zoom" => "39"
         );
+        $timeline = json_encode($initialize);
 
         echo '<pre>';
 //        print_r($ev);
-        print_r(json_encode($timeline));
+        print_r($timeline);
         die();
     }
 
