@@ -1,5 +1,52 @@
 <link rel="stylesheet" href="<?= base_url() ?>assets/dashboard/timeline/timeglider/Timeglider.css" type="text/css" media="screen" title="no title" charset="utf-8">
 <link rel="stylesheet" href="<?= base_url() ?>assets/dashboard/timeline/timeglider/timeglider.datepicker.css" type="text/css" media="screen" charset="utf-8">
+<link rel="stylesheet" href="<?= base_url() ?>assets/dashboard/timeline/css/docs.css" type="text/css" media="screen" title="no title" charset="utf-8">
+<style type='text/css'>
+
+
+    .header {
+        margin:32px;
+    }
+
+    #p1 {
+        margin:32px;
+        margin-bottom:0;
+        height:450px;
+    }
+
+
+
+    .timeglider-legend {
+        width:180px;
+    }
+
+
+    *.no-select {
+        -moz-user-select: -moz-none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+
+
+    .timeglider-timeline-event.ongoing .timeglider-event-title {
+        color:green;
+    }
+
+
+
+    .dragger {
+        float:right;
+        width:40%;
+        text-align:right;
+        margin-right:8px;
+        font-size:18px;
+        color:green;
+        font-size:12px;
+        cursor:pointer;	
+    }
+
+</style>
 <aside class="right-side" >
     <section class="content-header">
         <h1 style="float: left">
