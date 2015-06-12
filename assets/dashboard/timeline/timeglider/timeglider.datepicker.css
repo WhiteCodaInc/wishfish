@@ -20,7 +20,7 @@
     position:relative;
     /*height:28px;*/
     width:150px;
-    margin:auto;
+    margin: 0 auto 35px auto;
 }
 
 .tg-datepicker #yearfield-input {
