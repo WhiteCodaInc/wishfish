@@ -207,13 +207,17 @@ class Dashboard extends CI_Controller {
         $events = $this->objcalender->getTimelineEvent();
         $dt = $this->wi_common->getUTCDate();
         $currDate = $this->wi_common->getMySqlDate($dt, $this->session->userdata('date_format'));
-        echo $currDate . " 12:00:00";
+
+        echo '<pre>';
+        print_r($events);
         die();
+        
         $timeline = array(
-            'id' => 'timeline',
+            "id" => "timeline",
             "title" => "Birthday Events Timeline",
-            "focus_date" => "1995-06-20 12=>00=>00",
+            "focus_date" => $currDate . " 12:00:00",
             "initial_zoom" => "39",
+            "events" => json_encode($timeline)
         );
     }
 
