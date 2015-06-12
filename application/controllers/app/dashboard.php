@@ -215,6 +215,7 @@ class Dashboard extends CI_Controller {
             $ev[$key]['startdate'] = $value->date . ' ' . $value->time;
             $ev[$key]['high_threshold'] = 50;
             $ev[$key]['importance'] = "35";
+            
             $ev[$key]['icon'] = "triangle_orange.png";
             if ($value->group_type == "individual") {
                 $contactInfo = $this->wi_common->getContactInfo($value->contact_id);
@@ -231,8 +232,9 @@ class Dashboard extends CI_Controller {
             "initial_zoom" => "39",
             "events" => $ev
         );
-//        echo '<pre>';
-//        print_r($events);
+        echo '<pre>';
+        print_r($events);
+        die();
         echo "[" . json_encode($initialize) . "]";
     }
 
