@@ -889,6 +889,7 @@
 }
 .timeglider-settings-bt {
     background-image:url(img/tools.png);
+    display: none
 }
 
 
@@ -980,6 +981,7 @@
     background-repeat:no-repeat;
     margin-top:2px;
     margin-left:16px;
+    display: none
 }
 
 .timeglider-menu-modal-point-left {
