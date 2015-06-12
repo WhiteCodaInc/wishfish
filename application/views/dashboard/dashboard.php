@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="<?= base_url() ?>assets/dashboard/timeline/timeglider/Timeglider.css" type="text/css" media="screen" title="no title" charset="utf-8">
 <link rel="stylesheet" href="<?= base_url() ?>assets/dashboard/timeline/timeglider/timeglider.datepicker.css" type="text/css" media="screen" charset="utf-8">
 <link rel="stylesheet" href="<?= base_url() ?>assets/dashboard/timeline/css/docs.css" type="text/css" media="screen" title="no title" charset="utf-8">
+<link rel="stylesheet" href="<?= base_url() ?>assets/dashboard/timeline/css/jquery-ui-1.10.3.custom.css" type="text/css" media="screen" title="no title" charset="utf-8">
 <style type='text/css'>
 
 
@@ -290,15 +291,15 @@
 <script type='text/javascript'>
 
 
-//    var ico = window.ico;
+    var ico = window.ico;
 
-//    window.pizzaShack = {
-//        clicker: function (tg_event) {
-//            alert("you clicked on " + tg_event.title);
-//        }
-//    };
+    window.pizzaShack = {
+        clicker: function (tg_event) {
+            alert("you clicked on " + tg_event.title);
+        }
+    };
 
-//    var tg1 = window.tg1 = "";
+    var tg1 = window.tg1 = "";
 
     $(function () {
 
