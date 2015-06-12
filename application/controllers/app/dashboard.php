@@ -205,7 +205,7 @@ class Dashboard extends CI_Controller {
 
     function getTimelineEvent() {
         $events = $this->objcalender->getTimelineEvent();
-        $currDate = $this->wi_common->getUTCDate();
+        $currDate = $this->wi_common->getMySqlDate($this->wi_common->getUTCDate(), $this->session->date_format);
         echo $currDate;
         die();
         $timeline = array(
