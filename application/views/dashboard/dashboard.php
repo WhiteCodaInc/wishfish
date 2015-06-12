@@ -1366,7 +1366,7 @@
             "min_zoom": 1,
             "max_zoom": 50,
             "timezone": "-06:00",
-            "icon_folder": "timeglider/icons/",
+            "icon_folder": "<?= base_url() ?>assets/dashboard/timeline/timeglider/icons/",
             "data_source": json,
             "show_footer": true,
             "display_zoom_level": true,
