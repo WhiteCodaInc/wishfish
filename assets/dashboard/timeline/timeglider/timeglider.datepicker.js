@@ -82,7 +82,7 @@
 				+ "</table>"
 				+ "</div>"
 			
-				+ "<div class='panel-footer'>"
+				+ "<div class='date-footer'>"
 				+ "<div class='button-group'>"
 				+ "<div class='save button'>OK</div><div class='cancel button'>cancel</div>"
 				+ "</div>"
