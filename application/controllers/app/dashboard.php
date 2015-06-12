@@ -205,9 +205,15 @@ class Dashboard extends CI_Controller {
 
     function getTimelineEvent() {
         $events = $this->objcalender->getTimelineEvent();
-        echo '<pre>';
-        print_r($events);
+        $currDate = $this->wi_common->getUTCDate();
+        echo $currDate;
         die();
+        $timeline = array(
+            'id' => 'timeline',
+            "title" => "Birthday Events Timeline",
+            "focus_date" => "1995-06-20 12=>00=>00",
+            "initial_zoom" => "39",
+        );
     }
 
 }
