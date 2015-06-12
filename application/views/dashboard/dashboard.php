@@ -297,8 +297,8 @@
                     "max_zoom": 50,
                     "timezone": "-06:00",
                     "icon_folder": "<?= base_url() ?>assets/dashboard/timeline/timeglider/icons/",
-                    "data_source":,
-                            "show_footer": true,
+                    "data_source": data,
+                    "show_footer": true,
                     "display_zoom_level": true,
                     "mousewheel": "zoom", // zoom | pan | none
                     "constrain_to_data": true,
