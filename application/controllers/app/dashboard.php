@@ -52,9 +52,11 @@ class Dashboard extends CI_Controller {
         }
         if ($this->wi_authex->logged_in()) {
             $card = $this->objcalender->getCards();
+            $uid = $this->session->userdata('userid');
+            $data['userInfo'] = $this->wi_common->getUserInfo($uid);
             $this->load->view('dashboard/header');
             $this->load->view('dashboard/top');
-            $this->load->view('dashboard/dashboard', $card);
+            $this->load->view('dashboard/dashboard', $card . $data);
             $this->load->view('dashboard/footer');
         } else {
             $userInfo = $this->wi_common->getUserInfo($this->uid);
