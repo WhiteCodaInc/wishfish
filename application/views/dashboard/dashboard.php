@@ -291,7 +291,6 @@
             url: "<?= site_url() ?>app/dashboard/getTimelineEvent",
             success: function (data, textStatus, jqXHR) {
                 console.log(data);
-                return false;
                 tg1 = $("#p1").timeline({
                     "min_zoom": 1,
                     "max_zoom": 50,
