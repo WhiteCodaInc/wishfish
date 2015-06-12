@@ -207,7 +207,6 @@ class Dashboard extends CI_Controller {
         $events = $this->objcalender->getTimelineEvent();
         $dt = $this->wi_common->getUTCDate();
         $currDate = $this->wi_common->getMySqlDate($dt, $this->session->userdata('date_format'));
-
         $ev = array();
         foreach ($events as $key => $value) {
             $ev[$key]['id'] = "event{$value->event_id}";
@@ -218,9 +217,6 @@ class Dashboard extends CI_Controller {
             $ev[$key]['importance'] = "30";
             $ev[$key]['icon'] = "triangle_orange.png";
         }
-
-
-
         $initialize = array(
             "id" => "timeline",
             "title" => "Birthday Events Timeline",
@@ -228,11 +224,7 @@ class Dashboard extends CI_Controller {
             "initial_zoom" => "39",
             "events" => $ev
         );
-        $timeline = json_encode($initialize);
-
-        echo '<pre>';
-        print_r($timeline);
-        die();
+        echo json_encode("[" . $initialize . "]");
     }
 
 }
