@@ -293,13 +293,13 @@
 
     var ico = window.ico;
 
-    window.pizzaShack = {
-        clicker: function (tg_event) {
-            alert("you clicked on " + tg_event.title);
-        }
-    };
-
-    var tg1 = window.tg1 = "";
+//    window.pizzaShack = {
+//        clicker: function (tg_event) {
+//            alert("you clicked on " + tg_event.title);
+//        }
+//    };
+//
+//    var tg1 = window.tg1 = "";
 
     $(function () {
 
