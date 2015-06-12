@@ -241,9 +241,9 @@ class Dashboard extends CI_Controller {
             "events" => $ev,
             "legend" => $legend
         );
-        echo '<pre>';
-        print_r(json_encode($initialize));
-        die();
+//        echo '<pre>';
+//        print_r(json_encode($initialize));
+//        die();
         echo "[" . json_encode($initialize) . "]";
     }
 
