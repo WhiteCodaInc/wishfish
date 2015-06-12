@@ -286,7 +286,9 @@
 <script type='text/javascript'>
     $(function () {
         var tg_instance = {};
-        var jsonEvent = "";
+        var timezone = new Array();
+        var person = {firstName: "John", lastName: "Doe", age: 46};
+        console.log(person.firstName);
         $.ajax({
             url: "<?= site_url() ?>app/dashboard/getTimelineEvent",
             success: function (data, textStatus, jqXHR) {
@@ -295,6 +297,7 @@
                 tg1 = $("#p1").timeline({
                     "min_zoom": 1,
                     "max_zoom": 50,
+                    "timezone": "-06:00",
                     "icon_folder": "<?= base_url() ?>assets/dashboard/timeline/timeglider/icons/",
                     "data_source": json,
                     "show_footer": true,
