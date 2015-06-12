@@ -98,7 +98,7 @@
         </div><!-- /.row -->
         <div class="row ui-sortable">
             <div class="col-md-8">
-                <div id='p1'></div>
+
             </div>
             <div class="col-md-4">
                 <div class="row">
@@ -204,12 +204,13 @@
                 </div>
             </div>
         </div>
+        <div id='p1'></div>
     </section>
 </aside>
 
 <!--<script src="<?= base_url() ?>assets/dashboard/timeline/js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>-->
 <!-- jquery-1.9.1.min.js  OR  jquery-1.10.1.min.js -->
-<!--<script src="<?= base_url() ?>assets/dashboard/timeline/js/jquery-ui-1.10.3.custom.min.js" type="text/javascript" charset="utf-8"></script>-->
+<script src="<?= base_url() ?>assets/dashboard/timeline/js/jquery-ui-1.10.3.custom.min.js" type="text/javascript" charset="utf-8"></script>
 
 
 <script src="<?= base_url() ?>assets/dashboard/timeline/js/underscore-min.js" type="text/javascript" charset="utf-8"></script>
