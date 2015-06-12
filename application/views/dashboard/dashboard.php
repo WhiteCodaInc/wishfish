@@ -243,15 +243,15 @@
 <script type='text/javascript'>
 
 
-    var ico = window.ico;
+//    var ico = window.ico;
 
-    window.pizzaShack = {
-        clicker: function (tg_event) {
-            alert("you clicked on " + tg_event.title);
-        }
-    };
+//    window.pizzaShack = {
+//        clicker: function (tg_event) {
+//            alert("you clicked on " + tg_event.title);
+//        }
+//    };
 
-    var tg1 = window.tg1 = "";
+//    var tg1 = window.tg1 = "";
 
     $(function () {
 
@@ -536,8 +536,8 @@
         });
 
 
-        tg_instance.panButton($(".pan-left"), "left");
-        tg_instance.panButton($(".pan-right"), "right");
+//        tg_instance.panButton($(".pan-left"), "left");
+//        tg_instance.panButton($(".pan-right"), "right");
 
 
         $("#getScope").click(function () {
@@ -555,7 +555,7 @@
                     + "<br>timelineBounds (object, left- & right-most in tg sec): " + JSON.stringify(so.timelineBounds)
                     + "<br>timelines (array of ids): " + JSON.stringify(so.timelines);
 
-            var d = new Date(so.focusMS)
+            var d = new Date(so.focusMS);
 
             ml += "<br><br>Date using focusMS:" + d.toString('yyyy-MM-dd');
 
@@ -570,14 +570,14 @@
 
             var cb_fn = function (args, timeline) {
                 // called after parsing data, after load
-                debug.log("args", args, "timeline", timeline[0].id);
+//                debug.log("args", args, "timeline", timeline[0].id);
             };
 
             var cb_args = {}; // {display:true};
 
             tg_instance.getMediator().emptyData();
             tg_instance.loadTimeline(src, function () {
-                debug.log("cb!");
+//                debug.log("cb!");
             }, true);
 
             $("#reloadDataDiv").hide();
@@ -585,7 +585,7 @@
 
 
         $("#reloadTimeline").click(function () {
-            tg_instance.reloadTimeline("js_history", "json/js_history.json");
+            tg_instance.reloadTimeline("js_history", json);
         });
 
 
@@ -598,12 +598,12 @@
 
 
         $("#scrolldown").bind("click", function () {
-            $(".timeglider-timeline-event").animate({top: "+=100"})
-        })
+            $(".timeglider-timeline-event").animate({top: "+=100"});
+        });
 
         $("#scrollup").bind("click", function () {
-            $(".timeglider-timeline-event").animate({top: "-=100"})
-        })
+            $(".timeglider-timeline-event").animate({top: "-=100"});
+        });
 
 
 
