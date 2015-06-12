@@ -225,12 +225,12 @@ class Dashboard extends CI_Controller {
             "id" => "timeline",
             "title" => "Birthday Events Timeline",
             "focus_date" => $currDate . " 12:00:00",
-            "initial_zoom" => "39"
+            "initial_zoom" => "39",
+            "events" => $ev
         );
         $timeline = json_encode($initialize);
 
         echo '<pre>';
-//        print_r($ev);
         print_r($timeline);
         die();
     }
