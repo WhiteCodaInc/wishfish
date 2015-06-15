@@ -18,7 +18,8 @@
     .dl-horizontal dt {
         width: 88px
     }
-    #calendar table tbody tr td{
+    #calendar table tbody tr td,
+    #calendar table thead tr ths{
         cursor: pointer
     }
     .fc-widget-content:hover{
