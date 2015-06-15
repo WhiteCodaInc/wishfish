@@ -19,7 +19,7 @@
         width: 88px
     }
     #calendar table tbody tr td,
-    #calendar table thead tr ths{
+    #calendar table thead tr th{
         cursor: pointer
     }
     .fc-widget-content:hover{
