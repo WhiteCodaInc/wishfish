@@ -1788,7 +1788,7 @@ tg.TG_TimelinePlayer.prototype = {
   		  		
   		if ($existing.length == 0) {
   		
-	  		var $imageLane = $("<div style='top:100px' class='tg-image-lane-pull'><div title='This is the image lane!' class='tg-image-lane-bg'></div></div>").appendTo(CONTAINER);
+	  		var $imageLane = $("<div style='top:78px' class='tg-image-lane-pull'><div title='This is the image lane!' class='tg-image-lane-bg'></div></div>").appendTo(CONTAINER);
 				
 				$imageLane.draggable({
 	
