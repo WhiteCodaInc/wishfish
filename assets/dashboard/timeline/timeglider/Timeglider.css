@@ -496,7 +496,7 @@
     z-index:5000;
     font-size:18px;
     color:#fefbf4;
-    height: 34px;
+    height: 32px;
     width:150px;
     background-color:#f39c12;
 
@@ -507,8 +507,8 @@
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
 
-    -webkit-box-shadow:  2px 2px 3px 1px rgba(243, 156, 18, .9);
-    box-shadow:  2px 2px 3px 1px rgba(243, 156, 18, .9);
+    /*    -webkit-box-shadow:  2px 2px 3px 1px rgba(243, 156, 18, .9);
+        box-shadow:  2px 2px 3px 1px rgba(243, 156, 18, .9);*/
 
     cursor:pointer;
 }
@@ -523,7 +523,7 @@
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;
     /* needs to be same as bg of date-display */
-    border-bottom: 8px solid #42383D;
+    border-bottom: 8px solid #f39c12;
     opacity:.9;
 
 }
