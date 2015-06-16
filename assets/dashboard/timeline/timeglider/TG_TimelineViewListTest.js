@@ -1515,6 +1515,7 @@
                     var $pull = $(this);
                     var ypos = $pull.position().top;
                     console.log("TOP : " + ypos);
+                    alert("TOP : " + ypos);
                     if (ypos > 400) {
                         $pull.css("top", 400);
                         return false;
@@ -1536,10 +1537,10 @@
          * UI remotely (not from dragging, but from timeline/pres props)
          */
         setImageLaneHandle: function () {
-
             var me = this;
             var newHt = parseInt(MED.image_lane_height, 10) + parseInt(me.singleTitleHeight, 10);
             console.log("START : " + newHt);
+            alert("START : " + newHt);
             $(".tg-image-lane-pull").css("top", newHt + "px");
         },
         /* 
