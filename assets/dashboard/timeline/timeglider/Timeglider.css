@@ -26,7 +26,8 @@
 .timeglider-container {
     position:relative;
     overflow:hidden;
-    border:2px solid black;
+    /*border:2px solid black;*/
+    border-color:2px solid #3c8dbc;
     /*background-color:#fefbf4;*/
     background-image:url(img/gradient.jpg);
 }
