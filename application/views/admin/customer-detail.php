@@ -280,7 +280,7 @@ switch ($msg) {
             $('#customer-data-table tbody tr').each(function () {
                 if ($(this).children('td:first').find('div.checked').length) {
                     $txt = $(this).children('td:nth-child(4)').text();
-                    customer += $txt.trim() + ",";
+                    customer += $txt.trim() + "<br/>";
                 }
             });
             customer = customer.substring(0, customer.length - 1);
