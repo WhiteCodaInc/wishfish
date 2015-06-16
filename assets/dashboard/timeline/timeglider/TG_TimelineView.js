@@ -3369,7 +3369,7 @@
             if (laneHt > laneMax) {
                 laneHt = laneMax;
             }
-            console.log("LANE HEIGHT: " + laneHt);
+//            console.log("LANE HEIGHT: " + laneHt);
 
             $(CONTAINER + " .timeglider-event-image-lane").each(
                     function () {
@@ -3378,13 +3378,13 @@
                                 imgHt = laneHt - (padding / 2),
                                 $img = $(this).find("img"),
                                 imax = parseInt($div.data("max_height"), 10) || laneMax;
-                        console.log("IMAX:" + imax);
-                        console.log("I_HEIGHT:" + imgHt);
+//                        console.log("IMAX:" + imax);
+//                        console.log("I_HEIGHT:" + imgHt);
                         if (imax < imgHt) {
                             imgHt = imax;
                         }
                         if (imgHt < 0)
-                            imgHt = 50;
+                            imgHt = 55;
                         if (imgHt > 10) {
                             $div.css({"display": "block"})
                                     .position({
