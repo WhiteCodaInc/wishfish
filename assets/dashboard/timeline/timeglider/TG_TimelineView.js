@@ -1682,7 +1682,7 @@
 
             if ($existing.length == 0) {
 
-                var $imageLane = $("<div style='top:78px' class='tg-image-lane-pull'><div title='This is the image lane!' class='tg-image-lane-bg'></div></div>").appendTo(CONTAINER);
+                var $imageLane = $("<div class='tg-image-lane-pull'><div title='This is the image lane!' class='tg-image-lane-bg'></div></div>").appendTo(CONTAINER);
 
                 $imageLane.draggable({
                     axis: "y",
@@ -1690,8 +1690,8 @@
                     drag: function () {
                         var $pull = $(this);
                         var ypos = $pull.position().top;
-                        console.log("TOP : " + ypos);
-                        alert("TOP : " + ypos);
+                        //console.log("TOP : " + ypos);
+                        //alert("TOP : " + ypos);
                         if (ypos > 400) {
                             $pull.css("top", 400);
                             return false;
@@ -1718,8 +1718,9 @@
 
             var me = this;
             var newHt = parseInt(MED.image_lane_height, 10) + parseInt(me.singleTitleHeight, 10);
-            console.log("START : " + newHt);
-            alert("START : " + newHt);
+            //console.log("START : " + newHt);
+            //alert("START : " + newHt);
+            newHt = 78;
             $(".tg-image-lane-pull").css("top", newHt + "px");
         },
         /* 
