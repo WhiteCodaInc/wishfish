@@ -1717,8 +1717,8 @@
         setImageLaneHandle: function () {
 
             var me = this;
-            console.log("IMG HEIGHT : " + MED.image_lane_height);
-            console.log("IMG HEIGHT : " + me.singleTitleHeight);
+//            console.log("IMG HEIGHT : " + MED.image_lane_height);
+//            console.log("IMG HEIGHT : " + me.singleTitleHeight);
             var newHt = parseInt(MED.image_lane_height, 10) + parseInt(me.singleTitleHeight, 10);
             //console.log("START : " + newHt);
             //alert("START : " + newHt);
