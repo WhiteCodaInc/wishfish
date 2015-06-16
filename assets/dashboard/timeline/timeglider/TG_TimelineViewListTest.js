@@ -608,7 +608,7 @@ tg.TG_TimelinePlayer = function (widget, mediator) {
 			    		debug.log(ev.click_callback + " method cannot be found", e);
 			    	}
 			
-		  // no custom callback ÑÊjust regular old modal
+		  // no custom callback ï¿½ï¿½just regular old modal
 			} else {
 	      		me.eventModal(eid, $ev);
 			}
@@ -1597,7 +1597,7 @@ tg.TG_TimelinePlayer.prototype = {
   	buildImageLane: function() {
   	
   		var me = this,
-  			$imageLane = $("<div class='tg-image-lane-pull'><div title='This is the image lane!' class='tg-image-lane-bg'></div></div>").appendTo(CONTAINER);
+  			$imageLane = $("<div style='top:78px' class='tg-image-lane-pull'><div title='This is the image lane!' class='tg-image-lane-bg'></div></div>").appendTo(CONTAINER);
 			
 			$imageLane.draggable({
 
