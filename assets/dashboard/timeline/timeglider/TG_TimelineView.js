@@ -1722,7 +1722,8 @@
             var newHt = parseInt(MED.image_lane_height, 10) + parseInt(me.singleTitleHeight, 10);
             //console.log("START : " + newHt);
             //alert("START : " + newHt);
-            newHt = 78;
+            if (newHt <= 24)
+                newHt = 78;
             $(".tg-image-lane-pull").css("top", newHt + "px");
         },
         /* 
@@ -3368,7 +3369,7 @@
             if (laneHt > laneMax) {
                 laneHt = laneMax;
             }
-
+            console.log("LANE HEIGHT: " + laneHt);
 
             $(CONTAINER + " .timeglider-event-image-lane").each(
                     function () {
