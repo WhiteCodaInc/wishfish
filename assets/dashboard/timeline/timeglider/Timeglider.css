@@ -742,10 +742,10 @@
 }
 
 .timeglider-dateline-startdate {
-    color:#bac870;
+    color:#3c8dbc;
 }
 .timeglider-dateline-enddate {
-    color:#dc8c5d;
+    color:#3c8dbc;
 }
 
 
@@ -1270,8 +1270,8 @@
 
     z-index:99999999905;
 
-    background-color:#201e1b;
-    border:2px solid rgba(114, 109, 98, 0.9);
+    background-color:#ecf0f5;
+    border:2px solid rgba(60, 141, 188, 0.5);
 
 
 }
@@ -1418,7 +1418,7 @@
 
 .timeglider-ev-modal p {
     font-size:14px;
-    color:#D8D8D8;
+    color:#000;
     margin:8px;
 }
 
@@ -1439,6 +1439,7 @@
     float:left;
     margin-right:4px;
     margin-bottom:4px;
+    border: 1px solid #3c8dbc;
 }
 
 
@@ -1447,7 +1448,7 @@
 .timeglider-ev-modal h4, .tg-timeline-modal h4  {
     margin:4px 8px 2px 8px;
     padding:0;
-    color:#d4cec2;
+    color:#3c8dbc;
     font-size:16px;
 }
 
@@ -1716,7 +1717,7 @@ ul.timeglider-ev-modal-links li a {
     position: absolute;
     top: 0;
     right: 0;
-    width: 16px;
+    width: 6px;
     height: 100%;
     background: red;
 }
