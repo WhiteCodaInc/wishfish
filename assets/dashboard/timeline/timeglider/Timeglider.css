@@ -323,7 +323,7 @@
 .tg-slider-plusminus.tg-slider-plus {
     margin-bottom:8px;
     background-image: url(img/zoom/plus.png);
-    border-bottom: 1px solid #201e1b;
+    border-bottom: 1px solid #fff;
     background-position:8px 4px;
     padding-bottom:2px;
 }
@@ -332,7 +332,7 @@
     clear:both;
     margin-top:8px;
     background-image: url(img/zoom/minus.png);
-    border-top:1px solid #201e1b;
+    border-top:1px solid #fff;
 }
 
 .tg-oof-count {
@@ -407,7 +407,7 @@
     -webkit-border-radius:4px;
     padding:3px;
     margin-top:3px;
-    margin-left:-10px;
+    margin-left:-8px;
     margin-bottom:4px;
 }
 
