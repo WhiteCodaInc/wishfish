@@ -113,7 +113,8 @@
     width:100%;
     padding-top:4px;
     height:24px;
-    background-color:#2f2c28;
+    /*background-color:#2f2c28;*/
+    background-color:#3c8dbc;
     z-index:5000;
     overflow:hidden;
     min-width:450px;
