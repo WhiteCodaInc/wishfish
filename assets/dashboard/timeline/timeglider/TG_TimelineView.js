@@ -3377,10 +3377,10 @@
 
                         if (imax < imgHt) {
                             imgHt = imax;
-                        }else{
-                            imgHt = 11;
+                        } else {
+                            imgHt = 54;
                         }
-                        alert("IMAX : " + imax + "ImgHt : " + imgHt);
+//                        alert("IMAX : " + imax + "ImgHt : " + imgHt);
                         if (imgHt > 10) {
                             $div.css({"display": "block"})
                                     .position({
