@@ -118,6 +118,7 @@
     z-index:5000;
     overflow:hidden;
     min-width:450px;
+
 }
 
 .tg-single-timeline-header h2,  .tg-pres-header h2 {
@@ -126,7 +127,8 @@
     font-weight:normal;
     font-style:italic;
     margin:0 0 0 28px;
-    color:#bac870;
+    /*color:#bac870;*/
+    color:white;
     padding:0;
     cursor:pointer;
 }
@@ -146,7 +148,8 @@
     float:right;
     font-size:12px;
     font-weight:normal;
-    color:#36D0DF;
+    /*color:#36D0DF;*/
+    color:white;
     margin-right:16px;
     margin-top:2px;
     cursor:pointer;
