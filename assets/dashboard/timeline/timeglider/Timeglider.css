@@ -460,12 +460,14 @@
     left:0;
     height:5000px;
     width:1px;
-    border-left:1px solid #b7b1a3;
+    /*border-left:1px solid #b7b1a3;*/
+    border-left:1px solid #3c8dbc;
 }
 
 .tg-tick-body {
     height:40px;
-    background-color:#726d62;
+    /*background-color:#726d62;*/
+    background-color:#00c0ef;
 }
 
 .tg-even-tick .tg-tick-body {
