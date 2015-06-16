@@ -215,6 +215,7 @@ class Dashboard extends CI_Controller {
             $ev[$key]['description'] = $value->body;
             $ev[$key]['startdate'] = $value->date;
             $ev[$key]['high_threshold'] = 50;
+            $ev[$key]['date_display'] = 'da';
             $ev[$key]['importance'] = "35";
 
             if ($value->group_type == "individual") {
