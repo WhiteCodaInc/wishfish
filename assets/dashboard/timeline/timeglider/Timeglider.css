@@ -767,7 +767,7 @@
 .tg-image-lane-pull {
     position:absolute;
     height:1px;
-    top:78px;
+    top:78px !important;
     width:100%;
     background-color:white;
     border-bottom:2px solid #CCC;
