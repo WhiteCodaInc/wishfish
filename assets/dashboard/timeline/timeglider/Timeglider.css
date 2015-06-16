@@ -550,7 +550,7 @@
 
 .timeglider-tick-sub-label {
 
-    color:#d3cec2;
+    color:#fff;
     /* OLD float:left; display:inline; */
     position:absolute;
     height:14px;
@@ -570,7 +570,7 @@
 .timeglider-tick-sub-label .minutes {
     height:12px;
     font-size:9px;
-    color:#d3cec2;
+    color:#fff;
     float:left;
     margin:0;
     border-left:1px solid #FFF;
@@ -642,7 +642,7 @@
 
 
 .tg-modal p {
-    color:#d3cec2;
+    color:#fff;
 }
 
 .tg-modal h3 {
