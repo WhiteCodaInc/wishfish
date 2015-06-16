@@ -70,12 +70,14 @@
 }*/
 
 .tg-prevnext a {
-    color:#78a1a5;
+    /*color:#78a1a5;*/
+    color:white;
     font-size:16px;
 }
 
 .tg-prevnext a:hover {
-    color:#406e74;
+    /*color:#406e74;*/
+    color:white;
 }
 
 .tg-prev {
@@ -176,7 +178,8 @@
     left:0px;
     height: 30px;
     width:100%;
-    background-color:#201e1b;
+    /*background-color:#201e1b;*/
+    background-color:#3c8dbc;
     color:#ccc;
     font-size:10px;
     padding:3px;
