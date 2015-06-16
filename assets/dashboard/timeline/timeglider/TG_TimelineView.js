@@ -3370,12 +3370,11 @@
 
             $(CONTAINER + " .timeglider-event-image-lane").each(
                     function () {
-
                         var $div = $(this),
                                 imgHt = laneHt - (padding / 2),
                                 $img = $(this).find("img"),
                                 imax = parseInt($div.data("max_height"), 10) || laneMax;
-
+                        alert(imax);
                         if (imax < imgHt) {
                             imgHt = imax;
                         }
