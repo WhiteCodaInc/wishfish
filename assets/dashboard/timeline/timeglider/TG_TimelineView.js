@@ -3373,18 +3373,18 @@
 
             $(CONTAINER + " .timeglider-event-image-lane").each(
                     function () {
-                        console.log("LaneHT:" + laneHt);
+
                         var $div = $(this),
                                 imgHt = laneHt - (padding / 2),
                                 $img = $(this).find("img"),
                                 imax = parseInt($div.data("max_height"), 10) || laneMax;
-
+                        console.log("IMAX:" + imax);
+                        console.log("I_HEIGHT:" + imgHt);
                         if (imax < imgHt) {
                             imgHt = imax;
                         }
                         if (imgHt < 0)
-                            imgHt = 11;
-                        console.log("IMAX : " + imax + "ImgHt : " + imgHt);
+                            imgHt = 50;
                         if (imgHt > 10) {
                             $div.css({"display": "block"})
                                     .position({
