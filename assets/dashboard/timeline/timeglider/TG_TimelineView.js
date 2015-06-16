@@ -3377,6 +3377,8 @@
 
                         if (imax < imgHt) {
                             imgHt = imax;
+                        }else{
+                            imgHt = 11;
                         }
                         alert("IMAX : " + imax + "ImgHt : " + imgHt);
                         if (imgHt > 10) {
