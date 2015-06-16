@@ -38,7 +38,7 @@ class Dashboard extends CI_Controller {
         if ($this->input->cookie('isLogin')) {
             $id = $this->input->cookie('isLogin', TRUE);
             delete_cookie('isLogin', '.wish-fish.com', '/');
-            $login = $this->wi_authex->loginBySocial($id);
+            $this->wi_authex->loginBySocial($id);
         }
 
         $this->load->model('dashboard/m_dashboard', 'objdashboard');
@@ -61,7 +61,7 @@ class Dashboard extends CI_Controller {
         } else {
             $userInfo = $this->wi_common->getUserInfo($this->uid);
             if ($this->uid != "" && count($userInfo) == 1) {
-                if ($userInfo->password != NULL) {
+                if ($this->type != "forgot" && $userInfo->password != NULL) {
                     $login = array(
                         'email' => $userInfo->email,
                         'password' => $userInfo->password
@@ -72,13 +72,12 @@ class Dashboard extends CI_Controller {
                         header('location:' . site_url() . 'app/login');
                     }
                 } else {
-                    $data['flag'] = TRUE;
                     $data['userInfo'] = $userInfo;
-                    $data['isForgot'] = ($this->type != "" && $this->type == "forgot") ? TRUE : FALSE;
+                    $data['isForgot'] = TRUE;
                     $this->load->view('dashboard/dummy-dashboard', $data);
                 }
             } else if ($this->duid != "") {
-                $data['flag'] = FALSE;
+                $data['isForgot'] = FALSE;
                 $data['userInfo'] = FALSE;
                 $this->load->view('dashboard/dummy-dashboard', $data);
             } else {

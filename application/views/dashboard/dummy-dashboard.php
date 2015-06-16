@@ -222,11 +222,11 @@
         <aside class="right-side" style="min-height: 542px;">
             <div class="overlay" style="">
                 <div class="msg">
-                    <div class="welcome" style="display: none">
-                        <h1 style="text-align: center">Welcome to Wish-Fish!<br/>Please click the 'Activate Your Account' Button in your Email To Get Started!</h1>
-                        <h3 style="text-align: center">Didn't get our Email? No worries, <a href="javascript:void(0);" id="active">Click Here</a> To Active Your Account.</h3>
-                    </div>
-                    <div class="row set-passwd" style="display: none" >
+                    <!--                    <div class="welcome" style="display: none">
+                                            <h1 style="text-align: center">Welcome to Wish-Fish!<br/>Please click the 'Activate Your Account' Button in your Email To Get Started!</h1>
+                                            <h3 style="text-align: center">Didn't get our Email? No worries, <a href="javascript:void(0);" id="active">Click Here</a> To Active Your Account.</h3>
+                                        </div>-->
+                    <div class="row set-passwd">
                         <div class="col-md-3"></div>
                         <form id="passForm" action="<?= site_url() ?>app/dashboard/updatePassword" method="post">
                             <div class="col-md-6" style="text-align: center;">
@@ -237,7 +237,7 @@
                                 <span id="msgPass" style="color: red"></span>
                             </div>
                             <input type="hidden" name="userid" value="<?= ($userInfo) ? $userInfo->user_id : $this->session->userdata('d-userid') ?>" />
-                            <input type="hidden" name="type" value="<?= (isset($isForgot) && $isForgot) ? 'forgot' : 'welcome' ?>" />
+                            <input type="hidden" name="type" value="<?= ($isForgot) ? 'forgot' : 'welcome' ?>" />
                         </form>
                         <div class="col-md-3"></div>
                     </div>
@@ -265,20 +265,9 @@
             </div><!-- /.container -->
         </footer>
         <script type="text/javascript">
-            $(function () {
-<?php if (!$flag): ?>
-                    $('div.welcome').show();
-                    $('div.set-passwd').hide();
-<?php else: ?>
-                    $('div.welcome').hide();
-                    $('div.set-passwd').show();
-<?php endif; ?>
-            });
             $(document).ready(function () {
-
                 var pass = 1;
                 var confirmpass = 1;
-
                 $('#active').on('click', function () {
                     $('div.welcome').hide();
                     $('div.set-passwd').show();
