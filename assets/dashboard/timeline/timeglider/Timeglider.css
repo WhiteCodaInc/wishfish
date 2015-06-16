@@ -743,9 +743,11 @@
 
 .timeglider-dateline-startdate {
     color:#3c8dbc;
+    font-size: 13px;
 }
 .timeglider-dateline-enddate {
     color:#3c8dbc;
+    font-size: 13px;
 }
 
 
@@ -1450,6 +1452,7 @@
     padding:0;
     color:#3c8dbc;
     font-size:16px;
+    font-weight: 600
 }
 
 .timeglider-ev-modal .startdate {
@@ -1751,27 +1754,27 @@ ul.timeglider-ev-modal-links li a {
 
 .jspTrack
 {
-    background: #000;
+    background: #fff;
     position: relative;
 }
 
 .jspDrag
 {
-    background: #CCC;
+    background: #3c8dbc;
     position: relative;
     top: 0;
     left: 0;
     cursor: pointer;
 
     /* GRADIENT */
-    background: #c6c6c6; /* Old browsers */
-    background: -moz-linear-gradient(left,  #c6c6c6 0%, #282828 99%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, right top, color-stop(0%,#c6c6c6), color-stop(99%,#282828)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(left,  #c6c6c6 0%,#282828 99%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(left,  #c6c6c6 0%,#282828 99%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(left,  #c6c6c6 0%,#282828 99%); /* IE10+ */
-    background: linear-gradient(left,  #c6c6c6 0%,#282828 99%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c6c6c6', endColorstr='#282828',GradientType=1 ); /* IE6-9 */
+    /*    background: #c6c6c6;  Old browsers 
+        background: -moz-linear-gradient(left,  #c6c6c6 0%, #282828 99%);  FF3.6+ 
+        background: -webkit-gradient(linear, left top, right top, color-stop(0%,#c6c6c6), color-stop(99%,#282828));  Chrome,Safari4+ 
+        background: -webkit-linear-gradient(left,  #c6c6c6 0%,#282828 99%);  Chrome10+,Safari5.1+ 
+        background: -o-linear-gradient(left,  #c6c6c6 0%,#282828 99%);  Opera 11.10+ 
+        background: -ms-linear-gradient(left,  #c6c6c6 0%,#282828 99%);  IE10+ 
+        background: linear-gradient(left,  #c6c6c6 0%,#282828 99%);  W3C */
+    /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c6c6c6', endColorstr='#282828',GradientType=1 );  IE6-9 */
 
 }
 
