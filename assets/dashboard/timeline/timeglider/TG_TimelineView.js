@@ -3379,6 +3379,8 @@
                         if (imax < imgHt) {
                             imgHt = imax;
                         }
+                        if (imgHt < 0)
+                            imgHt = 30;
                         console.log("IMAX : " + imax + "ImgHt : " + imgHt);
                         if (imgHt > 10) {
                             $div.css({"display": "block"})
