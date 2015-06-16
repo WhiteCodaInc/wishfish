@@ -1717,6 +1717,8 @@
         setImageLaneHandle: function () {
 
             var me = this;
+            console.log("IMG HEIGHT : " + MED.image_lane_height);
+            console.log("IMG HEIGHT : " + me.singleTitleHeight);
             var newHt = parseInt(MED.image_lane_height, 10) + parseInt(me.singleTitleHeight, 10);
             //console.log("START : " + newHt);
             //alert("START : " + newHt);
@@ -3380,7 +3382,7 @@
                             imgHt = imax;
                         }
                         if (imgHt < 0)
-                            imgHt = 30;
+                            imgHt = 11;
                         console.log("IMAX : " + imax + "ImgHt : " + imgHt);
                         if (imgHt > 10) {
                             $div.css({"display": "block"})
