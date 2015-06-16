@@ -3370,6 +3370,7 @@
 
             $(CONTAINER + " .timeglider-event-image-lane").each(
                     function () {
+                        console.log("LaneHT:" + laneHt);
                         var $div = $(this),
                                 imgHt = laneHt - (padding / 2),
                                 $img = $(this).find("img"),
@@ -3378,21 +3379,21 @@
                         if (imax < imgHt) {
                             imgHt = imax;
                         }
-//                        alert("IMAX : " + imax + "ImgHt : " + imgHt);
-//                        if (imgHt > 10) {
-                        $div.css({"display": "block"})
-                                .position({
-                                    my: "center top+" + (stht + padding),
-                                    at: "center top",
-                                    of: $(CONTAINER)
-                                })
-                                .css({left: 0});
+                        console.log("IMAX : " + imax + "ImgHt : " + imgHt);
+                        if (imgHt > 10) {
+                            $div.css({"display": "block"})
+                                    .position({
+                                        my: "center top+" + (stht + padding),
+                                        at: "center top",
+                                        of: $(CONTAINER)
+                                    })
+                                    .css({left: 0});
 
-                        $img.css("height", imgHt - (padding));
+                            $img.css("height", imgHt - (padding));
 
-//                        } else {
-//                            $div.css({"display": "none"});
-//                        }
+                        } else {
+                            $div.css({"display": "none"});
+                        }
                     }
             );
 
