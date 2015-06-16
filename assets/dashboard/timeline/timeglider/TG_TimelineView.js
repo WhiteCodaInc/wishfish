@@ -3377,24 +3377,22 @@
 
                         if (imax < imgHt) {
                             imgHt = imax;
-                        } else {
-                            imgHt = 54;
                         }
 //                        alert("IMAX : " + imax + "ImgHt : " + imgHt);
-                        if (imgHt > 10) {
-                            $div.css({"display": "block"})
-                                    .position({
-                                        my: "center top+" + (stht + padding),
-                                        at: "center top",
-                                        of: $(CONTAINER)
-                                    })
-                                    .css({left: 0});
+//                        if (imgHt > 10) {
+                        $div.css({"display": "block"})
+                                .position({
+                                    my: "center top+" + (stht + padding),
+                                    at: "center top",
+                                    of: $(CONTAINER)
+                                })
+                                .css({left: 0});
 
-                            $img.css("height", imgHt - (padding));
+                        $img.css("height", imgHt - (padding));
 
-                        } else {
-                            $div.css({"display": "none"});
-                        }
+//                        } else {
+//                            $div.css({"display": "none"});
+//                        }
                     }
             );
 
