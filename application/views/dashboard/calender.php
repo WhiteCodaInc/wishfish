@@ -25,6 +25,9 @@
     .fc-widget-content:hover{
         border: 1px solid darkturquoise;
     }
+    td.fc-header-left,td.fc-header-right{
+        padding: 0 15px;
+    }
 </style>
 <!-- Right side column. Contains the navbar and content of the page -->
 <aside class="right-side">
