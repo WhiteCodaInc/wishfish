@@ -181,10 +181,6 @@
                     "<div class='timeglider-menu-modal-content'>" +
                     "<div class='timeglider-formline'>" +
                     "<input placeholder='keyword(s)' type='text' class='timeglider-filter-search'></div>" +
-                    "<div class='tg-filter-cbs'>" +
-                    "<input type='checkbox' id='filter_t' checked><label for='filter_t'>title</label>" +
-                    "&nbsp;&nbsp;&nbsp;<input type='checkbox' id='filter_d'><label for='filter_d'>description</label>" +
-                    "</div>" +
                     "<div class='timeglider-formline filter-tags'>" +
                     "<input placeholder='Event Description' type='text' id='filter-tags' class='timeglider-filter-tags'>" +
                     "</div>" +
