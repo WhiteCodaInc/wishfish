@@ -137,14 +137,15 @@
                         </div>
                         <?php
 //                        $userid = $this->session->userdata('userid');
-                        $currPlan = $this->wi_common->getCurrentPlan($customer->user_id);
+                        $userInfo = $this->wi_common->getUserInfo($customer->user_id);
+                        $currPlan = $this->wi_common->getCurrentPlan($customer->user_id);                        
                         if (count($currPlan) && $currPlan->plan_id == 1) {
                             ?>
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-4"><label>Days Left on Trial</label></div>
                                     <div class="col-md-8">
-                                        <span class="title"><?= $this->wi_common->getDateDiff($currPlan) ?></span>
+                                        <span class="title"><?= $this->wi_common->getDateDiff($userInfo,$currPlan) ?></span>
                                     </div>
                                 </div>
                             </div>

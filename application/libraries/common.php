@@ -102,6 +102,12 @@ class Common {
         }
     }
 
+    function getDateDiff($userInfo, $planInfo) {
+        $d1 = date_create($this->getMySqlDate($this->getUTCDate($userInfo->timezones, $userInfo->date_format), $userInfo->date_format));
+        $d2 = date_create($planInfo->expiry_date);
+        return date_diff($d2, $d1)->format('%a');
+    }
+
     //----------------------Admin Automail Template---------------------------//
     function getAutomailTemplate($type) {
         $query = $this->_CI->db->get_where('automail_template', array('mail_type' => $type));
