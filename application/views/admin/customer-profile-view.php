@@ -136,8 +136,8 @@
                             </div>
                         </div>
                         <?php
-                        $userid = $this->session->userdata('userid');
-                        $currPlan = $this->wi_common->getCurrentPlan($userid);
+//                        $userid = $this->session->userdata('userid');
+                        $currPlan = $this->wi_common->getCurrentPlan($customer->user_id);
                         print_r($currPlan);
                         if (count($currPlan) && $currPlan->plan_id == 1) {
                             ?>
