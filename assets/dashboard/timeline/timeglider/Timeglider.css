@@ -1125,13 +1125,13 @@
     display:inline;
     margin:2px 0px 2px 8px;
     cursor:pointer;
-    color:#70bece;
+    color:#fff;
     font-size:14px;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
     border-radius: 2px;
     padding:2px 4px;
-    background-color:black;
+    background-color:#3c8dbc;
 }
 
 

@@ -1333,14 +1333,11 @@
                         if (incl) {
                             title_txt = incl;
                             MED.setFilters({origin: "title_andor_desc", title: title_txt});
-                            clearFilters();
                         } else {
                             // clear
                             clearFilters();
                             clearFilterFront();
                         }
-
-
                     });
 
 
