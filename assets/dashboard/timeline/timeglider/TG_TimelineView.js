@@ -1309,7 +1309,7 @@
 
                     var $filter_apply = $(fbox + " .timeglider-filter-apply"),
                             $filter_clear = $(fbox + " .timeglider-filter-clear"),
-                            incl = "", tags = "", excl = "", title_txt = "", desc_txt = "";
+                            incl = "", tags = "", title_txt = "";
 
                     var $filter_input = $(fbox + " .timeglider-filter-search");
 
@@ -1322,32 +1322,23 @@
                                 break;
                         }
                     });
-
-
                     // set up listeners
                     $filter_apply.bind("click", function () {
 
                         clearFilters();
 
-                        tags = $("#filter-tags").val();
                         incl = $(fbox + " .timeglider-filter-search").val();
-                        excl = ""; // $(fbox + " .timeglider-filter-exclude").val();
                         console.log("INCL : " + incl);
-                        use_title = $(fbox + " input#filter_t").is(":checked");
-//                        use_desc = $(fbox + " input#filter_d").is(":checked");
 
-                        if ((use_title && incl) || (use_desc && incl) || tags) {
-                            title_txt = use_title ? incl : "";
-                            desc_txt = use_desc ? incl : "";
-
-                            if (use_title && use_desc && incl) {
-                                // EITHER title OR description match
-                                MED.setFilters({origin: "clude", include: title_txt, exclude: "", tags: tags});
-                            } else {
-                                // just title, or just description match
-                                MED.setFilters({origin: "title_andor_desc", title: title_txt, description: desc_txt, tags: tags});
-                            }
-
+                        if (incl) {
+                            title_txt = incl;
+//                            if (incl) {
+//                                // EITHER title OR description match
+//                                MED.setFilters({origin: "clude", include: title_txt, exclude: "", tags: tags});
+//                            } else {
+                            // just title, or just description match
+                            MED.setFilters({origin: "title_andor_desc", title: title_txt});
+//                            }
                         } else {
                             // clear
                             clearFilters();
