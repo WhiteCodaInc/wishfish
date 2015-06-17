@@ -1332,13 +1332,8 @@
 
                         if (incl) {
                             title_txt = incl;
-//                            if (incl) {
-//                                // EITHER title OR description match
-//                                MED.setFilters({origin: "clude", include: title_txt, exclude: "", tags: tags});
-//                            } else {
-                            // just title, or just description match
                             MED.setFilters({origin: "title_andor_desc", title: title_txt});
-//                            }
+                            clearFilters();
                         } else {
                             // clear
                             clearFilters();
