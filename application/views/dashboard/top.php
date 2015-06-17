@@ -889,7 +889,7 @@ $userid = $this->session->userdata('userid');
                                 </div>
                                 <div class="modal-footer clearfix">
                                     <div class="row">
-                                        <div class="col-md-3">
+                                        <div class="col-md-4">
                                             <button type="button" id="send" class="btn btn-primary pull-left">Send</button>
                                         </div>
                                         <div class="col-md-3">
@@ -958,7 +958,7 @@ $userid = $this->session->userdata('userid');
                                 success: function (data, textStatus, jqXHR) {
                                     setTimeout(function () {
                                         if (data) {
-                                            $('#supportForm .msg').html("Thank you for your Feebback!");
+                                            $('#supportForm .msg').html("Thank you for your Feedback!");
                                             $('#supportForm .load').css('display', 'none');
                                             $('#supportForm .msg').css('display', 'block');
                                             $('#supportForm .msg').css('color', 'green');
