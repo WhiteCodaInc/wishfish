@@ -186,7 +186,7 @@
                     "&nbsp;&nbsp;&nbsp;<input type='checkbox' id='filter_d'><label for='filter_d'>description</label>" +
                     "</div>" +
                     "<div class='timeglider-formline filter-tags'>" +
-                    "<input type='text' id='filter-tags' class='timeglider-filter-tags'>" +
+                    "<input placeholder='Event Description' type='text' id='filter-tags' class='timeglider-filter-tags'>" +
                     "</div>" +
                     // "<div class='timeglider-formline'>hide: "+
                     // "<input type='text' class='timeglider-filter-exclude'></div>"+
@@ -1334,12 +1334,11 @@
                         clearFilters();
 
                         tags = $("#filter-tags").val();
-
                         incl = $(fbox + " .timeglider-filter-search").val();
                         excl = ""; // $(fbox + " .timeglider-filter-exclude").val();
-
+                        console.log("INCL : " + incl);
                         use_title = $(fbox + " input#filter_t").is(":checked");
-                        use_desc = $(fbox + " input#filter_d").is(":checked");
+//                        use_desc = $(fbox + " input#filter_d").is(":checked");
 
                         if ((use_title && incl) || (use_desc && incl) || tags) {
                             title_txt = use_title ? incl : "";

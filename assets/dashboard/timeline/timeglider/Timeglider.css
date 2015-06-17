@@ -635,9 +635,8 @@
     -moz-border-radius: 4px;
     border-radius: 4px;
     z-index:99999999905;
-
-    background-color:#201e1b;
-    border:2px solid rgba(114, 109, 98, 0.9);
+    background-color:#ecf0f5;
+    border:2px solid rgba(60, 141, 188, 0.9);
 }
 
 
@@ -646,7 +645,7 @@
 }
 
 .tg-modal h3 {
-    color:#969083;
+    color:#3c8dbc;
     margin:4px 8px;
     font-size:14px;
 }
@@ -911,7 +910,7 @@
 }
 .tg-filter-cbs label {
     font-size:11px;
-    color:#CCC;
+    color:#3c8dbc;
 }
 
 /* MENU MODALS */
