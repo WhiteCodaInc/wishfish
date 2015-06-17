@@ -32,6 +32,18 @@
                     <div class="col-md-4" style="margin-top:10px ">
                         <div class="form-group">
                             <div class="row">
+                                <div class="col-md-4"><label>Profile Status</label></div>
+                                <div class="col-md-8">
+                                    <?php if ($customer->status): ?>
+                                        <span class="btn btn-success btn-xs">Active</span>
+                                    <?php else : ?>
+                                        <span class="btn btn-danger btn-xs">Deactivate</span>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
                                 <div class="col-md-4"><label>E-mail</label></div>
                                 <div class="col-md-8">
                                     <span class="title"><?= $customer->email ?></span>
