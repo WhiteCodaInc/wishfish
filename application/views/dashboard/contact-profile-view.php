@@ -13,6 +13,13 @@
             <i class="fa fa-edit"></i>
             Edit
         </a>
+        <a href="<?= site_url() ?>admin/calender/createEvent/<?= $contact->contact_id ?>" class="create btn btn-success">
+            <i class="fa fa-plus"></i>
+            Create Calender Event
+        </a>
+<!--        <a href="<?= site_url() ?>admin/calender/createEvent/<?= $contact->contact_id ?>?type=bday" class="create btn btn-warning">
+            Schedule Birthday
+        </a>-->
     </section>
     <?php
     $img_src = ($contact->contact_avatar != "") ?
@@ -152,7 +159,7 @@
                                                     <select name="sms_template_id" class="form-control" required="">
                                                         <option value="-1">--Select--</option>
         <?php foreach ($sms_template as $value) { ?>
-                                                                                        <option value="<?= $value->template_id ?>"><?= $value->title ?></option>
+                                                                                                                <option value="<?= $value->template_id ?>"><?= $value->title ?></option>
         <?php } ?>
                                                     </select>
                                                 </div>
@@ -240,7 +247,7 @@
                                                     <select name="email_template_id" class="form-control" required="">
                                                         <option value="-1">--Select--</option>
         <?php foreach ($email_template as $value) { ?>
-                                                                                        <option value="<?= $value->template_id ?>"><?= $value->name ?></option>
+                                                                                                                <option value="<?= $value->template_id ?>"><?= $value->name ?></option>
         <?php } ?>
                                                     </select>
                                                 </div>
