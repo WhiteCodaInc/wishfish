@@ -170,7 +170,7 @@
                                             ?>
                                             <div class="form-group">
                                                 <input type="checkbox" class="simple" <?= ($user->is_bill) ? "checked" : "" ?>  name="is_bill" >
-                                                <span class="lbl padding-8">Automatically bill me,When my trial over</span>
+                                                <span class="lbl padding-8">Automatically bill me, when my trial is over.</span>
                                             </div>
                                         <?php endif; ?>
                                     </div>
