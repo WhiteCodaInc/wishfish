@@ -106,13 +106,13 @@ class Login extends CI_Controller {
 //                echo $user;
 
                 if ($user === -1) {
-                    die("-1");
+//                    die("-1");
                     header('location: ' . site_url() . 'login?msg=DA');
                 } else if (!$user) {
-                    die("0");
+//                    die("0");
                     header('location: ' . site_url() . 'login?msg=NR');
                 } else {
-                    die("1");
+//                    die("1");
                     $this->objregister->linkWithProfile($data['email']);
                     $is_login = array(
                         'name' => 'isLogin',
