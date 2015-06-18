@@ -72,6 +72,22 @@
                         <li class="footer"><a href="<?= site_url() . 'admin/sms/inbox' ?>">See All Messages</a></li>
                     </ul>
                 </li>
+                <!-- Emails -->
+                <li class="dropdown messages-menu email-notify">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-envelope-o"></i>
+                        <span class="label label-success ebadge">0</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="header">You have 0 emails</li>
+                        <li>
+                            <!-- inner menu: contains the actual data -->
+                            <ul class="menu"></ul>
+                        </li>
+                        <li class="footer"><a href="#">See All Emails</a></li>
+                    </ul>
+                </li>
+                <!-- ENd Email -->
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="glyphicon glyphicon-user"></i>
@@ -105,6 +121,15 @@
     </nav>
 </header>
 <script>
+    $(function () {
+        $.ajax({
+            type: 'POST',
+            url: "<?= site_url() ?>admin/cpanel/getTotalUnreadEmail",
+            success: function (data, textStatus, jqXHR) {
+                $('.email-notify').html(data);
+            }
+        });
+    });
     $(document).ready(function () {
         $('ul.unreadSMS > li > a').on('click', function () {
             var id = $(this).attr('id');

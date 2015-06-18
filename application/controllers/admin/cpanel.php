@@ -102,17 +102,31 @@ class Cpanel extends CI_Controller {
         header('location:' . site_url() . 'admin/cpanel');
     }
 
-    function delete() {
-        $ids = $this->input->post('account');
-        foreach ($ids as $value) {
-            $accountInfo = $this->objcpanel->getAccount($value);
-            $result = $this->cpmm->deleteEmail($accountInfo->email);
-            if ($result) {
-                $this->objcpanel->delete($value);
+    function action() {
+        $msg = "";
+        $post = $this->input->post();
+        $type = $post['actionType'];
+        if ($type == "Delete") {
+            foreach ($post['account'] as $value) {
+                $accountInfo = $this->objcpanel->getAccount($value);
+                $result = $this->cpmm->deleteEmail($accountInfo->email);
+                if ($result) {
+                    $this->objcpanel->setAction($type, $value);
+                }
+                $msg = "D";
             }
+        } else if ($type == "Add" || $type == "Remove") {
+            $this->objcpanel->setAction($type, $post['account']);
+            $msg = ($type == "Add") ? "A" : "R";
+        } else {
+            $msg = "";
         }
-        $this->session->set_flashdata('msg', "D");
-        header('location:' . site_url() . 'admin/cpanel');
+        if ($msg != "") {
+            $this->session->set_flashdata('msg', $msg);
+            header('location:' . site_url() . 'admin/cpanel');
+        } else {
+            header('location:' . site_url() . 'admin/cpanel');
+        }
     }
 
     function getUnread() {
@@ -139,6 +153,36 @@ class Cpanel extends CI_Controller {
 //        $pageNo = 1;
 //        $result = $cpmm->listEmails($pageSize, $pageNo);
 //        print_r($result);
+    }
+
+    function getTotalUnreadEmail() {
+        $account = $this->objcpanel->getNotificationAccount();
+        $data = array();
+        $mailbox = array();
+        $totalUnread = 0;
+        $cnt = 0;
+        foreach ($account as $value) {
+            if ($this->openInbox($value->email, $value->password)) {
+                $emails = imap_search($this->stream, 'UNSEEN');
+                if (is_array($emails)) {
+                    $totalUnread += count($emails);
+                    rsort($emails);
+                    foreach ($emails as $email_id) {
+                        $overview = imap_fetch_overview($this->stream, $email_id, 0);
+                        $mailbox[$cnt]['id'] = $value->account_id;
+                        $mailbox[$cnt]['subject'] = $overview[0]->subject;
+                        $mailbox[$cnt]['from'] = $overview[0]->from;
+                        $mailbox[$cnt]['date'] = date('m-d-Y H:i', strtotime($overview[0]->date));
+                        $cnt++;
+                    }
+                }
+                imap_close($this->stream);
+            }
+        }
+        $data['emails'] = $mailbox;
+//        print_r($data);
+//        die();
+        $this->load->view('admin/email-notify', $data);
     }
 
 }

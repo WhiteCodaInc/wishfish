@@ -14,7 +14,9 @@
             <i class="fa fa-plus"></i>
             Create New Email Account
         </a>
-        <button style="margin-left: 10px" value="Delete" class="delete btn btn-danger btn-sm" id="Delete" type="button" >Delete</button>
+        <button  value="Delete" class="delete btn btn-danger btn-sm" id="Delete" type="button" >Delete</button>
+        <button  value="Add" class="add btn btn-info btn-sm" id="Add" type="button" >Add Header Notification</button>
+        <button  value="Remove" class="remove btn btn-warning btn-sm" id="Remove" type="button" >Remove Header Notification</button>
     </section>
 
     <!-- Main content -->
@@ -71,6 +73,7 @@
                                     </tr>
                                 </tfoot>
                             </table>
+                            <input type="hidden" id="actionType" name="actionType" value="" />
                         </div><!-- /.box-body -->
                     </form>
                 </div><!-- /.box -->
@@ -96,6 +99,12 @@ switch ($msg) {
         break;
     case "D":
         $m = "Email Account(s) Successfully Deleted..!";
+        $t = "error";
+    case "A":
+        $m = "Email Account(s) Successfully Added Into Header Notification..!";
+        $t = "success";
+    case "R":
+        $m = "Email Account(s) Successfully Removed From The Header Notification..!";
         $t = "error";
         break;
     default:
@@ -127,9 +136,18 @@ switch ($msg) {
 <script type="text/javascript">
     $(document).ready(function () {
 
+        $('button.add').click(function (e) {
+            action($(this).val());
+            e.preventDefault();
+        });
+        $('button.remove').click(function (e) {
+            action($(this).val());
+            e.preventDefault();
+        });
+
         $('button.delete').click(function (e) {
             var bcat = "";
-            //var act = $(this).val();
+            var act = $(this).val();
             $('#account-data-table tbody tr').each(function () {
                 if ($(this).children('td:first').find('div.checked').length) {
                     $txt = $(this).children('td:nth-child(2)').text();
@@ -141,7 +159,7 @@ switch ($msg) {
 
             alertify.confirm("Are you sure want to delete Email Account(s):<br/>" + bcat, function (e) {
                 if (e) {
-                    action();
+                    action(act);
                     return true;
                 }
                 else {
@@ -149,8 +167,9 @@ switch ($msg) {
                 }
             });
         });
-        function action() {
-            $('#checkForm').attr('action', "<?= site_url() ?>admin/cpanel/delete");
+        function action(actiontype) {
+            $('#actionType').val(actiontype);
+            $('#checkForm').attr('action', "<?= site_url() ?>admin/cpanel/action");
             $('#checkForm').submit();
         }
     });
