@@ -75,7 +75,7 @@
                     <img src="<?= base_url() ?>assets/dashboard/img/close.png" width="20px" alt="close" style="" />
                 </button>
                 <h4 class="modal-title">
-                    <a href="<?= $href ?>">
+                    <a href="<?= $href ?>" style="float: left">
                         <img  src="<?= $url ?>" class="img-circle" alt="User Image" style="width: 45px;height: 45px" />
                     </a>
                     <div id="n_event_status" style="margin-left: 60px;padding-left: 10px;display: none" class="alert alert-info alert-dismissable">
