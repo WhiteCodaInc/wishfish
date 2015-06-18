@@ -2,8 +2,6 @@
 /* CSS Document */
 
 
-
-
 /* float clearing for everyone else */
 .timeglider-container .clearfix:after{
     clear: both;
@@ -31,7 +29,6 @@
     /*background-color:#fefbf4;*/
     background-image:url(img/gradient.jpg);
 }
-
 
 .tg-scrim {
     position:absolute;
