@@ -33,6 +33,7 @@ class Import extends CI_Controller {
     }
 
     function index() {
+        $this->client->setApprovalPrompt('auto');
         header('location:' . $this->client->createAuthUrl());
     }
 
