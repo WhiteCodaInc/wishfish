@@ -105,7 +105,7 @@ class Login extends CI_Controller {
                 $user = $this->objregister->isUserExist($data);
                 echo $user;
                 die();
-                if ($user == "-1") {
+                if ($user === -1) {
                     header('location: ' . site_url() . 'login?msg=DA');
                 } else if (!$user) {
                     header('location: ' . site_url() . 'login?msg=NR');
