@@ -1269,8 +1269,18 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
         });
         $('#neweventForm input[name="event_type"],#eventForm input[name="event_type"],#editForm input[name="event_type"]').change(function ()
         {
-
+            if ($(this).val() == "notification") {
+                $('#n_event_empty').show();
+                $('#n_event_status').hide();
+            } else if ($(this).val() == "sms") {
+                $('#n_event_empty').hide();
+                $('#n_event_status').show();
+            } else if ($(this).val() == "email") {
+                $('#n_event_empty').hide();
+                $('#n_event_status').show();
+            }
             if ($(this).val() == "sms" || $(this).val() == "notification") {
+
                 $type = "sms";
                 $('#smsbody').val('');
                 $('#n_msbody').val('');
