@@ -139,7 +139,7 @@ class Login extends CI_Controller {
             try {
                 $user_profile = $facebook->api('/me');  //Get the facebook user profile data
                 $is_user = $this->objregister->isUserExist($user_profile);
-                if ($is_user == -1) {
+                if ($user === -1) {
                     header('location: ' . site_url() . 'login?msg=DA');
                 } else if (!$is_user) {
                     header('location: ' . site_url() . 'login?msg=NR');
