@@ -38,16 +38,16 @@ class Login extends CI_Controller {
             header('location:' . site_url() . 'app/dashboard');
         } else {
             $from = $this->input->get('from');
-            $gid = $this->input->cookie('googleid');
-            $fid = $this->input->cookie('facebookid');
-            if (isset($gid) && $gid != "") {
-                $data['isLogin_g'] = TRUE;
-                $this->client->setApprovalPrompt('auto');
-            } else {
-                $data['isLogin_g'] = FALSE;
-                $this->client->setApprovalPrompt('force');
-            }
-
+//            $gid = $this->input->cookie('googleid');
+//            $fid = $this->input->cookie('facebookid');
+//            if (isset($gid) && $gid != "") {
+//                $data['isLogin_g'] = TRUE;
+//                $this->client->setApprovalPrompt('auto');
+//            } else {
+//                $data['isLogin_g'] = FALSE;
+//                $this->client->setApprovalPrompt('force');
+//            }
+            $this->client->setApprovalPrompt('auto');
             if ($from != "" && $from == "home") {
                 header('location:' . $this->client->createAuthUrl());
             } else {
