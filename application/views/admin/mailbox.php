@@ -59,11 +59,13 @@
                                                 <i class="fa fa-trash-o"></i> Trash <?= (isset($folder[2]) && $folder[2]) ? "({$folder[2]})" : "" ?>
                                             </a>
                                         </li>
-                                        <li class="<?= ($type == "Archive") ? "active" : "" ?>">
-                                            <a href="<?= site_url() ?>admin/mailbox/inbox/Archive">
-                                                <i class="fa fa-folder"></i> Archive <?= (isset($folder[5]) && $folder[5]) ? "({$folder[5]})" : "" ?>
-                                            </a>
-                                        </li>
+                                        <?php if (isset($folder[5])): ?>
+                                            <li class="<?= ($type == "Archive") ? "active" : "" ?>">
+                                                <a href="<?= site_url() ?>admin/mailbox/inbox/Archive">
+                                                    <i class="fa fa-folder"></i> Archive <?= (isset($folder[5]) && $folder[5]) ? "({$folder[5]})" : "" ?>
+                                                </a>
+                                            </li>
+                                        <?php endif; ?>
                                         <li class="<?= ($type == "Junk") ? "active" : "" ?>">
                                             <a href="<?= site_url() ?>admin/mailbox/inbox/Junk">
                                                 <i class="fa fa-folder"></i> Junk <?= (isset($folder[3]) && $folder[3]) ? "({$folder[3]})" : "" ?>
@@ -84,10 +86,12 @@
                                                 <i class="fa fa-trash"></i> 
                                                 Mark as spam
                                             </button>
-                                            <button style="margin-left: 10px" name="submit" value="archive" class="btn btn-primary btn-sm"  type="submit" >
-                                                <i class="fa fa-trash"></i> 
-                                                Archive
-                                            </button>
+                                            <?php if (isset($folder[5])): ?>
+                                                <button style="margin-left: 10px" name="submit" value="archive" class="btn btn-primary btn-sm"  type="submit" >
+                                                    <i class="fa fa-trash"></i> 
+                                                    Archive
+                                                </button>
+                                            <?php endif; ?>
                                         </div>
                                         <div class="col-md-2" style="text-align: right">
                                             <a class="btn btn-primary btn-sm" href="<?= site_url() ?>admin/mailbox/logout" >Logout</a>
