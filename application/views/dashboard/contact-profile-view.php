@@ -13,11 +13,11 @@
             <i class="fa fa-edit"></i>
             Edit
         </a>
-        <a href="<?= site_url() ?>admin/calender/createEvent/<?= $contact->contact_id ?>" class="create btn btn-success">
+        <a href="<?= site_url() ?>app/calender/createEvent/<?= $contact->contact_id ?>" class="create btn btn-success">
             <i class="fa fa-plus"></i>
             Create Calender Event
         </a>
-<!--        <a href="<?= site_url() ?>admin/calender/createEvent/<?= $contact->contact_id ?>?type=bday" class="create btn btn-warning">
+<!--        <a href="<?= site_url() ?>app/calender/createEvent/<?= $contact->contact_id ?>?type=bday" class="create btn btn-warning">
             Schedule Birthday
         </a>-->
     </section>
