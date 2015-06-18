@@ -87,12 +87,17 @@ class M_register extends CI_Model {
             'email' => $data['email']
         );
         $query = $this->db->get_where('wi_user_mst', $where);
+        echo '<pre>';
+        print_r($query->row());
         if ($query->num_rows() !== 1) {
-            return FALSE;
+            echo "FALSE";
+            //return FALSE;
         } else if ($query->row()->status) {
-            return TRUE;
+            echo "TRUE";
+            //return TRUE;
         } else {
-            return -1;
+            echo "-1";
+//            return -1;
         }
     }
 
