@@ -87,8 +87,8 @@ class Mailbox extends CI_Controller {
         }
         $data['folder'] = $this->getInboxFolder();
         $data['threads'] = $this->makeThreads($mailbox);
-//        print_r($mailbox);
-//        die();
+        print_r($data);
+        die();
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');
