@@ -79,7 +79,7 @@
                         <img  src="<?= $url ?>" class="img-circle" alt="User Image" style="width: 45px;height: 45px" />
                     </a>
                     <div id="n_event_status" style="margin-left: 60px;padding-left: 10px;display: none" class="alert alert-info alert-dismissable">
-                        This event will send <b><?= $contactInfo->fname . ' ' . $contactInfo->lname ?></b> a <span id="n_event_type"></span> on <span class="e_event_time"></span>
+                        This event will send <b><?= $contactInfo->fname . ' ' . $contactInfo->lname ?></b> a <span id="n_event_type"></span> on <span class="n_event_time"></span>
                     </div>
                     <div id="n_event_empty" style="margin-left: 60px;padding-left: 10px;" class="alert alert-info alert-dismissable">
                         This event is turned off, to turn on please select a notification type.
@@ -1275,9 +1275,11 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
             } else if ($(this).val() == "sms") {
                 $('#n_event_empty').hide();
                 $('#n_event_status').show();
+                $('#n_event_type').text("SMS");
             } else if ($(this).val() == "email") {
                 $('#n_event_empty').hide();
                 $('#n_event_status').show();
+                $('#n_event_type').text("EMAIL");
             }
             if ($(this).val() == "sms" || $(this).val() == "notification") {
 
