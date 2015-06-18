@@ -355,10 +355,11 @@ class Mailbox extends CI_Controller {
         header('location:' . site_url() . 'admin/mailbox');
     }
 
-    function login() {
+    function login($accid = NULL) {
         $post = $this->input->post();
-        if (is_array($post) && count($post) > 0) {
-            $accountInfo = $this->objcpanel->getAccount($post['account_id']);
+        if ($accid != NULL || is_array($post) && count($post) > 0) {
+            $aid = ($accid != NULL) ? $accid : $post['account_id'];
+            $accountInfo = $this->objcpanel->getAccount($aid);
             $this->stream = @imap_open('{mail.mikhailkuznetsov.com:143/notls}INBOX', $accountInfo->email, $accountInfo->password);
             imap_errors();
             if (!$this->stream) {
