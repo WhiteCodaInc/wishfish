@@ -46,11 +46,7 @@ class Cal extends CI_Controller {
     }
 
     public function events() {
-        if ($this->client->isAccessTokenExpired()) {
-            echo 'EXPIRED';
-        } else {
-            echo 'Not Expired..!';
-        }
+
         if ($this->client->getAccessToken()) {
             try {
                 $calendarList = $this->service->calendarList->listCalendarList();
@@ -86,7 +82,11 @@ class Cal extends CI_Controller {
     }
 
     function addEvent() {
-        echo 'Add Successfully';
+        if ($this->client->isAccessTokenExpired()) {
+            echo 'EXPIRED';
+        } else {
+            echo 'Not Expired..!';
+        }
     }
 
 }
