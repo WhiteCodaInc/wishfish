@@ -84,12 +84,12 @@ class Cal extends CI_Controller {
 
         $google_token = json_decode($this->session->userdata('token'));
         print_r($google_token);
-        $this->client->refreshToken($google_token->refresh_token);
+        $this->client->refreshToken($google_token->access_token);
 
 
         $token = $this->session->userdata('token');
         $cToken = $this->client->getAccessToken();
-        echo 'TOKEN :' . $this->session->userdata('token') . '<br>';
+        echo 'TOKEN :' . $token . '<br>';
         echo 'CLIENT TOKEN :' . $cToken . '<br>';
         if ($this->client->isAccessTokenExpired()) {
 //            $this->client->revokeToken();
