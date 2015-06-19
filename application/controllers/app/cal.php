@@ -13,7 +13,7 @@
  */
 class Cal extends CI_Controller {
 
-    var $sess_data = array(), $userid;
+    var $sess_data = array(), $userid, $token;
 
     //put your code here
     function __construct() {
@@ -32,6 +32,15 @@ class Cal extends CI_Controller {
         $this->client->setAccessType('offline');
 
         $this->service = new Google_CalendarService($this->client);
+
+        if ($this->input->get('error') == "access_denied") {
+            header('location:' . site_url() . 'app/dashboard');
+        } else if ($this->input->get('code') != "") {
+            $this->client->authenticate($this->input->get('code'));
+            $token = json_decode($this->client->getAccessToken());
+            $this->session->set_userdata('token', $token->access_token);
+            $this->token = $this->session->userdata('token');
+        }
     }
 
     function index() {
@@ -40,12 +49,7 @@ class Cal extends CI_Controller {
     }
 
     public function events() {
-        if ($this->input->get('error') == "access_denied") {
-            header('location:' . site_url() . 'app/dashboard');
-        } else if ($this->input->get('code') != "") {
-            $this->client->authenticate($this->input->get('code'));
-            $this->session->set_userdata('token', $this->client->getAccessToken());
-        }
+
         if ($this->client->getAccessToken()) {
             try {
                 $calendarList = $this->service->calendarList->listCalendarList();
@@ -81,24 +85,15 @@ class Cal extends CI_Controller {
     }
 
     function addEvent() {
-
-        $google_token = json_decode($this->session->userdata('token'));
-        print_r($google_token);
-        $this->client->refreshToken($google_token->access_token);
-
-
-        $token = $this->session->userdata('token');
-        $cToken = $this->client->getAccessToken();
-        echo 'TOKEN :' . $token . '<br>';
-        echo 'CLIENT TOKEN :' . $cToken . '<br>';
+        echo 'TOKEN :' . $this->token . '<br>';
         if ($this->client->isAccessTokenExpired()) {
-//            $this->client->revokeToken();
+            $this->client->refreshToken($this->token);
             echo 'EXPIRED<br>';
-//            if ($this->client->isAccessTokenExpired()) {
-//                echo 'EXPIRED';
-//            } else {
-//                echo 'Not Expired..!';
-//            }
+            if ($this->client->isAccessTokenExpired()) {
+                echo 'EXPIRED';
+            } else {
+                echo 'Not Expired..!';
+            }
         } else {
             echo 'Not Expired..!';
         }
