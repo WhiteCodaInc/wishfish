@@ -37,6 +37,7 @@ class Cal extends CI_Controller {
         } else if ($this->input->get('code') != "") {
             $this->client->authenticate($this->input->get('code'));
             $this->session->set_userdata('token', $this->client->getAccessToken());
+            $this->client->setAccessToken($this->client->getAccessToken());
         }
     }
 
@@ -83,7 +84,9 @@ class Cal extends CI_Controller {
 
     function addEvent() {
         $token = $this->session->userdata('token');
+        $cToken = $this->client->getAccessToken();
         echo 'TOKEN :' . $this->session->userdata('token') . '<br>';
+        echo 'CLIENT TOKEN :' . $cToken . '<br>';
         if ($this->client->isAccessTokenExpired()) {
             $this->client->revokeToken();
             echo 'EXPIRED<br>';
