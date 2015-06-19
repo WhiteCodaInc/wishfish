@@ -29,7 +29,7 @@ class Cal extends CI_Controller {
         $this->client->setRedirectUri($this->config->item('redirect_uri', 'googlecalender'));
         $this->client->setDeveloperKey($this->config->item('api_key', 'googlecalender'));
         $this->client->setScopes("https://www.googleapis.com/auth/calendar.readonly");
-        
+
         $this->service = new Google_CalendarService($this->client);
     }
 
@@ -52,7 +52,9 @@ class Cal extends CI_Controller {
                     $calendarList = $this->service->calendarList->listCalendarList();
                 } catch (Google_ServiceException $exc) {
                     echo $exc->getTraceAsString();
+                    print_r($exc);
                 }
+                die();
                 while (true) {
                     foreach ($calendarList->getItems() as $calendarListEntry) {
 
