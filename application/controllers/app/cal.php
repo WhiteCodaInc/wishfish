@@ -50,37 +50,31 @@ class Cal extends CI_Controller {
             if ($this->client->getAccessToken()) {
                 try {
                     $calendarList = $this->service->calendarList->listCalendarList();
-                } catch (Google_ServiceException $exc) {
-                    echo '<pre>';
-//                    echo $exc->getMessage();
-                    $error = $exc->getErrors();
-                    print_r($error);
-                    echo $error[0]['message'];
-//                    print_r($exc);
-//                    print_r($exc->errors);
-                }
-                die();
-                while (true) {
-                    foreach ($calendarList->getItems() as $calendarListEntry) {
+                    while (true) {
+                        foreach ($calendarList->getItems() as $calendarListEntry) {
 
-                        echo $calendarListEntry->getSummary() . "<br>\n";
+                            echo $calendarListEntry->getSummary() . "<br>\n";
 
 
-                        // get events 
-                        $events = $this->service->events->listEvents($calendarListEntry->id);
+                            // get events 
+                            $events = $this->service->events->listEvents($calendarListEntry->id);
 
 
-                        foreach ($events->getItems() as $event) {
-                            echo "-----" . $event->getSummary() . "<br>";
+                            foreach ($events->getItems() as $event) {
+                                echo "-----" . $event->getSummary() . "<br>";
+                            }
+                        }
+                        $pageToken = $calendarList->getNextPageToken();
+                        if ($pageToken) {
+                            $optParams = array('pageToken' => $pageToken);
+                            $calendarList = $this->service->calendarList->listCalendarList($optParams);
+                        } else {
+                            break;
                         }
                     }
-                    $pageToken = $calendarList->getNextPageToken();
-                    if ($pageToken) {
-                        $optParams = array('pageToken' => $pageToken);
-                        $calendarList = $this->service->calendarList->listCalendarList($optParams);
-                    } else {
-                        break;
-                    }
+                } catch (Google_ServiceException $exc) {
+                    $error = $exc->getErrors();
+                    echo $error[0]['message'];
                 }
             }
         }
