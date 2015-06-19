@@ -46,7 +46,7 @@ class Cal extends CI_Controller {
     }
 
     public function events() {
-        if ($this->client->getAccessToken()) {
+        if ($this->session->userdata('token')) {
             try {
                 $calendarList = $this->service->calendarList->listCalendarList();
                 echo '<pre>';
