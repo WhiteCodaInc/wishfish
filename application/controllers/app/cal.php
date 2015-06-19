@@ -58,8 +58,8 @@ class Cal extends CI_Controller {
             }
             $calendarList = $this->service->calendarList->listCalendarList();
             echo '<pre>';
-            print_r($calendarList);
-            die();
+//            print_r($calendarList);
+//            die();
             while (true) {
                 foreach ($calendarList['items'] as $calendarListEntry) {
 
@@ -88,17 +88,7 @@ class Cal extends CI_Controller {
     }
 
     function addEvent() {
-        if ($this->client->isAccessTokenExpired()) {
-            $this->client->refreshToken($this->session->userdata('token'));
-            echo 'EXPIRED<br>';
-            if ($this->client->isAccessTokenExpired()) {
-                echo 'EXPIRED';
-            } else {
-                echo 'Not Expired..!';
-            }
-        } else {
-            echo 'Not Expired..!';
-        }
+        
     }
 
 }
