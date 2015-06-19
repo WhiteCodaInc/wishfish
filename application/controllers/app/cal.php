@@ -54,6 +54,7 @@ class Cal extends CI_Controller {
                     echo '<pre>';
 //                    echo $exc->getTraceAsString();
                     print_r($exc);
+                    print_r($exc->errors);
                 }
                 die();
                 while (true) {
