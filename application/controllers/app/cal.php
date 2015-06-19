@@ -35,7 +35,7 @@ class Cal extends CI_Controller {
         if ($this->input->get('error') == "access_denied") {
             header('location:' . site_url() . 'app/dashboard');
         } else if ($this->input->get('code') != "") {
-            $this->client->authenticate($code);
+            $this->client->authenticate($this->input->get('code'));
             $this->session->set_userdata('token', $this->client->getAccessToken());
         }
     }
