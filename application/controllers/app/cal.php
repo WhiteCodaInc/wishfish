@@ -81,6 +81,11 @@ class Cal extends CI_Controller {
     }
 
     function addEvent() {
+
+        $google_token = json_decode($this->session->userdata('token'));
+        $this->client->refreshToken($google_token->refresh_token);
+
+
         $token = $this->session->userdata('token');
         $cToken = $this->client->getAccessToken();
         echo 'TOKEN :' . $this->session->userdata('token') . '<br>';
