@@ -80,9 +80,9 @@ class Cal extends CI_Controller {
     }
 
     function addEvent() {
-        echo date_default_timezone_set('Asia/Kolkata');
-        echo date(DATE_RFC3339);
-        echo DateTime::RFC3339;
+        date_default_timezone_set('Asia/Kolkata');
+//        echo date(DATE_RFC3339);
+        echo date(DateTime::RFC3339);
 
 //        $event = new Google_Service_Calendar_Event(array(
 //            'summary' => 'BirthDay',
