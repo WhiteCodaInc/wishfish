@@ -53,7 +53,8 @@ class Cal extends CI_Controller {
                 } catch (Google_ServiceException $exc) {
                     echo '<pre>';
                     echo $exc->getMessage();
-                    print_r($exc->getErrors());
+                    $error = $exc->getErrors();
+                    echo $error[0]['message'];
 //                    print_r($exc);
 //                    print_r($exc->errors);
                 }
