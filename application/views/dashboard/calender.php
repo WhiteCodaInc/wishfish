@@ -1283,9 +1283,12 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
             var dateString = $.datepicker.formatDate("M d", dateObject);
             console.log(dateString);
         });
-        
-        $('#neweventForm input[name="time"]').focusout(function () {
-            console.log($(this).val());
+
+        $('#neweventForm input[name="time"]').timepicker().on('hide.timepicker', function (e) {
+            console.log('The time is ' + e.time.value);
+            console.log('The hour is ' + e.time.hour);
+            console.log('The minute is ' + e.time.minute);
+            console.log('The meridian is ' + e.time.meridian);
         });
 
         $('#neweventForm input[name="event_type"],#eventForm input[name="event_type"],#editForm input[name="event_type"]').change(function ()
