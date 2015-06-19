@@ -29,8 +29,11 @@ class Cal extends CI_Controller {
         $this->client->setRedirectUri($this->config->item('redirect_uri', 'googlecalender'));
         $this->client->setDeveloperKey($this->config->item('api_key', 'googlecalender'));
         $this->client->setScopes("https://www.googleapis.com/auth/calendar.readonly");
-
-        $this->service = new Google_CalendarService($this->client);
+        try {
+            $this->service = new Google_CalendarService($this->client);
+        } catch (Google_ServiceException $exc) {
+            echo $exc->getTraceAsString();
+        }
     }
 
     function index() {
