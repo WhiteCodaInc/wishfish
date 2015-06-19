@@ -86,7 +86,7 @@ class Cal extends CI_Controller {
             $this->client->refreshToken($this->client->getAccessToken());
             echo 'EXPIRED<br>';
             if ($this->client->isAccessTokenExpired()) {
-                $this->client->refreshToken($this->getAccessToken());
+                $this->client->refreshToken($this->client->getAccessToken());
                 echo 'EXPIRED';
             } else {
                 echo 'Not Expired..!';
