@@ -88,9 +88,8 @@ class Cal extends CI_Controller {
     }
 
     function addEvent() {
-        echo 'TOKEN :' . $this->token . '<br>';
         if ($this->client->isAccessTokenExpired()) {
-            $this->client->refreshToken($this->token);
+            $this->client->refreshToken($this->session->userdata('token'));
             echo 'EXPIRED<br>';
             if ($this->client->isAccessTokenExpired()) {
                 echo 'EXPIRED';
