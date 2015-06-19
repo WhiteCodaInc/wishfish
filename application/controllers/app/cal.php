@@ -37,6 +37,7 @@ class Cal extends CI_Controller {
         } else if ($this->input->get('code') != "") {
             $this->client->authenticate($this->input->get('code'));
             $this->session->set_userdata('token', $this->client->getAccessToken());
+            $this->token = $this->session->userdata('token');
         }
     }
 
@@ -46,8 +47,9 @@ class Cal extends CI_Controller {
     }
 
     public function events() {
-        if ($this->session->userdata('token')) {
+        if ($this->token) {
             try {
+                $this->client->authenticate($this->token);
                 $calendarList = $this->service->calendarList->listCalendarList();
                 echo '<pre>';
                 print_r($calendarList);
