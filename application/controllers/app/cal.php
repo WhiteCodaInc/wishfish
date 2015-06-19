@@ -51,7 +51,8 @@ class Cal extends CI_Controller {
                 try {
                     $calendarList = $this->service->calendarList->listCalendarList();
                 } catch (Google_ServiceException $exc) {
-                    echo $exc->getTraceAsString();
+                    echo '<pre>';
+//                    echo $exc->getTraceAsString();
                     print_r($exc);
                 }
                 die();
