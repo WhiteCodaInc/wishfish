@@ -50,6 +50,7 @@ class Cal extends CI_Controller {
             if ($this->client->getAccessToken()) {
                 try {
                     $calendarList = $this->service->calendarList->listCalendarList();
+                    echo '<pre>';
                     print_r($calendarList);
                     die();
                     while (true) {
