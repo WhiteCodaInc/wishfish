@@ -1023,12 +1023,17 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
             showInputs: false,
             showMeridian: false
         });
+
+
         $('.default-date-picker').datepicker({
             format: "<?= $this->session->userdata('date_format') ?>",
             todayBtn: "linked",
             autoclose: true,
             todayHighlight: true
+        }).on('changeDate', function (ev) {
+            $('input[name="birthday"]').focusout();
         });
+
         $('.set_repeat').click(function () {
             var id = $(this).prev().attr('id');
             $('#' + id).trigger('click');
@@ -1053,8 +1058,6 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
 <?php endif; ?>
         });
 
-
-
         $('#freq_type,#e_freq_type,#n_freq_type').change(function () {
             var type = $(this).val();
             $msg = type.charAt(0).toUpperCase() + type.substring(1);
@@ -1068,6 +1071,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
                 $('#n_txt_freq_type').text("");
             }
         });
+
         $('#is_repeat,#e_is_repeat,#n_is_repeat').change(function () {
             if (planid == "1") {
                 $(this).removeAttr('checked');
@@ -1094,6 +1098,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
                 }
             }
         });
+
         $('input[name="end_type"]').change(function () {
             var end = $(this).val();
             if (end == "never") {
@@ -1106,7 +1111,9 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
                 $('#n_end_block').css('display', 'block');
             }
         });
+
         $('#rd_individual').trigger('click');
+
         $('#delete').click(function () {
             var eid = $(this).val();
             $.ajax({
@@ -1123,6 +1130,8 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
                 }
             });
         });
+
+
         $('#edit').click(function () {
             var id = $(this).prop('id');
             if ($('#editForm input[name="date"]').val().trim() == "") {
@@ -1171,6 +1180,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
                 }
             });
         });
+
         $('#insert,#n_insert').click(function () {
             var id = $(this).prop('id');
             if (id == "insert") {
@@ -1267,6 +1277,12 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
                 }
             });
         });
+
+        $('input[name="birthday"]').focusout(function () {
+            var dt = $(this).val();
+            console.log(dt);
+        });
+
         $('#neweventForm input[name="event_type"],#eventForm input[name="event_type"],#editForm input[name="event_type"]').change(function ()
         {
             if ($(this).val() == "notification") {
