@@ -47,9 +47,11 @@ class Cal extends CI_Controller {
             $token = json_decode($this->client->getAccessToken());
             $this->session->set_userdata('token', $token->access_token);
             $this->token = $this->session->userdata('token');
+            
         }
         if ($this->client->getAccessToken()) {
             try {
+                echo $this->token.'<br>';
                 $calendarList = $this->service->calendarList->listCalendarList();
                 echo '<pre>';
                 print_r($calendarList);
