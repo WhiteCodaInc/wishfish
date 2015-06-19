@@ -54,15 +54,13 @@ class Cal extends CI_Controller {
                     print_r($calendarList);
                     die();
                     while (true) {
-                        foreach ($calendarList->getItems() as $calendarListEntry) {
+                        foreach ($calendarList['items'] as $calendarListEntry) {
 
-                            echo $calendarListEntry->getSummary() . "<br>\n";
-
-
+                            echo $calendarListEntry['summary'] . "<br>\n";
                             // get events 
-                            $events = $this->service->events->listEvents($calendarListEntry->id);
-
-
+                            $events = $this->service->events->listEvents($calendarListEntry['id']);
+                            print_r($events);
+                            die();
                             foreach ($events->getItems() as $event) {
                                 echo "-----" . $event->getSummary() . "<br>";
                             }
