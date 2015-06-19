@@ -80,4 +80,8 @@ class Cal extends CI_Controller {
         }
     }
 
+    function addEvent() {
+        echo 'Add Successfully';
+    }
+
 }
