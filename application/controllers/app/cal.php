@@ -80,7 +80,7 @@ class Cal extends CI_Controller {
     }
 
     function addEvent() {
-        echo date_default_timezone_get();
+        echo date_default_timezone_set('UP530');
         echo date(DATE_RFC3339);
 
 //        $event = new Google_Service_Calendar_Event(array(
