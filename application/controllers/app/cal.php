@@ -80,7 +80,41 @@ class Cal extends CI_Controller {
     }
 
     function addEvent() {
-        
+
+        echo date(DATE_RFC3339);
+
+        $event = new Google_Service_Calendar_Event(array(
+            'summary' => 'BirthDay',
+            'description' => 'Happy Birthday Sanjay Vekariya.',
+            'start' => array(
+                'dateTime' => DateTime::ATOM,
+                'timeZone' => date_default_timezone_get(),
+            ),
+            'end' => array(
+                'dateTime' => DateTime::ATOM,
+                'timeZone' => date_default_timezone_get(),
+            ),
+//            'recurrence' => array(
+//                'RRULE:FREQ=DAILY;COUNT=2'
+//            ),
+            'attendees' => array(
+                array(
+                    'email' => 'sanjayvekariya18@gmail.com',
+                    'title' => 'Birthday',
+                ),
+            ),
+            'reminders' => array(
+                'useDefault' => FALSE,
+                'overrides' => array(
+                    array('method' => 'email', 'minutes' => 24 * 60),
+                    array('method' => 'sms', 'minutes' => 10),
+                ),
+            ),
+        ));
+
+        $calendarId = 'primary';
+        $event = $service->events->insert($calendarId, $event);
+        printf('Event created: %s\n', $event->htmlLink);
     }
 
 }
