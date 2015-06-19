@@ -1022,9 +1022,6 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
         $(".timepicker").timepicker({
             showInputs: false,
             showMeridian: false
-        }).on('changeTime', function (ev) {
-//            $('#neweventForm input[name="date"]').focusout();
-            console.log("called");
         });
 
 
@@ -1285,6 +1282,10 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
             var dateObject = $('#neweventForm input[name="date"]').datepicker("getDate");
             var dateString = $.datepicker.formatDate("M d", dateObject);
             console.log(dateString);
+        });
+        
+        $('#neweventForm input[name="time"]').focusout(function () {
+            console.log($(this).val());
         });
 
         $('#neweventForm input[name="event_type"],#eventForm input[name="event_type"],#editForm input[name="event_type"]').change(function ()
