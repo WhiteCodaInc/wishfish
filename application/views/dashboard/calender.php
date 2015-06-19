@@ -1282,14 +1282,12 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
             var dateObject = $('#neweventForm input[name="date"]').datepicker("getDate");
             var dateString = $.datepicker.formatDate("M d", dateObject);
             var time = $('#neweventForm input[name="time"]').val();
-            $('#n_event_dt').text("on " + dateString);
-            $('#n_event_time').text("at " + time);
-//            console.log(dateString);
+            $('#n_event_dt').text(" on " + dateString);
+            $('#n_event_time').text(" at " + time);
         });
 
         $('#neweventForm input[name="time"]').timepicker().on('hide.timepicker', function (e) {
-//            console.log('The time is ' + e.time.value);
-
+            $('#n_event_time').text(" at " + e.time.value);
         });
 
         $('#neweventForm input[name="event_type"],#eventForm input[name="event_type"],#editForm input[name="event_type"]').change(function ()
