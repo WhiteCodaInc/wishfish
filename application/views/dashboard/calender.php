@@ -1031,7 +1031,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
             autoclose: true,
             todayHighlight: true
         }).on('changeDate', function (ev) {
-            $('#neweventForm input[name="birthday"]').focusout();
+            $('#neweventForm input[name="date"]').focusout();
         });
 
         $('.set_repeat').click(function () {
@@ -1278,7 +1278,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
             });
         });
 
-        $('#neweventForm input[name="birthday"]').focusout(function () {
+        $('#neweventForm input[name="date"]').focusout(function () {
             var dt = $(this).val();
             console.log("DATE : " + dt);
         });
