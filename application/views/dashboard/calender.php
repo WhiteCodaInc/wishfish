@@ -79,7 +79,7 @@
                         <img  src="<?= $url ?>" class="img-circle" alt="User Image" style="width: 45px;height: 45px" />
                     </a>
                     <div id="n_event_status" style="margin-left: 60px;padding-left: 10px;display: none" class="alert alert-info alert-dismissable">
-                        This event will send <b><?= $contactInfo->fname . ' ' . $contactInfo->lname ?></b> a <span id="n_event_type"></span> on <span class="n_event_time"></span>
+                        This event will send <b><?= $contactInfo->fname . ' ' . $contactInfo->lname ?></b> a <span id="n_event_type"></span><span id="n_event_dt"></span><span id="n_event_time"></span>
                     </div>
                     <div id="n_event_empty" style="margin-left: 60px;padding-left: 10px;" class="alert alert-info alert-dismissable">
                         This event is turned off, to turn on please select a notification type.
@@ -1281,14 +1281,15 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
         $('#neweventForm input[name="date"]').focusout(function () {
             var dateObject = $('#neweventForm input[name="date"]').datepicker("getDate");
             var dateString = $.datepicker.formatDate("M d", dateObject);
-            console.log(dateString);
+            var time = $('#neweventForm input[name="time"]').val();
+            $('#n_event_dt').text("on " + dateString);
+            $('#n_event_time').text("at " + time);
+//            console.log(dateString);
         });
 
         $('#neweventForm input[name="time"]').timepicker().on('hide.timepicker', function (e) {
-            console.log('The time is ' + e.time.value);
-            console.log('The hour is ' + e.time.hour);
-            console.log('The minute is ' + e.time.minute);
-            console.log('The meridian is ' + e.time.meridian);
+//            console.log('The time is ' + e.time.value);
+
         });
 
         $('#neweventForm input[name="event_type"],#eventForm input[name="event_type"],#editForm input[name="event_type"]').change(function ()
