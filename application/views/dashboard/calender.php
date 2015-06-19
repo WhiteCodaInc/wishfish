@@ -1279,8 +1279,9 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
         });
 
         $('#neweventForm input[name="date"]').focusout(function () {
-            var dt = $(this).val();
-            console.log("DATE : " + dt);
+            var dateObject = $('#neweventForm input[name="date"]').datepicker("getDate");
+            var dateString = $.datepicker.formatDate("yy-dd-mm", dateObject);
+            console.log(dateString);
         });
 
         $('#neweventForm input[name="event_type"],#eventForm input[name="event_type"],#editForm input[name="event_type"]').change(function ()
@@ -1289,6 +1290,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
                 $('#n_event_empty').show();
                 $('#n_event_status').hide();
             } else if ($(this).val() == "sms") {
+
                 $('#n_event_empty').hide();
                 $('#n_event_status').show();
                 $('#n_event_type').text("SMS");
