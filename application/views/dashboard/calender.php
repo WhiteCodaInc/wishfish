@@ -626,7 +626,6 @@
             </div>
             <form id="eventForm"  method="post">
                 <div class="modal-body">
-
                     <div class="row m-bot15">                        
                         <div class="col-md-12">	
                             <div class="form-group">
@@ -894,7 +893,6 @@
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/Qtip/js/jquery.qtip.js" type="text/javascript"></script>
 
 
-
 <!-- Auto complete TextBox -->
 <script>
     var contact = new Array();
@@ -1007,7 +1005,6 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
             return false;
         }
     });</script>
-
 
 <script type="text/javascript">
 
@@ -1130,7 +1127,6 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
                 }
             });
         });
-
 
         $('#edit').click(function () {
             var id = $(this).prop('id');
