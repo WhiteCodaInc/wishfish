@@ -32,14 +32,6 @@ class Cal extends CI_Controller {
         $this->client->setAccessType('offline');
 
         $this->service = new Google_CalendarService($this->client);
-
-        if ($this->input->get('error') == "access_denied") {
-            header('location:' . site_url() . 'app/dashboard');
-        } else if ($this->input->get('code') != "") {
-            $this->client->authenticate($this->input->get('code'));
-            $this->session->set_userdata('token', $this->client->getAccessToken());
-            $this->client->setAccessToken($this->client->getAccessToken());
-        }
     }
 
     function index() {
@@ -48,7 +40,12 @@ class Cal extends CI_Controller {
     }
 
     public function events() {
-
+        if ($this->input->get('error') == "access_denied") {
+            header('location:' . site_url() . 'app/dashboard');
+        } else if ($this->input->get('code') != "") {
+            $this->client->authenticate($this->input->get('code'));
+            $this->session->set_userdata('token', $this->client->getAccessToken());
+        }
         if ($this->client->getAccessToken()) {
             try {
                 $calendarList = $this->service->calendarList->listCalendarList();
