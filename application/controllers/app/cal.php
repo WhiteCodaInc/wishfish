@@ -13,9 +13,9 @@
  */
 class Cal extends CI_Controller {
 
-    var $sess_data = array(), $userid, $token;
+    var $sess_data = array(), $userid;
 
-    //put your code here
+//put your code here
     function __construct() {
         parent::__construct();
         require APPPATH . 'third_party/google-api/Google_Client.php';
@@ -32,55 +32,58 @@ class Cal extends CI_Controller {
         $this->client->setAccessType('offline');
 
         $this->service = new Google_CalendarService($this->client);
-    }
 
-    function index() {
-        $this->client->setApprovalPrompt('auto');
-        header('location:' . $this->client->createAuthUrl());
-    }
-
-    public function events() {
         if ($this->input->get('error') == "access_denied") {
             header('location:' . site_url() . 'app/dashboard');
         } else if ($this->input->get('code') != "") {
             $this->client->authenticate($this->input->get('code'));
             $token = json_decode($this->client->getAccessToken());
             $this->session->set_userdata('token', $token->access_token);
-            $this->token = $this->session->userdata('token');
-            
         }
-        if ($this->client->getAccessToken()) {
-            try {
-                echo $this->token.'<br>';
-                $calendarList = $this->service->calendarList->listCalendarList();
-                echo '<pre>';
-                print_r($calendarList);
-                die();
-                while (true) {
-                    foreach ($calendarList['items'] as $calendarListEntry) {
+    }
 
-                        echo $calendarListEntry['summary'] . "<br>\n";
-                        // get events 
-                        $events = $this->service->events->listEvents($calendarListEntry['id']);
-                        print_r($events);
+    function index() {
+        echo $this->session->userdata('token');
+    }
+
+    function getCalender() {
+        $this->client->setApprovalPrompt('auto');
+        header('location:' . $this->client->createAuthUrl());
+    }
+
+    public function events() {
+        try {
+            if ($this->client->isAccessTokenExpired()) {
+                $this->client->refreshToken($this->session->userdata('token'));
+            }
+            $calendarList = $this->service->calendarList->listCalendarList();
+            echo '<pre>';
+            print_r($calendarList);
+            die();
+            while (true) {
+                foreach ($calendarList['items'] as $calendarListEntry) {
+
+                    echo $calendarListEntry['summary'] . "<br>\n";
+// get events 
+                    $events = $this->service->events->listEvents($calendarListEntry['id']);
+                    print_r($events);
 
 //                            foreach ($events->getItems() as $event) {
 //                                echo "-----" . $event->getSummary() . "<br>";
 //                            }
-                    }
-                    die();
-                    $pageToken = $calendarList->getNextPageToken();
-                    if ($pageToken) {
-                        $optParams = array('pageToken' => $pageToken);
-                        $calendarList = $this->service->calendarList->listCalendarList($optParams);
-                    } else {
-                        break;
-                    }
                 }
-            } catch (Google_ServiceException $exc) {
-                $error = $exc->getErrors();
-                echo $error[0]['message'];
+                die();
+                $pageToken = $calendarList->getNextPageToken();
+                if ($pageToken) {
+                    $optParams = array('pageToken' => $pageToken);
+                    $calendarList = $this->service->calendarList->listCalendarList($optParams);
+                } else {
+                    break;
+                }
             }
+        } catch (Google_ServiceException $exc) {
+            $error = $exc->getErrors();
+            echo $error[0]['message'];
         }
     }
 
