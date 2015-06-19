@@ -82,7 +82,10 @@ class Cal extends CI_Controller {
     function addEvent() {
         date_default_timezone_set('Asia/Kolkata');
 //        echo date(DATE_RFC3339);
-        echo date(DateTime::RFC3339);
+//        echo date(DateTime::RFC3339);
+
+//        date_default_timezone_set('UTC');
+        echo date("Ymd\THis\Z", time());
 
 //        $event = new Google_Service_Calendar_Event(array(
 //            'summary' => 'BirthDay',
