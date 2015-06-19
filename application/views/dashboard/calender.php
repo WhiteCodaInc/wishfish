@@ -1031,7 +1031,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
             autoclose: true,
             todayHighlight: true
         }).on('changeDate', function (ev) {
-            $('#neweventForm input[name="date"]').focusout();
+//            $('#neweventForm input[name="date"]').focusout();
         });
 
         $('.set_repeat').click(function () {
