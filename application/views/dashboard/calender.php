@@ -1292,21 +1292,18 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
 
         $('#neweventForm input[name="event_type"],#eventForm input[name="event_type"],#editForm input[name="event_type"]').change(function ()
         {
-            if ($(this).val() == "notification") {
+            var etype = $(this).val();
+            if (etype == "notification") {
                 $('#n_event_empty').show();
                 $('#n_event_status').hide();
-            } else if ($(this).val() == "sms") {
-
+            } else if (etype == "sms" || etype == "email") {
                 $('#n_event_empty').hide();
                 $('#n_event_status').show();
-                $('#n_event_type').text("SMS");
-            } else if ($(this).val() == "email") {
-                $('#n_event_empty').hide();
-                $('#n_event_status').show();
-                $('#n_event_type').text("EMAIL");
+                $lbl = (etype == "sms") ? "SMS" : "EMAIL";
+                $('#n_event_type').text($lbl);
             }
-            if ($(this).val() == "sms" || $(this).val() == "notification") {
-
+            
+            if (etype == "sms" || etype == "notification") {
                 $type = "sms";
                 $('#smsbody').val('');
                 $('#n_msbody').val('');
