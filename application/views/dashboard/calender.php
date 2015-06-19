@@ -1280,7 +1280,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
 
         $('#neweventForm input[name="date"]').focusout(function () {
             var dateObject = $('#neweventForm input[name="date"]').datepicker("getDate");
-            var dateString = $.datepicker.formatDate("yy-dd-mm", dateObject);
+            var dateString = $.datepicker.formatDate("M d", dateObject);
             console.log(dateString);
         });
 
