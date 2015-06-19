@@ -64,13 +64,12 @@ class Cal extends CI_Controller {
                 foreach ($calendarList['items'] as $calendarListEntry) {
 
                     echo $calendarListEntry['summary'] . "<br>\n";
-// get events 
+                    // get events 
                     $events = $this->service->events->listEvents($calendarListEntry['id']);
                     print_r($events);
-
-//                            foreach ($events->getItems() as $event) {
-//                                echo "-----" . $event->getSummary() . "<br>";
-//                            }
+                    foreach ($events['items'] as $event) {
+                        echo "-----" . $event['summary'] . "<br>";
+                    }
                 }
                 die();
                 $pageToken = $calendarList->getNextPageToken();
