@@ -192,7 +192,7 @@ var tour = {
     showPrevButton: true,
     scrollTopMargin: 100
 };
-hopscotch.startTour(tour);
+//hopscotch.startTour(tour);
 
 console.log(hopscotch.getState());
 
