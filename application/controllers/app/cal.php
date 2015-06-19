@@ -19,6 +19,7 @@ class Cal extends CI_Controller {
     function __construct() {
         parent::__construct();
         require APPPATH . 'third_party/google-api/Google_Client.php';
+        require APPPATH . 'third_party/google-api/contrib/Google_CalendarService.php';
         $this->config->load('googlecalender');
 
         $this->client = new Google_Client();
@@ -29,7 +30,7 @@ class Cal extends CI_Controller {
         $this->client->setDeveloperKey($this->config->item('api_key', 'googlecalender'));
         $this->client->setScopes("https://www.googleapis.com/auth/calendar.readonly");
 
-        $this->service = new Google_Service_Calendar($this->client);
+        $this->service = new Google_CalendarService($this->client);
     }
 
     function index() {
