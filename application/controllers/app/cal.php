@@ -31,6 +31,13 @@ class Cal extends CI_Controller {
         $this->client->setScopes("https://www.googleapis.com/auth/calendar.readonly");
 
         $this->service = new Google_CalendarService($this->client);
+
+        if ($this->input->get('error') == "access_denied") {
+            header('location:' . site_url() . 'app/dashboard');
+        } else if ($this->input->get('code') != "") {
+            $this->client->authenticate($code);
+            $this->session->set_userdata('token', $this->client->getAccessToken());
+        }
     }
 
     function index() {
@@ -39,45 +46,36 @@ class Cal extends CI_Controller {
     }
 
     public function events() {
-        if ($this->input->get('error') == "access_denied") {
-            header('location:' . site_url() . 'app/dashboard');
-        }
-        $code = $this->input->get('code');
+        if ($this->client->getAccessToken()) {
+            try {
+                $calendarList = $this->service->calendarList->listCalendarList();
+                echo '<pre>';
+                print_r($calendarList);
+                die();
+                while (true) {
+                    foreach ($calendarList['items'] as $calendarListEntry) {
 
-        if (isset($code) && $code != "") {
-            $this->client->authenticate($code);
-            $this->session->set_userdata('token', $this->client->getAccessToken());
-            if ($this->client->getAccessToken()) {
-                try {
-                    $calendarList = $this->service->calendarList->listCalendarList();
-                    echo '<pre>';
-                    print_r($calendarList);
-                    die();
-                    while (true) {
-                        foreach ($calendarList['items'] as $calendarListEntry) {
-                            
-                            echo $calendarListEntry['summary'] . "<br>\n";
-                            // get events 
-                            $events = $this->service->events->listEvents($calendarListEntry['id']);
-                            print_r($events);
+                        echo $calendarListEntry['summary'] . "<br>\n";
+                        // get events 
+                        $events = $this->service->events->listEvents($calendarListEntry['id']);
+                        print_r($events);
 
 //                            foreach ($events->getItems() as $event) {
 //                                echo "-----" . $event->getSummary() . "<br>";
 //                            }
-                        }
-                        die();
-                        $pageToken = $calendarList->getNextPageToken();
-                        if ($pageToken) {
-                            $optParams = array('pageToken' => $pageToken);
-                            $calendarList = $this->service->calendarList->listCalendarList($optParams);
-                        } else {
-                            break;
-                        }
                     }
-                } catch (Google_ServiceException $exc) {
-                    $error = $exc->getErrors();
-                    echo $error[0]['message'];
+                    die();
+                    $pageToken = $calendarList->getNextPageToken();
+                    if ($pageToken) {
+                        $optParams = array('pageToken' => $pageToken);
+                        $calendarList = $this->service->calendarList->listCalendarList($optParams);
+                    } else {
+                        break;
+                    }
                 }
+            } catch (Google_ServiceException $exc) {
+                $error = $exc->getErrors();
+                echo $error[0]['message'];
             }
         }
     }
