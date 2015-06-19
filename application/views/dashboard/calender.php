@@ -1022,6 +1022,9 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
         $(".timepicker").timepicker({
             showInputs: false,
             showMeridian: false
+        }).on('changeTime', function (ev) {
+//            $('#neweventForm input[name="date"]').focusout();
+            console.log("called");
         });
 
 
