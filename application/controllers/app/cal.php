@@ -51,8 +51,8 @@ class Cal extends CI_Controller {
                 try {
                     $calendarList = $this->service->calendarList->listCalendarList();
                     echo '<pre>';
-                    print_r($calendarList);
-                    die();
+//                    print_r($calendarList);
+//                    die();
                     while (true) {
                         foreach ($calendarList['items'] as $calendarListEntry) {
 
@@ -60,11 +60,12 @@ class Cal extends CI_Controller {
                             // get events 
                             $events = $this->service->events->listEvents($calendarListEntry['id']);
                             print_r($events);
-                            die();
-                            foreach ($events->getItems() as $event) {
-                                echo "-----" . $event->getSummary() . "<br>";
-                            }
+
+//                            foreach ($events->getItems() as $event) {
+//                                echo "-----" . $event->getSummary() . "<br>";
+//                            }
                         }
+                        die();
                         $pageToken = $calendarList->getNextPageToken();
                         if ($pageToken) {
                             $optParams = array('pageToken' => $pageToken);
