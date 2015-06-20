@@ -41,6 +41,10 @@
             <i class="fa fa-plus"></i>
             Create New Event
         </button>
+        <button style="margin-left: 2%"  class="btn btn-info btn-sm add" >
+            <i class="fa fa-plus"></i>
+            Connect With Google Calender
+        </button>
     </section>
     <!-- Main content -->
     <section class="content">
@@ -1298,7 +1302,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
                 $lbl = (etype == "sms") ? "SMS" : "EMAIL";
                 $('#n_event_type').text($lbl);
             }
-            
+
             if (etype == "sms" || etype == "notification") {
                 $type = "sms";
                 $('#smsbody').val('');
