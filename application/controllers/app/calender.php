@@ -238,4 +238,8 @@ class Calender extends CI_Controller {
         }
     }
 
+    function close() {
+        $this->session->unset_userdata('token');
+    }
+
 }
