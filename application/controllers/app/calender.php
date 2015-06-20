@@ -24,10 +24,6 @@ class Calender extends CI_Controller {
             } elseif (!$this->wi_authex->isActivePlan()) {
                 header('location:' . site_url() . 'app/upgrade');
             }
-//            echo '<pre>';
-            @$this->session->unset_userdata('ip_address');
-//            print_r($this->session->all_userdata());
-//            die();
         } else {
             echo '<pre>';
             print_r($this->session->all_userdata());
