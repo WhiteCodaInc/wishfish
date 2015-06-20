@@ -25,6 +25,7 @@ class Calender extends CI_Controller {
                 header('location:' . site_url() . 'app/upgrade');
             }
             echo '<pre>';
+            session_start();
             print_r($_SESSION);
 //            print_r($this->session->all_userdata());
             die();
