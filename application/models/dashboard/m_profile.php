@@ -232,6 +232,9 @@ class M_profile extends CI_Model {
     }
 
     function updateUserSetting($set) {
+        echo '<pre>';
+        print_r($set);
+        die();
         $this->db->update('wi_user_setting', $set, array('user_id' => $this->userid));
         return true;
     }
