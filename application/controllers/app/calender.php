@@ -18,7 +18,9 @@ class Calender extends CI_Controller {
         parent::__construct();
         $this->load->library("authex");
         $this->load->library("common");
-//        die("SUCCESS");
+        $code = $this->input->get('code');
+        if ($code != "")
+            die($code);
         if (!$this->wi_authex->logged_in()) {
             header('location:' . site_url() . 'home');
         } elseif (!$this->wi_authex->isActivePlan()) {
