@@ -16,14 +16,10 @@ class Calender extends CI_Controller {
     //put your code here
     function __construct() {
         parent::__construct();
-        $this->load->library("authex");
-        $this->load->library("common");
         $code = $this->input->get('code');
-        if ($code != "")
-            die($code);
-        if (!$this->wi_authex->logged_in()) {
+        if ($code == "" || !$this->wi_authex->logged_in()) {
             header('location:' . site_url() . 'home');
-        } elseif (!$this->wi_authex->isActivePlan()) {
+        } elseif ($code == "" || !$this->wi_authex->isActivePlan()) {
             header('location:' . site_url() . 'app/upgrade');
         } else {
             $this->load->model('dashboard/m_contacts', 'objcontact');
