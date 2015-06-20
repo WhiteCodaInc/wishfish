@@ -108,6 +108,9 @@ class Cal extends CI_Controller {
 
         print_r($event);
         try {
+            if ($this->client->isAccessTokenExpired()) {
+                $this->client->refreshToken($this->session->userdata('token'));
+            }
             $createdEvent = $this->service->events->insert("vishaltesting7@gmail.com", $event); //Returns array not an object
             print_r($createdEvent);
         } catch (Google_ServiceException $exc) {
