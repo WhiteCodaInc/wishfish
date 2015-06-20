@@ -88,11 +88,11 @@ class Cal extends CI_Controller {
 
 
         $time = date('Y-m-d H:i:s', gmt_to_local(time(), $this->session->userdata('timezone'), TRUE));
-
+//        return DateTime::createFromFormat($date, $dt)->format('Y-m-d');
         $startdate = new DateTime($time, new DateTimeZone('Europe/London'));
-        $startdate = $startdate->format('c');
+//        $startdate = $startdate->format('c');
         $enddate = new DateTime($time, new DateTimeZone('Europe/London'));
-        $enddate = $enddate->format('c');
+//        $enddate = $enddate->format('c');
 
         echo $startdate . '<br>';
         echo $enddate . '<br>';
