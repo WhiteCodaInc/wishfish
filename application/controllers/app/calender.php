@@ -16,20 +16,23 @@ class Calender extends CI_Controller {
     //put your code here
     function __construct() {
         parent::__construct();
+
         $code = $this->input->get('code');
-        if ($code == "" || !$this->wi_authex->logged_in()) {
-            header('location:' . site_url() . 'home');
-        } elseif ($code == "" || !$this->wi_authex->isActivePlan()) {
-            header('location:' . site_url() . 'app/upgrade');
-        } else {
-            $this->load->model('dashboard/m_contacts', 'objcontact');
-            $this->load->model('dashboard/m_contact_groups', 'objgroup');
-            $this->load->model('dashboard/m_sms_template', 'objsmstemplate');
-            $this->load->model('dashboard/m_email_template', 'objemailtemplate');
-            $this->load->model('dashboard/m_calender', 'objcal');
-            $this->load->model('dashboard/m_profile', 'objprofile');
-            $this->load->model('m_register', 'objregister');
+        if ($code == "") {
+            if (!$this->wi_authex->logged_in()) {
+                header('location:' . site_url() . 'home');
+            } elseif (!$this->wi_authex->isActivePlan()) {
+                header('location:' . site_url() . 'app/upgrade');
+            }
         }
+
+        $this->load->model('dashboard/m_contacts', 'objcontact');
+        $this->load->model('dashboard/m_contact_groups', 'objgroup');
+        $this->load->model('dashboard/m_sms_template', 'objsmstemplate');
+        $this->load->model('dashboard/m_email_template', 'objemailtemplate');
+        $this->load->model('dashboard/m_calender', 'objcal');
+        $this->load->model('dashboard/m_profile', 'objprofile');
+        $this->load->model('m_register', 'objregister');
     }
 
     function index() {
