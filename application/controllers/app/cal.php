@@ -21,6 +21,7 @@ class Cal extends CI_Controller {
     }
 
     function index() {
+        $this->connect();
         if ($this->input->get('error') == "access_denied") {
             echo 'Access Denied..!';
         } else if ($this->input->get('code') != "") {
