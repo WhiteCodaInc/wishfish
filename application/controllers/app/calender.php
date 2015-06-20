@@ -24,10 +24,6 @@ class Calender extends CI_Controller {
             } elseif (!$this->wi_authex->isActivePlan()) {
                 header('location:' . site_url() . 'app/upgrade');
             }
-        } else {
-            echo '<pre>';
-            print_r($this->session->all_userdata());
-            die();
         }
 
         $this->load->model('dashboard/m_contacts', 'objcontact');
@@ -43,6 +39,9 @@ class Calender extends CI_Controller {
         if ($this->input->get('error') == "access_denied") {
             header('location:' . site_url() . 'app/calender');
         } else if ($this->input->get('code') != "") {
+            $uid = $this->input->cookie('userid', TRUE);
+            delete_cookie('userid', '.wish-fish.com', '/');
+            $this->session->set_userdata('userid', $this->encryption->decode($uid));
             $this->con();
             $this->client->authenticate($this->input->get('code'));
             $token = json_decode($this->client->getAccessToken());
@@ -205,6 +204,13 @@ class Calender extends CI_Controller {
 
     function connect() {
         $this->con();
+        $userid = array(
+            'name' => 'googleid',
+            'value' => $this->encryption->encode($this->session->userdata('userid')),
+            'expire' => time() + 86500,
+            'domain' => '.wish-fish.com'
+        );
+        $this->input->set_cookie($userid);
         header('location:' . $this->client->createAuthUrl());
     }
 

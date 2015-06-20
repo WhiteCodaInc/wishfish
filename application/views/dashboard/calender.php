@@ -1632,3 +1632,4 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
         console.log(hopscotch.getState());
     }, 2000);
 </script>
+
