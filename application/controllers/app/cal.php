@@ -80,45 +80,36 @@ class Cal extends CI_Controller {
     }
 
     function addEvent() {
+        echo "<pre>";
+
         date_default_timezone_set('Asia/Kolkata');
-//        echo date(DATE_RFC3339);
-//        echo date(DateTime::RFC3339);
+        echo date(DATE_RFC3339) . '<br>';
+        echo date(DateTime::RFC3339) . '<br>';
+        echo date("Ymd\THis\Z", time()) . '<br>';
 
-//        date_default_timezone_set('UTC');
-        echo date("Ymd\THis\Z", time());
+        $event = new Google_Event();
+        $event->setSummary('Happy BirthDay');
+        $event->setLocation('The Neighbourhood');
 
-//        $event = new Google_Service_Calendar_Event(array(
-//            'summary' => 'BirthDay',
-//            'description' => 'Happy Birthday Sanjay Vekariya.',
-//            'start' => array(
-//                'dateTime' => DateTime::ATOM,
-//                'timeZone' => date_default_timezone_get(),
-//            ),
-//            'end' => array(
-//                'dateTime' => DateTime::ATOM,
-//                'timeZone' => date_default_timezone_get(),
-//            ),
-////            'recurrence' => array(
-////                'RRULE:FREQ=DAILY;COUNT=2'
-////            ),
-//            'attendees' => array(
-//                array(
-//                    'email' => 'sanjayvekariya18@gmail.com',
-//                    'title' => 'Birthday',
-//                ),
-//            ),
-//            'reminders' => array(
-//                'useDefault' => FALSE,
-//                'overrides' => array(
-//                    array('method' => 'email', 'minutes' => 24 * 60),
-//                    array('method' => 'sms', 'minutes' => 10),
-//                ),
-//            ),
-//        ));
-//
-//        $calendarId = 'primary';
-//        $event = $service->events->insert($calendarId, $event);
-//        printf('Event created: %s\n', $event->htmlLink);
+        $start = new Google_EventDateTime();
+        $start->setDateTime(date(DATE_RFC3339));
+        $event->setStart($start);
+
+        $end = new Google_EventDateTime();
+        $end->setDateTime(date(DATE_RFC3339));
+        $event->setEnd($end);
+
+        $attendee1 = new EventAttendee();
+        $attendee1->setEmail('abc@gmail.com');
+
+        $attendees = array($attendee1);
+        $event->attendees = $attendees;
+
+        print_r($event);
+
+        //$createdEvent = $this->service->events->insert("vishaltesting7@gmail.com", $event); //Returns array not an object
+
+        //print_r($createdEvent);
     }
 
 }
