@@ -116,4 +116,8 @@ class Cal extends CI_Controller {
         }
     }
 
+    function logout() {
+        $this->session->unset_userdata('token');
+    }
+
 }
