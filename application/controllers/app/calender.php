@@ -338,9 +338,8 @@ class Calender extends CI_Controller {
         try {
             $this->refresh();
             $timestamp = timezones($this->session->userdata('timezone'));
-            
-            echo $timestamp.'<br>';
-            
+            echo $this->timezone_by_offset($timestamp) . '<br>';
+//            echo $timestamp . '<br>';
 //            date_default_timezone_set('Asia/Kolkata');
 //            echo date(DATE_RFC3339, gmt_to_local(time(), $this->session->userdata('timezone'), TRUE));
             echo '<br>';
@@ -389,6 +388,19 @@ class Calender extends CI_Controller {
 //            $error = $exc->getErrors();
 //            echo $error[0]['message'];
 //        }
+    }
+
+    function timezone_by_offset($offset) {
+        $abbrarray = timezone_abbreviations_list();
+        $offset = $offset * 60 * 60;
+
+        foreach ($abbrarray as $abbr) {
+            foreach ($abbr as $city) {
+                if ($city['offset'] == $offset && $city['dst'] == FALSE) {
+                    return $city['timezone_id'];
+                }
+            }
+        }
     }
 
 }
