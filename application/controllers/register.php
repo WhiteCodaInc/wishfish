@@ -66,11 +66,8 @@ class Register extends CI_Controller {
 
         if (isset($code) && $code != "") {
             $this->client->authenticate($code);
-            $this->session->set_userdata('token', $this->client->getAccessToken());
-
             if ($this->client->getAccessToken()) {
                 $data = $this->service->userinfo->get();
-                $this->session->set_userdata('token', $this->client->getAccessToken());
                 $user = $this->objregister->isUserExist($data);
                 if (!$user) {
                     if ($this->objregister->registerWithSocial($data)) {

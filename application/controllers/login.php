@@ -98,7 +98,6 @@ class Login extends CI_Controller {
         $code = $this->input->get('code');
         if (isset($code) && $code != "") {
             $this->client->authenticate($code);
-            $this->session->set_userdata('token', $this->client->getAccessToken());
             if ($this->client->getAccessToken()) {
                 $data = $this->service->userinfo->get();
                 $this->session->set_userdata('token', $this->client->getAccessToken());
