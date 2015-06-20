@@ -18,6 +18,19 @@ class Cal extends CI_Controller {
 //put your code here
     function __construct() {
         parent::__construct();
+    }
+
+    function index() {
+        if ($this->input->get('error') == "access_denied") {
+            echo 'Access Denied..!';
+        } else if ($this->input->get('code') != "") {
+            $this->client->authenticate($this->input->get('code'));
+            $token = json_decode($this->client->getAccessToken());
+            $this->session->set_userdata('token', $token->access_token);
+        }
+    }
+
+    function connect() {
         require APPPATH . 'third_party/google-api/Google_Client.php';
         require APPPATH . 'third_party/google-api/contrib/Google_CalendarService.php';
         $this->config->load('googlecalender');
@@ -33,20 +46,7 @@ class Cal extends CI_Controller {
 
         $this->service = new Google_CalendarService($this->client);
 
-        if ($this->input->get('error') == "access_denied") {
-            header('location:' . site_url() . 'app/dashboard');
-        } else if ($this->input->get('code') != "") {
-            $this->client->authenticate($this->input->get('code'));
-            $token = json_decode($this->client->getAccessToken());
-            $this->session->set_userdata('token', $token->access_token);
-        }
-    }
 
-    function index() {
-        echo $this->session->userdata('token');
-    }
-
-    function getCalender() {
         $this->client->setApprovalPrompt('auto');
         header('location:' . $this->client->createAuthUrl());
     }

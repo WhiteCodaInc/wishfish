@@ -28,6 +28,7 @@ class Calender extends CI_Controller {
             $this->load->model('dashboard/m_sms_template', 'objsmstemplate');
             $this->load->model('dashboard/m_email_template', 'objemailtemplate');
             $this->load->model('dashboard/m_calender', 'objcal');
+            $this->load->model('dashboard/m_profile', 'objprofile');
             $this->load->model('m_register', 'objregister');
         }
     }
@@ -186,6 +187,27 @@ class Calender extends CI_Controller {
             'email' => $userInfo->email
         );
         echo ($this->objregister->sendMail($post, $uid)) ? 1 : 0;
+    }
+
+    function connect() {
+        require APPPATH . 'third_party/google-api/Google_Client.php';
+        require APPPATH . 'third_party/google-api/contrib/Google_CalendarService.php';
+
+        $setting = $this->objprofile->getUserSetting();
+        if ($setting->app_name != NULL && $setting->client_id != NULL && $setting->client_secret != NULL && $setting->api_key != NULL) {
+            $this->client = new Google_Client();
+            $this->client->setApplicationName($setting->app_name);
+            $this->client->setClientId($setting->client_id);
+            $this->client->setClientSecret($setting->client_secret);
+            $this->client->setRedirectUri($setting->redirect_uri);
+            $this->client->setDeveloperKey($setting->api_key);
+            $this->client->setScopes("https://www.googleapis.com/auth/calendar");
+            $this->client->setAccessType('offline');
+
+            $this->service = new Google_CalendarService($this->client);
+        } else {
+            header('location:' . site_url() . 'app/setting');
+        }
     }
 
 }

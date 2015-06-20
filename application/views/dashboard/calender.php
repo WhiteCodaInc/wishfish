@@ -41,10 +41,10 @@
             <i class="fa fa-plus"></i>
             Create New Event
         </button>
-        <button style="margin-left: 2%"  class="btn btn-warning btn-sm add" >
+        <a href="<?= site_url() ?>app/calender/connect" style="margin-left: 2%"  class="btn btn-warning btn-sm" >
             <i class="fa fa-calendar"></i>&nbsp;
             Connect With Google Calender
-        </button>
+        </a>
     </section>
     <!-- Main content -->
     <section class="content">
