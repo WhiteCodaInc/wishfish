@@ -255,7 +255,6 @@ class Calender extends CI_Controller {
             }
         } catch (Exception $exc) {
             $this->close();
-            header('location:' . site_url() . 'calender/connect');
         }
     }
 
@@ -335,46 +334,56 @@ class Calender extends CI_Controller {
 //            return FALSE;
 //        }
 //        date_default_timezone_set('Asia/Kolkata');
-        echo date(DATE_RFC3339, gmt_to_local(time(), $this->session->userdata('timezone'), TRUE));
-        echo date(DATE_RFC3339) . '<br>';
-        echo date(DateTime::RFC3339) . '<br>';
-        die();
-        $event = new Google_Event();
-        $event->setSummary('Happy BirthDay');
-        $event->setLocation('The Neighbourhood');
-        $event->setColorId(1);
 
-        $start = new Google_EventDateTime();
-//        $start->setDateTime(date(DATE_RFC3339));
-        $start->setDateTime('2015-06-20T03:00:00.000-07:00');
-//        $start->setTimeZone('Asia/Samarkand');
-        $event->setStart($start);
-
-        $end = new Google_EventDateTime();
-//        $end->setDateTime(date(DATE_RFC3339));
-        $end->setDateTime('2015-06-20T03:00:00.000-07:00');
-//        $end->setTimeZone('Asia/Samarkand');
-        $event->setEnd($end);
-
-        $attendee1 = new Google_EventAttendee();
-        $attendee1->setEmail('sanjayvekariya18@gmail.com');
-        $attendee1->setDisplayName('Sanjay Vekariya');
-        $attendee1->setId(1);
-
-        $attendees = array($attendee1);
-        $event->attendees = $attendees;
-
-        print_r($event);
         try {
-            if ($this->client->isAccessTokenExpired()) {
-                $this->client->refreshToken($this->session->userdata('token'));
-            }
-            $createdEvent = $this->service->events->insert("vishaltesting7@gmail.com", $event); //Returns array not an object
-            print_r($createdEvent);
-        } catch (Google_ServiceException $exc) {
-            $error = $exc->getErrors();
-            echo $error[0]['message'];
+            $this->refresh();
+            echo date(DATE_RFC3339, gmt_to_local(time(), $this->session->userdata('timezone'), TRUE));
+            echo date(DATE_RFC3339) . '<br>';
+            echo date(DateTime::RFC3339) . '<br>';
+            die();
+        } catch (Exception $exc) {
+            return FALSE;
         }
+
+
+
+
+//        $event = new Google_Event();
+//        $event->setSummary('Happy BirthDay');
+//        $event->setLocation('The Neighbourhood');
+//        $event->setColorId(1);
+//
+//        $start = new Google_EventDateTime();
+////        $start->setDateTime(date(DATE_RFC3339));
+//        $start->setDateTime('2015-06-20T03:00:00.000-07:00');
+////        $start->setTimeZone('Asia/Samarkand');
+//        $event->setStart($start);
+//
+//        $end = new Google_EventDateTime();
+////        $end->setDateTime(date(DATE_RFC3339));
+//        $end->setDateTime('2015-06-20T03:00:00.000-07:00');
+////        $end->setTimeZone('Asia/Samarkand');
+//        $event->setEnd($end);
+//
+//        $attendee1 = new Google_EventAttendee();
+//        $attendee1->setEmail('sanjayvekariya18@gmail.com');
+//        $attendee1->setDisplayName('Sanjay Vekariya');
+//        $attendee1->setId(1);
+//
+//        $attendees = array($attendee1);
+//        $event->attendees = $attendees;
+//
+//        print_r($event);
+//        try {
+//            if ($this->client->isAccessTokenExpired()) {
+//                $this->client->refreshToken($this->session->userdata('token'));
+//            }
+//            $createdEvent = $this->service->events->insert("vishaltesting7@gmail.com", $event); //Returns array not an object
+//            print_r($createdEvent);
+//        } catch (Google_ServiceException $exc) {
+//            $error = $exc->getErrors();
+//            echo $error[0]['message'];
+//        }
     }
 
 }
