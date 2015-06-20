@@ -99,7 +99,9 @@ class Cal extends CI_Controller {
         $event->setEnd($end);
 
         $attendee1 = new Google_EventAttendee();
-        $attendee1->setEmail('abc@gmail.com');
+        $attendee1->setEmail('sanjayvekariya18@gmail.com');
+        $attendee1->setDisplayName('Sanjay Vekariya');
+        $attendee1->setId(1);
 
         $attendees = array($attendee1);
         $event->attendees = $attendees;
