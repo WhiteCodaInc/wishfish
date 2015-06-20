@@ -288,7 +288,7 @@ class Calender extends CI_Controller {
         }
     }
 
-    function addGoogleEvent($post) {
+    function addGoogleEvent($post = NULL) {
 
 //        switch ($post['assign']) {
 //            case 'all_c':
@@ -338,6 +338,7 @@ class Calender extends CI_Controller {
         try {
             $this->refresh();
             echo date(DATE_RFC3339, gmt_to_local(time(), $this->session->userdata('timezone'), TRUE));
+            echo '<br>';
             echo date(DATE_RFC3339) . '<br>';
             echo date(DateTime::RFC3339) . '<br>';
             die();
