@@ -211,20 +211,22 @@ class Calender extends CI_Controller {
     //---------------Google Calender Event Function---------------------------//
 
     function connect() {
-        $userid = array(
-            'name' => 'userid',
-            'value' => $this->encryption->encode($this->session->userdata('userid')),
-            'expire' => time() + 86500,
-            'domain' => '.wish-fish.com'
-        );
-        $this->input->set_cookie($userid);
+        if (!$this->input->cookie('userid')) {
+            $userid = array(
+                'name' => 'userid',
+                'value' => $this->encryption->encode($this->session->userdata('userid')),
+                'expire' => time() + 86500,
+                'domain' => '.wish-fish.com'
+            );
+            $this->input->set_cookie($userid);
+        }
         $this->setClient();
         header('location:' . $this->client->createAuthUrl());
     }
 
     function setClient() {
-        require APPPATH . 'third_party/google-api/Google_Client.php';
-        require APPPATH . 'third_party/google-api/contrib/Google_CalendarService.php';
+        require_once APPPATH . 'third_party/google-api/Google_Client.php';
+        require_once APPPATH . 'third_party/google-api/contrib/Google_CalendarService.php';
 
         $setting = $this->objprofile->getUserSetting();
         if ($setting->app_name != NULL && $setting->client_id != NULL && $setting->client_secret != NULL && $setting->api_key != NULL) {
