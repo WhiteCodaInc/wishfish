@@ -13,7 +13,7 @@
  */
 class Cal extends CI_Controller {
 
-    var $sess_data = array(), $userid;
+    var $client, $service;
 
 //put your code here
     function __construct() {
@@ -28,6 +28,12 @@ class Cal extends CI_Controller {
             $token = json_decode($this->client->getAccessToken());
             $this->session->set_userdata('token', $token->access_token);
         }
+    }
+
+    function getCalender() {
+        $this->connect();
+        $this->client->setApprovalPrompt('auto');
+        header('location:' . $this->client->createAuthUrl());
     }
 
     function connect() {
@@ -45,10 +51,6 @@ class Cal extends CI_Controller {
         $this->client->setAccessType('offline');
 
         $this->service = new Google_CalendarService($this->client);
-
-
-        $this->client->setApprovalPrompt('auto');
-        header('location:' . $this->client->createAuthUrl());
     }
 
     public function events() {
