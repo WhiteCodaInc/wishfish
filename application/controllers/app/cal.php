@@ -93,14 +93,14 @@ class Cal extends CI_Controller {
 
         $start = new Google_EventDateTime();
 //        $start->setDateTime(date(DATE_RFC3339));
-        $start->setDateTime('2025-06-20T10:37:00.000+05:30');
-        $start->setTimeZone('Asia/Kolkata');
+        $start->setDateTime('2015-06-20T03:00:00.000-07:00');
+//        $start->setTimeZone('Asia/Samarkand');
         $event->setStart($start);
 
         $end = new Google_EventDateTime();
 //        $end->setDateTime(date(DATE_RFC3339));
-        $end->setDateTime('2025-06-20T10:37:00.000+05:30');
-        $end->setTimeZone('Asia/Kolkata');
+        $end->setDateTime('2015-06-20T03:00:00.000-07:00');
+//        $end->setTimeZone('Asia/Samarkand');
         $event->setEnd($end);
 
         $attendee1 = new Google_EventAttendee();
