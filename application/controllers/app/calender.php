@@ -273,7 +273,7 @@ class Calender extends CI_Controller {
     }
 
     function refresh() {
-        $this->conn();
+        $this->con();
         if ($this->client->isAccessTokenExpired() && $this->input->cookie('token')) {
             $tkn = $this->encryption->decode($this->input->cookie('token', TRUE));
             $this->client->refreshToken($tkn);
