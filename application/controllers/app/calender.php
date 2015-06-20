@@ -254,7 +254,7 @@ class Calender extends CI_Controller {
                 $this->client->refreshToken($tkn);
             }
         } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
+            echo $exc->getMessage();
         }
     }
 
