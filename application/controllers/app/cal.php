@@ -56,6 +56,7 @@ class Cal extends CI_Controller {
 
     public function events() {
         try {
+            $this->connect();
             if ($this->client->isAccessTokenExpired()) {
                 $this->client->refreshToken($this->session->userdata('token'));
             }
