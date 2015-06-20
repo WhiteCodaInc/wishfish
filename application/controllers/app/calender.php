@@ -42,12 +42,10 @@ class Calender extends CI_Controller {
             $uid = $this->input->cookie('userid', TRUE);
             delete_cookie('userid', '.wish-fish.com', '/');
             $this->session->set_userdata('userid', $this->encryption->decode($uid));
-            echo $this->session->userdata('userid');
-            die();
-//            $this->con();
-//            $this->client->authenticate($this->input->get('code'));
-//            $token = json_decode($this->client->getAccessToken());
-//            $this->session->set_userdata('token', $token->access_token);
+            $this->con();
+            $this->client->authenticate($this->input->get('code'));
+            $token = json_decode($this->client->getAccessToken());
+            $this->session->set_userdata('token', $token->access_token);
         }
         $data['template'] = $this->objsmstemplate->getTemplates();
         $this->load->view('dashboard/header');
