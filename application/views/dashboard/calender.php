@@ -42,7 +42,7 @@
             Create New Event
         </button>
         <button style="margin-left: 2%"  class="btn btn-warning btn-sm add" >
-            <i class="fa fa-calendar-o"></i>
+            <i class="fa fa-calendar"></i>
             Connect With Google Calender
         </button>
     </section>
