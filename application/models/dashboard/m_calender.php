@@ -76,10 +76,10 @@ class M_calender extends CI_Model {
             default:
                 break;
         }
-        if (isset($post['contactid'])) {
-            $post['contact_id'] = $post['contactid'];
-            unset($post['contactid']);
-        }
+//        if (isset($post['contactid'])) {
+//            $post['contact_id'] = $post['contactid'];
+//            unset($post['contactid']);
+//        }
 
         $post['date'] = $this->wi_common->getMySqlDate($post['date'], $this->session->userdata('date_format'));
         $post['is_repeat'] = (isset($post['is_repeat']) && $post['is_repeat'] == "on") ? 1 : 0;

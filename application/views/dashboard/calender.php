@@ -350,7 +350,7 @@
                     <button type="button" id="n_insert" class="btn btn-primary pull-left"><i class="fa fa-envelope"></i> Schedule Now</button>
 <!--                    <input type="hidden" name="color" value="#f4543c" />-->
                     <input type="hidden" name="assign" value="all_c" />
-                    <input type="hidden" name="contactid" value="<?= isset($contactInfo) ? $contactInfo->contact_id : '' ?>" />
+                    <input type="hidden" name="contact_id" value="<?= isset($contactInfo) ? $contactInfo->contact_id : '' ?>" />
                 </div>
             </form>
         </div><!-- /.modal-content -->

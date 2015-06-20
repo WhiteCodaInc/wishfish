@@ -283,13 +283,55 @@ class Calender extends CI_Controller {
     }
 
     function addGoogleEvent($post) {
-        echo "<pre>";
 
-        date_default_timezone_set('Asia/Kolkata');
+//        switch ($post['assign']) {
+//            case 'all_c':
+//                
+//                break;
+//            case 'all_gc':
+//                unset($post['contact_id']);
+//
+//                break;
+//        }
+//        if (isset($post['contactid'])) {
+//            $post['contact_id'] = $post['contactid'];
+//            unset($post['contactid']);
+//        }
+//        $post['date'] = $this->wi_common->getMySqlDate($post['date'], $this->session->userdata('date_format'));
+//        $post['is_repeat'] = (isset($post['is_repeat']) && $post['is_repeat'] == "on") ? 1 : 0;
+//        $post['body'] = ($post['event_type'] == "sms" || $post['event_type'] == "notification") ? $post['smsbody'] : $post['emailbody'];
+//        $post['notification'] = ($post['event_type'] == "notification") ? 0 : 1;
+//        $post['occurance'] = ($post['occurance'] != "") ? $post['occurance'] : NULL;
+//        $post['user_id'] = $this->userid;
+//        unset($post['assign']);
+//        unset($post['smsbody']);
+//        unset($post['emailbody']);
+//
+//        $this->db->trans_start();
+//        $post['color'] = "#0073b7";
+//        $this->db->insert('wi_schedule', $post);
+//        $insertid = $this->db->insert_id();
+//        if ($post['freq_type'] != "-1" && $post['freq_no'] != "-1" && is_numeric($post['occurance'])) {
+//            $post['refer_id'] = $insertid;
+//            $dt = $post['date'];
+//            for ($i = $post['occurance'] - 1; $i > 0; $i--) {
+//                $post['is_repeat'] = 0;
+//                $total = $post['freq_no'] * ($post['occurance'] - $i);
+//                $post['date'] = $this->wi_common->getNextDate($dt, $total . ' ' . $post['freq_type']);
+//                $this->db->insert('wi_schedule', $post);
+//            }
+//        }
+//        $this->db->trans_complete();
+//        if ($this->db->trans_status()) {
+//            return TRUE;
+//        } else {
+//            return FALSE;
+//        }
+//        date_default_timezone_set('Asia/Kolkata');
+        echo date(DATE_RFC3339, gmt_to_local(time(), $this->session->userdata('timezone'), TRUE));
         echo date(DATE_RFC3339) . '<br>';
         echo date(DateTime::RFC3339) . '<br>';
-
-
+        die();
         $event = new Google_Event();
         $event->setSummary('Happy BirthDay');
         $event->setLocation('The Neighbourhood');
