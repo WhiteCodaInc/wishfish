@@ -25,7 +25,6 @@ class Calender extends CI_Controller {
                 header('location:' . site_url() . 'app/upgrade');
             }
         }
-
         $this->load->model('dashboard/m_contacts', 'objcontact');
         $this->load->model('dashboard/m_contact_groups', 'objgroup');
         $this->load->model('dashboard/m_sms_template', 'objsmstemplate');
