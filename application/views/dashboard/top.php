@@ -471,13 +471,13 @@ $userid = $this->session->userdata('userid');
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left" id="wishfish-profile">
-                                    <a href="<?= site_url() ?>app/profile" class="btn btn-default btn-flat">Profile</a>
+                                    <a href="<?= site_url() ?>app/profile" class="btn btn-default btn-xs">Profile</a>
                                 </div>
                                 <div class="pull-left" style="margin-left: 1px;">
-                                    <a href="<?= site_url() ?>app/setting" class="btn btn-default btn-flat">Setting</a>
+                                    <a href="<?= site_url() ?>app/setting" class="btn btn-default btn-xs">Setting</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="<?= site_url() ?>app/logout" class="btn btn-default btn-flat">Sign out</a>
+                                    <a href="<?= site_url() ?>app/logout" class="btn btn-default btn-xs">Sign out</a>
                                 </div>
                             </li>
                         </ul>

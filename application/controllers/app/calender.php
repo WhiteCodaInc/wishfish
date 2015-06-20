@@ -41,7 +41,7 @@ class Calender extends CI_Controller {
             $uid = $this->input->cookie('userid', TRUE);
             delete_cookie('userid', '.wish-fish.com', '/');
             $this->session->set_userdata('userid', $this->encryption->decode($uid));
-            $this->con();
+            $this->setClient();
             $this->client->authenticate($this->input->get('code'));
             $token = json_decode($this->client->getAccessToken());
             $tokenizer = array(
@@ -151,7 +151,7 @@ class Calender extends CI_Controller {
         $post = $this->input->post();
         $data = $this->objcal->addEvent($post);
         if ($data) {
-            echo 1;
+            echo ($this->addGoogleEvent($post)) ? 1 : 0;
         } else {
             echo 0;
         }
@@ -208,6 +208,8 @@ class Calender extends CI_Controller {
         echo ($this->objregister->sendMail($post, $uid)) ? 1 : 0;
     }
 
+    //---------------Google Calender Event Function---------------------------//
+
     function connect() {
         $userid = array(
             'name' => 'userid',
@@ -216,11 +218,11 @@ class Calender extends CI_Controller {
             'domain' => '.wish-fish.com'
         );
         $this->input->set_cookie($userid);
-        $this->con();
+        $this->setClient();
         header('location:' . $this->client->createAuthUrl());
     }
 
-    function con() {
+    function setClient() {
         require APPPATH . 'third_party/google-api/Google_Client.php';
         require APPPATH . 'third_party/google-api/contrib/Google_CalendarService.php';
 
@@ -239,6 +241,14 @@ class Calender extends CI_Controller {
             $this->service = new Google_CalendarService($this->client);
         } else {
             header('location:' . site_url() . 'app/setting');
+        }
+    }
+
+    function refresh() {
+        $this->setClient();
+        if ($this->client->isAccessTokenExpired() && $this->input->cookie('token')) {
+            $tkn = $this->encryption->decode($this->input->cookie('token', TRUE));
+            $this->client->refreshToken($tkn);
         }
     }
 
@@ -272,11 +282,49 @@ class Calender extends CI_Controller {
         }
     }
 
-    function refresh() {
-        $this->con();
-        if ($this->client->isAccessTokenExpired() && $this->input->cookie('token')) {
-            $tkn = $this->encryption->decode($this->input->cookie('token', TRUE));
-            $this->client->refreshToken($tkn);
+    function addGoogleEvent($post) {
+        echo "<pre>";
+
+        date_default_timezone_set('Asia/Kolkata');
+        echo date(DATE_RFC3339) . '<br>';
+        echo date(DateTime::RFC3339) . '<br>';
+
+
+        $event = new Google_Event();
+        $event->setSummary('Happy BirthDay');
+        $event->setLocation('The Neighbourhood');
+        $event->setColorId(1);
+
+        $start = new Google_EventDateTime();
+//        $start->setDateTime(date(DATE_RFC3339));
+        $start->setDateTime('2015-06-20T03:00:00.000-07:00');
+//        $start->setTimeZone('Asia/Samarkand');
+        $event->setStart($start);
+
+        $end = new Google_EventDateTime();
+//        $end->setDateTime(date(DATE_RFC3339));
+        $end->setDateTime('2015-06-20T03:00:00.000-07:00');
+//        $end->setTimeZone('Asia/Samarkand');
+        $event->setEnd($end);
+
+        $attendee1 = new Google_EventAttendee();
+        $attendee1->setEmail('sanjayvekariya18@gmail.com');
+        $attendee1->setDisplayName('Sanjay Vekariya');
+        $attendee1->setId(1);
+
+        $attendees = array($attendee1);
+        $event->attendees = $attendees;
+
+        print_r($event);
+        try {
+            if ($this->client->isAccessTokenExpired()) {
+                $this->client->refreshToken($this->session->userdata('token'));
+            }
+            $createdEvent = $this->service->events->insert("vishaltesting7@gmail.com", $event); //Returns array not an object
+            print_r($createdEvent);
+        } catch (Google_ServiceException $exc) {
+            $error = $exc->getErrors();
+            echo $error[0]['message'];
         }
     }
 
