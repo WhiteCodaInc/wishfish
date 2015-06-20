@@ -333,7 +333,7 @@ class Calender extends CI_Controller {
 //        } else {
 //            return FALSE;
 //        }
-//        date_default_timezone_set('Asia/Kolkata');
+        date_default_timezone_set('Asia/Kolkata');
 
         try {
             $this->refresh();

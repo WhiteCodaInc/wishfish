@@ -38,6 +38,12 @@
                                 <label>API Key</label>
                                 <input value="<?= $setting->api_key ?>"  name="api_key" placeholder="API Key" type="text"  class="form-control" required=""/>
                             </div>
+
+                            <div class="form-group">
+                                <ul>
+                                    <li>1. https://console.developers.google.com/project/</li>
+                                </ul>
+                            </div>
                         </div>
                         <input type="submit" id="setting_submit" style="display: none" />
                     </form>
