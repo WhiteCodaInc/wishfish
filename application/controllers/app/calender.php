@@ -245,17 +245,16 @@ class Calender extends CI_Controller {
     }
 
     function refresh() {
+
+
         try {
             $this->setClient();
             if ($this->client->isAccessTokenExpired() && $this->input->cookie('token')) {
                 $tkn = $this->encryption->decode($this->input->cookie('token', TRUE));
                 $this->client->refreshToken($tkn);
             }
-        } catch (Google_AuthException $exc) {
-            echo '<pre>';
-            print_r($exc);
-//            $error = $exc->getErrors();
-//            echo $error[0]['message'];
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
         }
     }
 
