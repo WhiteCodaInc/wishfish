@@ -1,8 +1,8 @@
 <aside class="right-side">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <h1 style="margin-left: 15%;float: left">User Profile</h1>
-        <button type="button" id="save-setting" class="btn btn-primary">Save User Setting</button>
+        <h1 style="margin-left: 15%;float: left">Google Calender Setting</h1>
+        <button type="button" id="save-setting" class="btn btn-primary">Save Setting</button>
     </section>
     <!-- Main content -->
     <section class="content">
@@ -13,7 +13,7 @@
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="box-header" >
-                        <h3  class="box-title">User Setting</h3>
+                        <h3  class="box-title">Setting</h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     <form id="userForm" role="form" action="<?= site_url() ?>app/setting/updateSetting" method="post">
