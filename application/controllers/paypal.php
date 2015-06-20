@@ -97,6 +97,7 @@ class Paypal extends CI_Controller {
                     $response['AMT'] = $requestParams['AMT'];
                 }
                 $this->insertPlanDetail($uid, $planid, $response);
+                $this->insertUserSetting($uid);
                 $this->session->set_userdata('d-userid', $uid);
                 $this->session->set_userdata('d-name', $checkoutDetails['FIRSTNAME'] . ' ' . $checkoutDetails['LASTNAME']);
                 $this->sendMail($checkoutDetails, $uid);
@@ -144,6 +145,14 @@ class Paypal extends CI_Controller {
         );
         $this->db->insert('wi_plan_detail', $plan_set);
         return true;
+    }
+
+    function insertUserSetting($uid) {
+        $set = array(
+            'user_id' => $uid,
+            'redirect_uri' => site_url() . 'app/calender'
+        );
+        $this->db->insert('wi_user_setting', $set);
     }
 
     function generateRandomString($length = 5) {

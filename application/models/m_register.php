@@ -60,6 +60,13 @@ class M_register extends CI_Model {
         $this->db->insert('wi_plan_detail', $set);
         $planid = $this->db->insert_id();
         //-------------------------------------------------//
+        //--------------Insert Google API Credential-----------------//
+        $set = array(
+            'user_id' => $insertid,
+            'redirect_uri' => site_url() . 'app/calender'
+        );
+        $this->db->insert('wi_user_setting', $set);
+        //-------------------------------------------------//
         //---------------Add Customer To Stripe------------//
 
         if ($this->addCustomerToStripe($post, $planid, $insertid)) {

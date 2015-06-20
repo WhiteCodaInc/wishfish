@@ -45,6 +45,7 @@ class M_plan_stripe_webhooker extends CI_Model {
                     $uid = $this->db->insert_id();
 
                     $pid = $this->insertPlanDetail($uid, $planid, $customer);
+                    $this->insertUserSetting($uid);
                     $this->insertPaymentDetail($pid, $customer);
                     $this->updateCardDetail($customer, $uid, $pid);
                     $this->sendMail($user_set, $uid);
@@ -134,6 +135,14 @@ class M_plan_stripe_webhooker extends CI_Model {
         );
         $this->db->insert('wi_plan_detail', $plan_set);
         return $this->db->insert_id();
+    }
+
+    function insertUserSetting($uid) {
+        $set = array(
+            'user_id' => $uid,
+            'redirect_uri' => site_url() . 'app/calender'
+        );
+        $this->db->insert('wi_user_setting', $set);
     }
 
     function insertPaymentDetail($pid, $customer) {

@@ -96,7 +96,7 @@ class M_profile extends CI_Model {
         $set['birthday'] = ($set['birthday'] != "") ?
                 $this->wi_common->getMySqlDate($set['birthday'], $this->session->userdata('date_format')) :
                 NULL;
-         unset($set['code']);
+        unset($set['code']);
         return ($this->db->update('wi_user_mst', $set, array('user_id' => $this->userid))) ? TRUE : FALSE;
     }
 
@@ -224,6 +224,11 @@ class M_profile extends CI_Model {
         } else {
             header('Location:' . site_url() . 'app/dashboard');
         }
+    }
+
+    function getUserSetting() {
+        $query = $this->db->get_where('wi_user_setting', array('user_id' => $this->userid));
+        return $query->row();
     }
 
 }
