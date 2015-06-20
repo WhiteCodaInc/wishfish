@@ -473,6 +473,9 @@ $userid = $this->session->userdata('userid');
                                 <div class="pull-left" id="wishfish-profile">
                                     <a href="<?= site_url() ?>app/profile" class="btn btn-default btn-flat">Profile</a>
                                 </div>
+                                <div class="pull-left">
+                                    <a href="<?= site_url() ?>app/setting" class="btn btn-default btn-flat">Setting</a>
+                                </div>
                                 <div class="pull-right">
                                     <a href="<?= site_url() ?>app/logout" class="btn btn-default btn-flat">Sign out</a>
                                 </div>

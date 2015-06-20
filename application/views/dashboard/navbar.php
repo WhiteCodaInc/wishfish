@@ -21,7 +21,6 @@ $img_src = ($profile_pic != "") ?
                 </div>
                 <div class="pull-left info">
                     <p><?= $this->session->userdata('name') ?></p>
-
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
             </div>
