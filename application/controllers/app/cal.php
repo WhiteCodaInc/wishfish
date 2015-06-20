@@ -86,6 +86,19 @@ class Cal extends CI_Controller {
         echo date(DATE_RFC3339) . '<br>';
         echo date(DateTime::RFC3339) . '<br>';
 
+
+        $time = date('Y-m-d H:i:s', gmt_to_local(time(), $this->session->userdata('timezone'), TRUE));
+
+        $startdate = new DateTime($time);
+        $startdate = $startdate->format('c');
+        $enddate = new DateTime($time);
+        $enddate = $enddate->format('c');
+        
+        echo $startdate.'<br>';
+        echo $enddate.'<br>';
+        
+        die();
+        
         $event = new Google_Event();
         $event->setSummary('Happy BirthDay');
         $event->setLocation('The Neighbourhood');
