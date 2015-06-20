@@ -87,11 +87,11 @@ class Cal extends CI_Controller {
         echo date(DateTime::RFC3339) . '<br>';
 
 
-//        $time = date('Y-m-d H:i:s', gmt_to_local(time(), $this->session->userdata('timezone'), TRUE));
+        $time = date('Y-m-d H:i:s', gmt_to_local(time(), $this->session->userdata('timezone'), TRUE));
 
-        $startdate = new DateTime(gmt_to_local(time(), $this->session->userdata('timezone'), TRUE));
+        $startdate = new DateTime($time, new DateTimeZone('Europe/London'));
         $startdate = $startdate->format('c');
-        $enddate = new DateTime(gmt_to_local(time(), $this->session->userdata('timezone'), TRUE));
+        $enddate = new DateTime($time, new DateTimeZone('Europe/London'));
         $enddate = $enddate->format('c');
 
         echo $startdate . '<br>';
