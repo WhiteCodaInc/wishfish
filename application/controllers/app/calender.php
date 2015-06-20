@@ -392,15 +392,21 @@ class Calender extends CI_Controller {
 
     function timezone_by_offset($offset) {
         $abbrarray = timezone_abbreviations_list();
-        $offset = $offset * 60 * 60;
-
+        $offset = ($offset + 1) * 60 * 60;
         foreach ($abbrarray as $abbr) {
             foreach ($abbr as $city) {
-                if ($city['offset'] == $offset && $city['dst'] == FALSE) {
+                if ($city['offset'] == $offset) {
                     return $city['timezone_id'];
                 }
             }
         }
+//        foreach ($abbrarray as $abbr) {
+//            foreach ($abbr as $city) {
+//                if ($city['offset'] == $offset && $city['dst'] == FALSE) {
+//                    return $city['timezone_id'];
+//                }
+//            }
+//        }
     }
 
 }
