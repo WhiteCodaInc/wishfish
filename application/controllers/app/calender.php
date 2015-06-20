@@ -18,6 +18,7 @@ class Calender extends CI_Controller {
         parent::__construct();
         $this->load->library("authex");
         $this->load->library("common");
+        die("SUCCESS");
         if (!$this->wi_authex->logged_in()) {
             header('location:' . site_url() . 'home');
         } elseif (!$this->wi_authex->isActivePlan()) {
@@ -34,7 +35,6 @@ class Calender extends CI_Controller {
     }
 
     function index() {
-
         if ($this->input->get('error') == "access_denied") {
             header('location:' . site_url() . 'app/calender');
         } else if ($this->input->get('code') != "") {
