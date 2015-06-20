@@ -107,9 +107,13 @@ class Cal extends CI_Controller {
         $event->attendees = $attendees;
 
         print_r($event);
-
-        //$createdEvent = $this->service->events->insert("vishaltesting7@gmail.com", $event); //Returns array not an object
-        //print_r($createdEvent);
+        try {
+            $createdEvent = $this->service->events->insert("vishaltesting7@gmail.com", $event); //Returns array not an object
+            print_r($createdEvent);
+        } catch (Google_ServiceException $exc) {
+            $error = $exc->getErrors();
+            echo $error[0]['message'];
+        }
     }
 
 }
