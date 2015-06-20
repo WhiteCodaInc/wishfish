@@ -53,7 +53,6 @@
 <script type="text/javascript">
     $(document).ready(function (e) {
         $('#save-setting').click(function () {
-            $(this).prop("disabled", true);
             $('#setting_submit').trigger('click');
         });
     });
