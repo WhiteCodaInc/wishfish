@@ -87,30 +87,20 @@ class Cal extends CI_Controller {
         echo date(DateTime::RFC3339) . '<br>';
 
 
-        $time = date('Y-m-d H:i:s', gmt_to_local(time(), $this->session->userdata('timezone'), TRUE));
-//        return DateTime::createFromFormat($date, $dt)->format('Y-m-d');
-        $startdate = new DateTime($time, new DateTimeZone('Europe/London'));
-//        $startdate = $startdate->format('c');
-        $enddate = new DateTime($time, new DateTimeZone('Europe/London'));
-//        $enddate = $enddate->format('c');
-
-        echo $startdate . '<br>';
-        echo $enddate . '<br>';
-
-        die();
-
         $event = new Google_Event();
         $event->setSummary('Happy BirthDay');
         $event->setLocation('The Neighbourhood');
 
         $start = new Google_EventDateTime();
-        $start->setDateTime(date(DATE_RFC3339));
-        $start->setTimeZone('Asia/Samarkand');
+//        $start->setDateTime(date(DATE_RFC3339));
+        $start->setDateTime('2025-06-20T10:37:00.000+05:30');
+        $start->setTimeZone('Asia/Kolkata');
         $event->setStart($start);
 
         $end = new Google_EventDateTime();
-        $end->setDateTime(date(DATE_RFC3339));
-        $end->setTimeZone('Asia/Samarkand');
+//        $end->setDateTime(date(DATE_RFC3339));
+        $end->setDateTime('2025-06-20T10:37:00.000+05:30');
+        $end->setTimeZone('Asia/Kolkata');
         $event->setEnd($end);
 
         $attendee1 = new Google_EventAttendee();
