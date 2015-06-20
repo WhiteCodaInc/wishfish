@@ -337,12 +337,14 @@ class Calender extends CI_Controller {
 
         try {
             $this->refresh();
-            $timestamp = gmt_to_local(time(), $this->session->userdata('timezone'), TRUE);
+            $timestamp = timezones($this->session->userdata('timezone'));
+            
+            echo $timestamp.'<br>';
+            
 //            date_default_timezone_set('Asia/Kolkata');
 //            echo date(DATE_RFC3339, gmt_to_local(time(), $this->session->userdata('timezone'), TRUE));
             echo '<br>';
             echo date(DATE_RFC3339) . '<br>';
-            echo date('Y-m-d\TH:i:sP', $timestamp) . '<br>';
             die();
         } catch (Exception $exc) {
             return FALSE;
