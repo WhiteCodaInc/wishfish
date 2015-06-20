@@ -342,7 +342,7 @@ class Calender extends CI_Controller {
 //            echo date(DATE_RFC3339, gmt_to_local(time(), $this->session->userdata('timezone'), TRUE));
             echo '<br>';
             echo date(DATE_RFC3339) . '<br>';
-            echo date('Y-m-d\TH:i:sP', strtotime($timestamp)) . '<br>';
+            echo date('Y-m-d\TH:i:sP', $timestamp) . '<br>';
             die();
         } catch (Exception $exc) {
             return FALSE;
