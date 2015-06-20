@@ -57,9 +57,9 @@ class Cal extends CI_Controller {
                 $this->client->refreshToken($this->session->userdata('token'));
             }
             $calendarList = $this->service->calendarList->listCalendarList();
-            echo '<pre>';
-            print_r($calendarList);
-            die();
+//            echo '<pre>';
+//            print_r($calendarList);
+//            die();
             foreach ($calendarList['items'] as $calendarListEntry) {
                 echo '<br>-------------------------------------------------------<br>';
                 echo "ID : " . $calendarListEntry['id'] . "<br>\n";
