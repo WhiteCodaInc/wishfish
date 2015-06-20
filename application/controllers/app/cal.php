@@ -85,7 +85,6 @@ class Cal extends CI_Controller {
         date_default_timezone_set('Asia/Kolkata');
         echo date(DATE_RFC3339) . '<br>';
         echo date(DateTime::RFC3339) . '<br>';
-        echo date("Ymd\THis\Z", time()) . '<br>';
 
         $event = new Google_Event();
         $event->setSummary('Happy BirthDay');
@@ -99,7 +98,7 @@ class Cal extends CI_Controller {
         $end->setDateTime(date(DATE_RFC3339));
         $event->setEnd($end);
 
-        $attendee1 = new EventAttendee();
+        $attendee1 = new Google_EventAttendee();
         $attendee1->setEmail('abc@gmail.com');
 
         $attendees = array($attendee1);
@@ -108,7 +107,6 @@ class Cal extends CI_Controller {
         print_r($event);
 
         //$createdEvent = $this->service->events->insert("vishaltesting7@gmail.com", $event); //Returns array not an object
-
         //print_r($createdEvent);
     }
 
