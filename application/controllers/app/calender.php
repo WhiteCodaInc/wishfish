@@ -151,7 +151,8 @@ class Calender extends CI_Controller {
         $post = $this->input->post();
         $data = $this->objcal->addEvent($post);
         if ($data) {
-            echo ($this->addGoogleEvent($post)) ? 1 : 0;
+//            echo ($this->addGoogleEvent($post)) ? 1 : 0;
+            echo 1;
         } else {
             echo 0;
         }
@@ -333,16 +334,12 @@ class Calender extends CI_Controller {
 //        } else {
 //            return FALSE;
 //        }
-        date_default_timezone_set('Asia/Kolkata');
+
 
         try {
             $this->refresh();
             $timestamp = timezones($this->session->userdata('timezone'));
-            echo $this->timezone_by_offset($timestamp) . '<br>';
-//            echo $timestamp . '<br>';
-//            date_default_timezone_set('Asia/Kolkata');
-//            echo date(DATE_RFC3339, gmt_to_local(time(), $this->session->userdata('timezone'), TRUE));
-            echo '<br>';
+            date_default_timezone_set($this->timezone_by_offset($timestamp));
             echo date(DATE_RFC3339) . '<br>';
             die();
         } catch (Exception $exc) {
