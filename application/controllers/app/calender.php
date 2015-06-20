@@ -252,8 +252,9 @@ class Calender extends CI_Controller {
                 $this->client->refreshToken($tkn);
             }
         } catch (Google_AuthException $exc) {
-            $error = $exc->getErrors();
-            echo $error[0]['message'];
+            print_r($exc);
+//            $error = $exc->getErrors();
+//            echo $error[0]['message'];
         }
     }
 
