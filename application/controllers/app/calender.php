@@ -24,6 +24,10 @@ class Calender extends CI_Controller {
             } elseif (!$this->wi_authex->isActivePlan()) {
                 header('location:' . site_url() . 'app/upgrade');
             }
+        } else {
+            echo '<pre>';
+            print_r($this->session->all_userdata());
+            die();
         }
 
         $this->load->model('dashboard/m_contacts', 'objcontact');
