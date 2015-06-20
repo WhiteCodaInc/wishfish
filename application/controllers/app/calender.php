@@ -42,10 +42,12 @@ class Calender extends CI_Controller {
             $uid = $this->input->cookie('userid', TRUE);
             delete_cookie('userid', '.wish-fish.com', '/');
             $this->session->set_userdata('userid', $this->encryption->decode($uid));
-            $this->con();
-            $this->client->authenticate($this->input->get('code'));
-            $token = json_decode($this->client->getAccessToken());
-            $this->session->set_userdata('token', $token->access_token);
+            echo $this->encryption->decode($uid);
+            die();
+//            $this->con();
+//            $this->client->authenticate($this->input->get('code'));
+//            $token = json_decode($this->client->getAccessToken());
+//            $this->session->set_userdata('token', $token->access_token);
         }
         $data['template'] = $this->objsmstemplate->getTemplates();
         $this->load->view('dashboard/header');
@@ -203,7 +205,6 @@ class Calender extends CI_Controller {
     }
 
     function connect() {
-        $this->con();
         $userid = array(
             'name' => 'userid',
             'value' => $this->encryption->encode($this->session->userdata('userid')),
@@ -211,6 +212,7 @@ class Calender extends CI_Controller {
             'domain' => '.wish-fish.com'
         );
         $this->input->set_cookie($userid);
+        $this->con();
         header('location:' . $this->client->createAuthUrl());
     }
 
