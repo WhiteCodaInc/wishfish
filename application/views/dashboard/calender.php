@@ -41,7 +41,8 @@
             <i class="fa fa-plus"></i>
             Create New Event
         </button>
-        <a href="<?= site_url() ?>app/calender/connect" style="margin-left: 2%"  class="btn btn-warning btn-sm" >
+        <?php $token = $this->session->userdata('token'); ?>
+        <a href="<?= site_url() ?>app/calender/connect" style="margin-left: 2%"  class="btn btn-warning btn-sm" <?= ($token) ? "disabled" : "" ?> >
             <i class="fa fa-calendar"></i>&nbsp;
             Connect With Google Calender
         </a>

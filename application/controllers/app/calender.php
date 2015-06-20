@@ -34,6 +34,15 @@ class Calender extends CI_Controller {
     }
 
     function index() {
+
+        if ($this->input->get('error') == "access_denied") {
+            header('location:' . site_url() . 'app/calender');
+        } else if ($this->input->get('code') != "") {
+            $this->connect();
+            $this->client->authenticate($this->input->get('code'));
+            $token = json_decode($this->client->getAccessToken());
+            $this->session->set_userdata('token', $token->access_token);
+        }
         $data['template'] = $this->objsmstemplate->getTemplates();
         $this->load->view('dashboard/header');
         $this->load->view('dashboard/top');
@@ -190,6 +199,11 @@ class Calender extends CI_Controller {
     }
 
     function connect() {
+        $this->connect();
+        header('location:' . $this->client->createAuthUrl());
+    }
+
+    function con() {
         require APPPATH . 'third_party/google-api/Google_Client.php';
         require APPPATH . 'third_party/google-api/contrib/Google_CalendarService.php';
 
@@ -203,6 +217,7 @@ class Calender extends CI_Controller {
             $this->client->setDeveloperKey($setting->api_key);
             $this->client->setScopes("https://www.googleapis.com/auth/calendar");
             $this->client->setAccessType('offline');
+            $this->client->setApprovalPrompt('auto');
 
             $this->service = new Google_CalendarService($this->client);
         } else {
