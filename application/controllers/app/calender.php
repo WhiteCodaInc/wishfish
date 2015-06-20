@@ -245,8 +245,6 @@ class Calender extends CI_Controller {
     }
 
     function refresh() {
-
-
         try {
             $this->setClient();
             if ($this->client->isAccessTokenExpired() && $this->input->cookie('token')) {
@@ -254,7 +252,8 @@ class Calender extends CI_Controller {
                 $this->client->refreshToken($tkn);
             }
         } catch (Exception $exc) {
-            echo $exc->getMessage();
+            $this->close();
+            $this->connect();
         }
     }
 
