@@ -255,7 +255,7 @@ class Calender extends CI_Controller {
             }
         } catch (Exception $exc) {
             $this->close();
-            $this->connect();
+            header('location:' . site_url() . 'calender/connect');
         }
     }
 
