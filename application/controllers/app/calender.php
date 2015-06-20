@@ -25,7 +25,7 @@ class Calender extends CI_Controller {
                 header('location:' . site_url() . 'app/upgrade');
             }
             echo '<pre>';
-            $this->session->unset_userdata('ip_address');
+            @$this->session->unset_userdata('ip_address');
             print_r($this->session->all_userdata());
             die();
         } else {
