@@ -205,13 +205,13 @@ class Calender extends CI_Controller {
     function connect() {
         $this->con();
         $userid = array(
-            'name' => 'googleid',
+            'name' => 'userid',
             'value' => $this->encryption->encode($this->session->userdata('userid')),
             'expire' => time() + 86500,
             'domain' => '.wish-fish.com'
         );
         $this->input->set_cookie($userid);
-        header('location:' . $this->client->createAuthUrl());
+//        header('location:' . $this->client->createAuthUrl());
     }
 
     function con() {
