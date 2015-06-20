@@ -38,7 +38,7 @@ class Calender extends CI_Controller {
         if ($this->input->get('error') == "access_denied") {
             header('location:' . site_url() . 'app/calender');
         } else if ($this->input->get('code') != "") {
-            $this->connect();
+            $this->con();
             $this->client->authenticate($this->input->get('code'));
             $token = json_decode($this->client->getAccessToken());
             $this->session->set_userdata('token', $token->access_token);
@@ -199,7 +199,7 @@ class Calender extends CI_Controller {
     }
 
     function connect() {
-        $this->connect();
+        $this->con();
         header('location:' . $this->client->createAuthUrl());
     }
 
