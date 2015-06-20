@@ -46,6 +46,7 @@ class Calender extends CI_Controller {
             $this->client->authenticate($this->input->get('code'));
             $token = json_decode($this->client->getAccessToken());
             $this->session->set_userdata('token', $token->access_token);
+            redirect('app/calender');
         }
         $data['template'] = $this->objsmstemplate->getTemplates();
         $this->load->view('dashboard/header');
