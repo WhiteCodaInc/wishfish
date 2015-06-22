@@ -312,6 +312,7 @@ class Calender extends CI_Controller {
 
 
                 print_r($post);
+                $body = ($post['event_type'] == "sms" || $post['event_type'] == "notification") ? $post['smsbody'] : $post['emailbody'];
                 $is_repeat = (isset($post['is_repeat']) && $post['is_repeat'] == "on") ? 1 : 0;
                 switch ($post['assign']) {
                     case 'all_c':
@@ -322,7 +323,14 @@ class Calender extends CI_Controller {
 
                             $event = new Google_Event();
                             $event->setSummary('Happy BirthDay');
+                            $event->setDescription($body);
                             $event->setColorId(9);
+
+                            $reminder = new Google_EventReminders();
+                            $reminder->setUseDefault(false);
+                            $overrides = array("method" => "email", "minutes" => "1");
+                            $reminder->setOverrides(array($overrides));
+                            $event->setReminders($reminder);
 
                             $start = new Google_EventDateTime();
                             $start->setDateTime($st_dt);
