@@ -335,14 +335,14 @@ class Calender extends CI_Controller {
                             $event->setColorId(9);
 
 
-                            $reminderI = new Google_EventReminder();
-                            $reminderI->setMethod($post['event_type']);
-                            $reminderI->setMinutes('1');
+                            /* $reminderI = new Google_EventReminder();
+                              $reminderI->setMethod($post['event_type']);
+                              $reminderI->setMinutes('1');
 
-                            $reminder = new Google_EventReminders();
-                            $reminder->setUseDefault('false');
-                            $reminder->setOverrides(array($reminderI));
-                            $event->setReminders($reminder);
+                              $reminder = new Google_EventReminders();
+                              $reminder->setUseDefault('false');
+                              $reminder->setOverrides(array($reminderI));
+                              $event->setReminders($reminder); */
 
                             $start = new Google_EventDateTime();
                             $start->setDateTime($ev_dt);
