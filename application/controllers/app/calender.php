@@ -360,7 +360,7 @@ class Calender extends CI_Controller {
 
 
                             $event->attendees = array($attendee1);
-                            print_r($event);
+//                            print_r($event);
 
 
                             $createdEvent = $this->service->events->insert($calId, $event);
