@@ -1076,7 +1076,13 @@ $userid = $this->session->userdata('userid');
             border: inherit;
         }
     </style>
-
+    <script type="text/javascript">
+        $('#varify_phone').on("keypress", function (e) {
+            if (e.keyCode == 13) {
+                $('#sendcode').trigger('click');
+            }
+        });
+    </script>
     <div class="row" style="background-color: #ecf0f5;margin: 0">
         <div class="col-md-12">
             <div class="alert1 alert-danger1">
