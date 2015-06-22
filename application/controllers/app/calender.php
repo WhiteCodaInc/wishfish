@@ -31,6 +31,7 @@ class Calender extends CI_Controller {
         $this->load->model('dashboard/m_calender', 'objcal');
         $this->load->model('dashboard/m_profile', 'objprofile');
         $this->load->model('m_register', 'objregister');
+        $this->load->model('m_trigger', 'objtrigger');
     }
 
     function index() {
@@ -318,59 +319,49 @@ class Calender extends CI_Controller {
                 $is_repeat = (isset($post['is_repeat']) && $post['is_repeat'] == "on") ? 1 : 0;
 
 
-                // echo $st_dt . '<br>';
                 print_r($post);
-                //die();
+
+                $event = new Google_Event();
+                $event->setSummary($post['event']);
+                $event->setDescription($body);
+                $event->setColorId(9);
+
+                $start = new Google_EventDateTime();
+                $start->setDateTime($ev_dt);
+                $event->setStart($start);
+
+                $end = new Google_EventDateTime();
+                $end->setDateTime($ev_dt);
+                $event->setEnd($end);
 
                 switch ($post['assign']) {
                     case 'all_c':
                         if (!isset($post['is_repeat'])) {
-//                            $event = $this->makeEvent($post);
+
                             $contactInfo = $this->wi_common->getContactInfo($post['contact_id']);
-//                            print_r($contactInfo);
 
-                            $event = new Google_Event();
-                            $event->setSummary($post['event']);
-                            $event->setDescription($body);
-                            $event->setColorId(9);
+                            $attendee = new Google_EventAttendee();
+                            $attendee->setEmail($contactInfo->email);
+                            $attendee->setDisplayName($contactInfo->fname . ' ' . $contactInfo->lname);
 
-
-                            /* $reminderI = new Google_EventReminder();
-                              $reminderI->setMethod($post['event_type']);
-                              $reminderI->setMinutes('1');
-
-                              $reminder = new Google_EventReminders();
-                              $reminder->setUseDefault('false');
-                              $reminder->setOverrides(array($reminderI));
-                              $event->setReminders($reminder); */
-
-                            $start = new Google_EventDateTime();
-                            $start->setDateTime($ev_dt);
-                            $event->setStart($start);
-
-                            $end = new Google_EventDateTime();
-                            $end->setDateTime($ev_dt);
-                            $event->setEnd($end);
-
-                            $attendee1 = new Google_EventAttendee();
-                            $attendee1->setEmail($contactInfo->email);
-                            $attendee1->setDisplayName($contactInfo->fname . ' ' . $contactInfo->lname);
-
-
-
-
-                            $event->attendees = array($attendee1);
-//                            print_r($event);
-
-
-                            $createdEvent = $this->service->events->insert($calId, $event);
-                            print_r($createdEvent);
+                            $event->attendees = array($attendee);
                         }
                         break;
                     case 'all_gc':
-                        unset($post['contact_id']);
+                        $res = $this->objtrigger->getGroupContact($post['group_id']);
+                        $cids = $res[1];
+                        foreach ($cids as $cid) {
+                            $contactInfo = $this->wi_common->getContactInfo($cid);
+                            $attendee = new Google_EventAttendee();
+                            $attendee->setEmail($contactInfo->email);
+                            $attendee->setDisplayName($contactInfo->fname . ' ' . $contactInfo->lname);
+
+                            $event->attendees = array($attendee);
+                        }
                         break;
                 }
+                $createdEvent = $this->service->events->insert($calId, $event);
+                print_r($createdEvent);
             } catch (Google_Exception $exc) {
                 $error = $exc->getMessage();
                 echo $error;
