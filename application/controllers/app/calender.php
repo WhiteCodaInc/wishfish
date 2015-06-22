@@ -320,7 +320,7 @@ class Calender extends CI_Controller {
 
 
                 print_r($post);
-
+                die();
                 $event = new Google_Event();
                 $event->setSummary($post['event']);
                 $event->setDescription($body);
