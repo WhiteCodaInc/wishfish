@@ -2,7 +2,7 @@
 <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/dashboard/js/plugins/Qtip/css/jquery.qtip.css"/>
 <!--<link rel="stylesheet" href="<?= base_url() ?>assets/dashboard/js/plugins/clock/css/flipclock.css" />-->
 <style type="text/css">
-    #image_preview > img {
+    #image_preview img {
         z-index: 5;
         height: 90px;
         width: 90px;
@@ -406,18 +406,15 @@ $userid = $this->session->userdata('userid');
 
                                 <form id="profileForm" method="post" action="" enctype="multipart/form-data">
                                     <input name="profile" style="position: absolute;left: -9999px" id="profile-image-upload" class="hidden" type="file">
-
-                                    <?php if ($profile_pic != ""): ?>
-                                        <a href="<?= site_url() ?>app/profile" >
-                                            <div id="image_preview">
+                                    <div id="image_preview">
+                                        <?php if ($profile_pic != ""): ?>
+                                            <a href="<?= site_url() ?>app/profile" >
                                                 <img  style="cursor: pointer;" src="<?= $img_src ?>" class="img-circle" alt="User Image" />
-                                            </div>
-                                        </a>
-                                    <?php else: ?>
-                                        <div id="image_preview">
+                                            </a>
+                                        <?php else: ?>
                                             <img id="profile_pic" style="cursor: pointer;" src="<?= $img_src ?>" class="img-circle" alt="User Image" />
-                                        </div>
-                                    <?php endif; ?>
+                                        <?php endif; ?>
+                                    </div>
                                     <p>
                                         <?= $this->session->userdata('name') ?>
                                     </p>
