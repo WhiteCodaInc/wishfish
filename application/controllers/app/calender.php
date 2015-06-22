@@ -339,6 +339,7 @@ class Calender extends CI_Controller {
             }
         } else {
             print_r($post);
+            return FALSE;
         }
 
         die();
