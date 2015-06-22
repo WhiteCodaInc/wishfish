@@ -149,8 +149,8 @@ class Calender extends CI_Controller {
 
     function addEvent() {
         $post = $this->input->post();
-        $this->addGoogleEvent($post);
-        die();
+//        $this->addGoogleEvent($post);
+//        die();
         $data = $this->objcal->addEvent($post);
         if ($data) {
 //            echo ($this->addGoogleEvent($post)) ? 1 : 0;
@@ -356,7 +356,7 @@ class Calender extends CI_Controller {
                             $attendee[$key]->setEmail($contactInfo->email);
                             $attendee[$key]->setDisplayName($contactInfo->fname . ' ' . $contactInfo->lname);
                         }
-                        print_r($attendee);
+//                        print_r($attendee);
                         $event->attendees = array($attendee);
                         break;
                 }
