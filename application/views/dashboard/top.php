@@ -408,11 +408,11 @@ $userid = $this->session->userdata('userid');
                                     <input name="profile" style="position: absolute;left: -9999px" id="profile-image-upload" class="hidden" type="file">
                                     <div id="image_preview">
                                         <?php if ($profile_pic != ""): ?>
-                                            <img id="profile_pic" style="cursor: pointer;" src="<?= $img_src ?>" class="img-circle" alt="User Image" />
-                                        <?php else: ?>
                                             <a href="<?= site_url() ?>app/profile" >
                                                 <img  style="cursor: pointer;" src="<?= $img_src ?>" class="img-circle" alt="User Image" />
                                             </a>
+                                        <?php else: ?>
+                                            <img id="profile_pic" style="cursor: pointer;" src="<?= $img_src ?>" class="img-circle" alt="User Image" />
                                         <?php endif; ?>
                                     </div>
                                     <p>
