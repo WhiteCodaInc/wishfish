@@ -293,27 +293,48 @@ class Calender extends CI_Controller {
     function addGoogleEvent($post = NULL) {
 
         try {
-            echo '<pre>';
-            print_r($post);
-            die();
-            switch ($post['assign']) {
-                case 'all_c':
-
-                    break;
-                case 'all_gc':
-                    unset($post['contact_id']);
-
-                    break;
-            }
-
             $this->refresh();
             $timestamp = timezones($this->session->userdata('timezone'));
             date_default_timezone_set($this->timezone_by_offset($timestamp));
             $st_dt = $en_dt = date(DATE_RFC3339);
+
+            echo '<pre>';
+            print_r($post);
+            $is_repeat = (isset($post['is_repeat']) && $post['is_repeat'] == "on") ? 1 : 0;
+            switch ($post['assign']) {
+                case 'all_c':
+                    if (!$is_repeat) {
+
+                        $contactInfo = $this->common->getContactInfo($post['contact_id']);
+
+                        $event = new Google_Event();
+                        $event->setSummary('Happy BirthDay');
+                        $event->setColorId(9);
+
+                        $start = new Google_EventDateTime();
+                        $start->setDateTime($st_dt);
+                        $event->setStart($start);
+
+                        $end = new Google_EventDateTime();
+                        $end->setDateTime($en_dt);
+                        $event->setEnd($end);
+
+                        $attendee1 = new Google_EventAttendee();
+                        $attendee1->setEmail($contactInfo->email);
+                        $attendee1->setDisplayName($contactInfo->fname . ' ' . $contactInfo->lname);
+
+                        $event->attendees = array($attendee1);
+                        print_r($event);
+                    }
+                    break;
+                case 'all_gc':
+                    unset($post['contact_id']);
+                    break;
+            }
         } catch (Exception $exc) {
             return FALSE;
         }
-
+        die();
 
 //        if (isset($post['contactid'])) {
 //            $post['contact_id'] = $post['contactid'];
@@ -349,32 +370,6 @@ class Calender extends CI_Controller {
 //        } else {
 //            return FALSE;
 //        }
-//        $event = new Google_Event();
-//        $event->setSummary('Happy BirthDay');
-//        $event->setLocation('The Neighbourhood');
-//        $event->setColorId(1);
-//
-//        $start = new Google_EventDateTime();
-////        $start->setDateTime(date(DATE_RFC3339));
-//        $start->setDateTime('2015-06-20T03:00:00.000-07:00');
-////        $start->setTimeZone('Asia/Samarkand');
-//        $event->setStart($start);
-//
-//        $end = new Google_EventDateTime();
-////        $end->setDateTime(date(DATE_RFC3339));
-//        $end->setDateTime('2015-06-20T03:00:00.000-07:00');
-////        $end->setTimeZone('Asia/Samarkand');
-//        $event->setEnd($end);
-//
-//        $attendee1 = new Google_EventAttendee();
-//        $attendee1->setEmail('sanjayvekariya18@gmail.com');
-//        $attendee1->setDisplayName('Sanjay Vekariya');
-//        $attendee1->setId(1);
-//
-//        $attendees = array($attendee1);
-//        $event->attendees = $attendees;
-//
-//        print_r($event);
 //        try {
 //            if ($this->client->isAccessTokenExpired()) {
 //                $this->client->refreshToken($this->session->userdata('token'));
