@@ -254,9 +254,11 @@ class Calender extends CI_Controller {
             if ($this->client->isAccessTokenExpired() && $this->input->cookie('token')) {
                 $tkn = $this->encryption->decode($this->input->cookie('token', TRUE));
                 $this->client->refreshToken($tkn);
+                return TRUE;
             }
         } catch (Exception $exc) {
             $this->close();
+            return FALSE;
         }
     }
 
@@ -291,49 +293,54 @@ class Calender extends CI_Controller {
     }
 
     function addGoogleEvent($post = NULL) {
+        echo '<pre>';
+        if ($this->refresh()) {
+            try {
+                $timestamp = timezones($this->session->userdata('timezone'));
+                date_default_timezone_set($this->timezone_by_offset($timestamp));
+                $st_dt = $en_dt = date(DATE_RFC3339);
 
-        try {
-            $this->refresh();
-            $timestamp = timezones($this->session->userdata('timezone'));
-            date_default_timezone_set($this->timezone_by_offset($timestamp));
-            $st_dt = $en_dt = date(DATE_RFC3339);
 
-            echo '<pre>';
-            print_r($post);
-            $is_repeat = (isset($post['is_repeat']) && $post['is_repeat'] == "on") ? 1 : 0;
-            switch ($post['assign']) {
-                case 'all_c':
-                    if (!$is_repeat) {
+                print_r($post);
+                $is_repeat = (isset($post['is_repeat']) && $post['is_repeat'] == "on") ? 1 : 0;
+                switch ($post['assign']) {
+                    case 'all_c':
+                        if (!$is_repeat) {
 
-                        $contactInfo = $this->wi_common->getContactInfo($post['contact_id']);
+                            $contactInfo = $this->wi_common->getContactInfo($post['contact_id']);
+                            print_r($contactInfo);
 
-                        $event = new Google_Event();
-                        $event->setSummary('Happy BirthDay');
-                        $event->setColorId(9);
+                            $event = new Google_Event();
+                            $event->setSummary('Happy BirthDay');
+                            $event->setColorId(9);
 
-                        $start = new Google_EventDateTime();
-                        $start->setDateTime($st_dt);
-                        $event->setStart($start);
+                            $start = new Google_EventDateTime();
+                            $start->setDateTime($st_dt);
+                            $event->setStart($start);
 
-                        $end = new Google_EventDateTime();
-                        $end->setDateTime($en_dt);
-                        $event->setEnd($end);
+                            $end = new Google_EventDateTime();
+                            $end->setDateTime($en_dt);
+                            $event->setEnd($end);
 
-                        $attendee1 = new Google_EventAttendee();
-                        $attendee1->setEmail($contactInfo->email);
-                        $attendee1->setDisplayName($contactInfo->fname . ' ' . $contactInfo->lname);
+                            $attendee1 = new Google_EventAttendee();
+                            $attendee1->setEmail($contactInfo->email);
+                            $attendee1->setDisplayName($contactInfo->fname . ' ' . $contactInfo->lname);
 
-                        $event->attendees = array($attendee1);
-                        print_r($event);
-                    }
-                    break;
-                case 'all_gc':
-                    unset($post['contact_id']);
-                    break;
+                            $event->attendees = array($attendee1);
+                            print_r($event);
+                        }
+                        break;
+                    case 'all_gc':
+                        unset($post['contact_id']);
+                        break;
+                }
+            } catch (Exception $exc) {
+                return FALSE;
             }
-        } catch (Exception $exc) {
-            return FALSE;
+        } else {
+            print_r($post);
         }
+
         die();
 
 //        if (isset($post['contactid'])) {
