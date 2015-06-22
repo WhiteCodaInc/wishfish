@@ -305,6 +305,7 @@ class Calender extends CI_Controller {
         $calId = $this->getCalenderId();
         if ($this->refresh() && $calId) {
             try {
+                echo 'CALLED';
                 $timezone = $this->session->userdata('timezone');
                 $currDateTime = $this->wi_common->getUTCDateWithTime($timezone);
                 $timestamp = timezones($timezone);
@@ -314,8 +315,7 @@ class Calender extends CI_Controller {
                 $st_dt = $en_dt = date(DATE_RFC3339, strtotime($eventDt));
 
                 // echo $st_dt . '<br>';
-
-                print_r($post);
+//                print_r($post);
                 //die();
                 $body = ($post['event_type'] == "sms" || $post['event_type'] == "notification") ? $post['smsbody'] : $post['emailbody'];
                 $is_repeat = (isset($post['is_repeat']) && $post['is_repeat'] == "on") ? 1 : 0;
@@ -367,6 +367,7 @@ class Calender extends CI_Controller {
                 return FALSE;
             }
         } else {
+            echo 'NOT CALLED';
             print_r($post);
             return FALSE;
         }
