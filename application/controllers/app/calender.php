@@ -311,7 +311,7 @@ class Calender extends CI_Controller {
                 $timestamp = timezones($timezone);
                 $eventDt = date('Y-m-d', strtotime($currDateTime)) . ' ' . $post['time'] . ':00';
                 echo $eventDt . '<br>';
-                //date_default_timezone_set($this->timezone_by_offset($timestamp));
+                date_default_timezone_set($this->timezone_by_offset($timestamp));
                 $st_dt = $en_dt = date(DATE_RFC3339, strtotime($eventDt));
 
                 echo $st_dt . '<br>';
