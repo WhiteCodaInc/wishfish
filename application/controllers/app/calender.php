@@ -266,6 +266,15 @@ class Calender extends CI_Controller {
         delete_cookie('token', '.wish-fish.com', '/');
     }
 
+    function getCalenderId() {
+        if ($this->refresh()) {
+            $calendarList = $this->service->calendarList->listCalendarList();
+            return $calendarList['items'][0]['id'];
+        } else {
+            return false;
+        }
+    }
+
     public function events() {
         try {
             $this->refresh();
@@ -294,7 +303,8 @@ class Calender extends CI_Controller {
 
     function addGoogleEvent($post = NULL) {
         echo '<pre>';
-        if ($this->refresh()) {
+        $calId = $this->getCalenderId();
+        if ($this->refresh() && $calId) {
             try {
                 $timestamp = timezones($this->session->userdata('timezone'));
                 date_default_timezone_set($this->timezone_by_offset($timestamp));
@@ -327,7 +337,9 @@ class Calender extends CI_Controller {
                             $attendee1->setDisplayName($contactInfo->fname . ' ' . $contactInfo->lname);
 
                             $event->attendees = array($attendee1);
-                            print_r($event);
+
+                            $createdEvent = $this->service->events->insert($calId, $event);
+                            print_r($createdEvent);
                         }
                         break;
                     case 'all_gc':
