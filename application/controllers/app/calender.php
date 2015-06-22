@@ -16,7 +16,6 @@ class Calender extends CI_Controller {
     //put your code here
     function __construct() {
         parent::__construct();
-
         $code = $this->input->get('code');
         if ($code == "") {
             if (!$this->wi_authex->logged_in()) {
@@ -149,6 +148,8 @@ class Calender extends CI_Controller {
 
     function addEvent() {
         $post = $this->input->post();
+        $this->addGoogleEvent($post);
+        die();
         $data = $this->objcal->addEvent($post);
         if ($data) {
 //            echo ($this->addGoogleEvent($post)) ? 1 : 0;
@@ -291,15 +292,29 @@ class Calender extends CI_Controller {
 
     function addGoogleEvent($post = NULL) {
 
-//        switch ($post['assign']) {
-//            case 'all_c':
-//                
-//                break;
-//            case 'all_gc':
-//                unset($post['contact_id']);
-//
-//                break;
-//        }
+        try {
+            echo '<pre>';
+            print_r($post);
+            die();
+            switch ($post['assign']) {
+                case 'all_c':
+
+                    break;
+                case 'all_gc':
+                    unset($post['contact_id']);
+
+                    break;
+            }
+
+            $this->refresh();
+            $timestamp = timezones($this->session->userdata('timezone'));
+            date_default_timezone_set($this->timezone_by_offset($timestamp));
+            $st_dt = $en_dt = date(DATE_RFC3339);
+        } catch (Exception $exc) {
+            return FALSE;
+        }
+
+
 //        if (isset($post['contactid'])) {
 //            $post['contact_id'] = $post['contactid'];
 //            unset($post['contactid']);
@@ -334,21 +349,6 @@ class Calender extends CI_Controller {
 //        } else {
 //            return FALSE;
 //        }
-
-
-        try {
-            $this->refresh();
-            $timestamp = timezones($this->session->userdata('timezone'));
-            date_default_timezone_set($this->timezone_by_offset($timestamp));
-            echo date(DATE_RFC3339) . '<br>';
-            die();
-        } catch (Exception $exc) {
-            return FALSE;
-        }
-
-
-
-
 //        $event = new Google_Event();
 //        $event->setSummary('Happy BirthDay');
 //        $event->setLocation('The Neighbourhood');
