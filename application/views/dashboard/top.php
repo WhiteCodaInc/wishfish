@@ -407,7 +407,13 @@ $userid = $this->session->userdata('userid');
                                 <form id="profileForm" method="post" action="" enctype="multipart/form-data">
                                     <input name="profile" style="position: absolute;left: -9999px" id="profile-image-upload" class="hidden" type="file">
                                     <div id="image_preview">
-                                        <img id="profile_pic" style="cursor: pointer;" src="<?= $img_src ?>" class="img-circle" alt="User Image" />
+                                        <?php if ($profile_pic != ""): ?>
+                                            <img id="profile_pic" style="cursor: pointer;" src="<?= $img_src ?>" class="img-circle" alt="User Image" />
+                                        <?php else: ?>
+                                            <a href="<?= site_url() ?>app/profile" >
+                                                <img  style="cursor: pointer;" src="<?= $img_src ?>" class="img-circle" alt="User Image" />
+                                            </a>
+                                        <?php endif; ?>
                                     </div>
                                     <p>
                                         <?= $this->session->userdata('name') ?>
@@ -448,7 +454,7 @@ $userid = $this->session->userdata('userid');
                                                 <li>
                                                     <a class="<?= ($setup['profile']) ? "task-success" : "" ?>" href="javascript:void(0)" data-toggle="modal" data-target="<?= (!$setup['profile']) ? "#profileSetup" : "" ?>">
                                                         <i class="fa <?= ($setup['profile']) ? "fa-check-square" : "fa-square-o" ?> i_profile"></i>
-                                                        Complete Your Profile
+                                                        Enter Your Info
                                                     </a>
                                                 </li>
                                                 <li>
@@ -474,7 +480,7 @@ $userid = $this->session->userdata('userid');
                                     <a href="<?= site_url() ?>app/profile" class="btn btn-default btn-xs">Profile</a>
                                 </div>
                                 <div class="pull-left" style="margin-left: 7px;">
-                                    <a href="<?= site_url() ?>app/setting" class="btn btn-default btn-xs">Setting</a>
+                                    <a href="<?= site_url() ?>app/setting" class="btn btn-default btn-xs">Settings</a>
                                 </div>
                                 <div class="pull-right">
                                     <a href="<?= site_url() ?>app/logout" class="btn btn-default btn-xs">Sign out</a>
