@@ -161,6 +161,11 @@ class M_contacts extends CI_Model {
     }
 
     function updateContact($set) {
+        
+        echo '<pre>';
+        print_r($set);
+        die();
+        
         $m = "";
         $cid = $set['contactid'];
 //        $set['phone'] = str_replace(array('(', ')', ' ', '-'), '', $set['code'] . $set['phone']);
