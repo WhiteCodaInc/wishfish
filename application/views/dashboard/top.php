@@ -406,15 +406,18 @@ $userid = $this->session->userdata('userid');
 
                                 <form id="profileForm" method="post" action="" enctype="multipart/form-data">
                                     <input name="profile" style="position: absolute;left: -9999px" id="profile-image-upload" class="hidden" type="file">
-                                    <div id="image_preview">
-                                        <?php if ($profile_pic != ""): ?>
-                                            <!--<a href="<?= site_url() ?>app/profile" >-->
+
+                                    <?php if ($profile_pic != ""): ?>
+                                        <a href="<?= site_url() ?>app/profile" >
+                                            <div id="image_preview">
                                                 <img  style="cursor: pointer;" src="<?= $img_src ?>" class="img-circle" alt="User Image" />
-                                            <!--</a>-->
-                                        <?php else: ?>
+                                            </div>
+                                        </a>
+                                    <?php else: ?>
+                                        <div id="image_preview">
                                             <img id="profile_pic" style="cursor: pointer;" src="<?= $img_src ?>" class="img-circle" alt="User Image" />
-                                        <?php endif; ?>
-                                    </div>
+                                        </div>
+                                    <?php endif; ?>
                                     <p>
                                         <?= $this->session->userdata('name') ?>
                                     </p>
