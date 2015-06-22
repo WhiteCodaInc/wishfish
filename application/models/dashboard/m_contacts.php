@@ -234,9 +234,9 @@ class M_contacts extends CI_Model {
         $this->db->update('wi_contact_detail', $set, array('contact_id' => $cid));
         //--------------Delete Existing Group---------------------------------//
         $this->db->select('M.id');
-        $this->db->from('multiple_contact_group as M');
-        $this->db->join('contact_groups as CG', 'M.group_id = CG.group_id');
-        $this->db->join('contact_detail as C', 'M.contact_id = C.contact_id');
+        $this->db->from('wi_multiple_contact_group as M');
+        $this->db->join('wi_contact_groups as CG', 'M.group_id = CG.group_id');
+        $this->db->join('wi_contact_detail as C', 'M.contact_id = C.contact_id');
         $this->db->where('CG.type', "simple");
         $this->db->where('M.contact_id', $cid);
         $query = $this->db->get();
