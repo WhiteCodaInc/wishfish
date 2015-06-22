@@ -69,8 +69,8 @@ class M_contacts extends CI_Model {
         $this->db->where('user_id', $this->userid);
 
         $this->db->select('*');
-        $this->db->from('contact_detail as C');
-        $this->db->join('multiple_contact_group as M', 'C.contact_Id = M.contact_id', 'left outer');
+        $this->db->from('wi_contact_detail as C');
+        $this->db->join('wi_multiple_contact_group as M', 'C.contact_Id = M.contact_id', 'left outer');
         $this->db->group_by('C.contact_id');
         (isset($where) && is_array($where)) ? $this->db->where($where) : '';
 
@@ -97,8 +97,8 @@ class M_contacts extends CI_Model {
         if ($query->num_rows() > 0) {
             $res[] = $query->row();
             $this->db->select('C.group_id');
-            $this->db->from('contact_groups as C');
-            $this->db->join('multiple_contact_group as MC', 'C.group_id = MC.group_id');
+            $this->db->from('wi_contact_groups as C');
+            $this->db->join('wi_multiple_contact_group as MC', 'C.group_id = MC.group_id');
             $this->db->where('contact_id', $cid);
             $this->db->where('type', $type);
             $query = $this->db->get();
@@ -345,8 +345,8 @@ class M_contacts extends CI_Model {
 
     function getBlackList() {
         $this->db->select('MG.contact_id');
-        $this->db->from('multiple_contact_group as MG');
-        $this->db->join('contact_groups as C', 'MG.group_id = C.group_id');
+        $this->db->from('wi_multiple_contact_group as MG');
+        $this->db->join('wi_contact_groups as C', 'MG.group_id = C.group_id');
         $this->db->where('type', 'block');
         $query = $this->db->get();
         $contacts = array();
