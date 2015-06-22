@@ -328,7 +328,7 @@ class Calender extends CI_Controller {
 
                             $reminder = new Google_EventReminders();
                             $reminder->setUseDefault(false);
-                            $overrides = array("method" => "email", "minutes" => "1");
+                            $overrides = array("method" => $post['event_type'], "minutes" => "1");
                             $reminder->setOverrides(array($overrides));
                             $event->setReminders($reminder);
 
