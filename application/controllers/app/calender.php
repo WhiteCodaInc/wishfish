@@ -302,7 +302,6 @@ class Calender extends CI_Controller {
     }
 
     function addGoogleEvent($post = NULL) {
-        echo '<pre>';
         $calId = $this->getCalenderId();
         if ($this->refresh() && $calId) {
             try {
