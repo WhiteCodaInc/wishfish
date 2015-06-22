@@ -76,7 +76,7 @@ $userid = $this->session->userdata('userid');
                             <i class="fa fa-user"></i>
                             Contacts
                         </a>
-                        <ul class="dropdown-menu" role="menu">
+                        <ul class="dropdown-menu" role="menu" style="font-size: 17px">
                             <li id="create-contact">
                                 <a href="<?= site_url() ?>app/contacts/addContact">
                                     <i class="fa fa-plus"></i>
@@ -127,14 +127,14 @@ $userid = $this->session->userdata('userid');
                     if (count($currPlan) && $currPlan->plan_id == 1) {
                         ?>
                         <li style="margin: 10px 30px;color: white;">
-                            <span style="font-size: 20px">
+                            <span style="font-size: 17px">
                                 Days Left on Trial: <?= $this->wi_common->getDateDiff($currPlan) ?>
                             </span>
                         </li>
                     <?php } ?>
                     <li style="margin: 10px">
                         <!--<div class="clock"></div>-->
-                        <span style="font-size: 20px;color: white" id="curr_time"></span>
+                        <span style="font-size: 17px;color: white" id="curr_time"></span>
                     </li>  
                 </ul>
                 <ul class="nav navbar-nav navbar-right" >
