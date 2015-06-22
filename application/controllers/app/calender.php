@@ -364,9 +364,9 @@ class Calender extends CI_Controller {
                         break;
                 }
             } catch (Google_Exception $exc) {
-                //$error = $exc->getErrors();
-                //echo $error[0]['message'];
-                print_r($exc);
+                $error = $exc->getMessage();
+                echo $error;
+//                print_r($exc);
                 return FALSE;
             }
         } else {
