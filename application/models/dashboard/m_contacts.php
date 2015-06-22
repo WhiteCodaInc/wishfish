@@ -194,8 +194,8 @@ class M_contacts extends CI_Model {
                 );
             }
         }
-        print_r($data);
-        die();
+//        print_r($data);
+//        die();
         if (isset($_FILES['contact_avatar'])) {
             if ($_FILES['contact_avatar']['error'] == 0) {
                 $msg = $this->uploadImage($_FILES, $cid);
@@ -245,6 +245,8 @@ class M_contacts extends CI_Model {
         foreach ($res as $value) {
             $ids[] = $value->id;
         }
+        print_r($ids);
+        die();
         if (count($ids) > 0) {
             $this->db->where_in('id', $ids, TRUE);
             $this->db->delete('wi_multiple_contact_group');
