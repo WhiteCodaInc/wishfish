@@ -76,7 +76,7 @@ $userid = $this->session->userdata('userid');
                             <i class="fa fa-user"></i>
                             Contacts
                         </a>
-                        <ul class="dropdown-menu" role="menu" style="font-size: 17px">
+                        <ul class="dropdown-menu" role="menu">
                             <li id="create-contact">
                                 <a href="<?= site_url() ?>app/contacts/addContact">
                                     <i class="fa fa-plus"></i>
