@@ -305,7 +305,6 @@ class Calender extends CI_Controller {
         $calId = $this->getCalenderId();
         if ($this->refresh() && $calId) {
             try {
-                echo 'CALLED';
                 $timezone = $this->session->userdata('timezone');
                 $currDateTime = $this->wi_common->getUTCDateWithTime($timezone);
                 $timestamp = timezones($timezone);
@@ -338,7 +337,7 @@ class Calender extends CI_Controller {
 
                             $reminder = new Google_EventReminders();
                             $reminder->setUseDefault("false");
-                            $reminder->setOverrides($reminderI);
+                            $reminder->setOverrides(array($reminderI));
                             $event->setReminders($reminder);
 
                             $start = new Google_EventDateTime();
