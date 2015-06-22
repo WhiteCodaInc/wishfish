@@ -126,13 +126,13 @@ $userid = $this->session->userdata('userid');
                     $currPlan = $this->wi_common->getCurrentPlan($userid);
                     if (count($currPlan) && $currPlan->plan_id == 1) {
                         ?>
-                        <li style="margin: 10px 30px;color: white;">
+                        <li style="margin: 13px 30px;color: white;">
                             <span style="font-size: 17px">
                                 Days Left on Trial: <?= $this->wi_common->getDateDiff($currPlan) ?>
                             </span>
                         </li>
                     <?php } ?>
-                    <li style="margin: 10px">
+                    <li style="margin: 13px">
                         <!--<div class="clock"></div>-->
                         <span style="font-size: 17px;color: white" id="curr_time"></span>
                     </li>  
