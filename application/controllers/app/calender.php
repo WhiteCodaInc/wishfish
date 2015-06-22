@@ -336,7 +336,7 @@ class Calender extends CI_Controller {
                             $reminderI->setMinutes('1');
 
                             $reminder = new Google_EventReminders();
-                            $reminder->setUseDefault("FALSE");
+                            $reminder->setUseDefault('FALSE');
                             $reminder->setOverrides(array($reminderI));
                             $event->setReminders($reminder);
 
