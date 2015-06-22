@@ -364,6 +364,8 @@ class Calender extends CI_Controller {
                         break;
                 }
             } catch (Exception $exc) {
+                $error = $exc->getErrors();
+                echo $error[0]['message'];
                 return FALSE;
             }
         } else {
