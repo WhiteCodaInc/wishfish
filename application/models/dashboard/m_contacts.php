@@ -162,8 +162,8 @@ class M_contacts extends CI_Model {
 
     function updateContact($set) {
 
-        echo '<pre>';
-        print_r($set);
+//        echo '<pre>';
+//        print_r($set);
 //        die();
 
         $m = "";
@@ -245,8 +245,6 @@ class M_contacts extends CI_Model {
         foreach ($res as $value) {
             $ids[] = $value->id;
         }
-        print_r($ids);
-        die();
         if (count($ids) > 0) {
             $this->db->where_in('id', $ids, TRUE);
             $this->db->delete('wi_multiple_contact_group');
