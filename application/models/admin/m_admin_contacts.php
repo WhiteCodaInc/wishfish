@@ -325,7 +325,7 @@ class M_admin_contacts extends CI_Model {
 
     function createList($post) {
         $set = array();
-        $data['group_name'] = $post['group_name'];
+        $data['group_name'] = "Black List";
         $data['type'] = $post['type'];
         $ids = (isset($post['contact_id'])) ? $post['contact_id'] : array();
 
