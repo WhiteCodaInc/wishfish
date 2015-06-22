@@ -305,58 +305,53 @@ class Calender extends CI_Controller {
         $calId = $this->getCalenderId();
         if ($this->refresh() && $calId) {
             try {
-                $timezone = $this->session->userdata('timezone');
-                $currDateTime = $this->wi_common->getUTCDateWithTime($timezone);
-                $timestamp = timezones($timezone);
-                $eventDt = date('Y-m-d', strtotime($currDateTime)) . ' ' . $post['time'] . ':00';
-                //echo $eventDt . '<br>';
-                date_default_timezone_set($this->timezone_by_offset($timestamp));
-                $st_dt = $en_dt = date(DATE_RFC3339, strtotime($eventDt));
+
 
                 // echo $st_dt . '<br>';
                 print_r($post);
                 //die();
-                $body = ($post['event_type'] == "sms" || $post['event_type'] == "notification") ? $post['smsbody'] : $post['emailbody'];
-                $is_repeat = (isset($post['is_repeat']) && $post['is_repeat'] == "on") ? 1 : 0;
+
                 switch ($post['assign']) {
                     case 'all_c':
-                        if (!$is_repeat) {
-
-                            $contactInfo = $this->wi_common->getContactInfo($post['contact_id']);
+                        if (!isset($post['is_repeat'])) {
+                            $event = $this->makeEvent($post);
+//                            $contactInfo = $this->wi_common->getContactInfo($post['contact_id']);
 //                            print_r($contactInfo);
-
-                            $event = new Google_Event();
-                            $event->setSummary('Happy BirthDay');
-                            $event->setDescription($body);
-                            $event->setColorId(9);
-
-
-                            $reminderI = new Google_EventReminder();
-                            $reminderI->setMethod($post['event_type']);
-                            $reminderI->setMinutes('1');
-
-                            $reminder = new Google_EventReminders();
-                            $reminder->setUseDefault(false);
-                            $reminder->setOverrides(array($reminderI));
-                            $event->setReminders($reminder);
-
-                            $start = new Google_EventDateTime();
-                            $start->setDateTime($st_dt);
-                            $event->setStart($start);
-
-                            $end = new Google_EventDateTime();
-                            $end->setDateTime($en_dt);
-                            $event->setEnd($end);
-
-                            $attendee1 = new Google_EventAttendee();
-                            $attendee1->setEmail($contactInfo->email);
-                            $attendee1->setDisplayName($contactInfo->fname . ' ' . $contactInfo->lname);
+                            /*
+                              $event = new Google_Event();
+                              $event->setSummary('Happy BirthDay');
+                              $event->setDescription($body);
+                              $event->setColorId(9);
 
 
+                              $reminderI = new Google_EventReminder();
+                              $reminderI->setMethod($post['event_type']);
+                              $reminderI->setMinutes('1');
+
+                              $reminder = new Google_EventReminders();
+                              $reminder->setUseDefault(false);
+                              $reminder->setOverrides(array($reminderI));
+                              $event->setReminders($reminder);
+
+                              $start = new Google_EventDateTime();
+                              $start->setDateTime($st_dt);
+                              $event->setStart($start);
+
+                              $end = new Google_EventDateTime();
+                              $end->setDateTime($en_dt);
+                              $event->setEnd($end);
+
+                              $attendee1 = new Google_EventAttendee();
+                              $attendee1->setEmail($contactInfo->email);
+                              $attendee1->setDisplayName($contactInfo->fname . ' ' . $contactInfo->lname);
 
 
-                            $event->attendees = array($attendee1);
-//                            print_r($event);
+
+
+                              $event->attendees = array($attendee1);
+                              print_r($event);
+                             * 
+                             */
                             $createdEvent = $this->service->events->insert($calId, $event);
                             print_r($createdEvent);
                         }
@@ -376,83 +371,47 @@ class Calender extends CI_Controller {
             print_r($post);
             return FALSE;
         }
-
         die();
-
-//        if (isset($post['contactid'])) {
-//            $post['contact_id'] = $post['contactid'];
-//            unset($post['contactid']);
-//        }
-//        $post['date'] = $this->wi_common->getMySqlDate($post['date'], $this->session->userdata('date_format'));
-//        $post['is_repeat'] = (isset($post['is_repeat']) && $post['is_repeat'] == "on") ? 1 : 0;
-//        $post['body'] = ($post['event_type'] == "sms" || $post['event_type'] == "notification") ? $post['smsbody'] : $post['emailbody'];
-//        $post['notification'] = ($post['event_type'] == "notification") ? 0 : 1;
-//        $post['occurance'] = ($post['occurance'] != "") ? $post['occurance'] : NULL;
-//        $post['user_id'] = $this->userid;
-//        unset($post['assign']);
-//        unset($post['smsbody']);
-//        unset($post['emailbody']);
-//
-//        $this->db->trans_start();
-//        $post['color'] = "#0073b7";
-//        $this->db->insert('wi_schedule', $post);
-//        $insertid = $this->db->insert_id();
-//        if ($post['freq_type'] != "-1" && $post['freq_no'] != "-1" && is_numeric($post['occurance'])) {
-//            $post['refer_id'] = $insertid;
-//            $dt = $post['date'];
-//            for ($i = $post['occurance'] - 1; $i > 0; $i--) {
-//                $post['is_repeat'] = 0;
-//                $total = $post['freq_no'] * ($post['occurance'] - $i);
-//                $post['date'] = $this->wi_common->getNextDate($dt, $total . ' ' . $post['freq_type']);
-//                $this->db->insert('wi_schedule', $post);
-//            }
-//        }
-//        $this->db->trans_complete();
-//        if ($this->db->trans_status()) {
-//            return TRUE;
-//        } else {
-//            return FALSE;
-//        }
-//        try {
-//            if ($this->client->isAccessTokenExpired()) {
-//                $this->client->refreshToken($this->session->userdata('token'));
-//            }
-//            $createdEvent = $this->service->events->insert("vishaltesting7@gmail.com", $event); //Returns array not an object
-//            print_r($createdEvent);
-//        } catch (Google_ServiceException $exc) {
-//            $error = $exc->getErrors();
-//            echo $error[0]['message'];
-//        }
     }
 
     function makeEvent($post) {
+        $contactInfo = $this->wi_common->getContactInfo($post['contact_id']);
+        $timezone = $this->session->userdata('timezone');
+        $currDateTime = $this->wi_common->getUTCDateWithTime($timezone);
+        $timestamp = timezones($timezone);
+        $eventDt = date('Y-m-d', strtotime($currDateTime)) . ' ' . $post['time'] . ':00';
+        date_default_timezone_set($this->timezone_by_offset($timestamp));
+        $ev_dt = date(DATE_RFC3339, strtotime($eventDt));
+
+        $body = ($post['event_type'] == "sms" || $post['event_type'] == "notification") ? $post['smsbody'] : $post['emailbody'];
+        $is_repeat = (isset($post['is_repeat']) && $post['is_repeat'] == "on") ? 1 : 0;
+
         $event = new Google_Service_Calendar_Event(array(
-            'summary' => 'Google I/O 2015',
-            'location' => '800 Howard St., San Francisco, CA 94103',
-            'description' => 'A chance to hear more about Google\'s developer products.',
+            'summary' => $post['event'],
+            'description' => $body,
             'start' => array(
-                'dateTime' => '2015-05-28T09:00:00-07:00',
-                'timeZone' => 'America/Los_Angeles',
+                'dateTime' => $ev_dt,
             ),
             'end' => array(
-                'dateTime' => '2015-05-28T17:00:00-07:00',
-                'timeZone' => 'America/Los_Angeles',
+                'dateTime' => $ev_dt,
             ),
-            'recurrence' => array(
-                'RRULE:FREQ=DAILY;COUNT=2'
-            ),
+//            'recurrence' => array(
+//                'RRULE:FREQ=DAILY;COUNT=2'
+//            ),
             'attendees' => array(
-                array('email' => 'lpage@example.com'),
-                array('email' => 'sbrin@example.com'),
+                array(
+                    'email' => $contactInfo->email,
+                    'displayName' => $contactInfo->fname . ' ' . $contactInfo->lname
+                ),
             ),
             'reminders' => array(
                 'useDefault' => FALSE,
                 'overrides' => array(
-                    array('method' => 'email', 'minutes' => 24 * 60),
-                    array('method' => 'sms', 'minutes' => 10),
+                    array('method' => $post['event_type'], 'minutes' => 1),
                 ),
             ),
         ));
+        return $event;
     }
 
     function timezone_by_offset($offset) {
