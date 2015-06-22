@@ -363,7 +363,7 @@ class Calender extends CI_Controller {
                         unset($post['contact_id']);
                         break;
                 }
-            } catch (Exception $exc) {
+            } catch (Google_Exception $exc) {
                 $error = $exc->getErrors();
                 echo $error[0]['message'];
                 return FALSE;
