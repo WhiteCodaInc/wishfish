@@ -305,7 +305,7 @@ class Calender extends CI_Controller {
                 case 'all_c':
                     if (!$is_repeat) {
 
-                        $contactInfo = $this->common->getContactInfo($post['contact_id']);
+                        $contactInfo = $this->wi_common->getContactInfo($post['contact_id']);
 
                         $event = new Google_Event();
                         $event->setSummary('Happy BirthDay');
