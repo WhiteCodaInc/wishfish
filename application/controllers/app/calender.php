@@ -310,14 +310,14 @@ class Calender extends CI_Controller {
                 $currDateTime = $this->wi_common->getUTCDateWithTime($timezone);
                 $timestamp = timezones($timezone);
                 $eventDt = date('Y-m-d', strtotime($currDateTime)) . ' ' . $post['time'] . ':00';
-                echo $eventDt . '<br>';
+                //echo $eventDt . '<br>';
                 date_default_timezone_set($this->timezone_by_offset($timestamp));
                 $st_dt = $en_dt = date(DATE_RFC3339, strtotime($eventDt));
 
-                echo $st_dt . '<br>';
+                // echo $st_dt . '<br>';
 
                 print_r($post);
-                die();
+                //die();
                 $body = ($post['event_type'] == "sms" || $post['event_type'] == "notification") ? $post['smsbody'] : $post['emailbody'];
                 $is_repeat = (isset($post['is_repeat']) && $post['is_repeat'] == "on") ? 1 : 0;
                 switch ($post['assign']) {
