@@ -386,7 +386,7 @@ class Calender extends CI_Controller {
         $body = ($post['event_type'] == "sms" || $post['event_type'] == "notification") ? $post['smsbody'] : $post['emailbody'];
         $is_repeat = (isset($post['is_repeat']) && $post['is_repeat'] == "on") ? 1 : 0;
 
-        $event = new Google_Service_Calendar_Event(array(
+        $event = new Google_Event(array(
             'summary' => $post['event'],
             'description' => $body,
             'start' => array(
