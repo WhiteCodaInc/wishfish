@@ -300,7 +300,8 @@ body{
     border-color:#eee
 }
 .dropdown-menu>li>a{
-    color:#777
+    color:#777;
+    font-size: 17px
 }
 .dropdown-menu>li>a>.glyphicon,
 .dropdown-menu>li>a>.fa,
