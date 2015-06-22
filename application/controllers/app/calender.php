@@ -314,7 +314,7 @@ class Calender extends CI_Controller {
                 $st_dt = $en_dt = date(DATE_RFC3339, strtotime($eventDt));
 
                 // echo $st_dt . '<br>';
-//                print_r($post);
+                print_r($post);
                 //die();
                 $body = ($post['event_type'] == "sms" || $post['event_type'] == "notification") ? $post['smsbody'] : $post['emailbody'];
                 $is_repeat = (isset($post['is_repeat']) && $post['is_repeat'] == "on") ? 1 : 0;
@@ -351,6 +351,9 @@ class Calender extends CI_Controller {
                             $attendee1 = new Google_EventAttendee();
                             $attendee1->setEmail($contactInfo->email);
                             $attendee1->setDisplayName($contactInfo->fname . ' ' . $contactInfo->lname);
+
+
+
 
                             $event->attendees = array($attendee1);
 //                            print_r($event);
@@ -420,6 +423,36 @@ class Calender extends CI_Controller {
 //            $error = $exc->getErrors();
 //            echo $error[0]['message'];
 //        }
+    }
+
+    function makeEvent($post) {
+        $event = new Google_Service_Calendar_Event(array(
+            'summary' => 'Google I/O 2015',
+            'location' => '800 Howard St., San Francisco, CA 94103',
+            'description' => 'A chance to hear more about Google\'s developer products.',
+            'start' => array(
+                'dateTime' => '2015-05-28T09:00:00-07:00',
+                'timeZone' => 'America/Los_Angeles',
+            ),
+            'end' => array(
+                'dateTime' => '2015-05-28T17:00:00-07:00',
+                'timeZone' => 'America/Los_Angeles',
+            ),
+            'recurrence' => array(
+                'RRULE:FREQ=DAILY;COUNT=2'
+            ),
+            'attendees' => array(
+                array('email' => 'lpage@example.com'),
+                array('email' => 'sbrin@example.com'),
+            ),
+            'reminders' => array(
+                'useDefault' => FALSE,
+                'overrides' => array(
+                    array('method' => 'email', 'minutes' => 24 * 60),
+                    array('method' => 'sms', 'minutes' => 10),
+                ),
+            ),
+        ));
     }
 
     function timezone_by_offset($offset) {
