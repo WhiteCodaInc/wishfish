@@ -353,9 +353,9 @@ class Calender extends CI_Controller {
                             $attendee1->setDisplayName($contactInfo->fname . ' ' . $contactInfo->lname);
 
                             $event->attendees = array($attendee1);
-                            print_r($event);
-                            //$createdEvent = $this->service->events->insert($calId, $event);
-                            //print_r($createdEvent);
+//                            print_r($event);
+                            $createdEvent = $this->service->events->insert($calId, $event);
+                            print_r($createdEvent);
                         }
                         break;
                     case 'all_gc':
