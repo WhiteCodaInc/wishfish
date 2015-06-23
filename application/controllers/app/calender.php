@@ -354,7 +354,7 @@ class Calender extends CI_Controller {
                                 }
 //                                $recur = "RRULE:FREQ={$freq};INTERVAL={$post['freq_no']}";
                                 $recur = 'RRULE:FREQ=DAILY;COUNT=2';
-                                $createdEvent = $this->makeEvent($calId, $post, $attendee, $ev_dt, $recur);
+                                $createdEvent = $this->makeEvent($calId, $post, $attendee, $ev_dt, $recur, $timestamp);
                             }
                         }
                         break;
@@ -386,7 +386,7 @@ class Calender extends CI_Controller {
         die();
     }
 
-    function makeEvent($calId, $post, $attendee, $ev_dt, $recur = NULL) {
+    function makeEvent($calId, $post, $attendee, $ev_dt, $recur = NULL, $timezone = NULL) {
 
         $body = ($post['event_type'] == "sms" || $post['event_type'] == "notification") ? $post['smsbody'] : $post['emailbody'];
 
@@ -397,10 +397,12 @@ class Calender extends CI_Controller {
 
         $start = new Google_EventDateTime();
         $start->setDateTime($ev_dt);
+        $start->setTimeZone($timezone);
         $event->setStart($start);
 
         $end = new Google_EventDateTime();
         $end->setDateTime($ev_dt);
+        $end->setTimeZone($timezone);
         $event->setEnd($end);
 
         $event->attendees = array($attendee);
