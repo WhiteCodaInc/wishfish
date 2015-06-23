@@ -149,8 +149,8 @@ class Calender extends CI_Controller {
 
     function addEvent() {
         $post = $this->input->post();
-//        $this->addGoogleEvent($post);
-//        die();
+        $this->addGoogleEvent($post);
+        die();
         $data = $this->objcal->addEvent($post);
         if ($data) {
 //            echo ($this->addGoogleEvent($post)) ? 1 : 0;
@@ -309,9 +309,9 @@ class Calender extends CI_Controller {
             try {
 
                 $timezone = $this->session->userdata('timezone');
-                $currDateTime = $this->wi_common->getUTCDateWithTime($timezone);
+
                 $timestamp = timezones($timezone);
-                $eventDt = date('Y-m-d', strtotime($currDateTime)) . ' ' . $post['time'] . ':00';
+
                 date_default_timezone_set($this->timezone_by_offset($timestamp));
                 $ev_dt = date(DATE_RFC3339, strtotime($eventDt));
 
@@ -336,7 +336,9 @@ class Calender extends CI_Controller {
 
                 switch ($post['assign']) {
                     case 'all_c':
-                        if (!isset($post['is_repeat'])) {
+                        if (!$is_repeat) {
+                            $currDateTime = $this->wi_common->getUTCDateWithTime($timezone);
+                            $eventDt = date('Y-m-d', strtotime($currDateTime)) . ' ' . $post['time'] . ':00';
 
                             $contactInfo = $this->wi_common->getContactInfo($post['contact_id']);
 
@@ -345,6 +347,15 @@ class Calender extends CI_Controller {
                             $attendee->setDisplayName($contactInfo->fname . ' ' . $contactInfo->lname);
 
                             $event->attendees = array($attendee);
+                        } else {
+                            if ($post['freq_type'] != "-1" && $post['freq_no'] != "-1" && is_numeric($post['occurance'])) {
+                                for ($i = $post['occurance'] - 1; $i > 0; $i--) {
+                                    $total = $post['freq_no'] * ($post['occurance'] - $i);
+                                    $dt = $this->wi_common->getNextDate($dt, $total . ' ' . $post['freq_type']);
+                                    $evDt = $dt . ' ' . $post['time'] . ':00';
+                                    $this->db->insert('wi_schedule', $post);
+                                }
+                            }
                         }
                         break;
                     case 'all_gc':
