@@ -338,7 +338,21 @@ class Calender extends CI_Controller {
                                 $createdEvent = $this->makeEvent($calId, $post, $attendee, $ev_dt);
                             }
                         } else {
-                            $recur = TRUE;
+                            switch ($post['freq_type']) {
+                                case "days":
+                                    $freq = "DAILY";
+                                    break;
+                                case "weeks":
+                                    $freq = "WEEKLY";
+                                    break;
+                                case "months":
+                                    $freq = "MONTHLY";
+                                    break;
+                                case "years":
+                                    $freq = "YEARLY";
+                                    break;
+                            }
+                            $recur = "RRULE:FREQ={$freq};INTERVAL={$post['freq_no']}";
                             $createdEvent = $this->makeEvent($calId, $post, $attendee, $ev_dt, $recur);
                         }
                         break;
@@ -388,6 +402,9 @@ class Calender extends CI_Controller {
         $event->setEnd($end);
 
         $event->attendees = array($attendee);
+
+        if ($recur != NULL)
+            $event->setRecurrence(array($recur));
 
         return $this->service->events->insert($calId, $event);
     }
