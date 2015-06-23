@@ -332,6 +332,7 @@ class Calender extends CI_Controller {
 
                             $createdEvent = $this->makeEvent($calId, $post, $attendee, $ev_dt);
                         } else {
+                            echo 'Repeat Called';
                             if ($post['freq_type'] != "-1" && $post['freq_no'] != "-1" && is_numeric($post['occurance'])) {
                                 for ($i = $post['occurance'] - 1; $i > 0; $i--) {
                                     $total = $post['freq_no'] * ($post['occurance'] - $i);
@@ -355,8 +356,7 @@ class Calender extends CI_Controller {
                         break;
                 }
 
-                print_r($createdEvent);
-                
+                // print_r($createdEvent);
             } catch (Google_Exception $exc) {
                 $error = $exc->getMessage();
                 echo $error;
