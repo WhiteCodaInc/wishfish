@@ -51,7 +51,7 @@ class Calender extends CI_Controller {
                 'domain' => '.wish-fish.com'
             );
             $this->input->set_cookie($tokenizer);
-            $this->addLocalEvent();
+            // $this->addLocalEvent();
             header('location:' . site_url() . 'app/calender');
         }
         $data['template'] = $this->objsmstemplate->getTemplates();
@@ -387,11 +387,11 @@ class Calender extends CI_Controller {
             $timestamp = $this->timezone_by_offset($timezone);
             date_default_timezone_set($timestamp);
             $events = $this->objcalender->loadLocalEvent();
-            
+
             echo '<pre>';
             print_r($events);
             die();
-            
+
             foreach ($events as $ev) {
                 $eventDt = $ev['date'] . ' ' . $ev['time'];
                 $ev_dt = date(DATE_RFC3339, strtotime($eventDt));
