@@ -319,7 +319,7 @@ class Calender extends CI_Controller {
                 $is_repeat = (isset($post['is_repeat']) && $post['is_repeat'] == "on") ? 1 : 0;
 
                 print_r($post);
-                die();
+//                die();
                 switch ($post['assign']) {
 
                     case 'all_c':
@@ -369,7 +369,7 @@ class Calender extends CI_Controller {
                         break;
                 }
 
-                // print_r($createdEvent);
+                print_r($createdEvent);
             } catch (Google_Exception $exc) {
                 $error = $exc->getMessage();
                 echo $error;
