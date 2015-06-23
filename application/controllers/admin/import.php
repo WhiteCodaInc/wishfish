@@ -34,12 +34,13 @@ class Import extends CI_Controller {
     }
 
     function index() {
-        $data['url'] = $this->client->createAuthUrl();
-        $this->load->view('admin/admin_header');
-        $this->load->view('admin/admin_top');
-        $this->load->view('admin/admin_navbar');
-        $this->load->view('admin/import', $data);
-        $this->load->view('admin/admin_footer');
+//        $data['url'] = $this->client->createAuthUrl();
+//        $this->load->view('admin/admin_header');
+//        $this->load->view('admin/admin_top');
+//        $this->load->view('admin/admin_navbar');
+//        $this->load->view('admin/import', $data);
+//        $this->load->view('admin/admin_footer');
+        header('location:' . $this->client->createAuthUrl());
     }
 
     public function contacts() {
@@ -128,20 +129,22 @@ class Import extends CI_Controller {
 
     function addContacts() {
         $post = $this->input->post();
-        foreach ($post['contact'] as $value) {
-            $name = explode(' ', $post['name'][$value]);
-            $set = array(
-                'fname' => $name[0],
-                'lname' => $name[1]
-            );
-            ($post['email'][$value]) ? $set['email'] = $post['email'][$value] : '';
-            ($post['phone'][$value]) ? $set['phone'] = $post['phone'][$value] : '';
-
-            //print_r($set);
-            $this->db->insert('contact_detail', $set);
+        if (isset($post['contact']) && count($post['contact']) > 0) {
+            foreach ($post['contact'] as $value) {
+                $name = explode(' ', $post['name'][$value]);
+                $set = array(
+                    'user_id' => $this->userid,
+                    'fname' => (isset($name[0])) ? $name[0] : '',
+                    'lname' => (isset($name[1])) ? $name[1] : ''
+                );
+                ($post['email'][$value]) ? $set['email'] = $post['email'][$value] : '';
+                ($post['phone'][$value]) ? $set['phone'] = $post['phone'][$value] : '';
+                $this->db->insert('contact_detail', $set);
+            }
+            header('location:' . site_url() . 'admin/contacts');
+        } else {
+            header('location:' . site_url() . 'admin/import');
         }
-        //die();
-        header('location:' . site_url() . 'admin/contacts');
     }
 
     function curl_file_get_contents($url) {

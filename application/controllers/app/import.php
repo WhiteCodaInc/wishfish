@@ -109,9 +109,6 @@ class Import extends CI_Controller {
 
     function addContacts() {
         $post = $this->input->post();
-        echo '<pre>';
-        print_r($post);
-
         if (isset($post['contact']) && count($post['contact']) > 0) {
             foreach ($post['contact'] as $value) {
                 $name = explode(' ', $post['name'][$value]);
@@ -122,10 +119,8 @@ class Import extends CI_Controller {
                 );
                 ($post['email'][$value]) ? $set['email'] = $post['email'][$value] : '';
                 ($post['phone'][$value]) ? $set['phone'] = $post['phone'][$value] : '';
-                print_r($set);
-//                $this->db->insert('wi_contact_detail', $set);
+                $this->db->insert('wi_contact_detail', $set);
             }
-            die();
             header('location:' . site_url() . 'app/contacts');
         } else {
             header('location:' . site_url() . 'app/import');
