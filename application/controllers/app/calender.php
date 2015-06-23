@@ -413,6 +413,21 @@ class Calender extends CI_Controller {
         return $this->service->events->insert($calId, $event);
     }
 
+    function delete($id) {
+        $calId = $this->getCalenderId();
+        if ($calId) {
+            try {
+                $this->service->events->delete($calId, $id);
+                echo 'Deleted..!';
+            } catch (Google_Exception $exc) {
+                $error = $exc->getMessage();
+                echo $error;
+            }
+        } else {
+            echo 'Calender Not Found..!';
+        }
+    }
+
     function timezone_by_offset($offset) {
         $abbrarray = timezone_abbreviations_list();
         $offset = ($offset + 1) * 60 * 60;
