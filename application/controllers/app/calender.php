@@ -397,12 +397,12 @@ class Calender extends CI_Controller {
 
         $start = new Google_EventDateTime();
         $start->setDateTime($ev_dt);
-        $start->setTimeZone($timezone);
+        $start->setTimeZone($this->timezone_by_offset($timezone));
         $event->setStart($start);
 
         $end = new Google_EventDateTime();
         $end->setDateTime($ev_dt);
-        $end->setTimeZone($timezone);
+        $end->setTimeZone($this->timezone_by_offset($timezone));
         $event->setEnd($end);
 
         $event->attendees = array($attendee);
