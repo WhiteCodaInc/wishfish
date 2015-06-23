@@ -327,8 +327,10 @@ class Calender extends CI_Controller {
                         $attendee = new Google_EventAttendee();
                         $attendee->setEmail($contactInfo->email);
                         $attendee->setDisplayName($contactInfo->fname . ' ' . $contactInfo->lname);
-
-                        if ($is_repeat && $post['end_type'] == "never") {
+                        if (!$is_repeat) {
+                            $recur = NULL;
+                            $createdEvent = $this->makeEvent($calId, $post, $attendee, $ev_dt, $recur, $timestamp);
+                        } else {
                             switch ($post['freq_type']) {
                                 case "days":
                                     $freq = "DAILY";
@@ -343,23 +345,34 @@ class Calender extends CI_Controller {
                                     $freq = "YEARLY";
                                     break;
                             }
-                            $recur = "RRULE:FREQ={$freq};INTERVAL={$post['freq_no']}";
-//                            $recur = 'RRULE:FREQ=DAILY;COUNT=2';
-                        } else {
-                            $recur = NULL;
-                        }
-                        $createdEvent = $this->makeEvent($calId, $post, $attendee, $ev_dt, $recur, $timestamp);
-                        if ($is_repeat) {
-                            if ($post['end_type'] == "after") {
-                                for ($i = $post['occurance'] - 1; $i > 0; $i--) {
-                                    $total = $post['freq_no'] * ($post['occurance'] - $i);
-                                    $dt = $this->wi_common->getNextDate($post['date'], $total . ' ' . $post['freq_type']);
-                                    $eventDt = $dt . ' ' . $post['time'] . ':00';
-                                    $ev_dt = date(DATE_RFC3339, strtotime($eventDt));
-                                    $createdEvent = $this->makeEvent($calId, $post, $attendee, $ev_dt);
-                                }
+                            if ($post['end_type'] == "never") {
+                                $recur = "RRULE:FREQ={$freq};INTERVAL={$post['freq_no']}";
+                            } else if ($post['end_type'] == "after") {
+                                $recur = "RRULE:FREQ={$freq};INTERVAL={$post['freq_no']};COUNT={$post['occurance']}";
+                            } else {
+                                $recur = NULL;
                             }
+                            $createdEvent = $this->makeEvent($calId, $post, $attendee, $ev_dt, $recur, $timestamp);
                         }
+//                        if ($is_repeat && $post['end_type'] == "never") {
+//
+//                            $recur = "RRULE:FREQ={$freq};INTERVAL={$post['freq_no']}";
+////                            $recur = 'RRULE:FREQ=DAILY;COUNT=2';
+//                        } else {
+//                            $recur = NULL;
+//                        }
+//
+//                        if ($is_repeat) {
+//                            if ($post['end_type'] == "after") {
+//                                for ($i = $post['occurance'] - 1; $i > 0; $i--) {
+//                                    $total = $post['freq_no'] * ($post['occurance'] - $i);
+//                                    $dt = $this->wi_common->getNextDate($post['date'], $total . ' ' . $post['freq_type']);
+//                                    $eventDt = $dt . ' ' . $post['time'] . ':00';
+//                                    $ev_dt = date(DATE_RFC3339, strtotime($eventDt));
+//                                    $createdEvent = $this->makeEvent($calId, $post, $attendee, $ev_dt);
+//                                }
+//                            }
+//                        }
                         break;
                     case 'all_gc':
                         $res = $this->objtrigger->getGroupContact($post['group_id']);
