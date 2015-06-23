@@ -103,7 +103,7 @@ class Import extends CI_Controller {
             $this->load->view('dashboard/import', $data);
             $this->load->view('dashboard/footer');
         } else {
-            header('location:' . site_url() . 'app/dashboard');
+            header('location:' . site_url() . 'app/import');
         }
     }
 

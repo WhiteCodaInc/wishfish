@@ -8,7 +8,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1 style="float: left">
-            Google Contactss
+            Google Contacts
         </h1>
         <a style="color: black;background-color: #d2d6de;border-color: #D2D6FE;" href="<?= $url ?>" class="btn">
             <i class="fa fa-plus"></i>
