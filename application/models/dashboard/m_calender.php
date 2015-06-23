@@ -306,4 +306,13 @@ class M_calender extends CI_Model {
         return ($query->num_rows() == 1) ? $query->row() : FALSE;
     }
 
+    function loadLocalEvent() {
+        $where = array(
+            'user_id' => $this->userid,
+            'google_event_id' => NULL
+        );
+        $query = $this->db->get_where('wi_schedule', $where);
+        return $query->result();
+    }
+
 }

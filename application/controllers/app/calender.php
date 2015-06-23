@@ -51,6 +51,7 @@ class Calender extends CI_Controller {
                 'domain' => '.wish-fish.com'
             );
             $this->input->set_cookie($tokenizer);
+           // $this->addLocalEvent();
             header('location:' . site_url() . 'app/calender');
         }
         $data['template'] = $this->objsmstemplate->getTemplates();
@@ -310,9 +311,7 @@ class Calender extends CI_Controller {
         if ($this->refresh() && $calId) {
             try {
                 $timezone = $this->session->userdata('timezone');
-                $timestamp = timezones($timezone);
-                date_default_timezone_set($this->timezone_by_offset($timestamp));
-
+                $this->setDefaultTimezone($timezone);
                 $currDateTime = $this->wi_common->getUTCDateWithTime($timezone);
                 $eventDt = date('Y-m-d', strtotime($currDateTime)) . ' ' . $post['time'] . ':00';
                 $ev_dt = date(DATE_RFC3339, strtotime($eventDt));
@@ -379,6 +378,21 @@ class Calender extends CI_Controller {
         }
     }
 
+    function addLocalEvent() {
+        $calId = $this->getCalenderId();
+        if ($this->refresh() && $calId) {
+            $timezone = $this->session->userdata('timezone');
+            $this->setDefaultTimezone($timezone);
+            $events = $this->objcalender->loadLocalEvent();
+            foreach ($events as $ev) {
+                $eventDt = $ev->date . ' ' . $ev->time;
+                $ev_dt = date(DATE_RFC3339, strtotime($eventDt));
+            }
+        } else {
+            return false;
+        }
+    }
+
     function makeEvent($calId, $post, $attendee, $ev_dt, $timezone, $recur = NULL) {
 
         $body = ($post['event_type'] == "sms" || $post['event_type'] == "notification") ? $post['smsbody'] : $post['emailbody'];
@@ -421,16 +435,21 @@ class Calender extends CI_Controller {
         }
     }
 
-    function timezone_by_offset($offset) {
+    function timezone_by_offset($timezone) {
+        $timestamp = timezones($timezone);
         $abbrarray = timezone_abbreviations_list();
-        $offset = ($offset + 1) * 60 * 60;
+        $offset = ($timestamp + 1) * 60 * 60;
         foreach ($abbrarray as $abbr) {
             foreach ($abbr as $city) {
                 if ($city['offset'] == $offset && $city['dst'] == FALSE) {
-                    return $city['timezone_id'];
+                    date_default_timezone_set($this->timezone_by_offset($city['timezone_id']));
                 }
             }
         }
+    }
+
+    function setDefaultTimezone($timestamp) {
+        
     }
 
 }
