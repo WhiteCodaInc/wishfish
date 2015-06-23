@@ -82,11 +82,8 @@ class Import extends CI_Controller {
         //extracting access_token from response string
         $responseToken = json_decode($result);
         if (isset($responseToken->access_token)) {
-            $accesstoken = $responseToken->access_token;
-            $this->session->set_userdata('token', $accesstoken);
 
-            //passing accesstoken to obtain contact details
-            $url = 'https://www.google.com/m8/feeds/contacts/default/full?max-results=' . $max_result . '&alt=json&v=3.0&oauth_token=' . $this->session->userdata('token');
+            $url = 'https://www.google.com/m8/feeds/contacts/default/full?max-results=' . $max_result . '&alt=json&v=3.0&oauth_token=' . $responseToken->access_token;
 
             $response = $this->curl_file_get_contents($url);
             $contacts = json_decode($response, true);
