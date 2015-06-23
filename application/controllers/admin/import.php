@@ -115,7 +115,6 @@ class Import extends CI_Controller {
             foreach ($post['contact'] as $value) {
                 $name = explode(' ', $post['name'][$value]);
                 $set = array(
-                    'user_id' => $this->userid,
                     'fname' => (isset($name[0])) ? $name[0] : '',
                     'lname' => (isset($name[1])) ? $name[1] : ''
                 );
