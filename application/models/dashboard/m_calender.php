@@ -65,9 +65,9 @@ class M_calender extends CI_Model {
     }
 
     function addEvent($post, $google_event_id = NULL) {
-        print_r($post);
-        echo $google_event_id;
-        die();
+//        print_r($post);
+//        echo $google_event_id;
+//        die();
         switch ($post['assign']) {
             case 'all_c':
                 $post['group_type'] = "individual";
@@ -90,6 +90,7 @@ class M_calender extends CI_Model {
         $post['notification'] = ($post['event_type'] == "notification") ? 0 : 1;
         $post['occurance'] = ($post['occurance'] != "") ? $post['occurance'] : NULL;
         $post['user_id'] = $this->userid;
+        $post['google_event_id'] = $google_event_id;
         unset($post['assign']);
         unset($post['smsbody']);
         unset($post['emailbody']);
