@@ -319,18 +319,16 @@ class Calender extends CI_Controller {
                 $is_repeat = (isset($post['is_repeat']) && $post['is_repeat'] == "on") ? 1 : 0;
 
                 print_r($post);
-
+                die();
                 switch ($post['assign']) {
 
                     case 'all_c':
-
                         $contactInfo = $this->wi_common->getContactInfo($post['contact_id']);
-
                         $attendee = new Google_EventAttendee();
                         $attendee->setEmail($contactInfo->email);
                         $attendee->setDisplayName($contactInfo->fname . ' ' . $contactInfo->lname);
+                        $createdEvent = $this->makeEvent($calId, $post, $attendee, $ev_dt);
 
-                        //$createdEvent = $this->makeEvent($calId, $post, $attendee, $ev_dt);
                         if ($is_repeat) {
                             if ($post['freq_type'] != "-1" && $post['freq_no'] != "-1" && is_numeric($post['occurance'])) {
                                 for ($i = $post['occurance'] - 1; $i > 0; $i--) {
@@ -338,7 +336,7 @@ class Calender extends CI_Controller {
                                     $dt = $this->wi_common->getNextDate($post['date'], $total . ' ' . $post['freq_type']);
                                     $eventDt = $dt . ' ' . $post['time'] . ':00';
                                     $ev_dt = date(DATE_RFC3339, strtotime($eventDt));
-                                    echo $ev_dt . '<br>';
+                                    $createdEvent = $this->makeEvent($calId, $post, $attendee, $ev_dt);
                                 }
                             }
                         }
