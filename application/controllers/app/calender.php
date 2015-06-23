@@ -308,53 +308,36 @@ class Calender extends CI_Controller {
         $calId = $this->getCalenderId();
         if ($this->refresh() && $calId) {
             try {
-
                 $timezone = $this->session->userdata('timezone');
-
                 $timestamp = timezones($timezone);
-
                 date_default_timezone_set($this->timezone_by_offset($timestamp));
+
+                $currDateTime = $this->wi_common->getUTCDateWithTime($timezone);
+                $eventDt = date('Y-m-d', strtotime($currDateTime)) . ' ' . $post['time'] . ':00';
                 $ev_dt = date(DATE_RFC3339, strtotime($eventDt));
 
-                $body = ($post['event_type'] == "sms" || $post['event_type'] == "notification") ? $post['smsbody'] : $post['emailbody'];
                 $is_repeat = (isset($post['is_repeat']) && $post['is_repeat'] == "on") ? 1 : 0;
-
 
                 print_r($post);
 
-                $event = new Google_Event();
-                $event->setSummary($post['event']);
-                $event->setDescription($body);
-                $event->setColorId(9);
-
-                $start = new Google_EventDateTime();
-                $start->setDateTime($ev_dt);
-                $event->setStart($start);
-
-                $end = new Google_EventDateTime();
-                $end->setDateTime($ev_dt);
-                $event->setEnd($end);
-
                 switch ($post['assign']) {
+
                     case 'all_c':
                         if (!$is_repeat) {
-                            $currDateTime = $this->wi_common->getUTCDateWithTime($timezone);
-                            $eventDt = date('Y-m-d', strtotime($currDateTime)) . ' ' . $post['time'] . ':00';
-
                             $contactInfo = $this->wi_common->getContactInfo($post['contact_id']);
 
                             $attendee = new Google_EventAttendee();
                             $attendee->setEmail($contactInfo->email);
                             $attendee->setDisplayName($contactInfo->fname . ' ' . $contactInfo->lname);
 
-                            $event->attendees = array($attendee);
+                            $createdEvent = $this->makeEvent($calId, $post, $attendee, $ev_dt);
                         } else {
                             if ($post['freq_type'] != "-1" && $post['freq_no'] != "-1" && is_numeric($post['occurance'])) {
                                 for ($i = $post['occurance'] - 1; $i > 0; $i--) {
                                     $total = $post['freq_no'] * ($post['occurance'] - $i);
                                     $dt = $this->wi_common->getNextDate($dt, $total . ' ' . $post['freq_type']);
                                     $evDt = $dt . ' ' . $post['time'] . ':00';
-                                    $this->db->insert('wi_schedule', $post);
+                                    echo $evDt . '<br>';
                                 }
                             }
                         }
@@ -368,11 +351,10 @@ class Calender extends CI_Controller {
                             $attendee[$key]->setEmail($contactInfo->email);
                             $attendee[$key]->setDisplayName($contactInfo->fname . ' ' . $contactInfo->lname);
                         }
-//                        print_r($attendee);
-                        $event->attendees = array($attendee);
+                        $createdEvent = $this->makeEvent($calId, $post, $attendee, $ev_dt);
                         break;
                 }
-                $createdEvent = $this->service->events->insert($calId, $event);
+
                 print_r($createdEvent);
             } catch (Google_Exception $exc) {
                 $error = $exc->getMessage();
@@ -388,56 +370,31 @@ class Calender extends CI_Controller {
         die();
     }
 
-    function makeEvent($post) {
-        $contactInfo = $this->wi_common->getContactInfo($post['contact_id']);
-        $timezone = $this->session->userdata('timezone');
-        $currDateTime = $this->wi_common->getUTCDateWithTime($timezone);
-        $timestamp = timezones($timezone);
-        $eventDt = date('Y-m-d', strtotime($currDateTime)) . ' ' . $post['time'] . ':00';
-        date_default_timezone_set($this->timezone_by_offset($timestamp));
-        $ev_dt = date(DATE_RFC3339, strtotime($eventDt));
+    function makeEvent($calId, $post, $attendee, $ev_dt) {
 
         $body = ($post['event_type'] == "sms" || $post['event_type'] == "notification") ? $post['smsbody'] : $post['emailbody'];
-        $is_repeat = (isset($post['is_repeat']) && $post['is_repeat'] == "on") ? 1 : 0;
 
-        $event = new Google_Event(array(
-            'summary' => $post['event'],
-            'description' => $body,
-            'start' => array(
-                'dateTime' => $ev_dt,
-            ),
-            'end' => array(
-                'dateTime' => $ev_dt,
-            ),
-//            'recurrence' => array(
-//                'RRULE:FREQ=DAILY;COUNT=2'
-//            ),
-            'attendees' => array(
-                array(
-                    'email' => $contactInfo->email,
-                    'displayName' => $contactInfo->fname . ' ' . $contactInfo->lname
-                ),
-            ),
-            'reminders' => array(
-                'useDefault' => FALSE,
-                'overrides' => array(
-                    array('method' => $post['event_type'], 'minutes' => 1),
-                ),
-            ),
-        ));
-        return $event;
+        $event = new Google_Event();
+        $event->setSummary($post['event']);
+        $event->setDescription($body);
+        $event->setColorId(9);
+
+        $start = new Google_EventDateTime();
+        $start->setDateTime($ev_dt);
+        $event->setStart($start);
+
+        $end = new Google_EventDateTime();
+        $end->setDateTime($ev_dt);
+        $event->setEnd($end);
+
+        $event->attendees = array($attendee);
+
+        return $this->service->events->insert($calId, $event);
     }
 
     function timezone_by_offset($offset) {
         $abbrarray = timezone_abbreviations_list();
         $offset = ($offset + 1) * 60 * 60;
-//        foreach ($abbrarray as $abbr) {
-//            foreach ($abbr as $city) {
-//                if ($city['offset'] == $offset) {
-//                    return $city['timezone_id'];
-//                }
-//            }
-//        }
         foreach ($abbrarray as $abbr) {
             foreach ($abbr as $city) {
                 if ($city['offset'] == $offset && $city['dst'] == FALSE) {
