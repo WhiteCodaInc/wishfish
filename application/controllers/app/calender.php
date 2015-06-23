@@ -292,10 +292,10 @@ class Calender extends CI_Controller {
                 $events = $this->service->events->listEvents($calendarListEntry['id']);
                 //print_r($events);
                 foreach ($events['items'] as $event) {
-//                        echo "-----" . $event['summary'] . "<br>";
+                    echo "-----" . $event['summary'] . "<br>";
                     print_r($event);
-                    die();
                 }
+                die();
             }
         } catch (Google_ServiceException $exc) {
             $error = $exc->getErrors();
@@ -329,16 +329,17 @@ class Calender extends CI_Controller {
                         $attendee->setDisplayName($contactInfo->fname . ' ' . $contactInfo->lname);
                         $createdEvent = $this->makeEvent($calId, $post, $attendee, $ev_dt);
 
-                        if ($is_repeat) {
-                            if ($post['freq_type'] != "-1" && $post['freq_no'] != "-1" && is_numeric($post['occurance'])) {
-                                for ($i = $post['occurance'] - 1; $i > 0; $i--) {
-                                    $total = $post['freq_no'] * ($post['occurance'] - $i);
-                                    $dt = $this->wi_common->getNextDate($post['date'], $total . ' ' . $post['freq_type']);
-                                    $eventDt = $dt . ' ' . $post['time'] . ':00';
-                                    $ev_dt = date(DATE_RFC3339, strtotime($eventDt));
-                                    $createdEvent = $this->makeEvent($calId, $post, $attendee, $ev_dt);
-                                }
+                        if ($is_repeat && $post['end_type'] == "after") {
+                            for ($i = $post['occurance'] - 1; $i > 0; $i--) {
+                                $total = $post['freq_no'] * ($post['occurance'] - $i);
+                                $dt = $this->wi_common->getNextDate($post['date'], $total . ' ' . $post['freq_type']);
+                                $eventDt = $dt . ' ' . $post['time'] . ':00';
+                                $ev_dt = date(DATE_RFC3339, strtotime($eventDt));
+                                $createdEvent = $this->makeEvent($calId, $post, $attendee, $ev_dt);
                             }
+                        } else {
+                            $recur = TRUE;
+                            $createdEvent = $this->makeEvent($calId, $post, $attendee, $ev_dt, $recur);
                         }
                         break;
                     case 'all_gc':
@@ -369,7 +370,7 @@ class Calender extends CI_Controller {
         die();
     }
 
-    function makeEvent($calId, $post, $attendee, $ev_dt) {
+    function makeEvent($calId, $post, $attendee, $ev_dt, $recur = NULL) {
 
         $body = ($post['event_type'] == "sms" || $post['event_type'] == "notification") ? $post['smsbody'] : $post['emailbody'];
 
