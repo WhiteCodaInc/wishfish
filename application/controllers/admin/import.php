@@ -30,11 +30,11 @@ class Import extends CI_Controller {
         $this->client->setRedirectUri($this->config->item('redirect_uri', 'a_googlecontact'));
         $this->client->setDeveloperKey($this->config->item('api_key', 'a_googlecontact'));
         $this->client->setScopes("http://www.google.com/m8/feeds/");
+        $this->client->setApprovalPrompt('auto');
     }
 
     function index() {
-        $this->client->setApprovalPrompt('auto');
-        $data['url'] = $this->client->createAuthUrl();
+//        $data['url'] = $this->client->createAuthUrl();
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');
