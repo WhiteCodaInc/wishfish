@@ -34,7 +34,7 @@ class Import extends CI_Controller {
     }
 
     function index() {
-//        $data['url'] = $this->client->createAuthUrl();
+        $data['url'] = $this->client->createAuthUrl();
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');
