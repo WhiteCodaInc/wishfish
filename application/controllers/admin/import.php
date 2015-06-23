@@ -55,8 +55,6 @@ class Import extends CI_Controller {
                 'redirect_uri' => urlencode($redirecturi),
                 'grant_type' => urlencode('authorization_code')
             );
-
-
             $fields_string = "";
             foreach ($fields as $key => $value) {
                 $fields_string .= $key . '=' . $value . '&';
@@ -93,10 +91,6 @@ class Import extends CI_Controller {
 
                 $response = $this->curl_file_get_contents($url);
                 $contacts = json_decode($response, true);
-
-                //echo '<pre>';
-                //print_r($contacts);
-                // die();
 
                 $gc = array();
                 foreach ($contacts['feed']['entry'] as $cnt) {
