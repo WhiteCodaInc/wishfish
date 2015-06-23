@@ -149,7 +149,8 @@ class Calender extends CI_Controller {
 
     function addEvent() {
         $post = $this->input->post();
-        $this->addGoogleEvent($post);
+        $eventData = $this->addGoogleEvent($post);
+        print_r($eventData);
         die();
         $data = $this->objcal->addEvent($post);
         if ($data) {
@@ -318,18 +319,16 @@ class Calender extends CI_Controller {
 
                 $is_repeat = (isset($post['is_repeat']) && $post['is_repeat'] == "on") ? 1 : 0;
 
-                print_r($post);
+//                print_r($post);
 //                die();
                 switch ($post['assign']) {
-
                     case 'all_c':
                         $contactInfo = $this->wi_common->getContactInfo($post['contact_id']);
                         $attendee = new Google_EventAttendee();
                         $attendee->setEmail($contactInfo->email);
                         $attendee->setDisplayName($contactInfo->fname . ' ' . $contactInfo->lname);
                         if (!$is_repeat) {
-                            $recur = NULL;
-                            $createdEvent = $this->makeEvent($calId, $post, $attendee, $ev_dt, $recur, $timestamp);
+                            $createdEvent = $this->makeEvent($calId, $post, $attendee, $ev_dt, $timestamp);
                         } else {
                             switch ($post['freq_type']) {
                                 case "days":
@@ -352,7 +351,7 @@ class Calender extends CI_Controller {
                             } else {
                                 $recur = NULL;
                             }
-                            $createdEvent = $this->makeEvent($calId, $post, $attendee, $ev_dt, $recur, $timestamp);
+                            $createdEvent = $this->makeEvent($calId, $post, $attendee, $ev_dt, $timestamp, $recur);
                         }
                         break;
                     case 'all_gc':
@@ -364,26 +363,23 @@ class Calender extends CI_Controller {
                             $attendee[$key]->setEmail($contactInfo->email);
                             $attendee[$key]->setDisplayName($contactInfo->fname . ' ' . $contactInfo->lname);
                         }
-                        $createdEvent = $this->makeEvent($calId, $post, $attendee, $ev_dt);
+                        $createdEvent = $this->makeEvent($calId, $post, $attendee, $ev_dt, $timestamp);
                         break;
                 }
-
-                print_r($createdEvent);
+                return $createdEvent;
             } catch (Google_Exception $exc) {
-                $error = $exc->getMessage();
-                echo $error;
-//                print_r($exc);
+//                $error = $exc->getMessage();
+//                echo $error;
                 return FALSE;
             }
         } else {
-            echo 'NOT CALLED';
-            print_r($post);
+//            echo 'NOT CALLED';
+//            print_r($post);
             return FALSE;
         }
-        die();
     }
 
-    function makeEvent($calId, $post, $attendee, $ev_dt, $recur = NULL, $timezone = NULL) {
+    function makeEvent($calId, $post, $attendee, $ev_dt, $timezone, $recur = NULL) {
 
         $body = ($post['event_type'] == "sms" || $post['event_type'] == "notification") ? $post['smsbody'] : $post['emailbody'];
 
