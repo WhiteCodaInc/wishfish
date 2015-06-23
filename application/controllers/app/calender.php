@@ -327,7 +327,7 @@ class Calender extends CI_Controller {
                         $attendee = new Google_EventAttendee();
                         $attendee->setEmail($contactInfo->email);
                         $attendee->setDisplayName($contactInfo->fname . ' ' . $contactInfo->lname);
-                        $createdEvent = $this->makeEvent($calId, $post, $attendee, $ev_dt);
+                        $createdEvent = $this->makeEvent($calId, $post, $attendee, $ev_dt, NULL, $timestamp);
                         if ($is_repeat) {
                             if ($post['end_type'] == "after") {
                                 for ($i = $post['occurance'] - 1; $i > 0; $i--) {
