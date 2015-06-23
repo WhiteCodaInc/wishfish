@@ -41,8 +41,6 @@ class Calender extends CI_Controller {
             $uid = $this->input->cookie('userid', TRUE);
             delete_cookie('userid', '.wish-fish.com', '/');
             $this->session->set_userdata('userid', $this->encryption->decode($uid));
-            echo $this->session->userdata('userid');
-            die();
             $this->setClient();
             $this->client->authenticate($this->input->get('code'));
             $token = json_decode($this->client->getAccessToken());
@@ -232,10 +230,10 @@ class Calender extends CI_Controller {
     function setClient() {
         require_once APPPATH . 'third_party/google-api/Google_Client.php';
         require_once APPPATH . 'third_party/google-api/contrib/Google_CalendarService.php';
-
+        echo $this->session->userdata('userid') . '<br>';
         $setting = $this->objprofile->getUserSetting();
-//        print_r($setting);
-//        die();
+        print_r($setting);
+        die();
         if ($setting->app_name != NULL && $setting->client_id != NULL && $setting->client_secret != NULL && $setting->api_key != NULL) {
             $this->client = new Google_Client();
             $this->client->setApplicationName($setting->app_name);
