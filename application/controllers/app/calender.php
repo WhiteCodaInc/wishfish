@@ -405,8 +405,7 @@ class Calender extends CI_Controller {
 
         if ($recur != NULL)
             $event->setRecurrence(array($recur));
-        print_r($event);
-        die();
+
         return $this->service->events->insert($calId, $event);
     }
 
