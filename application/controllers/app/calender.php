@@ -224,7 +224,11 @@ class Calender extends CI_Controller {
                 'domain' => '.wish-fish.com'
             );
             $this->input->set_cookie($userid);
+        } else {
+            echo "SESS ID : " . $this->session->userdata('userid') . '<br>';
+            echo "Cookie ID :" . $this->input->cookie('userid');
         }
+        die();
         $this->setClient();
         header('location:' . $this->client->createAuthUrl());
     }
