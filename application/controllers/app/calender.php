@@ -320,8 +320,10 @@ class Calender extends CI_Controller {
 
                 $is_repeat = (isset($post['is_repeat']) && $post['is_repeat'] == "on") ? 1 : 0;
 
-//                print_r($post);
-//                die();
+                print_r($post);
+                echo $ev_dt;
+                echo $timestamp;
+                die();
                 switch ($post['assign']) {
                     case 'all_c':
                         $contactInfo = $this->wi_common->getContactInfo($post['contact_id']);
