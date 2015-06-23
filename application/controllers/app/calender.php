@@ -232,6 +232,8 @@ class Calender extends CI_Controller {
         require_once APPPATH . 'third_party/google-api/contrib/Google_CalendarService.php';
 
         $setting = $this->objprofile->getUserSetting();
+        print_r($setting);
+        die();
         if ($setting->app_name != NULL && $setting->client_id != NULL && $setting->client_secret != NULL && $setting->api_key != NULL) {
             $this->client = new Google_Client();
             $this->client->setApplicationName($setting->app_name);
