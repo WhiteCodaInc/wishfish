@@ -40,6 +40,8 @@ class Calender extends CI_Controller {
         } else if ($this->input->get('code') != "") {
             $uid = $this->input->cookie('userid', TRUE);
             delete_cookie('userid', '.wish-fish.com', '/');
+            echo $uid;
+            die();
             $this->session->set_userdata('userid', $this->encryption->decode($uid));
             $this->setClient();
             $this->client->authenticate($this->input->get('code'));
