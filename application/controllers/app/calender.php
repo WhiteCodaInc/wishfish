@@ -352,7 +352,8 @@ class Calender extends CI_Controller {
                                         $freq = "YEARLY";
                                         break;
                                 }
-                                $recur = "RRULE:FREQ={$freq};INTERVAL={$post['freq_no']}";
+//                                $recur = "RRULE:FREQ={$freq};INTERVAL={$post['freq_no']}";
+                                $recur = "RRULE:FREQ=DAILY;COUNT=2";
                                 $createdEvent = $this->makeEvent($calId, $post, $attendee, $ev_dt, $recur);
                             }
                         }
