@@ -335,7 +335,7 @@ class Calender extends CI_Controller {
                             if ($post['freq_type'] != "-1" && $post['freq_no'] != "-1" && is_numeric($post['occurance'])) {
                                 for ($i = $post['occurance'] - 1; $i > 0; $i--) {
                                     $total = $post['freq_no'] * ($post['occurance'] - $i);
-                                    $dt = $this->wi_common->getNextDate($dt, $total . ' ' . $post['freq_type']);
+                                    $dt = $this->wi_common->getNextDate($post['date'], $total . ' ' . $post['freq_type']);
                                     $evDt = $dt . ' ' . $post['time'] . ':00';
                                     echo $evDt . '<br>';
                                 }
@@ -356,6 +356,7 @@ class Calender extends CI_Controller {
                 }
 
                 print_r($createdEvent);
+                
             } catch (Google_Exception $exc) {
                 $error = $exc->getMessage();
                 echo $error;
