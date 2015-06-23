@@ -323,16 +323,16 @@ class Calender extends CI_Controller {
                 switch ($post['assign']) {
 
                     case 'all_c':
-                        if (!$is_repeat) {
-                            $contactInfo = $this->wi_common->getContactInfo($post['contact_id']);
 
-                            $attendee = new Google_EventAttendee();
-                            $attendee->setEmail($contactInfo->email);
-                            $attendee->setDisplayName($contactInfo->fname . ' ' . $contactInfo->lname);
+                        $contactInfo = $this->wi_common->getContactInfo($post['contact_id']);
 
-                            $createdEvent = $this->makeEvent($calId, $post, $attendee, $ev_dt);
-                        } else {
-                            echo 'Repeat Called';
+                        $attendee = new Google_EventAttendee();
+                        $attendee->setEmail($contactInfo->email);
+                        $attendee->setDisplayName($contactInfo->fname . ' ' . $contactInfo->lname);
+
+                        echo $ev_dt . '\n';
+//                        $createdEvent = $this->makeEvent($calId, $post, $attendee, $ev_dt);
+                        if ($is_repeat) {
                             if ($post['freq_type'] != "-1" && $post['freq_no'] != "-1" && is_numeric($post['occurance'])) {
                                 for ($i = $post['occurance'] - 1; $i > 0; $i--) {
                                     $total = $post['freq_no'] * ($post['occurance'] - $i);
