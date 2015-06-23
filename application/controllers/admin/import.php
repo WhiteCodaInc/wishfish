@@ -34,19 +34,13 @@ class Import extends CI_Controller {
     }
 
     function index() {
-//        $data['url'] = $this->client->createAuthUrl();
-//        $this->load->view('admin/admin_header');
-//        $this->load->view('admin/admin_top');
-//        $this->load->view('admin/admin_navbar');
-//        $this->load->view('admin/import', $data);
-//        $this->load->view('admin/admin_footer');
         header('location:' . $this->client->createAuthUrl());
     }
 
     public function contacts() {
         if ($this->input->get('error') == "access_denied") {
 //            echo $this->input->get('error');
-            header('location:' . site_url() . 'admin/import');
+            header('location:' . site_url() . 'admin/contacts');
         } else {
             $authcode = $this->input->get('code');
             $clientid = $this->client->getClientId();
@@ -117,8 +111,6 @@ class Import extends CI_Controller {
 
 
                 $this->load->view('admin/admin_header');
-                //$this->load->view('admin/admin_top');
-                //$this->load->view('admin/admin_navbar');
                 $this->load->view('admin/import', $data);
                 $this->load->view('admin/admin_footer');
             } else {
