@@ -327,7 +327,28 @@ class Calender extends CI_Controller {
                         $attendee = new Google_EventAttendee();
                         $attendee->setEmail($contactInfo->email);
                         $attendee->setDisplayName($contactInfo->fname . ' ' . $contactInfo->lname);
-                        $createdEvent = $this->makeEvent($calId, $post, $attendee, $ev_dt, NULL, $timestamp);
+
+                        if ($is_repeat && $post['end_type'] == "never") {
+                            switch ($post['freq_type']) {
+                                case "days":
+                                    $freq = "DAILY";
+                                    break;
+                                case "weeks":
+                                    $freq = "WEEKLY";
+                                    break;
+                                case "months":
+                                    $freq = "MONTHLY";
+                                    break;
+                                case "years":
+                                    $freq = "YEARLY";
+                                    break;
+                            }
+//                            $recur = "RRULE:FREQ={$freq};INTERVAL={$post['freq_no']}";
+                            $recur = 'RRULE:FREQ=DAILY;COUNT=2';
+                        } else {
+                            $recur = NULL;
+                        }
+                        $createdEvent = $this->makeEvent($calId, $post, $attendee, $ev_dt, $recur, $timestamp);
                         if ($is_repeat) {
                             if ($post['end_type'] == "after") {
                                 for ($i = $post['occurance'] - 1; $i > 0; $i--) {
@@ -337,24 +358,6 @@ class Calender extends CI_Controller {
                                     $ev_dt = date(DATE_RFC3339, strtotime($eventDt));
                                     $createdEvent = $this->makeEvent($calId, $post, $attendee, $ev_dt);
                                 }
-                            } else if ($post['end_type'] == "never") {
-                                switch ($post['freq_type']) {
-                                    case "days":
-                                        $freq = "DAILY";
-                                        break;
-                                    case "weeks":
-                                        $freq = "WEEKLY";
-                                        break;
-                                    case "months":
-                                        $freq = "MONTHLY";
-                                        break;
-                                    case "years":
-                                        $freq = "YEARLY";
-                                        break;
-                                }
-//                                $recur = "RRULE:FREQ={$freq};INTERVAL={$post['freq_no']}";
-                                $recur = 'RRULE:FREQ=DAILY;COUNT=2';
-                                $createdEvent = $this->makeEvent($calId, $post, $attendee, $ev_dt, $recur, $timestamp);
                             }
                         }
                         break;
