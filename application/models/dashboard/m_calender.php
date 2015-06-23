@@ -64,7 +64,10 @@ class M_calender extends CI_Model {
         return $res;
     }
 
-    function addEvent($post) {
+    function addEvent($post, $google_event_id = NULL) {
+        print_r($post);
+        echo $google_event_id;
+        die();
         switch ($post['assign']) {
             case 'all_c':
                 $post['group_type'] = "individual";
