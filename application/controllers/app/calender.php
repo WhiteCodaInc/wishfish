@@ -41,6 +41,8 @@ class Calender extends CI_Controller {
             $uid = $this->input->cookie('userid', TRUE);
             delete_cookie('userid', '.wish-fish.com', '/');
             $this->session->set_userdata('userid', $this->encryption->decode($uid));
+            echo $this->session->userdata('userid');
+            die();
             $this->setClient();
             $this->client->authenticate($this->input->get('code'));
             $token = json_decode($this->client->getAccessToken());
