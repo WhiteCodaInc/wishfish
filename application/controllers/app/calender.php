@@ -51,7 +51,7 @@ class Calender extends CI_Controller {
                 'domain' => '.wish-fish.com'
             );
             $this->input->set_cookie($tokenizer);
-           // $this->addLocalEvent();
+            $this->addLocalEvent();
             header('location:' . site_url() . 'app/calender');
         }
         $data['template'] = $this->objsmstemplate->getTemplates();
@@ -311,7 +311,9 @@ class Calender extends CI_Controller {
         if ($this->refresh() && $calId) {
             try {
                 $timezone = $this->session->userdata('timezone');
-                $this->setDefaultTimezone($timezone);
+                $timestamp = $this->timezone_by_offset($timezone);
+                date_default_timezone_set($timestamp);
+
                 $currDateTime = $this->wi_common->getUTCDateWithTime($timezone);
                 $eventDt = date('Y-m-d', strtotime($currDateTime)) . ' ' . $post['time'] . ':00';
                 $ev_dt = date(DATE_RFC3339, strtotime($eventDt));
@@ -382,11 +384,64 @@ class Calender extends CI_Controller {
         $calId = $this->getCalenderId();
         if ($this->refresh() && $calId) {
             $timezone = $this->session->userdata('timezone');
-            $this->setDefaultTimezone($timezone);
+            $timestamp = $this->timezone_by_offset($timezone);
+            date_default_timezone_set($timestamp);
             $events = $this->objcalender->loadLocalEvent();
             foreach ($events as $ev) {
-                $eventDt = $ev->date . ' ' . $ev->time;
+                $eventDt = $ev['date'] . ' ' . $ev['time'];
                 $ev_dt = date(DATE_RFC3339, strtotime($eventDt));
+
+                switch ($ev->group_type) {
+                    case 'individual':
+                        $contactInfo = $this->wi_common->getContactInfo($ev['contact_id']);
+                        $attendee = new Google_EventAttendee();
+                        $attendee->setEmail($contactInfo->email);
+                        $attendee->setDisplayName($contactInfo->fname . ' ' . $contactInfo->lname);
+                        if (!$ev['is_repeat']) {
+                            $createdEvent = $this->makeEvent($calId, $ev, $attendee, $ev_dt, $timestamp);
+                            if ($createdEvent)
+                                $this->objcalender->updateGoogleEvent($createdEvent, $ev);
+                        } else {
+                            switch ($ev['freq_type']) {
+                                case "days":
+                                    $freq = "DAILY";
+                                    break;
+                                case "weeks":
+                                    $freq = "WEEKLY";
+                                    break;
+                                case "months":
+                                    $freq = "MONTHLY";
+                                    break;
+                                case "years":
+                                    $freq = "YEARLY";
+                                    break;
+                            }
+                            if ($ev['end_type'] == "never") {
+                                $recur = "RRULE:FREQ={$freq};INTERVAL={$ev['freq_no']}";
+                            } else if ($ev['end_type'] == "after") {
+                                $recur = "RRULE:FREQ={$freq};INTERVAL={$ev['freq_no']};COUNT={$ev['occurance']}";
+                            } else {
+                                $recur = NULL;
+                            }
+                            $createdEvent = $this->makeEvent($calId, $ev, $attendee, $ev_dt, $timestamp, $recur);
+                            if ($createdEvent)
+                                $this->objcalender->updateGoogleEvent($createdEvent, $ev);
+                        }
+                        break;
+                    case 'simple':
+                        $res = $this->objtrigger->getGroupContact($ev['group_id']);
+                        $cids = $res[1];
+                        foreach ($cids as $key => $cid) {
+                            $contactInfo = $this->wi_common->getContactInfo($cid);
+                            $attendee[$key] = new Google_EventAttendee();
+                            $attendee[$key]->setEmail($contactInfo->email);
+                            $attendee[$key]->setDisplayName($contactInfo->fname . ' ' . $contactInfo->lname);
+                        }
+                        $createdEvent = $this->makeEvent($calId, $ev, $attendee, $ev_dt, $timestamp);
+                        if ($createdEvent)
+                            $this->objcalender->updateGoogleEvent($createdEvent, $ev);
+                        break;
+                }
             }
         } else {
             return false;
@@ -396,28 +451,31 @@ class Calender extends CI_Controller {
     function makeEvent($calId, $post, $attendee, $ev_dt, $timezone, $recur = NULL) {
 
         $body = ($post['event_type'] == "sms" || $post['event_type'] == "notification") ? $post['smsbody'] : $post['emailbody'];
+        try {
+            $event = new Google_Event();
+            $event->setSummary($post['event']);
+            $event->setDescription($body);
+            $event->setColorId(9);
 
-        $event = new Google_Event();
-        $event->setSummary($post['event']);
-        $event->setDescription($body);
-        $event->setColorId(9);
+            $start = new Google_EventDateTime();
+            $start->setDateTime($ev_dt);
+            $start->setTimeZone($timezone);
+            $event->setStart($start);
 
-        $start = new Google_EventDateTime();
-        $start->setDateTime($ev_dt);
-        $start->setTimeZone($this->timezone_by_offset($timezone));
-        $event->setStart($start);
+            $end = new Google_EventDateTime();
+            $end->setDateTime($ev_dt);
+            $end->setTimeZone($timezone);
+            $event->setEnd($end);
 
-        $end = new Google_EventDateTime();
-        $end->setDateTime($ev_dt);
-        $end->setTimeZone($this->timezone_by_offset($timezone));
-        $event->setEnd($end);
+            $event->attendees = array($attendee);
 
-        $event->attendees = array($attendee);
+            if ($recur != NULL)
+                $event->setRecurrence(array($recur));
 
-        if ($recur != NULL)
-            $event->setRecurrence(array($recur));
-
-        return $this->service->events->insert($calId, $event);
+            return $this->service->events->insert($calId, $event);
+        } catch (Google_Exception $exc) {
+            return false;
+        }
     }
 
     function delete($id) {
@@ -442,14 +500,10 @@ class Calender extends CI_Controller {
         foreach ($abbrarray as $abbr) {
             foreach ($abbr as $city) {
                 if ($city['offset'] == $offset && $city['dst'] == FALSE) {
-                    date_default_timezone_set($this->timezone_by_offset($city['timezone_id']));
+                    return $city['timezone_id'];
                 }
             }
         }
-    }
-
-    function setDefaultTimezone($timestamp) {
-        
     }
 
 }

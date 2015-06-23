@@ -309,10 +309,20 @@ class M_calender extends CI_Model {
     function loadLocalEvent() {
         $where = array(
             'user_id' => $this->userid,
+            'refer_id' => NULL,
+            'event_type !=' => 'notification',
             'google_event_id' => NULL
         );
         $query = $this->db->get_where('wi_schedule', $where);
-        return $query->result();
+        return $query->result_array();
+    }
+
+    function updateGoogleEvent($gEvent, $lEvent) {
+        $where = array(
+            'user_id' => $this->userid,
+            'event_id' => $lEvent['event_id'],
+        );
+        $this->db->update('wi_schedule', array('google_event_id' => $gEvent['id']), $where);
     }
 
 }
