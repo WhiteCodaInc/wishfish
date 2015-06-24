@@ -153,7 +153,7 @@ class Calender extends CI_Controller {
         $eventData = $this->addGoogleEvent($post);
         $data = (!$eventData) ?
                 $this->objcal->addEvent($post) :
-                $this->objcal->addEvent($post, $eventData['id']);
+                $this->objcal->addEvent($post, $eventData->id);
         echo ($data) ? 1 : 0;
     }
 
