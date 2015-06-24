@@ -538,7 +538,7 @@ class Calender extends CI_Controller {
                 }
             }
         } else {
-            echo 'CALLED';
+            echo 'NOT CALLED';
 //            return FALSE;
         }
     }
