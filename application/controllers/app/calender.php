@@ -175,10 +175,17 @@ class Calender extends CI_Controller {
     function updateEvent() {
         $set = $this->input->post();
         if (is_array($set)) {
-            $msg = $this->objcal->updateEvent($set);
+            $eventInfo = $this->objcal->getEventInfo($set['eventid']);
+
+            if ($eventInfo->google_event_id != "" && $this->refresh()) {
+                $this->updateGoogleEvent($set);
+                $msg = $this->objcal->updateEvent($set);
+            } else {
+                $msg = "NC";
+            }
+
             switch ($msg) {
                 case "U":
-                    $this->updateGoogleEvent($set);
                     echo 1;
                     break;
                 case "UF":
@@ -187,6 +194,9 @@ class Calender extends CI_Controller {
                 case "NA":
                     $title = ($set['event_type'] == "sms") ? "SMS" : "Email";
                     echo "You have already reach your {$title} event  limit..!\nYou can not add more..!";
+                    break;
+                case "NC":
+                    echo "This event is connect with Google Calender. Please connect calender with google.";
                     break;
             }
         } else {
