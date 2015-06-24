@@ -316,7 +316,6 @@ class Calender extends CI_Controller {
     }
 
     function addGoogleEvent($post) {
-
         $calId = $this->getCalenderId();
         if ($this->refresh() && $calId) {
             try {
@@ -392,7 +391,7 @@ class Calender extends CI_Controller {
             $timestamp = $this->timezone_by_offset($timezone);
             date_default_timezone_set($timestamp);
             $events = $this->objcal->loadLocalEvent();
-            echo '<pre>';
+//            echo '<pre>';
 //            print_r($events);
 //            die();
             foreach ($events as $ev) {
