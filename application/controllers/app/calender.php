@@ -200,7 +200,13 @@ class Calender extends CI_Controller {
 
     function deleteEvent($eid) {
         $flag = $this->objcal->deleteEvent($eid);
-        echo ($flag) ? 1 : 0;
+        if ($flag) {
+            $event = $this->objcal->getGoogleEventId($eid);
+            ($event) ? $this->delete($event->google_event_id) : FALSE;
+            echo 1;
+        } else {
+            echo 0;
+        }
     }
 
     function sendActivationEmail() {
@@ -313,11 +319,11 @@ class Calender extends CI_Controller {
                 $timezone = $this->session->userdata('timezone');
                 $timestamp = $this->timezone_by_offset($timezone);
                 date_default_timezone_set($timestamp);
-                
+
                 $currDateTime = $this->wi_common->getUTCDateWithTime($timezone);
                 $eventDt = date('Y-m-d', strtotime($currDateTime)) . ' ' . $post['time'] . ':00';
                 $ev_dt = date(DATE_RFC3339, strtotime($eventDt));
-                
+
                 $is_repeat = (isset($post['is_repeat']) && $post['is_repeat'] == "on") ? 1 : 0;
 
 //                print_r($post);
@@ -388,7 +394,7 @@ class Calender extends CI_Controller {
             $timezone = $this->session->userdata('timezone');
             $timestamp = $this->timezone_by_offset($timezone);
             date_default_timezone_set($timestamp);
-            $events = $this->objcalender->loadLocalEvent();
+            $events = $this->objcal->loadLocalEvent();
 
             echo '<pre>';
             print_r($events);
@@ -407,7 +413,7 @@ class Calender extends CI_Controller {
                         if (!$ev['is_repeat']) {
                             $createdEvent = $this->makeEvent($calId, $ev, $attendee, $ev_dt, $timestamp);
                             if ($createdEvent)
-                                $this->objcalender->updateGoogleEvent($createdEvent, $ev);
+                                $this->objcal->updateGoogleEvent($createdEvent, $ev);
                         } else {
                             switch ($ev['freq_type']) {
                                 case "days":
@@ -432,7 +438,7 @@ class Calender extends CI_Controller {
                             }
                             $createdEvent = $this->makeEvent($calId, $ev, $attendee, $ev_dt, $timestamp, $recur);
                             if ($createdEvent)
-                                $this->objcalender->updateGoogleEvent($createdEvent, $ev);
+                                $this->objcal->updateGoogleEvent($createdEvent, $ev);
                         }
                         break;
                     case 'simple':
@@ -446,7 +452,7 @@ class Calender extends CI_Controller {
                         }
                         $createdEvent = $this->makeEvent($calId, $ev, $attendee, $ev_dt, $timestamp);
                         if ($createdEvent)
-                            $this->objcalender->updateGoogleEvent($createdEvent, $ev);
+                            $this->objcal->updateGoogleEvent($createdEvent, $ev);
                         break;
                 }
             }
