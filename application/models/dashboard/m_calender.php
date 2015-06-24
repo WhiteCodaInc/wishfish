@@ -195,6 +195,15 @@ class M_calender extends CI_Model {
         return $result;
     }
 
+    function getEventInfo($eid) {
+        $where = array(
+            'user_id' => $this->userid,
+            'event_id' => $eid
+        );
+        $query = $this->db->get_where('wi_schedule', $where);
+        return $query->num_rows();
+    }
+
     function getGoogleEventId($eid) {
         $where = array(
             'user_id' => $this->userid,

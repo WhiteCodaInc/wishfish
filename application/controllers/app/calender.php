@@ -176,12 +176,12 @@ class Calender extends CI_Controller {
         $set = $this->input->post();
 //        echo '<pre>';
         print_r($set);
+        $this->updateGoogleEvent($set);
         die();
         if (is_array($set)) {
             $msg = $this->objcal->updateEvent($set);
             switch ($msg) {
                 case "U":
-                    $this->updateGoogleEvent($set);
                     echo 1;
                     break;
                 case "UF":
@@ -306,7 +306,7 @@ class Calender extends CI_Controller {
         }
     }
 
-    function addGoogleEvent($post = NULL) {
+    function addGoogleEvent($post) {
 
         $calId = $this->getCalenderId();
         if ($this->refresh() && $calId) {
@@ -470,8 +470,74 @@ class Calender extends CI_Controller {
         }
     }
 
-    function updateGoogleEvent() {
-        
+    function updateGoogleEvent($post) {
+        $eventInfo = $this->objcal->getEventInfo($post['eventid']);
+        if ($eventInfo->google_event_id != "") {
+
+            $calId = $this->getCalenderId();
+            if ($this->refresh() && $calId) {
+                try {
+
+                    $event = $this->service->events->get($calId, $eventInfo->google_event_id);
+
+                    $timezone = $this->session->userdata('timezone');
+                    $timestamp = $this->timezone_by_offset($timezone);
+                    date_default_timezone_set($timestamp);
+
+                    $d = $this->wi_common->getMySqlDate($post['date'], $this->session->userdata('date_format'));
+                    $eventDt = $d . ' ' . $post['time'];
+                    $ev_dt = date(DATE_RFC3339, strtotime($eventDt));
+
+                    $is_repeat = (isset($post['is_repeat']) && $post['is_repeat'] == "on") ? 1 : 0;
+                    $body = ($post['event_type'] == "sms" || $post['event_type'] == "notification") ? $post['smsbody'] : $post['emailbody'];
+
+                    $event->setSummary($post['event']);
+                    $event->setDescription($body);
+
+                    $start = new Google_EventDateTime();
+                    $start->setDateTime($ev_dt);
+                    $start->setTimeZone($timezone);
+                    $event->setStart($start);
+
+                    $end = new Google_EventDateTime();
+                    $end->setDateTime($ev_dt);
+                    $end->setTimeZone($timezone);
+                    $event->setEnd($end);
+
+                    if ($is_repeat) {
+                        switch ($post['freq_type']) {
+                            case "days":
+                                $freq = "DAILY";
+                                break;
+                            case "weeks":
+                                $freq = "WEEKLY";
+                                break;
+                            case "months":
+                                $freq = "MONTHLY";
+                                break;
+                            case "years":
+                                $freq = "YEARLY";
+                                break;
+                        }
+                        if ($post['end_type'] == "never") {
+                            $recur = "RRULE:FREQ={$freq};INTERVAL={$post['freq_no']}";
+                        } else if ($post['end_type'] == "after") {
+                            $recur = "RRULE:FREQ={$freq};INTERVAL={$post['freq_no']};COUNT={$post['occurance']}";
+                        }
+                        $event->setRecurrence(array($recur));
+                    }
+                    print_r($event);
+                    die();
+                    $updatedEvent = $this->service->events->update($calId, $event->getId(), $event);
+                    return $updatedEvent;
+                } catch (Google_Exception $exc) {
+                    $error = $exc->getMessage();
+                    echo $error;
+                }
+            }
+        } else {
+            return FALSE;
+        }
     }
 
     function makeEvent($calId, $post, $attendee, $ev_dt, $timezone, $recur = NULL) {
