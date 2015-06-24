@@ -496,12 +496,12 @@ class Calender extends CI_Controller {
 
                     $start = new Google_EventDateTime();
                     $start->setDateTime($ev_dt);
-                    $start->setTimeZone($timezone);
+                    $start->setTimeZone($timestamp);
                     $event->setStart($start);
 
                     $end = new Google_EventDateTime();
                     $end->setDateTime($ev_dt);
-                    $end->setTimeZone($timezone);
+                    $end->setTimeZone($timestamp);
                     $event->setEnd($end);
 
                     if ($is_repeat) {
