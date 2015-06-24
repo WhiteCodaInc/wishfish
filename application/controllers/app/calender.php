@@ -273,10 +273,7 @@ class Calender extends CI_Controller {
     function getCalenderId() {
         if ($this->refresh()) {
             $calendarList = $this->service->calendarList->listCalendarList();
-//            print_r($calendarList);
-            echo $calendarList->items[0]->id;
-            die();
-//            return $calendarList['items'][0]['id'];
+            return $calendarList->items[0]->id;
         } else {
             return false;
         }
@@ -289,15 +286,15 @@ class Calender extends CI_Controller {
             echo '<pre>';
 //            print_r($calendarList);
 //            die();
-            foreach ($calendarList['items'] as $calendarListEntry) {
+            foreach ($calendarList->items as $calendarListEntry) {
                 echo '<br>-------------------------------------------------------<br>';
-                echo "ID : " . $calendarListEntry['id'] . "<br>\n";
-                echo "SUMMARY : " . $calendarListEntry['summary'] . "<br>\n";
+                echo "ID : " . $calendarListEntry->id . "<br>\n";
+                echo "SUMMARY : " . $calendarListEntry->summary . "<br>\n";
                 // get events 
-                $events = $this->service->events->listEvents($calendarListEntry['id']);
+                $events = $this->service->events->listEvents($calendarListEntry->id);
                 //print_r($events);
-                foreach ($events['items'] as $event) {
-                    echo "-----" . $event['summary'] . "<br>";
+                foreach ($events->items as $event) {
+                    echo "-----" . $event->summary . "<br>";
                     print_r($event);
                 }
                 die();
