@@ -273,7 +273,8 @@ class Calender extends CI_Controller {
     function getCalenderId() {
         if ($this->refresh()) {
             $calendarList = $this->service->calendarList->listCalendarList();
-            print_r($calendarList);
+//            print_r($calendarList);
+            echo $calendarList->items[0]->id;
             die();
 //            return $calendarList['items'][0]['id'];
         } else {
