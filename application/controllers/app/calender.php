@@ -313,17 +313,17 @@ class Calender extends CI_Controller {
                 $timezone = $this->session->userdata('timezone');
                 $timestamp = $this->timezone_by_offset($timezone);
                 date_default_timezone_set($timestamp);
-
+                
                 $currDateTime = $this->wi_common->getUTCDateWithTime($timezone);
                 $eventDt = date('Y-m-d', strtotime($currDateTime)) . ' ' . $post['time'] . ':00';
                 $ev_dt = date(DATE_RFC3339, strtotime($eventDt));
-
+                
                 $is_repeat = (isset($post['is_repeat']) && $post['is_repeat'] == "on") ? 1 : 0;
 
-//                print_r($post);
-//                echo $ev_dt;
-//                echo $timestamp;
-//                die();
+                print_r($post);
+                echo $ev_dt;
+                echo $timestamp;
+                die();
                 switch ($post['assign']) {
                     case 'all_c':
                         $contactInfo = $this->wi_common->getContactInfo($post['contact_id']);
