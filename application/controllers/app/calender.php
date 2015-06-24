@@ -36,9 +36,9 @@ class Calender extends CI_Controller {
 
     function index() {
         $get = $this->input->get();
-        if ($get['error'] == "access_denied") {
+        if (isset($get['error']) && $get['error'] == "access_denied") {
             header('location:' . site_url() . 'app/calender');
-        } else if ($get['code'] != "") {
+        } else if (isset($get['code']) && $get['code'] != "") {
             $uid = $this->input->cookie('userid', TRUE);
             delete_cookie('userid', '.wish-fish.com', '/');
             $this->session->set_userdata('userid', $this->encryption->decode($uid));
@@ -54,7 +54,7 @@ class Calender extends CI_Controller {
             $this->input->set_cookie($tokenizer);
             header('location:' . site_url() . 'app/calender?a=sync');
         }
-        if ($get['a'] != "" && $get['a'] == "sync") {
+        if (isset($get['a']) && $get['a'] == "sync") {
             $this->addLocalEvent();
         }
         $data['template'] = $this->objsmstemplate->getTemplates();
