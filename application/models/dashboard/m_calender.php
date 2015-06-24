@@ -198,7 +198,7 @@ class M_calender extends CI_Model {
     function getGoogleEventId($eid) {
         $where = array(
             'event_id' => $eid,
-            'google_event_id !=' => NULL
+            'google_event_id !=' => ''
         );
         $query = $this->db->get_where('wi_schedule', $where);
         return ($query->num_rows()) ? $query->row() : FALSE;
