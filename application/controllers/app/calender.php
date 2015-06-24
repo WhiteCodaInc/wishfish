@@ -174,10 +174,14 @@ class Calender extends CI_Controller {
 
     function updateEvent() {
         $set = $this->input->post();
+//        echo '<pre>';
+        print_r($set);
+        die();
         if (is_array($set)) {
             $msg = $this->objcal->updateEvent($set);
             switch ($msg) {
                 case "U":
+                    $this->updateGoogleEvent($set);
                     echo 1;
                     break;
                 case "UF":
@@ -450,6 +454,26 @@ class Calender extends CI_Controller {
         }
     }
 
+    function delete($id) {
+        $calId = $this->getCalenderId();
+        if ($calId) {
+            try {
+                $this->service->events->delete($calId, $id);
+                return TRUE;
+            } catch (Google_Exception $exc) {
+//                $error = $exc->getMessage();
+//                echo $error;
+                return FALSE;
+            }
+        } else {
+            return FALSE;
+        }
+    }
+
+    function updateGoogleEvent() {
+        
+    }
+
     function makeEvent($calId, $post, $attendee, $ev_dt, $timezone, $recur = NULL) {
 
         $body = ($post['event_type'] == "sms" || $post['event_type'] == "notification") ? $post['smsbody'] : $post['emailbody'];
@@ -477,22 +501,6 @@ class Calender extends CI_Controller {
             return $this->service->events->insert($calId, $event);
         } catch (Google_Exception $exc) {
             return false;
-        }
-    }
-
-    function delete($id) {
-        $calId = $this->getCalenderId();
-        if ($calId) {
-            try {
-                $this->service->events->delete($calId, $id);
-                return TRUE;
-            } catch (Google_Exception $exc) {
-//                $error = $exc->getMessage();
-//                echo $error;
-                return FALSE;
-            }
-        } else {
-            return FALSE;
         }
     }
 
