@@ -394,10 +394,6 @@ class Calender extends CI_Controller {
             date_default_timezone_set($timestamp);
             $events = $this->objcal->loadLocalEvent();
 
-//            echo '<pre>';
-//            print_r($events);
-//            die();
-
             foreach ($events as $ev) {
                 $eventDt = $ev['date'] . ' ' . $ev['time'];
                 $ev_dt = date(DATE_RFC3339, strtotime($eventDt));
@@ -450,8 +446,9 @@ class Calender extends CI_Controller {
                 if ($createdEvent)
                     $this->objcal->updateGoogleEvent($createdEvent, $ev);
             }
+            return TRUE;
         } else {
-            return false;
+            return FALSE;
         }
     }
 
