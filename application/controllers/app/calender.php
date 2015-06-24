@@ -536,8 +536,13 @@ class Calender extends CI_Controller {
     }
 
     function makeEvent($calId, $post, $attendee, $ev_dt, $timezone, $recur = NULL) {
+        if (isset($post['smsbody']) || isset($post['emailbody'])) {
+            $body = ($post['event_type'] == "sms" || $post['event_type'] == "notification") ?
+                    $post['smsbody'] : $post['emailbody'];
+        } else {
+            $body = $post['body'];
+        }
 
-        $body = ($post['event_type'] == "sms" || $post['event_type'] == "notification") ? $post['smsbody'] : $post['emailbody'];
         try {
             $event = new Google_Event();
             $event->setSummary($post['event']);
