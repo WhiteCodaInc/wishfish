@@ -476,7 +476,6 @@ class Calender extends CI_Controller {
             $calId = $this->getCalenderId();
             if ($this->refresh() && $calId) {
                 try {
-                    $this->client->setUseObjects(true);
                     $event = $this->service->events->get($calId, $eventInfo->google_event_id);
                     $timezone = $this->session->userdata('timezone');
                     $timestamp = $this->timezone_by_offset($timezone);
@@ -488,9 +487,6 @@ class Calender extends CI_Controller {
 
                     $is_repeat = (isset($post['is_repeat']) && $post['is_repeat'] == "on") ? 1 : 0;
                     $body = ($post['event_type'] == "sms" || $post['event_type'] == "notification") ? $post['smsbody'] : $post['emailbody'];
-
-
-
 
                     $event->setSummary($post['event']);
                     $event->setDescription($body);
