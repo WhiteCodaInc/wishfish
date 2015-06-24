@@ -393,7 +393,9 @@ class Calender extends CI_Controller {
             $timestamp = $this->timezone_by_offset($timezone);
             date_default_timezone_set($timestamp);
             $events = $this->objcal->loadLocalEvent();
-
+            echo '<pre>';
+            print_r($events);
+            die();
             foreach ($events as $ev) {
                 $eventDt = $ev['date'] . ' ' . $ev['time'];
                 $ev_dt = date(DATE_RFC3339, strtotime($eventDt));
