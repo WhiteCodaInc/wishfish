@@ -197,6 +197,7 @@ class M_calender extends CI_Model {
 
     function getGoogleEventId($eid) {
         $where = array(
+            'user_id' => $this->userid,
             'event_id' => $eid,
             'google_event_id !=' => ''
         );
@@ -205,6 +206,8 @@ class M_calender extends CI_Model {
     }
 
     function deleteEvent($eid) {
+        $query = $this->db->get_where('wi_schedule', array('event_id' => $eid));
+//        if($query->row()->refer_id)
         if ($this->db->delete('wi_schedule', array('event_id' => $eid))) {
             return TRUE;
         } else {
