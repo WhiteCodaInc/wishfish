@@ -387,6 +387,7 @@ class Calender extends CI_Controller {
 
     function addLocalEvent() {
         $calId = $this->getCalenderId();
+        echo $calId;
         if ($this->refresh() && $calId) {
             $timezone = $this->session->userdata('timezone');
             $timestamp = $this->timezone_by_offset($timezone);
