@@ -348,7 +348,7 @@ class M_calender extends CI_Model {
             'user_id' => $this->userid,
             'event_id' => $lEvent['event_id'],
         );
-        $this->db->update('wi_schedule', array('google_event_id' => $gEvent['id']), $where);
+        $this->db->update('wi_schedule', array('google_event_id' => $gEvent->id), $where);
     }
 
 }
