@@ -524,16 +524,17 @@ class Calender extends CI_Controller {
                         $event->setRecurrence(array($recur));
                     }
                     $this->service->events->update($calId, $event->getId(), $event);
-                    echo 'UPDATED';
-//                    return TRUE;
+//                    echo 'UPDATED';
+                    return TRUE;
                 } catch (Google_Exception $exc) {
-                    $error = $exc->getMessage();
-                    echo $error;
+//                    $error = $exc->getMessage();
+//                    echo $error;
+                    return FALSE;
                 }
             }
         } else {
-            echo 'NOT CALLED';
-//            return FALSE;
+//            echo 'NOT CALLED';
+            return FALSE;
         }
     }
 
