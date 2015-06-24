@@ -199,9 +199,12 @@ class Calender extends CI_Controller {
     }
 
     function deleteEvent($eid) {
-        $flag = $this->objcal->deleteEvent($eid);
+//        $flag = $this->objcal->deleteEvent($eid);
+        $flag = TRUE;
         if ($flag) {
             $event = $this->objcal->getGoogleEventId($eid);
+            print_r($event);
+            die();
             ($event) ? $this->delete($event->google_event_id) : FALSE;
             echo 1;
         } else {
