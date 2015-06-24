@@ -496,13 +496,14 @@ class Calender extends CI_Controller {
         if ($calId) {
             try {
                 $this->service->events->delete($calId, $id);
-                echo 'Deleted..!';
+                return TRUE;
             } catch (Google_Exception $exc) {
-                $error = $exc->getMessage();
-                echo $error;
+//                $error = $exc->getMessage();
+//                echo $error;
+                return FALSE;
             }
         } else {
-            echo 'Calender Not Found..!';
+            return FALSE;
         }
     }
 
