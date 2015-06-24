@@ -174,25 +174,24 @@ class Calender extends CI_Controller {
 
     function updateEvent() {
         $set = $this->input->post();
-        $this->updateGoogleEvent($set);
-//        die();
-//        if (is_array($set)) {
-//            $msg = $this->objcal->updateEvent($set);
-//            switch ($msg) {
-//                case "U":
-//                    echo 1;
-//                    break;
-//                case "UF":
-//                    echo 0;
-//                    break;
-//                case "NA":
-//                    $title = ($set['event_type'] == "sms") ? "SMS" : "Email";
-//                    echo "You have already reach your {$title} event  limit..!\nYou can not add more..!";
-//                    break;
-//            }
-//        } else {
-//            header('location' . site_url() . 'app/calender');
-//        }
+        if (is_array($set)) {
+            $msg = $this->objcal->updateEvent($set);
+            switch ($msg) {
+                case "U":
+                    $this->updateGoogleEvent($set);
+                    echo 1;
+                    break;
+                case "UF":
+                    echo 0;
+                    break;
+                case "NA":
+                    $title = ($set['event_type'] == "sms") ? "SMS" : "Email";
+                    echo "You have already reach your {$title} event  limit..!\nYou can not add more..!";
+                    break;
+            }
+        } else {
+            header('location' . site_url() . 'app/calender');
+        }
     }
 
     function deleteEvent($eid) {
