@@ -469,17 +469,14 @@ class Calender extends CI_Controller {
     }
 
     function updateGoogleEvent($post) {
+        print_r($post);
         $eventInfo = $this->objcal->getEventInfo($post['eventid']);
         if ($eventInfo->google_event_id != "") {
             $calId = $this->getCalenderId();
-            echo $calId;
-            die();
             if ($this->refresh() && $calId) {
                 try {
-                    echo '-CLAENDER FOUND-';
                     $event = $this->service->events->get($calId, $eventInfo->google_event_id);
                     print_r($event);
-                    echo '--END EVENT DISPLAY--';
                     die();
                     $timezone = $this->session->userdata('timezone');
                     $timestamp = $this->timezone_by_offset($timezone);
