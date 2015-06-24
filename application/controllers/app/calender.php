@@ -329,32 +329,6 @@ class Calender extends CI_Controller {
                         $attendee = new Google_EventAttendee();
                         $attendee->setEmail($contactInfo->email);
                         $attendee->setDisplayName($contactInfo->fname . ' ' . $contactInfo->lname);
-                        if (!$is_repeat) {
-                            $createdEvent = $this->makeEvent($calId, $post, $attendee, $ev_dt, $timestamp);
-                        } else {
-                            switch ($post['freq_type']) {
-                                case "days":
-                                    $freq = "DAILY";
-                                    break;
-                                case "weeks":
-                                    $freq = "WEEKLY";
-                                    break;
-                                case "months":
-                                    $freq = "MONTHLY";
-                                    break;
-                                case "years":
-                                    $freq = "YEARLY";
-                                    break;
-                            }
-                            if ($post['end_type'] == "never") {
-                                $recur = "RRULE:FREQ={$freq};INTERVAL={$post['freq_no']}";
-                            } else if ($post['end_type'] == "after") {
-                                $recur = "RRULE:FREQ={$freq};INTERVAL={$post['freq_no']};COUNT={$post['occurance']}";
-                            } else {
-                                $recur = NULL;
-                            }
-                            $createdEvent = $this->makeEvent($calId, $post, $attendee, $ev_dt, $timestamp, $recur);
-                        }
                         break;
                     case 'all_gc':
                         $res = $this->objtrigger->getGroupContact($post['group_id']);
@@ -365,8 +339,34 @@ class Calender extends CI_Controller {
                             $attendee[$key]->setEmail($contactInfo->email);
                             $attendee[$key]->setDisplayName($contactInfo->fname . ' ' . $contactInfo->lname);
                         }
-                        $createdEvent = $this->makeEvent($calId, $post, $attendee, $ev_dt, $timestamp);
+//                        $createdEvent = $this->makeEvent($calId, $post, $attendee, $ev_dt, $timestamp);
                         break;
+                }
+                if (!$is_repeat) {
+                    $createdEvent = $this->makeEvent($calId, $post, $attendee, $ev_dt, $timestamp);
+                } else {
+                    switch ($post['freq_type']) {
+                        case "days":
+                            $freq = "DAILY";
+                            break;
+                        case "weeks":
+                            $freq = "WEEKLY";
+                            break;
+                        case "months":
+                            $freq = "MONTHLY";
+                            break;
+                        case "years":
+                            $freq = "YEARLY";
+                            break;
+                    }
+                    if ($post['end_type'] == "never") {
+                        $recur = "RRULE:FREQ={$freq};INTERVAL={$post['freq_no']}";
+                    } else if ($post['end_type'] == "after") {
+                        $recur = "RRULE:FREQ={$freq};INTERVAL={$post['freq_no']};COUNT={$post['occurance']}";
+                    } else {
+                        $recur = NULL;
+                    }
+                    $createdEvent = $this->makeEvent($calId, $post, $attendee, $ev_dt, $timestamp, $recur);
                 }
                 return $createdEvent;
             } catch (Google_Exception $exc) {
@@ -469,7 +469,6 @@ class Calender extends CI_Controller {
     }
 
     function updateGoogleEvent($post) {
-//        print_r($post);
         $eventInfo = $this->objcal->getEventInfo($post['eventid']);
         if ($eventInfo->google_event_id != "") {
             $calId = $this->getCalenderId();
@@ -525,7 +524,6 @@ class Calender extends CI_Controller {
                         $event->setRecurrence(array());
                     }
                     $this->service->events->update($calId, $event->getId(), $event);
-//                    echo 'UPDATED';
                     return TRUE;
                 } catch (Google_Exception $exc) {
 //                    $error = $exc->getMessage();
@@ -534,7 +532,6 @@ class Calender extends CI_Controller {
                 }
             }
         } else {
-//            echo 'NOT CALLED';
             return FALSE;
         }
     }
