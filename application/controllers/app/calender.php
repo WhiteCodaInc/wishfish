@@ -35,25 +35,27 @@ class Calender extends CI_Controller {
     }
 
     function index() {
-        if ($this->input->get('error') == "access_denied") {
+        $get = $this->input->get();
+        if ($get['error'] == "access_denied") {
             header('location:' . site_url() . 'app/calender');
-        } else if ($this->input->get('code') != "") {
+        } else if ($get['code'] != "") {
             $uid = $this->input->cookie('userid', TRUE);
             delete_cookie('userid', '.wish-fish.com', '/');
             $this->session->set_userdata('userid', $this->encryption->decode($uid));
             $this->setClient();
             $this->client->authenticate($this->input->get('code'));
-//            $token = json_decode($this->client->getAccessToken());
-//            $tokenizer = array(
-//                'name' => 'token',
-//                'value' => $this->encryption->encode($token->access_token),
-//                'expire' => time() + 86500,
-//                'domain' => '.wish-fish.com'
-//            );
-//            $this->input->set_cookie($tokenizer);
+            $token = json_decode($this->client->getAccessToken());
+            $tokenizer = array(
+                'name' => 'token',
+                'value' => $this->encryption->encode($token->access_token),
+                'expire' => time() + 86500,
+                'domain' => '.wish-fish.com'
+            );
+            $this->input->set_cookie($tokenizer);
+            header('location:' . site_url() . 'app/calender?a=sync');
+        }
+        if ($get['a'] != "" && $get['a'] == "sync") {
             $this->addLocalEvent();
-            die();
-//            header('location:' . site_url() . 'app/calender');
         }
         $data['template'] = $this->objsmstemplate->getTemplates();
         $this->load->view('dashboard/header');
@@ -384,11 +386,8 @@ class Calender extends CI_Controller {
     }
 
     function addLocalEvent() {
-        $calendarList = $this->service->calendarList->listCalendarList();
-        echo $calendarList->items[0]->id;
-        die();
+        $calId = $this->getCalenderId();
         if ($this->refresh() && $calId) {
-            echo 'FOUND';
             $timezone = $this->session->userdata('timezone');
             $timestamp = $this->timezone_by_offset($timezone);
             date_default_timezone_set($timestamp);
@@ -455,7 +454,7 @@ class Calender extends CI_Controller {
                 }
             }
         } else {
-            echo 'NOT FOUND';
+            return false;
         }
     }
 
