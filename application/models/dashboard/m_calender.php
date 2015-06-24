@@ -208,13 +208,14 @@ class M_calender extends CI_Model {
     function deleteEvent($eid) {
         $query = $this->db->get_where('wi_schedule', array('event_id' => $eid));
         if ($query->row()->is_repeat) {
-            $this->db->delete('wi_schedule', array('refer_id' => $query->row()->refer_id));
+            print_r($query->row());
+//            $this->db->delete('wi_schedule', array('refer_id' => $query->row()->event_id));
         }
-        if ($this->db->delete('wi_schedule', array('event_id' => $eid))) {
-            return TRUE;
-        } else {
-            return FALSE;
-        }
+//        if ($this->db->delete('wi_schedule', array('event_id' => $eid))) {
+//            return TRUE;
+//        } else {
+//            return FALSE;
+//        }
     }
 
     function updateEvent($set) {
