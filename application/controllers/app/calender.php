@@ -203,8 +203,6 @@ class Calender extends CI_Controller {
         $flag = TRUE;
         if ($flag) {
             $event = $this->objcal->getGoogleEventId($eid);
-            print_r($event);
-            die();
             ($event) ? $this->delete($event->google_event_id) : FALSE;
             echo 1;
         } else {
@@ -498,6 +496,9 @@ class Calender extends CI_Controller {
         $calId = $this->getCalenderId();
         if ($calId) {
             try {
+                echo $calId;
+                echo $id;
+                die();
                 $this->service->events->delete($calId, $id);
                 return TRUE;
             } catch (Google_Exception $exc) {
