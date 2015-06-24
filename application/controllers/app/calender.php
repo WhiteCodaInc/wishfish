@@ -394,9 +394,9 @@ class Calender extends CI_Controller {
             date_default_timezone_set($timestamp);
             $events = $this->objcal->loadLocalEvent();
 
-            echo '<pre>';
-            print_r($events);
-            die();
+//            echo '<pre>';
+//            print_r($events);
+//            die();
 
             foreach ($events as $ev) {
                 $eventDt = $ev['date'] . ' ' . $ev['time'];
@@ -408,36 +408,7 @@ class Calender extends CI_Controller {
                         $attendee = new Google_EventAttendee();
                         $attendee->setEmail($contactInfo->email);
                         $attendee->setDisplayName($contactInfo->fname . ' ' . $contactInfo->lname);
-                        if (!$ev['is_repeat']) {
-                            $createdEvent = $this->makeEvent($calId, $ev, $attendee, $ev_dt, $timestamp);
-                            if ($createdEvent)
-                                $this->objcal->updateGoogleEvent($createdEvent, $ev);
-                        } else {
-                            switch ($ev['freq_type']) {
-                                case "days":
-                                    $freq = "DAILY";
-                                    break;
-                                case "weeks":
-                                    $freq = "WEEKLY";
-                                    break;
-                                case "months":
-                                    $freq = "MONTHLY";
-                                    break;
-                                case "years":
-                                    $freq = "YEARLY";
-                                    break;
-                            }
-                            if ($ev['end_type'] == "never") {
-                                $recur = "RRULE:FREQ={$freq};INTERVAL={$ev['freq_no']}";
-                            } else if ($ev['end_type'] == "after") {
-                                $recur = "RRULE:FREQ={$freq};INTERVAL={$ev['freq_no']};COUNT={$ev['occurance']}";
-                            } else {
-                                $recur = NULL;
-                            }
-                            $createdEvent = $this->makeEvent($calId, $ev, $attendee, $ev_dt, $timestamp, $recur);
-                            if ($createdEvent)
-                                $this->objcal->updateGoogleEvent($createdEvent, $ev);
-                        }
+
                         break;
                     case 'simple':
                         $res = $this->objtrigger->getGroupContact($ev['group_id']);
@@ -448,11 +419,36 @@ class Calender extends CI_Controller {
                             $attendee[$key]->setEmail($contactInfo->email);
                             $attendee[$key]->setDisplayName($contactInfo->fname . ' ' . $contactInfo->lname);
                         }
-                        $createdEvent = $this->makeEvent($calId, $ev, $attendee, $ev_dt, $timestamp);
-                        if ($createdEvent)
-                            $this->objcal->updateGoogleEvent($createdEvent, $ev);
                         break;
                 }
+                if (!$ev['is_repeat']) {
+                    $createdEvent = $this->makeEvent($calId, $ev, $attendee, $ev_dt, $timestamp);
+                } else {
+                    switch ($ev['freq_type']) {
+                        case "days":
+                            $freq = "DAILY";
+                            break;
+                        case "weeks":
+                            $freq = "WEEKLY";
+                            break;
+                        case "months":
+                            $freq = "MONTHLY";
+                            break;
+                        case "years":
+                            $freq = "YEARLY";
+                            break;
+                    }
+                    if ($ev['end_type'] == "never") {
+                        $recur = "RRULE:FREQ={$freq};INTERVAL={$ev['freq_no']}";
+                    } else if ($ev['end_type'] == "after") {
+                        $recur = "RRULE:FREQ={$freq};INTERVAL={$ev['freq_no']};COUNT={$ev['occurance']}";
+                    } else {
+                        $recur = NULL;
+                    }
+                    $createdEvent = $this->makeEvent($calId, $ev, $attendee, $ev_dt, $timestamp, $recur);
+                }
+                if ($createdEvent)
+                    $this->objcal->updateGoogleEvent($createdEvent, $ev);
             }
         } else {
             return false;
