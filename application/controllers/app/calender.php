@@ -521,6 +521,8 @@ class Calender extends CI_Controller {
                             $recur = "RRULE:FREQ={$freq};INTERVAL={$post['freq_no']};COUNT={$post['occurance']}";
                         }
                         $event->setRecurrence(array($recur));
+                    } else {
+                        $event->setRecurrence(array());
                     }
                     $this->service->events->update($calId, $event->getId(), $event);
 //                    echo 'UPDATED';
