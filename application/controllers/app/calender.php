@@ -174,8 +174,6 @@ class Calender extends CI_Controller {
 
     function updateEvent() {
         $set = $this->input->post();
-//        echo '<pre>';
-        print_r($set);
         $this->updateGoogleEvent($set);
         die();
         if (is_array($set)) {
@@ -471,6 +469,7 @@ class Calender extends CI_Controller {
     }
 
     function updateGoogleEvent($post) {
+        print_r($post);
         $eventInfo = $this->objcal->getEventInfo($post['eventid']);
         if ($eventInfo->google_event_id != "") {
             echo 'CALLED';
