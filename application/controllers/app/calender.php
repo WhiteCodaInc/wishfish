@@ -244,6 +244,7 @@ class Calender extends CI_Controller {
             $this->client->setScopes("https://www.googleapis.com/auth/calendar");
             $this->client->setAccessType('offline');
             $this->client->setApprovalPrompt('auto');
+            $this->client->setUseObjects(true);
 
             $this->service = new Google_CalendarService($this->client);
         } else {
@@ -272,7 +273,9 @@ class Calender extends CI_Controller {
     function getCalenderId() {
         if ($this->refresh()) {
             $calendarList = $this->service->calendarList->listCalendarList();
-            return $calendarList['items'][0]['id'];
+            print_r($calendarList);
+            die();
+//            return $calendarList['items'][0]['id'];
         } else {
             return false;
         }
