@@ -51,7 +51,7 @@ class Calender extends CI_Controller {
                 'domain' => '.wish-fish.com'
             );
             $this->input->set_cookie($tokenizer);
-            // $this->addLocalEvent();
+            $this->addLocalEvent();
             header('location:' . site_url() . 'app/calender');
         }
         $data['template'] = $this->objsmstemplate->getTemplates();
@@ -182,7 +182,6 @@ class Calender extends CI_Controller {
                 $this->updateGoogleEvent($set);
                 $msg = $this->objcal->updateEvent($set);
             }
-
             switch ($msg) {
                 case "U":
                     echo 1;
@@ -386,6 +385,7 @@ class Calender extends CI_Controller {
     function addLocalEvent() {
         $calId = $this->getCalenderId();
         if ($this->refresh() && $calId) {
+            echo 'FOUND';
             $timezone = $this->session->userdata('timezone');
             $timestamp = $this->timezone_by_offset($timezone);
             date_default_timezone_set($timestamp);
@@ -452,7 +452,7 @@ class Calender extends CI_Controller {
                 }
             }
         } else {
-            return false;
+            echo 'NOT FOUND';
         }
     }
 
