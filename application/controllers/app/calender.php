@@ -199,11 +199,10 @@ class Calender extends CI_Controller {
     }
 
     function deleteEvent($eid) {
-//        $flag = $this->objcal->deleteEvent($eid);
-        $flag = TRUE;
+        $flag = $this->objcal->deleteEvent($eid);
         if ($flag) {
-            $event = $this->objcal->getGoogleEventId($eid);
-            ($event) ? $this->delete($event->google_event_id) : FALSE;
+//            $event = $this->objcal->getGoogleEventId($eid);
+//            ($event) ? $this->delete($event->google_event_id) : FALSE;
             echo 1;
         } else {
             echo 0;
@@ -496,16 +495,12 @@ class Calender extends CI_Controller {
         $calId = $this->getCalenderId();
         if ($calId) {
             try {
-//                echo $calId;
-//                echo $id;
-//                die();
                 $this->service->events->delete($calId, $id);
-                echo 'DELETED';
-//                return TRUE;
+                return TRUE;
             } catch (Google_Exception $exc) {
-                $error = $exc->getMessage();
-                echo $error;
-//                return FALSE;
+//                $error = $exc->getMessage();
+//                echo $error;
+                return FALSE;
             }
         } else {
             return FALSE;
