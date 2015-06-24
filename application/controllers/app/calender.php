@@ -473,13 +473,15 @@ class Calender extends CI_Controller {
     function updateGoogleEvent($post) {
         $eventInfo = $this->objcal->getEventInfo($post['eventid']);
         if ($eventInfo->google_event_id != "") {
-
+            echo 'CALLED';
             $calId = $this->getCalenderId();
             if ($this->refresh() && $calId) {
                 try {
-
+                    echo '-CLAENDER FOUND-';
                     $event = $this->service->events->get($calId, $eventInfo->google_event_id);
-
+                    print_r($event);
+                    echo '--END EVENT DISPLAY--';
+                    die();
                     $timezone = $this->session->userdata('timezone');
                     $timestamp = $this->timezone_by_offset($timezone);
                     date_default_timezone_set($timestamp);
@@ -536,7 +538,8 @@ class Calender extends CI_Controller {
                 }
             }
         } else {
-            return FALSE;
+            echo 'CALLED';
+//            return FALSE;
         }
     }
 
