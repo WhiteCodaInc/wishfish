@@ -398,7 +398,7 @@ class Calender extends CI_Controller {
             foreach ($events as $ev) {
                 $eventDt = $ev['date'] . ' ' . $ev['time'];
                 $ev_dt = date(DATE_RFC3339, strtotime($eventDt));
-                switch ($ev->group_type) {
+                switch ($ev['group_type']) {
                     case 'individual':
                         $contactInfo = $this->wi_common->getContactInfo($ev['contact_id']);
                         $attendee = new Google_EventAttendee();
