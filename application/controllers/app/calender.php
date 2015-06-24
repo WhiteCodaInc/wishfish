@@ -202,15 +202,8 @@ class Calender extends CI_Controller {
 
         $event = $this->objcal->getGoogleEventId($eid);
         ($event) ? $this->delete($event->google_event_id) : FALSE;
-
-//        $flag = $this->objcal->deleteEvent($eid);
-//        if ($flag) {
-//            $event = $this->objcal->getGoogleEventId($eid);
-//            ($event) ? $this->delete($event->google_event_id) : FALSE;
-//            echo 1;
-//        } else {
-//            echo 0;
-//        }
+        $flag = $this->objcal->deleteEvent($eid);
+        echo ($flag) ? 1 : 0;
     }
 
     function sendActivationEmail() {
