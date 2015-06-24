@@ -52,6 +52,7 @@ class Calender extends CI_Controller {
             );
             $this->input->set_cookie($tokenizer);
             $this->addLocalEvent();
+            die();
             header('location:' . site_url() . 'app/calender');
         }
         $data['template'] = $this->objsmstemplate->getTemplates();
@@ -383,7 +384,9 @@ class Calender extends CI_Controller {
     }
 
     function addLocalEvent() {
-        $calId = $this->getCalenderId();
+        $calendarList = $this->service->calendarList->listCalendarList();
+        echo $calendarList->items[0]->id;
+        die();
         if ($this->refresh() && $calId) {
             echo 'FOUND';
             $timezone = $this->session->userdata('timezone');
