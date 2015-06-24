@@ -157,128 +157,124 @@ class Calender extends CI_Controller {
         echo ($data) ? 1 : 0;
     }
 
-}
-
-function getEvents() {
-    $post = $this->input->post();
-    $this->objcal->getEvents($post);
-}
-
-function getCards() {
-    $post = $this->input->post();
-    $this->objcal->getCards($post);
-}
-
-function getEvent($eid) {
-    $event = $this->objcal->getEvent($eid);
-    echo json_encode($event);
-}
-
-function updateEvent() {
-    $set = $this->input->post();
-    if (is_array($set)) {
-        $msg = $this->objcal->updateEvent($set);
-        switch ($msg) {
-            case "U":
-                echo 1;
-                break;
-            case "UF":
-                echo 0;
-                break;
-            case "NA":
-                $title = ($set['event_type'] == "sms") ? "SMS" : "Email";
-                echo "You have already reach your {$title} event  limit..!\nYou can not add more..!";
-                break;
-        }
-    } else {
-        header('location' . site_url() . 'app/calender');
+    function getEvents() {
+        $post = $this->input->post();
+        $this->objcal->getEvents($post);
     }
-}
 
-function deleteEvent($eid) {
-    $event = $this->objcal->getGoogleEventId($eid);
-    ($event) ? $this->delete($event->google_event_id) : '';
-    $flag = $this->objcal->deleteEvent($eid);
-    echo ($flag) ? 1 : 0;
-}
+    function getCards() {
+        $post = $this->input->post();
+        $this->objcal->getCards($post);
+    }
 
-function sendActivationEmail() {
-    $uid = $this->session->userdata('userid');
-    $userInfo = $this->wi_common->getUserInfo($uid);
-    $post = array(
-        'name' => $userInfo->name,
-        'email' => $userInfo->email
-    );
-    echo ($this->objregister->sendMail($post, $uid)) ? 1 : 0;
-}
+    function getEvent($eid) {
+        $event = $this->objcal->getEvent($eid);
+        echo json_encode($event);
+    }
+
+    function updateEvent() {
+        $set = $this->input->post();
+        if (is_array($set)) {
+            $msg = $this->objcal->updateEvent($set);
+            switch ($msg) {
+                case "U":
+                    echo 1;
+                    break;
+                case "UF":
+                    echo 0;
+                    break;
+                case "NA":
+                    $title = ($set['event_type'] == "sms") ? "SMS" : "Email";
+                    echo "You have already reach your {$title} event  limit..!\nYou can not add more..!";
+                    break;
+            }
+        } else {
+            header('location' . site_url() . 'app/calender');
+        }
+    }
+
+    function deleteEvent($eid) {
+        $event = $this->objcal->getGoogleEventId($eid);
+        ($event) ? $this->delete($event->google_event_id) : '';
+        $flag = $this->objcal->deleteEvent($eid);
+        echo ($flag) ? 1 : 0;
+    }
+
+    function sendActivationEmail() {
+        $uid = $this->session->userdata('userid');
+        $userInfo = $this->wi_common->getUserInfo($uid);
+        $post = array(
+            'name' => $userInfo->name,
+            'email' => $userInfo->email
+        );
+        echo ($this->objregister->sendMail($post, $uid)) ? 1 : 0;
+    }
 
 //---------------Google Calender Event Function---------------------------//
 
-function connect() {
-    if (!$this->input->cookie('userid')) {
-        $userid = array(
-            'name' => 'userid',
-            'value' => $this->encryption->encode($this->session->userdata('userid')),
-            'expire' => time() + 86500,
-            'domain' => '.wish-fish.com'
-        );
-        $this->input->set_cookie($userid);
-    }
-    $this->setClient();
-    header('location:' . $this->client->createAuthUrl());
-}
-
-function setClient() {
-    require_once APPPATH . 'third_party/google-api/Google_Client.php';
-    require_once APPPATH . 'third_party/google-api/contrib/Google_CalendarService.php';
-
-    $setting = $this->objprofile->getUserSetting();
-
-    if ($setting->app_name != NULL && $setting->client_id != NULL && $setting->client_secret != NULL && $setting->api_key != NULL) {
-        $this->client = new Google_Client();
-        $this->client->setApplicationName($setting->app_name);
-        $this->client->setClientId($setting->client_id);
-        $this->client->setClientSecret($setting->client_secret);
-        $this->client->setRedirectUri($setting->redirect_uri);
-        $this->client->setDeveloperKey($setting->api_key);
-        $this->client->setScopes("https://www.googleapis.com/auth/calendar");
-        $this->client->setAccessType('offline');
-        $this->client->setApprovalPrompt('auto');
-
-        $this->service = new Google_CalendarService($this->client);
-    } else {
-        header('location:' . site_url() . 'app/setting');
-    }
-}
-
-function refresh() {
-    try {
-        $this->setClient();
-        if ($this->client->isAccessTokenExpired() && $this->input->cookie('token')) {
-            $tkn = $this->encryption->decode($this->input->cookie('token', TRUE));
-            $this->client->refreshToken($tkn);
-            return TRUE;
+    function connect() {
+        if (!$this->input->cookie('userid')) {
+            $userid = array(
+                'name' => 'userid',
+                'value' => $this->encryption->encode($this->session->userdata('userid')),
+                'expire' => time() + 86500,
+                'domain' => '.wish-fish.com'
+            );
+            $this->input->set_cookie($userid);
         }
-    } catch (Exception $exc) {
-        $this->close();
-        return FALSE;
-    }
-}
-
-function close() {
-    delete_cookie('token', '.wish-fish.com', '/');
-}
-
-function getCalenderId() {
-    if ($this->refresh()) {
-        $calendarList = $this->service->calendarList->listCalendarList();
-        return $calendarList['items'][0]['id'];
-    } else {
-        return false;
-    }
+        $this->setClient();
+        header('location:' . $this->client->createAuthUrl());
     }
 
-    public
+    function setClient() {
+        require_once APPPATH . 'third_party/google-api/Google_Client.php';
+        require_once APPPATH . 'third_party/google-api/contrib/Google_CalendarService.php';
+
+        $setting = $this->objprofile->getUserSetting();
+
+        if ($setting->app_name != NULL && $setting->client_id != NULL && $setting->client_secret != NULL && $setting->api_key != NULL) {
+            $this->client = new Google_Client();
+            $this->client->setApplicationName($setting->app_name);
+            $this->client->setClientId($setting->client_id);
+            $this->client->setClientSecret($setting->client_secret);
+            $this->client->setRedirectUri($setting->redirect_uri);
+            $this->client->setDeveloperKey($setting->api_key);
+            $this->client->setScopes("https://www.googleapis.com/auth/calendar");
+            $this->client->setAccessType('offline');
+            $this->client->setApprovalPrompt('auto');
+
+            $this->service = new Google_CalendarService($this->client);
+        } else {
+            header('location:' . site_url() . 'app/setting');
+        }
+    }
+
+    function refresh() {
+        try {
+            $this->setClient();
+            if ($this->client->isAccessTokenExpired() && $this->input->cookie('token')) {
+                $tkn = $this->encryption->decode($this->input->cookie('token', TRUE));
+                $this->client->refreshToken($tkn);
+                return TRUE;
+            }
+        } catch (Exception $exc) {
+            $this->close();
+            return FALSE;
+        }
+    }
+
+    function close() {
+        delete_cookie('token', '.wish-fish.com', '/');
+    }
+
+    function getCalenderId() {
+        if ($this->refresh()) {
+            $calendarList = $this->service->calendarList->listCalendarList();
+            return $calendarList['items'][0]['id'];
+        } else {
+            return false;
+        }
+    }
 
     function events() {
         try {
@@ -377,8 +373,6 @@ function getCalenderId() {
                 return FALSE;
             }
         } else {
-//            echo 'NOT CALLED';
-//            print_r($post);
             return FALSE;
         }
     }
