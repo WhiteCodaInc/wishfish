@@ -393,8 +393,8 @@ class Calender extends CI_Controller {
             date_default_timezone_set($timestamp);
             $events = $this->objcal->loadLocalEvent();
             echo '<pre>';
-            print_r($events);
-            die();
+//            print_r($events);
+//            die();
             foreach ($events as $ev) {
                 $eventDt = $ev['date'] . ' ' . $ev['time'];
                 $ev_dt = date(DATE_RFC3339, strtotime($eventDt));
@@ -417,7 +417,11 @@ class Calender extends CI_Controller {
                         break;
                 }
                 if (!$ev['is_repeat']) {
-                    $createdEvent = $this->makeEvent($calId, $ev, $attendee, $ev_dt, $timestamp);
+                    echo "<br>-----Event ID : {$ev['event_id']}--------<br>";
+                    print_r($attendee);
+                    echo $ev_dt . '<br>';
+                    echo "<br>-------END--------<br>";
+//                    $createdEvent = $this->makeEvent($calId, $ev, $attendee, $ev_dt, $timestamp);
                 } else {
                     switch ($ev['freq_type']) {
                         case "days":
@@ -440,11 +444,16 @@ class Calender extends CI_Controller {
                     } else {
                         $recur = NULL;
                     }
-                    $createdEvent = $this->makeEvent($calId, $ev, $attendee, $ev_dt, $timestamp, $recur);
+                    echo "<br>-----Event ID : {$ev['event_id']}--------<br>";
+                    print_r($attendee);
+                    echo $ev_dt . '<br>';
+                    echo "<br>-------END--------<br>";
+//                    $createdEvent = $this->makeEvent($calId, $ev, $attendee, $ev_dt, $timestamp, $recur);
                 }
-                if ($createdEvent)
-                    $this->objcal->updateGoogleEvent($createdEvent, $ev);
+//                if ($createdEvent)
+//                    $this->objcal->updateGoogleEvent($createdEvent, $ev);
             }
+            die();
             return TRUE;
         } else {
             return FALSE;
