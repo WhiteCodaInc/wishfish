@@ -417,11 +417,11 @@ class Calender extends CI_Controller {
                         break;
                 }
                 if (!$ev['is_repeat']) {
-                    echo "<br>-----Event ID : {$ev['event_id']}--------<br>";
-                    print_r($attendee);
-                    echo $ev_dt . '<br>';
-                    echo "<br>-------END--------<br>";
-//                    $createdEvent = $this->makeEvent($calId, $ev, $attendee, $ev_dt, $timestamp);
+//                    echo "<br>-----Event ID : {$ev['event_id']}--------<br>";
+//                    print_r($attendee);
+//                    echo $ev_dt . '<br>';
+//                    echo "<br>-------END--------<br>";
+                    $createdEvent = $this->makeEvent($calId, $ev, $attendee, $ev_dt, $timestamp);
                 } else {
                     switch ($ev['freq_type']) {
                         case "days":
@@ -444,16 +444,15 @@ class Calender extends CI_Controller {
                     } else {
                         $recur = NULL;
                     }
-                    echo "<br>-----Event ID : {$ev['event_id']}--------<br>";
-                    print_r($attendee);
-                    echo $ev_dt . '<br>';
-                    echo "<br>-------END--------<br>";
-//                    $createdEvent = $this->makeEvent($calId, $ev, $attendee, $ev_dt, $timestamp, $recur);
+//                    echo "<br>-----Event ID : {$ev['event_id']}--------<br>";
+//                    print_r($attendee);
+//                    echo $ev_dt . '<br>';
+//                    echo "<br>-------END--------<br>";
+                    $createdEvent = $this->makeEvent($calId, $ev, $attendee, $ev_dt, $timestamp, $recur);
                 }
-//                if ($createdEvent)
-//                    $this->objcal->updateGoogleEvent($createdEvent, $ev);
+                if ($createdEvent)
+                    $this->objcal->updateGoogleEvent($createdEvent, $ev);
             }
-            die();
             return TRUE;
         } else {
             return FALSE;
