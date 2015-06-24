@@ -487,6 +487,9 @@ class Calender extends CI_Controller {
                     $is_repeat = (isset($post['is_repeat']) && $post['is_repeat'] == "on") ? 1 : 0;
                     $body = ($post['event_type'] == "sms" || $post['event_type'] == "notification") ? $post['smsbody'] : $post['emailbody'];
 
+
+
+                    $this->client->setUseObjects(true);
                     $event->setSummary($post['event']);
                     $event->setDescription($body);
 
