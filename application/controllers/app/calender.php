@@ -387,15 +387,14 @@ class Calender extends CI_Controller {
 
     function addLocalEvent() {
         $calId = $this->getCalenderId();
-        echo $calId;
         if ($this->refresh() && $calId) {
             $timezone = $this->session->userdata('timezone');
             $timestamp = $this->timezone_by_offset($timezone);
             date_default_timezone_set($timestamp);
             $events = $this->objcal->loadLocalEvent();
-            echo '<pre>';
-            print_r($events);
-            die();
+//            echo '<pre>';
+//            print_r($events);
+//            die();
             foreach ($events as $ev) {
                 $eventDt = $ev['date'] . ' ' . $ev['time'];
                 $ev_dt = date(DATE_RFC3339, strtotime($eventDt));
