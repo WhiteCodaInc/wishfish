@@ -319,10 +319,6 @@ class Calender extends CI_Controller {
 
                 $is_repeat = (isset($post['is_repeat']) && $post['is_repeat'] == "on") ? 1 : 0;
 
-//                print_r($post);
-//                echo $ev_dt;
-//                echo $timestamp;
-//                die();
                 switch ($post['assign']) {
                     case 'all_c':
                         $contactInfo = $this->wi_common->getContactInfo($post['contact_id']);
@@ -339,7 +335,6 @@ class Calender extends CI_Controller {
                             $attendee[$key]->setEmail($contactInfo->email);
                             $attendee[$key]->setDisplayName($contactInfo->fname . ' ' . $contactInfo->lname);
                         }
-//                        $createdEvent = $this->makeEvent($calId, $post, $attendee, $ev_dt, $timestamp);
                         break;
                 }
                 if (!$is_repeat) {
