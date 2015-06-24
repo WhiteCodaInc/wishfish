@@ -199,14 +199,18 @@ class Calender extends CI_Controller {
     }
 
     function deleteEvent($eid) {
-        $flag = $this->objcal->deleteEvent($eid);
-        if ($flag) {
-            $event = $this->objcal->getGoogleEventId($eid);
-            ($event) ? $this->delete($event->google_event_id) : FALSE;
+
+        $event = $this->objcal->getGoogleEventId($eid);
+        ($event) ? $this->delete($event->google_event_id) : FALSE;
+
+//        $flag = $this->objcal->deleteEvent($eid);
+//        if ($flag) {
+//            $event = $this->objcal->getGoogleEventId($eid);
+//            ($event) ? $this->delete($event->google_event_id) : FALSE;
 //            echo 1;
-        } else {
+//        } else {
 //            echo 0;
-        }
+//        }
     }
 
     function sendActivationEmail() {
