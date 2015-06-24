@@ -392,8 +392,8 @@ class Calender extends CI_Controller {
             $timestamp = $this->timezone_by_offset($timezone);
             date_default_timezone_set($timestamp);
             $events = $this->objcal->loadLocalEvent();
-            echo '<pre>';
-            print_r($events);
+//            echo '<pre>';
+//            print_r($events);
 //            die();
             foreach ($events as $ev) {
                 $eventDt = $ev['date'] . ' ' . $ev['time'];
@@ -407,8 +407,6 @@ class Calender extends CI_Controller {
                         break;
                     case 'simple':
                         $res = $this->objtrigger->getGroupContact($ev['group_id']);
-                        print_r($res);
-                        die();
                         $cids = $res[1];
                         foreach ($cids as $key => $cid) {
                             $contactInfo = $this->wi_common->getContactInfo($cid);
