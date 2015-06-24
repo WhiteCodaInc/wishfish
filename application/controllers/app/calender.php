@@ -469,7 +469,6 @@ class Calender extends CI_Controller {
     }
 
     function updateGoogleEvent($post) {
-        print_r($post);
         $eventInfo = $this->objcal->getEventInfo($post['eventid']);
         if ($eventInfo->google_event_id != "") {
             $calId = $this->getCalenderId();
