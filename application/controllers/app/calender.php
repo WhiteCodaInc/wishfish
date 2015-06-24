@@ -203,9 +203,9 @@ class Calender extends CI_Controller {
         if ($flag) {
             $event = $this->objcal->getGoogleEventId($eid);
             ($event) ? $this->delete($event->google_event_id) : FALSE;
-            echo 1;
+//            echo 1;
         } else {
-            echo 0;
+//            echo 0;
         }
     }
 
