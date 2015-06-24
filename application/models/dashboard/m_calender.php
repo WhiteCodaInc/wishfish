@@ -337,7 +337,6 @@ class M_calender extends CI_Model {
         $where = array(
             'user_id' => $this->userid,
             'refer_id' => NULL,
-            'event_type !=' => 'notification',
             'google_event_id' => NULL
         );
         $query = $this->db->get_where('wi_schedule', $where);
