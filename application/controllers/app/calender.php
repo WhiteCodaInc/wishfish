@@ -43,17 +43,17 @@ class Calender extends CI_Controller {
             $this->session->set_userdata('userid', $this->encryption->decode($uid));
             $this->setClient();
             $this->client->authenticate($this->input->get('code'));
-            $token = json_decode($this->client->getAccessToken());
-            $tokenizer = array(
-                'name' => 'token',
-                'value' => $this->encryption->encode($token->access_token),
-                'expire' => time() + 86500,
-                'domain' => '.wish-fish.com'
-            );
-            $this->input->set_cookie($tokenizer);
+//            $token = json_decode($this->client->getAccessToken());
+//            $tokenizer = array(
+//                'name' => 'token',
+//                'value' => $this->encryption->encode($token->access_token),
+//                'expire' => time() + 86500,
+//                'domain' => '.wish-fish.com'
+//            );
+//            $this->input->set_cookie($tokenizer);
             $this->addLocalEvent();
             die();
-            header('location:' . site_url() . 'app/calender');
+//            header('location:' . site_url() . 'app/calender');
         }
         $data['template'] = $this->objsmstemplate->getTemplates();
         $this->load->view('dashboard/header');
