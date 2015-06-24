@@ -176,12 +176,11 @@ class Calender extends CI_Controller {
         $set = $this->input->post();
         if (is_array($set)) {
             $eventInfo = $this->objcal->getEventInfo($set['eventid']);
-
-            if ($eventInfo->google_event_id != "" && $this->refresh()) {
+            if ($eventInfo->google_event_id != "" && !$this->refresh()) {
+                $msg = "NC";
+            } else {
                 $this->updateGoogleEvent($set);
                 $msg = $this->objcal->updateEvent($set);
-            } else {
-                $msg = "NC";
             }
 
             switch ($msg) {
