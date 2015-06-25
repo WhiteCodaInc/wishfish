@@ -273,10 +273,8 @@ class Calender extends CI_Controller {
                         $attendee->setDisplayName($contactInfo->fname . ' ' . $contactInfo->lname);
                         break;
                     case 'all_gc':
-                        echo 'CALLED';
                         $res = $this->objbuilder->getGroupContact($post['group_id']);
                         $cids = $res[1];
-                        print_r($cids);
                         $attendee = array();
                         foreach ($cids as $key => $cid) {
                             $contactInfo = $this->common->getContactInfo($cid);
@@ -284,8 +282,6 @@ class Calender extends CI_Controller {
                             $attendee[$key]->setEmail($contactInfo->email);
                             $attendee[$key]->setDisplayName($contactInfo->fname . ' ' . $contactInfo->lname);
                         }
-                        print_r($attendee);
-                        die("DIE");
                         break;
                 }
                 if (!$is_repeat) {
