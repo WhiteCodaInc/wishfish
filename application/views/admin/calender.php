@@ -1493,7 +1493,7 @@
             var today = $.datepicker.formatDate('yy-mm-dd', new Date());
             if ($(jsEvent.target).is('td.fc-day')) {
                 highlightDay(jsEvent);
-                $('#dt').text(date.format("DD-MM-YYYY"));
+                $('#dt').text(date.format("MM-DD-YYYY"));
                 $('input[name="date"]').val(date.format());
                 $('#eventForm').trigger("reset");
                 $('#all_c').trigger("change");
