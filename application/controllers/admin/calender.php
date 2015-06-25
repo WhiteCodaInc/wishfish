@@ -148,16 +148,15 @@ class Calender extends CI_Controller {
 
     function updateEvent() {
         $set = $this->input->post();
-        print_r($set);
+//        print_r($set);
         if (is_array($set)) {
             $eventInfo = $this->objcal->getEventInfo($set['eventid']);
             if ($eventInfo->google_event_id != "" && !$this->refresh()) {
                 $msg = "NC";
             } else {
-                echo ($this->updateGoogleEvent($set)) ? "T" : "F";
-//                $msg = $this->objcal->updateEvent($set);
+                $this->updateGoogleEvent($set);
+                $msg = $this->objcal->updateEvent($set);
             }
-            die();
             echo ($msg == "NC") ? "NC" : (($msg) ? 1 : 0);
         } else {
             header('location' . site_url() . 'app/calender');
@@ -414,6 +413,7 @@ class Calender extends CI_Controller {
 
     function updateGoogleEvent($post) {
         $eventInfo = $this->objcal->getEventInfo($post['eventid']);
+
         if ($eventInfo->google_event_id != "") {
             $calId = $this->getCalenderId();
             if ($this->refresh() && $calId) {
