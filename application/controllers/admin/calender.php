@@ -454,7 +454,7 @@ class Calender extends CI_Controller {
                             $event->setRecurrence(array());
                         }
                     } else {
-                        $eventDt = $d . ' ' . $eventInfo->time;
+                        $eventDt = $post['date'] . ' ' . $eventInfo->time;
                         $ev_dt = date(DATE_RFC3339, strtotime($eventDt));
                     }
                     $start = new Google_EventDateTime();
