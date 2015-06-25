@@ -20,23 +20,23 @@
                         <div class="box-body">
                             <div class="form-group">
                                 <label>Application Name</label>
-                                <input value="<?= $setting->app_name ?>" type="text" name="app_name" autofocus="autofocus" class="form-control" placeholder="Application Name" required=""/>
+                                <input value="<?= $calender->app_name ?>" type="text" name="app_name" autofocus="autofocus" class="form-control" placeholder="Application Name" required=""/>
                             </div>
                             <div class="form-group">
                                 <label>Client Id</label>
-                                <input value="<?= $setting->client_id ?>"  name="client_id" placeholder="Client Id" type="text"  class="form-control" required=""/>
+                                <input value="<?= $calender->client_id ?>"  name="client_id" placeholder="Client Id" type="text"  class="form-control" required=""/>
                             </div>
                             <div class="form-group">
                                 <label>Client Secret</label>
-                                <input value="<?= $setting->client_secret ?>"  name="client_secret" placeholder="Client Secret" type="text"  class="form-control" required=""/>
+                                <input value="<?= $calender->client_secret ?>"  name="client_secret" placeholder="Client Secret" type="text"  class="form-control" required=""/>
                             </div>
                             <div class="form-group">
                                 <label>Redirect URI</label>
-                                <input value="<?= $setting->redirect_uri ?>"  name="redirect_uri" placeholder="Redirect URI" type="text"  class="form-control" disabled=""/>
+                                <input value="<?= $calender->redirect_uri ?>"  name="redirect_uri" placeholder="Redirect URI" type="text"  class="form-control" disabled=""/>
                             </div>
                             <div class="form-group">
                                 <label>API Key</label>
-                                <input value="<?= $setting->api_key ?>"  name="api_key" placeholder="API Key" type="text"  class="form-control" required=""/>
+                                <input value="<?= $calender->api_key ?>"  name="api_key" placeholder="API Key" type="text"  class="form-control" required=""/>
                             </div>
 
                             <div class="form-group">
