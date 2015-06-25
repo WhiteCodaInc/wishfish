@@ -419,10 +419,12 @@ class Calender extends CI_Controller {
                     $timestamp = "Pacific/Pitcairn";
                     date_default_timezone_set($timestamp);
 
-                    $d = (isset($post['date'])) ?
+                    $d = (isset($post['event'])) ?
                             $this->common->getMySqlDate($post['date'], "mm-dd-yyyy") :
                             $post['date'];
-                    $eventDt = $d . ' ' . $post['time'];
+                    $eventDt = (isset($post['event'])) ?
+                            $d . ' ' . $post['time'] :
+                            $d . ' ' . $eventInfo->time;
                     $ev_dt = date(DATE_RFC3339, strtotime($eventDt));
                     if (isset($post['event'])) {
                         $is_repeat = (isset($post['is_repeat']) && $post['is_repeat'] == "on") ? 1 : 0;
