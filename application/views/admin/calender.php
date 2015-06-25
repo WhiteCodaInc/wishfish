@@ -1147,10 +1147,10 @@
                 success: function (data, textStatus, jqXHR) {
                     $('#e_discard').trigger('click');
                     $('#' + id).prop('disabled', false);
-                    if (data == 1) {
+                    if (data == "1") {
                         $("#calendar").fullCalendar("refetchEvents");
                         alertify.success("Event has been successfully Updated..!");
-                    } else if (data == 0) {
+                    } else if (data == "0") {
                         alertify.error("Event has not been successfully Updated..!");
                     } else {
                         alertify.error("This event is connect with Google Calender. Please connect calender with google.");
