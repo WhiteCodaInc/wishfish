@@ -339,6 +339,7 @@ class Calender extends CI_Controller {
                     case 'all_gc':
                         $res = $this->objtrigger->getGroupContact($post['group_id']);
                         $cids = $res[1];
+                        $attendee = array();
                         foreach ($cids as $key => $cid) {
                             $contactInfo = $this->wi_common->getContactInfo($cid);
                             $attendee[$key] = new Google_EventAttendee();

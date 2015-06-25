@@ -308,6 +308,8 @@ class Calender extends CI_Controller {
                     } else {
                         $recur = NULL;
                     }
+                    print_r($attendee);
+                    die();
                     $createdEvent = $this->makeEvent($calId, $post, $attendee, $ev_dt, $timestamp, $recur);
                 }
                 return $createdEvent;
