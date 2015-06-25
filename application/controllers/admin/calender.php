@@ -152,12 +152,12 @@ class Calender extends CI_Controller {
         if (is_array($set)) {
             $eventInfo = $this->objcal->getEventInfo($set['eventid']);
             if ($eventInfo->google_event_id != "" && !$this->refresh()) {
-                $msg = "NC";
+                echo 'NC';
             } else {
                 $this->updateGoogleEvent($set);
                 $msg = $this->objcal->updateEvent($set);
+                echo ($msg) ? 1 : 0;
             }
-            echo ($msg == "NC") ? "NC" : (($msg) ? 1 : 0);
         } else {
             header('location' . site_url() . 'app/calender');
         }
