@@ -54,12 +54,12 @@ class M_setting extends CI_Model {
     }
 
     function getCalenderSetting() {
-        $query = $this->db->get_where('calender_setting', array('profile_id' => $this->profileid));
+        $query = $this->db->get('calender_setting');
         return $query->row();
     }
 
     function updateCalenderSetting($set) {
-        $this->db->update('calender_setting', $set, array('profile_id' => $this->profileid));
+        $this->db->update('calender_setting', $set);
         return true;
     }
 
