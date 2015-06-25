@@ -213,7 +213,7 @@ class M_admin_calender extends CI_Model {
         $res = $result[0];
         $this->db->trans_start();
         if (isset($set['event'])) {
-            $set['date'] = ($set['date'] != "") ? date('Y-m-d', strtotime($set['date'])) : $res['date'];
+            $set['date'] = ($set['date'] != "") ? $this->common->getMySqlDate($set['date'], "mm-dd-yyyy") : $res['date'];
             $set['is_repeat'] = (isset($set['is_repeat']) && $set['is_repeat'] == "on") ? 1 : 0;
             $set['body'] = ($set['event_type'] == "sms" || $set['event_type'] == "notification") ?
                     $set['smsbody'] :
