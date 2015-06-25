@@ -1622,7 +1622,7 @@
                     data: {date: new_date, eventid: event.id},
                     url: "<?= site_url() ?>admin/calender/updateEvent",
                     success: function (data, textStatus, jqXHR) {
-                        if (data == 0) {
+                        if (data == "0") {
                             revertFunc();
                         } else if (data == "1") {
                             alertify.success("Event has been successfully Updated..!");

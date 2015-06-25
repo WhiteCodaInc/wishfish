@@ -1582,6 +1582,10 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
                     success: function (data, textStatus, jqXHR) {
                         if (data == 0) {
                             revertFunc();
+                        } else if (data == 1) {
+                            alertify.success("Event has been successfully Updated..!");
+                        } else {
+                            alertify.error(data);
                         }
                     }
                 });
