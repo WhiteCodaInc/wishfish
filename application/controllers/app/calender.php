@@ -485,14 +485,33 @@ class Calender extends CI_Controller {
                     $timestamp = $this->timezone_by_offset($timezone);
                     date_default_timezone_set($timestamp);
 
-                    $d = $this->wi_common->getMySqlDate($post['date'], $this->session->userdata('date_format'));
-                    $eventDt = $d . ' ' . $post['time'];
+                    $d = (isset($post['event'])) ?
+                            $this->wi_common->getMySqlDate($post['date'], $this->session->userdata('date_format')) :
+                            $post['date'];
+                    $eventDt = (isset($post['event'])) ?
+                            $d . ' ' . $post['time'] :
+                            $d . ' ' . $eventInfo->time;
                     $ev_dt = date(DATE_RFC3339, strtotime($eventDt));
 
-                    $is_repeat = (isset($post['is_repeat']) && $post['is_repeat'] == "on") ? 1 : 0;
-                    $body = ($post['event_type'] == "sms" || $post['event_type'] == "notification") ? $post['smsbody'] : $post['emailbody'];
+                    if (isset($post['event'])) {
+                        $is_repeat = (isset($post['is_repeat']) && $post['is_repeat'] == "on") ? 1 : 0;
+                        $body = ($post['event_type'] == "sms" || $post['event_type'] == "notification") ? $post['smsbody'] : $post['emailbody'];
+                        $title = $post['event'];
+                        $freq_type = $post['freq_type'];
+                        $end_type = $post['end_type'];
+                        $freq_no = $post['freq_no'];
+                        $occur = $post['occurance'];
+                    } else {
+                        $is_repeat = $eventInfo->is_repeat;
+                        $body = $eventInfo->body;
+                        $title = $eventInfo->event;
+                        $freq_type = $eventInfo->freq_type;
+                        $end_type = $eventInfo->end_type;
+                        $freq_no = $eventInfo->freq_no;
+                        $occur = $eventInfo->occurance;
+                    }
 
-                    $event->setSummary($post['event']);
+                    $event->setSummary($title);
                     $event->setDescription($body);
 
                     $start = new Google_EventDateTime();
@@ -506,7 +525,7 @@ class Calender extends CI_Controller {
                     $event->setEnd($end);
 
                     if ($is_repeat) {
-                        switch ($post['freq_type']) {
+                        switch ($freq_type) {
                             case "days":
                                 $freq = "DAILY";
                                 break;
@@ -520,10 +539,10 @@ class Calender extends CI_Controller {
                                 $freq = "YEARLY";
                                 break;
                         }
-                        if ($post['end_type'] == "never") {
-                            $recur = "RRULE:FREQ={$freq};INTERVAL={$post['freq_no']}";
-                        } else if ($post['end_type'] == "after") {
-                            $recur = "RRULE:FREQ={$freq};INTERVAL={$post['freq_no']};COUNT={$post['occurance']}";
+                        if ($end_type == "never") {
+                            $recur = "RRULE:FREQ={$freq};INTERVAL={$freq_no}";
+                        } else if ($end_type == "after") {
+                            $recur = "RRULE:FREQ={$freq};INTERVAL={$freq_no};COUNT={$occur}";
                         }
                         $event->setRecurrence(array($recur));
                     } else {
