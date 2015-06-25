@@ -1162,12 +1162,17 @@
         $('#insert,#n_insert').click(function () {
             var id = $(this).prop('id');
             if (id == "insert") {
-                if ($("#rd_individual").is(':checked')) {
-                    var cnt = $('#users').val();
-                    if (cnt.trim() == "") {
+                if ($("#rd_individual").prop('checked')) {
+                    var cnt = $('#users').val().trim();
+                    if (cnt == "") {
                         alertify.error("Please Select Contact..!");
                         return false;
                     } else if ($.inArray(cnt, contact) == "-1") {
+                        alertify.error("Please Select Valid Contact..!");
+                        return false;
+                    } else if (validateContact(cnt)) {
+                        $('input[name="user_id"]').val(ids[contact.indexOf(cnt)]);
+                    } else {
                         alertify.error("Please Select Valid Contact..!");
                         return false;
                     }
@@ -1185,8 +1190,10 @@
                         var occur = parseInt($('#eventForm input[name="occurance"]').val());
                         if (!/^[0-9]+$/.test(occur)) {
                             alertify.error("Please Enter Valid Occurance Number..!");
+                            return false;
                         } else if (occur <= 0) {
                             alertify.error("Occurance Must be greater than 0..!");
+                            return false;
                         }
                     }
                 }
@@ -1226,11 +1233,6 @@
                 form = "neweventForm";
 <?php else: ?>
                 form = "eventForm";
-                if (validateContact($('#users').val())) {
-                    $('input[name="user_id"]').val(ids[contact.indexOf($('#users').val())]);
-                } else {
-                    return false;
-                }
 <?php endif; ?>
             $('#' + id).prop('disabled', true);
             $.ajax({
