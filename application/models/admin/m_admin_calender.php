@@ -55,10 +55,8 @@ class M_admin_calender extends CI_Model {
             default:
                 break;
         }
-        if (isset($post['userid'])) {
-            $post['user_id'] = $post['userid'];
+        if (isset($post['user_id'])) {
             $post['date'] = date('Y-m-d', strtotime($post['date']));
-            unset($post['userid']);
         }
         $post['is_repeat'] = (isset($post['is_repeat']) && $post['is_repeat'] == "on") ? 1 : 0;
         $post['body'] = ($post['event_type'] == "sms" || $post['event_type'] == "notification") ? $post['smsbody'] : $post['emailbody'];

@@ -329,7 +329,7 @@
                     <button type="button" id="n_insert" class="btn btn-primary pull-left"><i class="fa fa-envelope"></i> Schedule Now</button>
                     <!--<input type="hidden" name="color" value="#f4543c" />-->
                     <input type="hidden" name="assign" value="all_c" />
-                    <input type="hidden" name="userid" value="<?= $userid ?>" />
+                    <input type="hidden" name="user_id" value="<?= $userid ?>" />
                     <input type="hidden" name="user" value="<?= $user ?>" />
                 </div>
             </form>
