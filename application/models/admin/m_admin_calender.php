@@ -151,7 +151,7 @@ class M_admin_calender extends CI_Model {
         $res = $query->row();
         switch ($res->user) {
             case "1":
-                $this->db->select('*,concat(fname," ",lname) as name,concat(DATE_FORMAT(date,"%M %d")," at ",TIME_FORMAT(time, "%h:%i %p")) as date,DATE_FORMAT(date,"%d-%m-%Y") as cal_dt', FALSE);
+                $this->db->select('*,concat(fname," ",lname) as name,concat(DATE_FORMAT(date,"%M %d")," at ",TIME_FORMAT(time, "%h:%i %p")) as date,DATE_FORMAT(date,"%m-%d-%Y") as cal_dt', FALSE);
                 $this->db->from('schedule as S');
                 $this->db->join('admin_profile as A', 'S.user_id = A.profile_id', 'left outer');
                 $this->db->where('event_id', $eid);
@@ -159,7 +159,7 @@ class M_admin_calender extends CI_Model {
                 $result = $query->row();
                 break;
             case "2":
-                $this->db->select('*,concat(fname," ",lname) as name,concat(DATE_FORMAT(date,"%M %d")," at ",TIME_FORMAT(time, "%h:%i %p")) as date,DATE_FORMAT(date,"%d-%m-%Y") as cal_dt', FALSE);
+                $this->db->select('*,concat(fname," ",lname) as name,concat(DATE_FORMAT(date,"%M %d")," at ",TIME_FORMAT(time, "%h:%i %p")) as date,DATE_FORMAT(date,"%m-%d-%Y") as cal_dt', FALSE);
                 $this->db->from('schedule as S');
                 $this->db->join('contact_detail as C', 'S.user_id = C.contact_id', 'left outer');
                 $this->db->join('contact_groups as G', 'S.group_id = G.group_id', 'left outer');
@@ -168,7 +168,7 @@ class M_admin_calender extends CI_Model {
                 $result = $query->row();
                 break;
             case "3":
-                $this->db->select('*,concat(fname," ",lname) as name,concat(DATE_FORMAT(date,"%M %d")," at ",TIME_FORMAT(time, "%h:%i %p")) as date,DATE_FORMAT(date,"%d-%m-%Y") as cal_dt', FALSE);
+                $this->db->select('*,concat(fname," ",lname) as name,concat(DATE_FORMAT(date,"%M %d")," at ",TIME_FORMAT(time, "%h:%i %p")) as date,DATE_FORMAT(date,"%m-%d-%Y") as cal_dt', FALSE);
                 $this->db->from('schedule as S');
                 $this->db->join('affiliate_detail as A', 'S.user_id = A.affiliate_id', 'left outer');
                 $this->db->join('affiliate_groups as G', 'S.group_id = G.group_id', 'left outer');
@@ -177,7 +177,7 @@ class M_admin_calender extends CI_Model {
                 $result = $query->row();
                 break;
             case "4":
-                $this->db->select('*,concat(fname," ",lname) as name,concat(DATE_FORMAT(date,"%M %d")," at ",TIME_FORMAT(time, "%h:%i %p")) as date,DATE_FORMAT(date,"%d-%m-%Y") as cal_dt', FALSE);
+                $this->db->select('*,concat(fname," ",lname) as name,concat(DATE_FORMAT(date,"%M %d")," at ",TIME_FORMAT(time, "%h:%i %p")) as date,DATE_FORMAT(date,"%m-%d-%Y") as cal_dt', FALSE);
                 $this->db->from('schedule as S');
                 $this->db->join('customer_detail as C', 'S.user_id = C.customer_id', 'left outer');
                 $this->db->join('customer_groups as G', 'S.group_id = G.group_id', 'left outer');
