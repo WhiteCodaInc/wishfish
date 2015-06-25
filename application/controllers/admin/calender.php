@@ -258,7 +258,7 @@ class Calender extends CI_Controller {
         $calId = $this->getCalenderId();
         if ($this->refresh() && $calId) {
             try {
-                $timestamp = "America/Los_Angeles";
+                $timestamp = "Pacific/Pitcairn";
                 date_default_timezone_set($timestamp);
                 $currDate = $this->common->getUTCDate("UM8");
                 $eventDt = $this->common->getMySqlDate($currDate, "mm-dd-yyyy") . ' ' . $post['time'] . ':00';
@@ -324,7 +324,7 @@ class Calender extends CI_Controller {
     function addLocalEvent() {
         $calId = $this->getCalenderId();
         if ($this->refresh() && $calId) {
-            $timestamp = "America/Los_Angeles";
+            $timestamp = "Pacific/Pitcairn";
             date_default_timezone_set($timestamp);
 
             $events = $this->objcal->loadLocalEvent();
@@ -419,7 +419,7 @@ class Calender extends CI_Controller {
             if ($this->refresh() && $calId) {
                 try {
                     $event = $this->service->events->get($calId, $eventInfo->google_event_id);
-                    $timestamp = "America/Los_Angeles";
+                    $timestamp = "Pacific/Pitcairn";
                     date_default_timezone_set($timestamp);
 
                     $d = $this->common->getMySqlDate($post['date'], "mm-dd-yyyy");
