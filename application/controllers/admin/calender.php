@@ -282,6 +282,8 @@ class Calender extends CI_Controller {
                             $attendee[$key]->setEmail($contactInfo->email);
                             $attendee[$key]->setDisplayName($contactInfo->fname . ' ' . $contactInfo->lname);
                         }
+                        print_r($attendee);
+                        die("DIE");
                         break;
                 }
                 if (!$is_repeat) {
@@ -344,6 +346,7 @@ class Calender extends CI_Controller {
                     case 'simple':
                         $res = $this->objtrigger->getGroupContact($ev['group_id']);
                         $cids = $res[1];
+                        $attendee = array();
                         foreach ($cids as $key => $cid) {
                             $contactInfo = $this->common->getContactInfo($cid);
                             $attendee[$key] = new Google_EventAttendee();
@@ -497,7 +500,6 @@ class Calender extends CI_Controller {
     }
 
     function makeEvent($calId, $post, $attendee, $ev_dt, $timezone, $recur = NULL) {
-        
         if (isset($post['smsbody']) || isset($post['emailbody'])) {
             $body = ($post['event_type'] == "sms" || $post['event_type'] == "notification") ?
                     $post['smsbody'] : $post['emailbody'];
@@ -525,9 +527,8 @@ class Calender extends CI_Controller {
 
             if ($recur != NULL)
                 $event->setRecurrence(array($recur));
-            print_r($event);
-            
-//            return $this->service->events->insert($calId, $event);
+
+            return $this->service->events->insert($calId, $event);
         } catch (Google_Exception $exc) {
             return false;
         }
