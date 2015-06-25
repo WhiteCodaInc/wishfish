@@ -148,7 +148,6 @@ class Calender extends CI_Controller {
 
     function updateEvent() {
         $set = $this->input->post();
-        print_r($set);
         if (is_array($set)) {
             $eventInfo = $this->objcal->getEventInfo($set['eventid']);
             if ($eventInfo->google_event_id != "" && !$this->refresh()) {
@@ -424,8 +423,14 @@ class Calender extends CI_Controller {
                     date_default_timezone_set($timestamp);
 
                     $d = $this->common->getMySqlDate($post['date'], "mm-dd-yyyy");
+
+                    echo $d;
+
                     $eventDt = $d . ' ' . $post['time'];
                     $ev_dt = date(DATE_RFC3339, strtotime($eventDt));
+
+                    echo "/{$ev_dt}/";
+                    die();
 
                     $is_repeat = (isset($post['is_repeat']) && $post['is_repeat'] == "on") ? 1 : 0;
                     $body = ($post['event_type'] == "sms" || $post['event_type'] == "notification") ? $post['smsbody'] : $post['emailbody'];
