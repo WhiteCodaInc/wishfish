@@ -264,7 +264,7 @@ class Calender extends CI_Controller {
                 $ev_dt = date(DATE_RFC3339, strtotime($eventDt));
 
                 $is_repeat = (isset($post['is_repeat']) && $post['is_repeat'] == "on") ? 1 : 0;
-
+                print_r($post);
                 switch ($post['assign']) {
                     case 'all_c':
                         $contactInfo = $this->common->getContactInfo($post['user_id']);
