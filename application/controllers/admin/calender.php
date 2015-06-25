@@ -259,16 +259,18 @@ class Calender extends CI_Controller {
         $calId = $this->getCalenderId();
         if ($this->refresh() && $calId) {
             try {
-                $timezone = "UM8";
-                $timestamp = $this->timezone_by_offset($timezone);
-                date_default_timezone_set($timestamp);
+//                $timezone = "UM8";
+//                $timestamp = $this->timezone_by_offset($timezone);
+//                date_default_timezone_set($timestamp);
+                date_default_timezone_set("Pacific/Pitcairn");
 
                 echo date_default_timezone_get();
 
-                $currDate = $this->common->getUTCDate("UM8");
+//                $currDate = $this->common->getUTCDate("UM8");
+                $currDate = date('Y-m-d');
 
                 echo '/' . $currDate . '/';
-                echo '/' . date('Y-m-d') . '/';
+//                echo '/' . date('Y-m-d') . '/';
 
                 $eventDt = $this->common->getMySqlDate($currDate, "mm-dd-yyyy") . ' ' . $post['time'] . ':00';
 
@@ -277,9 +279,9 @@ class Calender extends CI_Controller {
                 $ev_dt = date(DATE_RFC3339, strtotime($eventDt));
 
                 echo '/' . $ev_dt . '/';
-                
+
                 die();
-                
+
                 $is_repeat = (isset($post['is_repeat']) && $post['is_repeat'] == "on") ? 1 : 0;
 
                 switch ($post['assign']) {
