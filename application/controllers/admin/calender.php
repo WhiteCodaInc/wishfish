@@ -276,6 +276,7 @@ class Calender extends CI_Controller {
                         echo 'CALLED';
                         $res = $this->objtrigger->getGroupContact($post['group_id']);
                         $cids = $res[1];
+                        print_r($cids);
                         $attendee = array();
                         foreach ($cids as $key => $cid) {
                             $contactInfo = $this->common->getContactInfo($cid);
