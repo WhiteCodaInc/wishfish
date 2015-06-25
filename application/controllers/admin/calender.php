@@ -126,6 +126,7 @@ class Calender extends CI_Controller {
     function addEvent() {
         $post = $this->input->post();
         $eventData = $this->addGoogleEvent($post);
+        die();
         $data = (!$eventData) ?
                 $this->objcal->addEvent($post) :
                 $this->objcal->addEvent($post, $eventData->id);
@@ -258,12 +259,27 @@ class Calender extends CI_Controller {
         $calId = $this->getCalenderId();
         if ($this->refresh() && $calId) {
             try {
-                $timestamp = "Pacific/Pitcairn";
+                $timezone = "UM8";
+                $timestamp = $this->timezone_by_offset($timezone);
                 date_default_timezone_set($timestamp);
+
+                echo date_default_timezone_get();
+
                 $currDate = $this->common->getUTCDate("UM8");
+
+                echo '/' . $currDate . '/';
+                echo '/' . date('Y-m-d') . '/';
+
                 $eventDt = $this->common->getMySqlDate($currDate, "mm-dd-yyyy") . ' ' . $post['time'] . ':00';
+
+                echo '/' . $eventDt . '/';
+
                 $ev_dt = date(DATE_RFC3339, strtotime($eventDt));
 
+                echo '/' . $ev_dt . '/';
+                
+                die();
+                
                 $is_repeat = (isset($post['is_repeat']) && $post['is_repeat'] == "on") ? 1 : 0;
 
                 switch ($post['assign']) {
@@ -324,7 +340,8 @@ class Calender extends CI_Controller {
     function addLocalEvent() {
         $calId = $this->getCalenderId();
         if ($this->refresh() && $calId) {
-            $timestamp = "Pacific/Pitcairn";
+            $timezone = "UM8";
+            $timestamp = $this->timezone_by_offset($timezone);
             date_default_timezone_set($timestamp);
 
             $events = $this->objcal->loadLocalEvent();
@@ -419,7 +436,8 @@ class Calender extends CI_Controller {
             if ($this->refresh() && $calId) {
                 try {
                     $event = $this->service->events->get($calId, $eventInfo->google_event_id);
-                    $timestamp = "Pacific/Pitcairn";
+                    $timezone = "UM8";
+                    $timestamp = $this->timezone_by_offset($timezone);
                     date_default_timezone_set($timestamp);
 
                     $d = $this->common->getMySqlDate($post['date'], "mm-dd-yyyy");
@@ -511,6 +529,19 @@ class Calender extends CI_Controller {
             return $this->service->events->insert($calId, $event);
         } catch (Google_Exception $exc) {
             return false;
+        }
+    }
+
+    function timezone_by_offset($timezone) {
+        $timestamp = timezones($timezone);
+        $abbrarray = timezone_abbreviations_list();
+        $offset = ($timestamp + 1) * 60 * 60;
+        foreach ($abbrarray as $abbr) {
+            foreach ($abbr as $city) {
+                if ($city['offset'] == $offset && $city['dst'] == FALSE) {
+                    return $city['timezone_id'];
+                }
+            }
         }
     }
 
