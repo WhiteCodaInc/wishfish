@@ -31,7 +31,7 @@ class Calender extends CI_Controller {
             $this->load->model('admin/m_email', 'objemail');
             $this->load->model('admin/m_setting', 'objsetting');
             $this->load->model('admin/m_admin_calender', 'objcal');
-            $this->load->model('m_trigger', 'objtrigger');
+            $this->load->model('admin/m_trigger', 'objtrigger');
         }
     }
 
