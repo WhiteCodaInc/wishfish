@@ -1624,6 +1624,10 @@
                     success: function (data, textStatus, jqXHR) {
                         if (data == 0) {
                             revertFunc();
+                        } else if (data == "1") {
+                            alertify.success("Event has been successfully Updated..!");
+                        } else if (data == "NC") {
+                            alertify.error("This event is connect with Google Calender. Please connect calender with google.");
                         }
                     }
                 });
