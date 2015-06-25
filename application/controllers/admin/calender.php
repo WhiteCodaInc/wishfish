@@ -273,6 +273,7 @@ class Calender extends CI_Controller {
                         $attendee->setDisplayName($contactInfo->fname . ' ' . $contactInfo->lname);
                         break;
                     case 'all_gc':
+                        echo 'CALLED';
                         $res = $this->objtrigger->getGroupContact($post['group_id']);
                         $cids = $res[1];
                         $attendee = array();
