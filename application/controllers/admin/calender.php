@@ -267,7 +267,7 @@ class Calender extends CI_Controller {
 
                 switch ($post['assign']) {
                     case 'all_c':
-                        $contactInfo = $this->common->getContactInfo($post['contact_id']);
+                        $contactInfo = $this->common->getContactInfo($post['userid']);
                         $attendee = new Google_EventAttendee();
                         $attendee->setEmail($contactInfo->email);
                         $attendee->setDisplayName($contactInfo->fname . ' ' . $contactInfo->lname);
@@ -335,7 +335,7 @@ class Calender extends CI_Controller {
                 $ev_dt = date(DATE_RFC3339, strtotime($eventDt));
                 switch ($ev['group_type']) {
                     case 'individual':
-                        $contactInfo = $this->common->getContactInfo($ev['contact_id']);
+                        $contactInfo = $this->common->getContactInfo($ev['user_id']);
                         $attendee = new Google_EventAttendee();
                         $attendee->setEmail($contactInfo->email);
                         $attendee->setDisplayName($contactInfo->fname . ' ' . $contactInfo->lname);
