@@ -40,6 +40,11 @@
             <i class="fa fa-plus"></i>
             Create New Event
         </button>
+        <?php $token = $this->input->cookie('atoken', TRUE); ?>
+        <a href="<?= site_url() ?>admin/calender/connect" style="margin-left: 2%"  class="btn btn-warning btn-sm" <?= ($token) ? "disabled" : "" ?> >
+            <i class="fa fa-calendar"></i>&nbsp;
+            Connect With Google Calender
+        </a>
     </section>
     <!-- Main content -->
     <section class="content">
@@ -1145,8 +1150,10 @@
                     if (data == 1) {
                         $("#calendar").fullCalendar("refetchEvents");
                         alertify.success("Event has been successfully Updated..!");
-                    } else {
+                    } else if (data == 0) {
                         alertify.error("Event has not been successfully Updated..!");
+                    } else {
+                        alertify.error("This event is connect with Google Calender. Please connect calender with google.");
                     }
                 }
             });
