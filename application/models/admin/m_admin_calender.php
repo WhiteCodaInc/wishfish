@@ -55,7 +55,10 @@ class M_admin_calender extends CI_Model {
             default:
                 break;
         }
+        print_r($post);
+        die();
         if (isset($post['user_id'])) {
+            
             $post['date'] = date('Y-m-d', strtotime($post['date']));
         }
         $post['is_repeat'] = (isset($post['is_repeat']) && $post['is_repeat'] == "on") ? 1 : 0;
