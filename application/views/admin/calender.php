@@ -1018,7 +1018,7 @@
             showMeridian: false
         });
         $('.default-date-picker').datepicker({
-            format: "dd-mm-yyyy",
+            format: "mm-dd-yyyy",
             todayBtn: "linked",
             autoclose: true,
             todayHighlight: true
