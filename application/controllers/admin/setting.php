@@ -69,4 +69,23 @@ class Setting extends CI_Controller {
         header('location:' . site_url() . 'admin/setting/sms?msg=' . $msg);
     }
 
+    function calender() {
+        $data['calender'] = $this->objsetting->getCalenderSetting();
+        $this->load->view('admin/admin_header');
+        $this->load->view('admin/admin_top');
+        $this->load->view('admin/admin_navbar');
+        $this->load->view('admin/calender-setting', $data);
+        $this->load->view('admin/admin_footer');
+    }
+
+    function updateCalenderSetting() {
+        $post = $this->input->post();
+        if (is_array($post) && count($post) > 0) {
+            $this->objsetting->updateCalenderSetting($post);
+            header('location:' . site_url() . 'admin/setting/calender?msg=U');
+        } else {
+            header('location:' . site_url() . 'app/setting/calender');
+        }
+    }
+
 }
