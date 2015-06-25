@@ -308,8 +308,6 @@ class Calender extends CI_Controller {
                     } else {
                         $recur = NULL;
                     }
-                    print_r($attendee);
-                    die();
                     $createdEvent = $this->makeEvent($calId, $post, $attendee, $ev_dt, $timestamp, $recur);
                 }
                 return $createdEvent;
@@ -499,6 +497,7 @@ class Calender extends CI_Controller {
     }
 
     function makeEvent($calId, $post, $attendee, $ev_dt, $timezone, $recur = NULL) {
+        
         if (isset($post['smsbody']) || isset($post['emailbody'])) {
             $body = ($post['event_type'] == "sms" || $post['event_type'] == "notification") ?
                     $post['smsbody'] : $post['emailbody'];
@@ -526,8 +525,9 @@ class Calender extends CI_Controller {
 
             if ($recur != NULL)
                 $event->setRecurrence(array($recur));
-
-            return $this->service->events->insert($calId, $event);
+            print_r($event);
+            
+//            return $this->service->events->insert($calId, $event);
         } catch (Google_Exception $exc) {
             return false;
         }
