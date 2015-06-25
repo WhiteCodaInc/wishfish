@@ -31,7 +31,7 @@ class Calender extends CI_Controller {
             $this->load->model('admin/m_email', 'objemail');
             $this->load->model('admin/m_setting', 'objsetting');
             $this->load->model('admin/m_admin_calender', 'objcal');
-            $this->load->model('admin/m_trigger', 'objtrigger');
+            $this->load->model('admin/m_list_builder', 'objbuilder');
         }
     }
 
@@ -274,7 +274,7 @@ class Calender extends CI_Controller {
                         break;
                     case 'all_gc':
                         echo 'CALLED';
-                        $res = $this->objtrigger->getGroupContact($post['group_id']);
+                        $res = $this->objbuilder->getGroupContact($post['group_id']);
                         $cids = $res[1];
                         print_r($cids);
                         $attendee = array();
