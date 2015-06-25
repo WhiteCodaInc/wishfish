@@ -418,45 +418,33 @@ class Calender extends CI_Controller {
                     $event = $this->service->events->get($calId, $eventInfo->google_event_id);
                     $timestamp = "Pacific/Pitcairn";
                     date_default_timezone_set($timestamp);
-                    if (isset($post['event'])) {
-                        $d = $this->common->getMySqlDate($post['date'], "mm-dd-yyyy");
-                        $eventDt = $d . ' ' . $post['time'];
-                        $ev_dt = date(DATE_RFC3339, strtotime($eventDt));
 
+                    $d = (isset($post['date'])) ?
+                            $this->common->getMySqlDate($post['date'], "mm-dd-yyyy") :
+                            $post['date'];
+                    $eventDt = $d . ' ' . $post['time'];
+                    $ev_dt = date(DATE_RFC3339, strtotime($eventDt));
+                    if (isset($post['event'])) {
                         $is_repeat = (isset($post['is_repeat']) && $post['is_repeat'] == "on") ? 1 : 0;
                         $body = ($post['event_type'] == "sms" || $post['event_type'] == "notification") ? $post['smsbody'] : $post['emailbody'];
-
-                        $event->setSummary($post['event']);
-                        $event->setDescription($body);
-
-                        if ($is_repeat) {
-                            switch ($post['freq_type']) {
-                                case "days":
-                                    $freq = "DAILY";
-                                    break;
-                                case "weeks":
-                                    $freq = "WEEKLY";
-                                    break;
-                                case "months":
-                                    $freq = "MONTHLY";
-                                    break;
-                                case "years":
-                                    $freq = "YEARLY";
-                                    break;
-                            }
-                            if ($post['end_type'] == "never") {
-                                $recur = "RRULE:FREQ={$freq};INTERVAL={$post['freq_no']}";
-                            } else if ($post['end_type'] == "after") {
-                                $recur = "RRULE:FREQ={$freq};INTERVAL={$post['freq_no']};COUNT={$post['occurance']}";
-                            }
-                            $event->setRecurrence(array($recur));
-                        } else {
-                            $event->setRecurrence(array());
-                        }
+                        $title = $post['event'];
+                        $freq_type = $post['freq_type'];
+                        $end_type = $post['end_type'];
+                        $freq_no = $post['freq_no'];
+                        $occur = $post['occurance'];
                     } else {
-                        $eventDt = $post['date'] . ' ' . $eventInfo->time;
-                        $ev_dt = date(DATE_RFC3339, strtotime($eventDt));
+                        $is_repeat = $eventInfo->is_repeat;
+                        $body = $eventInfo->body;
+                        $title = $eventInfo->event;
+                        $freq_type = $eventInfo->freq_type;
+                        $end_type = $eventInfo->end_type;
+                        $freq_no = $eventInfo->freq_no;
+                        $occur = $eventInfo->occurance;
                     }
+
+                    $event->setSummary($title);
+                    $event->setDescription($body);
+
                     $start = new Google_EventDateTime();
                     $start->setDateTime($ev_dt);
                     $start->setTimeZone($timestamp);
@@ -467,6 +455,30 @@ class Calender extends CI_Controller {
                     $end->setTimeZone($timestamp);
                     $event->setEnd($end);
 
+                    if ($is_repeat) {
+                        switch ($freq_type) {
+                            case "days":
+                                $freq = "DAILY";
+                                break;
+                            case "weeks":
+                                $freq = "WEEKLY";
+                                break;
+                            case "months":
+                                $freq = "MONTHLY";
+                                break;
+                            case "years":
+                                $freq = "YEARLY";
+                                break;
+                        }
+                        if ($end_type == "never") {
+                            $recur = "RRULE:FREQ={$freq};INTERVAL={$freq_no}";
+                        } else if ($end_type == "after") {
+                            $recur = "RRULE:FREQ={$freq};INTERVAL={$freq_no};COUNT={$occur}";
+                        }
+                        $event->setRecurrence(array($recur));
+                    } else {
+                        $event->setRecurrence(array());
+                    }
                     $this->service->events->update($calId, $event->getId(), $event);
                     return TRUE;
                 } catch (Google_Exception $exc) {
