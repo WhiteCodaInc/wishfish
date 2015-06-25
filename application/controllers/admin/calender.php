@@ -154,7 +154,7 @@ class Calender extends CI_Controller {
             if ($eventInfo->google_event_id != "" && !$this->refresh()) {
                 $msg = "NC";
             } else {
-                $this->updateGoogleEvent($set);
+                echo ($this->updateGoogleEvent($set)) ? "T" : "F";
 //                $msg = $this->objcal->updateEvent($set);
             }
             die();
@@ -414,8 +414,6 @@ class Calender extends CI_Controller {
 
     function updateGoogleEvent($post) {
         $eventInfo = $this->objcal->getEventInfo($post['eventid']);
-        print_r($eventInfo);
-        die();
         if ($eventInfo->google_event_id != "") {
             $calId = $this->getCalenderId();
             if ($this->refresh() && $calId) {
