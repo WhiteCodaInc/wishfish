@@ -125,7 +125,7 @@
                             <a href = "<?= site_url() ?>register?from=home" class="btn btn-block btn-social btn-google-plus">
                                 <i class="fa fa-google-plus"></i> Sign up with Google
                             </a>
-                            <a style="cursor: pointer" id="fb-signup" class="btn btn-block btn-social btn-facebook facebook"  href = "javascript:void(0);">
+                            <a style="cursor: pointer" id="fb-signup" class="btn btn-block btn-social btn-facebook fb"  href = "javascript:void(0);">
                                 <i class="fa fa-facebook"></i> Sign up with Facebook
                             </a>
                         </div>
@@ -164,7 +164,7 @@
                                 <i class="fa fa-google-plus"></i> Login with Google
                             </a>
                             <br/>
-                            <a style="cursor: pointer" id="fb-signin" class="btn btn-block btn-social btn-facebook facebook"  href = "javascript:void(0);">
+                            <a style="cursor: pointer" id="fb-signin" class="btn btn-block btn-social btn-facebook fb"  href = "javascript:void(0);">
                                 <i class="fa fa-facebook"></i> Login with Facebook
                             </a>
                         </div>
@@ -903,7 +903,7 @@
         ref.parentNode.insertBefore(js, ref);
     }(document));
     //Onclick for fb login
-    $('.facebook').click(function (e) {
+    $('.fb').click(function (e) {
         var id = $(this).prop('id');
         var url = (id == "fb-signup") ?
                 "<?= site_url() ?>register/fbsignup?from=home" :
