@@ -141,7 +141,7 @@ and open the template in the editor.
                                         </div>
                                     </div>
                                 </fieldset>
-                                <input type="hidden" name="join_via" value="Register">
+                                <input type="hidden" name="join_via" value="<?= site_url() ?>register<br/>Join With Email">
                             </form>
                         </div>
                         <div class="row" style="margin-top: 15px">
