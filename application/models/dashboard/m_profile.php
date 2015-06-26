@@ -59,6 +59,7 @@ class M_profile extends CI_Model {
 
         if ($this->isEmailChange($set['email'])) {
             $set['email_verification'] = 0;
+            $this->sendActivationLink($set['email']);
         }
         unset($set['code'], $set['stripeToken']);
         if (isset($_FILES['profile_pic'])) {
@@ -246,6 +247,19 @@ class M_profile extends CI_Model {
     function updateUserSetting($set) {
         $this->db->update('wi_user_setting', $set, array('user_id' => $this->userid));
         return true;
+    }
+
+    function sendActivationLink($to) {
+        $uid = $this->encryption->encode($this->userid);
+        $url = site_url() . 'app/dashboard?uid=' . $uid;
+
+        $subject = "Email Verification";
+        $body = "Your Verification Link is Below:\n\r";
+        $body .= "{$url}";
+        $from = "welcome@wish-fish.com";
+        $name = "Wish-Fish";
+
+        return $this->wi_common->sendAutoMail($to, $subject, $body, $from, $name);
     }
 
 }
