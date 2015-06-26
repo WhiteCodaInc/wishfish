@@ -57,6 +57,9 @@ class M_profile extends CI_Model {
                 NULL;
         $set['is_bill'] = (isset($set['is_bill'])) ? 1 : 0;
 
+        if ($this->isEmailChange($set['email'])) {
+            $set['email_verification'] = 0;
+        }
         unset($set['code'], $set['stripeToken']);
         if (isset($_FILES['profile_pic'])) {
             if ($_FILES['profile_pic']['error'] == 0) {
@@ -87,6 +90,15 @@ class M_profile extends CI_Model {
         $this->db->update('wi_user_mst', $set, array('user_id' => $this->userid));
         $this->db->trans_complete();
         return $m;
+    }
+
+    function isEmailChange($email) {
+        $checkWhere = array(
+            'user_id' => $this->userid,
+            'email' => $email
+        );
+        $query = $this->db->get_where('wi_user_mst', $checkWhere);
+        return ($query->num_rows()) ? FALSE : TRUE;
     }
 
     function updateProfileSetup($set) {
