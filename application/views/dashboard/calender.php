@@ -1046,6 +1046,13 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
     });
     $(document).ready(function () {
 
+        $('span.lbl').click(function () {
+            $name = $(this).prev().prop('name');
+            $('input[name="' + $name + '"]').prop('checked', false);
+            //$(this).prev().prop('checked', true);
+
+        });
+
 <?php if (isset($contactInfo) && $contactInfo): ?>
             $('#create_event').trigger('click');
 <?php elseif (isset($contactInfo) && !$contactInfo): ?>
