@@ -10,8 +10,8 @@ and open the template in the editor.
         <title>Wish-Fish</title>
         <link href="<?= base_url() ?>assets/img/favicon.ico" rel="Shortcut Icon" type="image/x-icon" />
 
-        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet" type="text/css">
-        <link href="http://fonts.googleapis.com/css?family=Raleway:500,400,300" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Raleway:500,400,300" rel="stylesheet" type="text/css">
 
         <link rel="stylesheet" href="<?= base_url() ?>assets/wow/css/themes/default/default.css">
         <link rel="stylesheet" href="<?= base_url() ?>assets/wow/css/bootstrap-theme.min.css">
