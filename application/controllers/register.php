@@ -50,8 +50,22 @@ class Register extends CI_Controller {
             $this->client->setApprovalPrompt('force');
         }
         if ($from != "" && $from == "home") {
+            $joinVia = array(
+                'name' => 'JoinVia',
+                'value' => 'home',
+                'expire' => 3600,
+                'domain' => '.wish-fish.com'
+            );
+            $this->input->set_cookie($joinVia);
             header('location:' . $this->client->createAuthUrl());
         } else {
+            $joinVia = array(
+                'name' => 'JoinVia',
+                'value' => 'register',
+                'expire' => 3600,
+                'domain' => '.wish-fish.com'
+            );
+            $this->input->set_cookie($joinVia);
             $data['isLogin_f'] = (isset($fid) && $fid != "") ? TRUE : FALSE;
             $data['url'] = $this->client->createAuthUrl();
             $this->load->view('signup', $data);
@@ -70,7 +84,7 @@ class Register extends CI_Controller {
                 $data = $this->service->userinfo->get();
                 $user = $this->objregister->isUserExist($data);
                 if (!$user) {
-                    if ($this->objregister->registerWithSocial($data)) {
+                    if ($this->objregister->registerWithSocial($data, "google")) {
                         $googleid = array(
                             'name' => 'googleid',
                             'value' => $data['id'],
@@ -92,6 +106,26 @@ class Register extends CI_Controller {
     }
 
     function fbsignup() {
+        $from = $this->input->get('from');
+        if ($from != "" && $from == "home") {
+            $joinVia = array(
+                'name' => 'JoinVia',
+                'value' => 'home',
+                'expire' => 3600,
+                'domain' => '.wish-fish.com'
+            );
+            $this->input->set_cookie($joinVia);
+            header('location:' . $this->client->createAuthUrl());
+        } else {
+            $joinVia = array(
+                'name' => 'JoinVia',
+                'value' => 'register',
+                'expire' => 3600,
+                'domain' => '.wish-fish.com'
+            );
+            $this->input->set_cookie($joinVia);
+        }
+
         $facebook = new Facebook(array(
             'appId' => $this->config->item('appID'),
             'secret' => $this->config->item('appSecret'),
@@ -101,7 +135,7 @@ class Register extends CI_Controller {
             try {
                 $user_profile = $facebook->api('/me');  //Get the facebook user profile data
                 $is_user = $this->objregister->isUserExist($user_profile);
-                if (!$is_user && $this->objregister->registerWithSocial($user_profile)) {
+                if (!$is_user && $this->objregister->registerWithSocial($user_profile, "facebook")) {
                     $facebookid = array(
                         'name' => 'facebookid',
                         'value' => $user_profile['id'],

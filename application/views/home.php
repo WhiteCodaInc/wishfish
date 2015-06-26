@@ -130,7 +130,7 @@
                             </a>
                         </div>
                     </div>
-                    <input type="hidden" name="join_via" value="Register">
+                    <input type="hidden" name="join_via" value="<?= site_url() ?><br/>Join With Email">
                 </form>
 
                 <form id="loginForm" action="<?= site_url() ?>login/signin" method="post" class="login" novalidate="novalidate">
@@ -251,7 +251,7 @@
                                         <button style="margin: 0;padding: 13px 30px;width: 100%" type="submit" id="subscribe-button" class="btn btn-primary btn-lg">Join Now!</button>
                                     </div>
                                 </div>
-                                <input type="hidden" name="join_via" value="Join Now">
+                                <input type="hidden" name="join_via" value="<?= site_url() ?><br/>Join With Email">
                             </form>
                         </div>
                         <!-- SUBSCRIBE BUTTON -->
@@ -905,7 +905,7 @@
     $('.facebook').click(function (e) {
         var id = $(this).prop('id');
         var url = (id == "fb-signup") ?
-                "<?= site_url() ?>register/fbsignup" :
+                "<?= site_url() ?>register/fbsignup?from=home" :
                 "<?= site_url() ?>login/fbsignin";
 
         FB.login(function (response) {

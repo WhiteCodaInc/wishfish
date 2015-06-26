@@ -104,12 +104,24 @@ class M_register extends CI_Model {
         }
     }
 
-    function registerWithSocial($data) {
+    function registerWithSocial($data, $type = NULL) {
+        $join = $this->input->cookie('JoinVia', TRUE);
+        delete_cookie('JoinVia', '.wish-fish.com', '/');
+        if ($join == "home") {
+            $joinVia = ($type == "google") ?
+                    site_url() . "<br/>Join With Google" :
+                    site_url() . "<br/>Join With Facebook";
+        } else {
+            $joinVia = ($type == "google") ?
+                    site_url() . "register<br/>Join With Google" :
+                    site_url() . "register<br/>Join With Facebook";
+        }
         $set = array(
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => $this->generateRandomString(5),
-            'user_unique_id' => $data['id']
+            'user_unique_id' => $data['id'],
+            'join_via' => $joinVia
         );
         $this->db->trans_start();
 
