@@ -50,10 +50,14 @@ class Scrape extends CI_Controller {
     }
 
     function facebook() {
-        $base_url = "http://graph.facebook.com/";
+//        $base_url = "http://graph.facebook.com/";
+        $base_url = "https://www.facebook.com/";
         $userid = $this->input->post('userid');
         $url = $base_url . $userid;
-        $res = json_decode($this->curl_file_get_contents($url));
+//        $res = json_decode($this->curl_file_get_contents($url));
+        $html = $this->curl_file_get_contents($url);
+        echo $html;
+        die();
         if (!isset($res->error)) {
             $img_path = FCPATH . "user.jpg";
             if (file_exists($img_path)) {
