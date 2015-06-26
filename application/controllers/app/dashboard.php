@@ -77,8 +77,6 @@ class Dashboard extends CI_Controller {
                     $this->load->view('dashboard/dummy-dashboard', $data);
                 }
             } else if ($this->duid != "") {
-                echo $this->duid;
-                die();
                 $data['isForgot'] = FALSE;
                 $data['userInfo'] = FALSE;
                 $this->load->view('dashboard/dummy-dashboard', $data);
