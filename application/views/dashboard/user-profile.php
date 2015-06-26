@@ -104,7 +104,7 @@
                             </div><!-- /.form group -->
                             <div class="form-group">
                                 <label>Email</label>
-                                <input value="<?= isset($user) ? $user->email : '' ?>" type="email" name="email" class="form-control" placeholder="Email" readonly=""/>
+                                <input value="<?= isset($user) ? $user->email : '' ?>" type="email" name="email" class="form-control" placeholder="Email" />
                             </div>
                             <div class="form-group">
                                 <label>Date Format</label>
