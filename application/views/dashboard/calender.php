@@ -1049,7 +1049,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
         $('span.lbl').click(function () {
             $name = $(this).prev().prop('name');
             $('input[name="' + $name + '"]').prop('checked', false);
-            $(this).prev().prop('checked', true);
+            $(this).prev().trigger('click');
         });
 
 <?php if (isset($contactInfo) && $contactInfo): ?>
