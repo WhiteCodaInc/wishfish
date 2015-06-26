@@ -416,24 +416,21 @@
 
                 <!--  Heading-->
                 <div class="heading black-text wow fadeIn animated" data-wow-offset="120" data-wow-duration="1.5s">
-                    <div class="title-half"><h1>Awesome Apps wow</h1></div>
-                    <div class="subtitle-half"><h5>This is subtile. lorem ipsum dolar shit amet</h5></div>
+                    <div class="title-half"><h1>Wish-Fish is Awesome</h1></div>
+                    <div class="subtitle-half"><h5>Don't just think different, live different.</h5></div>
                     <div class="separator-left"></div>
                 </div>
 
                 <div class="describe-details wow fadeInRight animated" data-wow-offset="10" data-wow-duration="1.5s">
                     <p>
-                        Xpeed ultimate landing page builder save your tons of time to design your website, Loren ipsum dolar sit amet cool Apps showcase. 
-                        Xpeed ultimate landing page builder save your tons of time to design your website, Loren ipsum dolar sit amet cool Apps showcase
-                        Xpeed ultimate landing page builder save your tons of time to design your website, Loren ipsum dolar sit amet cool Apps showcase
-
+                        In a world of chaos, we all have those moments when we wish we could just take a deep breath. With an intuitive dashboard and a customer-driven feature set, not only will you be able to sleep like a baby at night, you will also experience new levels of accomplishment you never before thought possible, here's why:
                     </p>
 
                     <ul class="describe-list">
-                        <li><i class="fa fa-h-square" data-selector="i.fa" style="outline: none; cursor: default;"></i> <span>Xpeed ultimate landing page builder save your tons of time to</span> </li>
-                        <li><i class="fa fa-database" data-selector="i.fa" style="outline: none; cursor: default;"></i> <span>Xpeed ultimate landing page builder save your tons of time to design</span> </li>
-                        <li><i class="fa fa-shekel" data-selector="i.fa" style="outline: none; cursor: default;"></i> <span>Xpeed ultimate landing page builder save your tons of time to design</span> </li>
-                        <li><i class="fa fa-database" data-selector="i.fa" style="outline: none; cursor: default;"></i> <span>Xpeed ultimate landing page builder save your tons of time to design</span> </li>
+                        <li><i class="fa fa-h-square" data-selector="i.fa" style="outline: none; cursor: default;"></i> <span>Wish-Fish helps you automate your lifestyle, it does the work so you don't have to.</span> </li>
+                        <li><i class="fa fa-database" data-selector="i.fa" style="outline: none; cursor: default;"></i> <span>Wish-Fish is built with you in mind, we actually listen to feedback, and act on it.</span> </li>
+                        <li><i class="fa fa-shekel" data-selector="i.fa" style="outline: none; cursor: default;"></i> <span>Wish-Fish is the only software designed to minimize hassle, and maximize productivity.</span> </li>
+                        <li><i class="fa fa-database" data-selector="i.fa" style="outline: none; cursor: default;"></i> <span>Wish-Fish cares, I know that sounds cheesy, but we do; if you're not happy, we're not happy.</span> </li>
                     </ul>
                 </div>
             </div><!--end half-->
