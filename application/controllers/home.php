@@ -18,6 +18,7 @@ class Home extends CI_Controller {
         if ($this->wi_authex->logged_in()) {
             header('location:' . site_url() . 'app/dashboard');
         } else {
+            $this->config->load('facebook');
             $this->load->model('m_register', 'objregister');
         }
     }
