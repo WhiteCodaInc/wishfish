@@ -1037,7 +1037,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
         });
 
         $('.set_repeat').click(function () {
-            var id = $(this).prev().attr('id');
+            var id = $(this).prev().prop('id');
             $('#' + id).trigger('click');
         });
         $('.set_repeat').hover(function () {
@@ -1049,8 +1049,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
         $('span.lbl').click(function () {
             $name = $(this).prev().prop('name');
             $('input[name="' + $name + '"]').prop('checked', false);
-            //$(this).prev().prop('checked', true);
-
+            $(this).prev().prop('checked', true);
         });
 
 <?php if (isset($contactInfo) && $contactInfo): ?>
@@ -1083,7 +1082,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
 
         $('#is_repeat,#e_is_repeat,#n_is_repeat').change(function () {
             if (planid == "1") {
-                $(this).removeAttr('checked');
+                $(this).prop('checked', false);
                 alertify.confirm("Your Account is under 14 days trial period if you want this feature you should need to upgrade your account.Would you like to upgrade your plan?", function (e) {
                     if (e) {
                         window.location.href = "<?= site_url() ?>app/upgrade";
@@ -1171,7 +1170,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
             }
             var data = CKEDITOR.instances['e_emailbody'].getData();
             $('#e_emailbody').val(data);
-            $('#' + id).prop('disabled', 'disabled');
+            $('#' + id).prop('disabled', true);
             $.ajax({
                 type: 'POST',
                 data: $('#editForm').serialize(),
@@ -1268,7 +1267,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
 <?php else: ?>
                 form = "eventForm";
 <?php endif; ?>
-            $('#' + id).prop('disabled', 'disabled');
+            $('#' + id).prop('disabled', true);
             $.ajax({
                 type: 'POST',
                 data: $('#' + form).serialize(),
@@ -1356,11 +1355,11 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
             });
         });
         $('#e_template,#n_template,#template').change(function () {
-            if ($(this).attr('id') == "template") {
+            if ($(this).prop('id') == "template") {
                 var event_type = $('#eventForm input[name="event_type"]:checked').val();
-            } else if ($(this).attr('id') == "n_template") {
+            } else if ($(this).prop('id') == "n_template") {
                 var event_type = $('#neweventForm input[name="event_type"]:checked').val();
-            } else if ($(this).attr('id') == "e_template") {
+            } else if ($(this).prop('id') == "e_template") {
                 var event_type = $('#editForm input[name="event_type"]:checked').val();
             }
             var tempid = $(this).val();
@@ -1458,13 +1457,13 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
             if ($(jsEvent.target).is('td.fc-day')) {
                 if (check >= today) {
                     // Clicked on the day number 
-                    $('#rd_sms').removeAttr("disabled");
-                    $('#rd_email').removeAttr("disabled");
+                    $('#rd_sms').prop("disabled", false);
+                    $('#rd_email').prop("disabled", false);
                 } else {
-                    $('#rd_sms').attr("disabled", "true");
-                    $('#rd_email').attr("disabled", "true");
-                    $('#rd_sms').attr("title", "You are not allowed to schedule this Event on previous date.");
-                    $('#rd_email').attr("title", "You are not allowed to schedule this Event on previous date.");
+                    $('#rd_sms').prop("disabled", true);
+                    $('#rd_email').prop("disabled", true);
+                    $('#rd_sms').prop("title", "You are not allowed to schedule this Event on previous date.");
+                    $('#rd_email').prop("title", "You are not allowed to schedule this Event on previous date.");
                 }
                 highlightDay(jsEvent);
                 $('#dt').text(date.format("DD-MM-YYYY"));
@@ -1472,7 +1471,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
                 $('#eventForm').trigger("reset");
                 $('#all_c').trigger("change");
                 $('#rd_individual').trigger('change');
-                $('#popup').removeAttr('disabled');
+                $('#popup').prop('disabled', false);
             }
         },
         eventClick: function (calEvent, jsEvent, view) {
@@ -1496,8 +1495,8 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
                                 "http://mikhailkuznetsov.s3.amazonaws.com/" + data.contact_avatar :
                                 "<?= base_url() . 'assets/dashboard/img/default-avatar.png' ?>";
                         $href = "<?= site_url() ?>app/contacts/profile/" + data.contact_id;
-                        $('#e_user_img').attr('href', $href);
-                        $('#e_user_img img').attr('src', $url);
+                        $('#e_user_img').prop('href', $href);
+                        $('#e_user_img img').prop('src', $url);
                         $('#e_user_img').css('display', 'block');
                         $('#e_user_img').css('float', 'left');
                         $('#event_status').css('margin', '0 0 0 50px');
@@ -1546,10 +1545,10 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
                     if (!data.refer_id) {
                         $('#e_check_block').css('display', 'block');
                         if (data.is_repeat == 1) {
-                            $('#e_is_repeat').attr('checked', 'true');
+                            $('#e_is_repeat').prop('checked', true);
                             $('#e_repeat_block').css('display', 'block');
                         } else {
-                            $('#e_is_repeat').removeAttr('checked');
+                            $('#e_is_repeat').prop('checked', false);
                             $('#e_repeat_block').css('display', 'none');
                         }
                         $('#e_freq_type').val(data.freq_type);
@@ -1560,13 +1559,13 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
                         }
                         $('#e_freq_no').val(data.freq_no);
                         if (data.end_type == "never") {
-                            $('#rd_never').attr('checked', 'true');
-                            $('#rd_after').removeAttr('checked');
+                            $('#rd_never').prop('checked', true);
+                            $('#rd_after').prop('checked', false);
                             $('#e_end_block').css('display', 'none');
                         } else {
-                            $('#rd_after').attr('checked', 'true');
+                            $('#rd_after').prop('checked', true);
                             $('#e_end_block').css('display', 'block');
-                            $('#rd_never').removeAttr('checked');
+                            $('#rd_never').prop('checked', false);
                         }
                         $('input[name="occurance"]').val(data.occurance);
                     } else {
@@ -1606,8 +1605,8 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
 <?php if ($dt != ""): ?>
         $('#calendar').fullCalendar('gotoDate', '<?= $dt ?>');
         $('td.fc-day').each(function () {
-            if ($(this).attr('data-date') == "<?= $dt ?>") {
-                $(this).find('div.fc-day-content').attr('id', 'birth_day');
+            if ($(this).prop('data-date') == "<?= $dt ?>") {
+                $(this).find('div.fc-day-content').prop('id', 'birth_day');
             }
         });
 <?php endif; ?>
@@ -1635,7 +1634,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
                     $(this).css('border', '1px solid darkorchid');
                 }
             } else {
-                $(this).removeAttr('style');
+                $(this).removeProp('style');
             }
         });
     }
