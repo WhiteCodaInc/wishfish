@@ -236,7 +236,7 @@
                                 <button  type="submit" class="btn btn-primary">Let's Get Started!</button> <br/>
                                 <span id="msgPass" style="color: red"></span>
                             </div>
-                            <input type="hidden" name="userid" value="<?= ($userInfo) ? $userInfo->user_id : $this->session->userdata('d-userid') ?>" />
+                            <input type="hidden" name="userid" value="<?= (!$userId) ? $userInfo->user_id : $userId ?>" />
                             <input type="hidden" name="type" value="<?= ($isForgot) ? 'forgot' : 'welcome' ?>" />
                         </form>
                         <div class="col-md-3"></div>

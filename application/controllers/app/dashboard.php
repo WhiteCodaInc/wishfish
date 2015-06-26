@@ -76,11 +76,13 @@ class Dashboard extends CI_Controller {
                 } else {
                     $data['userInfo'] = $userInfo;
                     $data['isForgot'] = TRUE;
+                    $data['userId'] = FALSE;
                     $this->load->view('dashboard/dummy-dashboard', $data);
                 }
             } else if ($this->duid != "") {
                 $data['isForgot'] = FALSE;
                 $data['userInfo'] = FALSE;
+                $data['userId'] = $this->duid;
                 $this->load->view('dashboard/dummy-dashboard', $data);
             } else {
                 header('location:' . site_url() . 'home');
