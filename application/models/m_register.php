@@ -38,8 +38,6 @@ class M_register extends CI_Model {
         $flag = FALSE;
         $this->db->trans_start();
         $planInfo = $this->wi_common->getPlan(1);
-        print_r($post);
-        die();
         $this->db->insert('wi_user_mst', $post);
         $insertid = $this->db->insert_id();
 
