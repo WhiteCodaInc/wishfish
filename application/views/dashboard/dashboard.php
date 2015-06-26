@@ -55,7 +55,7 @@
             <i class="fa fa-plus"></i>
             Create Email Template
         </a>
-        <div class="box box-solid box-primary collapsed-box">
+        <div class="box box-solid box-primary collapsed-box" style="float: right">
             <div class="box-header" data-widget="collapse"  style="cursor: pointer">
                 <h3 class="box-title">Events</h3>
             </div>
