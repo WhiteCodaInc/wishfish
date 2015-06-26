@@ -135,17 +135,21 @@ class Register extends CI_Controller {
             try {
                 $user_profile = $facebook->api('/me');  //Get the facebook user profile data
                 $is_user = $this->objregister->isUserExist($user_profile);
-                if (!$is_user && $this->objregister->registerWithSocial($user_profile, "facebook")) {
-                    $facebookid = array(
-                        'name' => 'facebookid',
-                        'value' => $user_profile['id'],
-                        'expire' => time() + 86500,
-                        'domain' => '.wish-fish.com'
-                    );
-                    $this->input->set_cookie($facebookid);
-                    header('location:' . site_url() . 'app/dashboard');
+                if (!$is_user) {
+                    if ($this->objregister->registerWithSocial($user_profile, "facebook")) {
+                        $facebookid = array(
+                            'name' => 'facebookid',
+                            'value' => $user_profile['id'],
+                            'expire' => time() + 86500,
+                            'domain' => '.wish-fish.com'
+                        );
+                        $this->input->set_cookie($facebookid);
+                        header('location:' . site_url() . 'app/dashboard');
+                    } else {
+                        header('location: ' . site_url() . 'register?msg=RF');
+                    }
                 } else {
-                    header('location: ' . site_url() . 'register?msg=RF');
+                    header('Location: ' . site_url() . 'login?msg=R');
                 }
             } catch (FacebookApiException $e) {
                 error_log($e);
