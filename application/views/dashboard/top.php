@@ -108,6 +108,67 @@ $userid = $this->session->userdata('userid');
                                 </a>
                             </li>
                         </ul>
+                    </li>
+                    <li>
+                        <a href="<?= site_url() ?>app/calender">
+                            <i class="fa fa-th"></i> <span>Calender</span>
+                        </a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="<?= site_url() ?>app/template" class="dropdown-toggle">
+                            <i class="fa fa-credit-card"></i>
+                            Templates 
+                        </a>
+                        <ul class="dropdown-menu" role="menu" >
+                            <li>
+                                <a href="<?= site_url() ?>app/sms_template">
+                                    <i class="fa fa-mobile-phone"></i>
+                                    <span>SMS Template</span>
+                                </a>
+                            </li>
+                            <!--<li class="divider"></li>-->
+                            <li>
+                                <a href="<?= site_url() ?>app/email_template">
+                                    <i class="fa fa-envelope"></i> <span>Email Template</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <?php
+                    $currPlan = $this->wi_common->getCurrentPlan($userid);
+                    if (count($currPlan) && $currPlan->plan_id == 1) {
+                        ?>
+                        <li style="margin: 13px 30px;color: white;">
+                            <span style="font-size: 17px">
+                                Days Left on Trial: <?= $this->wi_common->getDateDiff($currPlan) ?>
+                            </span>
+                        </li>
+                    <?php } ?>
+                    <li style="margin: 13px">
+                        <!--<div class="clock"></div>-->
+                        <span style="font-size: 17px;color: white" id="curr_time"></span>
+                    </li>  
+                </ul>
+                <ul class="nav navbar-nav navbar-right" >
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-plus"></i>
+                            Import Contact(s)
+                        </a>
+                        <ul class="dropdown-menu" role="menu" >
+                            <li>
+                                <a class="import" href="<?= site_url() ?>app/import">
+                                    <i class="fa fa-google"></i>
+                                    <span>Import Google Contacts</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="scrape-contact" href="javascript:void(0)" data-toggle="modal" data-target="#scrapeContact">
+                                    <i class="fa fa-users"></i>
+                                    <span>Import Contacts</span>
+                                </a>
+                            </li>
+                        </ul>
                         <div class="modal fade" id="scrapeContact" tabindex="-1" role="dialog" aria-hidden="true">
                             <div class="modal-dialog" style="max-width: 490px">
                                 <div class="modal-content">
@@ -337,47 +398,6 @@ $userid = $this->session->userdata('userid');
                             });
                         </script>
                     </li>
-                    <li>
-                        <a href="<?= site_url() ?>app/calender">
-                            <i class="fa fa-th"></i> <span>Calender</span>
-                        </a>
-                    </li>
-                    <li class="dropdown">
-                        <a href="<?= site_url() ?>app/template" class="dropdown-toggle">
-                            <i class="fa fa-credit-card"></i>
-                            Templates 
-                        </a>
-                        <ul class="dropdown-menu" role="menu" >
-                            <li>
-                                <a href="<?= site_url() ?>app/sms_template">
-                                    <i class="fa fa-mobile-phone"></i>
-                                    <span>SMS Template</span>
-                                </a>
-                            </li>
-                            <!--<li class="divider"></li>-->
-                            <li>
-                                <a href="<?= site_url() ?>app/email_template">
-                                    <i class="fa fa-envelope"></i> <span>Email Template</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <?php
-                    $currPlan = $this->wi_common->getCurrentPlan($userid);
-                    if (count($currPlan) && $currPlan->plan_id == 1) {
-                        ?>
-                        <li style="margin: 13px 30px;color: white;">
-                            <span style="font-size: 17px">
-                                Days Left on Trial: <?= $this->wi_common->getDateDiff($currPlan) ?>
-                            </span>
-                        </li>
-                    <?php } ?>
-                    <li style="margin: 13px">
-                        <!--<div class="clock"></div>-->
-                        <span style="font-size: 17px;color: white" id="curr_time"></span>
-                    </li>  
-                </ul>
-                <ul class="nav navbar-nav navbar-right" >
                     <li class="dropdown user user-menu" id="wishfish-title">
                         <a style="padding: 10px" href="#" class="dropdown-toggle" data-toggle="dropdown">
 <!--                            <i class="glyphicon glyphicon-user"></i>-->
