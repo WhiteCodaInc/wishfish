@@ -59,6 +59,8 @@ class Dashboard extends CI_Controller {
             $this->load->view('dashboard/dashboard', $card);
             $this->load->view('dashboard/footer');
         } else {
+            echo $this->duid;
+            die();
             $userInfo = $this->wi_common->getUserInfo($this->uid);
             if ($this->uid != "" && count($userInfo) == 1) {
                 if ($this->type != "forgot" && $userInfo->password != NULL) {
