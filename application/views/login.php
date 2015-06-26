@@ -267,7 +267,7 @@ and open the template in the editor.
 
                     alertify.confirm("Your email address is not register.<br>Are you really want to register?", function (e) {
                         if (e) {
-                            window.location.href = "<?= site_url() ?>app/register";
+                            window.location.href = "<?= site_url() ?>register";
                         }
                     });
 
