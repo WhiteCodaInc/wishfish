@@ -378,27 +378,6 @@ $userid = $this->session->userdata('userid');
                     });
                 </script>
                 <ul class="nav navbar-nav navbar-right" >
-                    <!--                    <li class="dropdown">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                                <i class="fa fa-plus"></i>
-                                                Import Contact(s)
-                                            </a>
-                                            <ul class="dropdown-menu" role="menu" >
-                                                <li>
-                                                    <a class="import" href="<?= site_url() ?>app/import">
-                                                        <i class="fa fa-google"></i>
-                                                        <span>Import Google Contacts</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a class="scrape-contact" href="javascript:void(0)" data-toggle="modal" data-target="#scrapeContact">
-                                                        <i class="fa fa-users"></i>
-                                                        <span>Import Contacts</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                    
-                                        </li>-->
                     <li class="dropdown user user-menu" id="wishfish-title">
                         <a style="padding: 10px" href="#" class="dropdown-toggle" data-toggle="dropdown">
 <!--                            <i class="glyphicon glyphicon-user"></i>-->
@@ -966,7 +945,7 @@ $userid = $this->session->userdata('userid');
                             $('#supportForm .msg').text('');
                             setTimeout(function () {
                                 $('.modal-backdrop').css('z-index', '999');
-                            }, 700);
+                            }, 500);
                         });
                         $('#send').click(function () {
                             var query = $('#query').val();
