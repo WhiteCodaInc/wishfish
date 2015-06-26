@@ -227,7 +227,7 @@
                 </div>
             </div><!-- ./col -->
         </div><!-- /.row -->
-        <div class="row ui-sortable">
+<!--        <div class="row ui-sortable">
             <div class="col-md-8">
 
             </div>
@@ -244,20 +244,20 @@
                                         <div class="box-header ui-sortable-handle" style="cursor: move;">
                                             <i class="ion ion-clipboard"></i>
                                             <h3 class="box-title">TODAY</h3>
-                                        </div><!-- /.box-header -->
+                                        </div> /.box-header 
                                         <div class="box-body">
                                             <ul class="todo-list ui-sortable">
                                                 <?php foreach ($totalD as $value) { ?>
                                                     <li>
                                                         <a href="<?= site_url() ?>app/calender?date=<?= $value->date ?>"
-                                                           <!-- drag handle -->
+                                                            drag handle 
                                                            <span class="handle ui-sortable-handle">
                                                                 <i class="fa fa-ellipsis-v"></i>
                                                                 <i class="fa fa-ellipsis-v"></i>
                                                             </span>
-                                                            <!-- todo text -->
+                                                             todo text 
                                                             <span class="text"><?= $value->event ?></span>
-                                                            <!-- Emphasis label -->
+                                                             Emphasis label 
                                                             <small class="label" style="background-color: <?= $value->color ?>">
                                                                 <i class="fa fa-clock-o"></i>
                                                                 <?= $value->format_date ?>
@@ -266,7 +266,7 @@
                                                     </li>
                                                 <?php } ?>
                                             </ul>
-                                        </div><!-- /.box-body -->
+                                        </div> /.box-body 
                                     </div>
                                 </div>
                                 <div class="form-group-lg">
@@ -274,20 +274,20 @@
                                         <div class="box-header ui-sortable-handle" style="cursor: move;">
                                             <i class="ion ion-clipboard"></i>
                                             <h3 class="box-title">THIS WEEK</h3>
-                                        </div><!-- /.box-header -->
+                                        </div> /.box-header 
                                         <div class="box-body">
                                             <ul class="todo-list ui-sortable">
                                                 <?php foreach ($totalW as $value) { ?>
                                                     <li>
                                                         <a href="<?= site_url() ?>app/calender?date=<?= $value->date ?>"
-                                                           <!-- drag handle -->
+                                                            drag handle 
                                                            <span class="handle ui-sortable-handle">
                                                                 <i class="fa fa-ellipsis-v"></i>
                                                                 <i class="fa fa-ellipsis-v"></i>
                                                             </span>
-                                                            <!-- todo text -->
+                                                             todo text 
                                                             <span class="text"><?= $value->event ?></span>
-                                                            <!-- Emphasis label -->
+                                                             Emphasis label 
                                                             <small class="label" style="background-color: <?= $value->color ?>">
                                                                 <i class="fa fa-clock-o"></i>
                                                                 <?= $value->format_date ?>
@@ -296,7 +296,7 @@
                                                     </li>
                                                 <?php } ?>
                                             </ul>
-                                        </div><!-- /.box-body -->
+                                        </div> /.box-body 
                                     </div>
                                 </div>
                                 <div class="form-group-lg">
@@ -304,20 +304,20 @@
                                         <div class="box-header ui-sortable-handle" style="cursor: move;">
                                             <i class="ion ion-clipboard"></i>
                                             <h3 class="box-title">THIS MONTH</h3>
-                                        </div><!-- /.box-header -->
+                                        </div> /.box-header 
                                         <div class="box-body">
                                             <ul class="todo-list ui-sortable">
                                                 <?php foreach ($totalM as $value) { ?>
                                                     <li>
                                                         <a href="<?= site_url() ?>app/calender?date=<?= $value->date ?>"
-                                                           <!-- drag handle -->
+                                                            drag handle 
                                                            <span class="handle ui-sortable-handle">
                                                                 <i class="fa fa-ellipsis-v"></i>
                                                                 <i class="fa fa-ellipsis-v"></i>
                                                             </span>
-                                                            <!-- todo text -->
+                                                             todo text 
                                                             <span class="text"><?= $value->event ?></span>
-                                                            <!-- Emphasis label -->
+                                                             Emphasis label 
                                                             <small class="label" style="background-color: <?= $value->color ?>">
                                                                 <i class="fa fa-clock-o"></i>
                                                                 <?= $value->format_date ?>
@@ -326,7 +326,7 @@
                                                     </li>
                                                 <?php } ?>
                                             </ul>
-                                        </div><!-- /.box-body -->
+                                        </div> /.box-body 
                                     </div>
                                 </div>
                             </div>
@@ -334,7 +334,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
         <style type="text/css">
             #p1{
                 margin: 0 !important;
