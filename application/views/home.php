@@ -823,7 +823,6 @@
             setTimeout(function () {
                 $('html, body').animate({scrollTop: 0}, 4000);
             }, 4000);
-            console.log($(this).attr('id'));
             $('.sign').css('display', 'block');
             var id = $(this).attr('id');
             if (id == "log") {
@@ -880,7 +879,6 @@
 </script>
 <script type="text/javascript">
     window.fbAsyncInit = function () {
-        alert('<?= $this->config->item('appID'); ?>');
         //Initiallize the facebook using the facebook javascript sdk
         FB.init({
             appId: '<?= $this->config->item('appID'); ?>', // App ID 
@@ -905,7 +903,6 @@
     //Onclick for fb login
     $('.btn-facebook').click(function (e) {
         var id = $(this).prop('id');
-        alert(id);
         var url = (id == "fb-signup") ?
                 "<?= site_url() ?>register/fbsignup?from=home" :
                 "<?= site_url() ?>login/fbsignin";
@@ -945,7 +942,7 @@
     function newTyped() { /* A new typed object */
     }
     function foo() {
-        console.log("Callback");
+
     }
 </script>
 
