@@ -50,15 +50,15 @@
         <h1 style="float: left">
             Dashboard
         </h1>
-        <a  href="<?= site_url() ?>app/contacts/addContact" class="btn btn-primary btn-sm create">
+        <a href="<?= site_url() ?>app/contacts/addContact" class="btn btn-primary btn-sm create">
             <i class="fa fa-plus"></i>
             Create New Contact
         </a>
-        <a  href="<?= site_url() ?>app/calender" class="btn btn-info btn-sm create">
+        <a href="<?= site_url() ?>app/calender" class="btn btn-info btn-sm create">
             <i class="fa fa-plus"></i>
             Create New Event
         </a>
-        <a  href="<?= site_url() ?>app/sms_template/addTemplate" class="btn btn-warning btn-sm create">
+        <a href="<?= site_url() ?>app/sms_template/addTemplate" class="btn btn-warning btn-sm create">
             <i class="fa fa-plus"></i>
             Create SMS Template
         </a>
