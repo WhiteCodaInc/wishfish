@@ -97,7 +97,7 @@ and open the template in the editor.
                 <div class="row contact-2">
                     <!--  Heading-->
                     <div class="heading wow fadeIn animated" data-wow-offset="120" data-wow-duration="1.5s">
-                        <div class="title text-center"><h1>Create Account</h1></div>
+                        <div class="title text-center"><h1>Sign Up</h1></div>
                         <div class="separator text-center" style="margin-bottom: 40px;"></div>
                     </div>
                     <div class="col-md-4"></div>
@@ -128,7 +128,7 @@ and open the template in the editor.
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <p style="text-align: center">
-                                                    By clicking Register, I agree to the 
+                                                    By clicking Register,<br/> I agree to the 
                                                     <a href="<?= site_url() ?>terms-of-services">Terms of Service</a> and 
                                                     <a href="<?= site_url() ?>privacy-policy">Privacy Policy</a>.
                                                 </p>
@@ -137,7 +137,7 @@ and open the template in the editor.
                                     </div>
                                     <div class="row m-bot15">
                                         <div class="col-md-12">
-                                            <button class="btn btn-primary btn-lg" type="submit" > Create Account</button>
+                                            <button class="btn btn-primary btn-lg" type="submit" >Sign Me Up!</button>
                                         </div>
                                     </div>
                                 </fieldset>
