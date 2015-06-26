@@ -880,7 +880,7 @@
 </script>
 <script type="text/javascript">
     window.fbAsyncInit = function () {
-        alert();
+        alert('<?= $this->config->item('appID'); ?>');
         //Initiallize the facebook using the facebook javascript sdk
         FB.init({
             appId: '<?= $this->config->item('appID'); ?>', // App ID 
@@ -905,6 +905,7 @@
     //Onclick for fb login
     $('.btn-facebook').click(function (e) {
         var id = $(this).prop('id');
+        alert(id);
         var url = (id == "fb-signup") ?
                 "<?= site_url() ?>register/fbsignup?from=home" :
                 "<?= site_url() ?>login/fbsignin";
