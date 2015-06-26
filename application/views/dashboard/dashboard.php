@@ -39,7 +39,7 @@
         z-index: 9999;
         position: absolute;
         right: 0;
-        top: 59px;
+        top: 10px;
     }
 </style>
 <aside class="right-side" >
