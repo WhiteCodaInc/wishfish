@@ -262,6 +262,17 @@ and open the template in the editor.
         </script>
         <script type="text/javascript">
             $(document).ready(function () {
+
+<?php if ($m && $m == "NR"): ?>
+
+                    alertify.confirm("Your email address is not register.<br>Are you really want to register?", function (e) {
+                        if (e) {
+                            window.location.href = "<?= site_url() ?>app/register";
+                        }
+                    });
+
+<?php endif; ?>
+
                 var emailV = 1;
                 var captchaV = 1;
                 var sess_word = "<?= $this->session->userdata('captchaWord') ?>";
