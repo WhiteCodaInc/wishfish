@@ -1034,6 +1034,12 @@
             alertify.error('User Not Available..!');
 <?php endif; ?>
 
+        $('span.lbl').click(function () {
+            $name = $(this).prev().prop('name');
+            $('input[name="' + $name + '"]').prop('checked', false);
+            $(this).prev().trigger('click');
+        });
+
         $('#freq_type,#e_freq_type,#n_freq_type').change(function () {
             var type = $(this).val();
             $msg = type.charAt(0).toUpperCase() + type.substring(1);
