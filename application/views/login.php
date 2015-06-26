@@ -263,7 +263,7 @@ and open the template in the editor.
         <script type="text/javascript">
             $(document).ready(function () {
 
-<?php if ($m && $m == "NR"): ?>
+<?php if ($msg == "NR"): ?>
 
                     alertify.confirm("Your email address is not register.<br>Are you really want to register?", function (e) {
                         if (e) {
