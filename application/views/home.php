@@ -880,6 +880,7 @@
 </script>
 <script type="text/javascript">
     window.fbAsyncInit = function () {
+        alert();
         //Initiallize the facebook using the facebook javascript sdk
         FB.init({
             appId: '<?= $this->config->item('appID'); ?>', // App ID 
@@ -907,7 +908,6 @@
         var url = (id == "fb-signup") ?
                 "<?= site_url() ?>register/fbsignup?from=home" :
                 "<?= site_url() ?>login/fbsignin";
-
         FB.login(function (response) {
             if (response.authResponse) {
                 parent.location = url; //redirect uri after closing the facebook popup
