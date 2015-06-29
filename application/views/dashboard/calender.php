@@ -1045,6 +1045,18 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
     });
     $(document).ready(function () {
 
+        $('#eventForm #users').focusout(function () {
+            flag = false;
+            var cnt = $(this).val().trim();
+            if (cnt != "" && $.inArray(cnt, contact) != "-1") {
+                var contact = user.split('||');
+                var fname = contact.split(' ');
+                console.log(fname);
+            }
+//            $('#eventForm input[name="event"]').val();
+        });
+
+
         $('span.lbl').click(function () {
             $name = $(this).prev().prop('name');
             $('input[name="' + $name + '"]').prop('checked', false);
