@@ -1045,7 +1045,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
     });
     $(document).ready(function () {
 
-        $('#eventForm #users').focusout(function () {
+        $('#eventForm #users').on('focusout', function () {
             flag = false;
             var cnt = $(this).val().trim();
             if (cnt != "" && $.inArray(cnt, contact) != "-1") {
