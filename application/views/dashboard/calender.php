@@ -963,6 +963,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
         $('div.choose input:text').focusout(function () {
             var event_type = $('#eventForm input[name="event_type"]:checked').val();
             var user = $('#users').val().trim();
+            console.log(user);
             if (user != "") {
                 if (!validateContact(user)) {
                     var con = user.split('||');
