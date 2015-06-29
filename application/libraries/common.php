@@ -103,15 +103,19 @@ class Common {
     }
 
     function getDateDiff($userInfo, $planInfo) {
-        $d1 = date_create($this->getMySqlDate($this->getUTCDate($userInfo->timezones, $userInfo->date_format), $userInfo->date_format));
-        $d2 = date_create($planInfo->expiry_date);
-        if (strtotime($d1['date']) < strtotime($d2['date'])) {
+
+        $currDate = $this->getMySqlDate($this->getUTCDate($userInfo->timezones, $userInfo->date_format), $userInfo->date_format);
+        $expDate = $planInfo->expiry_date;
+        if (strtotime($currDate) < strtotime($expDate)) {
             echo 'TRUE<br>';
         } else {
             echo 'FALSE<br>';
         }
-        print_r($d1);
-        print_r($d2);
+//        $d1 = date_create();
+//        $d2 = date_create();
+//
+//        print_r($d1);
+//        print_r($d2);
         die();
 //        return date_diff($d2, $d1)->format('%a');
     }
