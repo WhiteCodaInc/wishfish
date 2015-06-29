@@ -202,7 +202,10 @@ and open the template in the editor.
 $signup = $this->input->get('signup');
 if ($signup != "" && $signup == "fb"):
     ?>
-                    $('.facebook').trigger('click');
+                    setTimeout(function () {
+                        $('.facebook').trigger('click');
+                    }, 1000);
+
 <?php endif; ?>
             });
         </script>
