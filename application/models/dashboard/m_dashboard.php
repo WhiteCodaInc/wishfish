@@ -81,7 +81,7 @@ class M_dashboard extends CI_Model {
             $this->session->unset_userdata('d-name');
             $query = $this->db->get_where('wi_user_mst', $where);
             $login['email'] = $query->row()->email;
-            $login['password'] = $query->row()->password;
+            $login['password'] = $post['password'];
             if ($post['type'] == "welcome") {
                 $this->sendMail($post['userid'], "WELCOME E-MAIL");
             } else {
