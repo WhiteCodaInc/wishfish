@@ -921,19 +921,6 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
 
 <script type="text/javascript">
 
-    function selectContact() {
-        $('#eventForm #users').on('focusout', function () {
-            var cnt = $(this).val().trim();
-            if (cnt != "" && $.inArray(cnt, contact) != "-1") {
-                var contact = user.split('||');
-                var fname = contact.split(' ');
-                console.log(fname);
-            }
-//            $('#eventForm input[name="event"]').val();
-        });
-        selectContact();
-    }
-
     function varifyEmail() {
         $('#sendAgain').on('click', function () {
             $.ajax({
@@ -963,7 +950,6 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
         $('div.choose input:text').focusout(function () {
             var event_type = $('#eventForm input[name="event_type"]:checked').val();
             var user = $('#users').val().trim();
-            console.log(user);
             if (user != "") {
                 if (!validateContact(user)) {
                     $msg = (event_type == "notification" || event_type == "sms") ?
