@@ -105,11 +105,9 @@ class Common {
     function getDateDiff($userInfo, $planInfo) {
         $d1 = date_create($this->getMySqlDate($this->getUTCDate($userInfo->timezones, $userInfo->date_format), $userInfo->date_format));
         $d2 = date_create($planInfo->expiry_date);
-
-        print_r($d1) . '<br>';
-        print_r($d2) . '<br>';
+        echo date_diff($d2, $d1)->format('%a');
         die();
-        return date_diff($d2, $d1)->format('%a');
+//        return date_diff($d2, $d1)->format('%a');
     }
 
     //----------------------Admin Automail Template---------------------------//
