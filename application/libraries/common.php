@@ -106,18 +106,13 @@ class Common {
 
         $currDate = $this->getMySqlDate($this->getUTCDate($userInfo->timezones, $userInfo->date_format), $userInfo->date_format);
         $expDate = $planInfo->expiry_date;
-        if (strtotime('2015-06-05') <= strtotime('2015-06-05')) {
-            echo 'TRUE<br>';
+        if (strtotime($currDate) < strtotime($expDate)) {
+            $d1 = date_create($currDate);
+            $d2 = date_create($expDate);
+            return date_diff($d2, $d1)->format('%a');
         } else {
-            echo 'FALSE<br>';
+            return FALSE;
         }
-//        $d1 = date_create();
-//        $d2 = date_create();
-//
-//        print_r($d1);
-//        print_r($d2);
-        die();
-//        return date_diff($d2, $d1)->format('%a');
     }
 
     //----------------------Admin Automail Template---------------------------//
