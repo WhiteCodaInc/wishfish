@@ -921,6 +921,19 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
 
 <script type="text/javascript">
 
+    function selectContact() {
+        $('#eventForm #users').on('focusout', function () {
+            var cnt = $(this).val().trim();
+            if (cnt != "" && $.inArray(cnt, contact) != "-1") {
+                var contact = user.split('||');
+                var fname = contact.split(' ');
+                console.log(fname);
+            }
+//            $('#eventForm input[name="event"]').val();
+        });
+        selectContact();
+    }
+
     function varifyEmail() {
         $('#sendAgain').on('click', function () {
             $.ajax({
@@ -952,6 +965,9 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
             var user = $('#users').val().trim();
             if (user != "") {
                 if (!validateContact(user)) {
+                    var con = user.split('||');
+                    var fname = con.split(' ');
+                    console.log(fname);
                     $msg = (event_type == "notification" || event_type == "sms") ?
                             "Can not SMS this user because no phone number is assigned!" :
                             "Can not Email this user because no email address is assigned!";
@@ -1024,8 +1040,6 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
             showInputs: false,
             showMeridian: false
         });
-
-
         $('.default-date-picker').datepicker({
             format: "<?= $this->session->userdata('date_format') ?>",
             todayBtn: "linked",
@@ -1044,19 +1058,6 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
         });
     });
     $(document).ready(function () {
-
-        $('#eventForm #users').on('focusout', function () {
-            flag = false;
-            var cnt = $(this).val().trim();
-            if (cnt != "" && $.inArray(cnt, contact) != "-1") {
-                var contact = user.split('||');
-                var fname = contact.split(' ');
-                console.log(fname);
-            }
-//            $('#eventForm input[name="event"]').val();
-        });
-
-
         $('span.lbl').click(function () {
             $name = $(this).prev().prop('name');
             $('input[name="' + $name + '"]').prop('checked', false);
