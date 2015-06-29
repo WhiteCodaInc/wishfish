@@ -1634,7 +1634,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
                     $(this).css('border', '1px solid darkorchid');
                 }
             } else {
-                $(this).removeProp('style');
+                $(this).removeAttr('style');
             }
         });
     }
