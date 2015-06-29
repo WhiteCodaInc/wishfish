@@ -138,6 +138,9 @@
                         <?php
                         $userInfo = $this->wi_common->getUserInfo($customer->user_id);
                         $currPlan = $this->wi_common->getCurrentPlan($customer->user_id);
+                        echo '<pre>';
+                        print_r($userInfo);
+                        print_r($currPlan);
                         if (count($currPlan) && $currPlan->plan_id == 1) {
                             ?>
                             <div class="form-group">
