@@ -109,7 +109,7 @@ class Login extends CI_Controller {
                     header('location: ' . site_url() . 'login?msg=DA');
                 } else if (!$user) {
 //                    die("0");
-                    header('location: ' . site_url() . 'login?msg=NR');
+                    header('location: ' . site_url() . 'login?signup=google&msg=NR');
                 } else {
 //                    die("1");
                     $this->objregister->linkWithProfile($data['email']);
@@ -141,7 +141,7 @@ class Login extends CI_Controller {
                 if ($user === -1) {
                     header('location: ' . site_url() . 'login?msg=DA');
                 } else if (!$is_user) {
-                    header('location: ' . site_url() . 'login?msg=NR');
+                    header('location: ' . site_url() . 'login?signup=fb&msg=NR');
                 } else {
                     $this->objregister->linkWithProfile($user_profile['email']);
                     $is_login = array(

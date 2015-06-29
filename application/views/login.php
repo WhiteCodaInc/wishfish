@@ -263,19 +263,23 @@ and open the template in the editor.
         <script type="text/javascript">
             $(document).ready(function () {
 
-<?php if ($msg == "NR"): ?>
+<?php
+if ($msg == "NR" && $signup != "" && ($signup == "google" || $signup == "fb")):
+    $url = ($signup == "google") ?
+            site_url() . 'register?from=home' :
+            site_url() . 'register/fbsignup?from=home';
+    ?>
 
                     alertify.confirm("Your email address is not register.<br>Are you really want to register?", function (e) {
                         if (e) {
-                            window.location.href = "<?= site_url() ?>register";
+                            window.location.href = "<?= $url ?>";
                         }
                     });
 
 <?php endif; ?>
-
                 var emailV = 1;
                 var captchaV = 1;
-                var sess_word = "<?= $this->session->userdata('captchaWord') ?>";
+                var sess_word = "<? = $this->session->userdata('captchaWord') ?>";
                 $('#forgotEmail').focusout(function () {
                     var email = $(this).val();
                     if (email.trim() != "") {
@@ -337,11 +341,9 @@ and open the template in the editor.
                                 $('#msgSend').empty();
                                 $('.close').trigger('click');
                             }, 1000);
-
                         }
                     });
                 });
-
                 $("#refresh").click(function () {
                     $(this).css('cursor', 'progress');
                     $.ajax({
@@ -356,12 +358,10 @@ and open the template in the editor.
                         }
                     });
                 });
-
                 $('#remember').click(function () {
                     $('input[name="remember"]').trigger('click');
                 });
-            });
-        </script>
+            });</script>
         <script type="text/javascript">
             window.fbAsyncInit = function () {
                 //Initiallize the facebook using the facebook javascript sdk

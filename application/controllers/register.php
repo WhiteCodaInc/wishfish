@@ -115,7 +115,6 @@ class Register extends CI_Controller {
                 'domain' => '.wish-fish.com'
             );
             $this->input->set_cookie($joinVia);
-            header('location:' . $this->client->createAuthUrl());
         } else {
             $joinVia = array(
                 'name' => 'JoinVia',
