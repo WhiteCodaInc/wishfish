@@ -99,7 +99,6 @@
                         </div>-->
             <form id="neweventForm"  method="post">
                 <div class="modal-body">
-
                     <div class="row m-bot15">                        
                         <div class="col-md-12">	
                             <div class="form-group">
@@ -152,7 +151,7 @@
                         <div class="col-md-5">
                             <label>Event Name</label>
                             <div class="form-group" >
-                                <input type="text" name="event" class="form-control"   />
+                                <input type="text" name="event" class="form-control" placeholder="<?= $contactInfo->fname ?>'s Event Name"   />
                             </div>
                         </div>
                     </div>
@@ -1138,7 +1137,6 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
                 }
             });
         });
-
         $('#edit').click(function () {
             var id = $(this).prop('id');
             if ($('#editForm input[name="date"]').val().trim() == "") {
@@ -1312,7 +1310,6 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
                 $lbl = (etype == "sms") ? "SMS" : "EMAIL";
                 $('#n_event_type').text($lbl);
             }
-
             if (etype == "sms" || etype == "notification") {
                 $type = "sms";
                 $('#smsbody').val('');
@@ -1398,7 +1395,8 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
                 });
             }
         });
-    });</script>
+    });
+</script>
 
 <!-- fullCalendar -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.min.js" type="text/javascript"></script>
