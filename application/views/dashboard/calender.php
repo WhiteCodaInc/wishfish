@@ -972,7 +972,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
                     $('.msgChoose').text($msg);
                 } else {
                     var con = user.split('||');
-                    var fname = con.split(' ');
+                    var fname = con[0].split(' ');
                     console.log(con);
                     $('.msgChoose').empty();
                 }
