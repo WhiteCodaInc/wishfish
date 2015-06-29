@@ -966,14 +966,14 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
             console.log(user);
             if (user != "") {
                 if (!validateContact(user)) {
-                    var con = user.split('||');
-                    var fname = con.split(' ');
-                    console.log(con);
                     $msg = (event_type == "notification" || event_type == "sms") ?
                             "Can not SMS this user because no phone number is assigned!" :
                             "Can not Email this user because no email address is assigned!";
                     $('.msgChoose').text($msg);
                 } else {
+                    var con = user.split('||');
+                    var fname = con.split(' ');
+                    console.log(con);
                     $('.msgChoose').empty();
                 }
             }
