@@ -264,7 +264,7 @@ and open the template in the editor.
             $(document).ready(function () {
 
 <?php
-$sigup = $this->input->get('signup');
+$signup = $this->input->get('signup');
 if ($msg == "NR" && $signup != "" && ($signup == "google" || $signup == "fb")):
     $url = ($signup == "google") ?
             site_url() . 'register?from=home' :
