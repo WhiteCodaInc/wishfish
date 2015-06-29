@@ -105,6 +105,10 @@ class Common {
     function getDateDiff($userInfo, $planInfo) {
         $d1 = date_create($this->getMySqlDate($this->getUTCDate($userInfo->timezones, $userInfo->date_format), $userInfo->date_format));
         $d2 = date_create($planInfo->expiry_date);
+        
+        echo $d1.'<br>';
+        echo $d2.'<br>';
+        die();
         return date_diff($d2, $d1)->format('%a');
     }
 
