@@ -120,7 +120,9 @@
                         //$('.content-header .create,.content-header .delete,.content-header .default,.content-header .publish,.content-header .draft').show();
                     } else {
                         $('.content-header').css({position: 'static', top: '0px'});
-                        $('.event').css({top: '59px'});
+                        var position = $('section.content-header').offset();
+                        var top = position.top + 10;
+                        $('.event').css({top: top});
 //                        $('.content-header > h1').removeAttr('style');
                         //$('.box .create,.box .delete,.box .default,.box .publish,.box .draft').show();
                         //$('.content-header .create,.content-header .delete,.content-header .default,.content-header .publish,.content-header .draft').hide();
