@@ -269,17 +269,15 @@ if ($msg == "NR" && $signup != "" && ($signup == "google" || $signup == "fb")):
             site_url() . 'register?from=home' :
             site_url() . 'register/fbsignup?from=home';
     ?>
-
                     alertify.confirm("Your email address is not register.<br>Are you really want to register?", function (e) {
                         if (e) {
                             window.location.href = "<?= $url ?>";
                         }
                     });
-
 <?php endif; ?>
                 var emailV = 1;
                 var captchaV = 1;
-                var sess_word = "<? = $this->session->userdata('captchaWord') ?>";
+                var sess_word = "<?= $this->session->userdata('captchaWord') ?>";
                 $('#forgotEmail').focusout(function () {
                     var email = $(this).val();
                     if (email.trim() != "") {
