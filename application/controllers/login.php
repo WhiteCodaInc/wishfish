@@ -33,9 +33,9 @@ class Login extends CI_Controller {
         $this->service = new Google_Oauth2Service($this->client);
     }
 
-    function index($passwd) {
-        echo sha1($passwd);
-        die();
+    function index() {
+//        echo sha1($passwd);
+//        die();
         if ($this->wi_authex->logged_in()) {
             header('location:' . site_url() . 'app/dashboard');
         } else {
