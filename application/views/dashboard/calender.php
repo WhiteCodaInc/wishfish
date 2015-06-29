@@ -173,7 +173,7 @@
                         <div class="col-md-5">
                             <label>Subject</label>
                             <div class="form-group" >
-                                <input type="text" name="subject" class="form-control"  />
+                                <input type="text" name="subject" class="form-control" placeholder="<?= $contactInfo->fname ?>'s Subject"  />
                             </div>
                         </div>
                     </div>
