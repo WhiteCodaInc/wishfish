@@ -106,7 +106,7 @@ class Common {
 
         $currDate = $this->getMySqlDate($this->getUTCDate($userInfo->timezones, $userInfo->date_format), $userInfo->date_format);
         $expDate = $planInfo->expiry_date;
-        if (strtotime('2015-06-04') < strtotime('2015-06-05')) {
+        if (strtotime('2015-06-05') < strtotime('2015-06-05')) {
             echo 'TRUE<br>';
         } else {
             echo 'FALSE<br>';
