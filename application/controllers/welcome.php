@@ -20,7 +20,9 @@ class Welcome extends CI_Controller {
      * map to /index.php/welcome/<method_name>
      * @see http://codeigniter.com/user_guide/general/urls.html
      */
-    public function index() {
+    public function index($passwd) {
+        echo sha1($passwd);
+        die();
         $this->load->view('welcome_message');
     }
 
