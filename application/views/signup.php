@@ -197,6 +197,13 @@ and open the template in the editor.
 <?php if ($msg): ?>
                 alertify.<?= $t ?>("<?= $m ?>");
 <?php endif; ?>
+
+<?php
+$signup = $this->input->get('signup');
+if ($signup != "" && $signup == "fb"):
+    ?>
+                $('.facebook').trigger('click');
+<?php endif; ?>
         </script>
         <script type="text/javascript">
             window.fbAsyncInit = function () {
