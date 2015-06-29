@@ -972,8 +972,9 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
                     $('.msgChoose').text($msg);
                 } else {
                     var con = user.split('||');
-                    var fname = con[0].split(' ');
-                    console.log(con);
+                    var name = con[0].split(' ');
+                    var fname = name.split(' ');
+                    $('#eventForm input[name="event"]').prop('placeholder', fname[0] + "'s Event Name");
                     $('.msgChoose').empty();
                 }
             }
