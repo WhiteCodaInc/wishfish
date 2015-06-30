@@ -126,22 +126,7 @@ and open the template in the editor.
                                         </div>
                                     <?php endif; ?>
                                 </fieldset>
-
-                                <div class="row m-bot15">
-                                    <div class="col-md-12">
-                                        <button class="btn btn-primary btn-lg" type="submit" >Sign Me Up!</button>
-                                    </div>
-                                </div>
                                 <input type="hidden" name="join_via" value="<?= site_url() ?>register<br/>Join With Email">
-
-                            </div>
-                            <div class="row" style="margin-top: 15px">
-                                <div class="col-md-1"></div>
-                                <div style="padding-left: 10%" class="col-md-10">
-                                    Already have an account?
-                                    <a  href="<?= site_url() ?>login">Sign in</a>
-                                </div>
-                                <div class="col-md-1"></div>
                             </div>
                         </div>
                     </div>
@@ -157,6 +142,14 @@ and open the template in the editor.
                             </a>
                         </div>
                         <div class="col-md-2"></div>
+                    </div>
+                    <div class="row" style="margin-top: 15px">
+                        <div class="col-md-1"></div>
+                        <div style="padding-left: 10%" class="col-md-10">
+                            Already have an account?
+                            <a  href="<?= site_url() ?>login">Sign in</a>
+                        </div>
+                        <div class="col-md-1"></div>
                     </div>
                     <div class="row m-bot15">
                         <div class="col-md-12">
