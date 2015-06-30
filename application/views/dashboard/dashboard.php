@@ -412,7 +412,6 @@
                         // $(this).data("timeline").resize();
                     }
                 });
-
                 tg_instance = tg1.data("timeline");
                 setTimeout(function () {
                     $('#p1 .tg-legend').hide();
