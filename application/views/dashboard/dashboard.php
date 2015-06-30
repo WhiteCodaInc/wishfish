@@ -413,9 +413,9 @@
                     }
                 });
                 tg_instance = tg1.data("timeline");
-                setTimeout(function () {
-                    $('#p1 .tg-legend').hide();
-                }, 400);
+//                setTimeout(function () {
+//                    $('#p1 .tg-legend').hide();
+//                }, 400);
             }
         });
         $(".goto").click(function () {
