@@ -393,7 +393,7 @@
                     me.legendModal(id);
                 })
                 .delegate(".tg-close-button-remove", CLICKORTOUCH, function () {
-                    $(this).parent().remove()
+                    $(this).parent().remove();
                 })
                 .delegate(".tg-full_modal_scrim, .tg-full_modal_close", CLICKORTOUCH, function () {
                     $(".tg-full_modal").remove();
@@ -3764,7 +3764,7 @@
 
 
         legendModal: function (id) {
-
+               console.log(id);    
             var me = this;
 
             var leg = [];
