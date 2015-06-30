@@ -416,7 +416,7 @@
                 tg_instance = tg1.data("timeline");
                 setTimeout(function () {
                     $('#p1 .tg-legend').hide();
-                }, 1000);
+                }, 100);
             }
         });
         $(".goto").click(function () {
