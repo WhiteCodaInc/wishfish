@@ -34,7 +34,7 @@ and open the template in the editor.
             .form-group{
                 margin: 10px 0
             }
-            .btn-social {
+            .btn-social{
                 position: relative;
                 text-align: right;
                 white-space: nowrap;
@@ -148,11 +148,11 @@ and open the template in the editor.
                     <div class="row">
                         <div class="col-md-2"></div>
                         <div class="col-md-8">
-                            <button style="float: left" class="btn btn-primary btn-lg" type="submit" >Sign Me Up!</button>
-                            <a  href = "<?= $url ?>" style="padding: 11px 40px;" class="btn btn-block btn-social btn-google-plus">
+                            <button style="float: left" class="btn btn-primary btn-block btn-social" type="submit" >Sign Me Up!</button>
+                            <a href = "<?= $url ?>" style="padding: 11px 40px;" class="btn btn-block btn-social btn-google-plus">
                                 <i class="fa fa-google-plus"></i> Sign up with Google
                             </a>
-                            <a   style="padding: 11px 21px;" class="btn btn-block btn-social btn-facebook facebook"  href = "javascript:void(0);">
+                            <a style="padding: 11px 21px;" class="btn btn-block btn-social btn-facebook facebook"  href = "javascript:void(0);">
                                 <i class="fa fa-facebook"></i> Sign up with Facebook
                             </a>
                         </div>
