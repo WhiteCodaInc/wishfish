@@ -389,7 +389,6 @@
                     me.invertTimeline(id);
                 })
                 .delegate(".tg-legend-bt", CLICKORTOUCH, function () {
-                    console.log("CLICKED");
                     var id = $(this).data("timeline_id");
                     me.legendModal(id);
                 })
@@ -1329,7 +1328,6 @@
                         clearFilters();
 
                         incl = $(fbox + " .timeglider-filter-search").val();
-                        console.log("INCL : " + incl);
 
                         if (incl) {
                             title_txt = incl;
@@ -1669,8 +1667,6 @@
                     drag: function () {
                         var $pull = $(this);
                         var ypos = $pull.position().top;
-                        //console.log("TOP : " + ypos);
-                        //alert("TOP : " + ypos);
                         if (ypos > 400) {
                             $pull.css("top", 400);
                             return false;
@@ -1696,11 +1692,7 @@
         setImageLaneHandle: function () {
 
             var me = this;
-//            console.log("IMG HEIGHT : " + MED.image_lane_height);
-//            console.log("IMG HEIGHT : " + me.singleTitleHeight);
             var newHt = parseInt(MED.image_lane_height, 10) + parseInt(me.singleTitleHeight, 10);
-            //console.log("START : " + newHt);
-            //alert("START : " + newHt);
             if (newHt <= 24)
                 newHt = 78;
             $(".tg-image-lane-pull").css("top", newHt + "px");
@@ -3348,7 +3340,6 @@
             if (laneHt > laneMax) {
                 laneHt = laneMax;
             }
-//            console.log("LANE HEIGHT: " + laneHt);
 
             $(CONTAINER + " .timeglider-event-image-lane").each(
                     function () {
@@ -3357,8 +3348,6 @@
                                 imgHt = laneHt - (padding / 2),
                                 $img = $(this).find("img"),
                                 imax = parseInt($div.data("max_height"), 10) || laneMax;
-//                        console.log("IMAX:" + imax);
-//                        console.log("I_HEIGHT:" + imgHt);
                         if (imax < imgHt) {
                             imgHt = imax;
                         }
@@ -3800,8 +3789,6 @@
             $(CONTAINER + " .tg-legend").remove();
 
             var dis = (id !== null && id !== undefined) ? 'block' : 'none';
-            console.log("ID : " + id);
-            console.log(dis);
 
             $.tmpl(me._templates.legend_modal, templ_obj)
                     .appendTo(CONTAINER)
