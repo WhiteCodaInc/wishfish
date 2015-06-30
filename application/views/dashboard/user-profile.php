@@ -13,6 +13,11 @@
     <section class="content-header">
         <h1 style="margin-left: 15%;float: left">User Profile</h1>
         <button type="button" id="save-profile" class="btn btn-primary">Save User Detail</button>
+        <?php if (!$user->is_set): ?>
+            <div class="form-group">
+                <a href="javascript:void(0);" id="pay" class="btn btn-primary">Pay With Paypal</a>
+            </div>
+        <?php endif; ?>
         <?php if ($user->is_set && $user->gateway == "STRIPE"): ?>
             <button type="button" id="cancel-account" class="btn btn-danger">Cancel Your Account</button>
         <?php endif; ?>
@@ -176,11 +181,7 @@
                                     </div>
                                 </div><!-- /.box-body -->
                             <?php endif; ?>
-                            <?php if (!$user->is_set): ?>
-                                <div class="form-group">
-                                    <a href="javascript:void(0);" id="pay" class="btn btn-primary">Pay With Paypal</a>
-                                </div>
-                            <?php endif; ?>
+
                         </div>
                     </form>
                 </div><!-- /.box -->
