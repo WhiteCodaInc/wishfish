@@ -148,13 +148,21 @@ and open the template in the editor.
                     <div class="row">
                         <div class="col-md-3"></div>
                         <div class="col-md-6">
-                            <button style="float: left" class="btn btn-primary btn-lg" type="submit" >Sign Me Up!</button>
-                            <a  href = "<?= $url ?>" style="padding: 11px 40px;" class="btn btn-block btn-social btn-google-plus">
-                                <i class="fa fa-google-plus"></i> Sign up with Google
-                            </a>
-                            <a   style="padding: 11px 21px;" class="btn btn-block btn-social btn-facebook facebook"  href = "javascript:void(0);">
-                                <i class="fa fa-facebook"></i> Sign up with Facebook
-                            </a>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <button class="btn btn-primary btn-lg" type="submit" >Sign Me Up!</button>
+                                </div>
+                                <div class="col-md-4">
+                                    <a  href = "<?= $url ?>" style="padding: 11px 40px;" class="btn btn-block btn-social btn-google-plus">
+                                        <i class="fa fa-google-plus"></i> Sign up with Google
+                                    </a>
+                                </div>
+                                <div class="col-md-4">
+                                    <a   style="padding: 11px 21px;" class="btn btn-block btn-social btn-facebook facebook"  href = "javascript:void(0);">
+                                        <i class="fa fa-facebook"></i> Sign up with Facebook
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-md-3"></div>
                     </div>
