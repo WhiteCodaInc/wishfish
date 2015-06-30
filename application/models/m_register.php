@@ -118,7 +118,6 @@ class M_register extends CI_Model {
         $set = array(
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => $this->generateRandomString(5),
             'user_unique_id' => $data['id'],
             'join_via' => $joinVia
         );
