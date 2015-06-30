@@ -14,7 +14,7 @@
         <h1 style="margin-left: 15%;float: left">User Profile</h1>
         <button type="button" id="save-profile" class="btn btn-primary">Save User Detail</button>
         <?php if (!$user->is_set): ?>
-            <button type="button" id="pay" class="btn btn-primary">Pay With Paypal</button>>
+            <button type="button" id="pay" class="btn btn-primary">Pay With Paypal</button>
         <?php endif; ?>
         <?php if ($user->is_set && $user->gateway == "STRIPE"): ?>
             <button type="button" id="cancel-account" class="btn btn-danger">Cancel Your Account</button>
