@@ -1153,6 +1153,11 @@ $userid = $this->session->userdata('userid');
                     $('#sendcode').trigger('click');
                 }
             });
+            $('input[name="verifycode"]').on("keypress", function (e) {
+                if (e.keyCode == 13) {
+                    $('#code_submit').trigger('click');
+                }
+            });
 
             $('#sendcode').click(function () {
                 var phone = $('#varify_phone').val();
