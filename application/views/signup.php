@@ -124,13 +124,12 @@ and open the template in the editor.
                                             </div>
                                         </div>
                                     <?php endif; ?>
-
-                                    <div class="row m-bot15">
-                                        <div class="col-md-12">
-                                            <button class="btn btn-primary btn-lg" type="submit" >Sign Me Up!</button>
-                                        </div>
-                                    </div>
                                 </fieldset>
+                                <div class="row m-bot15">
+                                    <div class="col-md-12">
+                                        <button class="btn btn-primary btn-lg" type="submit" >Sign Me Up!</button>
+                                    </div>
+                                </div>
                                 <input type="hidden" name="join_via" value="<?= site_url() ?>register<br/>Join With Email">
                             </form>
                         </div>
