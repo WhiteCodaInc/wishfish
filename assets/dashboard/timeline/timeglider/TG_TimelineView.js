@@ -1544,11 +1544,11 @@
             }
 
 
-            if (timeline.get("hasLegend")) {
-                setTimeout(function () {
-                    me.legendModal(tid);
-                }, 500);
-            }
+//            if (timeline.get("hasLegend")) {
+//                setTimeout(function () {
+//                    me.legendModal(tid);
+//                }, 500);
+//            }
 
 
         },
