@@ -148,7 +148,7 @@ and open the template in the editor.
                     <div class="row">
                         <div class="col-md-2"></div>
                         <div class="col-md-8">
-                            <button style="float: left" class="btn btn-primary btn-block btn-social" type="submit" >Sign Me Up!</button>
+                            <button style="text-align: left;width: 21%" class="btn btn-primary btn-block btn-social" type="submit" >Sign Me Up!</button>
                             <a href = "<?= $url ?>" style="padding: 11px 40px;" class="btn btn-block btn-social btn-google-plus">
                                 <i class="fa fa-google-plus"></i> Sign up with Google
                             </a>
