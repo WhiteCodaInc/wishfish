@@ -40,10 +40,10 @@ and open the template in the editor.
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
-                padding: 11px 37px;
+                /*padding: 11px 37px;*/
                 border-radius: 0;
                 float: left;
-                width: 30%;
+                width: 27%;
                 margin: 10px !important;
             }
             .btn-social :first-child {
@@ -149,10 +149,10 @@ and open the template in the editor.
                         <div class="col-md-2"></div>
                         <div class="col-md-8">
                             <button style="text-align: left;width: 21%" class="btn btn-primary btn-block btn-social" type="submit" >Sign Me Up!</button>
-                            <a href = "<?= $url ?>" style="padding: 11px 40px;" class="btn btn-block btn-social btn-google-plus">
+                            <a href = "<?= $url ?>" style="padding: 11px 18px;" class="btn btn-block btn-social btn-google-plus">
                                 <i class="fa fa-google-plus"></i> Sign up with Google
                             </a>
-                            <a style="padding: 11px 21px;" class="btn btn-block btn-social btn-facebook facebook"  href = "javascript:void(0);">
+                            <a style="padding: 11px 8px;" class="btn btn-block btn-social btn-facebook facebook"  href = "javascript:void(0);">
                                 <i class="fa fa-facebook"></i> Sign up with Facebook
                             </a>
                         </div>
