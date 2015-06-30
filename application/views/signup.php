@@ -40,7 +40,7 @@ and open the template in the editor.
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
-                /*padding: 11px 37px;*/
+                padding: 11px 37px;
                 border-radius: 0;
                 float: left;
                 width: 27%;
