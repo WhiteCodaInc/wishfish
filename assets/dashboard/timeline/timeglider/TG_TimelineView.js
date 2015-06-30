@@ -389,6 +389,7 @@
                     me.invertTimeline(id);
                 })
                 .delegate(".tg-legend-bt", CLICKORTOUCH, function () {
+                    console.log("CLICKED");
                     var id = $(this).data("timeline_id");
                     me.legendModal(id);
                 })
