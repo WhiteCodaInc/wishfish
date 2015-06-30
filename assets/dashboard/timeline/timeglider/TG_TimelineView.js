@@ -208,7 +208,7 @@
                     "<div class='tg-modal-corner tg-modal-corner-south'>" +
                     "</div>"),
             legend_modal: $.template(null,
-                    "<div class='timeglider-menu-modal tg-legend tg-display-none'  id='${id}'>" +
+                    "<div class='timeglider-menu-modal tg-legend tg-display-none' style='display:none'  id='${id}'>" +
                     "<div class='tg-close-button-small tg-legend-close'></div>" +
                     "<div class='timeglider-menu-modal-content'><ul id='${id}'>{{html legend_list}}</ul>" +
                     "<div class='tg-legend-controls'><span class='tg-legend-all'>all</span><span class='tg-legend-none'> | none</span></div>" +
