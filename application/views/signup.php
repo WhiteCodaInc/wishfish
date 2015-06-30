@@ -131,7 +131,7 @@ and open the template in the editor.
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-2"></div>
+                        <div class="col-md-3"></div>
                         <div class="col-md-8">
                             <button style="text-align: left;width: 21%" class="btn btn-primary btn-block btn-social" type="submit" >Sign Me Up!</button>
                             <a href = "<?= $url ?>" style="padding: 11px 18px;" class="btn btn-block btn-social btn-google-plus">
@@ -141,7 +141,7 @@ and open the template in the editor.
                                 <i class="fa fa-facebook"></i> Sign up with Facebook
                             </a>
                         </div>
-                        <div class="col-md-2"></div>
+                        <div class="col-md-1"></div>
                     </div>
                     <div class="row" style="margin-top: 15px">
                         <div class="col-md-12">
