@@ -15,7 +15,7 @@
         z-index: 0
     }
     #p1 .tg-legend{
-        display: none
+        /*display: none*/
     }
     .timeglider-legend {
         width:180px;
