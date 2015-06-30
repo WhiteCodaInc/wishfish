@@ -124,17 +124,7 @@ and open the template in the editor.
                                             </div>
                                         </div>
                                     <?php endif; ?>
-                                    <div class="row m-bot15">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <p style="text-align: center">
-                                                    By clicking Register,<br/> I agree to the 
-                                                    <a href="<?= site_url() ?>terms-of-services">Terms of Service</a> and 
-                                                    <a href="<?= site_url() ?>privacy-policy">Privacy Policy</a>.
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
+
                                     <div class="row m-bot15">
                                         <div class="col-md-12">
                                             <button class="btn btn-primary btn-lg" type="submit" >Sign Me Up!</button>
@@ -165,6 +155,17 @@ and open the template in the editor.
                         </a>
                     </div>
                     <div class="col-md-3"></div>
+                </div>
+                <div class="row m-bot15">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <p style="text-align: center">
+                                By clicking Register,<br/> I agree to the 
+                                <a href="<?= site_url() ?>terms-of-services">Terms of Service</a> and 
+                                <a href="<?= site_url() ?>privacy-policy">Privacy Policy</a>.
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
