@@ -46,7 +46,7 @@ and open the template in the editor.
                 width: 40%;
                 margin: 10px !important;
             }
-            .btn-social :first-child {
+            .btn-google-plus :first-child {
                 position: absolute;
                 left: 0;
                 top: 0;
