@@ -3801,6 +3801,7 @@
             $.tmpl(me._templates.legend_modal, templ_obj)
                     .appendTo(CONTAINER)
                     .css("z-index", me.ztop++)
+                    .css("display", 'block')
                     .toggleClass("tg-display-none")
                     .position({
                         my: "right-64 top+38",
