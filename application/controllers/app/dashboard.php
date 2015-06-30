@@ -73,7 +73,7 @@ class Dashboard extends CI_Controller {
                     }
                 } else {
                     $data['userInfo'] = $userInfo;
-                    $data['isForgot'] = TRUE;
+                    $data['isForgot'] = ($this->type == "forgot") ? TRUE : FALSE;
                     $data['userId'] = FALSE;
                     $this->load->view('dashboard/dummy-dashboard', $data);
                 }
