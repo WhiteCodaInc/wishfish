@@ -15,7 +15,7 @@
         z-index: 0
     }
     #p1 .tg-legend{
-        /*display: none*/
+        display: none
     }
     .timeglider-legend {
         width:180px;
@@ -262,22 +262,22 @@
                                                 <div class="box-body">
                                                     <ul class="todo-list ui-sortable">
         <?php foreach ($totalD as $value) { ?>
-                                                                                                            <li>
-                                                                                                                <a href="<?= site_url() ?>app/calender?date=<?= $value->date ?>"
-                                                                                                                    drag handle 
-                                                                                                                   <span class="handle ui-sortable-handle">
-                                                                                                                        <i class="fa fa-ellipsis-v"></i>
-                                                                                                                        <i class="fa fa-ellipsis-v"></i>
-                                                                                                                    </span>
-                                                                                                                     todo text 
-                                                                                                                    <span class="text"><?= $value->event ?></span>
-                                                                                                                     Emphasis label 
-                                                                                                                    <small class="label" style="background-color: <?= $value->color ?>">
-                                                                                                                        <i class="fa fa-clock-o"></i>
+                                                                                                                    <li>
+                                                                                                                        <a href="<?= site_url() ?>app/calender?date=<?= $value->date ?>"
+                                                                                                                            drag handle 
+                                                                                                                           <span class="handle ui-sortable-handle">
+                                                                                                                                <i class="fa fa-ellipsis-v"></i>
+                                                                                                                                <i class="fa fa-ellipsis-v"></i>
+                                                                                                                            </span>
+                                                                                                                             todo text 
+                                                                                                                            <span class="text"><?= $value->event ?></span>
+                                                                                                                             Emphasis label 
+                                                                                                                            <small class="label" style="background-color: <?= $value->color ?>">
+                                                                                                                                <i class="fa fa-clock-o"></i>
             <?= $value->format_date ?>
-                                                                                                                    </small>
-                                                                                                                </a>
-                                                                                                            </li>
+                                                                                                                            </small>
+                                                                                                                        </a>
+                                                                                                                    </li>
         <?php } ?>
                                                     </ul>
                                                 </div> /.box-body 
@@ -292,22 +292,22 @@
                                                 <div class="box-body">
                                                     <ul class="todo-list ui-sortable">
         <?php foreach ($totalW as $value) { ?>
-                                                                                                            <li>
-                                                                                                                <a href="<?= site_url() ?>app/calender?date=<?= $value->date ?>"
-                                                                                                                    drag handle 
-                                                                                                                   <span class="handle ui-sortable-handle">
-                                                                                                                        <i class="fa fa-ellipsis-v"></i>
-                                                                                                                        <i class="fa fa-ellipsis-v"></i>
-                                                                                                                    </span>
-                                                                                                                     todo text 
-                                                                                                                    <span class="text"><?= $value->event ?></span>
-                                                                                                                     Emphasis label 
-                                                                                                                    <small class="label" style="background-color: <?= $value->color ?>">
-                                                                                                                        <i class="fa fa-clock-o"></i>
+                                                                                                                    <li>
+                                                                                                                        <a href="<?= site_url() ?>app/calender?date=<?= $value->date ?>"
+                                                                                                                            drag handle 
+                                                                                                                           <span class="handle ui-sortable-handle">
+                                                                                                                                <i class="fa fa-ellipsis-v"></i>
+                                                                                                                                <i class="fa fa-ellipsis-v"></i>
+                                                                                                                            </span>
+                                                                                                                             todo text 
+                                                                                                                            <span class="text"><?= $value->event ?></span>
+                                                                                                                             Emphasis label 
+                                                                                                                            <small class="label" style="background-color: <?= $value->color ?>">
+                                                                                                                                <i class="fa fa-clock-o"></i>
             <?= $value->format_date ?>
-                                                                                                                    </small>
-                                                                                                                </a>
-                                                                                                            </li>
+                                                                                                                            </small>
+                                                                                                                        </a>
+                                                                                                                    </li>
         <?php } ?>
                                                     </ul>
                                                 </div> /.box-body 
@@ -322,22 +322,22 @@
                                                 <div class="box-body">
                                                     <ul class="todo-list ui-sortable">
         <?php foreach ($totalM as $value) { ?>
-                                                                                                            <li>
-                                                                                                                <a href="<?= site_url() ?>app/calender?date=<?= $value->date ?>"
-                                                                                                                    drag handle 
-                                                                                                                   <span class="handle ui-sortable-handle">
-                                                                                                                        <i class="fa fa-ellipsis-v"></i>
-                                                                                                                        <i class="fa fa-ellipsis-v"></i>
-                                                                                                                    </span>
-                                                                                                                     todo text 
-                                                                                                                    <span class="text"><?= $value->event ?></span>
-                                                                                                                     Emphasis label 
-                                                                                                                    <small class="label" style="background-color: <?= $value->color ?>">
-                                                                                                                        <i class="fa fa-clock-o"></i>
+                                                                                                                    <li>
+                                                                                                                        <a href="<?= site_url() ?>app/calender?date=<?= $value->date ?>"
+                                                                                                                            drag handle 
+                                                                                                                           <span class="handle ui-sortable-handle">
+                                                                                                                                <i class="fa fa-ellipsis-v"></i>
+                                                                                                                                <i class="fa fa-ellipsis-v"></i>
+                                                                                                                            </span>
+                                                                                                                             todo text 
+                                                                                                                            <span class="text"><?= $value->event ?></span>
+                                                                                                                             Emphasis label 
+                                                                                                                            <small class="label" style="background-color: <?= $value->color ?>">
+                                                                                                                                <i class="fa fa-clock-o"></i>
             <?= $value->format_date ?>
-                                                                                                                    </small>
-                                                                                                                </a>
-                                                                                                            </li>
+                                                                                                                            </small>
+                                                                                                                        </a>
+                                                                                                                    </li>
         <?php } ?>
                                                     </ul>
                                                 </div> /.box-body 
