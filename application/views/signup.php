@@ -144,12 +144,14 @@ and open the template in the editor.
                         <div class="col-md-2"></div>
                     </div>
                     <div class="row" style="margin-top: 15px">
-                        <div class="col-md-1"></div>
-                        <div style="padding-left: 10%" class="col-md-10">
-                            Already have an account?
-                            <a  href="<?= site_url() ?>login">Sign in</a>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <p style="text-align: center">
+                                    Already have an account?
+                                    <a  href="<?= site_url() ?>login">Sign in</a>
+                                </p>
+                            </div>
                         </div>
-                        <div class="col-md-1"></div>
                     </div>
                     <div class="row m-bot15">
                         <div class="col-md-12">
