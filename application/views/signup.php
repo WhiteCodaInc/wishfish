@@ -152,7 +152,7 @@ and open the template in the editor.
                             <a href = "<?= $url ?>" style="padding: 11px 18px;" class="btn btn-block btn-social btn-google-plus">
                                 <i class="fa fa-google-plus"></i> Sign up with Google
                             </a>
-                            <a style="padding: 11px 8px;" class="btn btn-block btn-social btn-facebook facebook"  href = "javascript:void(0);">
+                            <a style="padding: 11px 4px;" class="btn btn-block btn-social btn-facebook facebook"  href = "javascript:void(0);">
                                 <i class="fa fa-facebook"></i> Sign up with Facebook
                             </a>
                         </div>
