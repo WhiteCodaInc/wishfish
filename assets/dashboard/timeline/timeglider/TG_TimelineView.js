@@ -3764,7 +3764,7 @@
 
 
         legendModal: function (id) {
-               console.log(id);    
+
             var me = this;
 
             var leg = [];
@@ -3798,10 +3798,12 @@
             // remove existing legend
             $(CONTAINER + " .tg-legend").remove();
 
+            var dis = (id !== null && id !== undefined) ? 'block' : 'none';
+
             $.tmpl(me._templates.legend_modal, templ_obj)
                     .appendTo(CONTAINER)
                     .css("z-index", me.ztop++)
-                    .css("display", 'block')
+                    .css("display", dis)
                     .toggleClass("tg-display-none")
                     .position({
                         my: "right-64 top+38",
