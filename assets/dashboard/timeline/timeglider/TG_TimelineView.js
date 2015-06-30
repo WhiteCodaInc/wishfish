@@ -3799,6 +3799,8 @@
             $(CONTAINER + " .tg-legend").remove();
 
             var dis = (id !== null && id !== undefined) ? 'block' : 'none';
+            console.log(id);
+            console.log(dis);
 
             $.tmpl(me._templates.legend_modal, templ_obj)
                     .appendTo(CONTAINER)
