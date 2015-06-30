@@ -373,16 +373,12 @@
 <script src="<?= base_url() ?>assets/dashboard/timeline/timeglider/TG_TimelineView.js" type="text/javascript" charset="utf-8"></script>
 <script src="<?= base_url() ?>assets/dashboard/timeline/timeglider/TG_Mediator.js" type="text/javascript" charset="utf-8"></script> 
 <script src="<?= base_url() ?>assets/dashboard/timeline/timeglider/timeglider.timeline.widget.js" type="text/javascript"></script>
-
 <script src="<?= base_url() ?>assets/dashboard/timeline/timeglider/timeglider.datepicker.js" type="text/javascript"></script>
-
-
 <script src="<?= base_url() ?>assets/dashboard/timeline/js/jquery.jscrollpane.min.js" type="text/javascript"></script>
 
 
 <!-- JUST FOR KITCHEN SINK: NOT NEEDED FOR TG WIDGET -->
 <script src="<?= base_url() ?>assets/dashboard/timeline/js/jquery.ui.sortable.js" type="text/javascript" charset="utf-8"></script>
-
 <script type='text/javascript'>
     $(function () {
         var tg_instance = {};
@@ -414,7 +410,7 @@
                 });
                 tg_instance = tg1.data("timeline");
                 setTimeout(function () {
-                    $('#p1 .tg-legend').hide();
+                    $('#p1 .tg-legend').is;
                 }, 400);
             }
         });
