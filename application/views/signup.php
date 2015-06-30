@@ -43,7 +43,7 @@ and open the template in the editor.
                 padding: 11px 37px;
                 border-radius: 0;
                 float: left;
-                width: 40%;
+                width: 30%;
                 margin: 10px !important;
             }
             .btn-social :first-child {
