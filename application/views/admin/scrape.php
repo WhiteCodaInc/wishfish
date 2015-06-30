@@ -118,8 +118,8 @@
 <script type="text/javascript">
     $(document).ready(function () {
 
-    $('.contactInfo .cancel').click(function () {
-    $('.contactInfo').hide();
+        $('.contactInfo .cancel').click(function () {
+            $('.contactInfo').hide();
             $('span.successMsg').hide();
             $('#type').val("facebook");
             $('.save').show();
@@ -127,37 +127,36 @@
             $('#url').val('');
             $('.picture').prop('src', '#');
             $('.parse').show();
-    });
-            $('#type').change(function () {
-    var type = $(this).val();
+        });
+        $('#type').change(function () {
+            var type = $(this).val();
             if (type == "facebook") {
-    $('#title').text("Facebook Username");
-    } else if (type == "linkedin") {
-    $('#title').text("LinkedIn Profile Url");
-    } else {
-    $('#title').text("Twitter Username");
-    }
-    });
-            $('#parseForm').submit(function () {
-    var type = $('#type').val();
+                $('#title').text("Facebook Username");
+            } else if (type == "linkedin") {
+                $('#title').text("LinkedIn Profile Url");
+            } else {
+                $('#title').text("Twitter Username");
+            }
+        });
+        $('#parseForm').submit(function () {
+            var type = $('#type').val();
             $('.parse .overlay').show();
             $('.parse .loading-img').show();
             if (type == "facebook") {
-    facebook();
-    } else if (type == "linkedin") {
-    linkedin();
-    } else {
-    twitter();
-    }
-    return false;
-    });
-            function facebook() {
+                facebook();
+            } else if (type == "linkedin") {
+                linkedin();
+            } else {
+                twitter();
+            }
+            return false;
+        });
+        function facebook() {
             $.ajax({
-            type: 'POST',
-                    data: {userid: $('#url').val()},
-                    url: "<?= site_url() ?>admin/scrape/facebook",
-                    success: function (data, textStatus, jqXHR) {
-
+                type: 'POST',
+                data: {userid: $('#url').val()},
+                url: "<?= site_url() ?>admin/scrape/facebook",
+                success: function (data, textStatus, jqXHR) {
                     $('.temp').html(data);
 //                    $('.parse .overlay').hide();
 //                    $('.parse .loading-img').hide();
@@ -169,21 +168,21 @@
 //                        $('.picture').prop('src', json.profile);
 //                        $('.contactInfo').show();
 
-                    } else {
-            $('.parse .alert').show();
-                    $('span.errorMsg').text("Please Enter Valid Username..!");
-            }
-            }
+//                    } else {
+//            $('.parse .alert').show();
+//                    $('span.errorMsg').text("Please Enter Valid Username..!");
+//            }
+                }
             });
-            }
+        }
 
-    function linkedin() {
-    $.ajax({
-    type: 'POST',
-            data: {url: $('#url').val()},
-            url: "<?= site_url() ?>admin/scrape/linkedin",
-            success: function (data, textStatus, jqXHR) {
-            var _html = $(data);
+        function linkedin() {
+            $.ajax({
+                type: 'POST',
+                data: {url: $('#url').val()},
+                url: "<?= site_url() ?>admin/scrape/linkedin",
+                success: function (data, textStatus, jqXHR) {
+                    var _html = $(data);
                     $('.parse .overlay').hide();
                     $('.parse .loading-img').hide();
                     console.log();
@@ -193,17 +192,17 @@
                     $('.lname').text(name[1]);
                     $('.picture').prop('src', _html.find('.profile-picture img').prop('src'));
                     $('.contactInfo').show();
-            }
-    });
-    }
+                }
+            });
+        }
 
-    function twitter() {
-    $.ajax({
-    type: 'POST',
-            data: {userid: $('#url').val()},
-            url: "<?= site_url() ?>admin/scrape/twitter",
-            success: function (data, textStatus, jqXHR) {
-            var _html = $(data);
+        function twitter() {
+            $.ajax({
+                type: 'POST',
+                data: {userid: $('#url').val()},
+                url: "<?= site_url() ?>admin/scrape/twitter",
+                success: function (data, textStatus, jqXHR) {
+                    var _html = $(data);
                     $('.parse .overlay').hide();
                     $('.parse .loading-img').hide();
                     var name = _html.find('h1.ProfileHeaderCard-name a').text().split(' ');
@@ -212,30 +211,30 @@
                     $('.lname').text(name[1]);
                     $('.picture').prop('src', _html.find('.ProfileAvatar img').prop('src'));
                     $('.contactInfo').show();
-            }
-    });
-    }
+                }
+            });
+        }
 
-    $('.contactInfo .save').on('click', function () {
-    $('.contactInfo .overlay').show();
+        $('.contactInfo .save').on('click', function () {
+            $('.contactInfo .overlay').show();
             $('.contactInfo .loading-img').show();
             $.ajax({
-            type: 'POST',
-                    data: {
+                type: 'POST',
+                data: {
                     type: $('#type').val(),
-                            fname: $('.fname').text(),
-                            lname: $('.lname').text(),
-                            url: $('.picture').prop('src')
-                    },
-                    url: "<?= site_url() ?>admin/scrape/addContact",
-                    success: function (data, textStatus, jqXHR) {
+                    fname: $('.fname').text(),
+                    lname: $('.lname').text(),
+                    url: $('.picture').prop('src')
+                },
+                url: "<?= site_url() ?>admin/scrape/addContact",
+                success: function (data, textStatus, jqXHR) {
                     $('.contactInfo .overlay').hide();
-                            $('.contactInfo .loading-img').hide();
-                            $('.save').hide();
-                            $('.contactInfo .alert').show();
-                            $('span.successMsg').text("Contact has been successfully created..!");
-                    }
+                    $('.contactInfo .loading-img').hide();
+                    $('.save').hide();
+                    $('.contactInfo .alert').show();
+                    $('span.successMsg').text("Contact has been successfully created..!");
+                }
             });
-    });
+        });
     });
 </script>
