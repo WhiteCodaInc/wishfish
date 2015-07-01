@@ -120,7 +120,6 @@
         console.log(hopscotch.getState());
         $('#save-contact').click(function () {
             var tourStep = hopscotch.getState();
-            console.log(tourStep);
             var href = "";
             if (tourStep == "welcome:14:7") {
                 href = "<?= site_url() ?>app/contacts/createContact?type=ajax";
