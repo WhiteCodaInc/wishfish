@@ -30,6 +30,7 @@
                                         </th>
                                         <th>Name</th>                             
                                         <th class="hidden-xs hidden-sm">Email</th>
+                                        <th>Country</th>
                                         <th >Query</th>
                                     </tr>
                                 </thead>
@@ -45,6 +46,7 @@
                                             </td>
                                             <td><?= $value->name ?></td>
                                             <td class="hidden-xs hidden-sm"><?= $value->email ?></td>
+                                            <td><?= $value->country ?></td>
                                             <td><?= $value->query ?></td>
                                         </tr>
                                     <?php } ?>
@@ -54,6 +56,7 @@
                                         <th></th>
                                         <th>Name</th>                             
                                         <th class="hidden-xs hidden-sm">Email</th>
+                                        <th>Country</th>
                                         <th >Query</th>
                                     </tr>
                                 </tfoot>
