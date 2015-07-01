@@ -942,6 +942,7 @@ $userid = $this->session->userdata('userid');
                     $(document).ready(function (e) {
                         $('.scrape-contact,.query_popup').click(function () {
                             $('#supportForm .msg').text('');
+                            $('#feedbackForm .msg').text('');
                             setTimeout(function () {
                                 $('.modal-backdrop').css('z-index', '999');
                             }, 100);
@@ -1146,11 +1147,6 @@ $userid = $this->session->userdata('userid');
     <div class="modal fade" id="nonus-modal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" style="max-width: 400px">
             <div class="modal-content">
-                <!--                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                    <h4 class="modal-title">Feedback / Support</h4>
-                                </div>-->
-
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">
@@ -1159,9 +1155,6 @@ $userid = $this->session->userdata('userid');
                                 However, please <a href="javascript:void(0);" id="feedback" data-toggle="modal" data-target="#feedback-modal">send us an email</a> with your country, and we will let you know as soon as it is available (hopefully soon!)
                             </p>
                         </div>
-                        <a href="javascript:void(0);" id="non-us" data-toggle="modal" data-target="#nonus-modal">
-                            Have a Non-US Number?
-                        </a>
                     </div>
                     <div class="row">
                         <div class="col-md-12" style="text-align: center">
@@ -1184,10 +1177,10 @@ $userid = $this->session->userdata('userid');
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <label>Have questions or feedback?<br/>We`re always happy to hear from you!</label>
                                 <div class="form-group" >
                                     <label>Select Country</label>
-                                    <select id="country">
+                                    <select id="country" class="form-control">
+                                        <option value="-1">--Select Country--</option>
                                         <option value="US">United State of America</option>
                                     </select>
                                 </div>
