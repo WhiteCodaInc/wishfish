@@ -280,7 +280,7 @@ class M_contacts extends CI_Model {
                 'contact_id' => $value,
                 'user_id' => $this->userid
             );
-            $this->db->delete('schedule', $where);
+            $this->db->delete('wi_schedule', $where);
         }
     }
 
