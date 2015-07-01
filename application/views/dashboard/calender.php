@@ -1603,6 +1603,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
 <?php $evt = $this->input->get('event'); ?>
 <?php if ($dt != ""): ?>
         $('#calendar').fullCalendar('gotoDate', '<?= $dt ?>');
+        console.log("<?= $dt ?>");
         $('td.fc-day').each(function () {
             if ($(this).prop('data-date') == "<?= $dt ?>") {
                 console.log("<?= $dt ?>");
