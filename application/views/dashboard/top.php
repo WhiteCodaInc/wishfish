@@ -1159,7 +1159,8 @@ $userid = $this->session->userdata('userid');
                     <div class="row">
                         <div class="col-md-12">
                             <p>
-                                Unfortunately as of right now we don't support non-US phone numbers (bear with us, we're still a startup!). However, please send us an email with your country, and we will let you know as soon as it is available (hopefully soon!)
+                                Unfortunately as of right now we don't support non-US phone numbers (bear with us, we're still a startup!).
+                                However, please <a>send us an email</a> with your country, and we will let you know as soon as it is available (hopefully soon!)
                             </p>
                         </div>
                     </div>
