@@ -240,10 +240,10 @@ switch ($msg) {
             ],
             aoColumnDefs: [{
                     bSortable: false,
-                    aTargets: [0, 1, 4, 5, 6, 7]
+                    aTargets: [0, 1, 3, 4, 5, 6, 7]
                 }],
             iDisplayLength: -1,
-            aaSorting: [[3, 'asc']]
+            aaSorting: [[2, 'asc']]
         });
         $("#searchbox").on("keyup search input paste cut", function () {
             oTable.fnFilter(this.value);
