@@ -959,19 +959,21 @@ $userid = $this->session->userdata('userid');
                                 url: "<?= site_url() ?>app/dashboard/sendQuery",
                                 data: {country: country, query: query},
                                 success: function (data, textStatus, jqXHR) {
+
+                                    $(form + ' .load').css('display', 'none');
+                                    $(form + ' .msg').css('display', 'block');
+                                    if (data) {
+                                        $(form + ' .msg').html("Thank you for your Feedback!");
+                                        $(form + ' .msg').css('color', 'green');
+                                    }
+                                    else {
+                                        $(form + ' .msg').html("Your Query Not Sent..!Please Try Again..!");
+                                        $(form + ' .msg').css('color', 'red');
+                                    }
+                                    $(form).trigger('reset');
                                     setTimeout(function () {
-                                        $(form + ' .load').css('display', 'none');
-                                        $(form + ' .msg').css('display', 'block');
-                                        if (data) {
-                                            $(form + ' .msg').html("Thank you for your Feedback!");
-                                            $(form + ' .msg').css('color', 'green');
-                                        }
-                                        else {
-                                            $(form + ' .msg').html("Your Query Not Sent..!Please Try Again..!");
-                                            $(form + ' .msg').css('color', 'red');
-                                        }
-                                        $(form).trigger('reset');
-                                    }, 1000);
+                                        $(form + ' .discard').trigger('click');
+                                    }, 500);
                                 }
                             });
                         });
