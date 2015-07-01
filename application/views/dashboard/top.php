@@ -527,7 +527,7 @@ $userid = $this->session->userdata('userid');
                                                             <option value="dd-mm-yyyy">dd-mm-yyyy</option>
                                                         </select>
                                                     </div>
-                                                    <div class="form-group" id="select-timezone">
+                                                    <div class="form-group">
                                                         <label >Timezone </label>
                                                         <?= timezone_menu('UTC') ?>
                                                     </div>
