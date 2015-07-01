@@ -1164,6 +1164,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
                 }
             }
             if (hopscotch.getState() == "welcome:15:7") {
+                console.log(hopscotch.getState());
                 hopscotch.nextStep();
             }
             var data = CKEDITOR.instances['e_emailbody'].getData();
