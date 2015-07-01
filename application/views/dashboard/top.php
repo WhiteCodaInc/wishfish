@@ -1156,16 +1156,16 @@ $userid = $this->session->userdata('userid');
                                 </div>-->
 
                 <div class="modal-body">
-                    <p>
-                        Unfortunately as of right now we don't support non-US phone numbers (bear with us, we're still a startup!). However, please send us an email with your country, and we will let you know as soon as it is available (hopefully soon!)
-                    </p>
-                </div>
-                <div class="modal-footer clearfix">
                     <div class="row">
-                        <div class="col-md-4">
-                            <button type="button" id="send" class="btn btn-primary pull-left">Send</button>
+                        <div class="col-md-12">
+                            <p>
+                                Unfortunately as of right now we don't support non-US phone numbers (bear with us, we're still a startup!). However, please send us an email with your country, and we will let you know as soon as it is available (hopefully soon!)
+                            </p>
                         </div>
-                        <div class="col-md-3">
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-md-12" style="text-align: center">
                             <button type="button" class="btn btn-danger discard" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
                         </div>
                     </div>
