@@ -84,6 +84,12 @@ $userid = $this->session->userdata('userid');
                                 </a>
                             </li>
                             <li>
+                                <a class="scrape-contact" href="javascript:void(0)" data-toggle="modal" data-target="#scrapeContact">
+                                    <i class="fa fa-users"></i>
+                                    <span>Import Contacts</span>
+                                </a>
+                            </li>
+                            <li>
                                 <a href="<?= site_url() ?>app/contact_groups">
                                     <i class="fa fa-users"></i> <span>Contact Groups</span>
                                 </a>
@@ -99,12 +105,6 @@ $userid = $this->session->userdata('userid');
                                 <a class="import" href="<?= site_url() ?>app/import">
                                     <i class="fa fa-google"></i>
                                     <span>Import Google Contacts</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="scrape-contact" href="javascript:void(0)" data-toggle="modal" data-target="#scrapeContact">
-                                    <i class="fa fa-users"></i>
-                                    <span>Import Contacts</span>
                                 </a>
                             </li>
                         </ul>
