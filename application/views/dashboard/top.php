@@ -1084,6 +1084,7 @@ $userid = $this->session->userdata('userid');
             </div>
         </div>
     </div>
+
     <div class="modal fade" id="varify-modal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" style="max-width: 440px">
             <div class="modal-content">
@@ -1110,7 +1111,9 @@ $userid = $this->session->userdata('userid');
                                             </div>
                                             <input autofocus="" id="varify_phone" name="phone" type="text" class="form-control"  placeholder="Phone Number" data-inputmask='"mask": "(999) 999-9999"' data-mask/>
                                         </div><!-- /.input group -->
-                                        <a href="javascript:void(0);" id="non-us">Have a Non-US Number?</a>
+                                        <a href="javascript:void(0);" id="non-us" data-toggle="modal" data-target="#nonus-modal">
+                                            Have a Non-US Number?
+                                        </a>
                                     </div>
                                     <div style="padding: 5px" class="col-sm-3">
                                         <br/>
@@ -1143,6 +1146,31 @@ $userid = $this->session->userdata('userid');
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div>
+
+    <div class="modal fade" id="nonus-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" style="max-width: 400px">
+            <div class="modal-content">
+                <!--                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title">Feedback / Support</h4>
+                                </div>-->
+
+                <div class="modal-body">
+                    <p>
+                        Unfortunately as of right now we don't support non-US phone numbers (bear with us, we're still a startup!). However, please send us an email with your country, and we will let you know as soon as it is available (hopefully soon!)
+                    </p>
+                </div>
+                <div class="modal-footer clearfix">
+                    <div class="row">
+                        <div class="col-md-12" style="text-align: center">
+                            <button type="button" class="btn btn-danger discard" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+
     <script type="text/javascript">
         $(function () {
             $("[data-mask]").inputmask();
