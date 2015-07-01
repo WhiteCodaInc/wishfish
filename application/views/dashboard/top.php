@@ -1221,7 +1221,7 @@ $userid = $this->session->userdata('userid');
         $(document).ready(function () {
 
             $('#feedback').click(function () {
-                $('#feedbackForm .msg').empty();
+                $('#feedbackForm span.msg').text('');
                 $('.discard').trigger('click');
             });
 
