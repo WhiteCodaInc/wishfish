@@ -9,7 +9,7 @@
     #p1 {
         margin:32px;
         margin-bottom:0;
-        height:465px;
+        height:460px;
     }
     #p1 #tg-container{
         z-index: 0
