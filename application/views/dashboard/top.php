@@ -1163,7 +1163,6 @@ $userid = $this->session->userdata('userid');
                             </p>
                         </div>
                     </div>
-                    <br/>
                     <div class="row">
                         <div class="col-md-12" style="text-align: center">
                             <button type="button" class="btn btn-danger discard" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
