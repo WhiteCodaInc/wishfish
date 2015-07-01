@@ -110,11 +110,11 @@
                                             <input type="checkbox"/>
                                         </th>
                                         <th>Profile</th>
-                                        <th class="hidden-xs hidden-sm">Date & Time</th>
                                         <th>Name</th>
                                         <th>Email</th>
+                                        <th>Phone</th>
                                         <th>Plan</th>
-                                        <th class="hidden-xs hidden-sm">Join Via</th>
+                                        <th>Join Date & Time</th>
                                         <th>Status</th>
                                     </tr>
                                 </thead>
@@ -145,17 +145,22 @@
                                                     <img style="width:60px;height:60px" src="<?= $img_src ?>" class="img-circle" alt="User Image" />
                                                 </a>
                                             </td>
-                                            <td><?= date('m-d-Y H:i:s', strtotime($value->register_date)) ?></td>
                                             <td>
                                                 <a href="<?= site_url() . 'admin/customers/profile/' . $value->user_id ?>" class="name">
                                                     <?= $value->name ?>
                                                 </a>
                                             </td>
                                             <td><?= $value->email ?></td>
-
+                                            <td>
+                                                <?=
+                                                ($value->phone != NULL) ?
+                                                        (($value->phone_verification) ? $value->phone : "Not Verified") :
+                                                        "N/A"
+                                                ?>
+                                            </td>
                                             <td><?= $value->plan_name ?></td>
-                                            <td><?= $value->join_via ?></td>
-                                            <td class="hidden-xs hidden-sm">
+                                            <td><?= date('m-d-Y H:i:s', strtotime($value->register_date)) ?></td>
+                                            <td>
                                                 <?php if ($value->status): ?>
                                                     <span class="btn btn-success btn-xs">Active</span>
                                                 <?php else : ?>
@@ -169,11 +174,11 @@
                                     <tr>
                                         <th></th>
                                         <th>Profile</th>
-                                        <th class="hidden-xs hidden-sm">Date & Time</th>
                                         <th>Name</th>
                                         <th>Email</th>
+                                        <th>Phone</th>
                                         <th>Plan</th>
-                                        <th class="hidden-xs hidden-sm">Join Via</th>
+                                        <th>Join Date & Time</th>
                                         <th>Status</th>
                                     </tr>
                                 </tfoot>
