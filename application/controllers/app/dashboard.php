@@ -125,17 +125,20 @@ class Dashboard extends CI_Controller {
 
     function sendQuery() {
         if ($this->wi_authex->logged_in()) {
-            $query = $this->input->post('query');
-            if (isset($_POST['query'])) {
-                $this->objdashboard->addFeedback($query);
+            $post = $this->input->post();
+            if (isset($post['query'])) {
+                $this->objdashboard->addFeedback($post);
                 $name = $this->session->userdata('name');
                 $email = $this->session->userdata('email');
                 $body = "Customer Name : {$name}<br>";
                 $body .= "Customer Email : {$email}<br>";
-                $body .= "Customer Query : {$query}<br>";
+                ($post['country'] != "" && $post['country'] != "-1") ?
+                                $body .= "Customer Country : {$post[]}<br>" : "";
+                $body .= "Customer Query : {$post['query']}<br>";
 
                 $this->email->from($email, $name);
-                $this->email->to("support@wish-fish.com");
+//                $this->email->to("support@wish-fish.com");
+                $this->email->to("vishaltesting7@gmail.com");
                 $this->email->subject("Support / Feddback From {$name}");
                 $this->email->message($body);
                 if ($this->email->send()) {

@@ -128,7 +128,7 @@ class M_dashboard extends CI_Model {
         return $this->wi_common->sendAutoMail($userInfo->email, $subject, $body, $from, $name);
     }
 
-    function addFeedback($query) {
+    function addFeedback($post) {
         $uid = $this->userid;
         $name = $this->session->userdata('name');
         $email = $this->session->userdata('email');
@@ -136,8 +136,10 @@ class M_dashboard extends CI_Model {
             'user_id' => $uid,
             'name' => $name,
             'email' => $email,
-            'query' => $query
+            'query' => $post['query']
         );
+        ($post['country'] != "" && $post['country'] != "-1") ?
+                        $set['country'] = $post['country'] : "";
         $this->db->insert('feedback', $set);
         return true;
     }
