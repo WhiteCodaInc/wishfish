@@ -46,7 +46,7 @@
         top: 10px;
     }
 </style>
-<aside class="right-side" >
+<aside class="right-side" style="min-height: 542px;">
     <section class="content-header">
         <h1 style="float: left">
             Dashboard
