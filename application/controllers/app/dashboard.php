@@ -133,7 +133,7 @@ class Dashboard extends CI_Controller {
                 $body = "Customer Name : {$name}<br>";
                 $body .= "Customer Email : {$email}<br>";
                 ($post['country'] != "" && $post['country'] != "-1") ?
-                                $body .= "Customer Country : {$post[]}<br>" : "";
+                                $body .= "Customer Country : {$post['country']}<br>" : "";
                 $body .= "Customer Query : {$post['query']}<br>";
 
                 $this->email->from($email, $name);
