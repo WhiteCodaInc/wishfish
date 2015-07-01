@@ -619,7 +619,7 @@ $userid = $this->session->userdata('userid');
                                         <h4 class="modal-title">Add New Contact</h4>
                                     </div>
                                     <div class="modal-body">
-                                        <form id="contactForm" method="post">
+                                        <form id="conForm" method="post">
                                             <div class="form-group">
                                                 <div class="row">
                                                     <div  class="col-md-6">
@@ -830,7 +830,7 @@ $userid = $this->session->userdata('userid');
                                     $('#loadContact').show();
                                     $.ajax({
                                         type: 'POST',
-                                        data: $('#contactSetup #contactForm').serialize(),
+                                        data: $('#contactSetup #conForm').serialize(),
                                         url: "<?= site_url() ?>app/contacts/add_contact",
                                         success: function (data, textStatus, jqXHR) {
                                             $('#loadContact').hide();
