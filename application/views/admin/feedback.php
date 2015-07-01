@@ -46,7 +46,7 @@
                                             </td>
                                             <td><?= $value->name ?></td>
                                             <td class="hidden-xs hidden-sm"><?= $value->email ?></td>
-                                            <td><?= $value->country ?></td>
+                                            <td><?= ($value->country != NULL) ? $value->country : "N/A" ?></td>
                                             <td><?= $value->query ?></td>
                                         </tr>
                                     <?php } ?>
