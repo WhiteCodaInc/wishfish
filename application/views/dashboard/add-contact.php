@@ -121,15 +121,15 @@
         $('#save-contact').click(function () {
             var tourStep = hopscotch.getState();
             console.log(tourStep);
-//            var href = "";
-//            if (tourStep == "welcome:15:7") {
-//                href = "<?= site_url() ?>app/contacts/createContact?type=ajax";
-//                hopscotch.nextStep();
-//            } else {
-//                href = "<?= site_url() ?>app/contacts/createContact";
-//            }
-//            $('#contactForm').attr('action', href);
-//            $('.submit').trigger('click');
+            var href = "";
+            if (tourStep == "welcome:14:7") {
+                href = "<?= site_url() ?>app/contacts/createContact?type=ajax";
+                hopscotch.nextStep();
+            } else {
+                href = "<?= site_url() ?>app/contacts/createContact";
+            }
+            $('#contactForm').attr('action', href);
+            $('.submit').trigger('click');
         });
 
         $('input[name="fname"]').focusout(function () {
