@@ -394,7 +394,6 @@ $userid = $this->session->userdata('userid');
                                         </a>
                                     </div>
                                 </div>
-
                                 <form id="profileForm" method="post" action="" enctype="multipart/form-data">
                                     <input name="profile" style="position: absolute;left: -9999px" id="profile-image-upload" class="hidden" type="file">
                                     <div id="image_preview">
@@ -890,7 +889,7 @@ $userid = $this->session->userdata('userid');
                                 <div class="modal-footer clearfix">
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <button type="button" id="send" class="btn btn-primary pull-left">Send</button>
+                                            <button type="button" value="support" class="btn btn-primary pull-left send-query">Send</button>
                                         </div>
                                         <div class="col-md-3">
                                             <button type="button" class="btn btn-danger discard" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
@@ -947,33 +946,30 @@ $userid = $this->session->userdata('userid');
                                 $('.modal-backdrop').css('z-index', '999');
                             }, 100);
                         });
-                        $('#send').click(function () {
-                            var query = $('#query').val();
-                            $('#supportForm .load').css('display', 'block');
-                            $('#supportForm .msg').css('display', 'none');
+                        $('.send-query').click(function () {
+                            var val = $(this).val();
+                            var form = (val == "support") ? "#supportForm" : "#feedbackForm";
+                            var country = $(form + ' #country').val();
+                            var query = $(form + ' #query').val();
+                            $(form + ' .load').css('display', 'block');
+                            $(form + ' .msg').css('display', 'none');
                             $.ajax({
                                 type: 'POST',
                                 url: "<?= site_url() ?>app/dashboard/sendQuery",
-                                data: {query: query},
+                                data: {country: country, query: query},
                                 success: function (data, textStatus, jqXHR) {
                                     setTimeout(function () {
+                                        $(form + ' .load').css('display', 'none');
+                                        $(form + ' .msg').css('display', 'block');
                                         if (data) {
-                                            $('#supportForm .msg').html("Thank you for your Feedback!");
-                                            $('#supportForm .load').css('display', 'none');
-                                            $('#supportForm .msg').css('display', 'block');
-                                            $('#supportForm .msg').css('color', 'green');
-                                            $('#supportForm').trigger('reset');
-//                                            setTimeout(function () {
-//                                                $('.discard').trigger('click');
-//                                            }, 1000);
-//                                            $('.modal-backdrop').removeAttr('style');
+                                            $(form + ' .msg').html("Thank you for your Feedback!");
+                                            $(form + ' .msg').css('color', 'green');
                                         }
                                         else {
-                                            $('#loadDept').html("Your Query Not Sent..!Please Try Again..!");
-                                            $('#load').css('display', 'none');
-                                            $('#msg').css('display', 'block');
-                                            $('#msg').css('color', 'red');
+                                            $(form + ' .msg').html("Your Query Not Sent..!Please Try Again..!");
+                                            $(form + ' .msg').css('color', 'red');
                                         }
+                                        $(form).trigger('reset');
                                     }, 1000);
                                 }
                             });
@@ -1160,9 +1156,12 @@ $userid = $this->session->userdata('userid');
                         <div class="col-md-12">
                             <p>
                                 Unfortunately as of right now we don't support non-US phone numbers (bear with us, we're still a startup!).
-                                However, please <a>send us an email</a> with your country, and we will let you know as soon as it is available (hopefully soon!)
+                                However, please <a href="javascript:void(0);" id="feedback" data-toggle="modal" data-target="#feedback-modal">send us an email</a> with your country, and we will let you know as soon as it is available (hopefully soon!)
                             </p>
                         </div>
+                        <a href="javascript:void(0);" id="non-us" data-toggle="modal" data-target="#nonus-modal">
+                            Have a Non-US Number?
+                        </a>
                     </div>
                     <div class="row">
                         <div class="col-md-12" style="text-align: center">
@@ -1174,11 +1173,60 @@ $userid = $this->session->userdata('userid');
         </div><!-- /.modal-dialog -->
     </div>
 
+    <div class="modal fade" id="feedback-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" style="max-width: 400px">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Feedback / Support</h4>
+                </div>
+                <form id="feedbackForm"  method="post">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label>Have questions or feedback?<br/>We`re always happy to hear from you!</label>
+                                <div class="form-group" >
+                                    <label>Select Country</label>
+                                    <select id="country">
+                                        <option value="US">United State of America</option>
+                                    </select>
+                                </div>
+                                <div class="form-group" >
+                                    <textarea id="query" class="form-control"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <img  src="<?= base_url() ?>assets/dashboard/img/load.GIF" alt="" class="load" style="display: none" />
+                                <span style="display: none" class="msg"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer clearfix">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <button type="button" value="feedback" class="btn btn-primary pull-left send-query">Send</button>
+                            </div>
+                            <div class="col-md-3">
+                                <button type="button" class="btn btn-danger discard" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+
     <script type="text/javascript">
         $(function () {
             $("[data-mask]").inputmask();
         });
         $(document).ready(function () {
+
+            $('#feedback').click(function () {
+                $('.discard').trigger('click');
+            });
 
             $('#varify_phone').on("keypress", function (e) {
                 if (e.keyCode == 13) {
