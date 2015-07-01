@@ -954,12 +954,13 @@ $userid = $this->session->userdata('userid');
                             var query = $(form + ' #query').val();
                             $(form + ' .load').css('display', 'block');
                             $(form + ' .msg').css('display', 'none');
+                            $(this).prop('disabled', true);
                             $.ajax({
                                 type: 'POST',
                                 url: "<?= site_url() ?>app/dashboard/sendQuery",
                                 data: {country: country, query: query},
                                 success: function (data, textStatus, jqXHR) {
-
+                                    $(this).prop('disabled', false);
                                     $(form + ' .load').css('display', 'none');
                                     $(form + ' .msg').css('display', 'block');
                                     if (data) {
