@@ -940,7 +940,7 @@ $userid = $this->session->userdata('userid');
                 </script>
                 <script type="text/javascript">
                     $(document).ready(function (e) {
-                        $('.scrape-contact,.query_popup').click(function () {
+                        $('.scrape-contact,.query_popup,').click(function () {
                             $('#supportForm .msg').text('');
                             $('#feedbackForm .msg').text('');
                             setTimeout(function () {
@@ -1221,6 +1221,7 @@ $userid = $this->session->userdata('userid');
         $(document).ready(function () {
 
             $('#feedback').click(function () {
+                $('#feedbackForm .msg').empty();
                 $('.discard').trigger('click');
             });
 
