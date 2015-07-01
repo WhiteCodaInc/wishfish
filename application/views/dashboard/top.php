@@ -1183,7 +1183,10 @@ $userid = $this->session->userdata('userid');
                                     <label>Select Country</label>
                                     <select id="country" class="form-control">
                                         <option value="-1">--Select Country--</option>
-                                        <option value="US">United State of America</option>
+                                        <option value="India">India</option>
+                                        <option value="Pakistan">Pakistan</option>
+                                        <option value="Canada">Canada</option>
+                                        <option value="Australia">Australia</option>
                                     </select>
                                 </div>
                                 <div class="form-group" >
