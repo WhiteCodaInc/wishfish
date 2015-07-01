@@ -940,9 +940,8 @@ $userid = $this->session->userdata('userid');
                 </script>
                 <script type="text/javascript">
                     $(document).ready(function (e) {
-                        $('.scrape-contact,.query_popup,').click(function () {
+                        $('.scrape-contact,.query_popup').click(function () {
                             $('#supportForm .msg').text('');
-                            $('#feedbackForm .msg').text('');
                             setTimeout(function () {
                                 $('.modal-backdrop').css('z-index', '999');
                             }, 100);
