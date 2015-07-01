@@ -1605,6 +1605,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
         $('#calendar').fullCalendar('gotoDate', '<?= $dt ?>');
         console.log("<?= $dt ?>");
         $('td.fc-day').each(function () {
+            console.log("TD DATE : " + $(this).prop('data-date'));
             if ($(this).prop('data-date') == "<?= $dt ?>") {
                 console.log("<?= $dt ?>");
                 $(this).find('div.fc-day-content').prop('id', 'birth_day');
