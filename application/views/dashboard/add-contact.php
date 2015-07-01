@@ -21,7 +21,7 @@
                         <h3 class="box-title">New Contact</h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
-                    <form id="contactForm" role="form" action="<?= site_url() ?>app/contacts/createContact" enctype="multipart/form-data" method="post">
+                    <form id="contactForm" role="form" action="" enctype="multipart/form-data" method="post">
                         <div class="box-body">
                             <div class="form-group" id="add-profile-pic">
                                 <div class="row">
@@ -121,15 +121,15 @@
         $('#save-contact').click(function () {
             var tourStep = hopscotch.getState();
             console.log(tourStep);
-            var href = "";
-            if (tourStep == "welcome:15:7") {
-                href = "<?= site_url() ?>app/contacts/createContact?type=ajax";
-                hopscotch.nextStep();
-            } else {
-                href = "<?= site_url() ?>app/contacts/createContact";
-            }
-            $('#contactForm').attr('action', href);
-            $('.submit').trigger('click');
+//            var href = "";
+//            if (tourStep == "welcome:15:7") {
+//                href = "<?= site_url() ?>app/contacts/createContact?type=ajax";
+//                hopscotch.nextStep();
+//            } else {
+//                href = "<?= site_url() ?>app/contacts/createContact";
+//            }
+//            $('#contactForm').attr('action', href);
+//            $('.submit').trigger('click');
         });
 
         $('input[name="fname"]').focusout(function () {
