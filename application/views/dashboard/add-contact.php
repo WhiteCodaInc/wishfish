@@ -123,7 +123,7 @@
             var tourStep = hopscotch.getState();
             console.log(tourStep);
             var href = "";
-            if (tourStep == "welcome:14:7") {
+            if (tourStep == "welcome:15:7") {
                 href = "<?= site_url() ?>app/contacts/createContact?type=ajax";
                 hopscotch.nextStep();
             } else {
