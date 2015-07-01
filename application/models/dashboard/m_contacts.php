@@ -276,6 +276,11 @@ class M_contacts extends CI_Model {
         $ids = $this->input->post('contact');
         foreach ($ids as $value) {
             $this->db->delete('wi_contact_detail', array('contact_id' => $value));
+            $where = array(
+                'contact_id' => $value,
+                'user_id' => $this->userid
+            );
+            $this->db->delete('schedule', $where);
         }
     }
 
