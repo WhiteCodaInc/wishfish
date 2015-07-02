@@ -97,7 +97,7 @@ class Customers extends CI_Controller {
             header('location:https://wish-fish.com/app/dashboard');
         } else {
             $this->session->flashdata('msg', 'Customer account currently was deactivated..!');
-            header('location:' . site_url() . "customers/profile/{$cid}");
+            header('location:' . site_url() . "admin/customers/profile/{$cid}");
         }
     }
 
