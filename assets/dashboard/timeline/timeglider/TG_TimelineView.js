@@ -1500,7 +1500,9 @@
 
                 inf = (timeline.get("description")) ? "<li id='info' class='timeline-info-bt' data-timeline_id='" + tid + "'>info</li>" : "",
                         leg = (timeline.get("hasLegend")) ? "<li id='legend' class='tg-legend-bt' data-timeline_id='" + tid + "'>legend</li>" : "",
-                        tools = ""; // "<a id='tools' class='tools-bt noselect'>tools</a>",
+                        tools = "<a id='tools' class='tools-bt noselect'>tools</a>"; // "<a id='tools' class='tools-bt noselect'>tools</a>",
+
+                var zoom = "";
 
                 tmpl = "<div class='tg-widget-header tg-single-timeline-header'>" + title + "<ul>" + inf + leg + "<li class='tg-timeline-start' data-timeline_id='" + tid + "'>start</li></ul>" + tools + "</div>";
 
