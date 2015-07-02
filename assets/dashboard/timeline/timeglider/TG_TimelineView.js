@@ -1770,7 +1770,7 @@
         setupScroller: function () {
 
             if (options.event_overflow == "scroll") {
-
+                alert("setupScroll");
                 $(".timeglider-slider-container").css("right", "22px");
 
                 $(CONTAINER + " .tg-scroller-handle").draggable({
