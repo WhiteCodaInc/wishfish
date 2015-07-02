@@ -75,6 +75,7 @@ class Login extends CI_Controller {
                 header('location:' . site_url() . 'login?msg=DA');
             } else if ($is_login) {
                 $this->objregister->linkWithProfile($post['email']);
+                die();
                 if (isset($remember) && $remember == "on")
                     $this->storeCookie($post);
                 if ($this->wi_authex->isActivePlan()) {
