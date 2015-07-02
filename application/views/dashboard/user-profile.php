@@ -179,7 +179,6 @@
                                     </div>
                                 </div><!-- /.box-body -->
                             <?php endif; ?>
-
                         </div>
                     </form>
                 </div><!-- /.box -->
@@ -274,12 +273,12 @@
         $('#type').val("<?= $user->profile_type ?>");
         $('select[name="timezones"] option').each(function () {
             if ($(this).val() == "<?= $user->timezones ?>") {
-                $(this).attr('selected', 'selected');
+                $(this).prop('selected', true);
             }
         });
         $('#date-format option').each(function () {
             if ($(this).val() == "<?= $user->date_format ?>") {
-                $(this).attr('selected', 'selected');
+                $(this).prop('selected', true);
             }
         });
         $('#type').change(function () {
@@ -314,8 +313,12 @@
             gatewayFlag = true;
 <?php endif; ?>
 
+<?php if ($user->phone): ?>
+            $('select[name="code"]').val("<?= substr($user->phone, -strlen($user->phone), 2) ?>");
+<?php endif; ?>
+
         $('#pay').click(function () {
-            $(this).prop('disabled', 'disabled');
+            $(this).prop('disabled', true);
             $.ajax({
                 type: 'POST',
                 data: {item_name: "wishfish-personal", amount: "9.99"},
@@ -327,14 +330,13 @@
         });
 
         $('#save-profile').click(function () {
-            $(this).attr("disabled", "disabled");
+            $(this).prop("disabled", true);
             $('#userForm').submit();
         });
 
         $('#userForm,#cardForm').on('submit', function () {
             cardForm = $(this).attr('id');
-            console.log(cardForm);
-            $('#save').attr('disabled', 'disabled');
+            $('#save').prop('disabled', true);
             if (gatewayFlag && (!cardFlag || cardForm == "cardForm")) {
                 var error = false;
                 var ccNum = $(this).find('.card_number').val(),
