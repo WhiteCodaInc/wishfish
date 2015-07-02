@@ -205,6 +205,18 @@ switch ($msg) {
         $m = "Customer Profile Successfully Deactivated..!";
         $t = "success";
         break;
+    case "U":
+        $m = "Customer Profile Successfully Updated..!";
+        $t = "success";
+        break;
+    case "UF":
+        $m = "Customer Avatar not uploaded..!";
+        $t = "error";
+        break;
+    case "IF":
+        $m = "Invalid File Format..!";
+        $t = "error";
+        break;
     case "D":
         $m = "Customer Profile(s) Successfully Deleted..!";
         $t = "error";
