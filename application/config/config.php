@@ -268,7 +268,7 @@ $config['sess_time_to_update'] = 0;
   | 'cookie_secure' =  Cookies will only be set if a secure HTTPS connection exists.
   |
  */
-$config['cookie_prefix'] = "";
+$config['cookie_prefix'] = "a_";
 $config['cookie_domain'] = "";
 $config['cookie_path'] = "/";
 $config['cookie_secure'] = FALSE;
