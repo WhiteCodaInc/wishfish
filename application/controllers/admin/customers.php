@@ -86,11 +86,10 @@ class Customers extends CI_Controller {
         if ($customer->status) {
             $uid = $this->encryption->encode($customer->user_id);
             $url = 'https://wish-fish.com/app/dashboard?uid=' . $uid;
-            echo '<script>window.open("' . $url . '");</script>';
+//            echo '<script>window.open("' . $url . '");</script>';
+            header('location:' . $url);
         } else {
-//            $this->session->userdata('msg', 'Customer account currently was deactivated..!');
             echo '<script>alert("Customer account currently was deactivated..!");close();</script>';
-//            header('location:' . site_url() . "admin/customers/profile/{$cid}?msg=DA");
         }
     }
 
