@@ -135,6 +135,7 @@
 
 
             this.element.html(MAIN_TEMPLATE);
+            alert();
             var slider = "<div class='timeglider-slider-container noselect'>"
                     + "	<div class='tg-slider-plusminus tg-slider-plus tg-zoom-in'></div>"
                     + "	<div class='timeglider-slider'></div>"
