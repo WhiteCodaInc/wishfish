@@ -88,7 +88,9 @@ class Customers extends CI_Controller {
             $url = 'https://wish-fish.com/app/dashboard?uid=' . $uid;
             echo '<script>window.open("' . $url . '");</script>';
         } else {
-            header('location:' . site_url() . "admin/customers/profile/{$cid}?msg=DA");
+//            $this->session->userdata('msg', 'Customer account currently was deactivated..!');
+            echo '<script>alert("Customer account currently was deactivated..!");close();</script>';
+//            header('location:' . site_url() . "admin/customers/profile/{$cid}?msg=DA");
         }
     }
 
