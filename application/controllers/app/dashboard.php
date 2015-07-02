@@ -24,14 +24,8 @@ class Dashboard extends CI_Controller {
         $this->output->set_header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
 
         $userid = $this->input->get('uid');
-
-        echo $userid;
-
-
         $this->type = $this->input->get('type');
         $this->uid = ($userid != "") ? $this->encryption->decode($userid) : '';
-        echo $this->uid;
-        die();
         if ($this->session->userdata('d-userid')) {
             $this->duid = $this->session->userdata('d-userid');
         } else if ($this->input->cookie('d-userid')) {
@@ -53,6 +47,8 @@ class Dashboard extends CI_Controller {
     }
 
     function index() {
+        echo $this->uid;
+        die();
         if ($this->uid) {
             $this->objdashboard->verifyEmail($this->uid);
         }
