@@ -59,16 +59,12 @@ class Dashboard extends CI_Controller {
             $this->load->view('dashboard/dashboard', $card);
             $this->load->view('dashboard/footer');
         } else {
-            
+
             $userInfo = $this->wi_common->getUserInfo($this->uid);
-            echo '<pre>';
-            print_r($userInfo);
-            die();
             if ($this->uid != "" && count($userInfo) == 1) {
                 if ($this->type != "forgot" && $userInfo->password != NULL) {
                     $login = array(
-                        'email' => $userInfo->email,
-                        'password' => $userInfo->password
+                        'email' => $userInfo->email
                     );
                     if ($this->wi_authex->login($login)) {
                         header('location:' . site_url() . 'app/dashboard');

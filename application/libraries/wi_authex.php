@@ -17,7 +17,7 @@ class Wi_authex {
     }
 
     function login($where) {
-        $where['password'] = sha1($where['password']);
+        (isset($where['password'])) ? $where['password'] = sha1($where['password']) : '';
         $query = $this->_CI->db->get_where('wi_user_mst', $where);
         if ($query->num_rows() !== 1) {
             /* their username and password combination
