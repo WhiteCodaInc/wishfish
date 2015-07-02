@@ -1500,7 +1500,8 @@
                 var slider = "";
                 inf = (timeline.get("description")) ? "<li id='info' class='timeline-info-bt' data-timeline_id='" + tid + "'>info</li>" : "",
                         leg = (timeline.get("hasLegend")) ? "<li id='legend' class='tg-legend-bt' data-timeline_id='" + tid + "'>legend</li>" : "",
-                        slider = "<div class='tg-slider-plusminus tg-slider-plus tg-zoom-in'></div>";
+//                        slider = "<div class='timeglider-slider-container noselect'>"
+//                        + "     <div class='tg-slider-plusminus tg-slider-plus tg-zoom-in'></div>"
 //                        + "     <div class='timeglider-slider'></div>"
 //                        + "     <div class='tg-slider-plusminus tg-slider-minus tg-zoom-out'></div>"
 //                        + "     <div class='timeglider-pan-buttons'>"
