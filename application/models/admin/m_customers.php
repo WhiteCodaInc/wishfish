@@ -101,6 +101,7 @@ class M_customers extends CI_Model {
     }
 
     function updateCustomer($set) {
+        $m = "";
         $cid = $set['customerid'];
         $customerInfo = $this->getCustomerInfo($cid);
         $set['phone'] = (preg_match('/^\(?\d{3}\)?[- ]?\d{3}[- ]?\d{4}$/', $set['phone'])) ?
@@ -113,7 +114,10 @@ class M_customers extends CI_Model {
         unset($set['customerid']);
         unset($set['code']);
 
-        $data = array();
+        echo '<pre>';
+        print_r($set);
+        print_r($_FILES);
+        die();
 
         if (isset($_FILES['profile_pic'])) {
             if ($_FILES['profile_pic']['error'] == 0) {
