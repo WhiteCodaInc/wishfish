@@ -57,6 +57,14 @@ class Authex {
     }
 
     function logout() {
+        $sess = array(
+            'profileid' => '',
+            'name' => '',
+            'email' => '',
+            'avatar' => '',
+            'phone' => ''
+        );
+        $this->_CI->session->unset_userdata($sess);
         $this->_CI->session->sess_destroy();
     }
 
