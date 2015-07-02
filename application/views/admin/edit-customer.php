@@ -104,7 +104,7 @@
                                 <input value="<?= isset($customers) ? $customers->profile_link : '' ?>" type="text" name="profile_link" class="form-control" />
                             </div>
                         </div><!-- /.box-body -->
-                        <input type="hidden" name="customerid" value="<?= $customers->customer_id ?>" />
+                        <input type="hidden" name="customerid" value="<?= $customers->user_id ?>" />
                     </form>
                 </div><!-- /.box -->
             </div><!--/.col (left) -->
