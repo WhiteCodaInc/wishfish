@@ -111,10 +111,6 @@ class M_customers extends CI_Model {
                 $this->wi_common->getMySqlDate($set['birthday'], $customerInfo->date_format) :
                 NULL;
 
-        echo '<pre>';
-        print_r($set);
-        die();
-
         unset($set['customerid']);
         unset($set['code']);
 
