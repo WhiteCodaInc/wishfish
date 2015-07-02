@@ -506,14 +506,14 @@
                 .css("height", $(PL).height());
 
 
-//        $(".tg-zoom-in").bind(CLICKORTOUCH, function () {
-//            MED.zoom(-1);
-//        });
-//
-//
-//        $(".tg-zoom-out").bind(CLICKORTOUCH, function () {
-//            MED.zoom(1);
-//        });
+        $(".tg-zoom-in").bind(CLICKORTOUCH, function () {
+            MED.zoom(-1);
+        });
+
+
+        $(".tg-zoom-out").bind(CLICKORTOUCH, function () {
+            MED.zoom(1);
+        });
 
         $(this._views.FOCUS_DATE).bind(CLICKORTOUCH, function () {
             me.datepickerModal();
@@ -1549,14 +1549,14 @@
                 me.timelineModal(tid);
             }
 
-            $(".tg-zoom-in").bind(CLICKORTOUCH, function () {
-                MED.zoom(-1);
-            });
-
-
-            $(".tg-zoom-out").bind(CLICKORTOUCH, function () {
-                MED.zoom(1);
-            });
+//            $(".tg-zoom-in").bind(CLICKORTOUCH, function () {
+//                MED.zoom(-1);
+//            });
+//
+//
+//            $(".tg-zoom-out").bind(CLICKORTOUCH, function () {
+//                MED.zoom(1);
+//            });
 //            if (timeline.get("hasLegend")) {
 //                setTimeout(function () {
 //                    me.legendModal(tid);
