@@ -94,7 +94,9 @@ class Customers extends CI_Controller {
                 'date_format' => $customer->date_format
             );
             $this->session->set_userdata($sess);
-            header('location:https://wish-fish.com/app/dashboard');
+
+            echo '<script>window.open("https://wish-fish.com/app/dashboard");</script>';
+//            header('location:https://wish-fish.com/app/dashboard');
         } else {
             header('location:' . site_url() . "admin/customers/profile/{$cid}?msg=DA");
         }
