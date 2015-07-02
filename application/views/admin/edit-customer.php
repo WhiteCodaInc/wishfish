@@ -125,7 +125,7 @@
     $(function () {
         $("[data-mask]").inputmask();
         $('.default-date-picker').datepicker({
-            format: "dd-mm-yyyy",
+            format: "<?= $customers->date_format ?>",
             todayBtn: "linked",
             autoclose: true,
             todayHighlight: true
