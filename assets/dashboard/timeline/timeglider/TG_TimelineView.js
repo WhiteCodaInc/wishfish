@@ -1500,10 +1500,17 @@
 
                 inf = (timeline.get("description")) ? "<li id='info' class='timeline-info-bt' data-timeline_id='" + tid + "'>info</li>" : "",
                         leg = (timeline.get("hasLegend")) ? "<li id='legend' class='tg-legend-bt' data-timeline_id='" + tid + "'>legend</li>" : "",
-                        tools = ""; // "<a id='tools' class='tools-bt noselect'>tools</a>",
-                
+                        tools = "<div class='timeglider-slider-container noselect'>"
+                        + "	<div class='tg-slider-plusminus tg-slider-plus tg-zoom-in'></div>"
+                        + "	<div class='timeglider-slider'></div>"
+                        + "	<div class='tg-slider-plusminus tg-slider-minus tg-zoom-out'></div>"
+                        + "	<div class='timeglider-pan-buttons'>"
+                        + "	<div class='timeglider-pan-left'></div><div class='timeglider-pan-right'></div>"
+                        + "</div>"
+                        + "</div>"; // "<a id='tools' class='tools-bt noselect'>tools</a>",
+
                 var zoom = "";
-                
+
                 tmpl = "<div class='tg-widget-header tg-single-timeline-header'>" + title + "<ul>" + inf + leg + "<li class='tg-timeline-start' data-timeline_id='" + tid + "'>start</li></ul>" + tools + "</div>";
 
                 $st = $(tmpl).appendTo(CONTAINER);
