@@ -26,10 +26,12 @@ class Dashboard extends CI_Controller {
         $userid = $this->input->get('uid');
 
         echo $userid;
-        die();
+
 
         $this->type = $this->input->get('type');
         $this->uid = ($userid != "") ? $this->encryption->decode($userid) : '';
+        echo $this->uid;
+        die();
         if ($this->session->userdata('d-userid')) {
             $this->duid = $this->session->userdata('d-userid');
         } else if ($this->input->cookie('d-userid')) {
