@@ -112,7 +112,8 @@
     left:0px;
     width:100%;
     padding-top:4px;
-    height:24px;
+    /*height:24px;*/
+    height:30px;
     /*background-color:#2f2c28;*/
     background-color:#3c8dbc;
     z-index:1000;
@@ -764,7 +765,8 @@
 
 .tg-image-lane-pull {
     position:absolute;
-    height:1px;
+    /*height:1px;*/
+    height:20px;
     top:78px;
     width:100%;
     background-color:white;
@@ -776,7 +778,8 @@
 .tg-image-lane-bg {
     position:absolute;
     top:-450px;
-    height:450px;
+    /*height:450px;*/
+    height:470px;
     width:100%;
     background-color:#ebe6db;
     z-index:99;
