@@ -85,17 +85,9 @@ class Customers extends CI_Controller {
         $customer = $this->objcustomer->getCustomerInfo($cid);
         if ($customer->status) {
             $this->session->sess_destroy();
-            $sess = array(
-                'userid' => $customer->name,
-                'name' => $customer->name,
-                'email' => $customer->email,
-                'profile_pic' => $customer->profile_pic,
-                'timezone' => $customer->timezones,
-                'date_format' => $customer->date_format
-            );
-            $this->session->set_userdata($sess);
-
-            echo '<script>window.open("https://wish-fish.com/app/dashboard");</script>';
+            $uid = $this->encryption->encode($customer->user_id);
+            $url = 'https://wish-fish.com/app/dashboard?uid=' . $uid;
+            echo "<script>window.open({$url});</script>";
 //            header('location:https://wish-fish.com/app/dashboard');
         } else {
             header('location:' . site_url() . "admin/customers/profile/{$cid}?msg=DA");
