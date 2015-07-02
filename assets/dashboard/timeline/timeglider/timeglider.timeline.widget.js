@@ -135,7 +135,7 @@
 
 
             this.element.html(MAIN_TEMPLATE);
-
+            alert();
         }, // eof _create()
 
         /**
