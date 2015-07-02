@@ -1634,9 +1634,9 @@
             var title = "<h2 id='pres_title' class='no-select' data-timeline_id='primary'>" + pres.title + "</h2>",
                     inf = (pres.description) ? "<li id='info' class='pres-info-bt'>info</li>" : "",
                     leg = (pres.legend) ? "<li id='legend' data-timeline_id='pres' class='tg-legend-bt'>legend</li>" : "",
-                    tools = "Hello", // "<a id='tools' class='tools-bt noselect'>tools</a>",
-                    
-                    tmpl = "<div class='tg-widget-header tg-pres-header'>" + title + "<ul>" + inf + leg + "<li class='tg-pres-start'>start</li></ul>" + tools + "</div>",
+                    tools = "", // "<a id='tools' class='tools-bt noselect'>tools</a>",
+                    titl = "Hello",
+                    tmpl = "<div class='tg-widget-header tg-pres-header'>" + titl + "<ul>" + inf + leg + "<li class='tg-pres-start'>start</li></ul>" + tools + "</div>",
                     $st = $(tmpl).appendTo(CONTAINER);
 
             // end vars
