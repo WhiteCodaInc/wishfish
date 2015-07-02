@@ -81,4 +81,11 @@ class Customers extends CI_Controller {
         }
     }
 
+    function loginAsUser($cid) {
+        echo '<pre>';
+        print_r($this->session->all_userdata());
+        die();
+        $cutomer = $this->objcustomer->getCustomerInfo($cid);
+    }
+
 }
