@@ -142,7 +142,7 @@
                     + "</div>"
                     + "</div>";
 
-            console.log($('.tg-widget-header'));
+            $('.tg-single-timeline-header').find('ul').after(slider);
 
             this.element.html(MAIN_TEMPLATE);
 
