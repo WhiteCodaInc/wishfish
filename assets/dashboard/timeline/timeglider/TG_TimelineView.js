@@ -1703,7 +1703,7 @@
             var me = this;
             var newHt = parseInt(MED.image_lane_height, 10) + parseInt(me.singleTitleHeight, 10);
             if (newHt <= 24)
-                newHt = 78;
+                newHt = 100;
             $(".tg-image-lane-pull").css("top", newHt + "px");
         },
         /* 
