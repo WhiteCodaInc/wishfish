@@ -55,12 +55,18 @@ class Wi_authex {
 
     function logout() {
         $CI = & get_instance();
-        if ($CI->session->userdata('token')) {
-            header('location:' . site_url() . 'register/logout');
-        } else {
-            $CI->session->sess_destroy();
-            header('location:' . site_url() . 'login');
-        }
+        $sess = array(
+            'name' => '',
+            'email' => '',
+            'phone' => '',
+            'avatar' => '',
+            'userid' => '',
+            'profile_pic' => '',
+            'timezone' => '',
+            'date_format' => ''
+        );
+        $CI->session->unset_userdata($sess);
+        header('location:' . site_url() . 'login');
     }
 
     function can_register($email) {
