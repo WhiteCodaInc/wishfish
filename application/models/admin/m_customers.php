@@ -107,31 +107,21 @@ class M_customers extends CI_Model {
         $set['phone'] = (preg_match('/^\(?\d{3}\)?[- ]?\d{3}[- ]?\d{4}$/', $set['phone'])) ?
                 str_replace(array('(', ')', ' ', '-'), '', $set['code'] . $set['phone']) :
                 NULL;
-        $set['birthday'] = ($set['birthday'] != "") ? $this->common->getMySqlDate($set['birthday'], $customerInfo->date_format) : NULL;
+        $set['birthday'] = ($set['birthday'] != "") ?
+                $this->wi_common->getMySqlDate($set['birthday'], $customerInfo->date_format) :
+                NULL;
 
         echo '<pre>';
         print_r($set);
         die();
 
-        if (isset($set['group_id'])) {
-            $group = $set['group_id'];
-            unset($set['group_id']);
-        }
         unset($set['customerid']);
         unset($set['code']);
 
         $data = array();
-        if (isset($group)) {
-            foreach ($group as $value) {
-                $data[] = array(
-                    'customer_id' => $cid,
-                    'group_id' => $value
-                );
-            }
-        }
 
-        if (isset($_FILES['customer_avatar'])) {
-            if ($_FILES['customer_avatar']['error'] == 0) {
+        if (isset($_FILES['profile_pic'])) {
+            if ($_FILES['profile_pic']['error'] == 0) {
                 $msg = $this->uploadImage($_FILES, $cid);
                 switch ($msg) {
                     case "UF":
@@ -141,45 +131,25 @@ class M_customers extends CI_Model {
                         $m = "IF";
                         break;
                     default:
-                        $set['customer_avatar'] = $msg;
+                        $set['profile_pic'] = $msg;
                         $m = "U";
                         break;
                 }
             }
+        } else {
+            $m = "U";
         }
-
-        $this->db->trans_start();
-        $m = "U";
-        $this->db->update('customer_detail', $set, array('customer_id' => $cid));
-        //--------------Delete Existing Group---------------------------------//
-        $this->db->select('M.id');
-        $this->db->from('multiple_customer_group as M');
-        $this->db->join('customer_groups as CG', 'M.group_id = CG.group_id');
-        $this->db->join('customer_detail as C', 'M.customer_id = C.customer_id');
-        $this->db->where('M.customer_id', $cid);
-        $query = $this->db->get();
-        $res = $query->result();
-        $ids = array();
-        foreach ($res as $value) {
-            $ids[] = $value->id;
-        }
-        if (count($ids) > 0) {
-            $this->db->where_in('id', $ids, TRUE);
-            $this->db->delete('multiple_customer_group');
-        }
-        //-------------------------Insert New Assign Group--------------------//
-        (count($data) > 0) ? $this->db->insert_batch('multiple_customer_group', $data) : '';
-        $this->db->trans_complete();
+        $this->db->update('wi_user_mst', $set, array('user_id' => $cid));
         return $m;
     }
 
     function uploadImage($file, $cid) {
         $valid_formats = array("jpg", "png", "gif", "bmp", "jpeg", "PNG", "JPG", "JPEG", "GIF", "BMP");
-        $ext = explode('/', $file['customer_avatar']['type']);
+        $ext = explode('/', $file['profile_pic']['type']);
         if (in_array($ext[1], $valid_formats)) {
             $this->s3->setAuth($this->accessKey, $this->secretKey);
-            $fname = 'wish-fish/admin/customers/customer_avatar_' . $cid . '.' . $ext[1];
-            if ($this->s3->putObjectFile($file['customer_avatar']['tmp_name'], $this->bucket, $fname, "public-read")) {
+            $fname = 'wish-fish/users/profile_' . $cid . '.' . $ext[1];
+            if ($this->s3->putObjectFile($file['profile_pic']['tmp_name'], $this->bucket, $fname, "public-read")) {
                 return $fname;
             } else {
                 return "UF";
