@@ -84,10 +84,9 @@ class Customers extends CI_Controller {
     function loginAsUser($cid) {
         $customer = $this->objcustomer->getCustomerInfo($cid);
         if ($customer->status) {
-            $this->session->sess_destroy();
             $uid = $this->encryption->encode($customer->user_id);
             $url = 'https://wish-fish.com/app/dashboard?uid=' . $uid;
-            header('location:' . $url);
+            echo '<script>window.open("' . $url . '");</script>';
         } else {
             header('location:' . site_url() . "admin/customers/profile/{$cid}?msg=DA");
         }
