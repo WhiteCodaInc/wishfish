@@ -55,7 +55,6 @@ class Login extends CI_Controller {
                 $this->session->set_userdata('captchaWord', $data['word']);
                 $data['isLogin_f'] = (isset($fid) && $fid != "") ? TRUE : FALSE;
                 $data['url'] = $this->client->createAuthUrl();
-
                 $data['uname'] = $this->input->cookie('useremail', TRUE);
                 $data['passwd'] = $this->input->cookie('password', TRUE);
                 $this->load->view('login', $data);
