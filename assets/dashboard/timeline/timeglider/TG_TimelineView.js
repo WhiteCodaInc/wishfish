@@ -3361,8 +3361,9 @@
                             imgHt = imax;
                         }
                         if (imgHt < 0)
-                            imgHt = 75;
+                            imgHt = 55;
                         if (imgHt > 10) {
+                            console.log(stht + padding);
                             $div.css({"display": "block"})
                                     .position({
                                         my: "center top+" + (stht + padding),
