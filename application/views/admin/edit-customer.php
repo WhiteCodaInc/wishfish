@@ -72,7 +72,7 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
-                                    <input style="z-index: 0;" name="birthday" value="<?= isset($customers->birthday) ? $this->wi_common->getUTCDate($customers->birthday) : NULL ?>"  class="form-control form-control-inline input-medium default-date-picker" size="16" type="text">
+                                    <input style="z-index: 0;" name="birthday" value="<?= isset($customers->birthday) ? $this->common->getUTCDate($customers->birthday,$customers->timezones) : NULL ?>"  class="form-control form-control-inline input-medium default-date-picker" size="16" type="text">
                                 </div><!-- /.input group -->
                             </div>
                             <div class="form-group">
