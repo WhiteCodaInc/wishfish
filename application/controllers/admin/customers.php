@@ -56,6 +56,15 @@ class Customers extends CI_Controller {
         $this->load->view('admin/admin_footer');
     }
 
+    function editCustomer($cid) {
+        $data['customers'] = $this->objcustomer->getCustomerInfo($cid);
+        $this->load->view('admin/admin_header');
+        $this->load->view('admin/admin_top');
+        $this->load->view('admin/admin_navbar');
+        $this->load->view('admin/edit-customer', $data);
+        $this->load->view('admin/admin_footer');
+    }
+
     function action() {
         $type = $this->input->post('actionType');
         if ($type == "Delete" || $type == "Active" || $type == "Deactive") {
