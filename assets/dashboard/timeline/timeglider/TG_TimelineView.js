@@ -3361,7 +3361,7 @@
                             imgHt = imax;
                         }
                         if (imgHt < 0)
-                            imgHt = 100;
+                            imgHt = 75;
                         if (imgHt > 10) {
                             $div.css({"display": "block"})
                                     .position({
