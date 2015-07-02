@@ -24,6 +24,10 @@ class Dashboard extends CI_Controller {
         $this->output->set_header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
 
         $userid = $this->input->get('uid');
+
+        echo $userid;
+        die();
+
         $this->type = $this->input->get('type');
         $this->uid = ($userid != "") ? $this->encryption->decode($userid) : '';
         if ($this->session->userdata('d-userid')) {
