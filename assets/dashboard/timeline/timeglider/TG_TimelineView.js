@@ -1496,21 +1496,22 @@
 
             if (MED.options.display_single_timeline_info != false) {
 
-                var title = "<h2 data-timeline_id='" + tid + "'>" + timeline.get("title") + "</h2>";
-                inf = (timeline.get("description")) ? "<li id='info' class='timeline-info-bt' data-timeline_id='" + tid + "'>info</li>" : "",
+                var title = "<h2 data-timeline_id='" + tid + "'>" + timeline.get("title") + "</h2>",
+                        inf = (timeline.get("description")) ? "<li id='info' class='timeline-info-bt' data-timeline_id='" + tid + "'>info</li>" : "",
                         leg = (timeline.get("hasLegend")) ? "<li id='legend' class='tg-legend-bt' data-timeline_id='" + tid + "'>legend</li>" : "",
-                        tmpl = "<div class='tg-widget-header tg-single-timeline-header'>" + title + "<ul>" + inf + leg + "<li class='tg-timeline-start' data-timeline_id='" + tid + "'>start</li></ul></div>";
-
-                $st = $(tmpl).appendTo(CONTAINER);
-                
-//                var slider = "<div class='timeglider-slider-container noselect'>"
+                        slider = "<div class='slider'>"
 //                        + "	<div class='tg-slider-plusminus tg-slider-plus tg-zoom-in'></div>"
 //                        + "	<div class='timeglider-slider'></div>"
 //                        + "	<div class='tg-slider-plusminus tg-slider-minus tg-zoom-out'></div>"
 //                        + "	<div class='timeglider-pan-buttons'>"
 //                        + "	<div class='timeglider-pan-left'></div><div class='timeglider-pan-right'></div>"
 //                        + "</div>"
-//                        + "</div>";
+                        + "</div>",
+                        tmpl = "<div class='tg-widget-header tg-single-timeline-header'>" + title + "<ul>" + inf + leg + "<li class='tg-timeline-start' data-timeline_id='" + tid + "'>start</li></ul>" + slider + "</div>";
+
+                $st = $(tmpl).appendTo(CONTAINER);
+
+
 //
 //                $('.tg-single-timeline-header').append(slider);
 
