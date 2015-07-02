@@ -17,7 +17,7 @@ class M_contact_groups extends CI_Model {
 
     function __construct() {
         parent::__construct();
-        $this->userid = $this->session->userdata('userid');
+        $this->userid = $this->session->userdata('u_userid');
     }
 
     function getContactGroups($type) {

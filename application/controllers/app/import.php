@@ -29,7 +29,7 @@ class Import extends CI_Controller {
         $this->client->setDeveloperKey($this->config->item('api_key', 'googlecontact'));
         $this->client->setScopes("http://www.google.com/m8/feeds/");
         $this->client->setApprovalPrompt('auto');
-        $this->userid = $this->session->userdata('userid');
+        $this->userid = $this->session->userdata('u_userid');
     }
 
     function index() {

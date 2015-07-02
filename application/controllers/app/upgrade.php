@@ -26,7 +26,7 @@ class Upgrade extends CI_Controller {
         if (!$this->wi_authex->logged_in()) {
             header('location:' . site_url() . 'home');
         } else {
-            $this->userid = $this->session->userdata('userid');
+            $this->userid = $this->session->userdata('u_userid');
             $this->load->model('dashboard/m_profile', 'objprofile');
             $this->load->model('m_register', 'objregister');
         }

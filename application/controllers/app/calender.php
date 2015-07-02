@@ -213,7 +213,7 @@ class Calender extends CI_Controller {
     }
 
     function sendActivationEmail() {
-        $uid = $this->session->userdata('userid');
+        $uid = $this->session->userdata('u_userid');
         $userInfo = $this->wi_common->getUserInfo($uid);
         $post = array(
             'name' => $userInfo->name,
@@ -228,7 +228,7 @@ class Calender extends CI_Controller {
         if (!$this->input->cookie('userid')) {
             $userid = array(
                 'name' => 'userid',
-                'value' => $this->encryption->encode($this->session->userdata('userid')),
+                'value' => $this->encryption->encode($this->session->userdata('u_userid')),
                 'expire' => time() + 86500,
                 'domain' => '.wish-fish.com'
             );
@@ -319,7 +319,7 @@ class Calender extends CI_Controller {
         $calId = $this->getCalenderId();
         if ($this->refresh() && $calId) {
             try {
-                $timezone = $this->session->userdata('timezone');
+                $timezone = $this->session->userdata('u_timezone');
                 $timestamp = $this->timezone_by_offset($timezone);
                 date_default_timezone_set($timestamp);
 
@@ -388,7 +388,7 @@ class Calender extends CI_Controller {
     function addLocalEvent() {
         $calId = $this->getCalenderId();
         if ($this->refresh() && $calId) {
-            $timezone = $this->session->userdata('timezone');
+            $timezone = $this->session->userdata('u_timezone');
             $timestamp = $this->timezone_by_offset($timezone);
             date_default_timezone_set($timestamp);
             $events = $this->objcal->loadLocalEvent();
@@ -482,12 +482,12 @@ class Calender extends CI_Controller {
             if ($this->refresh() && $calId) {
                 try {
                     $event = $this->service->events->get($calId, $eventInfo->google_event_id);
-                    $timezone = $this->session->userdata('timezone');
+                    $timezone = $this->session->userdata('u_timezone');
                     $timestamp = $this->timezone_by_offset($timezone);
                     date_default_timezone_set($timestamp);
 
                     $d = (isset($post['event'])) ?
-                            $this->wi_common->getMySqlDate($post['date'], $this->session->userdata('date_format')) :
+                            $this->wi_common->getMySqlDate($post['date'], $this->session->userdata('u_date_format')) :
                             $post['date'];
                     $eventDt = (isset($post['event'])) ?
                             $d . ' ' . $post['time'] :

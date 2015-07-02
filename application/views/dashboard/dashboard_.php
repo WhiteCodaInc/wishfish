@@ -359,7 +359,7 @@
 
         <!-------------------------Upload Your Profile Photo------------------------------>
         <?php
-        $path = $this->session->userdata('profile_pic');
+        $path = $this->session->userdata('u_profile_pic');
         $img_src = ($path != "") ?
                 "http://mikhailkuznetsov.s3.amazonaws.com/" . $path :
                 base_url() . 'assets/dashboard/img/default-avatar.png';
@@ -492,7 +492,7 @@
 
     </section>
 </aside>
-<?php $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid')); ?>
+<?php $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid')); ?>
 <?php
 $time = date('Y-m-d H:i:s', gmt_to_local(time(), $userInfo->timezones, TRUE));
 
@@ -508,7 +508,7 @@ $hour = ($userInfo->timezones == "UM9") ? $hour : $hour - 1;
         $('select[name="timezones"]').addClass('form-control m-bot15');
         //$('select[name="timezones"]').val('UTC');
         $('#contactForm .default-date-picker').datepicker({
-            format: "<?= $this->session->userdata('date_format') ?>",
+            format: "<?= $this->session->userdata('u_date_format') ?>",
             todayBtn: "linked",
             autoclose: true,
             todayHighlight: true
@@ -517,7 +517,7 @@ $hour = ($userInfo->timezones == "UM9") ? $hour : $hour - 1;
         });
 
         $('#cprofileForm .default-date-picker').datepicker({
-            format: "<?= $this->session->userdata('date_format') ?>",
+            format: "<?= $this->session->userdata('u_date_format') ?>",
             todayBtn: "linked",
             autoclose: true,
             todayHighlight: true

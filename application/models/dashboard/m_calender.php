@@ -17,7 +17,7 @@ class M_calender extends CI_Model {
 
     function __construct() {
         parent::__construct();
-        $this->userid = $this->session->userdata('userid');
+        $this->userid = $this->session->userdata('u_userid');
     }
 
     function getNormalEvent() {
@@ -84,7 +84,7 @@ class M_calender extends CI_Model {
 //            unset($post['contactid']);
 //        }
 
-        $post['date'] = $this->wi_common->getMySqlDate($post['date'], $this->session->userdata('date_format'));
+        $post['date'] = $this->wi_common->getMySqlDate($post['date'], $this->session->userdata('u_date_format'));
         $post['is_repeat'] = (isset($post['is_repeat']) && $post['is_repeat'] == "on") ? 1 : 0;
         $post['body'] = ($post['event_type'] == "sms" || $post['event_type'] == "notification") ? $post['smsbody'] : $post['emailbody'];
         $post['notification'] = ($post['event_type'] == "notification") ? 0 : 1;
@@ -257,7 +257,7 @@ class M_calender extends CI_Model {
         if ($checkFlag) {
             $this->db->trans_start();
             $set['date'] = ($set['date'] != "") ?
-                    $this->wi_common->getMySqlDate($set['date'], $this->session->userdata('date_format')) :
+                    $this->wi_common->getMySqlDate($set['date'], $this->session->userdata('u_date_format')) :
                     $res['date'];
             $set['is_repeat'] = (isset($set['is_repeat']) && $set['is_repeat'] == "on") ? 1 : 0;
             $set['body'] = ($set['event_type'] == "sms" || $set['event_type'] == "notification") ?

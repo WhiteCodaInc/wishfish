@@ -915,7 +915,7 @@
 <!-- End Auto complete -->
 <?php
 $planInfo = $this->wi_common->getCurrentPlan();
-$userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
+$userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
 ?>
 
 <script type="text/javascript">
@@ -1027,7 +1027,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid'));
             showMeridian: false
         });
         $('.default-date-picker').datepicker({
-            format: "<?= $this->session->userdata('date_format') ?>",
+            format: "<?= $this->session->userdata('u_date_format') ?>",
             todayBtn: "linked",
             autoclose: true,
             todayHighlight: true

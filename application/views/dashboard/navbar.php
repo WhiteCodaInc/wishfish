@@ -4,7 +4,7 @@
 //$CI->load->library("common");
 //$rule = $CI->common->getPermission();
 
-$profile_pic = $this->session->userdata('profile_pic');
+$profile_pic = $this->session->userdata('u_profile_pic');
 $img_src = ($profile_pic != "") ?
         "http://mikhailkuznetsov.s3.amazonaws.com/" . $profile_pic :
         base_url() . 'assets/dashboard/img/default-avatar.png';
@@ -20,7 +20,7 @@ $img_src = ($profile_pic != "") ?
                     <img src="<?= $img_src ?>" class="img-circle" alt="User Image" />
                 </div>
                 <div class="pull-left info">
-                    <p><?= $this->session->userdata('name') ?></p>
+                    <p><?= $this->session->userdata('u_name') ?></p>
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
             </div>

@@ -18,7 +18,7 @@ class Wi_common {
         $this->_CI->load->helper('date');
         $this->_CI->load->helper('captcha');
         $this->_CI->load->helper('file');
-        $this->user_id = $this->_CI->session->userdata('userid');
+        $this->user_id = $this->_CI->session->userdata('u_userid');
 
         $this->_CI->load->model('dashboard/m_contacts', 'objcontact');
         $this->_CI->load->model('dashboard/m_calender', 'objcalender');
@@ -178,7 +178,7 @@ class Wi_common {
     }
 
     function getPreviousDate($dt, $interval) {
-        $format = $this->_CI->session->userdata('date_format');
+        $format = $this->_CI->session->userdata('u_date_format');
         if ($this->validateDate($dt, 'Y-m-d')) {
             $date = new DateTime($dt);
         } else {
@@ -205,7 +205,7 @@ class Wi_common {
     }
 
     function getNextDate($dt, $interval) {
-        $format = $this->_CI->session->userdata('date_format');
+        $format = $this->_CI->session->userdata('u_date_format');
         if ($this->validateDate($dt, 'Y-m-d')) {
             $date = new DateTime($dt);
         } else {
@@ -216,8 +216,8 @@ class Wi_common {
     }
 
     function getUTCDate($mysqldate = NULL, $timezone = NULL, $format = NULL) {
-        $format = ($format != NULL) ? $format : $this->_CI->session->userdata('date_format');
-        $timezone = ($timezone != NULL) ? $timezone : $this->_CI->session->userdata('timezone');
+        $format = ($format != NULL) ? $format : $this->_CI->session->userdata('u_date_format');
+        $timezone = ($timezone != NULL) ? $timezone : $this->_CI->session->userdata('u_timezone');
         $date = str_replace('mm', 'm', $format);
         $date = str_replace('dd', 'd', $date);
         $date = str_replace('yyyy', 'Y', $date);
@@ -229,7 +229,7 @@ class Wi_common {
     }
 
     function getDateDiff($planInfo = NULL) {
-        $format = $this->_CI->session->userdata('date_format');
+        $format = $this->_CI->session->userdata('u_date_format');
         $pInfo = ($planInfo == NULL) ? $this->getCurrentPlan() : $planInfo;
         $d1 = date_create($this->getMySqlDate($this->getUTCDate(), $format));
         $d2 = date_create($pInfo->expiry_date);

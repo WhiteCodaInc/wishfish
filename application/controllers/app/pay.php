@@ -15,7 +15,7 @@ class Pay extends CI_Controller {
         Stripe::setApiKey($gatewayInfo->secret_key);
         $this->load->model('m_register', 'objregister');
         $this->load->library('paypal_lib');
-        $this->userid = $this->session->userdata('userid');
+        $this->userid = $this->session->userdata('u_userid');
         $this->api_username = $paypalGatewayInfo->api_username;
         $this->api_password = $paypalGatewayInfo->api_password;
         $this->api_signature = $paypalGatewayInfo->api_signature;

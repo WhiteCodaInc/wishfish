@@ -212,7 +212,7 @@
     $(function () {
         $("[data-mask]").inputmask();
         $('.default-date-picker').datepicker({
-            format: "<?= $this->session->userdata('date_format') ?>",
+            format: "<?= $this->session->userdata('u_date_format') ?>",
             todayBtn: "linked",
             autoclose: true,
             todayHighlight: true

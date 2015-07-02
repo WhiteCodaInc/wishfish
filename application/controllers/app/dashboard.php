@@ -52,7 +52,7 @@ class Dashboard extends CI_Controller {
         }
         if ($this->wi_authex->logged_in()) {
             $card = $this->objcalender->getCards();
-            $uid = $this->session->userdata('userid');
+            $uid = $this->session->userdata('u_userid');
             $card['userInfo'] = $this->wi_common->getUserInfo($uid);
             $this->load->view('dashboard/header');
             $this->load->view('dashboard/top');
@@ -128,8 +128,8 @@ class Dashboard extends CI_Controller {
             $post = $this->input->post();
             if (isset($post['query'])) {
                 $this->objdashboard->addFeedback($post);
-                $name = $this->session->userdata('name');
-                $email = $this->session->userdata('email');
+                $name = $this->session->userdata('u_name');
+                $email = $this->session->userdata('u_email');
                 $body = "Customer Name : {$name}<br>";
                 $body .= "Customer Email : {$email}<br>";
                 ($post['country'] != "" && $post['country'] != "-1") ?
@@ -155,7 +155,7 @@ class Dashboard extends CI_Controller {
 
     function sendVerificationCode() {
         if ($this->wi_authex->logged_in()) {
-            $userid = $this->session->userdata('userid');
+            $userid = $this->session->userdata('u_userid');
             $set = $this->input->post();
             $phone = (preg_match('/^\(?\d{3}\)?[- ]?\d{3}[- ]?\d{4}$/', $set['phone'])) ?
                     str_replace(array('(', ')', ' ', '-'), '', $set['code'] . $set['phone']) :
@@ -185,7 +185,7 @@ class Dashboard extends CI_Controller {
     function checkVerificationCode() {
         if ($this->wi_authex->logged_in()) {
             $code = $this->input->post('code');
-            $userid = $this->session->userdata('userid');
+            $userid = $this->session->userdata('u_userid');
             $set = array(
                 'phone_verification' => 1
             );
@@ -211,7 +211,7 @@ class Dashboard extends CI_Controller {
     function getTimelineEvent() {
         $events = $this->objcalender->getTimelineEvent();
         $dt = $this->wi_common->getUTCDate();
-        $currDate = $this->wi_common->getMySqlDate($dt, $this->session->userdata('date_format'));
+        $currDate = $this->wi_common->getMySqlDate($dt, $this->session->userdata('u_date_format'));
         $ev = array();
         foreach ($events as $key => $value) {
             $ev[$key]['id'] = "event{$value->event_id}";

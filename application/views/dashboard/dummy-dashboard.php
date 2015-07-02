@@ -83,7 +83,7 @@
             }
         </style>
         <?php
-        $profile_pic = $this->session->userdata('profile_pic');
+        $profile_pic = $this->session->userdata('u_profile_pic');
 
         $img_src = ($profile_pic != "") ?
                 "http://mikhailkuznetsov.s3.amazonaws.com/" . $profile_pic :

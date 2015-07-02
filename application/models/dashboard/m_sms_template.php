@@ -17,7 +17,7 @@ class M_sms_template extends CI_Model {
 
     function __construct() {
         parent::__construct();
-        $this->userid = $this->session->userdata('userid');
+        $this->userid = $this->session->userdata('u_userid');
     }
 
     function getTemplates() {

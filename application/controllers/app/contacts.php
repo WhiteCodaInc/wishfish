@@ -94,7 +94,7 @@ class Contacts extends CI_Controller {
         $this->objcontact->createContact($post);
         if ($type != "" && $type == "ajax") {
             $post['birthday'] = ($post['birthday'] != "") ?
-                    $this->wi_common->getMySqlDate($post['birthday'], $this->session->userdata('date_format')) :
+                    $this->wi_common->getMySqlDate($post['birthday'], $this->session->userdata('u_date_format')) :
                     NULL;
             $dt = $this->objcontact->getFutureDate($post['birthday']);
             header('location:' . site_url() . 'app/calender?date=' . $dt);

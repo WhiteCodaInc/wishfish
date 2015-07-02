@@ -13,7 +13,7 @@ class Wi_authex {
     }
 
     function logged_in() {
-        return ($this->_CI->session->userdata("userid") ) ? true : false;
+        return ($this->_CI->session->userdata("u_userid") ) ? true : false;
     }
 
     function login($where) {
@@ -32,12 +32,12 @@ class Wi_authex {
             $where['user_id'] = $query->row()->user_id;
             $query = $this->_CI->db->get_where('wi_user_mst', $where);
             $res = $query->row();
-            $this->_CI->session->set_userdata('userid', $res->user_id);
-            $this->_CI->session->set_userdata('name', $res->name);
-            $this->_CI->session->set_userdata('email', $res->email);
-            $this->_CI->session->set_userdata('profile_pic', $res->profile_pic);
-            $this->_CI->session->set_userdata('timezone', $res->timezones);
-            $this->_CI->session->set_userdata('date_format', $res->date_format);
+            $this->_CI->session->set_userdata('u_userid', $res->user_id);
+            $this->_CI->session->set_userdata('u_name', $res->name);
+            $this->_CI->session->set_userdata('u_email', $res->email);
+            $this->_CI->session->set_userdata('u_profile_pic', $res->profile_pic);
+            $this->_CI->session->set_userdata('u_timezone', $res->timezones);
+            $this->_CI->session->set_userdata('u_date_format', $res->date_format);
             unset($res);
             return TRUE;
         } else {
@@ -46,7 +46,7 @@ class Wi_authex {
     }
 
     function isActivePlan() {
-        $userid = $this->_CI->session->userdata('userid');
+        $userid = $this->_CI->session->userdata('u_userid');
         $this->_CI->db->select('id');
         $query = $this->_CI->db->get_where('wi_plan_detail', array('user_id' => $userid, 'plan_status' => 1));
         $query->result();

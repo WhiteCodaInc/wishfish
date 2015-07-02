@@ -20,7 +20,7 @@ class Scrape extends CI_Controller {
         } else {
             $this->load->library('amazons3');
             $this->config->load('aws');
-            $this->userid = $this->session->userdata('userid');
+            $this->userid = $this->session->userdata('u_userid');
             $this->bucket = $this->encryption->decode($this->config->item('bucket', 'aws'));
             $this->accessKey = $this->encryption->decode($this->config->item('accessKey', 'aws'));
             $this->secretKey = $this->encryption->decode($this->config->item('secretKey', 'aws'));

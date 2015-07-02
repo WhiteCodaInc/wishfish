@@ -4,7 +4,7 @@
     </div><!-- /.container -->
 </footer>
 <?php
-$userid = $this->session->userdata('userid');
+$userid = $this->session->userdata('u_userid');
 if ($userid != "") {
     $userInfo = $this->wi_common->getUserInfo($userid);
     if ($userInfo->phone_verification) {

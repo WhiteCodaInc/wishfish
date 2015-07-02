@@ -21,7 +21,7 @@ class M_contacts extends CI_Model {
     function __construct() {
         parent::__construct();
         $this->load->library('amazons3');
-        $this->userid = $this->session->userdata('userid');
+        $this->userid = $this->session->userdata('u_userid');
         $this->config->load('aws');
         $this->bucket = $this->encryption->decode($this->config->item('bucket', 'aws'));
         $this->accessKey = $this->encryption->decode($this->config->item('accessKey', 'aws'));
@@ -54,10 +54,10 @@ class M_contacts extends CI_Model {
         ($email != "") ? $this->db->like('email', $email) : '';
         ($age != "") ? $where['age'] = $age : '';
         ($from != "") ?
-                        $where['birthday >='] = $this->wi_common->getMySqlDate($from, $this->session->userdata('date_format')) :
+                        $where['birthday >='] = $this->wi_common->getMySqlDate($from, $this->session->userdata('u_date_format')) :
                         '';
         ($to != "") ?
-                        $where['birthday <='] = $this->wi_common->getMySqlDate($to, $this->session->userdata('date_format')) :
+                        $where['birthday <='] = $this->wi_common->getMySqlDate($to, $this->session->userdata('u_date_format')) :
                         '';
         ($zodiac != "" && $zodiac != "-1") ? $where['zodiac'] = $zodiac : '';
         ($country != "") ? $this->db->like('country', $country) : '';
@@ -118,7 +118,7 @@ class M_contacts extends CI_Model {
                 str_replace(array('(', ')', ' ', '-'), '', $set['code'] . $set['phone']) :
                 NULL;
         $set['birthday'] = ($set['birthday'] != "") ?
-                $this->wi_common->getMySqlDate($set['birthday'], $this->session->userdata('date_format')) :
+                $this->wi_common->getMySqlDate($set['birthday'], $this->session->userdata('u_date_format')) :
                 NULL;
         $set['user_id'] = $this->userid;
         unset($set['code']);
@@ -175,7 +175,7 @@ class M_contacts extends CI_Model {
                 str_replace(array('(', ')', ' ', '-'), '', $set['code'] . $set['phone']) :
                 NULL;
         $set['birthday'] = ($set['birthday'] != "") ?
-                $this->wi_common->getMySqlDate($set['birthday'], $this->session->userdata('date_format')) :
+                $this->wi_common->getMySqlDate($set['birthday'], $this->session->userdata('u_date_format')) :
                 NULL;
 
         if (isset($set['group_id'])) {

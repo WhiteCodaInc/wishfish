@@ -50,18 +50,18 @@
     }
 </style>
 <?php
-$profile_pic = $this->session->userdata('profile_pic');
+$profile_pic = $this->session->userdata('u_profile_pic');
 $img_src = ($profile_pic != "") ?
         "http://mikhailkuznetsov.s3.amazonaws.com/" . $profile_pic :
         base_url() . 'assets/dashboard/img/default-avatar.png';
-$userid = $this->session->userdata('userid');
+$userid = $this->session->userdata('u_userid');
 ?>
 <header class="main-header">
     <nav class="navbar navbar-static-top">
         <div class="container-fluid">
             <div class="navbar-header">
                 <a href="<?= site_url() ?>app/dashboard" class="title-logo">
-                    <?= $this->session->userdata('name') ?>
+                    <?= $this->session->userdata('u_name') ?>
                 </a>
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
                     <i class="fa fa-bars"></i>
@@ -406,7 +406,7 @@ $userid = $this->session->userdata('userid');
                                         <?php endif; ?>
                                     </div>
                                     <p>
-                                        <?= $this->session->userdata('name') ?>
+                                        <?= $this->session->userdata('u_name') ?>
                                     </p>
                                 </form>
                             </li>
@@ -558,7 +558,7 @@ $userid = $this->session->userdata('userid');
 
                         <!-------------------------Upload Your Profile Photo------------------------------>
                         <?php
-                        $path = $this->session->userdata('profile_pic');
+                        $path = $this->session->userdata('u_profile_pic');
                         $img_src_setup = ($path != "") ?
                                 "http://mikhailkuznetsov.s3.amazonaws.com/" . $path :
                                 base_url() . 'assets/dashboard/img/default-avatar.png';
@@ -1032,7 +1032,7 @@ $userid = $this->session->userdata('userid');
         </div><!-- /.container-fluid -->
     </nav>
 </header>
-<?php $userInfo = $this->wi_common->getUserInfo($this->session->userdata('userid')); ?>
+<?php $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid')); ?>
 
 
 

@@ -21,7 +21,7 @@ class M_dashboard extends CI_Model {
     function __construct() {
         parent::__construct();
         $this->load->library('amazons3');
-        $this->userid = $this->session->userdata('userid');
+        $this->userid = $this->session->userdata('u_userid');
         $this->config->load('aws');
         $this->bucket = $this->encryption->decode($this->config->item('bucket', 'aws'));
         $this->accessKey = $this->encryption->decode($this->config->item('accessKey', 'aws'));
@@ -129,8 +129,8 @@ class M_dashboard extends CI_Model {
 
     function addFeedback($post) {
         $uid = $this->userid;
-        $name = $this->session->userdata('name');
-        $email = $this->session->userdata('email');
+        $name = $this->session->userdata('u_name');
+        $email = $this->session->userdata('u_email');
         $set = array(
             'user_id' => $uid,
             'name' => $name,

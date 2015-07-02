@@ -26,7 +26,7 @@ class M_profile extends CI_Model {
         $this->accessKey = $this->encryption->decode($this->config->item('accessKey', 'aws'));
         $this->secretKey = $this->encryption->decode($this->config->item('secretKey', 'aws'));
 
-        $this->userid = $this->session->userdata('userid');
+        $this->userid = $this->session->userdata('u_userid');
 
         $gatewayInfo = $this->wi_common->getPaymentGatewayInfo("STRIPE");
         require_once(FCPATH . 'stripe/lib/Stripe.php');
@@ -46,14 +46,14 @@ class M_profile extends CI_Model {
                 $this->createCard($userInfo, $set['stripeToken']);
             }
         }
-        if ($this->session->userdata('name') == "") {
+        if ($this->session->userdata('u_name') == "") {
             $this->session->set_userdata('name', $set['name']);
         }
         $set['phone'] = (preg_match('/^\(?\d{3}\)?[- ]?\d{3}[- ]?\d{4}$/', $set['phone'])) ?
                 str_replace(array('(', ')', ' ', '-'), '', $set['code'] . $set['phone']) :
                 NULL;
         $set['birthday'] = ($set['birthday'] != "") ?
-                $this->wi_common->getMySqlDate($set['birthday'], $this->session->userdata('date_format')) :
+                $this->wi_common->getMySqlDate($set['birthday'], $this->session->userdata('u_date_format')) :
                 NULL;
         $set['is_bill'] = (isset($set['is_bill'])) ? 1 : 0;
 
@@ -107,7 +107,7 @@ class M_profile extends CI_Model {
                 str_replace(array('(', ')', ' ', '-'), '', $set['code'] . $set['phone']) :
                 NULL;
         $set['birthday'] = ($set['birthday'] != "") ?
-                $this->wi_common->getMySqlDate($set['birthday'], $this->session->userdata('date_format')) :
+                $this->wi_common->getMySqlDate($set['birthday'], $this->session->userdata('u_date_format')) :
                 NULL;
         unset($set['code']);
         return ($this->db->update('wi_user_mst', $set, array('user_id' => $this->userid))) ? TRUE : FALSE;
