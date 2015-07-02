@@ -64,16 +64,18 @@ class Login extends CI_Controller {
 
     function signin() {
         $post = $this->input->post();
-        die('called');
         if (isset($post['remember'])) {
             $remember = $post['remember'];
             unset($post['remember']);
         }
         if (is_array($post) && count($post) > 0) {
             $is_login = $this->wi_authex->login($post);
+            echo $is_login . '<br>';
+            print_r($post);
             if ($is_login == -1) {
                 header('location:' . site_url() . 'login?msg=DA');
             } else if ($is_login) {
+                echo 'CALLED';
                 $this->objregister->linkWithProfile($post['email']);
                 die();
                 if (isset($remember) && $remember == "on")
