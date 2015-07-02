@@ -47,6 +47,11 @@ class Dashboard extends CI_Controller {
     }
 
     function index() {
+
+        echo '<pre>';
+        print_r($this->session->all_userdata());
+        die();
+
         if ($this->uid) {
             $this->objdashboard->verifyEmail($this->uid);
         }
