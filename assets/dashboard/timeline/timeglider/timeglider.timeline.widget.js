@@ -134,7 +134,8 @@
                     + "	<div class='timeglider-pan-left'></div><div class='timeglider-pan-right'></div>"
                     + "</div>"
                     + "</div>";
-            $('.tg-single-timeline-header ul').after(slider);
+            alert();
+            $('.tg-single-timeline-header').after(slider);
             this.element.html(MAIN_TEMPLATE);
 
 
