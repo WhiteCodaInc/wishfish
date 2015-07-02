@@ -114,11 +114,6 @@ class M_customers extends CI_Model {
         unset($set['customerid']);
         unset($set['code']);
 
-        echo '<pre>';
-        print_r($set);
-        print_r($_FILES);
-        die();
-
         if (isset($_FILES['profile_pic'])) {
             if ($_FILES['profile_pic']['error'] == 0) {
                 $msg = $this->uploadImage($_FILES, $cid);
