@@ -169,7 +169,7 @@
 </aside><!-- /.right-side -->
 </div><!-- ./wrapper -->
 <script type="text/javascript">
-<?php if ($this->session->flashdata('msg') != ""): ?>
-        alertify.error("<?= $this->session->flashdata('msg') ?>");
+<?php if ($this->input->get('msg') != ""): ?>
+        alertify.error("Customer account currently was deactivated..!");
 <?php endif; ?>
 </script>
