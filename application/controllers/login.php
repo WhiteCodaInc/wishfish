@@ -70,6 +70,7 @@ class Login extends CI_Controller {
         }
         if (is_array($post) && count($post) > 0) {
             $is_login = $this->wi_authex->login($post);
+            echo $is_login . '<br>';
             if ($is_login == "-1") {
                 echo 'DEACTIVE';
 //                header('location:' . site_url() . 'login?msg=DA');
