@@ -126,7 +126,6 @@
                     + "<div class='timeglider-event-hover-info'></div>"
                     + "</div><span id='timeglider-measure-span'></span>";
 
-            this.element.html(MAIN_TEMPLATE);
             var slider = "<div class='timeglider-slider-container noselect'>"
                     + "	<div class='tg-slider-plusminus tg-slider-plus tg-zoom-in'></div>"
                     + "	<div class='timeglider-slider'></div>"
@@ -136,6 +135,8 @@
                     + "</div>"
                     + "</div>";
             $('.tg-single-timeline-header ul').after(slider);
+            this.element.html(MAIN_TEMPLATE);
+
 
         }, // eof _create()
 
