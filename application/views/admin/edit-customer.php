@@ -116,9 +116,9 @@
 </div><!-- ./wrapper -->
 
 <!-- InputMask -->
-<!--<script src="<?= base_url() ?>assets/dashboard/js/plugins/input-mask/jquery.inputmask.js" type="text/javascript"></script>
+<script src="<?= base_url() ?>assets/dashboard/js/plugins/input-mask/jquery.inputmask.js" type="text/javascript"></script>
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/input-mask/jquery.inputmask.date.extensions.js" type="text/javascript"></script>
-<script src="<?= base_url() ?>assets/dashboard/js/plugins/input-mask/jquery.inputmask.extensions.js" type="text/javascript"></script>-->
+<script src="<?= base_url() ?>assets/dashboard/js/plugins/input-mask/jquery.inputmask.extensions.js" type="text/javascript"></script>
 
 
 <script type="text/javascript">
@@ -156,9 +156,9 @@
         });
     });
     $(document).ready(function () {
-        <?php if ($customers->phone): ?>
-                $('select[name="code"]').val("<?= substr($customers->phone, -strlen($customers->phone), 2) ?>");
-    <?php endif; ?>
+<?php if ($customers->phone): ?>
+            $('select[name="code"]').val("<?= substr($customers->phone, -strlen($customers->phone), 2) ?>");
+<?php endif; ?>
 
         $('#addCustomer').click(function () {
             $('#customerForm').submit();
