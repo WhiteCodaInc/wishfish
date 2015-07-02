@@ -13,7 +13,7 @@
             <i class="fa fa-edit"></i>
             Edit
         </a>
-        <a href="<?= site_url() ?>admin/customers/loginAsUser/<?= $customer->user_id ?>" class="create btn bg-maroon">
+        <a href="<?= site_url() ?>admin/customers/loginAsUser/<?= $customer->user_id ?>" class="create btn bg-maroon" target="_blank">
             <i class="fa fa-lock"></i>
             Log in As User
         </a>
