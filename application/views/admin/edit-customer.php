@@ -9,7 +9,7 @@
     <section class="content">
         <?php
         $img_src = ($customers->profile_pic != "") ?
-                "http://mikhailkuznetsov.s3.amazonaws.com/" . $user->profile_pic :
+                "http://mikhailkuznetsov.s3.amazonaws.com/" . $customers->profile_pic :
                 base_url() . 'assets/dashboard/img/default-avatar.png';
         ?>
         <div class="row">
@@ -40,7 +40,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Full Name</label>
-                                <input value="<?= isset($user) ? $user->name : '' ?>" type="text" name="name" autofocus="autofocus" class="form-control" placeholder="Full Name" required=""/>
+                                <input value="<?= isset($customers) ? $customers->name : '' ?>" type="text" name="name" autofocus="autofocus" class="form-control" placeholder="Full Name" required=""/>
                             </div>
                             <div class="form-group" id="phone-number">
                                 <div class="row">
@@ -51,8 +51,8 @@
                                         </select>
                                     </div>
                                     <?php
-                                    $phone = (isset($user)) ?
-                                            substr($user->phone, -10) : "";
+                                    $phone = (isset($customers)) ?
+                                            substr($customers->phone, -10) : "";
                                     ?>
                                     <div class="col-sm-9">
                                         <label>Phone Number</label>
@@ -72,12 +72,12 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
-                                    <input style="z-index: 0;" name="birthday" value="<?= isset($user->birthday) ? $this->wi_common->getUTCDate($user->birthday) : NULL ?>"  class="form-control form-control-inline input-medium default-date-picker" size="16" type="text">
+                                    <input style="z-index: 0;" name="birthday" value="<?= isset($customers->birthday) ? $this->wi_common->getUTCDate($customers->birthday) : NULL ?>"  class="form-control form-control-inline input-medium default-date-picker" size="16" type="text">
                                 </div><!-- /.input group -->
                             </div>
                             <div class="form-group">
                                 <label>Email</label>
-                                <input value="<?= isset($user) ? $user->email : '' ?>" type="email" name="email" class="form-control" placeholder="Email" />
+                                <input value="<?= isset($customers) ? $customers->email : '' ?>" type="email" name="email" class="form-control" placeholder="Email" />
                             </div>
                             <div class="form-group">
                                 <label>Date Format</label>
@@ -101,7 +101,7 @@
                             </div>
                             <div class="form-group">
                                 <label id="title">Profile Url</label>
-                                <input value="<?= isset($user) ? $user->profile_link : '' ?>" type="text" name="profile_link" class="form-control" />
+                                <input value="<?= isset($customers) ? $customers->profile_link : '' ?>" type="text" name="profile_link" class="form-control" />
                             </div>
                         </div><!-- /.box-body -->
                         <input type="hidden" name="customerid" value="<?= $customers->customer_id ?>" />
@@ -131,14 +131,14 @@
             todayHighlight: true
         });
         $('select[name="timezones"]').addClass('form-control m-bot15');
-        $('#type').val("<?= $user->profile_type ?>");
+        $('#type').val("<?= $customers->profile_type ?>");
         $('select[name="timezones"] option').each(function () {
-            if ($(this).val() == "<?= $user->timezones ?>") {
+            if ($(this).val() == "<?= $customers->timezones ?>") {
                 $(this).prop('selected', true);
             }
         });
         $('#date-format option').each(function () {
-            if ($(this).val() == "<?= $user->date_format ?>") {
+            if ($(this).val() == "<?= $customers->date_format ?>") {
                 $(this).prop('selected', true);
             }
         });
