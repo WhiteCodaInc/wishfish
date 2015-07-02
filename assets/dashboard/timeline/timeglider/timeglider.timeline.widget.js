@@ -389,16 +389,4 @@
         }
 
     }); // end widget process
-    alert();
-    var slider = "<div class='timeglider-slider-container noselect'>"
-            + "	<div class='tg-slider-plusminus tg-slider-plus tg-zoom-in'></div>"
-            + "	<div class='timeglider-slider'></div>"
-            + "	<div class='tg-slider-plusminus tg-slider-minus tg-zoom-out'></div>"
-            + "	<div class='timeglider-pan-buttons'>"
-            + "	<div class='timeglider-pan-left'></div><div class='timeglider-pan-right'></div>"
-            + "</div>"
-            + "</div>";
-
-    $('.tg-single-timeline-header').append(slider);
-
 })(jQuery);
