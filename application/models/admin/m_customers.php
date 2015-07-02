@@ -134,6 +134,8 @@ class M_customers extends CI_Model {
                         $m = "U";
                         break;
                 }
+            } else {
+                $m = "U";
             }
         } else {
             $m = "U";
