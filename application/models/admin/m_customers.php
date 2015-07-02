@@ -101,7 +101,6 @@ class M_customers extends CI_Model {
     }
 
     function updateCustomer($set) {
-        $m = "";
         $cid = $set['customerid'];
         $customerInfo = $this->getCustomerInfo($cid);
         $set['phone'] = (preg_match('/^\(?\d{3}\)?[- ]?\d{3}[- ]?\d{4}$/', $set['phone'])) ?
