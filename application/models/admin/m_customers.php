@@ -135,9 +135,7 @@ class M_customers extends CI_Model {
         } else {
             $m = "U";
         }
-        echo "MSG : {$m}";
-        die();
-        //$this->db->update('wi_user_mst', $set, array('user_id' => $cid));
+        $this->db->update('wi_user_mst', $set, array('user_id' => $cid));
         return $m;
     }
 
