@@ -8,6 +8,11 @@
     <section class="content-header">
         <h1 style=" display: none">
             Customer Profile
+        </h1>
+        <a href="<?= site_url() ?>admin/customers/editCustomer/<?= $customer->user_id ?>" class="create btn bg-navy">
+            <i class="fa fa-edit"></i>
+            Edit
+        </a>
     </section>
     <?php
     $img_src = ($customer->profile_pic != "") ?
