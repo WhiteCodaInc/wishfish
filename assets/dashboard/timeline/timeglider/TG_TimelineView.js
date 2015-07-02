@@ -506,14 +506,14 @@
                 .css("height", $(PL).height());
 
 
-        $(".tg-zoom-in").bind(CLICKORTOUCH, function () {
-            MED.zoom(-1);
-        });
-
-
-        $(".tg-zoom-out").bind(CLICKORTOUCH, function () {
-            MED.zoom(1);
-        });
+//        $(".tg-zoom-in").bind(CLICKORTOUCH, function () {
+//            MED.zoom(-1);
+//        });
+//
+//
+//        $(".tg-zoom-out").bind(CLICKORTOUCH, function () {
+//            MED.zoom(1);
+//        });
 
         $(this._views.FOCUS_DATE).bind(CLICKORTOUCH, function () {
             me.datepickerModal();
@@ -1500,17 +1500,17 @@
                 var slider = "";
                 inf = (timeline.get("description")) ? "<li id='info' class='timeline-info-bt' data-timeline_id='" + tid + "'>info</li>" : "",
                         leg = (timeline.get("hasLegend")) ? "<li id='legend' class='tg-legend-bt' data-timeline_id='" + tid + "'>legend</li>" : "",
-//                        slider = "<div class='timeglider-slider-container noselect'>"
-//                        + "     <div class='tg-slider-plusminus tg-slider-plus tg-zoom-in'></div>"
-//                        + "     <div class='timeglider-slider'></div>"
-//                        + "     <div class='tg-slider-plusminus tg-slider-minus tg-zoom-out'></div>"
-//                        + "     <div class='timeglider-pan-buttons'>"
-//                        + "         <div class='timeglider-pan-left'></div>"
-//                        + "         <div class='timeglider-pan-right'></div>"
-//                        + "     </div>"
-//                        + "  </div>";
+                        slider = "<div class='timeglider-slider-container noselect'>"
+                        + "     <div class='tg-slider-plusminus tg-slider-plus tg-zoom-in'></div>"
+                        + "     <div class='timeglider-slider'></div>"
+                        + "     <div class='tg-slider-plusminus tg-slider-minus tg-zoom-out'></div>"
+                        + "     <div class='timeglider-pan-buttons'>"
+                        + "         <div class='timeglider-pan-left'></div>"
+                        + "         <div class='timeglider-pan-right'></div>"
+                        + "     </div>"
+                        + "  </div>";
 
-                tmpl = "<div class='tg-widget-header tg-single-timeline-header'>" + title + "<ul>" + inf + leg + "<li class='tg-timeline-start' data-timeline_id='" + tid + "'>start</li></ul>" + slider + "</div>";
+                        tmpl = "<div class='tg-widget-header tg-single-timeline-header'>" + title + "<ul>" + inf + leg + "<li class='tg-timeline-start' data-timeline_id='" + tid + "'>start</li></ul>" + slider + "</div>";
 
                 $st = $(tmpl).appendTo(CONTAINER);
 
@@ -1549,7 +1549,14 @@
                 me.timelineModal(tid);
             }
 
+            $(".tg-zoom-in").bind(CLICKORTOUCH, function () {
+                MED.zoom(-1);
+            });
 
+
+            $(".tg-zoom-out").bind(CLICKORTOUCH, function () {
+                MED.zoom(1);
+            });
 //            if (timeline.get("hasLegend")) {
 //                setTimeout(function () {
 //                    me.legendModal(tid);
@@ -1770,7 +1777,7 @@
         setupScroller: function () {
 
             if (options.event_overflow == "scroll") {
-                alert("setupScroll");
+
                 $(".timeglider-slider-container").css("right", "22px");
 
                 $(CONTAINER + " .tg-scroller-handle").draggable({

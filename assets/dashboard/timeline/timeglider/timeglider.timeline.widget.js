@@ -102,14 +102,14 @@
                     + "</div>"
                     + "</div>"
 
-                    + "<div class='timeglider-slider-container noselect'>"
-                    + "	<div class='tg-slider-plusminus tg-slider-plus tg-zoom-in'></div>"
-                    + "	<div class='timeglider-slider'></div>"
-                    + "	<div class='tg-slider-plusminus tg-slider-minus tg-zoom-out'></div>"
-                    + "	<div class='timeglider-pan-buttons'>"
-                    + "	<div class='timeglider-pan-left'></div><div class='timeglider-pan-right'></div>"
-                    + "</div>"
-                    + "</div>"
+//				+ "<div class='timeglider-slider-container noselect'>"
+//				+ "	<div class='tg-slider-plusminus tg-slider-plus tg-zoom-in'></div>"
+//				+ "	<div class='timeglider-slider'></div>"
+//				+ "	<div class='tg-slider-plusminus tg-slider-minus tg-zoom-out'></div>"
+//				+ "	<div class='timeglider-pan-buttons'>"
+//				+ "	<div class='timeglider-pan-left'></div><div class='timeglider-pan-right'></div>"
+//				+ "</div>"
+//				+ "</div>"
 
                     + "<div class='tg-scrim'></div>"
 
@@ -169,7 +169,7 @@
             this.element.data("timeline", this.element.data("timegliderTimeline"));
 
 
-       },
+        },
         /** 
          *********  PUBLIC METHODS ***************
          *
@@ -216,7 +216,7 @@
         },
         getMediator: function () {
             return MED;
-    },
+        },
         /*
          * getEventByID
          * By passing just an id, this returns the whole event object
@@ -228,10 +228,10 @@
          */
         getEventByID: function (id, prop) {
             return MED.getEventByID(id, prop);
-      },
+        },
         updateEvent: function (model_object) {
             return MED.updateEvent(model_object);
-      },
+        },
         /*
          * focusToEvent
          * By passing just an id, this returns the whole event object
@@ -246,15 +246,15 @@
             MED.focusToEvent(ev);
 
             return this;
-      },
+        },
         getScope: function () {
             return MED.getScope();
-    },
+        },
         fitToContainer: function () {
             MED.fitToContainer();
 
             return this;
-    },
+        },
         /*
          * adjustNowEvents
          * keeps ongoing events current to the latest time
@@ -271,7 +271,7 @@
          */
         adjustNowEvents: function () {
             return MED.adjustNowEvents();
-    },
+        },
         /*
          * addEvent
          * adds and event to any of the existing, loaded timelines
@@ -284,7 +284,8 @@
          *
          */
         addEvent: function (new_event, refresh) {
-            return MED.addEvent(new_event, refresh);   },
+            return MED.addEvent(new_event, refresh);
+        },
         /**
          * zoom
          * zooms the timeline in or out, adding an amount, often 1 or -1
@@ -311,7 +312,7 @@
             MED.zoom(n);
 
             return this;
-      },
+        },
         /**
          * loadTimeline
          * basic wrapper for Mediator loadTimeline
@@ -341,7 +342,7 @@
             MED.loadTimelineData(src, callback_object, reload);
 
             return this;
-      },
+        },
         /**
          * reloadTimelime
          * reloads already loaded timeline from json
@@ -352,7 +353,7 @@
         reloadTimeline: function (id, source) {
             MED.reloadTimeline(id, source);
             return this;
-      },
+        },
         /**
          *  panButton
          *  sets a pan action on an element for mousedown and mouseup|mouseover
@@ -373,7 +374,7 @@
                     break;
             }
             timelinePlayer.setPanButton(jquery_sel, _vel);
-      },
+        },
         /**
          * destroy 
          * wipes out everything
