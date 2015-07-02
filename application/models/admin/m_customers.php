@@ -110,7 +110,7 @@ class M_customers extends CI_Model {
         $set['birthday'] = ($set['birthday'] != "") ? $this->common->getMySqlDate($set['birthday'], $customerInfo->date_format) : NULL;
 
         echo '<pre>';
-        print_r($customerInfo);
+        print_r($set);
         die();
 
         if (isset($set['group_id'])) {
