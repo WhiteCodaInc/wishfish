@@ -1502,17 +1502,17 @@
                         tmpl = "<div class='tg-widget-header tg-single-timeline-header'>" + title + "<ul>" + inf + leg + "<li class='tg-timeline-start' data-timeline_id='" + tid + "'>start</li></ul></div>";
 
                 $st = $(tmpl).appendTo(CONTAINER);
+                
+                var slider = "<div class='timeglider-slider-container noselect'>"
+                        + "	<div class='tg-slider-plusminus tg-slider-plus tg-zoom-in'></div>"
+                        + "	<div class='timeglider-slider'></div>"
+                        + "	<div class='tg-slider-plusminus tg-slider-minus tg-zoom-out'></div>"
+                        + "	<div class='timeglider-pan-buttons'>"
+                        + "	<div class='timeglider-pan-left'></div><div class='timeglider-pan-right'></div>"
+                        + "</div>"
+                        + "</div>";
 
-//                var slider = "<div class='timeglider-slider-container noselect'>"
-//                        + "	<div class='tg-slider-plusminus tg-slider-plus tg-zoom-in'></div>"
-//                        + "	<div class='timeglider-slider'></div>"
-//                        + "	<div class='tg-slider-plusminus tg-slider-minus tg-zoom-out'></div>"
-//                        + "	<div class='timeglider-pan-buttons'>"
-//                        + "	<div class='timeglider-pan-left'></div><div class='timeglider-pan-right'></div>"
-//                        + "</div>"
-//                        + "</div>";
-//
-//                $('.tg-single-timeline-header').append(slider);
+                $('.tg-single-timeline-header').append(slider);
 
                 me.singleTitleHeight = $st.outerHeight();
 
@@ -1635,8 +1635,8 @@
                     inf = (pres.description) ? "<li id='info' class='pres-info-bt'>info</li>" : "",
                     leg = (pres.legend) ? "<li id='legend' data-timeline_id='pres' class='tg-legend-bt'>legend</li>" : "",
                     tools = "", // "<a id='tools' class='tools-bt noselect'>tools</a>",
-                    titl = "Hello",
-                    tmpl = "<div class='tg-widget-header tg-pres-header'>" + titl + "<ul>" + inf + leg + "<li class='tg-pres-start'>start</li></ul>" + tools + "</div>",
+
+                    tmpl = "<div class='tg-widget-header tg-pres-header'>" + title + "<ul>" + inf + leg + "<li class='tg-pres-start'>start</li></ul>" + tools + "</div>",
                     $st = $(tmpl).appendTo(CONTAINER);
 
             // end vars
