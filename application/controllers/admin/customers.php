@@ -87,7 +87,7 @@ class Customers extends CI_Controller {
             $this->session->sess_destroy();
             $uid = $this->encryption->encode($customer->user_id);
             $url = 'https://wish-fish.com/app/dashboard?uid=' . $uid;
-            echo "<script>window.open({$url});</script>";
+            echo '<script>window.open("' . $url . '");</script>';
 //            header('location:https://wish-fish.com/app/dashboard');
         } else {
             header('location:' . site_url() . "admin/customers/profile/{$cid}?msg=DA");
