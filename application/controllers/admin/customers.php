@@ -82,6 +82,9 @@ class Customers extends CI_Controller {
     }
 
     function loginAsUser($cid) {
+        echo '<pre>';
+        print_r($this->session->all_userdata());
+        die();
         $customer = $this->objcustomer->getCustomerInfo($cid);
         if ($customer->status) {
             $uid = $this->encryption->encode($customer->user_id);
