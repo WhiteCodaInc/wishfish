@@ -70,28 +70,22 @@ class Login extends CI_Controller {
         }
         if (is_array($post) && count($post) > 0) {
             $is_login = $this->wi_authex->login($post);
-            echo $is_login . '<br>';
             if ($is_login === -1) {
-                echo 'DEACTIVE';
-//                header('location:' . site_url() . 'login?msg=DA');
+                header('location:' . site_url() . 'login?msg=DA');
             } else if ($is_login) {
-                echo 'ACTIVE';
-//                $this->objregister->linkWithProfile($post['email']);
-//                die();
-//                if (isset($remember) && $remember == "on")
-//                    $this->storeCookie($post);
-//                if ($this->wi_authex->isActivePlan()) {
-//                    header('location:' . site_url() . 'app/dashboard');
-//                } else {
-//                    header('location:' . site_url() . 'app/upgrade');
-//                }
+                $this->objregister->linkWithProfile($post['email']);
+                if (isset($remember) && $remember == "on")
+                    $this->storeCookie($post);
+                if ($this->wi_authex->isActivePlan()) {
+                    header('location:' . site_url() . 'app/dashboard');
+                } else {
+                    header('location:' . site_url() . 'app/upgrade');
+                }
             } else {
-                echo 'NOT EXIST';
-//                header('location:' . site_url() . 'login?msg=F');
+                header('location:' . site_url() . 'login?msg=F');
             }
         } else {
-            echo 'NO POST';
-//            header('location:' . site_url() . 'login');
+            header('location:' . site_url() . 'login');
         }
     }
 
@@ -106,16 +100,11 @@ class Login extends CI_Controller {
                 $data = $this->service->userinfo->get();
                 $this->session->set_userdata('token', $this->client->getAccessToken());
                 $user = $this->objregister->isUserExist($data);
-//                echo $user;
-
                 if ($user === -1) {
-//                    die("-1");
                     header('location: ' . site_url() . 'login?msg=DA');
                 } else if (!$user) {
-//                    die("0");
                     header('location: ' . site_url() . 'login?signup=google&msg=NR');
                 } else {
-//                    die("1");
                     $this->objregister->linkWithProfile($data['email']);
                     $is_login = array(
                         'name' => 'isLogin',
