@@ -168,3 +168,8 @@
     </section>
 </aside><!-- /.right-side -->
 </div><!-- ./wrapper -->
+<script type="text/javascript">
+<?php if ($this->session->flashdata('msg') != ""): ?>
+        alertify.error("<?= $this->session->flashdata('msg') ?>");
+<?php endif; ?>
+</script>

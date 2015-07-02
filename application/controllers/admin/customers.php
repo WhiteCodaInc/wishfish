@@ -82,10 +82,23 @@ class Customers extends CI_Controller {
     }
 
     function loginAsUser($cid) {
-        echo '<pre>';
-        print_r($this->session->all_userdata());
-        die();
-        $cutomer = $this->objcustomer->getCustomerInfo($cid);
+        $customer = $this->objcustomer->getCustomerInfo($cid);
+        if ($customer->status) {
+            $this->session->sess_destroy();
+            $sess = array(
+                'userid' => $customer->name,
+                'name' => $customer->name,
+                'email' => $customer->email,
+                'profile_pic' => $customer->profile_pic,
+                'timezone' => $customer->timezones,
+                'date_format' => $customer->date_format
+            );
+            $this->session->set_userdata($sess);
+            header('location:https://wish-fish.com/app/dashboard');
+        } else {
+            $this->session->flashdata('msg', 'Customer account currently was deactivated..!');
+            header('location:' . site_url() . "customers/profile/{$cid}");
+        }
     }
 
 }

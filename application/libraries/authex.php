@@ -57,14 +57,7 @@ class Authex {
     }
 
     function logout() {
-        $sess = array(
-            'name' => '',
-            'email' => '',
-            'phone' => '',
-            'avatar' => '',
-            'profileid' => ''
-        );
-        $this->_CI->session->unset_userdata($sess);
+        $this->_CI->session->sess_destroy();
     }
 
     function can_register($userid) {
