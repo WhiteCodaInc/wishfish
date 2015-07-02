@@ -65,6 +65,12 @@ class Customers extends CI_Controller {
         $this->load->view('admin/admin_footer');
     }
 
+    function updateAffiliate() {
+        $post = $this->input->post();
+        $msg = $this->objcustomer->updateCustomer($post);
+        header('location:' . site_url() . 'admin/customers?msg=' . $msg);
+    }
+
     function action() {
         $type = $this->input->post('actionType');
         if ($type == "Delete" || $type == "Active" || $type == "Deactive") {
