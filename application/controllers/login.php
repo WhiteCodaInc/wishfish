@@ -64,7 +64,7 @@ class Login extends CI_Controller {
 
     function signin() {
         $post = $this->input->post();
-
+        die('called');
         if (isset($post['remember'])) {
             $remember = $post['remember'];
             unset($post['remember']);
