@@ -65,7 +65,7 @@ class Customers extends CI_Controller {
         $this->load->view('admin/admin_footer');
     }
 
-    function updateAffiliate() {
+    function updateCustomer() {
         $post = $this->input->post();
         $msg = $this->objcustomer->updateCustomer($post);
         header('location:' . site_url() . 'admin/customers?msg=' . $msg);
