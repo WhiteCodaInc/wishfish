@@ -266,7 +266,7 @@ class Common {
     }
 
     function getNewPayment() {
-        $this->_CI->db->select('U.user_id,profile_pic,name,mc_gross,gateway,payment_date');
+        $this->_CI->db->select('U.user_id,profile_pic,name,mc_gross,P.gateway,payment_date');
         $this->_CI->db->from('wi_payment_mst as P');
         $this->_CI->db->join('wi_plan_detail as PD', 'P.id = PD.id', 'left outer');
         $this->_CI->db->join('wi_user_mst as U', 'PD.user_id = U.user_id');
