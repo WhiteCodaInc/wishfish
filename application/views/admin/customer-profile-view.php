@@ -353,10 +353,10 @@
             ],
             aoColumnDefs: [{
                     bSortable: false,
-                    aTargets: [0, 2, 3, 4]
+                    aTargets: [0, 1, 2, 3, 4]
                 }],
             iDisplayLength: -1,
-            aaSorting: [[]]
+//            aaSorting: [[0, 'asc']]
         });
 
         $('.default-date-picker').datepicker({
