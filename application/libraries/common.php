@@ -273,9 +273,6 @@ class Common {
         $this->_CI->db->limit(10);
         $this->_CI->db->order_by('P.payment_date', 'desc');
         $query = $this->_CI->db->get();
-        echo '<pre>';
-        print_r($query->result());
-        die();
         return $query->result();
     }
 
