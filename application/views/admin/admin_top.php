@@ -60,7 +60,7 @@
                                                 <img style="width:60px;height:60px" src="<?= $img_src ?>" class="img-circle" alt="User Image"/>
                                             </div>
                                             <h4>New Customer</h4>
-                                            <p><?= $value->name ?> Join as <?= $value->plan_name ?> </p>
+                                            <p style="margin: 0;white-space: normal"><?= $value->name ?> Join as <?= $value->plan_name ?> </p>
                                         </a>
                                     </li><!-- end message -->
                                 <?php } ?>

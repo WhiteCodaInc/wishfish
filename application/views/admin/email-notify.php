@@ -15,7 +15,7 @@
                             <?= $arr[0] ?>
                             <small style="float: right"><i class="fa fa-clock-o"></i><?= $email['date'] ?></small>
                         </h4>
-                        <p style="margin: 0"><?= $email['subject'] ?></p>
+                        <p style="margin: 0;white-space: normal"><?= $email['subject'] ?></p>
                     </a>
                 </li><!-- end message -->
             <?php } ?>
