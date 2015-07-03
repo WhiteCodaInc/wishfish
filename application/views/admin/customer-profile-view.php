@@ -4,6 +4,12 @@
     }
 </style>
 <aside class="right-side">
+
+    <?php
+    $userInfo = $this->wi_common->getUserInfo($customer->user_id);
+    $currPlan = $this->wi_common->getCurrentPlan($customer->user_id);
+    ?>
+
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1 style=" display: none">
@@ -17,6 +23,12 @@
             <i class="fa fa-lock"></i>
             Log in As User
         </a>
+        <?php if (count($currPlan) && $currPlan->plan_id == 1) : ?>
+            <a href="#" id="extend" class="create btn bg-olive" data-toggle="modal" data-target="#trial-modal">
+                <i class="fa fa-edit"></i>
+                Extend Trial
+            </a>
+        <?php endif; ?>
     </section>
     <?php
     $img_src = ($customer->profile_pic != "") ?
@@ -145,8 +157,6 @@
                             </div>
                         </div>
                         <?php
-                        $userInfo = $this->wi_common->getUserInfo($customer->user_id);
-                        $currPlan = $this->wi_common->getCurrentPlan($customer->user_id);
                         if (count($currPlan) && $currPlan->plan_id == 1) {
                             $trialD = $this->common->getDateDiff($userInfo, $currPlan);
                             ?>
@@ -159,7 +169,7 @@
                                         </span>
                                     </div>
                                     <div class="col-md-2">
-                                        <button id="extend" class="btn btn-xs bg-fuchsia">Extend</button>
+                                        <button id="extend" class="btn btn-xs bg-">Extend</button>
                                     </div>
                                 </div>
                             </div>
@@ -169,8 +179,48 @@
             </div>
         </div>
     </section>
-</aside><!-- /.right-side -->
-</div><!-- ./wrapper -->
+    <!-- NEW ADMIN ACCESS CLASS MODAL -->
+    <div class="modal fade-in-left" id="trial-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" style="max-width: 400px">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Admin Access Class</h4>
+                </div>
+                <form id="classForm"  method="post">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-7">
+                                <label>Admin Access Class</label>
+                                <div class="form-group" >
+                                    <input type="text" id="class_name" name="class_name" class="form-control"   />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <img id="load" src="<?= base_url() ?>assets/dashboard/img/load.GIF" alt="" style="display: none" />
+                                <span style="display: none" id="msg"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer clearfix">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <button type="button" id="addClass" class="btn btn-primary pull-left">Create Now</button>
+                            </div>
+                            <div class="col-md-3">
+                                <button type="button" id="discard" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+
+</aside>
+</div>
 <script type="text/javascript">
 <?php if ($this->input->get('msg') != ""): ?>
         alertify.error("Customer account currently was deactivated..!");
