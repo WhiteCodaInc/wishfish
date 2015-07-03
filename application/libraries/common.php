@@ -246,6 +246,15 @@ class Common {
         return $query->row()->total;
     }
 
+    function getNewCustomer() {
+        $this->_CI->db->select('*');
+        $this->_CI->db->from('inbox as I');
+        $this->_CI->db->join('contact_detail as C', 'I.contact_id = C.contact_id');
+        $this->_CI->db->where('status', 1);
+        $query = $this->_CI->db->get();
+        return $query->result();
+    }
+
     function getPermission() {
         $adminInfo = $this->getAdminInfo();
         $permission = $this->_CI->db->get_where('access_class', array('class_id' => $adminInfo->class_id));
