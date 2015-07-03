@@ -1500,13 +1500,14 @@
                         inf = (timeline.get("description")) ? "<li id='info' class='timeline-info-bt' data-timeline_id='" + tid + "'>info</li>" : "",
                         leg = (timeline.get("hasLegend")) ? "<li id='legend' class='tg-legend-bt' data-timeline_id='" + tid + "'>legend</li>" : "",
                         slider = "<div class='slide'>"
-                        + "	<div class='tg-slider-plusminus tg-slider-plus tg-zoom-in'></div>"
-                        + "	<div class='timeglider-slider'></div>"
-                        + "	<div class='tg-slider-plusminus tg-slider-minus tg-zoom-out'></div>"
-                        + "	<div class='timeglider-pan-buttons'>"
-                        + "	<div class='timeglider-pan-left'></div><div class='timeglider-pan-right'></div>"
-                        + "</div>"
-                        + "</div>",
+                        + "			<div class='zoom' style='color: white;float: right;padding: 0 5px;'>"
+                        + "				<div class='zoomlevel timeglider-zoomlevel-display'>48</div>"
+                        + "			</div>"
+                        + "			<div class='right'><i class='fa fa-chevron-circle-right'></i></div>"
+                        + "			<div class='left'><i class='fa fa-chevron-circle-left'></i></div>"
+                        + "			<div class='minus'><i class='fa fa-minus'></i></div>"
+                        + "			<div class='plus'><i class='fa fa-plus'></i></div>",
+						+ "		 </div>",
                         tmpl = "<div class='tg-widget-header tg-single-timeline-header'>" + title + "<ul>" + inf + leg + "<li class='tg-timeline-start' data-timeline_id='" + tid + "'>start</li></ul>" + slider + "</div>";
 
                 $st = $(tmpl).appendTo(CONTAINER);
