@@ -168,9 +168,6 @@
                                             <?= ($trialD) ? $trialD : "Expired" ?>
                                         </span>
                                     </div>
-                                    <div class="col-md-2">
-                                        <button id="extend" class="btn btn-xs bg-">Extend</button>
-                                    </div>
                                 </div>
                             </div>
                         <?php } ?>
