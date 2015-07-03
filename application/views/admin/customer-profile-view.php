@@ -2,6 +2,9 @@
     .title{
         color: #3c8dbc;
     }
+    #payment-data-table tr td,#payment-data-table tr th{
+        text-align: center;
+    }
 </style>
 <aside class="right-side">
 
@@ -175,6 +178,60 @@
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box" >
+                    <!--<form name="checkForm" id="checkForm" action="" method="post">-->
+                    <div class="box-body table-responsive" id="data-panel">
+                        <table id="payment-data-table" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+<!--                                        <th style="padding: 10px;">
+                                        <input type="checkbox"/>
+                                    </th>-->
+                                    <th>Date & Time</th>
+                                    <th>Amount</th>
+                                    <th>Installment Number</th>
+                                    <th>Payment Method</th>
+                                    <th>Plan</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($phistory as $value) { ?>
+                                    <tr>
+        <!--                                        <td>
+                                            <div>
+                                                <label>
+                                                    <input type="checkbox" class="check"  name="customer[]" value="<?= $value->user_id ?>"/>
+                                                </label>
+                                            </div>
+                                        </td>-->
+                                        <td><?= date('m-d-Y', strtotime($value->payment_date)) ?></td>
+                                        <td><?= $value->mc_gross ?></td>
+                                        <td><?= $value->transaction_id ?></td>
+                                        <td><?= $value->gateway ?></td>
+                                        <td><?= $value->plan_name ?></td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Date & Time</th>
+                                    <th>Amount</th>
+                                    <th>Installment Number</th>
+                                    <th>Payment Method</th>
+                                    <th>Plan</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <!--<input type="hidden" id="actionType" name="actionType" value="" />-->
+                    </div><!-- /.box-body -->
+                    <!--</form>-->
+                </div><!-- /.box -->
+            </div>
+        </div>
+
     </section>
     <!-- NEW ADMIN ACCESS CLASS MODAL -->
     <div class="modal fade" id="trial-modal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -277,9 +334,28 @@
 
 </aside>
 </div>
+
+<!-- DATA TABES SCRIPT -->
+<script src="<?= base_url() ?>assets/dashboard/js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
+<script src="<?= base_url() ?>assets/dashboard/js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
+
 <script type="text/javascript">
 
     $(function () {
+
+        $("#customer-data-table").dataTable({
+            aLengthMenu: [
+                [25, 50, 100, 200, -1],
+                [25, 50, 100, 200, "All"]
+            ],
+            aoColumnDefs: [{
+                    bSortable: false,
+                    aTargets: [0, 1, 3, 4, 5, 6, 7]
+                }],
+            iDisplayLength: -1,
+            aaSorting: [[2, 'asc']]
+        });
+
         $('.default-date-picker').datepicker({
             format: "mm-dd-yyyy",
             todayBtn: "linked",

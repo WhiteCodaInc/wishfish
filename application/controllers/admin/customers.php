@@ -49,6 +49,7 @@ class Customers extends CI_Controller {
 
     function profile($cid) {
         $data['customer'] = $this->objcustomer->getCustomerInfo($cid);
+        $data['phistory'] = $this->objcustomer->getPaymentHistory($cid);
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');
