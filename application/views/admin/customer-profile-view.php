@@ -200,7 +200,7 @@
                                     <?php foreach ($phistory as $value) { ?>
                                         <tr>
                                             <td><?= date('m-d-Y', strtotime($value->payment_date)) ?></td>
-                                            <td><?= $value->mc_gross ?></td>
+                                            <td>$ <?= $value->mc_gross ?></td>
                                             <td><?= $value->transaction_id ?></td>
                                             <td><?= $value->gateway ?></td>
                                             <td><?= $value->plan_name ?></td>
