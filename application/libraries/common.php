@@ -246,12 +246,14 @@ class Common {
     }
 
     function getNewCustomer() {
-//        $this->_CI->db->select('*');
-//        $this->_CI->db->from('wi_user_mst');
-//        $this->_CI->db->join('contact_detail as C', 'I.contact_id = C.contact_id');
+
+        $this->_CI->db->select('U.user_id,profile_pic,U.register_date,name,P.plan_name');
+        $this->_CI->db->from('wi_user_mst as U');
+        $this->_CI->db->join('wi_plan_detail as PD', 'U.user_id = PD.user_id', 'left outer');
+        $this->_CI->db->join('wi_plans as P', 'PD.plan_id = P.plan_id');
         $this->_CI->db->limit(10);
         $this->_CI->db->where('notification', 1);
-        $query = $this->_CI->db->get('wi_user_mst');
+        $query = $this->_CI->db->get();
         return $query->result();
     }
 
