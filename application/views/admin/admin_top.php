@@ -71,7 +71,7 @@
                                 <?php } ?>
                             </ul>
                         </li>
-                        <li class="footer"><a href="<?= site_url() . 'admin/customers/' ?>">See All Customers</a></li>
+                        <li class="footer"><a href="#">See All Payments</a></li>
                     </ul>
                 </li>
                 <!-- ENd New Customer Join Notification -->
@@ -85,7 +85,7 @@
                     </a>
                     <?php $customers = $this->common->getNewCustomer(); ?>
                     <ul class="dropdown-menu">
-                        <li class="header">You have <?= $this->common->getTotalNewCustomer() ?> messages</li>
+                        <li class="header">You have <?= $this->common->getTotalNewCustomer() ?> Customers</li>
                         <li>
                             <!-- inner menu: contains the actual data -->
                             <ul class="menu newCustomer">
