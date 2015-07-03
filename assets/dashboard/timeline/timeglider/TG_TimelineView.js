@@ -3366,8 +3366,8 @@
                             console.log(stht + padding);
                             $div.css({"display": "block"})
                                     .position({
-//                                        my: "center top+" + (stht + padding),
-                                        my: "center top+" + (50),
+                                        my: "center top+" + (stht + padding),
+//                                        my: "center top+" + (50),
                                         at: "center top",
                                         of: $(CONTAINER)
                                     })
