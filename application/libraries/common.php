@@ -250,7 +250,6 @@ class Common {
         $this->_CI->db->from('wi_user_mst as U');
         $this->_CI->db->join('wi_plan_detail as PD', 'U.user_id = PD.user_id', 'left outer');
         $this->_CI->db->join('wi_plans as P', 'PD.plan_id = P.plan_id');
-        $this->_CI->db->where('notification', 1);
         $this->_CI->db->limit(10);
         $this->_CI->db->order_by('U.register_date', 'desc');
         $query = $this->_CI->db->get();
