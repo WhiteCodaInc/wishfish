@@ -182,17 +182,14 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="box" >
-                    <div class="box-header box-primary">
+                    <div class="box-header">
                         <h3 class="box-title">Payment History</h3>
                     </div> 
                     <form name="checkForm" id="checkForm" action="" method="post">
-                        <div class="box-body table-responsive" id="data-panel">
+                        <div class="box-body table-responsive">
                             <table id="payment-data-table" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-<!--                                        <th style="padding: 10px;">
-                                            <input type="checkbox"/>
-                                        </th>-->
                                         <th>Date & Time</th>
                                         <th>Amount</th>
                                         <th>Installment Number</th>
@@ -203,13 +200,6 @@
                                 <tbody>
                                     <?php foreach ($phistory as $value) { ?>
                                         <tr>
-    <!--                                            <td>
-                                                <div>
-                                                    <label>
-                                                        <input type="checkbox" class="check"  name="customer[]" value="<?= $value->user_id ?>"/>
-                                                    </label>
-                                                </div>
-                                            </td>-->
                                             <td><?= date('m-d-Y', strtotime($value->payment_date)) ?></td>
                                             <td><?= $value->mc_gross ?></td>
                                             <td><?= $value->transaction_id ?></td>
@@ -228,13 +218,11 @@
                                     </tr>
                                 </tfoot>
                             </table>
-                            <input type="hidden" id="actionType" name="actionType" value="" />
                         </div> 
                     </form>
                 </div>
             </div>
         </div>
-
     </section>
     <!-- NEW ADMIN ACCESS CLASS MODAL -->
     <div class="modal fade" id="trial-modal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -374,34 +362,36 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#extendDate').click(function () {
-            var edate = $('input[name="extend_date"]').val();
-            var userid = "<?= $customer->user_id ?>";
-            $('#load').css('display', 'block');
-            $('#msg').css('display', 'none');
-            $.ajax({
-                type: 'POST',
-                url: "<?= site_url() ?>admin/admin_access/addClass",
-                data: {userid: userid, edate: edate},
-                success: function (data, textStatus, jqXHR) {
-                    setTimeout(function () {
-                        if (data == "1") {
-                            $('#msg').html("Trial Period Extend Successfully..");
-                            $('#load').css('display', 'none');
-                            $('#msg').css('display', 'block');
-                            $('#msg').css('color', 'green');
-                            $('#discard').trigger('click');
-                            location.reload(true);
-                        }
-                        else if (data == "0") {
-                            $('#loadDept').html("Insertion Failed. Try again..!");
-                            $('#load').css('display', 'none');
-                            $('#msg').css('display', 'block');
-                            $('#msg').css('color', 'red');
-                        }
-                    }, 1000);
-                }
-            });
-        });
+        /*
+         $('#extendDate').click(function () {
+         var edate = $('input[name="extend_date"]').val();
+         var userid = "<?= $customer->user_id ?>";
+         $('#load').css('display', 'block');
+         $('#msg').css('display', 'none');
+         $.ajax({
+         type: 'POST',
+         url: "<?= site_url() ?>admin/admin_access/addClass",
+         data: {userid: userid, edate: edate},
+         success: function (data, textStatus, jqXHR) {
+         setTimeout(function () {
+         if (data == "1") {
+         $('#msg').html("Trial Period Extend Successfully..");
+         $('#load').css('display', 'none');
+         $('#msg').css('display', 'block');
+         $('#msg').css('color', 'green');
+         $('#discard').trigger('click');
+         location.reload(true);
+         }
+         else if (data == "0") {
+         $('#loadDept').html("Insertion Failed. Try again..!");
+         $('#load').css('display', 'none');
+         $('#msg').css('display', 'block');
+         $('#msg').css('color', 'red');
+         }
+         }, 1000);
+         }
+         });
+         });
+         */
     });
 </script>
