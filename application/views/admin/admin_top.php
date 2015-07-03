@@ -175,5 +175,8 @@
             var id = $(this).attr('id');
             $.post("<?= site_url() ?>admin/sms/updateStatus/" + id);
         });
+        $('li.customer-notification > a.dropdown-toggle').on('click', function () {
+            console.log('caaled');
+        });
     });
 </script>
