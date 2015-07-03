@@ -184,54 +184,54 @@
                 <div class="box" >
                     <div class="box-header box-primary">
                         <h3 class="box-title">Payment History</h3>
-                    </div><!-- /.box-header -->
-                    <!--<form name="checkForm" id="checkForm" action="" method="post">-->
-                    <div class="box-body table-responsive" id="data-panel">
-                        <table id="payment-data-table" class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-<!--                                        <th style="padding: 10px;">
-                                        <input type="checkbox"/>
-                                    </th>-->
-                                    <th>Date & Time</th>
-                                    <th>Amount</th>
-                                    <th>Installment Number</th>
-                                    <th>Payment Method</th>
-                                    <th>Plan</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach ($phistory as $value) { ?>
+                    </div> 
+                    <form name="checkForm" id="checkForm" action="" method="post">
+                        <div class="box-body table-responsive" id="data-panel">
+                            <table id="payment-data-table" class="table table-bordered table-striped">
+                                <thead>
                                     <tr>
-        <!--                                        <td>
-                                            <div>
-                                                <label>
-                                                    <input type="checkbox" class="check"  name="customer[]" value="<?= $value->user_id ?>"/>
-                                                </label>
-                                            </div>
-                                        </td>-->
-                                        <td><?= date('m-d-Y', strtotime($value->payment_date)) ?></td>
-                                        <td><?= $value->mc_gross ?></td>
-                                        <td><?= $value->transaction_id ?></td>
-                                        <td><?= $value->gateway ?></td>
-                                        <td><?= $value->plan_name ?></td>
+                                        <th style="padding: 10px;">
+                                            <input type="checkbox"/>
+                                        </th>
+                                        <th>Date & Time</th>
+                                        <th>Amount</th>
+                                        <th>Installment Number</th>
+                                        <th>Payment Method</th>
+                                        <th>Plan</th>
                                     </tr>
-                                <?php } ?>
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>Date & Time</th>
-                                    <th>Amount</th>
-                                    <th>Installment Number</th>
-                                    <th>Payment Method</th>
-                                    <th>Plan</th>
-                                </tr>
-                            </tfoot>
-                        </table>
-                        <!--<input type="hidden" id="actionType" name="actionType" value="" />-->
-                    </div><!-- /.box-body -->
-                    <!--</form>-->
-                </div><!-- /.box -->
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($phistory as $value) { ?>
+                                        <tr>
+                                            <td>
+                                                <div>
+                                                    <label>
+                                                        <input type="checkbox" class="check"  name="customer[]" value="<?= $value->user_id ?>"/>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td><?= date('m-d-Y', strtotime($value->payment_date)) ?></td>
+                                            <td><?= $value->mc_gross ?></td>
+                                            <td><?= $value->transaction_id ?></td>
+                                            <td><?= $value->gateway ?></td>
+                                            <td><?= $value->plan_name ?></td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>Date & Time</th>
+                                        <th>Amount</th>
+                                        <th>Installment Number</th>
+                                        <th>Payment Method</th>
+                                        <th>Plan</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                            <input type="hidden" id="actionType" name="actionType" value="" />
+                        </div> 
+                    </form>
+                </div>
             </div>
         </div>
 
@@ -346,17 +346,17 @@
 
     $(function () {
 
-        $("#customer-data-table").dataTable({
+        $("#payment-data-table").dataTable({
             aLengthMenu: [
                 [25, 50, 100, 200, -1],
                 [25, 50, 100, 200, "All"]
             ],
             aoColumnDefs: [{
                     bSortable: false,
-                    aTargets: [0, 1, 3, 4, 5, 6, 7]
+                    aTargets: [0, 2, 3, 4]
                 }],
             iDisplayLength: -1,
-            aaSorting: [[2, 'asc']]
+            aaSorting: [[]]
         });
 
         $('.default-date-picker').datepicker({
