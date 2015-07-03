@@ -177,7 +177,7 @@
         });
         $('li.customer-notification > a.dropdown-toggle').on('click', function () {
             var totalC = $(this).children('span.label').text();
-            if (totalC != "0") {
+            if (totalC != 0) {
                 $(this).children('span.label').text('0');
                 $.post("<?= site_url() ?>admin/customers/updateNotification");
             }
