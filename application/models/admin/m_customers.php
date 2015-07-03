@@ -79,7 +79,7 @@ class M_customers extends CI_Model {
     }
 
     function getPaymentHistory($cid) {
-        $this->db->select('payment_id,transaction_id,mc_gross,gateway,plan_name');
+        $this->db->select('payment_id,transaction_id,mc_gross,gateway,payment_date,plan_name');
         $this->db->from('wi_payment_mst as P');
         $this->db->join('wi_plan_detail as PD', 'P.id = PD.id');
         $this->db->join('wi_plans as PL', 'PD.plan_id = PL.plan_id');
