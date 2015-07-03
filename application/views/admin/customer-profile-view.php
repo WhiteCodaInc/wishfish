@@ -153,10 +153,13 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-4"><label>Days Left on Trial</label></div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-6">
                                         <span class="title" style="color:<?= (!$trialD) ? 'red' : '' ?>">
                                             <?= ($trialD) ? $trialD : "Expired" ?>
                                         </span>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button id="extend" class="btn btn-xs bg-fuchsia">Extend</button>
                                     </div>
                                 </div>
                             </div>
