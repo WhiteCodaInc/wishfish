@@ -102,7 +102,7 @@
                     + "</div>"
                     + "</div>"
 
-                    + "<div class='timeglider-slider-container noselect'>"
+                    + "<div class='timeglider-slider-container noselect' style='display:none'>"
                     + "	<div class='tg-slider-plusminus tg-slider-plus tg-zoom-in'></div>"
                     + "	<div class='timeglider-slider'></div>"
                     + "	<div class='tg-slider-plusminus tg-slider-minus tg-zoom-out'></div>"
