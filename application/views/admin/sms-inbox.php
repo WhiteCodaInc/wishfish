@@ -11,7 +11,7 @@
         top: 40%;
         left: 50%;
     }
-    .slimScrollDiv,#chat-box{
+    .effect .slimScrollDiv,#chat-box{
         height: 600px !important;
     }
     #chatbox{
