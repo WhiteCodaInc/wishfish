@@ -191,22 +191,15 @@
                 <form action="<?= site_url() ?>customers/extendTrial" method="post">
                     <div class="modal-body">                    
                         <div class="row">
-                            <div class="col-md-3">
-                                <label>Expiry Date</label>
-                            </div>
-                            <div class="col-md-1">
-                                <label>:</label>
-                            </div>
+                            <div class="col-md-4"><label>Expiry Date</label></div>
                             <div class="col-md-8">
                                 <label><?= $currPlan->expiry_date ?></label>
                             </div>
                         </div>
+                        <br/>
                         <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <label>Extend Trial Date</label>
-                            </div>
-                            <div class="col-md-1">
-                                <label>:</label>
                             </div>
                             <div class="col-md-8">
                                 <div class="input-group">
@@ -220,7 +213,7 @@
                     </div>
                     <div class="modal-footer clearfix">
                         <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-md-5">
                                 <button type="submit" class="btn btn-primary pull-left">Extend Trial Period</button>
                             </div>
                             <div class="col-md-3">
