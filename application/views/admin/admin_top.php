@@ -60,7 +60,7 @@
                                                 <img style="width:60px;height:60px" src="<?= $img_src ?>" class="img-circle" alt="User Image"/>
                                             </div>
                                             <h4>
-                                                New Customer
+                                                New Payment
                                                 <small><i class="fa fa-clock-o"></i><?= $value->payment_date ?></small>
                                             </h4>
                                             <p style="margin: 0;white-space: normal">
