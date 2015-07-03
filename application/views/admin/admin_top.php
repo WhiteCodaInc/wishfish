@@ -59,14 +59,17 @@
                                             <div class="pull-left">
                                                 <img style="width:60px;height:60px" src="<?= $img_src ?>" class="img-circle" alt="User Image"/>
                                             </div>
-                                            <h4>New Customer</h4>
+                                            <h4>
+                                                New Customer
+                                                <small><i class="fa fa-clock-o"></i><?= $value->register_date ?></small>
+                                            </h4>
                                             <p style="margin: 0;white-space: normal"><?= $value->name ?> Join as <?= $value->plan_name ?> </p>
                                         </a>
                                     </li><!-- end message -->
                                 <?php } ?>
                             </ul>
                         </li>
-                        <li class="footer"><a href="<?= site_url() . 'admin/sms/inbox' ?>">See All Messages</a></li>
+                        <li class="footer"><a href="<?= site_url() . 'admin/customers/' ?>">See All Customers</a></li>
                     </ul>
                 </li>
                 <!-- ENd New Customer Join Notification -->
@@ -99,7 +102,7 @@
                                                 <?= $sms->fname . ' ' . $sms->lname ?>
                                                 <!--<small><i class="fa fa-clock-o"></i><?= $sms->date_sent ?></small>-->
                                             </h4>
-                                            <p><?= $sms->body ?></p>
+                                            <p style="margin: 0;white-space: normal"><?= $sms->body ?></p>
                                         </a>
                                     </li><!-- end message -->
                                 <?php } ?>
