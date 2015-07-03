@@ -59,9 +59,6 @@ class Sms extends CI_Controller {
             }
         }
         $data['inbox'] = $this->objsms->getInbox();
-        echo '<pre>';
-        print_r($data);
-        die();
         if ($this->input->get('type') == "ajax") {
             $this->load->view('admin/sms-inbox-view', $data);
         } else {
