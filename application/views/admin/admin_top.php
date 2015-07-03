@@ -1,7 +1,7 @@
 <style type="text/css">
     .title-blue{
         float: left;
-        width: 80%;
+        width: 75%;
         text-align: center;
         /* padding: 0px; */
         font-size: 28px;
@@ -34,7 +34,7 @@
         </a>
         <div class="navbar-right">
             <ul class="nav navbar-nav">
-                <!-- New Customer Join Notification -->
+                <!-- New Payment Notification -->
                 <li class="dropdown messages-menu payment-notification">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-tasks"></i>
@@ -74,7 +74,7 @@
                         <li class="footer"><a href="#">See All Payments</a></li>
                     </ul>
                 </li>
-                <!-- ENd New Customer Join Notification -->
+                <!-- ENd Payment Notification -->
                 <!-- New Customer Join Notification -->
                 <li class="dropdown messages-menu customer-notification">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
