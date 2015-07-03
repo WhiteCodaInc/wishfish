@@ -2,6 +2,12 @@
     .title{
         color: #3c8dbc;
     }
+    .fade1 {
+        opacity: 0;
+        -webkit-transition: opacity .15s linear;
+        -o-transition: opacity .15s linear;
+        transition: opacity .15s ease-in;
+    }
 </style>
 <aside class="right-side">
 
@@ -180,7 +186,7 @@
         </div>
     </section>
     <!-- NEW ADMIN ACCESS CLASS MODAL -->
-    <div class="modal fade" id="trial-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade1" id="trial-modal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" style="max-width: 400px">
             <div class="modal-content">
                 <div class="modal-header">
