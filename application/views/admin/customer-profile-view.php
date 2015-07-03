@@ -180,7 +180,7 @@
         </div>
     </section>
     <!-- NEW ADMIN ACCESS CLASS MODAL -->
-    <div class="modal fade-in-left" id="trial-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade" id="trial-modal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" style="max-width: 400px">
             <div class="modal-content">
                 <div class="modal-header">
