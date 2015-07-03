@@ -238,20 +238,20 @@ class Common {
 
     function getTotalNewCustomer() {
         $where = array(
-            'status' => 1
+            'notification' => 1
         );
         $this->_CI->db->select('count(*) as total');
-        $this->_CI->db->where('contact_id !=', 'NULL');
-        $query = $this->_CI->db->get_where('inbox', $where);
+        $query = $this->_CI->db->get_where('wi_user_mst', $where);
         return $query->row()->total;
     }
 
     function getNewCustomer() {
-        $this->_CI->db->select('*');
-        $this->_CI->db->from('inbox as I');
-        $this->_CI->db->join('contact_detail as C', 'I.contact_id = C.contact_id');
-        $this->_CI->db->where('status', 1);
-        $query = $this->_CI->db->get();
+//        $this->_CI->db->select('*');
+//        $this->_CI->db->from('wi_user_mst');
+//        $this->_CI->db->join('contact_detail as C', 'I.contact_id = C.contact_id');
+        $this->_CI->db->limit(10);
+        $this->_CI->db->where('notification', 1);
+        $query = $this->_CI->db->get('wi_user_mst');
         return $query->result();
     }
 

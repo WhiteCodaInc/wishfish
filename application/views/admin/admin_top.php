@@ -35,7 +35,40 @@
         <div class="navbar-right">
             <ul class="nav navbar-nav">
                 <!-- New Customer Join Notification -->
-                
+                <li class="dropdown messages-menu customer-notification">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-envelope"></i>
+                        <span class="label label-success">
+                            <?= $this->common->getTotalNewCustomer() ?>
+                        </span>
+                    </a>
+                    <?php $customers = $this->common->getNewCustomer(); ?>
+                    <ul class="dropdown-menu">
+                        <li class="header">You have <?= $this->common->getTotalNewCustomer() ?> messages</li>
+                        <li>
+                            <!-- inner menu: contains the actual data -->
+                            <ul class="menu newCustomer">
+                                <?php foreach ($customers as $value) { ?>
+                                    <?php
+                                    $img_src = ($value->profile_pic != "") ?
+                                            "http://mikhailkuznetsov.s3.amazonaws.com/" . $value->profile_pic :
+                                            base_url() . 'assets/dashboard/img/default-avatar.png';
+                                    ?>
+                                    <li><!-- start message -->
+                                        <a href="<?= site_url() . 'admin/customers/profile/' . $value->user_id ?>">
+                                            <div class="pull-left">
+                                                <img style="width:60px;height:60px" src="<?= $img_src ?>" class="img-circle" alt="User Image"/>
+                                            </div>
+                                            <h4><?= $value->name ?></h4>
+                                            <p><?= $sms->body ?></p>
+                                        </a>
+                                    </li><!-- end message -->
+                                <?php } ?>
+                            </ul>
+                        </li>
+                        <li class="footer"><a href="<?= site_url() . 'admin/sms/inbox' ?>">See All Messages</a></li>
+                    </ul>
+                </li>
                 <!-- ENd New Customer Join Notification -->
                 <!-- SMS Inbox -->
                 <li class="dropdown messages-menu sms-notification">
@@ -64,7 +97,7 @@
                                             </div>
                                             <h4>
                                                 <?= $sms->fname . ' ' . $sms->lname ?>
-                                                <small><i class="fa fa-clock-o"></i><?= $sms->date_sent ?></small>
+                                                <!--<small><i class="fa fa-clock-o"></i><?= $sms->date_sent ?></small>-->
                                             </h4>
                                             <p><?= $sms->body ?></p>
                                         </a>
