@@ -188,7 +188,7 @@
                     <h4 class="modal-title">Extend Trial Period</h4>
                 </div>
                 <!-- FORM MODULE -->
-                <form action="<?= site_url() ?>customers/extendTrial" method="post">
+                <form action="<?= site_url() ?>admin/customers/extendTrial" method="post">
                     <div class="modal-body">                    
                         <div class="row">
                             <div class="col-md-4"><label>Expiry Date</label></div>
