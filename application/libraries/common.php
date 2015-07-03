@@ -236,6 +236,16 @@ class Common {
         return $query->result();
     }
 
+    function getTotalNewCustomer() {
+        $where = array(
+            'status' => 1
+        );
+        $this->_CI->db->select('count(*) as total');
+        $this->_CI->db->where('contact_id !=', 'NULL');
+        $query = $this->_CI->db->get_where('inbox', $where);
+        return $query->row()->total;
+    }
+
     function getPermission() {
         $adminInfo = $this->getAdminInfo();
         $permission = $this->_CI->db->get_where('access_class', array('class_id' => $adminInfo->class_id));
