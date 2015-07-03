@@ -182,6 +182,9 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="box" >
+                    <div class="box-header box-primary">
+                        <h3 class="box-title">Payment History</h3>
+                    </div><!-- /.box-header -->
                     <!--<form name="checkForm" id="checkForm" action="" method="post">-->
                     <div class="box-body table-responsive" id="data-panel">
                         <table id="payment-data-table" class="table table-bordered table-striped">
