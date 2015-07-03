@@ -32,7 +32,7 @@
     <!-- Main content -->
     <section class="content">
         <div class="row" style="float: left">
-            <div class="col-xs-7" >
+            <div class="col-md-7" >
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">SMS Inbox</h3>
