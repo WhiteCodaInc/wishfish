@@ -34,7 +34,10 @@
         </a>
         <div class="navbar-right">
             <ul class="nav navbar-nav">
-                <!-- Messages: style can be found in dropdown.less-->
+                <!-- New Customer Join Notification -->
+                
+                <!-- ENd New Customer Join Notification -->
+                <!-- SMS Inbox -->
                 <li class="dropdown messages-menu sms-notification">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-envelope"></i>
@@ -72,6 +75,7 @@
                         <li class="footer"><a href="<?= site_url() . 'admin/sms/inbox' ?>">See All Messages</a></li>
                     </ul>
                 </li>
+                <!-- End SMS Inbox -->
                 <!-- Emails -->
                 <li class="dropdown messages-menu email-notify">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
