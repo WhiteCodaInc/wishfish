@@ -176,7 +176,11 @@
             $.post("<?= site_url() ?>admin/sms/updateStatus/" + id);
         });
         $('li.customer-notification > a.dropdown-toggle').on('click', function () {
-            console.log('caaled');
+            var totalC = $(this).children('span.label').text();
+            if (totalC != "0") {
+                $(this).children('span.label').text('0');
+                $.post("<?= site_url() ?>admin/customers/updateNotification");
+            }
         });
     });
 </script>
