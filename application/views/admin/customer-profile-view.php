@@ -190,9 +190,9 @@
                             <table id="payment-data-table" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th style="padding: 10px;">
+<!--                                        <th style="padding: 10px;">
                                             <input type="checkbox"/>
-                                        </th>
+                                        </th>-->
                                         <th>Date & Time</th>
                                         <th>Amount</th>
                                         <th>Installment Number</th>
@@ -203,13 +203,13 @@
                                 <tbody>
                                     <?php foreach ($phistory as $value) { ?>
                                         <tr>
-                                            <td>
+    <!--                                            <td>
                                                 <div>
                                                     <label>
                                                         <input type="checkbox" class="check"  name="customer[]" value="<?= $value->user_id ?>"/>
                                                     </label>
                                                 </div>
-                                            </td>
+                                            </td>-->
                                             <td><?= date('m-d-Y', strtotime($value->payment_date)) ?></td>
                                             <td><?= $value->mc_gross ?></td>
                                             <td><?= $value->transaction_id ?></td>
