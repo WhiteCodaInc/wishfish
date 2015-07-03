@@ -92,8 +92,11 @@ class Customers extends CI_Controller {
         }
     }
 
-    function updateNotification() {
-        $this->objcustomer->updateNotification();
+    function updateCustomerNotification() {
+        $this->objcustomer->updateCustomerNotification();
+    }
+    function updatePaymentNotification() {
+        $this->objcustomer->updatePaymentNotification();
     }
 
 }

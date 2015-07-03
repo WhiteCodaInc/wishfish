@@ -256,6 +256,29 @@ class Common {
         return $query->result();
     }
 
+    function getTotalPayment() {
+        $where = array(
+            'notification' => 1
+        );
+        $this->_CI->db->select('count(*) as total');
+        $query = $this->_CI->db->get_where('wi_payment_mst', $where);
+        return $query->row()->total;
+    }
+
+    function getNewPayment() {
+        $this->_CI->db->select('U.user_id,profile_pic,name,mc_gross,gateway,payment_date');
+        $this->_CI->db->from('wi_payment_mst as P');
+        $this->_CI->db->join('wi_plan_detail as PD', 'P.id = PD.id', 'left outer');
+        $this->_CI->db->join('wi_user_mst as U', 'PD.user_id = U.user_id');
+        $this->_CI->db->limit(10);
+        $this->_CI->db->order_by('P.payment_date', 'desc');
+        $query = $this->_CI->db->get();
+        echo '<pre>';
+        print_r($query->result());
+        die();
+        return $query->result();
+    }
+
     function getPermission() {
         $adminInfo = $this->getAdminInfo();
         $permission = $this->_CI->db->get_where('access_class', array('class_id' => $adminInfo->class_id));

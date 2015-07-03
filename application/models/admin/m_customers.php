@@ -155,9 +155,14 @@ class M_customers extends CI_Model {
         }
     }
 
-    function updateNotification() {
+    function updateCustomerNotification() {
         $this->db->where('notification', 1);
         $this->db->update('wi_user_mst', array('notification' => 0));
+    }
+
+    function updatePaymentNotification() {
+        $this->db->where('notification', 1);
+        $this->db->update('wi_payment_mst', array('notification' => 0));
     }
 
 }

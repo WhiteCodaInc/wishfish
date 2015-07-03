@@ -39,16 +39,16 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-tasks"></i>
                         <span class="label label-success">
-                            <?= $this->common->getTotalNewCustomer() ?>
+                            <?= $this->common->getTotalPayment() ?>
                         </span>
                     </a>
-                    <?php $customers = $this->common->getNewCustomer(); ?>
+                    <?php $payments = $this->common->getNewPayment(); ?>
                     <ul class="dropdown-menu">
-                        <li class="header">You have <?= $this->common->getTotalNewCustomer() ?> messages</li>
+                        <li class="header">You have <?= $this->common->getTotalPayment() ?> payments</li>
                         <li>
                             <!-- inner menu: contains the actual data -->
                             <ul class="menu newCustomer">
-                                <?php foreach ($customers as $value) { ?>
+                                <?php foreach ($payments as $value) { ?>
                                     <?php
                                     $img_src = ($value->profile_pic != "") ?
                                             "http://mikhailkuznetsov.s3.amazonaws.com/" . $value->profile_pic :
@@ -61,9 +61,11 @@
                                             </div>
                                             <h4>
                                                 New Customer
-                                                <small><i class="fa fa-clock-o"></i><?= $value->register_date ?></small>
+                                                <small><i class="fa fa-clock-o"></i><?= $value->payment_date ?></small>
                                             </h4>
-                                            <p style="margin: 0;white-space: normal"><?= $value->name ?> Join as <?= $value->plan_name ?> </p>
+                                            <p style="margin: 0;white-space: normal">
+                                                <?= $value->name ?> Sent you $<?= $value->mc_gross ?> via <?= $value->gateway ?>
+                                            </p>
                                         </a>
                                     </li><!-- end message -->
                                 <?php } ?>
@@ -218,7 +220,14 @@
             var totalC = $(this).children('span.label').text();
             if (totalC != 0) {
                 $(this).children('span.label').text('0');
-                $.post("<?= site_url() ?>admin/customers/updateNotification");
+                $.post("<?= site_url() ?>admin/customers/updateCustomerNotification");
+            }
+        });
+        $('li.payment-notification > a.dropdown-toggle').on('click', function () {
+            var totalP = $(this).children('span.label').text();
+            if (totalP != 0) {
+                $(this).children('span.label').text('0');
+                $.post("<?= site_url() ?>admin/customers/updatePaymentNotification");
             }
         });
     });
