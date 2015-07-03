@@ -786,7 +786,7 @@
 .timeglider-event-image-lane {
     /* placed in a div floating just below the "ceiling" */
     position:absolute;
-    top:-28px; 
+    /*top:-28px;*/ 
     z-index:1;
     display:none;
 }
