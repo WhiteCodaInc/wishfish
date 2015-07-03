@@ -157,6 +157,8 @@ class Cpanel extends CI_Controller {
 
     function getTotalUnreadEmail() {
         $account = $this->objcpanel->getNotificationAccount();
+        print_r($account);
+        die();
         $data = array();
         $mailbox = array();
         $totalUnread = 0;
