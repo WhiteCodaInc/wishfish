@@ -185,36 +185,102 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Admin Access Class</h4>
+                    <h4 class="modal-title">Extend Trial Period</h4>
                 </div>
-                <form id="classForm"  method="post">
-                    <div class="modal-body">
+                <!-- FORM MODULE -->
+                <form action="<?= site_url() ?>customers/extendTrial" method="post">
+                    <div class="modal-body">                    
                         <div class="row">
-                            <div class="col-md-7">
-                                <label>Admin Access Class</label>
-                                <div class="form-group" >
-                                    <input type="text" id="class_name" name="class_name" class="form-control"   />
-                                </div>
+                            <div class="col-md-3">
+                                <label>Expiry Date</label>
+                            </div>
+                            <div class="col-md-1">
+                                <label>:</label>
+                            </div>
+                            <div class="col-md-8">
+                                <label><?= $currPlan->expiry_date ?></label>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-12">
-                                <img id="load" src="<?= base_url() ?>assets/dashboard/img/load.GIF" alt="" style="display: none" />
-                                <span style="display: none" id="msg"></span>
+                            <div class="col-md-3">
+                                <label>Extend Trial Date</label>
+                            </div>
+                            <div class="col-md-1">
+                                <label>:</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input name="extend_date" value=""  class="form-control form-control-inline input-medium default-date-picker" size="16" type="text">
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer clearfix">
                         <div class="row">
                             <div class="col-md-3">
-                                <button type="button" id="addClass" class="btn btn-primary pull-left">Create Now</button>
+                                <button type="submit" class="btn btn-primary pull-left">Extend Trial Period</button>
                             </div>
                             <div class="col-md-3">
                                 <button type="button" id="discard" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
                             </div>
                         </div>
                     </div>
+                    <input type="hidden" name="userid" value="<?= $customer->user_id ?>" />
                 </form>
+                <!-- END  FORM MODULE -->
+
+                <!-- AJAX MODULE -->
+                <!-- 
+                <div class="modal-body">                    
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label>Expiry Date</label>
+                        </div>
+                        <div class="col-md-1">
+                            <label>:</label>
+                        </div>
+                        <div class="col-md-8">
+                            <label><?= $currPlan->expiry_date ?></label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label>Extend Trial Date</label>
+                        </div>
+                        <div class="col-md-1">
+                            <label>:</label>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                <input name="extend_date" value=""  class="form-control form-control-inline input-medium default-date-picker" size="16" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <img id="load" src="<?= base_url() ?>assets/dashboard/img/load.GIF" alt="" style="display: none" />
+                            <span style="display: none" id="msg"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer clearfix">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <button type="button" id="extendDate" class="btn btn-primary pull-left">Extend Trial Period</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" id="discard" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
+                        </div>
+                    </div>
+                </div>
+                -->
+                <!-- END  AJAX MODULE -->
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div>
@@ -222,7 +288,51 @@
 </aside>
 </div>
 <script type="text/javascript">
+
+    $(function () {
+        $('.default-date-picker').datepicker({
+            format: "mm-dd-yyyy",
+            todayBtn: "linked",
+            autoclose: true,
+            todayHighlight: true
+        });
+    });
+
 <?php if ($this->input->get('msg') != ""): ?>
         alertify.error("Customer account currently was deactivated..!");
 <?php endif; ?>
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#extendDate').click(function () {
+            var edate = $('input[name="extend_date"]').val();
+            var userid = "<?= $customer->user_id ?>";
+            $('#load').css('display', 'block');
+            $('#msg').css('display', 'none');
+            $.ajax({
+                type: 'POST',
+                url: "<?= site_url() ?>admin/admin_access/addClass",
+                data: {userid: userid, edate: edate},
+                success: function (data, textStatus, jqXHR) {
+                    setTimeout(function () {
+                        if (data == "1") {
+                            $('#msg').html("Trial Period Extend Successfully..");
+                            $('#load').css('display', 'none');
+                            $('#msg').css('display', 'block');
+                            $('#msg').css('color', 'green');
+                            $('#discard').trigger('click');
+                            location.reload(true);
+                        }
+                        else if (data == "0") {
+                            $('#loadDept').html("Insertion Failed. Try again..!");
+                            $('#load').css('display', 'none');
+                            $('#msg').css('display', 'block');
+                            $('#msg').css('color', 'red');
+                        }
+                    }, 1000);
+                }
+            });
+        });
+    });
 </script>

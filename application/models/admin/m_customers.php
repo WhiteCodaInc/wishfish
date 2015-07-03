@@ -155,6 +155,15 @@ class M_customers extends CI_Model {
         }
     }
 
+    function extendTrial($post) {
+        $dt = ($post['extend_date'] != "") ?
+                $this->wi_common->getMySqlDate($post['extend_date'], "mm-dd-yyyy") :
+                NULL;
+        $currPlan = $this->wi_common->getCurrentPlan($post['userid']);
+        $this->db->update('wi_plan_detail', array('expiry_date' => $dt), array('id' => $currPlan->id));
+        return true;
+    }
+
     function updateCustomerNotification() {
         $this->db->where('notification', 1);
         $this->db->update('wi_user_mst', array('notification' => 0));

@@ -92,9 +92,20 @@ class Customers extends CI_Controller {
         }
     }
 
+    function extendTrial() {
+        $post = $this->input->post();
+        if (is_array($post) && count($post) > 0) {
+            $this->objcustomer->extendTrial($post);
+            header('location:' . site_url() . 'admin/customers/profile/' . $post['userid']);
+        } else {
+            header('location:' . site_url() . 'admin/customers');
+        }
+    }
+
     function updateCustomerNotification() {
         $this->objcustomer->updateCustomerNotification();
     }
+
     function updatePaymentNotification() {
         $this->objcustomer->updatePaymentNotification();
     }
