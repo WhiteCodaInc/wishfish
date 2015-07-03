@@ -35,6 +35,45 @@
         <div class="navbar-right">
             <ul class="nav navbar-nav">
                 <!-- New Customer Join Notification -->
+                <li class="dropdown messages-menu payment-notification">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-tasks"></i>
+                        <span class="label label-success">
+                            <?= $this->common->getTotalNewCustomer() ?>
+                        </span>
+                    </a>
+                    <?php $customers = $this->common->getNewCustomer(); ?>
+                    <ul class="dropdown-menu">
+                        <li class="header">You have <?= $this->common->getTotalNewCustomer() ?> messages</li>
+                        <li>
+                            <!-- inner menu: contains the actual data -->
+                            <ul class="menu newCustomer">
+                                <?php foreach ($customers as $value) { ?>
+                                    <?php
+                                    $img_src = ($value->profile_pic != "") ?
+                                            "http://mikhailkuznetsov.s3.amazonaws.com/" . $value->profile_pic :
+                                            base_url() . 'assets/dashboard/img/default-avatar.png';
+                                    ?>
+                                    <li><!-- start message -->
+                                        <a href="<?= site_url() . 'admin/customers/profile/' . $value->user_id ?>">
+                                            <div class="pull-left">
+                                                <img style="width:60px;height:60px" src="<?= $img_src ?>" class="img-circle" alt="User Image"/>
+                                            </div>
+                                            <h4>
+                                                New Customer
+                                                <small><i class="fa fa-clock-o"></i><?= $value->register_date ?></small>
+                                            </h4>
+                                            <p style="margin: 0;white-space: normal"><?= $value->name ?> Join as <?= $value->plan_name ?> </p>
+                                        </a>
+                                    </li><!-- end message -->
+                                <?php } ?>
+                            </ul>
+                        </li>
+                        <li class="footer"><a href="<?= site_url() . 'admin/customers/' ?>">See All Customers</a></li>
+                    </ul>
+                </li>
+                <!-- ENd New Customer Join Notification -->
+                <!-- New Customer Join Notification -->
                 <li class="dropdown messages-menu customer-notification">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-tasks"></i>
