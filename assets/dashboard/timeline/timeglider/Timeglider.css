@@ -407,6 +407,37 @@
     margin-left:-8px;
     margin-bottom:4px;
 }
+.zoomlevel {
+    font-size:12px !important;
+    color:#83A0C5;
+    width:20px;
+    text-align:center;
+    background-color:#FFF;
+    -moz-border-radius:4px;
+    border-radius:4px;
+    -webkit-border-radius:4px;
+    padding:1px !important;
+    margin: 0 !important;
+}
+
+.slide{
+	font-size:20px;
+}
+
+.slide .minus > i,.slide .plus > i{
+	border-right: 1px solid white;
+	padding-right: 10px;
+}
+
+.slide .zoom,
+.slide .right,
+.slide .left,
+.slide .plus,
+.slide .minus{
+    color: white;
+    float: right;
+    padding: 0 5px;
+}
 
 
 .timeglider-pan-buttons a {
@@ -786,7 +817,7 @@
 .timeglider-event-image-lane {
     /* placed in a div floating just below the "ceiling" */
     position:absolute;
-    top:-28px; 
+    /*top:-28px;*/ 
     z-index:1;
     display:none;
 }

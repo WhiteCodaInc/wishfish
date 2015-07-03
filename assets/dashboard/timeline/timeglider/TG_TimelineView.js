@@ -1499,13 +1499,13 @@
                 var title = "<h2 data-timeline_id='" + tid + "'>" + timeline.get("title") + "</h2>",
                         inf = (timeline.get("description")) ? "<li id='info' class='timeline-info-bt' data-timeline_id='" + tid + "'>info</li>" : "",
                         leg = (timeline.get("hasLegend")) ? "<li id='legend' class='tg-legend-bt' data-timeline_id='" + tid + "'>legend</li>" : "",
-                        slider = "<div class='slider'>"
-//                        + "	<div class='tg-slider-plusminus tg-slider-plus tg-zoom-in'></div>"
-//                        + "	<div class='timeglider-slider'></div>"
-//                        + "	<div class='tg-slider-plusminus tg-slider-minus tg-zoom-out'></div>"
-//                        + "	<div class='timeglider-pan-buttons'>"
-//                        + "	<div class='timeglider-pan-left'></div><div class='timeglider-pan-right'></div>"
-//                        + "</div>"
+                        slider = "<div class='slide'>"
+                        + "	<div class='tg-slider-plusminus tg-slider-plus tg-zoom-in'></div>"
+                        + "	<div class='timeglider-slider'></div>"
+                        + "	<div class='tg-slider-plusminus tg-slider-minus tg-zoom-out'></div>"
+                        + "	<div class='timeglider-pan-buttons'>"
+                        + "	<div class='timeglider-pan-left'></div><div class='timeglider-pan-right'></div>"
+                        + "</div>"
                         + "</div>",
                         tmpl = "<div class='tg-widget-header tg-single-timeline-header'>" + title + "<ul>" + inf + leg + "<li class='tg-timeline-start' data-timeline_id='" + tid + "'>start</li></ul>" + slider + "</div>";
 
@@ -1702,7 +1702,7 @@
 
             var me = this;
             var newHt = parseInt(MED.image_lane_height, 10) + parseInt(me.singleTitleHeight, 10);
-            console.log(newHt);
+//            console.log(newHt);
             if (newHt <= 30)
                 newHt = 90;
             $(".tg-image-lane-pull").css("top", newHt + "px");
@@ -3364,7 +3364,7 @@
                         if (imgHt < 0)
                             imgHt = 55;
                         if (imgHt > 10) {
-                            console.log(stht + padding);
+//                            console.log(stht + padding);
                             $div.css({"display": "block"})
                                     .position({
                                         my: "center top+" + (stht + padding),
