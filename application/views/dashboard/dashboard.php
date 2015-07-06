@@ -364,4 +364,14 @@
             todayHighlight: true
         });
     });
+
+    $(document).ready(function () {
+        $('.slide .plus').on('click', function () {
+            $('#p1 .tg-slider-plus').trigger('click');
+        });
+        $('.slide .minus').on('click', function () {
+            $('#p1 .tg-slider-minus').trigger('click');
+        });
+    });
+
 </script>
