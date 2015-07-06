@@ -1525,7 +1525,7 @@
                     $('.timeglider-pan-left').trigger('click');
                 });
                 $('.slide .right').on('click', function () {
-                    $('.timeglider-pan-right').trigger('mousedown');
+                    $('.timeglider-pan-right').trigger('click');
                 });
 //
 //                $('.tg-single-timeline-header').append(slider);
