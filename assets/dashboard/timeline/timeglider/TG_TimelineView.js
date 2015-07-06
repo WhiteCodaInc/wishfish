@@ -551,11 +551,8 @@
 
         this.setupScroller();
 
-//        this.setPanButton($(".timeglider-pan-right"), -30);
-//        this.setPanButton($(".timeglider-pan-left"), 30);
-
-        this.setPanButton($(".slide div.right"), -30);
-        this.setPanButton($(".slide div.left"), 30);
+        this.setPanButton($(".timeglider-pan-right"), -30);
+        this.setPanButton($(".timeglider-pan-left"), 30);
 
         $(this._views.TRUCK)
 
@@ -1058,10 +1055,13 @@
         setPanButton: function ($sel, vel) {
             var me = this,
                     _int = 33; // 33/1000 second interval
-            $($sel).bind("click", function () {
+            $($sel).bind("mousedown", function () {
                 me.intervalMachine("pan", {type: "set", fn: me.pan, args: [vel], intvl: _int});
             })
                     .bind("mouseup", function () {
+                        me.intervalMachine("pan", {type: "clear", fn: me.pan, callback: "resetTicksHandle"});
+                    })
+                    .bind("click", function () {
                         me.intervalMachine("pan", {type: "clear", fn: me.pan, callback: "resetTicksHandle"});
                     })
                     .bind("mouseout", function () {
@@ -1521,12 +1521,14 @@
                 $('.slide .minus').on('click', function () {
                     $('.tg-zoom-out').trigger('click');
                 });
-//                $('.slide .left').on('click', function (e) {
-//                    $('.timeglider-pan-left').trigger('click');
-//                });
-//                $('.slide .right').on('click', function () {
-//                    $('.timeglider-pan-right').trigger('click');
-//                });
+                $('.slide .left').on('click', function (e) {
+                    $('.timeglider-pan-left').trigger('mousedown');
+                    $('.timeglider-pan-left').trigger('mouseup');
+                });
+                $('.slide .right').on('click', function () {
+                    $('.timeglider-pan-right').trigger('mousedown');
+                    $('.timeglider-pan-right').trigger('mouseup');
+                });
 //
 //                $('.tg-single-timeline-header').append(slider);
 
