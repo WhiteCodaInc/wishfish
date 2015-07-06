@@ -1056,7 +1056,6 @@
             var me = this,
                     _int = 33; // 33/1000 second interval
             $($sel).bind("mousedown", function () {
-                alert();
                 me.intervalMachine("pan", {type: "set", fn: me.pan, args: [vel], intvl: _int});
             })
                     .bind("mouseup", function () {
@@ -1524,11 +1523,11 @@
                 });
                 $('.slide .left').on('click', function (e) {
                     $('.timeglider-pan-left').trigger('mousedown');
-                    $('.timeglider-pan-left').trigger('mouseup');
+//                    $('.timeglider-pan-left').trigger('mouseup');
                 });
                 $('.slide .right').on('click', function () {
                     $('.timeglider-pan-right').trigger('mousedown');
-                    $('.timeglider-pan-right').trigger('mouseup');
+//                    $('.timeglider-pan-right').trigger('mouseup');
                 });
 //
 //                $('.tg-single-timeline-header').append(slider);
