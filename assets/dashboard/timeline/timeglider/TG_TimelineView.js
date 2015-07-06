@@ -1519,7 +1519,6 @@
                     $('.tg-zoom-out').trigger('click');
                 });
                 $('.slide .left').on('click', function () {
-                    alert();
                     $('.timeglider-pan-left').trigger('click');
                 });
                 $('.slide .right').on('click', function () {
