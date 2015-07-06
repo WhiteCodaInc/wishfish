@@ -51,7 +51,8 @@ class Scrape extends CI_Controller {
 
     function facebook() {
         $base_url = "https://www.facebook.com/1464090949";
-        $html = $this->curl_file_get_contents($base_url);
+//        $html = $this->curl_file_get_contents($base_url);
+        $html = file_get_html($base_url);
         echo $html;
     }
 
