@@ -1061,6 +1061,9 @@
                     .bind("mouseup", function () {
                         me.intervalMachine("pan", {type: "clear", fn: me.pan, callback: "resetTicksHandle"});
                     })
+                    .bind("click", function () {
+                        me.intervalMachine("pan", {type: "clear", fn: me.pan, callback: "resetTicksHandle"});
+                    })
                     .bind("mouseout", function () {
                         me.intervalMachine("pan", {type: "clear", fn: me.pan, callback: "resetTicksHandle"});
                     });
@@ -1513,16 +1516,16 @@
                 $st = $(tmpl).appendTo(CONTAINER);
 
                 $('.slide .plus').on('click', function () {
-                    $('#p1 .tg-zoom-in').trigger('click');
+                    $('.tg-zoom-in').trigger('click');
                 });
                 $('.slide .minus').on('click', function () {
-                    $('#p1 .tg-zoom-out').trigger('click');
+                    $('.tg-zoom-out').trigger('click');
                 });
                 $('.slide .left').on('click', function () {
-                    $('#p1 .timeglider-pan-left').trigger('click');
+                    $('.timeglider-pan-left').trigger('click');
                 });
                 $('.slide .right').on('click', function () {
-                    $('#p1 .timeglider-pan-right').trigger('click');
+                    $('.timeglider-pan-right').trigger('click');
                 });
 //
 //                $('.tg-single-timeline-header').append(slider);
