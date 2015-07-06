@@ -492,6 +492,7 @@
                 $('#msgCard').show();
                 return false;
             }
+            return false;
         });
 
         function stripeResponseHandler(status, response) {
