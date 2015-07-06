@@ -486,7 +486,7 @@
                     exp_month: expMonth,
                     exp_year: expYear
                 }, stripeResponseHandler);
-                return true;
+                return false;
             } else {
                 $('#error').show();
                 $('#msgCard').show();
