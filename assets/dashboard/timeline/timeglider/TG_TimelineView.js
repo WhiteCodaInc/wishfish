@@ -1518,11 +1518,12 @@
                 $('.slide .minus').on('click', function () {
                     $('.tg-zoom-out').trigger('click');
                 });
-                $('.slide .left').on('click', function () {
-                    $('.timeglider-pan-left').trigger('click');
+                $('.slide .left').on('mousedown,mouseout,mouseup', function (e) {
+                    alert(e);
+                    $('.timeglider-pan-left').trigger('mousedown');
                 });
                 $('.slide .right').on('click', function () {
-                    $('.timeglider-pan-right').trigger('click');
+                    $('.timeglider-pan-right').trigger('mousedown');
                 });
 //
 //                $('.tg-single-timeline-header').append(slider);
