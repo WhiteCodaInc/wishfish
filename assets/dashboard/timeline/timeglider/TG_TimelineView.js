@@ -551,8 +551,11 @@
 
         this.setupScroller();
 
-        this.setPanButton($(".timeglider-pan-right"), -30);
-        this.setPanButton($(".timeglider-pan-left"), 30);
+//        this.setPanButton($(".timeglider-pan-right"), -30);
+//        this.setPanButton($(".timeglider-pan-left"), 30);
+//        
+        this.setPanButton($(".slide .left"), -30);
+        this.setPanButton($(".slide .right"), 30);
 
         $(this._views.TRUCK)
 
@@ -1056,7 +1059,7 @@
             var me = this,
                     _int = 33; // 33/1000 second interval
 
-            $('.slide .left').on('click', function () {
+            $($sel).on('click', function () {
                 alert();
                 me.intervalMachine("pan", {type: "set", fn: me.pan, args: [vel], intvl: _int});
             });
