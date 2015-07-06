@@ -551,8 +551,11 @@
 
         this.setupScroller();
 
-        this.setPanButton($(".timeglider-pan-right"), -30);
-        this.setPanButton($(".timeglider-pan-left"), 30);
+//        this.setPanButton($(".timeglider-pan-right"), -30);
+//        this.setPanButton($(".timeglider-pan-left"), 30);
+
+        this.setPanButton($("div.right"), -30);
+        this.setPanButton($("div.left"), 30);
 
         $(this._views.TRUCK)
 
