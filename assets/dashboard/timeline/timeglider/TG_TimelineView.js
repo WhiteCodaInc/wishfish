@@ -1061,9 +1061,6 @@
                     .bind("mouseup", function () {
                         me.intervalMachine("pan", {type: "clear", fn: me.pan, callback: "resetTicksHandle"});
                     })
-                    .bind("click", function () {
-                        me.intervalMachine("pan", {type: "clear", fn: me.pan, callback: "resetTicksHandle"});
-                    })
                     .bind("mouseout", function () {
                         me.intervalMachine("pan", {type: "clear", fn: me.pan, callback: "resetTicksHandle"});
                     });
@@ -1522,6 +1519,7 @@
                     $('.tg-zoom-out').trigger('click');
                 });
                 $('.slide .left').on('click', function () {
+                    alert();
                     $('.timeglider-pan-left').trigger('click');
                 });
                 $('.slide .right').on('click', function () {
