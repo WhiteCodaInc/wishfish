@@ -1512,7 +1512,12 @@
 
                 $st = $(tmpl).appendTo(CONTAINER);
 
-
+                $('.slide .plus').on('click', function () {
+                    $('.tg-zoom-in').trigger('click');
+                });
+                $('.slide .minus').on('click', function () {
+                    $('#p1 .tg-zoom-out').trigger('click');
+                });
 //
 //                $('.tg-single-timeline-header').append(slider);
 
@@ -4220,9 +4225,5 @@
 
             tg.googleMapsLoaded = true;
         }
-
     }
-
-
-
 })(timeglider);
