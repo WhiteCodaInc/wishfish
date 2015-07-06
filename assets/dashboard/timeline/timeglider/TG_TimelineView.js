@@ -1521,9 +1521,9 @@
                 $('.slide .minus').on('click', function () {
                     $('.tg-zoom-out').trigger('click');
                 });
-                $('.slide .left').on('mousedown,mouseup,mouseout', function (e) {
+                $('.slide .left').on('click', function (e) {
                     alert(e.type);
-                    //$('.timeglider-pan-left').trigger('mousedown');
+                    $('.timeglider-pan-left').trigger('click');
                 });
                 $('.slide .right').on('click', function () {
                     $('.timeglider-pan-right').trigger('mousedown');
