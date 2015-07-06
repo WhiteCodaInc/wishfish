@@ -113,4 +113,16 @@ class Customers extends CI_Controller {
         $this->objcustomer->updatePaymentNotification();
     }
 
+    function updatePaymentDetail() {
+        $post = $this->input->post();
+        if ($post['stripeToken'] != "" && $post['userid'] != "") {
+            (isset($post['isNew']) && $post['isNew']) ?
+                            $this->objcustomer->createCardCard($post['userid'], $post['stripeToken']) :
+                            $this->objcustomer->updateCard($post['userid'], $post['stripeToken']);
+            header('location:' . site_url() . 'admin/customers/profile/' . $post['userid']);
+        } else {
+            header('location:' . site_url() . 'admin/customers');
+        }
+    }
+
 }

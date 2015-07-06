@@ -41,9 +41,23 @@
     $img_src = ($customer->profile_pic != "") ?
             "http://mikhailkuznetsov.s3.amazonaws.com/" . $customer->profile_pic :
             base_url() . 'assets/dashboard/img/default-avatar.png';
+    $error = $this->session->flashdata('error');
     ?>
     <!-- Main content -->
     <section class="content">
+        <?php if ($error): ?>
+            <div  class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <div style="background-color: mistyrose !important;border-color: mintcream;color: red !important;" class="alert alert-danger alert-dismissable">
+                        <i class="fa fa-ban"></i>
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <b>Error!</b> <?= $error ?> 
+                    </div>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+        <?php endif; ?>
         <div class="box box-primary">
             <div class="box-body">
                 <div class="row">
@@ -330,7 +344,7 @@
     <div class="modal fade" id="card-modal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" style="max-width: 400px">
             <div class="modal-content">
-                <form id="cardForm" role="form" action="<?= site_url() ?>app/profile/updateCard"  method="post">
+                <form id="cardForm" role="form" action="<?= site_url() ?>admin/customers/updatePaymentDetail"  method="post">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <h4 class="modal-title">Card Detail</h4>
@@ -377,6 +391,10 @@
                             </div>
                         </div>
                     </div>
+                    <input type="hidden" name="userid" value="<?= $customer->user_id ?>" />
+                    <?php if (!$card): ?>
+                        <input type="hidden" name="isNew" value="1" />
+                    <?php endif; ?>
                 </form>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
