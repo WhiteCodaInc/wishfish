@@ -1056,6 +1056,7 @@
             var me = this,
                     _int = 33; // 33/1000 second interval
             $($sel).bind("mousedown", function () {
+                alert();
                 me.intervalMachine("pan", {type: "set", fn: me.pan, args: [vel], intvl: _int});
             })
                     .bind("mouseup", function () {
