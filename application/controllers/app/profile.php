@@ -27,8 +27,7 @@ class Profile extends CI_Controller {
     function index() {
         $data['user'] = $this->objprofile->getProfile();
         $data['card'] = $this->objprofile->getCardDetail();
-        $data['gatewayInfo'] = $this->wi_common->getPaymentGatewayInfo("PAYPAL");
-
+        $data['gatewayInfo'] = $this->wi_common->getPaymentGatewayInfo("STRIPE");
         $this->load->view('dashboard/header');
         $this->load->view('dashboard/top');
         $this->load->view('dashboard/user-profile', $data);

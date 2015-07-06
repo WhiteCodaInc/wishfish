@@ -260,7 +260,7 @@
 <script type="text/javascript">
     $(function () {
 
-        Stripe.setPublishableKey('pk_test_qVqwj9LKS3yljQVTRh15YB2K');
+        Stripe.setPublishableKey('<?= $gatewayInfo->publish_key ?>');
 
 
         $('.default-date-picker').datepicker({

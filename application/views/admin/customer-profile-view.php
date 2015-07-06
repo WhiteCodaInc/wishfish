@@ -339,7 +339,7 @@
                         <?php ($card) ? $cardNo = "************{$card['last4']}" : ""; ?>
                         <div class="form-group">
                             <label>Credit Card Number </label>
-                            <input data-stripe="number" value="<?= ($card) ? $cardNo : "" ?>"  type="text" maxlength="16" class="card_number form-control" placeholder="Card Number" />
+                            <input data-stripe="number" value="<?= ($card) ? $cardNo : "" ?>"  type="text" maxlength="16" class="card_number form-control" placeholder="Card Number" required=""/>
                         </div>
                         <div class="form-group">
                             <div class="row">
@@ -347,17 +347,17 @@
                                     <label>Expiration (MM/YYYY)</label>
                                     <div class="row">
                                         <div class="col-md-5" style="padding-right: 0">
-                                            <input value="<?= ($card) ? $card['exp_month'] : "" ?>"  data-stripe="exp-month" maxlength="2" type="text" class="month form-control" placeholder="MM" />
+                                            <input value="<?= ($card) ? $card['exp_month'] : "" ?>"  data-stripe="exp-month" maxlength="2" type="text" class="month form-control" placeholder="MM" required=""/>
                                         </div>
                                         <div class="col-md-1" style="padding: 0 8px;font-size: 23px">/</div>
                                         <div class="col-md-5" style="padding-left: 0">
-                                            <input value="<?= ($card) ? $card['exp_year'] : "" ?>" data-stripe="exp-year" type="text" maxlength="4" class="year form-control" placeholder="YYYY" />
+                                            <input value="<?= ($card) ? $card['exp_year'] : "" ?>" data-stripe="exp-year" type="text" maxlength="4" class="year form-control" placeholder="YYYY" required="" />
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <label>CVC</label>
-                                    <input maxlength="3" type="password" class="cvc form-control" />
+                                    <input maxlength="3" type="password" class="cvc form-control" required=""/>
                                 </div>
                             </div>
                         </div>
@@ -382,9 +382,10 @@
         </div><!-- /.modal-dialog -->
     </div>
     <!------------------------------------------------------------------------>
-
 </aside>
 </div>
+
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 
 <!-- DATA TABES SCRIPT -->
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
@@ -393,6 +394,7 @@
 <script type="text/javascript">
 
     $(function () {
+        Stripe.setPublishableKey('<?= $gatewayInfo->publish_key ?>');
 
         $("#payment-data-table").dataTable({
             aLengthMenu: [
@@ -422,6 +424,76 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+
+        $('#cardForm').on('submit', function () {
+            $('#save').prop('disabled', true);
+            var error = false;
+            var ccNum = $(this).find('.card_number').val(),
+                    cvcNum = $(this).find('.cvc').val(),
+                    expMonth = $(this).find('.month').val(),
+                    expYear = $(this).find('.year').val();
+
+            // Validate the number:
+            if (!Stripe.card.validateCardNumber(ccNum)) {
+                error = true;
+                $('#msgCard').text('The credit card number appears to be invalid.');
+                $('#msgCard').show();
+                $('#save').prop('disabled', false);
+                return false;
+            }
+            // Validate the CVC:
+            if (!Stripe.card.validateCVC(cvcNum)) {
+                error = true;
+                $('#msgCard').text('The CVC number appears to be invalid.');
+                $('#msgCard').show();
+                $('#save').prop('disabled', false);
+                return false;
+            }
+            // Validate the expiration:
+            if (!Stripe.card.validateExpiry(expMonth, expYear)) {
+                error = true;
+                $('#msgCard').text('The expiration date appears to be invalid.');
+                $('#msgCard').show();
+                $('#save').prop('disabled', false);
+                return false;
+            }
+            // Check for errors:
+            if (!error) {
+                // Get the Stripe token:
+                $('#msgCard').hide();
+                $('#error').hide();
+                Stripe.card.createToken({
+                    number: ccNum,
+                    cvc: cvcNum,
+                    exp_month: expMonth,
+                    exp_year: expYear
+                }, stripeResponseHandler);
+                return true;
+            } else {
+                $('#error').show();
+                $('#msgCard').show();
+                return false;
+            }
+        });
+
+        function stripeResponseHandler(status, response) {
+            // Check for an error:
+            if (response.error) {
+                reportError(response.error.message);
+            } else { // No errors, submit the form:
+                var f = $("#cardForm");
+
+                // Token contains id, last4, and card type:
+                var token = response['id'];
+
+                // Insert the token into the form so it gets submitted to the server
+                f.append("<input type='hidden' name='stripeToken' value='" + token + "' />");
+                // Submit the form:
+                f.get(0).submit();
+            }
+
+        }
+
         /*
          $('#extendDate').click(function () {
          var edate = $('input[name="extend_date"]').val();
