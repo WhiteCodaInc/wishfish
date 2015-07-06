@@ -28,8 +28,12 @@
         </a>
         <?php if (count($currPlan) && $currPlan->plan_id == 1) : ?>
             <a href="#" id="extend" class="create btn bg-olive" data-toggle="modal" data-target="#trial-modal">
-                <i class="fa fa-edit"></i>
                 Extend Trial
+            </a>
+        <?php endif; ?>
+        <?php if (!$customer->is_set || ($customer->is_set && $customer->gateway == "STRIPE")): ?>
+            <a href="#" id="card" class="create btn btn-info" data-toggle="modal" data-target="#card-modal">
+                Change Payment Detail
             </a>
         <?php endif; ?>
     </section>
@@ -321,6 +325,63 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div>
+
+    <!-------------------------------Card Detail Model------------------------------------>
+    <div class="modal fade" id="card-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" style="max-width: 400px">
+            <div class="modal-content">
+                <form id="cardForm" role="form" action="<?= site_url() ?>app/profile/updateCard"  method="post">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Card Detail</h4>
+                    </div>
+                    <div class="modal-body">
+                        <?php ($card) ? $cardNo = "************{$card['last4']}" : ""; ?>
+                        <div class="form-group">
+                            <label>Credit Card Number </label>
+                            <input data-stripe="number" value="<?= ($card) ? $cardNo : "" ?>"  type="text" maxlength="16" class="card_number form-control" placeholder="Card Number" />
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Expiration (MM/YYYY)</label>
+                                    <div class="row">
+                                        <div class="col-md-5" style="padding-right: 0">
+                                            <input value="<?= ($card) ? $card['exp_month'] : "" ?>"  data-stripe="exp-month" maxlength="2" type="text" class="month form-control" placeholder="MM" />
+                                        </div>
+                                        <div class="col-md-1" style="padding: 0 8px;font-size: 23px">/</div>
+                                        <div class="col-md-5" style="padding-left: 0">
+                                            <input value="<?= ($card) ? $card['exp_year'] : "" ?>" data-stripe="exp-year" type="text" maxlength="4" class="year form-control" placeholder="YYYY" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>CVC</label>
+                                    <input maxlength="3" type="password" class="cvc form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <span style="color: red;display: none" id="msgCard"></span>
+                        </div>
+                    </div>
+                    <div class="modal-footer clearfix">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <button type="submit" id="save" class="btn btn-primary pull-left">Save</button>
+                            </div>
+                            <div class="col-md-3">
+                                <button type="button" class="btn btn-danger discard" data-dismiss="modal">
+                                    <i class="fa fa-times"></i> Discard
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+    <!------------------------------------------------------------------------>
 
 </aside>
 </div>

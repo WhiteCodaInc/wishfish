@@ -26,6 +26,10 @@ class M_customers extends CI_Model {
         $this->bucket = $this->encryption->decode($this->config->item('bucket', 'aws'));
         $this->accessKey = $this->encryption->decode($this->config->item('accessKey', 'aws'));
         $this->secretKey = $this->encryption->decode($this->config->item('secretKey', 'aws'));
+
+        $gatewayInfo = $this->wi_common->getPaymentGatewayInfo("STRIPE");
+        require_once(FCPATH . 'stripe/lib/Stripe.php');
+        Stripe::setApiKey($gatewayInfo->secret_key);
     }
 
     function getCustomerDetail() {
@@ -183,6 +187,29 @@ class M_customers extends CI_Model {
     function updatePaymentNotification() {
         $this->db->where('notification', 1);
         $this->db->update('wi_payment_mst', array('notification' => 0));
+    }
+
+    /* -------------------Card Detail---------------------------- */
+
+    function getCardDetail($cid) {
+        try {
+            $uInfo = $this->wi_common->getUserInfo($cid);
+            $customer = Stripe_Customer::retrieve($uInfo->customer_id);
+            if ($customer->cards->total_count != 0) {
+                $cardid = $customer->cards->data[0]->id;
+                $card = $customer->sources->retrieve($cardid);
+                $cardDetail = array(
+                    'last4' => $card->last4,
+                    'exp_month' => $card->exp_month,
+                    'exp_year' => $card->exp_year,
+                );
+                return $cardDetail;
+            } else {
+                return FALSE;
+            }
+        } catch (Exception $e) {
+            return FALSE;
+        }
     }
 
 }
