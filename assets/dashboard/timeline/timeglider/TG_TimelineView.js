@@ -1513,10 +1513,16 @@
                 $st = $(tmpl).appendTo(CONTAINER);
 
                 $('.slide .plus').on('click', function () {
-                    $('.tg-zoom-in').trigger('click');
+                    $('#p1 .tg-zoom-in').trigger('click');
                 });
                 $('.slide .minus').on('click', function () {
                     $('#p1 .tg-zoom-out').trigger('click');
+                });
+                $('.slide .left').on('click', function () {
+                    $('#p1 .timeglider-pan-left').trigger('click');
+                });
+                $('.slide .right').on('click', function () {
+                    $('#p1 .timeglider-pan-right').trigger('click');
                 });
 //
 //                $('.tg-single-timeline-header').append(slider);
