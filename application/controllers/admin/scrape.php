@@ -49,30 +49,29 @@ class Scrape extends CI_Controller {
         echo $html;
     }
 
-    function facebook() {
-        $base_url = "https://www.facebook.com/1464090949";
-//        $html = $this->curl_file_get_contents($base_url);
-        $html = file_get_contents($base_url);
-        echo $html;
-    }
-
 //    function facebook() {
-//        $base_url = "http://graph.facebook.com/";
-//        $userid = $this->input->post('userid');
-//        $url = $base_url . $userid;
-//        $res = json_decode($this->curl_file_get_contents($url));
-//        if (!isset($res->error)) {
-//            $img_path = FCPATH . "user.jpg";
-//            if (file_exists($img_path)) {
-//                unlink($img_path);
-//            }
-//            copy("{$url}/picture?width=215&height=215", $img_path);
-//            $res->profile = base_url() . 'user.jpg';
-//            echo json_encode($res);
-//        } else {
-//            echo 0;
-//        }
+//        $base_url = "https://www.facebook.com/sanjayvekariya18";
+//        $html = $this->curl_file_get_contents($base_url);
+//        echo $html;
 //    }
+
+    function facebook() {
+        $base_url = "http://graph.facebook.com/";
+        $userid = $this->input->post('userid');
+        $url = $base_url . $userid;
+        $res = json_decode($this->curl_file_get_contents($url));
+        if (!isset($res->error)) {
+            $img_path = FCPATH . "user.jpg";
+            if (file_exists($img_path)) {
+                unlink($img_path);
+            }
+            copy("{$url}/picture?width=215&height=215", $img_path);
+            $res->profile = base_url() . 'user.jpg';
+            echo json_encode($res);
+        } else {
+            echo 0;
+        }
+    }
 
     function addContact() {
         $post = $this->input->post();
