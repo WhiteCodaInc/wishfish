@@ -1057,6 +1057,7 @@
                     _int = 33; // 33/1000 second interval
 
             $('.slide .left').on('click', function () {
+                alert();
                 me.intervalMachine("pan", {type: "set", fn: me.pan, args: [vel], intvl: _int});
             });
 
@@ -1530,10 +1531,10 @@
 ////                    $('.timeglider-pan-left').trigger('mousedown');
 ////                    $('.timeglider-pan-left').trigger('mouseup');
 //                });
-                $('.slide .right').on('click', function () {
-                    $('.timeglider-pan-right').trigger('mousedown');
-//                    $('.timeglider-pan-right').trigger('mouseup');
-                });
+//                $('.slide .right').on('click', function () {
+//                    $('.timeglider-pan-right').trigger('mousedown');
+////                    $('.timeglider-pan-right').trigger('mouseup');
+//                });
 //
 //                $('.tg-single-timeline-header').append(slider);
 
