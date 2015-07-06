@@ -554,8 +554,8 @@
 //        this.setPanButton($(".timeglider-pan-right"), -30);
 //        this.setPanButton($(".timeglider-pan-left"), 30);
 
-        this.setPanButton($("div.right"), -30);
-        this.setPanButton($("div.left"), 30);
+        this.setPanButton($(".slide div.right"), -30);
+        this.setPanButton($(".slide div.left"), 30);
 
         $(this._views.TRUCK)
 
@@ -1524,12 +1524,12 @@
                 $('.slide .minus').on('click', function () {
                     $('.tg-zoom-out').trigger('click');
                 });
-                $('.slide .left').on('click', function (e) {
-                    $('.timeglider-pan-left').trigger('click');
-                });
-                $('.slide .right').on('click', function () {
-                    $('.timeglider-pan-right').trigger('click');
-                });
+//                $('.slide .left').on('click', function (e) {
+//                    $('.timeglider-pan-left').trigger('click');
+//                });
+//                $('.slide .right').on('click', function () {
+//                    $('.timeglider-pan-right').trigger('click');
+//                });
 //
 //                $('.tg-single-timeline-header').append(slider);
 
