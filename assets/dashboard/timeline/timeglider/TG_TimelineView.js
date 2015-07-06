@@ -1055,6 +1055,11 @@
         setPanButton: function ($sel, vel) {
             var me = this,
                     _int = 33; // 33/1000 second interval
+
+            $('.slide .left').on('click', function () {
+                me.intervalMachine("pan", {type: "set", fn: me.pan, args: [vel], intvl: _int});
+            });
+
             $($sel).bind("mousedown", function () {
                 me.intervalMachine("pan", {type: "set", fn: me.pan, args: [vel], intvl: _int});
             })
@@ -1521,10 +1526,10 @@
                 $('.slide .minus').on('click', function () {
                     $('.tg-zoom-out').trigger('click');
                 });
-                $('.slide .left').on('click', function (e) {
-                    $('.timeglider-pan-left').trigger('mousedown');
-//                    $('.timeglider-pan-left').trigger('mouseup');
-                });
+//                $('.slide .left').on('click', function (e) {
+////                    $('.timeglider-pan-left').trigger('mousedown');
+////                    $('.timeglider-pan-left').trigger('mouseup');
+//                });
                 $('.slide .right').on('click', function () {
                     $('.timeglider-pan-right').trigger('mousedown');
 //                    $('.timeglider-pan-right').trigger('mouseup');
