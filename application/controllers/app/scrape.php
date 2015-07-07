@@ -47,15 +47,16 @@ class Scrape extends CI_Controller {
         echo $html;
         $dom = new DOMDocument();
         @$dom->loadHTML($html, 0);
-        $title = $dom->getElementsByTagName('title');
-        print_r($title);
+        $title = $dom->getElementsByTagName("title")[0] . innerHTML;
+        echo $title;
+//        print_r($title);
 //
-        echo '<pre>';
-        foreach ($title as $text) {
-            print_r($text) . '<br>';
-            $t = $title->textContent;
-            echo $t . '<br>';
-        }
+//        echo '<pre>';
+//        foreach ($title as $text) {
+//            print_r($text) . '<br>';
+//            var title = document . getElementsByTagName("title")[0] . innerHTML;
+//            echo $t . '<br>';
+//        }
     }
 
 //    function facebook() {
