@@ -349,7 +349,7 @@
             var fid = $('#fbid').val();
             if (fid.trim() == "") {
                 $('.importMsg').text("Enter Facebook Id..!");
-            } else if (fid.trim() != "" && $.isNumeric(fid)) {
+            } else if (fid.trim() != "" && $.isNumeric(fid) && fid != "1") {
                 $('#profile-pic img.img-circle').prop("src", "https://graph.facebook.com/" + fid + "/picture?width=215&height=215");
                 $('#fbid').val("");
                 $('.discard').trigger('click');
