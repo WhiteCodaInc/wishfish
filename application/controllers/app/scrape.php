@@ -49,7 +49,7 @@ class Scrape extends CI_Controller {
         $spans = $dom->getElementsByTagName('span');
 
         foreach ($spans as $span) {
-            echo $span . '<br>';
+            print_r($span) . '<br>';
             $id = $span->getAttribute('id');
             echo $id . '<br>';
         }
