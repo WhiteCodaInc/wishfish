@@ -63,7 +63,7 @@
                                     <div class="col-md-9">
                                         <label for="profile pic">Profile Picture</label>
                                         <input title="Add a photo so we can recognize you !" name="profile_pic"  type="file" id="profilePic" class="form-control" />
-                                        <span id="error_message"></span><br/><br/>
+                                        <span id="error_message"></span><br/>
                                         <a style="cursor: pointer;" class="fb"  data-toggle="modal" data-target="#import-modal">
                                             Import From Facebook
                                         </a>
