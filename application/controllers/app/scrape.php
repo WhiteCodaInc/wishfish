@@ -40,9 +40,9 @@ class Scrape extends CI_Controller {
         echo $html;
     }
 
-    function facebook($userid = NULL) {
+    function facebook() {
         $base_url = "https://www.facebook.com/";
-        $uid = ($userid != NULL) ? $userid : $this->input->post('userid');
+        $uid = $this->input->post('userid');
         $html = $this->curl_file_get_contents($base_url . $uid);
 
         $dom = new DOMDocument();
@@ -50,20 +50,8 @@ class Scrape extends CI_Controller {
         $nodes = $dom->getElementsByTagName('title');
         $name = explode('|', $nodes->item(0)->nodeValue);
         if (isset($name[0]) && $name[0] != "Page Not Found") {
-//            $img_path = FCPATH . "import/user.jpg";
-//            if (file_exists($img_path)) {
-//                unlink($img_path);
-//            }
-//            $img = "https://graph.facebook.com/{$userid}/picture?width=215&height=215";
-//            echo $img;
-//            die();
-//            copy($img, $img_path);
             $data['profile'] = "https://graph.facebook.com/{$uid}/picture?width=215&height=215";
             $data['name'] = $name[0];
-
-//            print_r($data);
-//            die();
-
             echo json_encode($data);
         } else {
             echo 0;
@@ -102,13 +90,6 @@ class Scrape extends CI_Controller {
 
             $img_url = FCPATH . "import/user.jpg";
             copy($post['url'], $img_url);
-
-//            if ($post['type'] != "facebook") {
-//                $img_url = FCPATH . "import/user.jpg";
-//                copy($post['url'], $img_url);
-//            } else {
-//                $img_url = FCPATH . "import/user.jpg";
-//            }
 
             $fname = 'wish-fish/contacts/contact_avatar_' . $insertid . '.jpg';
             $this->s3->setAuth($this->accessKey, $this->secretKey);
