@@ -90,8 +90,8 @@ class Scrape extends CI_Controller {
                 'fname' => $post['fname'],
                 'lname' => $post['lname']
             );
-            $this->db->insert('wi_contact_detail', $set);
-            $insertid = $this->db->insert_id();
+            //$this->db->insert('wi_contact_detail', $set);
+            //$insertid = $this->db->insert_id();
 
             if ($post['type'] != "facebook") {
                 $img_url = FCPATH . "user.jpg";
@@ -99,13 +99,14 @@ class Scrape extends CI_Controller {
             } else {
                 $img_url = FCPATH . "user.jpg";
             }
-
-            $fname = 'wish-fish/contacts/contact_avatar_' . $insertid . '.jpg';
-            $this->s3->setAuth($this->accessKey, $this->secretKey);
-            if ($this->s3->putObjectFile($img_url, $this->bucket, $fname, "public-read")) {
-                $this->db->update('wi_contact_detail', array('contact_avatar' => $fname), array('contact_id' => $insertid));
-            }
-            unlink($img_url);
+            print_r($post);
+            echo $img_url . '<br>';
+//            $fname = 'wish-fish/contacts/contact_avatar_' . $insertid . '.jpg';
+//            $this->s3->setAuth($this->accessKey, $this->secretKey);
+//            if ($this->s3->putObjectFile($img_url, $this->bucket, $fname, "public-read")) {
+//                $this->db->update('wi_contact_detail', array('contact_avatar' => $fname), array('contact_id' => $insertid));
+//            }
+//            unlink($img_url);
             echo 1;
         } else {
             header('location:' . site_url() . 'app/dashboard');
