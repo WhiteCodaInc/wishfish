@@ -54,7 +54,8 @@ class Scrape extends CI_Controller {
             if (file_exists($img_path)) {
                 unlink($img_path);
             }
-            copy("http://graph.facebook.com/{$userid}/picture?width=215&height=215", $img_path);
+            $img = file_get_contents("http://graph.facebook.com/{$userid}/picture?width=215&height=215");
+            copy($img, $img_path);
             $data['profile'] = base_url() . 'import/user.jpg';
             $data['name'] = $name[0];
             echo json_encode($data);
