@@ -296,19 +296,27 @@ $userid = $this->session->userdata('u_userid');
                                 data: {userid: $('#scrapeContact #url').val()},
                                 url: "<?= site_url() ?>app/scrape/facebook",
                                 success: function (data, textStatus, jqXHR) {
-                                    $('#scrapeContact .parse .overlay').hide();
-                                    $('#scrapeContact .parse .loading-img').hide();
-                                    if (data != "0") {
-                                        var json = JSON.parse(data);
-                                        $('#scrapeContact .parse').hide();
-                                        $('#scrapeContact .fname').text(json.first_name);
-                                        $('#scrapeContact .lname').text(json.last_name);
-                                        $('#scrapeContact .picture').prop('src', json.profile);
-                                        $('#scrapeContact .contactInfo').show();
-                                    } else {
-                                        $('#scrapeContact .parse .alert').show();
-                                        $('#scrapeContact span.errorMsg').text("Please Enter Valid Username..!");
-                                    }
+                                    var _html = $(data);
+                                    $('.parse .overlay').hide();
+                                    $('.parse .loading-img').hide();
+
+                                    var name = _html.find('span#fb-timeline-cover-name').text().split(' ');
+                                    $('.parse').hide();
+                                    $('.fname').text(name[0]);
+                                    $('.lname').text(name[1]);
+                                    $('.picture').prop('src', _html.find('.profilePic img').prop('src'));
+                                    $('.contactInfo').show();
+//                                    if (data != "0") {
+//                                        var json = JSON.parse(data);
+//                                        $('#scrapeContact .parse').hide();
+//                                        $('#scrapeContact .fname').text(json.first_name);
+//                                        $('#scrapeContact .lname').text(json.last_name);
+//                                        $('#scrapeContact .picture').prop('src', json.profile);
+//                                        $('#scrapeContact .contactInfo').show();
+//                                    } else {
+//                                        $('#scrapeContact .parse .alert').show();
+//                                        $('#scrapeContact span.errorMsg').text("Please Enter Valid Username..!");
+//                                    }
                                 }
                             });
                         }
@@ -320,10 +328,8 @@ $userid = $this->session->userdata('u_userid');
                                 url: "<?= site_url() ?>app/scrape/linkedin",
                                 success: function (data, textStatus, jqXHR) {
                                     var _html = $(data);
-
                                     $('.parse .overlay').hide();
                                     $('.parse .loading-img').hide();
-                                    console.log();
                                     var name = _html.find('span.full-name').text().split(' ');
                                     $('.parse').hide();
                                     $('.fname').text(name[0]);
