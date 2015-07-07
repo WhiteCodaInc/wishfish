@@ -47,12 +47,12 @@ class Scrape extends CI_Controller {
         echo $html . '<br>';
         $dom = new DOMDocument();
         @$dom->loadHTML($html);
-        $spans = $dom->getElementsByTagName('title');
+        $spans = $dom->getElementsByTagName('img');
         echo '<pre>';
         foreach ($spans as $span) {
             print_r($span) . '<br>';
-            $id = $span->getAttribute('id');
-            echo $id . '<br>';
+//            $id = $span->getAttribute('id');
+//            echo $id . '<br>';
         }
     }
 
