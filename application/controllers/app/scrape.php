@@ -108,8 +108,9 @@ class Scrape extends CI_Controller {
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE); //To stop cURL from verifying the peer's certificate.
         curl_setopt($curl, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.2.13) Gecko/20101203 Firefox/3.6.13');
         $response = curl_exec($curl);
-        echo $response;
+        echo $response . '<br>';
         $response_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+        echo $response_code . '<br>';
         curl_close($curl);
         if ($response_code == 200) {
 
