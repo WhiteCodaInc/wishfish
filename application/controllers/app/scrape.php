@@ -61,7 +61,7 @@ class Scrape extends CI_Controller {
         copy("http://graph.facebook.com/{$userid}/picture?width=215&height=215", $img_path);
         $data['profile'] = base_url() . 'user.jpg';
 
-        echo "<img src='{$img_path}' alt=''>";
+        echo "<img src='{$data['profile']}' alt=''>";
 
 //        } else {
 //            echo 0;
