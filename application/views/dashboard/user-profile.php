@@ -348,7 +348,7 @@
             var fid = $('#fbid').val();
             $('#profile-pic img.img-circle').prop("src", "https://graph.facebook.com/" + fid + "/picture?width=215&height=215");
             $('#fbid').val("");
-            $('#import-model .discard').trigger('click');
+            $('.discard').trigger('click');
         });
 
 
