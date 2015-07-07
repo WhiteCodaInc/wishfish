@@ -126,6 +126,7 @@ class Scrape extends CI_Controller {
 
             /* Find all Anchors */
             $anchors = $dom->getElementsByTagName('a');
+            print_r($anchors);
             foreach ($anchors as $anchor) {
                 $href = $anchor->getAttribute('href');
                 if (stristr($href, $match) !== false) {
