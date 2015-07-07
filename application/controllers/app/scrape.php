@@ -100,12 +100,15 @@ class Scrape extends CI_Controller {
             $this->db->insert('wi_contact_detail', $set);
             $insertid = $this->db->insert_id();
 
-            if ($post['type'] != "facebook") {
-                $img_url = FCPATH . "import/user.jpg";
-                copy($post['url'], $img_url);
-            } else {
-                $img_url = FCPATH . "import/user.jpg";
-            }
+            $img_url = FCPATH . "import/user.jpg";
+            copy($post['url'], $img_url);
+
+//            if ($post['type'] != "facebook") {
+//                $img_url = FCPATH . "import/user.jpg";
+//                copy($post['url'], $img_url);
+//            } else {
+//                $img_url = FCPATH . "import/user.jpg";
+//            }
 
             $fname = 'wish-fish/contacts/contact_avatar_' . $insertid . '.jpg';
             $this->s3->setAuth($this->accessKey, $this->secretKey);
