@@ -48,7 +48,7 @@ class Scrape extends CI_Controller {
         $html = $this->curl_file_get_contents($base_url . $uid);
         echo $html . '<br>';
 
-        print_r($html->find('span'));
+        print_r($html->firstChild());
 
         die();
         $dom = new DOMDocument();
