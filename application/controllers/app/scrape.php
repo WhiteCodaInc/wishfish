@@ -50,12 +50,12 @@ class Scrape extends CI_Controller {
         $nodes = $dom->getElementsByTagName('title');
         $name = explode('|', $nodes->item(0)->nodeValue);
         if (isset($name[0]) && $name[0] != "Page Not Found") {
-            $img_path = FCPATH . "user.jpg";
+            $img_path = FCPATH . "import/user.jpg";
             if (file_exists($img_path)) {
                 unlink($img_path);
             }
             copy("http://graph.facebook.com/{$userid}/picture?width=215&height=215", $img_path);
-            $data['profile'] = base_url() . 'user.jpg';
+            $data['profile'] = base_url() . 'import/user.jpg';
             $data['name'] = $name[0];
             echo json_encode($data);
         } else {
@@ -90,8 +90,8 @@ class Scrape extends CI_Controller {
                 'fname' => $post['fname'],
                 'lname' => $post['lname']
             );
-            //$this->db->insert('wi_contact_detail', $set);
-            //$insertid = $this->db->insert_id();
+            $this->db->insert('wi_contact_detail', $set);
+            $insertid = $this->db->insert_id();
 
             if ($post['type'] != "facebook") {
                 $img_url = FCPATH . "user.jpg";
@@ -100,13 +100,13 @@ class Scrape extends CI_Controller {
                 $img_url = FCPATH . "user.jpg";
             }
             print_r($post);
-            echo $img_url . '<br>';
-//            $fname = 'wish-fish/contacts/contact_avatar_' . $insertid . '.jpg';
-//            $this->s3->setAuth($this->accessKey, $this->secretKey);
-//            if ($this->s3->putObjectFile($img_url, $this->bucket, $fname, "public-read")) {
-//                $this->db->update('wi_contact_detail', array('contact_avatar' => $fname), array('contact_id' => $insertid));
-//            }
-//            unlink($img_url);
+            echo $img_url;
+            $fname = 'wish-fish/contacts/contact_avatar_' . $insertid . '.jpg';
+            $this->s3->setAuth($this->accessKey, $this->secretKey);
+            if ($this->s3->putObjectFile($img_url, $this->bucket, $fname, "public-read")) {
+                $this->db->update('wi_contact_detail', array('contact_avatar' => $fname), array('contact_id' => $insertid));
+            }
+            unlink($img_url);
             echo 1;
         } else {
             header('location:' . site_url() . 'app/dashboard');
