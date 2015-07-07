@@ -259,6 +259,41 @@
 </div>
 <!------------------------------------------------------------------------>
 
+<!-------------------------------Import Model------------------------------------>
+<div class="modal fade" id="inport-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" style="max-width: 400px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Import From Facebook</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        Facebook ID
+                    </div>
+                    <div class="col-md-9">
+                        <input type="text" id="fbid" class="form-control" placeholder="Enter Facebook Id" />
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer clearfix">
+                <div class="row">
+                    <div class="col-md-3">
+                        <button type="button" id="import" class="btn btn-primary pull-left">Import</button>
+                    </div>
+                    <div class="col-md-3">
+                        <button type="button" class="btn btn-danger discard" data-dismiss="modal">
+                            <i class="fa fa-times"></i> Discard
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<!------------------------------------------------------------------------>
+
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script type="text/javascript">
     $(function () {
