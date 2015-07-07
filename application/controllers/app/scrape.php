@@ -40,6 +40,12 @@ class Scrape extends CI_Controller {
         echo $html;
     }
 
+    function fb() {
+        $base_url = "https://www.facebook.com/vishaltesting7";
+        $html = $this->curl_file_get_contents($base_url);
+        echo $html;
+    }
+
     function facebook() {
         $base_url = "http://graph.facebook.com/";
         $userid = $this->input->post('userid');
