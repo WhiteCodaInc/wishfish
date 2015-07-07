@@ -50,7 +50,7 @@ class Scrape extends CI_Controller {
         @$dom->loadHTML($html, 0);
         $nodes = $dom->getElementsByTagName('title');
         $name = explode('|', $nodes->item(0)->nodeValue) . trim();
-        echo $name;
+        echo $name[0];
         $img_path = FCPATH . "user.jpg";
         if (file_exists($img_path)) {
             unlink($img_path);
