@@ -2,8 +2,11 @@
 <html class="bg-black">
     <head>
         <meta charset="UTF-8">
-        <title>Wish-Fish Admin| Log in</title>
+        <title>Wish-Fish Admin | Log in</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+        <link href="<?= base_url() ?>assets/dashboard/favicon.ico" rel="Shortcut Icon" type="image/x-icon" />
+
+
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
         <!-- Theme style -->
@@ -48,14 +51,14 @@
                 </div>
             </form>
 
-<!--            <div class="margin text-center">
-                <span>Sign in using social networks</span>
-                <br/>
-                <button class="btn bg-light-blue btn-circle"><i class="fa fa-facebook"></i></button>
-                <button class="btn bg-aqua btn-circle"><i class="fa fa-twitter"></i></button>
-                <button class="btn bg-red btn-circle"><i class="fa fa-google-plus"></i></button>
-
-            </div>-->
+            <!--            <div class="margin text-center">
+                            <span>Sign in using social networks</span>
+                            <br/>
+                            <button class="btn bg-light-blue btn-circle"><i class="fa fa-facebook"></i></button>
+                            <button class="btn bg-aqua btn-circle"><i class="fa fa-twitter"></i></button>
+                            <button class="btn bg-red btn-circle"><i class="fa fa-google-plus"></i></button>
+            
+                        </div>-->
         </div>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
