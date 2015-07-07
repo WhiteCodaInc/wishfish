@@ -53,8 +53,8 @@ class Scrape extends CI_Controller {
         echo '<pre>';
         foreach ($title as $text) {
             print_r($text) . '<br>';
-//            $id = $span->getAttribute('id');
-//            echo $id . '<br>';
+            $t = $title->textContent;
+            echo $t . '<br>';
         }
     }
 
