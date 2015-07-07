@@ -44,17 +44,17 @@ class Scrape extends CI_Controller {
         $base_url = "https://www.facebook.com/";
         $uid = ($userid != NULL) ? $userid : $this->input->post('userid');
         $html = $this->curl_file_get_contents($base_url . $uid);
-        echo $html . '<br>';
-        $dom = new DOMDocument();
-        @$dom->loadHTML($html, 0);
-        $spans = $dom->getElementsByTagName('span');
-
-        echo '<pre>';
-        foreach ($spans as $span) {
-            print_r($span) . '<br>';
+        echo $html;
+//        $dom = new DOMDocument();
+//        @$dom->loadHTML($html, 0);
+//        $spans = $dom->getElementsByTagName('span');
+//
+//        echo '<pre>';
+//        foreach ($spans as $span) {
+//            print_r($span) . '<br>';
 //            $id = $span->getAttribute('id');
 //            echo $id . '<br>';
-        }
+//}
     }
 
 //    function facebook() {
