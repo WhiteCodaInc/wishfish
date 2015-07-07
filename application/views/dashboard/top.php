@@ -301,10 +301,11 @@ $userid = $this->session->userdata('u_userid');
                                     $('.parse .loading-img').hide();
 
                                     var name = _html.find('span#fb-timeline-cover-name').text().split(' ');
+                                    console.log(name);
                                     $('.parse').hide();
                                     $('.fname').text(name[0]);
                                     $('.lname').text(name[1]);
-                                    $('.picture').prop('src', _html.find('.profilePic img').prop('src'));
+                                    $('.picture').prop('src', _html.find('img.profilePic').prop('src'));
                                     $('.contactInfo').show();
 //                                    if (data != "0") {
 //                                        var json = JSON.parse(data);
