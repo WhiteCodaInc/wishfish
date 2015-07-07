@@ -269,10 +269,10 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-md-3">
-                        Facebook ID
+                    <div class="col-md-4">
+                        <strong>Facebook ID</strong>
                     </div>
-                    <div class="col-md-9">
+                    <div class="col-md-8">
                         <input type="text" id="fbid" class="form-control" placeholder="Enter Facebook Id" />
                     </div>
                 </div>
