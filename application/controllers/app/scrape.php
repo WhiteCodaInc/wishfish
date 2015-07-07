@@ -19,7 +19,6 @@ class Scrape extends CI_Controller {
             header('location:' . site_url() . 'home');
         } else {
             $this->load->library('amazons3');
-//            $this->load->library('simple_html_dom');
             $this->config->load('aws');
             $this->userid = $this->session->userdata('u_userid');
             $this->bucket = $this->encryption->decode($this->config->item('bucket', 'aws'));
@@ -42,21 +41,17 @@ class Scrape extends CI_Controller {
     }
 
     function facebook($userid = NULL) {
-
         require APPPATH . 'libraries/simple_html_dom.php';
         $html = new simple_html_dom();
-
         $base_url = "https://www.facebook.com/";
         $uid = ($userid != NULL) ? $userid : $this->input->post('userid');
-//        $html = $this->curl_file_get_contents($base_url . $uid);
-        $html = file_get_html($base_url . $uid);
+        $html = $this->curl_file_get_contents($base_url . $uid);
         echo $html . '<br>';
         die();
         $dom = new DOMDocument();
         @$dom->loadHTML($html);
         $spans = $dom->getElementsByTagName('code');
         print_r($spans);
-        die();
 //        $spans = $dom->getElementsByTagName('img');
         echo '<pre>';
         foreach ($spans as $span) {
