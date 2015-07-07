@@ -49,29 +49,41 @@ class Scrape extends CI_Controller {
         echo $html;
     }
 
-//    function facebook() {
-//        $base_url = "https://www.facebook.com/sanjayvekariya18";
-//        $html = $this->curl_file_get_contents($base_url);
-//        echo $html;
-//    }
-
     function facebook() {
-        $base_url = "http://graph.facebook.com/";
-        $userid = $this->input->post('userid');
-        $url = $base_url . $userid;
-        $res = json_decode($this->curl_file_get_contents($url));
-        if (!isset($res->error)) {
-            $img_path = FCPATH . "user.jpg";
-            if (file_exists($img_path)) {
-                unlink($img_path);
-            }
-            copy("{$url}/picture?width=215&height=215", $img_path);
-            $res->profile = base_url() . 'user.jpg';
-            echo json_encode($res);
+        $base_url = "https://www.facebook.com/";
+        $uid = $this->input->post('userid');
+        $html = $this->curl_file_get_contents($base_url . $uid);
+
+        $dom = new DOMDocument();
+        @$dom->loadHTML($html, 0);
+        $nodes = $dom->getElementsByTagName('title');
+        $name = explode('|', $nodes->item(0)->nodeValue);
+        if (isset($name[0]) && $name[0] != "Page Not Found") {
+            $data['profile'] = "https://graph.facebook.com/{$uid}/picture?width=215&height=215";
+            $data['name'] = $name[0];
+            echo json_encode($data);
         } else {
             echo 0;
         }
     }
+
+//    function facebook() {
+//        $base_url = "http://graph.facebook.com/";
+//        $userid = $this->input->post('userid');
+//        $url = $base_url . $userid;
+//        $res = json_decode($this->curl_file_get_contents($url));
+//        if (!isset($res->error)) {
+//            $img_path = FCPATH . "user.jpg";
+//            if (file_exists($img_path)) {
+//                unlink($img_path);
+//            }
+//            copy("{$url}/picture?width=215&height=215", $img_path);
+//            $res->profile = base_url() . 'user.jpg';
+//            echo json_encode($res);
+//        } else {
+//            echo 0;
+//        }
+//    }
 
     function addContact() {
         $post = $this->input->post();
@@ -84,12 +96,8 @@ class Scrape extends CI_Controller {
             $this->db->insert('contact_detail', $set);
             $insertid = $this->db->insert_id();
 
-            if ($post['type'] != "facebook") {
-                $img_url = FCPATH . "user.jpg";
-                copy($post['url'], $img_url);
-            } else {
-                $img_url = FCPATH . "user.jpg";
-            }
+            $img_url = FCPATH . "import/user.jpg";
+            copy($post['url'], $img_url);
 
             $fname = 'contacts/contact_avatar_' . $insertid . '.jpg';
             $this->s3->setAuth($this->accessKey, $this->secretKey);
@@ -106,12 +114,14 @@ class Scrape extends CI_Controller {
     function curl_file_get_contents($url) {
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url); //The URL to fetch. This can also be set when initializing a session with curl_init().
+        curl_setopt($curl, CURLOPT_HEADER, 0);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE); //TRUE to return the transfer as a string of the return value of curl_exec() instead of outputting it out directly.
         curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 5); //The number of seconds to wait while trying to connect.	
         curl_setopt($curl, CURLOPT_FOLLOWLOCATION, TRUE); //To follow any "Location: " header that the server sends as part of the HTTP header.
         curl_setopt($curl, CURLOPT_AUTOREFERER, TRUE); //To automatically set the Referer: field in requests where it follows a Location: redirect.
         curl_setopt($curl, CURLOPT_TIMEOUT, 10); //The maximum number of seconds to allow cURL functions to execute.
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, TRUE); //To stop cURL from verifying the peer's certificate.
+        curl_setopt($curl, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.2.13) Gecko/20101203 Firefox/3.6.13');
         $contents = curl_exec($curl);
         curl_close($curl);
         return $contents;

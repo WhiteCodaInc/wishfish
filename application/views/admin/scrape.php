@@ -157,20 +157,20 @@
                 data: {userid: $('#url').val()},
                 url: "<?= site_url() ?>admin/scrape/facebook",
                 success: function (data, textStatus, jqXHR) {
-//                    $('.temp').html(data);
                     $('.parse .overlay').hide();
                     $('.parse .loading-img').hide();
                     if (data != "0") {
                         var json = JSON.parse(data);
+                        var name = json.name.split(' ');
                         $('.parse').hide();
-                        $('.fname').text(json.first_name);
-                        $('.lname').text(json.last_name);
+                        $('.fname').text(name[0]);
+                        $('.lname').text(name[1]);
                         $('.picture').prop('src', json.profile);
                         $('.contactInfo').show();
                     } else {
-            $('.parse .alert').show();
-                    $('span.errorMsg').text("Please Enter Valid Username..!");
-            }
+                        $('.parse .alert').show();
+                        $('span.errorMsg').text("Please Enter Valid Username..!");
+                    }
                 }
             });
         }
