@@ -346,6 +346,7 @@
 
         $('#import').click(function () {
             var fid = $('#fbid').val();
+            console.log(fid);
             $('#profile_previewing').prop('src', "https://graph.facebook.com/" + fid + "/picture?width=215&height=215")
         });
 
