@@ -60,6 +60,10 @@ class Scrape extends CI_Controller {
 //            copy($img, $img_path);
             $data['profile'] = "https://graph.facebook.com/{$userid}/picture?width=215&height=215";
             $data['name'] = $name[0];
+
+            print_r($data);
+            die();
+
             echo json_encode($data);
         } else {
             echo 0;
