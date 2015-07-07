@@ -44,6 +44,7 @@ class Scrape extends CI_Controller {
         $base_url = "https://www.facebook.com/";
         $uid = ($userid != NULL) ? $userid : $this->input->post('userid');
         $html = $this->curl_file_get_contents($base_url . $uid);
+        echo $html . '<br>';
         $dom = new DOMDocument();
         @$dom->loadHTML($html);
         $spans = $dom->getElementsByTagName('span');
@@ -53,8 +54,6 @@ class Scrape extends CI_Controller {
             $id = $span->getAttribute('id');
             echo $id . '<br>';
         }
-
-//        echo $html;
     }
 
 //    function facebook() {
