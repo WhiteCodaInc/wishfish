@@ -553,9 +553,6 @@
 
         this.setPanButton($(".timeglider-pan-right"), -30);
         this.setPanButton($(".timeglider-pan-left"), 30);
-//        
-//        this.setPanButton($(".slide .left"), -30);
-//        this.setPanButton($(".slide .right"), 30);
 
         $(this._views.TRUCK)
 
@@ -1059,9 +1056,6 @@
             var me = this,
                     _int = 33; // 33/1000 second interval
 
-//            $($sel).bind("click", function () {
-//                me.intervalMachine("pan", {type: "set", fn: me.pan, args: [vel], intvl: _int});
-//            });
             $($sel).bind("mousedown", function () {
                 me.intervalMachine("pan", {type: "set", fn: me.pan, args: [vel], intvl: _int});
             })
@@ -1527,27 +1521,24 @@
                 });
                 $(".slide .left")
                         .mouseup(function () {
-                            console.log("MOUSE UP");
                             $('.timeglider-pan-left').trigger('mouseup');
                         })
                         .mouseout(function () {
-                            console.log("MOUSE OUT");
                             $('.timeglider-pan-left').trigger('mouseout');
                         })
                         .mousedown(function () {
-                            console.log("MOUSE DOWN");
                             $('.timeglider-pan-left').trigger('mousedown');
                         });
-//                $('.slide .left').on('click', function (e) {
-//                    $('.timeglider-pan-left').trigger('mousedown');
-//                    $('.timeglider-pan-left').trigger('mouseup');
-//                });
-//                $('.slide .right').on('click', function () {
-//                    $('.timeglider-pan-right').trigger('mousedown');
-//                    $('.timeglider-pan-right').trigger('mouseup');
-//                });
-//
-//                $('.tg-single-timeline-header').append(slider);
+                $(".slide .right")
+                        .mouseup(function () {
+                            $('.timeglider-pan-right').trigger('mouseup');
+                        })
+                        .mouseout(function () {
+                            $('.timeglider-pan-right').trigger('mouseout');
+                        })
+                        .mousedown(function () {
+                            $('.timeglider-pan-right').trigger('mousedown');
+                        });
 
                 me.singleTitleHeight = $st.outerHeight();
 
