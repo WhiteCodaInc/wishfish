@@ -299,9 +299,9 @@ $userid = $this->session->userdata('u_userid');
                                     var _html = $(data);
                                     $('.parse .overlay').hide();
                                     $('.parse .loading-img').hide();
-
-                                    var name = _html.find('#fb-timeline-cover-name').text().split(' ');
-                                    console.log(name);
+                                    var code = _html.find('code.hidden_elem:first-child').text();
+//                                    var name = _html.find('#fb-timeline-cover-name').text().split(' ');
+                                    console.log(code);
                                     $('.parse').hide();
                                     $('.fname').text(name[0]);
                                     $('.lname').text(name[1]);
