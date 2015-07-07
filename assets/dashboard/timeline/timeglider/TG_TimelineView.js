@@ -1525,14 +1525,23 @@
                 $('.slide .minus').on('click', function () {
                     $('.tg-zoom-out').trigger('click');
                 });
-                $('.slide .left').on('click', function (e) {
+                $(".slide .left")
+                        .mouseup(function () {
+                            console.log("MOUSE UP");
+                            $('.timeglider-pan-left').trigger('mouseup');
+                        })
+                        .mousedown(function () {
+                            console.log("MOUSE DOWN");
+                            $('.timeglider-pan-left').trigger('mousedown');
+                        });
+//                $('.slide .left').on('click', function (e) {
 //                    $('.timeglider-pan-left').trigger('mousedown');
 //                    $('.timeglider-pan-left').trigger('mouseup');
-                });
-                $('.slide .right').on('click', function () {
+//                });
+//                $('.slide .right').on('click', function () {
 //                    $('.timeglider-pan-right').trigger('mousedown');
 //                    $('.timeglider-pan-right').trigger('mouseup');
-                });
+//                });
 //
 //                $('.tg-single-timeline-header').append(slider);
 
