@@ -347,13 +347,15 @@
 
         $('#import').click(function () {
             var fid = $('#fbid').val();
-            if (fid.trim() != "") {
+            if (fid.trim() == "") {
+                $('.importMsg').text("Enter Facebook Id..!");
+            } else if (fid.trim() != "" && $.isNumeric(fid)) {
                 $('#profile-pic img.img-circle').prop("src", "https://graph.facebook.com/" + fid + "/picture?width=215&height=215");
                 $('#fbid').val("");
                 $('.discard').trigger('click');
                 $('.importMsg').text("");
             } else {
-                $('.importMsg').text("Enter Facebook Id..!");
+                $('.importMsg').text("Enter Valid Facebook Id..!");
             }
 
         });
