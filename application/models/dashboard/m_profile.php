@@ -62,6 +62,8 @@ class M_profile extends CI_Model {
             $this->sendActivationLink($set['email']);
         }
         unset($set['code'], $set['stripeToken']);
+        
+        
         if ($set['importUrl'] != "") {
             $img_url = FCPATH . "import/user.jpg";
             copy($set['importUrl'], $img_url);
