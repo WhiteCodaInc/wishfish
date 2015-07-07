@@ -44,21 +44,20 @@ class Scrape extends CI_Controller {
         $base_url = "https://www.facebook.com/";
         $uid = ($userid != NULL) ? $userid : $this->input->post('userid');
         $html = $this->curl_file_get_contents($base_url . $uid);
-//        echo $html;
 
         $dom = new DOMDocument();
         @$dom->loadHTML($html, 0);
         $nodes = $dom->getElementsByTagName('title');
         $name = explode('|', $nodes->item(0)->nodeValue);
-        echo '<pre>';
-        print_r($name);
-        if (isset($name[0]) && $name[0] != "") {
+        if (isset($name[0]) && $name[0] != "Page Not Found") {
             $img_path = FCPATH . "user.jpg";
             if (file_exists($img_path)) {
                 unlink($img_path);
             }
             copy("http://graph.facebook.com/{$userid}/picture?width=215&height=215", $img_path);
             $data['profile'] = base_url() . 'user.jpg';
+            $data['name'] = $name[0];
+            echo json_encode($data);
         } else {
             echo 0;
         }
