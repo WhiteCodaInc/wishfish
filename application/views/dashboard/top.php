@@ -296,6 +296,8 @@ $userid = $this->session->userdata('u_userid');
                                 data: {userid: $('#scrapeContact #url').val()},
                                 url: "<?= site_url() ?>app/scrape/facebook",
                                 success: function (data, textStatus, jqXHR) {
+                                    $('.parse .overlay').hide();
+                                    $('.parse .loading-img').hide();
                                     if (data != "0") {
                                         var json = JSON.parse(data);
                                         var name = json.name.split(' ');
