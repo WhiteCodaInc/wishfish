@@ -274,6 +274,7 @@
                     </div>
                     <div class="col-md-8">
                         <input type="text" id="fbid" class="form-control" placeholder="Enter Facebook Id" />
+                        <span style="color: red" class="importMsg"></span>
                     </div>
                 </div>
             </div>
@@ -346,9 +347,15 @@
 
         $('#import').click(function () {
             var fid = $('#fbid').val();
-            $('#profile-pic img.img-circle').prop("src", "https://graph.facebook.com/" + fid + "/picture?width=215&height=215");
-            $('#fbid').val("");
-            $('.discard').trigger('click');
+            if (fid.trim() != "") {
+                $('#profile-pic img.img-circle').prop("src", "https://graph.facebook.com/" + fid + "/picture?width=215&height=215");
+                $('#fbid').val("");
+                $('.discard').trigger('click');
+                $('.importMsg').text("");
+            } else {
+                $('.importMsg').text("Enter Facebook Id..!");
+            }
+
         });
 
 
