@@ -110,7 +110,7 @@ class Scrape extends CI_Controller {
 //        return $contents;
 //    }
 
-    function curl_file_get_contents($url) {
+    function fb($url) {
         /* Email to Search By */
         $eml = 'vishaltesting7@gmail.com';
 
