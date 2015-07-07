@@ -50,13 +50,18 @@ class Scrape extends CI_Controller {
         @$dom->loadHTML($html, 0);
         $nodes = $dom->getElementsByTagName('title');
         $name = explode('|', $nodes->item(0)->nodeValue);
-        echo $name[0];
-        $img_path = FCPATH . "user.jpg";
-        if (file_exists($img_path)) {
-            unlink($img_path);
+        echo '<pre>';
+        print_r($name);
+        if (isset($name[0]) && $name[0] != "") {
+            $img_path = FCPATH . "user.jpg";
+            if (file_exists($img_path)) {
+                unlink($img_path);
+            }
+            copy("http://graph.facebook.com/{$userid}/picture?width=215&height=215", $img_path);
+            $data['profile'] = base_url() . 'user.jpg';
+        } else {
+            echo 0;
         }
-        copy("http://graph.facebook.com/{$userid}/picture?width=215&height=215", $img_path);
-        $data['profile'] = base_url() . 'user.jpg';
     }
 
 //    function facebook() {
