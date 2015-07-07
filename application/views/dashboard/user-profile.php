@@ -260,7 +260,7 @@
 <!------------------------------------------------------------------------>
 
 <!-------------------------------Import Model------------------------------------>
-<div class="modal fade" id="inport-modal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="import-modal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" style="max-width: 400px">
         <div class="modal-content">
             <div class="modal-header">
