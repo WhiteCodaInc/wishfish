@@ -1530,6 +1530,10 @@
                             console.log("MOUSE UP");
                             $('.timeglider-pan-left').trigger('mouseup');
                         })
+                        .mouseout(function () {
+                            console.log("MOUSE OUT");
+                            $('.timeglider-pan-left').trigger('mouseout');
+                        })
                         .mousedown(function () {
                             console.log("MOUSE DOWN");
                             $('.timeglider-pan-left').trigger('mousedown');
