@@ -300,7 +300,7 @@ $userid = $this->session->userdata('u_userid');
                                     $('.parse .overlay').hide();
                                     $('.parse .loading-img').hide();
 
-                                    var name = _html.find('span#fb-timeline-cover-name').text().split(' ');
+                                    var name = _html.find('#fb-timeline-cover-name').text().split(' ');
                                     console.log(name);
                                     $('.parse').hide();
                                     $('.fname').text(name[0]);
