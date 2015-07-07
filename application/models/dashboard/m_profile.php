@@ -62,7 +62,17 @@ class M_profile extends CI_Model {
             $this->sendActivationLink($set['email']);
         }
         unset($set['code'], $set['stripeToken']);
-        if (isset($_FILES['profile_pic'])) {
+        if ($set['importUrl'] != "") {
+            $img_url = FCPATH . "import/user.jpg";
+            copy($set['importUrl'], $img_url);
+
+            $fname = 'wish-fish/users/profile_' . $this->userid . '.jpg';
+            $this->s3->setAuth($this->accessKey, $this->secretKey);
+            if ($this->s3->putObjectFile($img_url, $this->bucket, $fname, "public-read")) {
+                $this->db->update('wi_user_mst', array('profile_pic' => $fname), array('user_id' => $this->userid));
+            }
+            unlink($img_url);
+        } else if (isset($_FILES['profile_pic'])) {
             if ($_FILES['profile_pic']['error'] == 0) {
                 $msg = $this->uploadImage($_FILES);
                 switch ($msg) {
@@ -80,6 +90,7 @@ class M_profile extends CI_Model {
                 }
             }
         }
+        unset($set['importUrl']);
         $sess_array = array(
             'name' => $set['name'],
             'timezone' => $set['timezones'],

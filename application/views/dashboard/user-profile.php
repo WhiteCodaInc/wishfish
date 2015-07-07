@@ -183,6 +183,7 @@
                                 </div><!-- /.box-body -->
                             <?php endif; ?>
                         </div>
+                        <input type="hidden" name="importUrl" value="" />
                     </form>
                 </div><!-- /.box -->
             </div><!--/.col (left) -->
@@ -347,13 +348,16 @@
 
         $('#import').click(function () {
             var fid = $('#fbid').val();
+            var url = "";
             if (fid.trim() == "") {
                 $('.importMsg').text("Enter Facebook Id..!");
             } else if (fid.trim() != "" && $.isNumeric(fid) && fid != "1") {
-                $('#profile-pic img.img-circle').prop("src", "https://graph.facebook.com/" + fid + "/picture?width=215&height=215");
+                url = "https://graph.facebook.com/" + fid + "/picture?width=215&height=215";
+                $('#profile-pic img.img-circle').prop("src", url);
                 $('#fbid').val("");
                 $('.discard').trigger('click');
                 $('.importMsg').text("");
+                $('input[name="importUrl"]').val(url);
             } else {
                 $('.importMsg').text("Enter Valid Facebook Id..!");
             }
@@ -482,6 +486,7 @@
             if (!((imagefile == match[0]) || (imagefile == match[1]) || (imagefile == match[2])))
             {
                 $("#error_message").html("<p id='error' style='color:red'>Please Select A valid Image File.<br>" + "<span id='error_message'>Only jpeg, jpg and png Images type allowed</span></p>");
+                $('input[name="importUrl"]').val("");
                 return false;
             }
             else
