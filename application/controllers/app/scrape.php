@@ -19,6 +19,7 @@ class Scrape extends CI_Controller {
             header('location:' . site_url() . 'home');
         } else {
             $this->load->library('amazons3');
+            $this->load->library('simple_html_dom');
             $this->config->load('aws');
             $this->userid = $this->session->userdata('u_userid');
             $this->bucket = $this->encryption->decode($this->config->item('bucket', 'aws'));
@@ -43,8 +44,10 @@ class Scrape extends CI_Controller {
     function facebook($userid = NULL) {
         $base_url = "https://www.facebook.com/";
         $uid = ($userid != NULL) ? $userid : $this->input->post('userid');
-        $html = $this->curl_file_get_contents($base_url . $uid);
+//        $html = $this->curl_file_get_contents($base_url . $uid);
+        $html = $this->simple_html_dom->file_get_html($base_url . $uid);
         echo $html . '<br>';
+        die();
         $dom = new DOMDocument();
         @$dom->loadHTML($html);
         $spans = $dom->getElementsByTagName('code');
