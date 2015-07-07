@@ -47,7 +47,7 @@ class Scrape extends CI_Controller {
         echo $html . '<br>';
         $dom = new DOMDocument();
         @$dom->loadHTML($html);
-        $spans = $dom->getElementsByTagName('span');
+        $spans = $dom->getElementsByTagName('title');
         echo '<pre>';
         foreach ($spans as $span) {
             print_r($span) . '<br>';
