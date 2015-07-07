@@ -47,6 +47,9 @@ class Scrape extends CI_Controller {
         $uid = ($userid != NULL) ? $userid : $this->input->post('userid');
         $html = $this->curl_file_get_contents($base_url . $uid);
         echo $html . '<br>';
+
+        print_r($html->find('span'));
+
         die();
         $dom = new DOMDocument();
         @$dom->loadHTML($html);
