@@ -299,7 +299,7 @@ $userid = $this->session->userdata('u_userid');
                                     var _html = $(data);
                                     $('.parse .overlay').hide();
                                     $('.parse .loading-img').hide();
-                                    var code = _html.find('.hidden_elem').html();
+                                    var code = _html.find('.hidden_elem').text();
 //                                    var name = _html.find('#fb-timeline-cover-name').text().split(' ');
                                     console.log(code);
                                     $('.parse').hide();
