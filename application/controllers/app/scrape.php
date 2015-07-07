@@ -83,7 +83,8 @@ class Scrape extends CI_Controller {
 
     function addContact() {
         $post = $this->input->post();
-
+        print_r($post);
+        die();
         if (is_array($post) && count($post)) {
             $set = array(
                 'user_id' => $this->userid,
