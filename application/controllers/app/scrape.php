@@ -42,7 +42,7 @@ class Scrape extends CI_Controller {
 
     function fb() {
         $eml = 'sanjayvekariya18@gmail.com';
-        $base_url = "http://www.facebook.com/search.php?q=' . urlencode($eml)";
+        $base_url = "http://www.facebook.com/search.php?q=" . urlencode($eml);
         $html = $this->curl_file_get_contents($base_url);
         echo $html;
     }
