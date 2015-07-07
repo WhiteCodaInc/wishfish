@@ -343,6 +343,13 @@
 </script>
 <script type="text/javascript">
     $(document).ready(function (e) {
+
+        $('#import').click(function () {
+            var fid = $('#fbid').val();
+            $('#profile_previewing').prop('src', "https://graph.facebook.com/" + fid + "/picture?width=215&height=215")
+        });
+
+
         var cardFlag;
         var gatewayFlag = false;
         var cardForm;
