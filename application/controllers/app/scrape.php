@@ -41,26 +41,20 @@ class Scrape extends CI_Controller {
     }
 
     function facebook($userid = NULL) {
-        require APPPATH . 'libraries/simple_html_dom.php';
-        $html = new simple_html_dom();
         $base_url = "https://www.facebook.com/";
         $uid = ($userid != NULL) ? $userid : $this->input->post('userid');
         $html = $this->curl_file_get_contents($base_url . $uid);
         echo $html . '<br>';
-
-        print_r($html->firstChild());
-
-        die();
         $dom = new DOMDocument();
         @$dom->loadHTML($html);
         $spans = $dom->getElementsByTagName('code');
         print_r($spans);
-//        $spans = $dom->getElementsByTagName('img');
+        die();
         echo '<pre>';
         foreach ($spans as $span) {
             print_r($span) . '<br>';
-//            $id = $span->getAttribute('id');
-//            echo $id . '<br>';
+            $id = $span->getAttribute('id');
+            echo $id . '<br>';
         }
     }
 
