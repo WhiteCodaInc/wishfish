@@ -110,7 +110,7 @@ class Scrape extends CI_Controller {
 //        return $contents;
 //    }
 
-    function fb($url) {
+    function fb() {
         /* Email to Search By */
         $eml = 'vishaltesting7@gmail.com';
 
@@ -147,8 +147,9 @@ class Scrape extends CI_Controller {
             $anchors = $dom->getElementsByTagName('a');
 
             foreach ($anchors as $anchor) {
-                echo $anchor . '<br>';
+
                 $href = $anchor->getAttribute('href');
+                echo $href . '<br>';
                 if (stristr($href, $match) !== false) {
                     $uids[] = str_replace($match, '', $href);
                 }
