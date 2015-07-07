@@ -1059,15 +1059,18 @@
             var me = this,
                     _int = 33; // 33/1000 second interval
 
-            $($sel).bind("mousedown", function () {
+            $($sel).bind("click", function () {
                 me.intervalMachine("pan", {type: "set", fn: me.pan, args: [vel], intvl: _int});
-            })
-                    .bind("mouseup", function () {
-                        me.intervalMachine("pan", {type: "clear", fn: me.pan, callback: "resetTicksHandle"});
-                    })
-                    .bind("mouseout", function () {
-                        me.intervalMachine("pan", {type: "clear", fn: me.pan, callback: "resetTicksHandle"});
-                    });
+            });
+//            $($sel).bind("mousedown", function () {
+//                me.intervalMachine("pan", {type: "set", fn: me.pan, args: [vel], intvl: _int});
+//            })
+//                    .bind("mouseup", function () {
+//                        me.intervalMachine("pan", {type: "clear", fn: me.pan, callback: "resetTicksHandle"});
+//                    })
+//                    .bind("mouseout", function () {
+//                        me.intervalMachine("pan", {type: "clear", fn: me.pan, callback: "resetTicksHandle"});
+//                    });
         },
         /* 
          * intervalMachine
