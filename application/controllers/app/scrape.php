@@ -50,12 +50,12 @@ class Scrape extends CI_Controller {
         $title = $dom->getElementsByTagName('title');
         print_r($title);
 //
-//        echo '<pre>';
-//        foreach ($spans as $span) {
-//            print_r($span) . '<br>';
+        echo '<pre>';
+        foreach ($title as $text) {
+            print_r($text) . '<br>';
 //            $id = $span->getAttribute('id');
 //            echo $id . '<br>';
-//}
+        }
     }
 
 //    function facebook() {
