@@ -1,3 +1,26 @@
+<style type="text/css">
+    span.copyText {
+        position: relative;
+        display: inline;
+        cursor: pointer
+    }
+    li.copy textarea {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0 none transparent;
+        margin: 0;
+        padding: 0;
+        outline: none;
+        resize: none;
+        overflow: hidden;
+        font-family: inherit;
+        font-size: 1em;
+        cursor: pointer
+    }
+</style>
 <aside class="right-side">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -50,7 +73,7 @@
                                     <li>4. Click on APIs & auth from left an sidebar and click on Credentials</li>
                                     <li>4. Click on 'create Client ID' and choose 'web application' click on configure consent screen.</li>
                                     <li>5. On Consent screen Enter Project name as a 'Wish-Fish' and save it.</li>
-                                    <li>6. Enter Authorized redirect URIs "https://www.wish-fish.com/app/calender".</li>
+                                    <li class="copy">6. Enter Authorized redirect URIs "<span class="copyText">https://www.wish-fish.com/admin/calender</span>".</li>
                                     <li>7. Copy Client ID and Client secret key and paste it on above setting form.</li>
                                     <li>8. Click on 'Create new key' and select 'Server key'.</li>
                                     <li>9. Enter following IP Address '50.28.18.90'.</li>
@@ -71,6 +94,24 @@
 
 <script type="text/javascript">
     $(document).ready(function (e) {
+        $('.copyText').click(
+                function () {
+                    if ($('#tmp').length) {
+                        $('#tmp').remove();
+                    }
+                    var clickText = $(this).text();
+                    $('<textarea id="tmp" />')
+                            .appendTo($(this))
+                            .val(clickText)
+                            .focus()
+                            .select();
+                    return false;
+                });
+        $(':not(.copyText)').click(
+                function () {
+                    $('#tmp').remove();
+                });
+
         $('#save-setting').click(function () {
             $('#setting_submit').trigger('click');
         });

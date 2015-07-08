@@ -84,7 +84,7 @@ class Setting extends CI_Controller {
             $this->objsetting->updateCalenderSetting($post);
             header('location:' . site_url() . 'admin/setting/calender?msg=U');
         } else {
-            header('location:' . site_url() . 'app/setting/calender');
+            header('location:' . site_url() . 'admin/setting/calender');
         }
     }
 
