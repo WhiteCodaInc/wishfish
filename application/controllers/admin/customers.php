@@ -70,6 +70,9 @@ class Customers extends CI_Controller {
 
     function updateCustomer() {
         $post = $this->input->post();
+        echo '<pre>';
+        print_r($post);
+        die();
         $msg = $this->objcustomer->updateCustomer($post);
         header('location:' . site_url() . 'admin/customers?msg=' . $msg);
     }
