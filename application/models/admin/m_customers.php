@@ -150,6 +150,8 @@ class M_customers extends CI_Model {
         } else {
             $m = "U";
         }
+        (isset($set['password'])) ?
+                        $set['password'] = sha1($set['password']) : "";
         $this->db->update('wi_user_mst', $set, array('user_id' => $cid));
         return $m;
     }
