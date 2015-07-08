@@ -265,7 +265,7 @@ and open the template in the editor.
 
 <?php
 $type = $this->input->get('signby');
-if ($signup != "" && $signup == "fb"):
+if ($type != "" && $type == "fb"):
     ?>
                     setTimeout(function () {
                         $('.facebook').trigger('click');
