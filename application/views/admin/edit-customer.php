@@ -166,13 +166,17 @@
 <?php endif; ?>
 
         $('#addCustomer').click(function () {
+            var passwd = $('input[name="password"]').val();
+            if (passwd.trim() == "") {
+                alertify.error("Password can not be blank..!");
+                reutrn false;
+            }
             $('#customerForm').submit();
         });
 
         $('#change_password').click(function () {
             $('input[name="password"]').val('');
             $('input[name="password"]').prop('disabled', false);
-            $('input[name="password"]').prop('required', true);
         });
 
         $("input:file").change(function () {
