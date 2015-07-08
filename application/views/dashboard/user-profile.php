@@ -487,7 +487,6 @@
         // End of stripeResponseHandler() function.
 
         $("input:file").change(function () {
-            $("#error_message").empty(); // To remove the previous error message
             var file = this.files[0];
             var imagefile = file.type;
             var match = ["image/jpeg", "image/png", "image/jpg"];
