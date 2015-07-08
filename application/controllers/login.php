@@ -169,5 +169,4 @@ class Login extends CI_Controller {
         $this->input->set_cookie($password);
         return TRUE;
     }
-
 }

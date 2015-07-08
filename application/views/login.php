@@ -264,6 +264,21 @@ and open the template in the editor.
             $(document).ready(function () {
 
 <?php
+$type = $this->input->get('type');
+if ($type != "") {
+    if ($type == "fb") {
+        ?>
+                        setTimeout(function () {
+                            $('.facebook').trigger('click');
+                        }, 1000);
+    <?php } else if ($type == "google") { ?>
+                        $('.btn-google-plus').trigger('click');
+        <?php
+    }
+}
+?>
+
+<?php
 $signup = $this->input->get('signup');
 if ($msg == "NR" && $signup != "" && ($signup == "google" || $signup == "fb")):
     $url = ($signup == "google") ?
