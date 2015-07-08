@@ -97,7 +97,7 @@ class Register extends CI_Controller {
                         header('Location: ' . site_url() . 'register?msg=RF');
                     }
                 } else {
-                    header('Location: ' . site_url() . 'login?from=home');
+                    header('Location: ' . site_url() . 'login?signin=google&msg=R');
                 }
             } else {
                 header('Location: ' . site_url() . 'register?msg=RF');
@@ -148,7 +148,7 @@ class Register extends CI_Controller {
                         header('location: ' . site_url() . 'register?msg=RF');
                     }
                 } else {
-                    header('Location: ' . site_url() . 'login?from=home');
+                    header('Location: ' . site_url() . 'login?signin=fb&msg=R');
                 }
             } catch (FacebookApiException $e) {
                 error_log($e);

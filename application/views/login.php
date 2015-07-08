@@ -264,25 +264,17 @@ and open the template in the editor.
             $(document).ready(function () {
 
 <?php
-$type = $this->input->get('type');
-if ($type != "") {
-    if ($type == "fb") {
-        ?>
-                        setTimeout(function () {
-                            $('.facebook').trigger('click');
-                        }, 1000);
-    <?php } else if ($type == "google") { ?>
-                        setTimeout(function () {
-                            $('.btn-google-plus').trigger('click');
-                        }, 1000);
+$type = $this->input->get('signby');
+if ($signup != "" && $signup == "fb"):
+    ?>
+                    setTimeout(function () {
+                        $('.facebook').trigger('click');
+                    }, 1000);
 
-        <?php
-    }
-}
-?>
-
+<?php endif; ?>
 <?php
 $signup = $this->input->get('signup');
+
 if ($msg == "NR" && $signup != "" && ($signup == "google" || $signup == "fb")):
     $url = ($signup == "google") ?
             site_url() . 'register?from=home' :
@@ -294,6 +286,22 @@ if ($msg == "NR" && $signup != "" && ($signup == "google" || $signup == "fb")):
                         }
                     });
 <?php endif; ?>
+<?php
+$signin = $this->input->get('signin');
+if ($msg == "R" && $signin != "" && ($signin == "google" || $signin == "fb")):
+    $url = ($signin == "google") ?
+            site_url() . 'login?from=home' :
+            site_url() . 'login?signby=fb';
+    $type = ($signin == "google") ? "google" : "facebook";
+    $msg = "Your email address has been already register with {$type}.<br>Are you really want to login with {$type}?";
+    ?>
+                    alertify.confirm("<?= $msg ?>", function (e) {
+                        if (e) {
+                            window.location.href = "<?= $url ?>";
+                        }
+                    });
+<?php endif; ?>
+
                 var emailV = 1;
                 var captchaV = 1;
                 var sess_word = "<?= $this->session->userdata('captchaWord') ?>";
