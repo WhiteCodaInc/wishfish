@@ -34,12 +34,16 @@ class Dashboard extends CI_Controller {
         } else if ($this->uid) {
             
         }
-       
+
         if ($this->input->cookie('isLogin')) {
             $id = $this->input->cookie('isLogin', TRUE);
-            delete_cookie('isLogin', '.wish-fish.com', '/');
-            $this->wi_authex->loginBySocial($id);
+            echo $id;
+//            delete_cookie('isLogin', '.wish-fish.com', '/');
+//            $this->wi_authex->loginBySocial($id);
+        } else {
+            echo 'COOKIE NOT CAALED';
         }
+        die();
 
         $this->load->model('dashboard/m_dashboard', 'objdashboard');
         $this->load->model('dashboard/m_calender', 'objcalender');
