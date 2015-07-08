@@ -169,6 +169,11 @@
             $('#customerForm').submit();
         });
 
+        $('#change_password').click(function () {
+            $('input[name="password"]').empty();
+            $('input[name="password"]').prop('disabled', false);
+        });
+
         $("input:file").change(function () {
             $("#error_message").empty(); // To remove the previous error message
             var file = this.files[0];
