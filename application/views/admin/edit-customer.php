@@ -169,7 +169,7 @@
             var passwd = $('input[name="password"]').val();
             if (passwd.trim() == "") {
                 alertify.error("Password can not be blank..!");
-                reutrn false;
+                return false;
             }
             $('#customerForm').submit();
         });
