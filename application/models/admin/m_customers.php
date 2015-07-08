@@ -33,8 +33,6 @@ class M_customers extends CI_Model {
     }
 
     function getCustomerDetail() {
-        echo $this->profileid;
-        die();
         $this->db->select('U.user_id,profile_pic,U.register_date,name,email,phone,phone_verification,P.plan_name,status');
         $this->db->from('wi_user_mst as U');
         $this->db->join('wi_plan_detail as PD', 'U.user_id = PD.user_id', 'left outer');
