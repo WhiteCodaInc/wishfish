@@ -499,7 +499,6 @@
             }
             else
             {
-                alert("called");
                 var reader = new FileReader();
                 reader.onload = imageIsLoaded;
                 reader.readAsDataURL(this.files[0]);
@@ -507,8 +506,8 @@
         });
 
         function imageIsLoaded(e) {
-            $("#profilePic").css("color", "green");
-            $("#profile_previewing").attr('src', e.target.result);
+            $("#profile-pic #profilePic").css("color", "green");
+            $("#profile-pic #profile_previewing").attr('src', e.target.result);
         }
 
         $('#cancel-account').on('click', function () {
