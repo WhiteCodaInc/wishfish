@@ -17,7 +17,7 @@ class M_admin_sms_template extends CI_Model {
 
     function __construct() {
         parent::__construct();
-        $this->profileid = $this->session->userdata('profile_id');
+        $this->profileid = $this->session->userdata('profileid');
     }
 
     function getTemplates() {

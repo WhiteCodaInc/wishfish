@@ -20,7 +20,7 @@ class M_coupons extends CI_Model {
         $gatewayInfo = $this->wi_common->getPaymentGatewayInfo("STRIPE");
         require_once(FCPATH . 'stripe/lib/Stripe.php');
         Stripe::setApiKey($gatewayInfo->secret_key);
-        $this->profileid = $this->session->userdata('profile_id');
+        $this->profileid = $this->session->userdata('profileid');
     }
 
     function getCoupons() {

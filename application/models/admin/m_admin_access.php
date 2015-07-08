@@ -15,7 +15,7 @@ class M_admin_access extends CI_Model {
 
     function __construct() {
         parent::__construct();
-        $this->profileid = $this->session->userdata('profile_id');
+        $this->profileid = $this->session->userdata('profileid');
     }
 
     function getAdminAccessClass() {
