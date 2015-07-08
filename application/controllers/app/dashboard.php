@@ -110,10 +110,8 @@ class Dashboard extends CI_Controller {
         $post = $this->input->post();
         if (isset($post) && is_array($post)) {
             $login = $this->objdashboard->updatePassword($post);
-            print_r($login);
-            die();
             if ($login && $this->wi_authex->login($login)) {
-                
+
                 header('location:' . site_url() . 'app/dashboard');
             } else {
                 header('location:' . site_url() . 'app/dashboard?uid=' . $this->uid);
