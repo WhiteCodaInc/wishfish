@@ -37,13 +37,9 @@ class Dashboard extends CI_Controller {
 
         if ($this->input->cookie('isLogin')) {
             $id = $this->input->cookie('isLogin', TRUE);
-            echo $id;
-//            delete_cookie('isLogin', '.wish-fish.com', '/');
-//            $this->wi_authex->loginBySocial($id);
-        } else {
-            echo 'COOKIE NOT CAALED';
+            delete_cookie('isLogin', '.wish-fish.com', '/');
+            $this->wi_authex->loginBySocial($id);
         }
-        die();
 
         $this->load->model('dashboard/m_dashboard', 'objdashboard');
         $this->load->model('dashboard/m_calender', 'objcalender');
@@ -51,6 +47,10 @@ class Dashboard extends CI_Controller {
     }
 
     function index() {
+
+        echo '<pre>';
+        print_r($this->session->all_userdata());
+        die();
         if ($this->uid) {
             $this->objdashboard->verifyEmail($this->uid);
         }
@@ -63,7 +63,6 @@ class Dashboard extends CI_Controller {
             $this->load->view('dashboard/dashboard', $card);
             $this->load->view('dashboard/footer');
         } else {
-
             $userInfo = $this->wi_common->getUserInfo($this->uid);
             if ($this->uid != "" && count($userInfo) == 1) {
                 if ($this->type != "forgot" && $userInfo->password != NULL) {
