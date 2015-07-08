@@ -159,7 +159,7 @@ class Calender extends CI_Controller {
                 echo ($msg) ? 1 : 0;
             }
         } else {
-            header('location' . site_url() . 'app/calender');
+            header('location' . site_url() . 'admin/calender');
         }
     }
 
