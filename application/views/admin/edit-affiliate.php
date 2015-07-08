@@ -198,6 +198,12 @@
             $('select[name="rating"]').val("<?= ($affiliates->rating) ? $affiliates->rating : -1 ?>");
 <?php endif; ?>
 
+        $('span.lbl').click(function () {
+            $name = $(this).prev().prop('name');
+            $('input[name="' + $name + '"]').prop('checked', false);
+            $(this).prev().trigger('click');
+        });
+        
         $('#addAffiliate').click(function () {
             $('#affiliateForm').submit();
         });

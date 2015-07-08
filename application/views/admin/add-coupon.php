@@ -153,6 +153,12 @@
     });
     $(document).ready(function () {
 
+        $('span.lbl').click(function () {
+            $name = $(this).prev().prop('name');
+            $('input[name="' + $name + '"]').prop('checked', false);
+            $(this).prev().trigger('click');
+        });
+
         $('input[name="expire"]').change(function () {
             var val = $('input[name="expire"]:checked').val();
             if (val == "expire") {

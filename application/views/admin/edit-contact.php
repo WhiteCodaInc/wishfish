@@ -232,6 +232,13 @@
     <?php endif; ?>
             $('select[name="rating"]').val("<?= ($contacts->rating) ? $contacts->rating : -1 ?>");
 <?php endif; ?>
+
+        $('span.lbl').click(function () {
+            $name = $(this).prev().prop('name');
+            $('input[name="' + $name + '"]').prop('checked', false);
+            $(this).prev().trigger('click');
+        });
+
         $('input[name="gender"]').change(function () {
             var type = $('input[name="gender"]:checked').val();
             if (type == "female") {
