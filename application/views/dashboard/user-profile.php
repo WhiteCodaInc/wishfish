@@ -493,7 +493,7 @@
             var match = ["image/jpeg", "image/png", "image/jpg"];
             if (!((imagefile == match[0]) || (imagefile == match[1]) || (imagefile == match[2])))
             {
-                $("#error_message").html("<p id='error' style='color:red'>Please Select A valid Image File.<br>" + "<span id='error_message'>Only jpeg, jpg and png Images type allowed</span></p>");
+                $("#profile-pic #error_message").html("<p id='error' style='color:red'>Please Select A valid Image File.<br>" + "<span id='error_message'>Only jpeg, jpg and png Images type allowed</span></p>");
                 $('input[name="importUrl"]').val("");
                 return false;
             }
