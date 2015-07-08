@@ -172,6 +172,7 @@
         $('#change_password').click(function () {
             $('input[name="password"]').val('');
             $('input[name="password"]').prop('disabled', false);
+            $('input[name="password"]').prop('required', true);
         });
 
         $("input:file").change(function () {
