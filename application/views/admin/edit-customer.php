@@ -170,7 +170,7 @@
         });
 
         $('#change_password').click(function () {
-            $('input[name="password"]').empty();
+            $('input[name="password"]').val('');
             $('input[name="password"]').prop('disabled', false);
         });
 
