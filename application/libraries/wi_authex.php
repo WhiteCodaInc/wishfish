@@ -84,12 +84,12 @@ class Wi_authex {
         if ($query->num_rows() !== 1) {
             return false;
         } else if ($res->status) {
-            $this->_CI->session->set_userdata('userid', $res->user_id);
-            $this->_CI->session->set_userdata('name', $res->name);
-            $this->_CI->session->set_userdata('email', $res->email);
-            $this->_CI->session->set_userdata('profile_pic', $res->profile_pic);
-            $this->_CI->session->set_userdata('timezone', $res->timezones);
-            $this->_CI->session->set_userdata('date_format', $res->date_format);
+            $this->_CI->session->set_userdata('u_userid', $res->user_id);
+            $this->_CI->session->set_userdata('u_name', $res->name);
+            $this->_CI->session->set_userdata('u_email', $res->email);
+            $this->_CI->session->set_userdata('u_profile_pic', $res->profile_pic);
+            $this->_CI->session->set_userdata('u_timezone', $res->timezones);
+            $this->_CI->session->set_userdata('u_date_format', $res->date_format);
             return TRUE;
         } else {
             return -1;
