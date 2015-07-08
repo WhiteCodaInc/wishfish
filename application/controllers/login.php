@@ -101,13 +101,13 @@ class Login extends CI_Controller {
                 $this->session->set_userdata('token', $this->client->getAccessToken());
                 $user = $this->objregister->isUserExist($data);
                 if ($user === -1) {
-                    die(-1);
+                    die("-1");
                     header('location: ' . site_url() . 'login?msg=DA');
                 } else if (!$user) {
-                    die(0);
+                    die("0");
                     header('location: ' . site_url() . 'login?signup=google&msg=NR');
                 } else {
-                    die(1);
+                    die("1");
                     $this->objregister->linkWithProfile($data['email']);
                     $is_login = array(
                         'name' => 'isLogin',
