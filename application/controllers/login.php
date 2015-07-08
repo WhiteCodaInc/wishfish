@@ -98,10 +98,10 @@ class Login extends CI_Controller {
             $this->client->authenticate($code);
             if ($this->client->getAccessToken()) {
                 $data = $this->service->userinfo->get();
-                print_r($data);
-                die();
                 $this->session->set_userdata('token', $this->client->getAccessToken());
                 $user = $this->objregister->isUserExist($data);
+                echo $user;
+                die();
                 if ($user === -1) {
                     header('location: ' . site_url() . 'login?msg=DA');
                 } else if (!$user) {
