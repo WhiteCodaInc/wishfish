@@ -34,7 +34,7 @@ class Dashboard extends CI_Controller {
         } else if ($this->uid) {
             
         }
-        die();
+       
         if ($this->input->cookie('isLogin')) {
             $id = $this->input->cookie('isLogin', TRUE);
             delete_cookie('isLogin', '.wish-fish.com', '/');

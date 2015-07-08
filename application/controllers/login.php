@@ -113,6 +113,8 @@ class Login extends CI_Controller {
                         'domain' => '.wish-fish.com'
                     );
                     $this->input->set_cookie($is_login);
+
+                    die();
                     header('location:' . site_url() . 'app/dashboard');
                 }
             } else {
