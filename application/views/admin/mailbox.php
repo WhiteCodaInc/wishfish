@@ -329,7 +329,7 @@
 <?php
 switch ($msg) {
     case "send":
-        $m = "Email Successfully Send..!";
+        $m = "Email Successfully Sent..!";
         $t = "success";
         break;
     case "fail":
@@ -470,6 +470,12 @@ switch ($msg) {
 
 <script type="text/javascript">
     $(document).ready(function () {
+
+        $('span.lbl').click(function () {
+            $name = $(this).prev().prop('name');
+            $('input[name="' + $name + '"]').prop('checked', false);
+            $(this).prev().trigger('click');
+        });
 
         $('#rd_individual').trigger('click');
 

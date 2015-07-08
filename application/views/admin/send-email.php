@@ -269,6 +269,12 @@ switch ($msg) {
 
     $(document).ready(function () {
 
+        $('span.lbl').click(function () {
+            $name = $(this).prev().prop('name');
+            $('input[name="' + $name + '"]').prop('checked', false);
+            $(this).prev().trigger('click');
+        });
+
         $('#send').click(function () {
             $('#emailForm').submit();
         });
