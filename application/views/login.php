@@ -272,7 +272,10 @@ if ($type != "") {
                             $('.facebook').trigger('click');
                         }, 1000);
     <?php } else if ($type == "google") { ?>
-                        $('.btn-google-plus').trigger('click');
+                        setTimeout(function () {
+                            $('.btn-google-plus').trigger('click');
+                        }, 1000);
+
         <?php
     }
 }
