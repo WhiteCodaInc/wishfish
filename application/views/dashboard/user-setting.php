@@ -20,6 +20,9 @@
         font-size: 1em;
         cursor: pointer
     }
+    ul.instruction li{
+        list-style-type: decimal
+    }
 </style>
 <aside class="right-side">
     <!-- Content Header (Page header) -->
@@ -63,21 +66,21 @@
                             </div>
 
                             <div class="form-group">
-                                <ul>
-                                    <li>1. First Open  <a href="https://console.developers.google.com/project/">
+                                <ul class="instruction">
+                                    <li>First Open  <a href="https://console.developers.google.com/project/">
                                             https://console.developers.google.com/project/ 
                                         </a> and login with google account.
                                     </li>
-                                    <li>2. Create a new project.</li>
-                                    <li>3. Enter your project name.</li>
-                                    <li>4. Click on APIs & auth from left an sidebar and click on Credentials</li>
-                                    <li>4. Click on 'create Client ID' and choose 'web application' click on configure consent screen.</li>
-                                    <li>5. On Consent screen Enter Project name as a 'Wish-Fish' and save it.</li>
-                                    <li class="copy">6. Enter Authorized redirect URIs "<span class="copyText">https://www.wish-fish.com/app/calender</span>".</li>
-                                    <li>7. Copy Client ID and Client secret key and paste it on above setting form.</li>
-                                    <li>8. Click on 'Create new key' and select 'Server key'.</li>
-                                    <li>9. Enter following IP Address '50.28.18.90'.</li>
-                                    <li>9. Copy API key and paste it on above setting form.</li>
+                                    <li>Create a new project.</li>
+                                    <li>Enter your project name.</li>
+                                    <li>Click on APIs & auth from left an sidebar and click on Credentials</li>
+                                    <li>Click on 'create Client ID' and choose 'web application' click on configure consent screen.</li>
+                                    <li>On Consent screen Enter Project name as a 'Wish-Fish' and save it.</li>
+                                    <li class="copy">Enter Authorized redirect URIs "<span class="copyText">https://www.wish-fish.com/app/calender</span>".</li>
+                                    <li>Copy Client ID and Client secret key and paste it on above setting form.</li>
+                                    <li>Click on 'Create new key' and select 'Server key'.</li>
+                                    <li>Enter following IP Address '50.28.18.90'.</li>
+                                    <li>Copy API key and paste it on above setting form.</li>
                                 </ul>
                             </div>
                         </div>
