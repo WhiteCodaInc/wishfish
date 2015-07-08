@@ -499,6 +499,7 @@
             }
             else
             {
+                $("#profile-pic #error_message").empty();
                 var reader = new FileReader();
                 reader.onload = imageIsLoaded;
                 reader.readAsDataURL(this.files[0]);
