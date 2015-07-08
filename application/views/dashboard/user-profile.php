@@ -57,7 +57,7 @@
                                 <div class="row">
                                     <div class="col-md-3">
                                         <div  class="image" style="text-align: center">
-                                            <img id="profile_previewing" style="width: 100px;height: 100px"  src="<?= $img_src ?>" class="img-circle" alt="User Image" />
+                                            <img id="profile_previewing" style="width: 100px;height: 100px;cursor: pointer"  src="<?= $img_src ?>" class="img-circle" alt="User Image" />
                                         </div>
                                     </div>
                                     <div class="col-md-9">
@@ -352,6 +352,10 @@
 <script type="text/javascript">
     $(document).ready(function (e) {
 
+        $('#profile-pic img').click(function () {
+            $('#profile-pic #profilePic').trigger('click');
+        });
+
         $('#import').click(function () {
             var fid = $('#fbid').val();
             var url = "";
@@ -369,8 +373,6 @@
             }
 
         });
-
-
         var cardFlag;
         var gatewayFlag = false;
         var cardForm;
