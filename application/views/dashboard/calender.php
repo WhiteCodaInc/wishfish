@@ -1488,7 +1488,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                         $('#e_notify_me').trigger('click');
                     }
                     if (data.group_type == "individual") {
-                        $('.e_user_name').text(data.name);
+                        $('.e_user_name').text(data.name + " ");
                         $url = (data.contact_avatar != null) ?
                                 "http://mikhailkuznetsov.s3.amazonaws.com/" + data.contact_avatar :
                                 "<?= base_url() . 'assets/dashboard/img/default-avatar.png' ?>";
@@ -1502,7 +1502,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                     } else {
                         $('#event_status').css('margin', '0');
                         $('#event_empty').css('margin', '0');
-                        $('.e_user_name').text(data.group_name);
+                        $('.e_user_name').text(data.group_name + " ");
                         $('#e_user_img').css('display', 'none');
                     }
                     $('#e_event_name').text(data.event);
@@ -1512,7 +1512,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                     $('#e_template').val(data.template_id);
 //                    $('#e_color-chooser-btn').css('background-color', data.color);
                     if (data.event_type == "sms" || data.event_type == "notification") {
-                        $('#e_event_type').text("Text SMS");
+                        $('#e_event_type').text("Text SMS ");
                         $('#e_smsbody').val(data.body);
                         if (data.event_type == "sms") {
                             $('#event_status').css('display', 'block');
@@ -1529,7 +1529,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                     } else {
                         $('#event_status').css('display', 'block');
                         $('#event_empty').css('display', 'none');
-                        $('#e_event_type').text("Email");
+                        $('#e_event_type').text("Email ");
                         $('#e_rd_email').trigger('click');
 //                        $('input[name="event_type"]').trigger('change');
                         $('#e_sms_block').css('display', 'none');
