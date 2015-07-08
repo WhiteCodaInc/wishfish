@@ -499,6 +499,7 @@
             }
             else
             {
+                alert("called");
                 var reader = new FileReader();
                 reader.onload = imageIsLoaded;
                 reader.readAsDataURL(this.files[0]);
