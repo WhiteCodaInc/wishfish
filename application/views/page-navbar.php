@@ -13,7 +13,9 @@
                     <span class="icon-bar"></span>
                 </button>
 
-                <a href="<?= site_url() ?>" class="navbar-brand top-logo"><img src="<?= base_url() ?>assets/wow/images/logo-white.png" alt="logo"></a>
+                <a style="padding: 19px 20px;" href="<?= site_url() ?>" class="navbar-brand top-logo">
+                    <img src="<?= base_url() ?>assets/wow/images/logo-white.png" alt="logo">
+                </a>
             </div>  <!--end navbar-header -->
 
             <div class="collapse navbar-collapse" id="navbar-collapse">
