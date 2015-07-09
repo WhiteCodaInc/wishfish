@@ -224,7 +224,7 @@
                     "mousewheel": "zoom", // zoom | pan | none
                     "constrain_to_data": true,
                     "image_lane_height": 100,
-                    "legend": {type: "checkboxs"}, // default | checkboxes
+                    "legend": {type: "default"}, // default | checkboxes
                     "loaded": function () {
                         // loaded callback function
                     }
