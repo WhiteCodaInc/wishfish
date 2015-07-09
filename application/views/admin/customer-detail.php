@@ -16,8 +16,8 @@
         <button value="Active" class="add btn btn-success btn-sm" id="Active" type="button" >Active</button>
         <button value="Deactive" class="remove btn btn-warning btn-sm" id="Deactive" type="button" >Deactivate</button>
         <button value="Delete" class="delete btn btn-danger btn-sm" id="Delete" type="button" >Delete</button>
-        <div class="search" style="float:right;width: 30%">
-            <select id="page_length" class="form-control" style="float: left;width: 20%;margin-right: 2%">
+        <div class="search" style="float:right;width: 24%">
+            <select id="page_length" class="form-control" style="float: left;width: 28%;margin-right: 2%">
                 <option value="25">25</option>
                 <option value="50">50</option>
                 <option value="100">100</option>
