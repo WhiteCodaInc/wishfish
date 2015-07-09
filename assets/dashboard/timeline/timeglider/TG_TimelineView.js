@@ -249,7 +249,7 @@
                 return "<h4>${title}</h4>"
                         + "<div class='tg-close tg-close-button'></div>"
                         + "<div class='tg-timeline-description jscroll'>{{html description}}</div>"
-                        + "<ul>" + tags1 + "<li data-timeline_id='" + this.model.get("id") + "' class='tg-timeline-start'>start</li></ul>" + tags2
+                        + "<ul>" + tags1 + "<li data-timeline_id='" + this.model.get("id") + "' class='tg-timeline-start'>today</li></ul>" + tags2
                         + "<div class='tg-modal-corner tg-modal-corner-north'></div>";
 
             },
