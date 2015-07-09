@@ -217,7 +217,7 @@
                     "min_zoom": 1,
                     "max_zoom": 50,
 //                    "timezone":"-06:00",
-//                    "timezone": timezone.<?= $userInfo->timezones ?>,
+                    "timezone": timezone.<?= $userInfo->timezones ?>,
                     "icon_folder": "<?= base_url() ?>assets/dashboard/timeline/timeglider/icons/",
                     "data_source": json,
                     "show_footer": true,
