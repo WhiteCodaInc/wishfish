@@ -51,10 +51,14 @@ class Trigger extends CI_Controller {
                             if ($value->event_type == "sms") {
                                 $body = $this->parser->parse_string($value->body, $tag, TRUE);
                                 if ($this->sendSMS($contact->phone, $body, $value->notify)) {
+                                    if ($value->is_repeat && $value->end_type == "never")
+                                        $this->objtrigger->addNextEvent($value->event_id);
                                     $this->objtrigger->updateStatus($value->event_id);
                                 }
                             } else if ($value->event_type == "email") {
                                 if ($this->sendMail($contact, $tag, $value, $value->notify)) {
+                                    if ($value->is_repeat && $value->end_type == "never")
+                                        $this->objtrigger->addNextEvent($value->event_id);
                                     $this->objtrigger->updateStatus($value->event_id);
                                 }
                             }
@@ -70,10 +74,14 @@ class Trigger extends CI_Controller {
                                 if ($value->event_type == "sms") {
                                     $body = $this->parser->parse_string($value->body, $tag, TRUE);
                                     if ($this->sendSMS($contact->phone, $body, $value->notify)) {
+                                        if ($value->is_repeat && $value->end_type == "never")
+                                            $this->objtrigger->addNextEvent($value->event_id);
                                         $this->objtrigger->updateStatus($value->event_id);
                                     }
                                 } else if ($value->event_type == "email") {
                                     if ($this->sendMail($contact, $tag, $value, $value->notify)) {
+                                        if ($value->is_repeat && $value->end_type == "never")
+                                            $this->objtrigger->addNextEvent($value->event_id);
                                         $this->objtrigger->updateStatus($value->event_id);
                                     }
                                 }
@@ -89,10 +97,14 @@ class Trigger extends CI_Controller {
                                 if ($value->event_type == "sms") {
                                     $body = $this->parser->parse_string($value->body, $tag, TRUE);
                                     if ($this->sendSMS($contact->phone, $body, $value->notify)) {
+                                        if ($value->is_repeat && $value->end_type == "never")
+                                            $this->objtrigger->addNextEvent($value->event_id);
                                         $this->objtrigger->updateStatus($value->event_id);
                                     }
                                 } else if ($value->event_type == "email") {
                                     if ($this->sendMail($contact, $tag, $value, $value->notify)) {
+                                        if ($value->is_repeat && $value->end_type == "never")
+                                            $this->objtrigger->addNextEvent($value->event_id);
                                         $this->objtrigger->updateStatus($value->event_id);
                                     }
                                 }
