@@ -36,7 +36,7 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Choose Webpage</label>
-                                    <input type="text" class="form-control"  id="pages" />
+                                    <input type="text" class="form-control"  id="pages" readonly="" />
 <!--                                    <select name="page_id" id="pageid" class="form-control" >
                                         <option value="-1">--Select--</option>
 
