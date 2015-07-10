@@ -107,10 +107,8 @@ class Customers extends CI_Controller {
 
     function lifetimeAccess() {
         $post = $this->input->post();
-        print_r($post);
-        die();
         if (is_array($post) && count($post) > 0) {
-            $this->objcustomer->extendTrial($post);
+            $this->objcustomer->lifetimeAccess($post);
             header('location:' . site_url() . 'admin/customers/profile/' . $post['userid']);
         } else {
             header('location:' . site_url() . 'admin/customers');

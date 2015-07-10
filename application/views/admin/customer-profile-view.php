@@ -56,6 +56,7 @@
         <form id="lifetimeForm" action="<?= site_url() ?>admin/customers/lifetimeAccess" method="post">
             <input type="hidden" name="type" value="" />
             <input type="hidden" name="planid" value="<?= $customer->id ?>" />
+            <input type="hidden" name="userid" value="<?= $customer->user_id ?>" />
         </form>
         <?php if ($error): ?>
             <div  class="row">
@@ -296,6 +297,7 @@
                         </div>
                     </div>
                     <input type="hidden" name="userid" value="<?= $customer->user_id ?>" />
+                    <input type="hidden" name="planid" value="<?= $customer->id ?>" />
                 </form>
                 <!-- END  FORM MODULE -->
 

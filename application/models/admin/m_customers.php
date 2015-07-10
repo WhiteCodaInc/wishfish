@@ -176,13 +176,15 @@ class M_customers extends CI_Model {
         $dt = ($post['extend_date'] != "") ?
                 $this->wi_common->getMySqlDate($post['extend_date'], "mm-dd-yyyy") :
                 NULL;
-        $currPlan = $this->wi_common->getCurrentPlan($post['userid']);
-        $this->db->update('wi_plan_detail', array('expiry_date' => $dt), array('id' => $currPlan->id));
+//        $currPlan = $this->wi_common->getCurrentPlan($post['userid']);
+        $this->db->update('wi_plan_detail', array('expiry_date' => $dt), array('id' => $post['planid']));
         return true;
     }
-    
-    function lifetimeAccess(){
-        
+
+    function lifetimeAccess($post) {
+        $is_lifetime = ($post['type'] == "assign") ? 1 : 0;
+        $this->db->update('wi_plan_detail', array('is_lifetime' => $is_lifetime), array('id' => $post['planid']));
+        return true;
     }
 
     function updateCustomerNotification() {
