@@ -1421,6 +1421,7 @@
             //right: 'month,agendaWeek,agendaDay'
             right: 'month'
         },
+        timezone: "America/Tijuana",
         buttonText: {
             today: 'today',
             month: 'month'
