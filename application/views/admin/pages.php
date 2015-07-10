@@ -134,14 +134,14 @@
                 }
             }
         });
-        $('#pages').on("focusout", function (e) {
-            var page = $(this).val();
-            if (page.trim() != "") {
-                getPage(ids[pages.indexOf(page)]);
-            } else {
-                CKEDITOR.instances['editor1'].setData("");
-            }
-        });
+//        $('#pages').on("focusout", function (e) {
+//            var page = $(this).val();
+//            if (page.trim() != "") {
+//                getPage(ids[pages.indexOf(page)]);
+//            } else {
+//                CKEDITOR.instances['editor1'].setData("");
+//            }
+//        });
 
         $('#save-page').click(function () {
             $('.overlay').show();
