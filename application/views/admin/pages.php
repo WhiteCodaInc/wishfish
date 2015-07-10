@@ -108,13 +108,11 @@
     });
     $(document).ready(function () {
         function bindEvent() {
-            alert('called');
             $('ul.ui-autocomplete').on('click', function () {
                 alert($('#pages').val());
             });
         }
         $('#pages').on('focusin', function () {
-            alert("Bind");
             bindEvent();
         });
 
