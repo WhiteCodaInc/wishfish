@@ -1,7 +1,7 @@
 <style type="text/css">
     .title-blue{
         float: left;
-        width: 75%;
+        width: 74%;
         text-align: center;
         /* padding: 0px; */
         font-size: 28px;
