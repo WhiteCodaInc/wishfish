@@ -125,7 +125,6 @@
             getPage(ids[pages.indexOf(page)]);
         });
         $('#pages').on("keypress", function (e) {
-            alert(e.type);
             if (e.keyCode == 13) {
                 var page = $('#pages').val();
                 if (page.trim() != "") {
