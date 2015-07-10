@@ -81,6 +81,11 @@
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
 
 <script type="text/javascript">
+    function bindEvent() {
+        $('ul.ui-autocomplete li').on('click,keypress', function () {
+            alert($('#pages').val());
+        });
+    }
     $(function () {
 
         var pages = new Array();
@@ -107,8 +112,8 @@
     });
     $(document).ready(function () {
 
-        $('ul.ui-autocomplete').on('click,keypress', function () {
-            alert($('#pages').val());
+        $('#pages').on('focusin', function () {
+            bindEvent();
         });
 
         $('#pageid').change(function () {
