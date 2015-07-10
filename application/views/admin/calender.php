@@ -1428,6 +1428,7 @@
                     //week: 'week',
                     //day: 'day'
         },
+        eventLimit: true,
         events: function (start, end, timezone, callback) {
 
             $.ajax({
