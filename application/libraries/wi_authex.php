@@ -47,10 +47,13 @@ class Wi_authex {
 
     function isActivePlan() {
         $userid = $this->_CI->session->userdata('u_userid');
-        $this->_CI->db->select('id');
-        $query = $this->_CI->db->get_where('wi_plan_detail', array('user_id' => $userid, 'plan_status' => 1));
-        $query->result();
-        return ($query->num_rows() > 0) ? true : false;
+        $where = array(
+            'user_id' => $userid,
+            'plan_status' => 1
+        );
+        $this->_CI->db->select('*');
+        $query = $this->_CI->db->get_where('wi_plan_detail', $where);
+        return ($query->num_rows() && $query->row()->is_lifetime != 0) ? true : false;
     }
 
     function logout() {
