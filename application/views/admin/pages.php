@@ -86,9 +86,9 @@
         //bootstrap WYSIHTML5 - text editor
         $(".textarea").wysihtml5();
 
-<?php foreach ($pages as $value) { ?>
-            pages[] = "<?= $value->title ?>";
-                    ids[] = "<?= $value->page_id ?>";
+<?php foreach ($pages as $key => $value) { ?>
+            pages["<?= $key ?>"] = "<?= $value->title ?>";
+            ids["<?= $key ?>"] = "<?= $value->page_id ?>";
 <?php } ?>
 
         $('#users').autocomplete({
