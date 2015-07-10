@@ -113,6 +113,7 @@
     $(document).ready(function () {
 
         $('#pages').on('focusin', function () {
+            alert("Bind");
             bindEvent();
         });
 
