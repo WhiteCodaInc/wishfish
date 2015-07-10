@@ -1421,16 +1421,15 @@
             //right: 'month,agendaWeek,agendaDay'
             right: 'month'
         },
-        timezone: "UTC",
+        timezones: "local",
         buttonText: {
             today: 'today',
             month: 'month'
                     //week: 'week',
                     //day: 'day'
         },
-        eventLimit: true,
         events: function (start, end, timezone, callback) {
-
+            alert(timezone);
             $.ajax({
                 type: 'POST',
                 url: '<?= site_url() ?>admin/calender/getEvents',
