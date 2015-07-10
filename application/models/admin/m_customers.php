@@ -76,8 +76,7 @@ class M_customers extends CI_Model {
         $this->db->from('wi_user_mst as U');
         $this->db->join('wi_plan_detail as PD', 'U.user_id = PD.user_id', 'left outer');
         $this->db->join('wi_plans as P', 'PD.plan_id = P.plan_id');
-        $this->db->order_by('PD.register_date', 'desc');
-        $this->db->limit(1);
+        $this->db->where('PD.plan_status', 1);
         $this->db->where('U.user_id', $cid);
         $query = $this->db->get();
         return $query->row();
@@ -181,8 +180,8 @@ class M_customers extends CI_Model {
         $this->db->update('wi_plan_detail', array('expiry_date' => $dt), array('id' => $currPlan->id));
         return true;
     }
-
-    function lifetimeAccess() {
+    
+    function lifetimeAccess(){
         
     }
 

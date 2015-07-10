@@ -52,9 +52,6 @@ class Customers extends CI_Controller {
         $data['phistory'] = $this->objcustomer->getPaymentHistory($cid);
         $data['card'] = $this->objcustomer->getCardDetail($cid);
         $data['gatewayInfo'] = $this->wi_common->getPaymentGatewayInfo("STRIPE");
-        echo '<pre>';
-        print_r($data);
-        die();
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');
@@ -107,7 +104,6 @@ class Customers extends CI_Controller {
             header('location:' . site_url() . 'admin/customers');
         }
     }
-
     function lifetimeAccess() {
         $post = $this->input->post();
         if (is_array($post) && count($post) > 0) {
@@ -117,6 +113,7 @@ class Customers extends CI_Controller {
             header('location:' . site_url() . 'admin/customers');
         }
     }
+    
 
     function updateCustomerNotification() {
         $this->objcustomer->updateCustomerNotification();
