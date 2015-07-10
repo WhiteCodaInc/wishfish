@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/dashboard/autocomplete/jquery-ui.css"/>
 <style type="text/css">
     .cke_contents{
         height: 350px !important;
@@ -29,13 +30,10 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Choose Webpage</label>
+                                    <input type="text" class="form-control"  id="pages" />
                                     <select name="page_id" id="pageid" class="form-control" >
                                         <option value="-1">--Select--</option>
-                                        <?php foreach ($pages as $value) { ?>
-                                            <option value="<?= $value->page_id ?>">
-                                                <?= $value->title ?>
-                                            </option>
-                                        <?php } ?>
+
                                     </select>
                                 </div>
                             </div>
@@ -78,11 +76,30 @@
 
 <script type="text/javascript">
     $(function () {
+
+        var pages = new Array();
+        var ids = new Array();
+
         // Replace the <textarea id="editor1"> with a CKEditor
         // instance, using default configuration.
         CKEDITOR.replace('editor1');
         //bootstrap WYSIHTML5 - text editor
         $(".textarea").wysihtml5();
+
+<?php foreach ($pages as $value) { ?>
+            pages[] = "<?= $value->title ?>";
+                    ids[] = "<?= $value->page_id ?>";
+<?php } ?>
+
+        $('#users').autocomplete({
+            source: pages,
+            minLength: 0,
+            scroll: true
+        }).focus(function () {
+            $(this).autocomplete("search", "");
+        });
+
+
     });
     $(document).ready(function () {
 
