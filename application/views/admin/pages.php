@@ -119,7 +119,6 @@
                 }
             });
         }
-
         $('ul.ui-autocomplete').on('click', function () {
             var page = $('#pages').val();
             getPage(ids[pages.indexOf(page)]);
