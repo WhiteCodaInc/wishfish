@@ -107,16 +107,15 @@
         });
     });
     $(document).ready(function () {
-//        function bindEvent() {
-//            $('ul.ui-autocomplete').on('click,keypress', function () {
-//                alert($('#pages').val());
-//            });
-//        }
-//        $('#pages').on('focusin', function () {
-//            bindEvent();
-//        });
+
+        function getPage(page) {
+
+        }
+
         $('ul.ui-autocomplete').on('click', function () {
-            alert($('#pages').val());
+//            var page = $('#pages').val();
+//            getPage(ids[contact.indexOf(page)]);
+            console.log(pages);
         });
         $('#pages').on("keypress", function (e) {
             if (e.keyCode == 13) {
@@ -124,7 +123,6 @@
             }
         });
         $('#pageid').change(function () {
-
             var val = $(this).val();
             if (val == "-1") {
                 CKEDITOR.instances['editor1'].setData("");
