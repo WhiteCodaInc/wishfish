@@ -125,8 +125,8 @@
             getPage(ids[pages.indexOf(page)]);
         });
         $('#pages').on("focusout,keypress", function (e) {
-            alert(e.event);
             if (e.keyCode == 13) {
+                alert();
                 var page = $('#pages').val();
                 if (page.trim() != "") {
                     getPage(ids[pages.indexOf(page)]);
