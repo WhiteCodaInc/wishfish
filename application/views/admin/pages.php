@@ -106,39 +106,37 @@
     $(document).ready(function () {
 
         function getPage(page) {
-            alert(page);
+            $('.overlay').show();
+            $('.loading-img').show();
+            $.ajax({
+                type: 'POST',
+                data: {pageid: page},
+                url: "<?= site_url() ?>admin/pages/getContent",
+                success: function (data, textStatus, jqXHR) {
+                    $('.overlay').hide();
+                    $('.loading-img').hide();
+                    CKEDITOR.instances['editor1'].setData(data);
+                }
+            });
         }
 
         $('ul.ui-autocomplete').on('click', function () {
             var page = $('#pages').val();
             getPage(ids[pages.indexOf(page)]);
         });
-        $('#pages').on("keypress", function (e) {
+        $('#pages').on("focusout,keypress", function (e) {
             if (e.keyCode == 13) {
                 var page = $('#pages').val();
                 if (page.trim() != "") {
                     getPage(ids[pages.indexOf(page)]);
+                } else {
+                    CKEDITOR.instances['editor1'].setData("");
                 }
+
             }
         });
         $('#pageid').change(function () {
-            var val = $(this).val();
-            if (val == "-1") {
-                CKEDITOR.instances['editor1'].setData("");
-            } else {
-                $('.overlay').show();
-                $('.loading-img').show();
-                $.ajax({
-                    type: 'POST',
-                    data: {pageid: val},
-                    url: "<?= site_url() ?>admin/pages/getContent",
-                    success: function (data, textStatus, jqXHR) {
-                        $('.overlay').hide();
-                        $('.loading-img').hide();
-                        CKEDITOR.instances['editor1'].setData(data);
-                    }
-                });
-            }
+
         });
 
         $('#save-page').click(function () {
