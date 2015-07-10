@@ -135,7 +135,7 @@
             }
         });
         $('#pages').on("focusout", function (e) {
-            var page = $('#pages').val();
+            var page = $(this).val();
             if (page.trim() != "") {
                 getPage(ids[pages.indexOf(page)]);
             } else {
