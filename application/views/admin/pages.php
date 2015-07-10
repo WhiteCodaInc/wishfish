@@ -106,17 +106,19 @@
     $(document).ready(function () {
 
         function getPage(page) {
-
+            alert(page);
         }
 
         $('ul.ui-autocomplete').on('click', function () {
-//            var page = $('#pages').val();
-//            getPage(ids[contact.indexOf(page)]);
-            console.log(pages);
+            var page = $('#pages').val();
+            getPage(ids[pages.indexOf(page)]);
         });
         $('#pages').on("keypress", function (e) {
             if (e.keyCode == 13) {
-                alert($(this).val());
+                var page = $('#pages').val();
+                if (page.trim() != "") {
+                    getPage(ids[pages.indexOf(page)]);
+                }
             }
         });
         $('#pageid').change(function () {
