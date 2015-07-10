@@ -81,12 +81,9 @@
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
 
 <script type="text/javascript">
-
+    var pages = new Array();
+    var ids = new Array();
     $(function () {
-
-        var pages = new Array();
-        var ids = new Array();
-
         // Replace the <textarea id="editor1"> with a CKEditor
         // instance, using default configuration.
         CKEDITOR.replace('editor1');
