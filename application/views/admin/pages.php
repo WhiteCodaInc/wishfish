@@ -97,7 +97,7 @@
             ids["<?= $key ?>"] = "<?= $value->page_id ?>";
 <?php } ?>
 
-        $('#users').autocomplete({
+        $('#pages').autocomplete({
             source: pages,
             minLength: 0,
             scroll: true
