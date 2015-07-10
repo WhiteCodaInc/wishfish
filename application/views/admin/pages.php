@@ -82,6 +82,7 @@
 
 <script type="text/javascript">
     function bindEvent() {
+        alet('called');
         $('ul.ui-autocomplete li').on('click', function () {
             alert($('#pages').val());
         });
