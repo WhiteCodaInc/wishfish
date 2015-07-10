@@ -107,15 +107,17 @@
         });
     });
     $(document).ready(function () {
-        function bindEvent() {
-            $('ul.ui-autocomplete').on('click', function () {
-                alert($('#pages').val());
-            });
-        }
-        $('#pages').on('focusin', function () {
-            bindEvent();
+//        function bindEvent() {
+//            $('ul.ui-autocomplete').on('click,keypress', function () {
+//                alert($('#pages').val());
+//            });
+//        }
+//        $('#pages').on('focusin', function () {
+//            bindEvent();
+//        });
+        $('ul.ui-autocomplete').on('click,keypress', function () {
+            alert($('#pages').val());
         });
-
         $('#pageid').change(function () {
 
             var val = $(this).val();
