@@ -53,6 +53,10 @@
     ?>
     <!-- Main content -->
     <section class="content">
+        <form id="lifetimeForm" action="<?= site_url() ?>admin/customers/lifetimeAccess" method="post">
+            <input type="hidden" name="type" value="" />
+            <input type="hidden" name="planid" value="<?= $customer->id ?>" />
+        </form>
         <?php if ($error): ?>
             <div  class="row">
                 <div class="col-md-3"></div>
@@ -450,6 +454,12 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+
+        $('a.access').click(function () {
+            var type = $(this).prop('id');
+            $('#lifetimeForm input[name="type"]').val(type);
+            $('#lifetimeForm').submit();
+        });
 
         $('#cardForm').on('submit', function () {
             $('#save').prop('disabled', true);

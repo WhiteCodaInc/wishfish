@@ -104,8 +104,11 @@ class Customers extends CI_Controller {
             header('location:' . site_url() . 'admin/customers');
         }
     }
+
     function lifetimeAccess() {
         $post = $this->input->post();
+        print_r($post);
+        die();
         if (is_array($post) && count($post) > 0) {
             $this->objcustomer->extendTrial($post);
             header('location:' . site_url() . 'admin/customers/profile/' . $post['userid']);
@@ -113,7 +116,6 @@ class Customers extends CI_Controller {
             header('location:' . site_url() . 'admin/customers');
         }
     }
-    
 
     function updateCustomerNotification() {
         $this->objcustomer->updateCustomerNotification();
