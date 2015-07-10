@@ -1421,7 +1421,7 @@
             //right: 'month,agendaWeek,agendaDay'
             right: 'month'
         },
-        timezones: "local",
+        timezone: "local",
         buttonText: {
             today: 'today',
             month: 'month'
