@@ -104,10 +104,12 @@
         }).focus(function () {
             $(this).autocomplete("search", "");
         });
-
-
     });
     $(document).ready(function () {
+
+        $('ul.ui-autocomplete').click(function () {
+            alert();
+        });
 
         $('#pageid').change(function () {
 
