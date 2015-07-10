@@ -124,7 +124,7 @@
             var page = $('#pages').val();
             getPage(ids[pages.indexOf(page)]);
         });
-        $('#pages').bind("focusout,keypress", function (e) {
+        $('#pages').on("keypress", function (e) {
             alert(e.event);
             if (e.keyCode == 13) {
                 var page = $('#pages').val();
