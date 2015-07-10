@@ -108,7 +108,7 @@
     });
     $(document).ready(function () {
         function bindEvent() {
-            alet('called');
+            alert('called');
             $('ul.ui-autocomplete li').on('click', function () {
                 alert($('#pages').val());
             });
