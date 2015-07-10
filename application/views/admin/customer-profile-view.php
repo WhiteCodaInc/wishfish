@@ -36,11 +36,9 @@
                 Change Payment Detail
             </a>
         <?php endif; ?>
-        <?php if (count($currPlan) && $currPlan->plan_id == 1) : ?>
-            <a href="#" id="assign" class="create btn bg-purple access">
-                Assign Lifetime Access
-            </a>
-        <?php endif; ?>
+        <a href="#" id="assign" class="create btn bg-purple access">
+            Assign Lifetime Access
+        </a>
     </section>
     <?php
     $img_src = ($customer->profile_pic != "") ?

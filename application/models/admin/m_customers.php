@@ -180,6 +180,10 @@ class M_customers extends CI_Model {
         $this->db->update('wi_plan_detail', array('expiry_date' => $dt), array('id' => $currPlan->id));
         return true;
     }
+    
+    function lifetimeAccess(){
+        
+    }
 
     function updateCustomerNotification() {
         $this->db->where('notification', 1);
