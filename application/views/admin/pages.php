@@ -124,7 +124,7 @@
             var page = $('#pages').val();
             getPage(ids[pages.indexOf(page)]);
         });
-        $('#pages').on("focusout,keypress", function (e) {
+        $('#pages').on("keypress", function (e) {
             alert(e.type);
             if (e.keyCode == 13) {
                 var page = $('#pages').val();
@@ -133,11 +133,15 @@
                 } else {
                     CKEDITOR.instances['editor1'].setData("");
                 }
-
             }
         });
-        $('#pageid').change(function () {
-
+        $('#pages').on("focusout", function (e) {
+            var page = $('#pages').val();
+            if (page.trim() != "") {
+                getPage(ids[pages.indexOf(page)]);
+            } else {
+                CKEDITOR.instances['editor1'].setData("");
+            }
         });
 
         $('#save-page').click(function () {
