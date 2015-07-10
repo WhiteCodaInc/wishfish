@@ -452,7 +452,7 @@
 <?php if ($this->input->get('msg') != ""): ?>
         alertify.error("Customer account currently was deactivated..!");
 <?php endif; ?>
-</script>
+</script>       
 
 <script type="text/javascript">
     $(document).ready(function () {
