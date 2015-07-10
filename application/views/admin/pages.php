@@ -115,8 +115,13 @@
 //        $('#pages').on('focusin', function () {
 //            bindEvent();
 //        });
-        $('ul.ui-autocomplete').on('click,keypress', function () {
+        $('ul.ui-autocomplete').on('click', function () {
             alert($('#pages').val());
+        });
+        $('#pages').on("keypress", function (e) {
+            if (e.keyCode == 13) {
+                alert($(this).val());
+            }
         });
         $('#pageid').change(function () {
 
