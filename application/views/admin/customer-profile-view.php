@@ -42,7 +42,7 @@
         $color = ($life == NULL || !$life) ? "bg-purple" : "btn-danger";
         ?>
         <a href="#" id="<?= $id ?>" class="create btn <?= $color ?> access">
-            Assign Lifetime Access
+            <?= ucfirst($id) ?> Lifetime Access
         </a>
     </section>
     <?php
