@@ -31,10 +31,10 @@
                                 <div class="form-group">
                                     <label>Choose Webpage</label>
                                     <input type="text" class="form-control"  id="pages" />
-                                    <select name="page_id" id="pageid" class="form-control" >
+<!--                                    <select name="page_id" id="pageid" class="form-control" >
                                         <option value="-1">--Select--</option>
 
-                                    </select>
+                                    </select>-->
                                 </div>
                             </div>
                         </div>
