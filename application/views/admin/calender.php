@@ -1429,7 +1429,6 @@
                     //day: 'day'
         },
         events: function (start, end, timezone, callback) {
-            alert(timezone);
             $.ajax({
                 type: 'POST',
                 url: '<?= site_url() ?>admin/calender/getEvents',
@@ -1499,7 +1498,6 @@
         },
         dayClick: function (date, jsEvent, view) {
             var check = date.format();
-            alert(check);
             var today = $.datepicker.formatDate('yy-mm-dd', new Date());
             if ($(jsEvent.target).is('td.fc-day')) {
                 highlightDay(jsEvent);
