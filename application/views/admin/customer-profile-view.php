@@ -38,8 +38,8 @@
         <?php endif; ?>
         <?php
         $life = $customer->is_lifetime;
-        $id = ($life == NULL || $life) ? "assign" : "remove";
-        $color = ($life == NULL || $life) ? "bg-purple" : "btn-danger";
+        $id = ($life == NULL || !$life) ? "assign" : "remove";
+        $color = ($life == NULL || !$life) ? "bg-purple" : "btn-danger";
         ?>
         <a href="#" id="<?= $id ?>" class="create btn <?= $color ?> access">
             Assign Lifetime Access
