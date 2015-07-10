@@ -1421,7 +1421,7 @@
             //right: 'month,agendaWeek,agendaDay'
             right: 'month'
         },
-        timezone: "local",
+        timezone: "America/Tijuana",
         buttonText: {
             today: 'today',
             month: 'month'
@@ -1499,6 +1499,7 @@
         },
         dayClick: function (date, jsEvent, view) {
             var check = date.format();
+            alert(check);
             var today = $.datepicker.formatDate('yy-mm-dd', new Date());
             if ($(jsEvent.target).is('td.fc-day')) {
                 highlightDay(jsEvent);
