@@ -34,15 +34,28 @@ class Trigger extends CI_Controller {
         // UP = UTC to + 
         $this->timezone = "UM8";
         $datetime = date('Y-m-d H:i:s', gmt_to_local(time(), $this->timezone, TRUE));
+        echo "{$this->session->userdata('email')}<br>";
+        echo "<pre>";
+        echo "FULL TIME : {$datetime}<br>";
         $this->date = date('Y-m-d', strtotime($datetime));
         $this->hour = date('H', strtotime($datetime));
+        if ($this->hour == -1)
+            $this->hour = 23;
         $this->minute = date('i', strtotime($datetime));
 
         $blackList = $this->objcon->getBlackList();
         $res = $this->objtrigger->getEvents($this->date);
 
+        echo "DATE : " . $this->date . '<br>';
+        echo "HOUR : " . $this->hour . '<br>';
+        echo "MINUTE : " . $this->minute . '<br>';
+        echo "SECOND : " . $this->second . '<br>';
+
         foreach ($res as $value) {
             if ($this->hour == $value->h && $this->minute == $value->m) {
+                echo "<br>-------------Event ID : {$value->event_id} ...! ----------------<br>";
+                echo "HOUR : " . $value->h . '<br>';
+                echo "MINUTE : " . $value->m . '<br>';
                 switch ($value->group_type) {
                     case 'individual':
                         if (!in_array($value->user_id, $blackList)) {
@@ -54,12 +67,16 @@ class Trigger extends CI_Controller {
                                     if ($value->is_repeat && $value->end_type == "never")
                                         $this->objtrigger->addNextEvent($value->event_id);
                                     $this->objtrigger->updateStatus($value->event_id);
+                                } else {
+                                    echo "<br>-------------Event ID : {$value->event_id} Failed...! ----------------<br>";
                                 }
                             } else if ($value->event_type == "email") {
                                 if ($this->sendMail($contact, $tag, $value, $value->notify)) {
                                     if ($value->is_repeat && $value->end_type == "never")
                                         $this->objtrigger->addNextEvent($value->event_id);
                                     $this->objtrigger->updateStatus($value->event_id);
+                                } else {
+                                    echo "<br>-------------Event ID : {$value->event_id} Failed...! ----------------<br>";
                                 }
                             }
                         }
@@ -77,12 +94,16 @@ class Trigger extends CI_Controller {
                                         if ($value->is_repeat && $value->end_type == "never")
                                             $this->objtrigger->addNextEvent($value->event_id);
                                         $this->objtrigger->updateStatus($value->event_id);
+                                    } else {
+                                        echo "<br>-------------Event ID : {$value->event_id} Failed...! ----------------<br>";
                                     }
                                 } else if ($value->event_type == "email") {
                                     if ($this->sendMail($contact, $tag, $value, $value->notify)) {
                                         if ($value->is_repeat && $value->end_type == "never")
                                             $this->objtrigger->addNextEvent($value->event_id);
                                         $this->objtrigger->updateStatus($value->event_id);
+                                    } else {
+                                        echo "<br>-------------Event ID : {$value->event_id} Failed...! ----------------<br>";
                                     }
                                 }
                             }
@@ -100,12 +121,16 @@ class Trigger extends CI_Controller {
                                         if ($value->is_repeat && $value->end_type == "never")
                                             $this->objtrigger->addNextEvent($value->event_id);
                                         $this->objtrigger->updateStatus($value->event_id);
+                                    } else {
+                                        echo "<br>-------------Event ID : {$value->event_id} Failed...! ----------------<br>";
                                     }
                                 } else if ($value->event_type == "email") {
                                     if ($this->sendMail($contact, $tag, $value, $value->notify)) {
                                         if ($value->is_repeat && $value->end_type == "never")
                                             $this->objtrigger->addNextEvent($value->event_id);
                                         $this->objtrigger->updateStatus($value->event_id);
+                                    } else {
+                                        echo "<br>-------------Event ID : {$value->event_id} Failed...! ----------------<br>";
                                     }
                                 }
                             }
@@ -120,10 +145,21 @@ class Trigger extends CI_Controller {
 
     function sendSMS($to, $body, $notify) {
         if ($notify == "me") {
-            $adminInfo = $this->common->getAdminInfo(2);
+            echo "NOTIFY ME<br>";
+            $adminInfo = $this->common->getAdminInfo(5);
             $to = $adminInfo->phone;
+            echo "SESSION : " . $to . '<br>';
+        } else {
+            echo "NOTIFY THEM<br>";
         }
-        return $this->common->sendSMS($to, $body);
+        if ($to != "") {
+            echo "TO : " . $to . '<br>';
+            echo "BODY : " . $body . '<br>';
+            echo "<br>-------------Event Sucssfully Sent...! ----------------<br>";
+            return $this->common->sendSMS($to, $body);
+        } else {
+            return FALSE;
+        }
     }
 
     function sendMail($contact, $tag, $post, $notify) {
@@ -133,9 +169,13 @@ class Trigger extends CI_Controller {
         } else {
             $email = $contact->email;
         }
-        $subject = $this->parser->parse_string($post->subject, $tag, TRUE);
-        $body = $this->parser->parse_string($post->body, $tag, TRUE);
-        return $this->common->sendMail($email, $subject, $body);
+        if ($email != "") {
+            $subject = $this->parser->parse_string($post->subject, $tag, TRUE);
+            $body = $this->parser->parse_string($post->body, $tag, TRUE);
+            return $this->common->sendMail($email, $subject, $body);
+        } else {
+            return FALSE;
+        }
     }
 
 }
