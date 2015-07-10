@@ -107,7 +107,7 @@
     });
     $(document).ready(function () {
 
-        $('ul.ui-autocomplete').click(function () {
+        $('ul.ui-autocomplete').on('click,keypress', function () {
             alert($('#pages').val());
         });
 
