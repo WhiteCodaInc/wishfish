@@ -3,6 +3,12 @@
     .cke_contents{
         height: 350px !important;
     } 
+    .ui-autocomplete { 
+        cursor:pointer; 
+        height:120px; 
+        overflow-y:scroll;
+        z-index: 9999
+    }
 </style>
 <aside class="right-side">
     <!-- Content Header (Page header) -->
