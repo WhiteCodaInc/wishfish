@@ -109,7 +109,7 @@
     $(document).ready(function () {
         function bindEvent() {
             alert('called');
-            $('ul.ui-autocomplete li').on('click', function () {
+            $('ul.ui-autocomplete').on('click', function () {
                 alert($('#pages').val());
             });
         }
