@@ -28,10 +28,10 @@
     outline:0;
 }
 #strengthForm{
-    width: 500px;
+    /*width: 500px;*/
     margin: 0 auto;
     position: relative;
-    margin-bottom:60px;
+    /*margin-bottom:60px;*/
 }
 .strength_meter{
     position: absolute;
