@@ -107,7 +107,7 @@
                             <div class="form-group">
                                 <label>Password</label>
                                 <a href="javascript:void(0);" id="change_password">Change Password</a>
-                                <input value="****************" type="password" name="password" class="form-control" disabled="" />
+                                <input value="****************" type="password" name="password" class="form-control strength" disabled="" />
                             </div>
                         </div><!-- /.box-body -->
                         <input type="hidden" name="customerid" value="<?= $customers->user_id ?>" />
