@@ -267,10 +267,20 @@
                 <strong>Copyright &copy; 2015 White Coda Inc.</strong> All rights reserved.
             </div><!-- /.container -->
         </footer>
+        <script type="text/javascript" src="<?= base_url() ?>assets/password/strength.js"></script>
         <script type="text/javascript">
             $(document).ready(function () {
                 var pass = 1;
                 var confirmpass = 1;
+
+                $('#passwd').strength({
+                    strengthClass: 'strength',
+                    strengthMeterClass: 'strength_meter',
+                    strengthButtonClass: 'button_strength',
+                    strengthButtonText: 'Show Password',
+                    strengthButtonTextToggle: 'Hide Password'
+                });
+
                 $('#active').on('click', function () {
                     $('div.welcome').hide();
                     $('div.set-passwd').show();
