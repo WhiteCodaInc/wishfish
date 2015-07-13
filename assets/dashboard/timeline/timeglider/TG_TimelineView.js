@@ -1764,6 +1764,7 @@
                 console.log("INIT_ZOOM : " + init_zoom);
                 console.log("HZOOM : " + hZoom);
                 console.log("LZOOM : " + lZoom);
+                console.log("sHeight : " + sHeight);
                 $(this._views.SLIDER)
                         .css({"height": sHeight})
                         .slider({
