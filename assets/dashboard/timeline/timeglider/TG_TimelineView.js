@@ -319,7 +319,7 @@
             events: {
                 "click .tg-close-button": "remove",
                 "click .goto-save": "gotoDate",
-                "click .goto-save": "gotoDate",
+                "click .todaydt": "goToday",
                 "keydown .dateinput": "doKeydown"
             },
             template: function () {
@@ -328,7 +328,7 @@
                 var val = focus.dateStr.split(" ")[0];
 
                 return "<div class='tg-close-button'></div>"
-                        + "<h3>Go to...</h3><h3>today</h3>"
+                        + "<h3>Go to...</h3><h3 class='todaydt'>today</h3>"
                         + "<div class='timeglider-menu-modal-content'>"
                         + "<div class='tg-dtinput-wrap' id='goto-wrap'> "
                         + "<input class='mousetrap dateinput' type='text' id='goto' value='" + val + "'>"
@@ -351,6 +351,12 @@
                 var date_str = $(this.el).find("input.dateinput").val();
                 MED.gotoDateZoom(date_str);
                 this.remove();
+            },
+            goToday: function () {
+//                var date_str = $(this.el).find(".todaydt").val();
+//                MED.gotoDateZoom(date_str);
+//                this.remove();
+                $('.tg-timeline-start').trigger('click')
             },
             render: function () {
                 $(this.el).html($.tmpl(this.template(), this.model)).attr("id", "datepickerModal");
