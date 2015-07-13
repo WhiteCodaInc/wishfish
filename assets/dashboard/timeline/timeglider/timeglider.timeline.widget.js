@@ -141,10 +141,10 @@
 
             this.element.html(MAIN_TEMPLATE);
 
-            $('.tg-footer-center .plus').on('click', function () {
+            $('.tg-footer-minusplus .plus').on('click', function () {
                 $('.tg-zoom-in').trigger('click');
             });
-            $('.tg-footer-center .minus').on('click', function () {
+            $('.tg-footer-minusplus .minus').on('click', function () {
                 $('.tg-zoom-out').trigger('click');
             });
             $(".tg-footer-center .left")

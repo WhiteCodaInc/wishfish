@@ -1502,45 +1502,45 @@
                 var title = "<h2 data-timeline_id='" + tid + "'>" + timeline.get("title") + "</h2>",
                         inf = (timeline.get("description")) ? "<li id='info' class='timeline-info-bt' data-timeline_id='" + tid + "'>info</li>" : "",
                         leg = (timeline.get("hasLegend")) ? "<li id='legend' class='tg-legend-bt' data-timeline_id='" + tid + "'>legend</li>" : "",
-                        slider = "<div class='slide'>"
-                        + "			<div class='zoom' style='color: white;float: right;padding: 0 5px;'>"
-                        + "				<div class='zoomlevel timeglider-zoomlevel-display'></div>"
-                        + "			</div>"
-                        + "			<div class='right'><i class='fa fa-chevron-circle-right'></i></div>"
-                        + "			<div class='left'><i class='fa fa-chevron-circle-left'></i></div>"
-                        + "			<div class='minus'><i class='fa fa-minus'></i></div>"
-                        + "			<div class='plus'><i class='fa fa-plus'></i></div>"
-                        + "		 </div>",
+//                        slider = "<div class='slide'>"
+//                        + "			<div class='zoom' style='color: white;float: right;padding: 0 5px;'>"
+//                        + "				<div class='zoomlevel timeglider-zoomlevel-display'></div>"
+//                        + "			</div>"
+//                        + "			<div class='right'><i class='fa fa-chevron-circle-right'></i></div>"
+//                        + "			<div class='left'><i class='fa fa-chevron-circle-left'></i></div>"
+//                        + "			<div class='minus'><i class='fa fa-minus'></i></div>"
+//                        + "			<div class='plus'><i class='fa fa-plus'></i></div>"
+//                        + "		 </div>",
                         tmpl = "<div class='tg-widget-header tg-single-timeline-header'>" + title + "<ul>" + inf + leg + "<li class='tg-timeline-start' data-timeline_id='" + tid + "'>today</li></ul>" + slider + "</div>";
 
                 $st = $(tmpl).appendTo(CONTAINER);
 
-                $('.slide .plus').on('click', function () {
-                    $('.tg-zoom-in').trigger('click');
-                });
-                $('.slide .minus').on('click', function () {
-                    $('.tg-zoom-out').trigger('click');
-                });
-                $(".slide .left")
-                        .mouseup(function () {
-                            $('.timeglider-pan-left').trigger('mouseup');
-                        })
-                        .mouseout(function () {
-                            $('.timeglider-pan-left').trigger('mouseout');
-                        })
-                        .mousedown(function () {
-                            $('.timeglider-pan-left').trigger('mousedown');
-                        });
-                $(".slide .right")
-                        .mouseup(function () {
-                            $('.timeglider-pan-right').trigger('mouseup');
-                        })
-                        .mouseout(function () {
-                            $('.timeglider-pan-right').trigger('mouseout');
-                        })
-                        .mousedown(function () {
-                            $('.timeglider-pan-right').trigger('mousedown');
-                        });
+//                $('.slide .plus').on('click', function () {
+//                    $('.tg-zoom-in').trigger('click');
+//                });
+//                $('.slide .minus').on('click', function () {
+//                    $('.tg-zoom-out').trigger('click');
+//                });
+//                $(".slide .left")
+//                        .mouseup(function () {
+//                            $('.timeglider-pan-left').trigger('mouseup');
+//                        })
+//                        .mouseout(function () {
+//                            $('.timeglider-pan-left').trigger('mouseout');
+//                        })
+//                        .mousedown(function () {
+//                            $('.timeglider-pan-left').trigger('mousedown');
+//                        });
+//                $(".slide .right")
+//                        .mouseup(function () {
+//                            $('.timeglider-pan-right').trigger('mouseup');
+//                        })
+//                        .mouseout(function () {
+//                            $('.timeglider-pan-right').trigger('mouseout');
+//                        })
+//                        .mousedown(function () {
+//                            $('.timeglider-pan-right').trigger('mousedown');
+//                        });
 
                 me.singleTitleHeight = $st.outerHeight();
 
