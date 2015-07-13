@@ -187,8 +187,7 @@
 
         $('#change_password').click(function () {
             $('input[name="password"]').val('');
-//            $('input[name="password"]').css('background', 'transparent');
-//            $('#strengthForm input[type="text"]').css('background', 'transparent');
+            $('input[name="password"]').removeAttr('style');
             $('input[name="password"]').prop('disabled', false);
         });
 
