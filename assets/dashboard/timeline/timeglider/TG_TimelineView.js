@@ -524,6 +524,7 @@
         });
 
         $(this._views.FOCUS_DATE).bind(CLICKORTOUCH, function () {
+            alert();
             me.datepickerModal();
 
         });
