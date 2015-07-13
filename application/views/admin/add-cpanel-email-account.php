@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/password/strength.css"/>
 <aside class="right-side">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -37,9 +38,9 @@
                                     <span class="input-group-addon">@wish-fish.com</span>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" id="strengthForm">
                                 <label >Password</label>
-                                <input type="password" name="password" value="" class="form-control" placeholder="Enter New Password"  required="" />
+                                <input id="myPassword" type="password" name="password" value="" class="form-control" placeholder="Enter New Password"  required="" />
                             </div>
                         </div><!-- /.box-body -->
                     </form>
@@ -51,8 +52,20 @@
     </section><!-- /.content -->
 </aside><!-- /.right-side -->
 </div><!-- ./wrapper -->
+
+<script type="text/javascript" src="<?= base_url() ?>assets/password/strength.js"></script>
+
 <script type="text/javascript">
     $(document).ready(function () {
+
+        $('#myPassword').strength({
+            strengthClass: 'strength',
+            strengthMeterClass: 'strength_meter',
+            strengthButtonClass: 'button_strength',
+            strengthButtonText: 'Show Password',
+            strengthButtonTextToggle: 'Hide Password'
+        });
+
         $('#addAccount').click(function () {
             $('#accountForm').submit();
         });

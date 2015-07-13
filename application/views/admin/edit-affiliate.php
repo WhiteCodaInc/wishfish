@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/password/strength.css"/>
 <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/dashboard/js/plugins/multi-select/css/multi-select.css" />
 <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/dashboard/css/checkbox.css"/>
 <aside class="right-side">
@@ -36,9 +37,9 @@
                                 <label>Email</label>
                                 <input value="<?= isset($affiliates) ? $affiliates->email : '' ?>" type="email" name="email" class="form-control" placeholder="Email"/>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" id="strengthForm">
                                 <label>Password</label>
-                                <input value="<?= isset($affiliates) ? $affiliates->password : '' ?>" type="password" name="password" class="form-control" placeholder="Passwod"/>
+                                <input id="myPassword" value="<?= isset($affiliates) ? $affiliates->password : '' ?>" type="password" name="password" class="form-control" placeholder="Passwod"/>
                             </div>
                             <div class="form-group">
                                 <div class="row">
@@ -173,6 +174,8 @@
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/input-mask/jquery.inputmask.date.extensions.js" type="text/javascript"></script>
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/input-mask/jquery.inputmask.extensions.js" type="text/javascript"></script>
 
+<script type="text/javascript" src="<?= base_url() ?>assets/password/strength.js"></script>
+
 <!-- Multi Select -->
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/multi-select/js/jquery.multi-select.js" type="text/javascript"></script>
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/multi-select/js/jquery.quicksearch.js" type="text/javascript"></script>
@@ -198,12 +201,21 @@
             $('select[name="rating"]').val("<?= ($affiliates->rating) ? $affiliates->rating : -1 ?>");
 <?php endif; ?>
 
+        $('#myPassword').strength({
+            strengthClass: 'strength',
+            strengthMeterClass: 'strength_meter',
+            strengthButtonClass: 'button_strength',
+            strengthButtonText: 'Show Password',
+            strengthButtonTextToggle: 'Hide Password'
+        });
+
+
         $('span.lbl').click(function () {
             $name = $(this).prev().prop('name');
             $('input[name="' + $name + '"]').prop('checked', false);
             $(this).prev().trigger('click');
         });
-        
+
         $('#addAffiliate').click(function () {
             $('#affiliateForm').submit();
         });

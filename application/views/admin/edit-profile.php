@@ -42,7 +42,7 @@
                             </div>
                             <div class="form-group" id="strengthForm">
                                 <label for="password">Password</label>
-                                <input id="myPassword" value="<?= isset($profile) ? $profile->password : '' ?>" name="password" type="password" class="form-control" id="password" placeholder="Password">
+                                <input id="myPassword" value="<?= isset($profile) ? $profile->password : '' ?>" name="password" type="password" class="form-control" placeholder="Password">
                             </div>
                             <div class="form-group">
                                 <label for="name">Email</label>
