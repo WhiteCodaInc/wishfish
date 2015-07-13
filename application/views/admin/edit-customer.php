@@ -163,44 +163,55 @@
         });
     });
     $(document).ready(function () {
+
+        $('input[name="password"]').strength({
+            strengthClass: 'strength',
+            strengthMeterClass: 'strength_meter',
+            strengthButtonClass: 'button_strength',
+            strengthButtonText: 'Show Password',
+            strengthButtonTextToggle: 'Hide Password'
+        });
+    });
+
 <?php if ($customers->phone): ?>
-            $('select[name="code"]').val("<?= substr($customers->phone, -strlen($customers->phone), 2) ?>");
+        $('select[name="code"]').val("<?= substr($customers->phone, -strlen($customers->phone), 2) ?>");
 <?php endif; ?>
 
-        $('#addCustomer').click(function () {
-            var passwd = $('input[name="password"]').val();
-            if (passwd.trim() == "") {
-                alertify.error("Password can not be blank..!");
-                return false;
-            }
-            $('#customerForm').submit();
-        });
+    $('#addCustomer').click(function () {
+        var passwd = $('input[name="password"]').val();
+        if (passwd.trim() == "") {
+            alertify.error("Password can not be blank..!");
+            return false;
+        }
+        $('#customerForm').submit();
+    });
 
-        $('#change_password').click(function () {
-            $('input[name="password"]').val('');
-            $('input[name="password"]').prop('disabled', false);
-        });
+    $('#change_password').click(function () {
+        $('input[name="password"]').val('');
+        $('input[name="password"]').prop('disabled', false);
+    });
 
-        $("input:file").change(function () {
-            $("#error_message").empty(); // To remove the previous error message
-            var file = this.files[0];
-            var imagefile = file.type;
-            var match = ["image/jpeg", "image/png", "image/jpg"];
-            if (!((imagefile == match[0]) || (imagefile == match[1]) || (imagefile == match[2])))
-            {
-                $("#error_message").html("<p id='error' style='color:red'>Please Select A valid Image File.<br>" + "<span id='error_message'>Only jpeg, jpg and png Images type allowed</span></p>");
-                return false;
-            }
-            else
-            {
-                var reader = new FileReader();
-                reader.onload = imageIsLoaded;
-                reader.readAsDataURL(this.files[0]);
-            }
-        });
-        function imageIsLoaded(e) {
-            $("#profilePic").css("color", "green");
-            $("#profile_previewing").attr('src', e.target.result);
+    $("input:file").change(function () {
+        $("#error_message").empty(); // To remove the previous error message
+        var file = this.files[0];
+        var imagefile = file.type;
+        var match = ["image/jpeg", "image/png", "image/jpg"];
+        if (!((imagefile == match[0]) || (imagefile == match[1]) || (imagefile == match[2])))
+        {
+            $("#error_message").html("<p id='error' style='color:red'>Please Select A valid Image File.<br>" + "<span id='error_message'>Only jpeg, jpg and png Images type allowed</span></p>");
+            return false;
+        }
+        else
+        {
+            var reader = new FileReader();
+            reader.onload = imageIsLoaded;
+            reader.readAsDataURL(this.files[0]);
         }
     });
+    function imageIsLoaded(e) {
+        $("#profilePic").css("color", "green");
+        $("#profile_previewing").attr('src', e.target.result);
+        }
+    }
+    );
 </script>
