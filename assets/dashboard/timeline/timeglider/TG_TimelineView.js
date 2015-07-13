@@ -1641,7 +1641,6 @@
                         .css({"z-index": me.ztop++, "max-height": ch - 64});
 
                 me.datepickerOpen = true;
-                $('#datepickerModal').show();
             } else {
                 me.datepickerOpen = false;
                 $('#datepickerModal').remove();
