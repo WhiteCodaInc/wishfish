@@ -1761,7 +1761,9 @@
                         hZoom = MED.max_zoom,
                         lZoom = MED.min_zoom,
                         sHeight = (1 + hZoom - lZoom) * 3;
-
+                console.log("INIT_ZOOM : " + init_zoom);
+                console.log("HZOOM : " + hZoom);
+                console.log("LZOOM : " + lZoom);
                 $(this._views.SLIDER)
                         .css({"height": sHeight})
                         .slider({
