@@ -1215,12 +1215,12 @@
                 z = 1;
             }
 
-
+            console.log(z);
             if (z == 1 || (z <= this.max_zoom && z >= this.min_zoom)) {
 
                 // focusdate has to come first for combined zoom+focusdate switch
                 this.startSec = this._focusDate.sec;
-                console.log(this._zoomLevel);
+
                 if (z != this._zoomLevel) {
 
                     this._zoomLevel = z;
