@@ -1023,7 +1023,7 @@
 
             var me = this,
                     zl = MED.getZoomLevel();
-            console.log(zl);
+//            console.log(zl);
             if (zl > 0) {
                 if (options.display_zoom_level == true) {
                     $(me._views.ZOOM_DISPLAY).text(zl);
