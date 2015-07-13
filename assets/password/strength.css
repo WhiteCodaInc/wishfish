@@ -1,7 +1,7 @@
 @charset "utf-8";
 /* CSS Document */
 
-#passForm #passwd,#passForm input[type="text"]{
+input[name="password"],input[name="showpasswd"]{
     background:transparent;
     border: 2px solid #46AC84;
     color: #777;
@@ -24,7 +24,7 @@
     -webkit-backface-visibility: hidden;
     width:100%;
 }
-#passForm #passwd:focus,#passForm input[type="text"]:focus{
+input[name="password"]:focus,input[name="showpasswd"]:focus{
     outline:0;
 }
 /*#passForm{
@@ -89,16 +89,4 @@
     background-color: #C3FF88;
     border-color: #8DFF1C!important;
     width:100%!important;
-}
-h1{
-    color:white;
-    font-size:50px;
-    text-align:center;
-    padding-top:30px;
-    margin-bottom:20px;
-}
-h1 span{
-    font-weight:bold;
-    color:white;
-    opacity:.3;
 }

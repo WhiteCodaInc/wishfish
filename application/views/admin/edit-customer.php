@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/password/strength.css"/>
 <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/dashboard/css/checkbox.css"/>
 <aside class="right-side">
     <!-- Content Header (Page header) -->
@@ -125,6 +126,7 @@
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/input-mask/jquery.inputmask.date.extensions.js" type="text/javascript"></script>
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/input-mask/jquery.inputmask.extensions.js" type="text/javascript"></script>
 
+<script type="text/javascript" src="<?= base_url() ?>assets/password/strength.js"></script>
 
 <script type="text/javascript">
     $(function () {
