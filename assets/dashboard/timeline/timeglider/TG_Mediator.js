@@ -761,7 +761,6 @@
                 // focusdate has been set to today
                 // !AUTH: USED IN AUTHORING MODE
                 this.timelineDataLoaded = true;
-                alert(Math.floor((this.max_zoom + this.min_zoom) / 2));
                 this.setZoomLevel(Math.floor((this.max_zoom + this.min_zoom) / 2));
                 this.tryLoading();
 
@@ -1071,7 +1070,7 @@
 
             } else if (timeglider.mode == "authoring") {
                 // no timelines loaded right away
-                me.setZoomLevel(40);
+                me.setZoomLevel(19);
 
             } else if (first_focus_id) {
 
