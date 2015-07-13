@@ -2,7 +2,7 @@
 /* CSS Document */
 
 #strengthForm input[type="password"],#strengthForm input[type="text"]{
-    background:transparent;
+    /*background:transparent;*/
     /*border: 2px solid #46AC84;
     color: #777;
     font-family: "Lato", sans-serif;
