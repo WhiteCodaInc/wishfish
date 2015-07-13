@@ -52,9 +52,10 @@
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    width:67px;
+    /*width:67px;*/
+    width:50px;
     height:24px;
-    padding-top:8px;
+    padding-top:5px;
 }
 
 /*.btn {
@@ -511,7 +512,7 @@
     position:absolute;
     bottom:-3px;
     left:200px;
-    width:300px;
+    width:320px;
 
 }
 
