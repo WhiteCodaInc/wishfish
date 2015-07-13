@@ -357,6 +357,7 @@
                 this.remove();
             },
             render: function () {
+                console.log("called");
                 if ($("#datepickerModal").length == 1) {
                     this.remove();
                 } else {
