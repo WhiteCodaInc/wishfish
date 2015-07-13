@@ -1,7 +1,7 @@
 @charset "utf-8";
 /* CSS Document */
 
-input[name="password"],input[name="showpasswd"]{
+#strengthForm input[type="password"]:first-child,#strengthForm input[type="text"]{
     background:transparent;
     border: 2px solid #46AC84;
     color: #777;
@@ -24,15 +24,15 @@ input[name="password"],input[name="showpasswd"]{
     -webkit-backface-visibility: hidden;
     width:100%;
 }
-input[name="password"]:focus,input[name="showpasswd"]:focus{
+#strengthForm input[type="password"]:first-child:focus,#strengthForm input[type="text"]:focus{
     outline:0;
 }
-/*#passForm{
+#strengthForm{
     width: 500px;
     margin: 0 auto;
     position: relative;
     margin-bottom:60px;
-}*/
+}
 .strength_meter{
     position: absolute;
     left: 0px;
@@ -45,7 +45,7 @@ input[name="password"]:focus,input[name="showpasswd"]:focus{
 }
 .button_strength {
     text-decoration: none;
-    /*color: #FFF;*/
+    color: #FFF;
     font-size: 13px;
 }
 .strength_meter div{
@@ -89,4 +89,16 @@ input[name="password"]:focus,input[name="showpasswd"]:focus{
     background-color: #C3FF88;
     border-color: #8DFF1C!important;
     width:100%!important;
+}
+h1{
+    color:white;
+    font-size:50px;
+    text-align:center;
+    padding-top:30px;
+    margin-bottom:20px;
+}
+h1 span{
+    font-weight:bold;
+    color:white;
+    opacity:.3;
 }
