@@ -119,11 +119,11 @@
                     + "	<div class='timeglider-logo'></div>"
 
                     + "	<div class='tg-footer-center slide'>"
-                    + "		<div class=''><i class='fa fa-chevron-circle-left'></i></div>"
+                    + "		<div style='float:left'><i class='fa fa-chevron-circle-left'></i></div>"
                     + "		<div class='tg-prev tg-prevnext'><a>prev</a></div>"
                     + "		<div class='tg-date-display noselect'><div class='tg-date-display-arrow'></div><span></span></div>"
                     + "		<div class='tg-next tg-prevnext'><a>next</a></div>"
-                    + "		<div class=''><i class='fa fa-chevron-circle-right'></i></div>"
+                    + "		<div style='float:left'><i class='fa fa-chevron-circle-right'></i></div>"
                     + "	</div>"
 
                     + "	<div class='tg-footer-buttons'>"
