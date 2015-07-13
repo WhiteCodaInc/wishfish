@@ -187,6 +187,7 @@
 
         $('#change_password').click(function () {
             $('input[name="password"]').val('');
+            $('input[name="password"]').css('background', 'transparent');
             $('input[name="password"]').prop('disabled', false);
         });
 

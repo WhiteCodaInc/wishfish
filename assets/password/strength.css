@@ -56,7 +56,7 @@
     height: 32px;
     padding: 1px;
     /*text-align: right;*/
-    /*color: #000;*/
+    color: #000;
     /*    line-height: 43px;*/
     /*line-height: 1.42857143;*/
     -webkit-transition: all .3s ease-in-out;
@@ -78,23 +78,23 @@
     background-color: #FFA0A0;
     border-color: #F04040!important;
     width:25%!important;
-    color: #FFA0A0;
+    /*color: #FFA0A0;*/
 }
 .weak{
     background-color: #FFB78C;
     border-color: #FF853C!important;
     width:50%!important;
-    color: #FFB78C;
+    /*color: #FFB78C;*/
 }
 .medium{
     background-color: #FFEC8B;
     border-color: #FC0!important;
     width:75%!important;
-    color: #FFEC8B;
+    /*color: #FFEC8B;*/
 }
 .strong{
     background-color: #C3FF88;
     border-color: #8DFF1C!important;
     width:100%!important;
-    color: #C3FF88;
+    /*color: #C3FF88;*/
 }
