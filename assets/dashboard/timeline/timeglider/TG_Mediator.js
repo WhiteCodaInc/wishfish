@@ -1223,7 +1223,6 @@
                 z = 1;
             }
 
-            console.log(z);
             if (z == 1 || (z <= this.max_zoom && z >= this.min_zoom)) {
 
                 // focusdate has to come first for combined zoom+focusdate switch
@@ -1233,7 +1232,6 @@
 
                     this._zoomLevel = z;
                     this._zoomInfo = tg.zoomTree[z];
-                    alert(z);
                     $.publish(container_name + ".mediator.zoomLevelChange");
                     $.publish(container_name + ".mediator.scopeChange");
 
