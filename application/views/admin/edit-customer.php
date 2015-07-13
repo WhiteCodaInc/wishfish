@@ -107,7 +107,7 @@
                             <div class="form-group" id="strengthForm">
                                 <label>Password</label>
                                 <a href="javascript:void(0);" id="change_password">Change Password</a>
-                                <input id="myPassword" type="password" name="password" class="form-control" />
+                                <input id="myPassword" type="password" name="password" class="form-control" disabled="" />
                             </div>
                         </div><!-- /.box-body -->
                         <input type="hidden" name="customerid" value="<?= $customers->user_id ?>" />
