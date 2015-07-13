@@ -248,12 +248,11 @@
                                             <span id="msgPass" style="color: red"></span>
                                         </div>
                                     </div>
+                                    <input type="hidden" name="userid" value="<?= (!$userId) ? $userInfo->user_id : $userId ?>" />
+                                    <input type="hidden" name="type" value="<?= ($isForgot) ? 'forgot' : 'welcome' ?>" />
                                 </form>
                             </div>
                         </div>
-                        <input type="hidden" name="userid" value="<?= (!$userId) ? $userInfo->user_id : $userId ?>" />
-                        <input type="hidden" name="type" value="<?= ($isForgot) ? 'forgot' : 'welcome' ?>" />
-
                         <div class="col-md-3"></div>
                     </div>
                 </div>
@@ -314,7 +313,7 @@
                 $('#confirm_passwd').focusout(function () {
                     var confirmpasswd = $(this).val();
                     var passwd = $('#passwd').val();
-                    if (confirmpasswd.trim() != "" && passwd !== confirmpasswd) {
+                    if (confirmpasswd != "" && passwd !== confirmpasswd) {
                         $('#msgPass').text("Password must be same as above!");
                         confirmpass = 0;
                     }
