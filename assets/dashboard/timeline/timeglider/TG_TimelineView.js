@@ -1504,7 +1504,7 @@
                         leg = (timeline.get("hasLegend")) ? "<li id='legend' class='tg-legend-bt' data-timeline_id='" + tid + "'>legend</li>" : "",
                         slider = "<div class='slide'>"
                         + "			<div class='zoom' style='color: white;float: right;padding: 0 5px;'>"
-                        + "				<div class='zoomlevel timeglider-zoomlevel-display'>18</div>"
+                        + "				<div class='zoomlevel timeglider-zoomlevel-display'></div>"
                         + "			</div>"
                         + "			<div class='right'><i class='fa fa-chevron-circle-right'></i></div>"
                         + "			<div class='left'><i class='fa fa-chevron-circle-left'></i></div>"
