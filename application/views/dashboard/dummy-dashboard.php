@@ -232,9 +232,8 @@
                             <div class="col-md-6" style="text-align: center;">
                                 <lable><h2>Please set a password:</h2></lable>
                                 <div class="form-group" id="strengthForm">
-                                    <label >Password</label>
                                     <input id="passwd" type="password" name="password" value="" class="form-control" placeholder="Enter New Password"  required="" />
-                                </div>
+                                </div><br/>
                                 <!--<input id="passwd" type="password" name="password" placeholder="Please Enter a New Password" class="form-control" required /><br/>-->
                                 <input id="confirm_passwd" type="password" placeholder="Please Confirm your new password" class="form-control" required /><br/>
                                 <button  type="submit" class="btn btn-primary">Let's Get Started!</button> <br/>
