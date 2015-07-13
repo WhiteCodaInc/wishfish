@@ -425,7 +425,12 @@
     font-size:20px;
 }
 
-.slide i{
+.slide .minus > i,.slide .plus > i{
+    border-right: 1px solid white;
+    padding-right: 10px;
+}
+.tg-footer-center .left > i,.tg-footer-center .right > i{
+    font-size: 20px;
     padding-top: 6px;
 }
 
@@ -437,6 +442,11 @@
     color: white;
     float: right;
     padding: 0 5px;
+}
+.tg-footer-center .right,
+.tg-footer-center .left{
+    color: white;
+    float: left;
 }
 
 
