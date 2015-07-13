@@ -280,7 +280,7 @@
                     strengthButtonText: 'Show Password',
                     strengthButtonTextToggle: 'Hide Password'
                 });
-
+                $('.strength_meter').css('top', '0');
                 $('#active').on('click', function () {
                     $('div.welcome').hide();
                     $('div.set-passwd').show();
