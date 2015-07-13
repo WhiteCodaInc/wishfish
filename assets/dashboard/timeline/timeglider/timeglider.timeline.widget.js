@@ -138,6 +138,33 @@
 
             this.element.html(MAIN_TEMPLATE);
 
+            $('.tg-footer-center .plus').on('click', function () {
+                $('.tg-zoom-in').trigger('click');
+            });
+            $('.tg-footer-center .minus').on('click', function () {
+                $('.tg-zoom-out').trigger('click');
+            });
+            $(".tg-footer-center .left")
+                    .mouseup(function () {
+                        $('.timeglider-pan-left').trigger('mouseup');
+                    })
+                    .mouseout(function () {
+                        $('.timeglider-pan-left').trigger('mouseout');
+                    })
+                    .mousedown(function () {
+                        $('.timeglider-pan-left').trigger('mousedown');
+                    });
+            $(".tg-footer-center .right")
+                    .mouseup(function () {
+                        $('.timeglider-pan-right').trigger('mouseup');
+                    })
+                    .mouseout(function () {
+                        $('.timeglider-pan-right').trigger('mouseout');
+                    })
+                    .mousedown(function () {
+                        $('.timeglider-pan-right').trigger('mousedown');
+                    });
+
         }, // eof _create()
 
         /**
