@@ -45,7 +45,7 @@
 }
 .button_strength {
     text-decoration: none;
-    color: #FFF;
+    /*    color: #FFF;*/
     font-size: 13px;
 }
 .strength_meter div{
