@@ -356,7 +356,8 @@
 //                var date_str = $(this.el).find(".todaydt").val();
 //                MED.gotoDateZoom(date_str);
 //                this.remove();
-                $('.tg-timeline-start').trigger('click')
+                console.log($('.tg-timeline-start').html());
+                $('.tg-timeline-start').trigger('click');
             },
             render: function () {
                 $(this.el).html($.tmpl(this.template(), this.model)).attr("id", "datepickerModal");
