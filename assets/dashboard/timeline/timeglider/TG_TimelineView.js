@@ -357,22 +357,17 @@
                 this.remove();
             },
             render: function () {
-                console.log("called");
-                if ($("#datepickerModal").length == 1) {
-                    this.remove();
-                } else {
-                    $(this.el).html($.tmpl(this.template(), this.model)).attr("id", "datepickerModal");
-                    $(this.el).find("#goto-wrap").timegliderDatePicker({
-                        is_touch_device: false,
-                        position: {
-                            my: "left bottom",
-                            at: "left top",
-                            // skip instance; it will be defined by datePicker
-                            collision: "none"
-                        }
-                    });
-                    return this;
-                }
+                $(this.el).html($.tmpl(this.template(), this.model)).attr("id", "datepickerModal");
+                $(this.el).find("#goto-wrap").timegliderDatePicker({
+                    is_touch_device: false,
+                    position: {
+                        my: "left bottom",
+                        at: "left top",
+                        // skip instance; it will be defined by datePicker
+                        collision: "none"
+                    }
+                });
+                return this;
             },
             remove: function () {
                 // $(this.el).fadeOut();
@@ -524,7 +519,6 @@
         });
 
         $(this._views.FOCUS_DATE).bind(CLICKORTOUCH, function () {
-            alert();
             me.datepickerModal();
         });
 
@@ -1649,7 +1643,7 @@
                 me.datepickerOpen = true;
 
             } else {
-                me.datepickerOpen = false;
+                $('#datepickerModal').hide();
             }
         },
         startPresentation: function () {
