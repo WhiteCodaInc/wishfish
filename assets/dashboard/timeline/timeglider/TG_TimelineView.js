@@ -1644,7 +1644,7 @@
                 $('#datepickerModal').show();
             } else {
                 me.datepickerOpen = false;
-                $('#datepickerModal').hide();
+                $('#datepickerModal').remove();
             }
         },
         startPresentation: function () {
