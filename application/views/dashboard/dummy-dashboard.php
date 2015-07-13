@@ -20,7 +20,7 @@
         <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/dashboard/css/AdminLTE.min.css"/>
         <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/dashboard/css/all-skins.min.css"/>
 
-
+        <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/password/strength.css"/>
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -231,7 +231,11 @@
                         <form id="passForm" action="<?= site_url() ?>app/dashboard/updatePassword" method="post">
                             <div class="col-md-6" style="text-align: center;">
                                 <lable><h2>Please set a password:</h2></lable>
-                                <input id="passwd" type="password" name="password" placeholder="Please Enter a New Password" class="form-control" required /><br/>
+                                <div class="form-group" id="strengthForm">
+                                    <label >Password</label>
+                                    <input id="passwd" type="password" name="password" value="" class="form-control" placeholder="Enter New Password"  required="" />
+                                </div>
+                                <!--<input id="passwd" type="password" name="password" placeholder="Please Enter a New Password" class="form-control" required /><br/>-->
                                 <input id="confirm_passwd" type="password" placeholder="Please Confirm your new password" class="form-control" required /><br/>
                                 <button  type="submit" class="btn btn-primary">Let's Get Started!</button> <br/>
                                 <span id="msgPass" style="color: red"></span>
