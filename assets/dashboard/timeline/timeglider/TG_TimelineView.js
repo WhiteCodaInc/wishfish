@@ -359,19 +359,19 @@
             render: function () {
                 if ($("#datepickerModal").length == 1) {
                     this.remove();
+                } else {
+                    $(this.el).html($.tmpl(this.template(), this.model)).attr("id", "datepickerModal");
+                    $(this.el).find("#goto-wrap").timegliderDatePicker({
+                        is_touch_device: false,
+                        position: {
+                            my: "left bottom",
+                            at: "left top",
+                            // skip instance; it will be defined by datePicker
+                            collision: "none"
+                        }
+                    });
+                    return this;
                 }
-                $(this.el).html($.tmpl(this.template(), this.model)).attr("id", "datepickerModal");
-                $(this.el).find("#goto-wrap").timegliderDatePicker({
-                    is_touch_device: false,
-                    position: {
-                        my: "left bottom",
-                        at: "left top",
-                        // skip instance; it will be defined by datePicker
-                        collision: "none"
-                    }
-                });
-
-                return this;
             },
             remove: function () {
                 // $(this.el).fadeOut();
