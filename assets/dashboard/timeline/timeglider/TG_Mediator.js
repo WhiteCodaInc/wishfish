@@ -1502,7 +1502,7 @@
                     this.setFocusDate(tl_fd);
 
                     // resetting zoomLevel will refresh
-                    console.log("RESET : " + tl.initial_zoom)
+                    console.log("RESET : " + tl.initial_zoom);
                     this.setZoomLevel(tl.initial_zoom);
 
                     if (tl.initial_zoom == this.getZoomLevel()) {
