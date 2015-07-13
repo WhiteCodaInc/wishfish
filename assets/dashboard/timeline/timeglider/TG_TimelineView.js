@@ -328,7 +328,7 @@
                 var val = focus.dateStr.split(" ")[0];
 
                 return "<div class='tg-close-button'></div>"
-                        + "<h3>Go to...</h3><h3 class='todaydt'>today</h3>"
+                        + "<h3>Go to...</h3><a href='javascript:void(0);' class='todaydt'>today</a>"
                         + "<div class='timeglider-menu-modal-content'>"
                         + "<div class='tg-dtinput-wrap' id='goto-wrap'> "
                         + "<input class='mousetrap dateinput' type='text' id='goto' value='" + val + "'>"
