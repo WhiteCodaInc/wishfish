@@ -228,20 +228,40 @@
                                         </div>-->
                     <div class="row set-passwd">
                         <div class="col-md-3"></div>
-                        <form id="passForm" action="<?= site_url() ?>app/dashboard/updatePassword" method="post">
-                            <div class="col-md-6" style="text-align: center;">
-                                <lable><h2>Please set a password:</h2></lable>
-                                <div class="form-group" id="strengthForm">
-                                    <input id="passwd" type="password" name="password" value="" class="form-control" placeholder="Enter New Password"  required="" />
-                                </div><br/>
-                                <!--<input id="passwd" type="password" name="password" placeholder="Please Enter a New Password" class="form-control" required /><br/>-->
-                                <input id="confirm_passwd" type="password" placeholder="Please Confirm your new password" class="form-control" required /><br/>
-                                <button  type="submit" class="btn btn-primary">Let's Get Started!</button> <br/>
-                                <span id="msgPass" style="color: red"></span>
+
+                        <div class="col-md-6" style="text-align: center;">
+                            <div class="box box-primary">
+                                <div class="box-header">
+                                    <h3 class="box-title">Please set a password</h3>
+                                </div><!-- /.box-header -->
+                                <form role="form" id="passForm" action="<?= site_url() ?>app/dashboard/updatePassword" method="post">
+                                    <div class="box-body">
+                                        <div class="form-group" id="strengthForm">
+                                            <input id="passwd" type="password" name="password" value="" class="form-control" placeholder="Enter New Password"  required="" />
+                                        </div>
+                                        <div class="form-group">
+                                            <input id="confirm_passwd" type="password" placeholder="Please Confirm your new password" class="form-control" required />
+                                        </div>
+                                        <div class="form-group">
+                                            <button  type="submit" class="btn btn-primary">Let's Get Started!</button>
+                                            <span id="msgPass" style="color: red"></span>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
-                            <input type="hidden" name="userid" value="<?= (!$userId) ? $userInfo->user_id : $userId ?>" />
-                            <input type="hidden" name="type" value="<?= ($isForgot) ? 'forgot' : 'welcome' ?>" />
-                        </form>
+
+                            <!--<lable><h2>Please set a password:</h2></lable>-->
+                            <!--                            <div class="form-group" id="strengthForm">
+                                                            <input id="passwd" type="password" name="password" value="" class="form-control" placeholder="Enter New Password"  required="" />
+                                                        </div><br/>-->
+                                                        <!--<input id="passwd" type="password" name="password" placeholder="Please Enter a New Password" class="form-control" required /><br/>-->
+                            <!--                                <input id="confirm_passwd" type="password" placeholder="Please Confirm your new password" class="form-control" required /><br/>-->
+                            <!--                            <button  type="submit" class="btn btn-primary">Let's Get Started!</button> <br/>-->
+<!--                            <span id="msgPass" style="color: red"></span>-->
+                        </div>
+                        <input type="hidden" name="userid" value="<?= (!$userId) ? $userInfo->user_id : $userId ?>" />
+                        <input type="hidden" name="type" value="<?= ($isForgot) ? 'forgot' : 'welcome' ?>" />
+
                         <div class="col-md-3"></div>
                     </div>
                 </div>
