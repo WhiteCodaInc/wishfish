@@ -229,7 +229,7 @@
                     <div class="row set-passwd">
                         <div class="col-md-3"></div>
 
-                        <div class="col-md-6" style="text-align: center;">
+                        <div class="col-md-6" >
                             <div class="box box-primary">
                                 <div class="box-header">
                                     <h3 class="box-title">Please set a password</h3>
