@@ -239,6 +239,7 @@
                                         <div class="form-group" id="strengthForm">
                                             <input id="passwd" type="password" name="password" value="" class="form-control" placeholder="Enter New Password"  required="" />
                                         </div>
+                                        <br/>
                                         <div class="form-group">
                                             <input id="confirm_passwd" type="password" placeholder="Please Confirm your new password" class="form-control" required />
                                         </div>
