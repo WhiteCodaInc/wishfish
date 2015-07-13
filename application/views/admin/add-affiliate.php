@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/password/strength.css"/>
 <aside class="right-side">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -37,9 +38,9 @@
                                 <label for="password">Email</label>
                                 <input name="email" type="email" class="form-control"  placeholder="Email">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" id="strengthForm">
                                 <label for="password">Password</label>
-                                <input name="password" type="password" class="form-control" placeholder="Password">
+                                <input id="myPassword" name="password" type="password" class="form-control" placeholder="Password">
                             </div>
                             <div class="form-group">
                                 <div class="row">
@@ -91,6 +92,8 @@
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/input-mask/jquery.inputmask.date.extensions.js" type="text/javascript"></script>
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/input-mask/jquery.inputmask.extensions.js" type="text/javascript"></script>
 
+<script type="text/javascript" src="<?= base_url() ?>assets/password/strength.js"></script>
+
 <script type="text/javascript">
     $(function () {
         $("[data-mask]").inputmask();
@@ -105,6 +108,14 @@
         ;
     });
     $(document).ready(function () {
+
+        $('#myPassword').strength({
+            strengthClass: 'strength',
+            strengthMeterClass: 'strength_meter',
+            strengthButtonClass: 'button_strength',
+            strengthButtonText: 'Show Password',
+            strengthButtonTextToggle: 'Hide Password'
+        });
 
         $('#affiliate').click(function () {
             $('#affiliateForm').submit();

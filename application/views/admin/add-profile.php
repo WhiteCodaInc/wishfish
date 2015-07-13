@@ -25,9 +25,9 @@
                                 <label for="username">Username</label>
                                 <input type="text" name="userid" autofocus="autofocus" class="form-control" placeholder="Userid"/>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" id="strengthForm">
                                 <label for="password">Password</label>
-                                <input name="password" type="password" class="form-control" id="password" placeholder="Password">
+                                <input id="myPassword" name="password" type="password" class="form-control" id="password" placeholder="Password">
                             </div>
                             <div class="form-group">
                                 <div class="row">
@@ -53,8 +53,18 @@
     </section><!-- /.content -->
 </aside><!-- /.right-side -->
 </div><!-- ./wrapper -->
+<script type="text/javascript" src="<?= base_url() ?>assets/password/strength.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
+
+        $('#myPassword').strength({
+            strengthClass: 'strength',
+            strengthMeterClass: 'strength_meter',
+            strengthButtonClass: 'button_strength',
+            strengthButtonText: 'Show Password',
+            strengthButtonTextToggle: 'Hide Password'
+        });
+
         $('#addProfile').click(function () {
             $('#profileForm').submit();
         });
