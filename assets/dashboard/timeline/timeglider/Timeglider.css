@@ -425,9 +425,8 @@
     font-size:20px;
 }
 
-.slide .minus > i,.slide .plus > i{
-    border-right: 1px solid white;
-    padding-right: 10px;
+.slide > i{
+    padding-top: 6px;
 }
 
 .slide .zoom,
