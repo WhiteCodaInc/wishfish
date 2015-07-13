@@ -123,7 +123,7 @@
             this.activeTimelines = [];
 
             this.freshData = true;
-      },
+        },
         focusToEvent: function (ev, callback) {
             // !TODO open event, bring to zoom
             this.focusedEvent = ev;
@@ -145,7 +145,7 @@
             var fObj = {origin: type};
             fObj[type] = content;
             this.setFilters(fObj);
-      },
+        },
         setImageLaneHeight: function (new_height, ref, set_ui) {
             this.image_lane_height = new_height;
 
@@ -158,7 +158,7 @@
             }
 
 
-      },
+        },
         setInitialScope: function () {
             this.initialScope = this.scopeCache;
             $.publish(container_name + ".mediator.initialScope");
@@ -186,17 +186,19 @@
                 this.refresh();
             }
 
-            $.publish(container_name + ".mediator.scopeChange");    },
+            $.publish(container_name + ".mediator.scopeChange");
+        },
         zoom: function (n) {
             var new_zoom = this.getZoomLevel() + parseInt(n);
-            this.setZoomLevel(new_zoom);    },
+            this.setZoomLevel(new_zoom);
+        },
         focusTimeline: function (timeline_id) {
             var tl = this.timelineCollection.get(timeline_id);
             var fd = tl.get("focus_date");
             var zl = tl.get("initial_zoom");
 
             this.gotoDateZoom(fd, zl);
-    },
+        },
         loadPresentation: function (presentation_object) {
 
             var me = this,
@@ -239,7 +241,8 @@
                 // WTF no timelines	
                 alert("There are no timelines in this presentation...");
                 return false;
-           }    },
+            }
+        },
         /* reloadTimeline
          * wipes out and re-loads a timeline according to already-loaded ID
          * @param id {String} timeline id of already-loaded timeline
@@ -275,7 +278,7 @@
             this.loadTimelineData(source, callback, true);
 
             this.freshData = true;
-    },
+        },
         drilldown: function (ev) {
             // record current active timelines
             // zoom level
@@ -341,7 +344,7 @@
             this.scopeCache = s;
 
             return s;
-    },
+        },
         /*
          * fitToContainer
          * Considers the time-width of the current timeline(s) and
@@ -359,7 +362,7 @@
             });
 
             this.gotoDateZoom(middle_sec, z.level);
-    },
+        },
         resize: function () {
             $.publish(container_name + ".mediator.resize");
         },
@@ -369,7 +372,8 @@
         },
         removeFilterAction: function (actionName) {
             delete this.filterActions[actionName];
-            this.refresh();    },
+            this.refresh();
+        },
         getEventByID: function (id, prop) {
             var evob = this.eventCollection.get(id).attributes;
 
@@ -377,7 +381,8 @@
                 return evob[prop];
             } else {
                 return evob;
-       }    },
+            }
+        },
         /*
          * getPastEvents
          * Get an array of all events prior to focus date
@@ -418,7 +423,7 @@
             } else {
                 return false;
             }
-      },
+        },
         /*
          * navigate to the next event that is to the left of the centerline/focus date
          * TODO move $() stuff to TimelineView
@@ -443,8 +448,8 @@
                 alert("There are no events prior to this point");
 
                 return false;
-         }
-     },
+            }
+        },
         /*
          * getFutureEvents
          * Get an array of all events forward of focus date
@@ -481,7 +486,8 @@
 
             } else {
                 return false;
-       }    },
+            }
+        },
         gotoNextEvent: function () {
 
 
@@ -506,7 +512,7 @@
                 return false;
 
             }
-    },
+        },
         isEventVisible: function (ev) {
 
             var z = this._zoomLevel;
@@ -515,7 +521,8 @@
                 return true;
             } else {
                 return false;
-            }      },
+            }
+        },
         /* 
          * adjustNowEvents
          * Keeps events with "keepCurrent" set to "start" or "end" up to
@@ -558,7 +565,8 @@
 
             if (refresh) {
                 this.refresh();
-  }    },
+            }
+        },
         /*
          * addEvent
          * @param new_event {Object} is a simple tg event object
@@ -608,7 +616,7 @@
             this.freshData = true;
 
             return new_model;
-    },
+        },
         /*
          * updateEvent
          * @param event_edits {Object} is a 
@@ -639,7 +647,7 @@
             $.publish(container_name + ".mediator.updateEvent");
 
             return ev;
-    },
+        },
         /*
          * Gets the bounds for 1+ timelines in view
          */
@@ -667,9 +675,9 @@
             } else {
 
                 return this.boundsCache;
-       }
+            }
 
-    },
+        },
         removeFromActive: function (timeline_id) {
             var active = _.indexOf(this.activeTimelines, timeline_id);
 
@@ -681,7 +689,7 @@
                 return false;
             }
 
-    },
+        },
         /*
          * loadTimelineData
          * @param src {object} object OR json data to be parsed for loading
@@ -753,7 +761,7 @@
                 // focusdate has been set to today
                 // !AUTH: USED IN AUTHORING MODE
                 this.timelineDataLoaded = true;
-                console.log(Math.floor((this.max_zoom + this.min_zoom) / 2));
+                alert(Math.floor((this.max_zoom + this.min_zoom) / 2));
                 this.setZoomLevel(Math.floor((this.max_zoom + this.min_zoom) / 2));
                 this.tryLoading();
 
@@ -761,7 +769,7 @@
             }
             this.freshData = true;
 
-       },
+        },
         // click coming from marker on Google map
         mapMarkerClick: function (ev) {
             this.focusToEvent(ev);
@@ -771,7 +779,7 @@
         },
         timelineTitleClick: function (timeline_id) {
             $.publish(container_name + ".mediator.timelineTitleClick", {timeline_id: timeline_id});
-     },
+        },
         /*
          *  getTableTimelineData
          *  @param table_id {string} the html/DOM id of the table
@@ -833,7 +841,7 @@
 
             $table.css("display", "none");
             return tl;
-       },
+        },
         runLoadedTimelineCallback: function (callback, data, mediator) {
 
             callback.fn(data, mediator);
@@ -849,7 +857,7 @@
                 // this.toggleTimeline(data[0].id);
             }
 
-       },
+        },
         /*
          * parseTimelineData
          * @param data {object} Multiple (1+) timelines object 
@@ -960,7 +968,7 @@
                 }
             }
 
-     },
+        },
         /*
          *  tryLoading
          *  Sees if all criteria for proceeding to display the loaded data
@@ -993,7 +1001,7 @@
             }
 
 
-      },
+        },
         /* Makes an indexed array of timelines */
         swallowTimeline: function (obj) {
 
@@ -1010,7 +1018,7 @@
                 this.timelineCollection.add(obj);
             }
 
-    },
+        },
         /* 
          now loads multiple initial timelines: make sure
          to set the "top" attributes of timelines to make sure
@@ -1086,7 +1094,7 @@
                 me.setZoomLevel(40);
             }
 
-       },
+        },
         refresh: function () {
             $.publish(container_name + ".mediator.refreshSignal");
         },
@@ -1098,7 +1106,7 @@
             if (bool === true) {
                 $.publish(container_name + ".mediator.ticksReadySignal");
             }
-    },
+        },
         /*
          *  setTimeoffset
          *  @param offset [String] eg: "-07:00"
@@ -1108,11 +1116,11 @@
 
             this.timeOffset = TG_Date.getTimeOffset(offsetStr);
             this.refresh();
-    },
+        },
         // timezone hours/minutes ofset
         getTimeoffset: function () {
             return this.timeOffset;
-    },
+        },
         /*
          *  setTimeoffset
          *  @param offset [String] eg: "-07:00"
@@ -1132,7 +1140,8 @@
             }
         },
         getFocusDate: function () {
-            return this._focusDate;   },
+            return this._focusDate;
+        },
         /*
          * getZoomLevel
          * @return {Number} zoom level number from 1 to 100
@@ -1159,7 +1168,7 @@
 
 
 
-    },
+        },
         /*
          * getAllTags
          * Creates an array of tags with numbers indicating
@@ -1231,7 +1240,7 @@
                 return false;
             }
 
-       },
+        },
         /*
          *  getZoomInfo
          *  @return obj {Object} with 
@@ -1240,7 +1249,7 @@
          */
         getZoomInfo: function () {
             return this._zoomInfo;
-      },
+        },
         /* 
          * from click etc. on page, what is the date?
          */
@@ -1256,7 +1265,7 @@
                     dcSec = Math.floor(fdSec + (-1 * this.timeOffset.seconds) + (offMid * secPerPx));
 
             return new TG_Date(dcSec);
-      },
+        },
         // incoming: {name:"dblclick", event:e, dimensions:me.dimensions}
         registerUIEvent: function (info) {
             var me = this;
