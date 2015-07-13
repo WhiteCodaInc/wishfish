@@ -56,7 +56,7 @@
     height: 32px;
     padding: 1px;
     /*text-align: right;*/
-    color: #000;
+    /*color: #000;*/
     /*    line-height: 43px;*/
     /*line-height: 1.42857143;*/
     -webkit-transition: all .3s ease-in-out;
@@ -69,7 +69,7 @@
 }
 .strength_meter div p{
     position: absolute;
-    top: 22px;
+    top: 34px;
     right: 0px;
     font-size:13px;
 }
