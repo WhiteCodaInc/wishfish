@@ -1643,6 +1643,7 @@
                 me.datepickerOpen = true;
                 $('#datepickerModal').show();
             } else {
+                me.datepickerOpen = false;
                 $('#datepickerModal').hide();
             }
         },
