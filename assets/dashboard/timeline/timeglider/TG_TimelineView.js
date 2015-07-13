@@ -353,11 +353,15 @@
                 this.remove();
             },
             goToday: function () {
+//                var focus = MED.getFocusDate();
+//                var val = focus.dateStr.split(" ")[0];
+//                $(this.el).find("input.dateinput").val(val);
 //                var date_str = $(this.el).find(".todaydt").val();
 //                MED.gotoDateZoom(date_str);
 //                this.remove();
                 console.log($('.tg-timeline-start').html());
                 $('.tg-timeline-start').trigger('click');
+                this.remove();
             },
             render: function () {
                 $(this.el).html($.tmpl(this.template(), this.model)).attr("id", "datepickerModal");
