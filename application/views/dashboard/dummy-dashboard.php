@@ -250,15 +250,6 @@
                                     </div>
                                 </form>
                             </div>
-
-                            <!--<lable><h2>Please set a password:</h2></lable>-->
-                            <!--                            <div class="form-group" id="strengthForm">
-                                                            <input id="passwd" type="password" name="password" value="" class="form-control" placeholder="Enter New Password"  required="" />
-                                                        </div><br/>-->
-                                                        <!--<input id="passwd" type="password" name="password" placeholder="Please Enter a New Password" class="form-control" required /><br/>-->
-                            <!--                                <input id="confirm_passwd" type="password" placeholder="Please Confirm your new password" class="form-control" required /><br/>-->
-                            <!--                            <button  type="submit" class="btn btn-primary">Let's Get Started!</button> <br/>-->
-<!--                            <span id="msgPass" style="color: red"></span>-->
                         </div>
                         <input type="hidden" name="userid" value="<?= (!$userId) ? $userInfo->user_id : $userId ?>" />
                         <input type="hidden" name="type" value="<?= ($isForgot) ? 'forgot' : 'welcome' ?>" />
@@ -323,7 +314,7 @@
                 $('#confirm_passwd').focusout(function () {
                     var confirmpasswd = $(this).val();
                     var passwd = $('#passwd').val();
-                    if (passwd !== confirmpasswd) {
+                    if (confirmpasswd.trim() != "" && passwd !== confirmpasswd) {
                         $('#msgPass').text("Password must be same as above!");
                         confirmpass = 0;
                     }
