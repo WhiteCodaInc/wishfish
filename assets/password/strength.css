@@ -68,10 +68,10 @@
     /*border-radius:5px;*/
 }
 .strength_meter div p{
-    /*color: #000;*/
-    font-size: 13px;
-    text-align: right;
-    padding: 5px;
+    position: absolute;
+    top: 22px;
+    right: 0px;
+    font-size:13px;
 }
 
 .veryweak{
