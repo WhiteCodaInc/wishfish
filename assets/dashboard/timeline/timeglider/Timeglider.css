@@ -431,7 +431,11 @@
 }
 
 .tg-footer-minusplus .plus > i,
-.tg-footer-minusplus .minus > i,
+.tg-footer-minusplus .minus > i{
+    font-size: 20px;
+    padding:0 10px;
+}
+
 .tg-footer-center .left > i,
 .tg-footer-center .right > i{
     font-size: 20px;
