@@ -1511,7 +1511,7 @@
 //                        + "			<div class='minus'><i class='fa fa-minus'></i></div>"
 //                        + "			<div class='plus'><i class='fa fa-plus'></i></div>"
 //                        + "		 </div>",
-                        tmpl = "<div class='tg-widget-header tg-single-timeline-header'>" + title + "<ul>" + inf + leg + "<li class='tg-timeline-start' data-timeline_id='" + tid + "'>today</li></ul>" + slider + "</div>";
+                        tmpl = "<div class='tg-widget-header tg-single-timeline-header'>" + title + "<ul>" + inf + leg + "<li class='tg-timeline-start' data-timeline_id='" + tid + "'>today</li></ul>" + /*slider*/ +"</div>";
 
                 $st = $(tmpl).appendTo(CONTAINER);
 
