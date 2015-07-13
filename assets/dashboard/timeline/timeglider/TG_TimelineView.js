@@ -1023,7 +1023,7 @@
 
             var me = this,
                     zl = MED.getZoomLevel();
-
+            console.log(zl);
             if (zl > 0) {
                 if (options.display_zoom_level == true) {
                     $(me._views.ZOOM_DISPLAY).text(zl);
@@ -1761,10 +1761,6 @@
                         hZoom = MED.max_zoom,
                         lZoom = MED.min_zoom,
                         sHeight = (1 + hZoom - lZoom) * 3;
-                console.log("INIT_ZOOM : " + init_zoom);
-                console.log("HZOOM : " + hZoom);
-                console.log("LZOOM : " + lZoom);
-                console.log("sHeight : " + sHeight);
                 $(this._views.SLIDER)
                         .css({"height": sHeight})
                         .slider({
