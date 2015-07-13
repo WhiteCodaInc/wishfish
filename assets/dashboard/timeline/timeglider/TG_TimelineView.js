@@ -319,6 +319,7 @@
             events: {
                 "click .tg-close-button": "remove",
                 "click .goto-save": "gotoDate",
+                "click .goto-save": "gotoDate",
                 "keydown .dateinput": "doKeydown"
             },
             template: function () {
@@ -327,7 +328,7 @@
                 var val = focus.dateStr.split(" ")[0];
 
                 return "<div class='tg-close-button'></div>"
-                        + "<h3>Go to...</h3>"
+                        + "<h3>Go to...</h3><h3>today</h3>"
                         + "<div class='timeglider-menu-modal-content'>"
                         + "<div class='tg-dtinput-wrap' id='goto-wrap'> "
                         + "<input class='mousetrap dateinput' type='text' id='goto' value='" + val + "'>"
