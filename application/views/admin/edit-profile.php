@@ -290,7 +290,7 @@
             strengthButtonText: 'Show Password',
             strengthButtonTextToggle: 'Hide Password'
         });
-        $('#myPassword').trigger('keydown');
+//        $('#myPassword').trigger('keydown');
         $('.ms-container').css('width', '515px');
 
         $('input[name="gender"]').change(function () {

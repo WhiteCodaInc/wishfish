@@ -102,10 +102,6 @@
                 console.log(total);
             }
 
-
-
-
-
             var isShown = false;
             var strengthButtonText = this.options.strengthButtonText;
             var strengthButtonTextToggle = this.options.strengthButtonTextToggle;
