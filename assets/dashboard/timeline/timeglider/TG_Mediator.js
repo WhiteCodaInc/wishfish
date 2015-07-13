@@ -1070,7 +1070,7 @@
 
             } else if (timeglider.mode == "authoring") {
                 // no timelines loaded right away
-                me.setZoomLevel(19);
+                me.setZoomLevel(40);
 
             } else if (first_focus_id) {
 
@@ -1225,7 +1225,7 @@
 
                     this._zoomLevel = z;
                     this._zoomInfo = tg.zoomTree[z];
-
+                    alert(z);
                     $.publish(container_name + ".mediator.zoomLevelChange");
                     $.publish(container_name + ".mediator.scopeChange");
 
