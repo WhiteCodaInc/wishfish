@@ -1086,8 +1086,6 @@
                     // resetting zoomLevel will refresh
 //                    me.setZoomLevel(tl.get("initial_zoom"));
                     me.setZoomLevel(18);
-                    console.log("RESET : " + tl.get("initial_zoom"));
-
                 }, 500);
 
             } else {
@@ -1226,7 +1224,6 @@
 
                     this._zoomLevel = z;
                     this._zoomInfo = tg.zoomTree[z];
-                    alert(z);
                     $.publish(container_name + ".mediator.zoomLevelChange");
                     $.publish(container_name + ".mediator.scopeChange");
 
