@@ -524,6 +524,12 @@
     width:285px;
 
 }
+.tg-footer-minusplus {
+    position:absolute;
+    bottom:-3px;
+    right:200px;
+    width:100px;
+}
 
 .tg-date-display {
     position:relative;

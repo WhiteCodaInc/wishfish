@@ -126,10 +126,13 @@
                     + "		<div class='right'><i class='fa fa-chevron-circle-right'></i></div>"
                     + "	</div>"
 
+                    + "	<div class='tg-footer-minusplus'>"
+                    + "		<div class='timeglider-footer-button timeglider-filter-bt'></div>"
+                    + "		<div class='timeglider-footer-button timeglider-settings-bt'></div>"
+                    + "	</div>"
                     + "	<div class='tg-footer-buttons'>"
                     + "		<div class='timeglider-footer-button timeglider-filter-bt'></div>"
                     + "		<div class='timeglider-footer-button timeglider-settings-bt'></div>"
-
                     + "	</div>"
                     + "</div>"
                     + "<div class='timeglider-event-hover-info'></div>"
