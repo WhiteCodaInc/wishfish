@@ -179,7 +179,7 @@
             // setting zoom _does_ refresh automatically
             if (zoom) {
                 console.log("REFRESH : " + zoom);
-                var zl = this.setZoomLevel(zoom);
+                var zl = this.setZoomLevel(18);
             }
             ;
 
