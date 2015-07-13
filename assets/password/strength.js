@@ -29,8 +29,6 @@
 
     Plugin.prototype = {
         init: function () {
-
-
             var characters = 0;
             var capitalletters = 0;
             var loweletters = 0;
@@ -52,30 +50,27 @@
                 } else {
                     characters = 0;
                 }
-                ;
+
                 if (thisval.match(upperCase)) {
-                    capitalletters = 1
+                    capitalletters = 1;
                 } else {
                     capitalletters = 0;
                 }
-                ;
+
                 if (thisval.match(lowerCase)) {
-                    loweletters = 1
+                    loweletters = 1;
                 } else {
                     loweletters = 0;
                 }
-                ;
+
                 if (thisval.match(numbers)) {
-                    number = 1
+                    number = 1;
                 } else {
                     number = 0;
                 }
-                ;
 
                 var total = characters + capitalletters + loweletters + number + special;
                 var totalpercent = GetPercentage(7, total).toFixed(0);
-
-
 
                 get_total(total, thisid);
             }
@@ -102,10 +97,6 @@
                 console.log(total);
             }
 
-
-
-
-
             var isShown = false;
             var strengthButtonText = this.options.strengthButtonText;
             var strengthButtonTextToggle = this.options.strengthButtonTextToggle;
@@ -117,50 +108,32 @@
 
             this.$elem.bind('keyup keydown', function (event) {
                 thisval = $('#' + thisid).val();
-                $('input[type="text"][data-password="' + thisid + '"]').val(thisval);
+                $('input[name="showpasswd"][data-password="' + thisid + '"]').val(thisval);
                 check_strength(thisval, thisid);
-
             });
-
-            $('input[type="text"][data-password="' + thisid + '"]').bind('keyup keydown', function (event) {
-                thisval = $('input[type="text"][data-password="' + thisid + '"]').val();
+            $('input[name="showpasswd"][data-password="' + thisid + '"]').bind('keyup keydown', function (event) {
+                thisval = $('input[name="showpasswd"][data-password="' + thisid + '"]').val();
                 console.log(thisval);
-                $('input[type="password"][data-password="' + thisid + '"]').val(thisval);
+                $('input[name="password"][data-password="' + thisid + '"]').val(thisval);
                 check_strength(thisval, thisid);
 
             });
-
-
-
             $(document.body).on('click', '.' + this.options.strengthButtonClass, function (e) {
                 e.preventDefault();
-
                 thisclass = 'hide_' + $(this).attr('class');
-
-
-
-
                 if (isShown) {
-                    $('input[type="text"][data-password="' + thisid + '"]').hide();
-                    $('input[type="password"][data-password="' + thisid + '"]').show().focus();
+                    $('input[name="showpasswd"][data-password="' + thisid + '"]').hide();
+                    $('input[name="password"][data-password="' + thisid + '"]').show().focus();
                     $('a[data-password-button="' + thisid + '"]').removeClass(thisclass).html(strengthButtonText);
                     isShown = false;
 
                 } else {
-                    $('input[type="text"][data-password="' + thisid + '"]').show().focus();
-                    $('input[type="password"][data-password="' + thisid + '"]').hide();
+                    $('input[name="showpasswd"][data-password="' + thisid + '"]').show().focus();
+                    $('input[name="password"][data-password="' + thisid + '"]').hide();
                     $('a[data-password-button="' + thisid + '"]').addClass(thisclass).html(strengthButtonTextToggle);
                     isShown = true;
-
                 }
-
-
-
             });
-
-
-
-
         },
         yourOtherFunction: function (el, options) {
             // some logic
