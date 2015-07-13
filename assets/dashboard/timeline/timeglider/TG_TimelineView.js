@@ -359,7 +359,6 @@
 //                var date_str = $(this.el).find(".todaydt").val();
 //                MED.gotoDateZoom(date_str);
 //                this.remove();
-                console.log($('.tg-timeline-start').html());
                 $('.tg-timeline-start').trigger('click');
                 this.remove();
             },

@@ -421,12 +421,12 @@
 }
 
 .slide{
-	font-size:20px;
+    font-size:20px;
 }
 
 .slide .minus > i,.slide .plus > i{
-	border-right: 1px solid white;
-	padding-right: 10px;
+    border-right: 1px solid white;
+    padding-right: 10px;
 }
 
 .slide .zoom,
@@ -676,6 +676,7 @@
     color:#3c8dbc;
     margin:4px 8px;
     font-size:14px;
+    float: left
 }
 
 /*
