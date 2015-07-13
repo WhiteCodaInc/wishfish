@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/password/strength.css"/>
 <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/dashboard/js/plugins/multi-select/css/multi-select.css" />
 <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/dashboard/css/checkbox.css"/>
 <aside class="right-side">
@@ -39,9 +40,9 @@
                                 <label for="username">Username</label>
                                 <input value="<?= isset($profile) ? $profile->userid : '' ?>" type="text" name="userid" class="form-control" placeholder="Username"/>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" id="strengthForm">
                                 <label for="password">Password</label>
-                                <input value="<?= isset($profile) ? $profile->password : '' ?>" name="password" type="password" class="form-control" id="password" placeholder="Password">
+                                <input id="myPassword" value="<?= isset($profile) ? $profile->password : '' ?>" name="password" type="password" class="form-control" id="password" placeholder="Password">
                             </div>
                             <div class="form-group">
                                 <label for="name">Email</label>
@@ -260,6 +261,8 @@
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/input-mask/jquery.inputmask.date.extensions.js" type="text/javascript"></script>
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/input-mask/jquery.inputmask.extensions.js" type="text/javascript"></script>
 
+<script type="text/javascript" src="<?= base_url() ?>assets/password/strength.js"></script>
+
 <!-- Multi Select -->
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/multi-select/js/jquery.multi-select.js" type="text/javascript"></script>
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/multi-select/js/jquery.quicksearch.js" type="text/javascript"></script>
@@ -279,6 +282,14 @@
         ;
     });
     $(document).ready(function () {
+
+        $('#myPassword').strength({
+            strengthClass: 'strength',
+            strengthMeterClass: 'strength_meter',
+            strengthButtonClass: 'button_strength',
+            strengthButtonText: 'Show Password',
+            strengthButtonTextToggle: 'Hide Password'
+        });
 
         $('.ms-container').css('width', '515px');
 
