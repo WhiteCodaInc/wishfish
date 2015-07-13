@@ -127,8 +127,8 @@
                     + "	</div>"
 
                     + "	<div class='tg-footer-minusplus'>"
-                    + "		<div class='timeglider-footer-button timeglider-filter-bt'></div>"
-                    + "		<div class='timeglider-footer-button timeglider-settings-bt'></div>"
+                    + "		<div class='plus'><i class='fa fa-plus'></i></div>"
+                    + "		<div class='minus'><i class='fa fa-minus'></i></div>"
                     + "	</div>"
                     + "	<div class='tg-footer-buttons'>"
                     + "		<div class='timeglider-footer-button timeglider-filter-bt'></div>"

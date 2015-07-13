@@ -429,7 +429,11 @@
     border-right: 1px solid white;
     padding-right: 10px;
 }
-.tg-footer-center .left > i,.tg-footer-center .right > i{
+
+.tg-footer-minusplus .plus > i,
+.tg-footer-minusplus .minus > i,
+.tg-footer-center .left > i,
+.tg-footer-center .right > i{
     font-size: 20px;
     padding-top: 6px;
 }
@@ -443,6 +447,8 @@
     float: right;
     padding: 0 5px;
 }
+.tg-footer-minusplus .plus,
+.tg-footer-minusplus .minus,
 .tg-footer-center .right,
 .tg-footer-center .left{
     color: white;
@@ -528,7 +534,6 @@
     position:absolute;
     bottom:-3px;
     right:200px;
-    width:100px;
 }
 
 .tg-date-display {
