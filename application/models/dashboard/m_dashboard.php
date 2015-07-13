@@ -74,6 +74,8 @@ class M_dashboard extends CI_Model {
     }
 
     function updatePassword($post) {
+        print_r($post);
+        die();
         $where['user_id'] = $post['userid'];
         $set['password'] = sha1($post['password']);
         if ($this->db->update('wi_user_mst', $set, $where)) {
