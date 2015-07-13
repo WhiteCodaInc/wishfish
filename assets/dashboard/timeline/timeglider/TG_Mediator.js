@@ -178,7 +178,6 @@
 
             // setting zoom _does_ refresh automatically
             if (zoom) {
-                console.log("REFRESH : " + zoom);
                 var zl = this.setZoomLevel(zoom);
             }
             ;
@@ -191,7 +190,6 @@
         },
         zoom: function (n) {
             var new_zoom = this.getZoomLevel() + parseInt(n);
-            console.log("NEW : " + new_zoom);
             this.setZoomLevel(new_zoom);
         },
         focusTimeline: function (timeline_id) {
@@ -231,7 +229,6 @@
                 me.setFocusDate(new tg.TG_Date(po.focus_date));
                 me.activeTimelines = active;
                 me.setZoomLevel(po.initial_zoom);
-                console.log("INITIAL : " + po.initial_zoom);
 
                 me.setImageLaneHeight(po.image_lane_height || 0, false, true);
 
@@ -765,7 +762,6 @@
                 // !AUTH: USED IN AUTHORING MODE
                 this.timelineDataLoaded = true;
                 this.setZoomLevel(Math.floor((this.max_zoom + this.min_zoom) / 2));
-                console.log("MATH : " + Math.floor((this.max_zoom + this.min_zoom) / 2));
                 this.tryLoading();
 
 
@@ -1075,7 +1071,6 @@
             } else if (timeglider.mode == "authoring") {
                 // no timelines loaded right away
                 me.setZoomLevel(40);
-                console.log("AUTHO : 40");
 
             } else if (first_focus_id) {
 
@@ -1089,7 +1084,8 @@
                     me.setFocusDate(tl_fd);
 
                     // resetting zoomLevel will refresh
-                    me.setZoomLevel(tl.get("initial_zoom"));
+//                    me.setZoomLevel(tl.get("initial_zoom"));
+                    me.setZoomLevel(18);
                     console.log("RESET : " + tl.get("initial_zoom"));
 
                 }, 500);
@@ -1097,7 +1093,6 @@
             } else {
                 // could be no timelines to load
                 me.setZoomLevel(40);
-                console.log("40");
             }
 
         },
@@ -1222,7 +1217,6 @@
                 z = 1;
             }
 
-            console.log(z);
             if (z == 1 || (z <= this.max_zoom && z >= this.min_zoom)) {
 
                 // focusdate has to come first for combined zoom+focusdate switch
@@ -1509,7 +1503,6 @@
                     this.setFocusDate(tl_fd);
 
                     // resetting zoomLevel will refresh
-                    console.log("RESET : " + tl.initial_zoom);
                     this.setZoomLevel(tl.initial_zoom);
 
                     if (tl.initial_zoom == this.getZoomLevel()) {
