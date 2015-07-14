@@ -271,9 +271,10 @@
             <div class="col-sm-4 clearfix">
                 <div class="feature text-center  wow fadeInLeft animated" data-wow-offset="120" data-wow-duration="1.5s">
                     <i class="fa fa-user" data-selector="i.fa" style="outline: none; cursor: default;"></i>
-                    <h4 class="text-white">ADD A FRIEND</h4>
+                    <h4 class="text-white"><?= $add_friend[0] ?></h4>
                     <p class="text-white">
-                        The busier we get, the less time we have,<br/> but there are always those special people in our lives that we never want to forget.<br/> Wish-fish keeps track of their birthdays,<br/> so you don't have to.
+                        <?= $add_friend[0] ?>
+                        <!--The busier we get, the less time we have,<br/> but there are always those special people in our lives that we never want to forget.<br/> Wish-fish keeps track of their birthdays,<br/> so you don't have to.-->
                     </p>
                 </div><!--end feature-->
             </div>
