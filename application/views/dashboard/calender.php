@@ -948,22 +948,25 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
     function chooseContact() {
         $('div.choose input:text').focusout(function () {
 
-            console.log($(this).parents('form').prop('id'));
-
-            var event_type = $('#eventForm input[name="event_type"]:checked').val();
+            var form = $(this).parents('form').prop('id');
+            var event_type = $('#' + form + ' input[name="event_type"]:checked').val();
             var user = $('#users').val().trim();
             if (user != "") {
                 if (!validateContact(user)) {
 
-                    $('#compose-modal input[name="notify"]:nth(0)').removeAttr('checked');
-                    $('#compose-modal input[name="notify"]:nth(1)').prop('checked', true);
-                    $('#compose-modal input[name="notify"]:nth(0)').prop('disabled', true);
+                    $('#' + form + ' input[name="notify"]:nth(0)').removeAttr('checked');
+                    $('#' + form + ' input[name="notify"]:nth(1)').prop('checked', true);
+                    $('#' + form + ' input[name="notify"]:nth(0)').prop('disabled', true);
 
                     $msg = (event_type == "notification" || event_type == "sms") ?
                             "Can not SMS this user because no phone number is assigned!" :
                             "Can not Email this user because no email address is assigned!";
                     $('.msgChoose').text($msg);
                 } else {
+                    $('#' + form + ' input[name="notify"]:nth(1)').removeAttr('checked');
+                    $('#' + form + ' input[name="notify"]:nth(0)').prop('checked', true);
+                    $('#' + form + ' input[name="notify"]:nth(1)').prop('disabled', false);
+
                     var con = user.split('||');
                     var name = con[0].split(' ');
                     $('#eventForm input[name="event"]').prop('placeholder', name[0] + "'s Event Name");
