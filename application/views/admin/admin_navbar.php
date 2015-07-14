@@ -259,6 +259,11 @@ $img_src = ($avatar != "") ?
                                 <i class="fa fa-angle-double-right"></i> <span>Terms Of Services</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="<?= site_url() ?>admin/sections/">
+                                <i class="fa fa-angle-double-right"></i> <span>Homepage Section</span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li class="" id="13">
