@@ -8,7 +8,7 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title>Wish-Fish</title>
-        <link href="<?= base_url() ?>assets/img/favicon.ico" rel="Shortcut Icon" type="image/x-icon" />
+        <link href="<?= base_url() ?>assets/dashboard/favicon.ico" rel="Shortcut Icon" type="image/x-icon" />
 
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Raleway:500,400,300" rel="stylesheet" type="text/css">
@@ -34,7 +34,7 @@ and open the template in the editor.
             .form-group{
                 margin: 10px 0
             }
-            .btn-social {
+            .btn-social{
                 position: relative;
                 text-align: right;
                 white-space: nowrap;
@@ -43,7 +43,7 @@ and open the template in the editor.
                 padding: 11px 37px;
                 border-radius: 0;
                 float: left;
-                width: 40%;
+                width: 27%;
                 margin: 10px !important;
             }
             .btn-social :first-child {
@@ -94,17 +94,18 @@ and open the template in the editor.
         <!--Contact form-->
         <section id="contact" class="sections" style="height: 578px">
             <div class="container">
-                <div class="row contact-2">
-                    <!--  Heading-->
-                    <div class="heading wow fadeIn animated" data-wow-offset="120" data-wow-duration="1.5s">
-                        <div class="title text-center"><h1>Sign Up</h1></div>
-                        <div class="separator text-center" style="margin-bottom: 40px;"></div>
-                    </div>
-                    <div class="col-md-4"></div>
-                    <div class="col-md-4">
-                        <!-- CONTACT FORM -->
-                        <div data-wow-offset="10" data-wow-duration="1.55s" class="wow rollIn animated contact-form m-bot15">
-                            <form method="post" action="<?= site_url() ?>register/createAccount" role="form" >
+                <form method="post" action="<?= site_url() ?>register/createAccount" role="form" >
+                    <div class="row contact-2">
+                        <!--  Heading-->
+                        <div class="heading wow fadeIn animated" data-wow-offset="120" data-wow-duration="1.5s">
+                            <div class="title text-center"><h1>Sign Up</h1></div>
+                            <div class="separator text-center" style="margin-bottom: 40px;"></div>
+                        </div>
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4">
+                            <!-- CONTACT FORM -->
+                            <div data-wow-offset="10" data-wow-duration="1.55s" class="wow rollIn animated contact-form m-bot15">
+
                                 <fieldset>
                                     <div class="row m-bot15">
                                         <div class="col-md-12">
@@ -124,48 +125,46 @@ and open the template in the editor.
                                             </div>
                                         </div>
                                     <?php endif; ?>
-                                    <div class="row m-bot15">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <p style="text-align: center">
-                                                    By clicking Register,<br/> I agree to the 
-                                                    <a href="<?= site_url() ?>terms-of-services">Terms of Service</a> and 
-                                                    <a href="<?= site_url() ?>privacy-policy">Privacy Policy</a>.
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row m-bot15">
-                                        <div class="col-md-12">
-                                            <button class="btn btn-primary btn-lg" type="submit" >Sign Me Up!</button>
-                                        </div>
-                                    </div>
                                 </fieldset>
                                 <input type="hidden" name="join_via" value="<?= site_url() ?>register<br/>Join With Email">
-                            </form>
-                        </div>
-                        <div class="row" style="margin-top: 15px">
-                            <div class="col-md-1"></div>
-                            <div style="padding-left: 10%" class="col-md-10">
-                                Already have an account?
-                                <a  href="<?= site_url() ?>login">Sign in</a>
                             </div>
-                            <div class="col-md-1"></div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3"></div>
-                    <div class="col-md-6">
-                        <a  href = "<?= $url ?>" style="padding: 11px 40px;" class="btn btn-block btn-social btn-google-plus">
-                            <i class="fa fa-google-plus"></i> Sign up with Google
-                        </a>
-                        <a   style="padding: 11px 21px;" class="btn btn-block btn-social btn-facebook facebook"  href = "javascript:void(0);">
-                            <i class="fa fa-facebook"></i> Sign up with Facebook
-                        </a>
+                    <div class="row">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-8">
+                            <button style="text-align: left;width: 21%" class="btn btn-primary btn-block btn-social" type="submit" >Sign Me Up!</button>
+                            <a href = "<?= $url ?>" style="padding: 11px 18px;" class="btn btn-block btn-social btn-google-plus">
+                                <i class="fa fa-google-plus"></i> Sign up with Google
+                            </a>
+                            <a style="padding: 11px 4px;" class="btn btn-block btn-social btn-facebook facebook"  href = "javascript:void(0);">
+                                <i class="fa fa-facebook"></i> Sign up with Facebook
+                            </a>
+                        </div>
+                        <div class="col-md-1"></div>
                     </div>
-                    <div class="col-md-3"></div>
-                </div>
+                    <div class="row" style="margin-top: 15px">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <p style="text-align: center">
+                                    Already have an account?
+                                    <a  href="<?= site_url() ?>login">Sign in</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row m-bot15">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <p style="text-align: center">
+                                    By clicking Register,<br/> I agree to the 
+                                    <a href="<?= site_url() ?>terms-of-services">Terms of Service</a> and 
+                                    <a href="<?= site_url() ?>privacy-policy">Privacy Policy</a>.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </section>
         <!-- FOOTER Section-->
@@ -197,6 +196,17 @@ and open the template in the editor.
 <?php if ($msg): ?>
                 alertify.<?= $t ?>("<?= $m ?>");
 <?php endif; ?>
+            $(document).ready(function () {
+<?php
+$signup = $this->input->get('signup');
+if ($signup != "" && $signup == "fb"):
+    ?>
+                    setTimeout(function () {
+                        $('.facebook').trigger('click');
+                    }, 1000);
+
+<?php endif; ?>
+            });
         </script>
         <script type="text/javascript">
             window.fbAsyncInit = function () {
