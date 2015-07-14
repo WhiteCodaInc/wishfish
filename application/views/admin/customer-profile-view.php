@@ -154,7 +154,7 @@
                             <div class="row">
                                 <div class="col-md-4"><label>Plan</label></div>
                                 <div class="col-md-8">
-                                    <span class="title"><?= $customer->plan_name ?></span>
+                                    <span class="title"><?= ($customer->is_lifetime) ? "Free Lifetime Access" : $customer->plan_name ?></span>
                                 </div>
                             </div>
                         </div>
@@ -199,7 +199,7 @@
                                     <div class="col-md-4"><label>Days Left on Trial</label></div>
                                     <div class="col-md-6">
                                         <span class="title" style="color:<?= (!$trialD) ? 'red' : '' ?>">
-                                            <?= ($trialD) ? $trialD : "Expired" ?>
+                                            <?= ($customer->is_lifetime) ? "Lifetime" : (($trialD) ? $trialD : "Expired") ?>
                                         </span>
                                     </div>
                                 </div>
