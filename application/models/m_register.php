@@ -34,6 +34,18 @@ class M_register extends CI_Model {
         }
     }
 
+    function getSections() {
+        $section = array();
+        $query = $this->db->get('sections');
+        foreach ($query->result() as $value) {
+            $section[$value->title] = $value->title;
+            $section[$value->name] = $value->content;
+        }
+        echo '<pre>';
+        print_r($section);
+        die();
+    }
+
     function register($post) {
         $flag = FALSE;
         $this->db->trans_start();
