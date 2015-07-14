@@ -133,7 +133,8 @@
         $('#save-page').click(function () {
             $('.overlay').show();
             $('.loading-img').show();
-            var pageid = $('#pageid').val();
+            var page = $('#pages').val();
+            var pageid = ids[pages.indexOf(page)];
             var content = CKEDITOR.instances['editor1'].getData();
             $.ajax({
                 type: 'POST',
