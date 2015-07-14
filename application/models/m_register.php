@@ -41,6 +41,7 @@ class M_register extends CI_Model {
             $section[$value->name][] = $value->title;
             $section[$value->name][] = $value->content;
         }
+        return $section;
     }
 
     function register($post) {
