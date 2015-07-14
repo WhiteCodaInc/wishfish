@@ -951,6 +951,11 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
             var user = $('#users').val().trim();
             if (user != "") {
                 if (!validateContact(user)) {
+
+                    $('#compose-modal input[name="notify"]:nth(0)').removeAttr('checked');
+                    $('#compose-modal input[name="notify"]:nth(1)').prop('checked', true);
+                    $('#compose-modal input[name="notify"]:nth(0)').prop('disabled', true);
+
                     $msg = (event_type == "notification" || event_type == "sms") ?
                             "Can not SMS this user because no phone number is assigned!" :
                             "Can not Email this user because no email address is assigned!";
