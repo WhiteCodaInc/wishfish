@@ -33,7 +33,7 @@ class Sections extends CI_Controller {
 
     function getContent() {
         $sectionid = $this->input->post('sectionid');
-        echo $this->objsection->getContent($sectionid);
+        $this->objsection->getContent($sectionid);
     }
 
     function update() {

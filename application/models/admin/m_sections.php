@@ -24,11 +24,15 @@ class M_sections extends CI_Model {
 
     function getContent($sectionid) {
         $query = $this->db->get_where('sections', array('section_id' => $sectionid));
-        return $query->row()->content;
+        $section['title'] = $query->row()->title;
+        $section['content'] = $query->row()->content;
+        echo json_encode($section);
     }
 
     function update($post) {
-        $this->db->update('sections', array('content' => $post['content']), array('section_id' => $post['sectionid']));
+        $secid = $post['sectionid'];
+        unset($post['sectionid']);
+        $this->db->update('sections', $post, array('section_id' => $secid));
     }
 
 }

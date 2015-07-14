@@ -280,9 +280,10 @@
             <div class="col-sm-4 clearfix">
                 <div class="feature text-center  wow fadeIn animated" data-wow-offset="120" data-wow-duration="1.5s">
                     <i class="fa fa-calendar" data-selector="i.fa" style="outline: none; cursor: default;"></i>
-                    <h4 class="text-white">SETUP A REMINDER</h4>
+                    <h4 class="text-white"><?= $setup_reminder[0] ?></h4>
                     <p class="text-white">
-                        If you've ever missed a friends birthday, anniversary, or special event,<br/> you know how embarrassing that can be!<br/> We get it, life can get crazy sometimes...<br/> wish-fish will remind you, so you can live your life to the fullest!
+                        <?= $setup_reminder[1] ?>
+                        <!--                        If you've ever missed a friends birthday, anniversary, or special event,<br/> you know how embarrassing that can be!<br/> We get it, life can get crazy sometimes...<br/> wish-fish will remind you, so you can live your life to the fullest!-->
                     </p>
                 </div><!--end feature-->
             </div>
@@ -290,9 +291,10 @@
             <div class="col-sm-4 clearfix">
                 <div class="feature text-center  wow fadeInRight animated" data-wow-offset="120" data-wow-duration="1.5s">
                     <i class="fa fa-smile-o" data-selector="i.fa" style="outline: none; cursor: default;"></i>
-                    <h4 class="text-white">SIT BACK AND RELAX</h4>
+                    <h4 class="text-white"><?= $sit_back_relax[0] ?></h4>
                     <p class="text-white">
-                        Once everything is setup, you can sit back, relax, and never have to worry about missing another birthday, anniversary, or special event again, because wish-fish will remind you<br/> at just the right moment!
+                        <?= $sit_back_relax[1] ?>
+                        <!--Once everything is setup, you can sit back, relax, and never have to worry about missing another birthday, anniversary, or special event again, because wish-fish will remind you<br/> at just the right moment!-->
                     </p>
                 </div><!--end feature-->
             </div>
@@ -317,16 +319,22 @@
                     <div class="feature-icon2 text-right pull-right">
                         <i class="fa fa-thumbs-o-up" data-selector="i.fa" style="outline: none; cursor: default;"></i>
                     </div>
-                    <h4>Easy to Use</h4>
-                    <p>Its as easy as riding a bike... actually... it's even easier, because you don't even have to get up!<br/> A couple clicks, and you're done!</p>
+                    <h4><?= $easy_use[0] ?></h4>
+                    <p>
+                        <?= $easy_use[1] ?>
+                        <!--Its as easy as riding a bike... actually... it's even easier, because you don't even have to get up!<br/> A couple clicks, and you're done!-->
+                    </p>
                 </div>
                 <div class="feature-item text-right pull-left">
                     <div class="feature-icon2 text-right pull-right">
                         <i class="fa fa-calendar" data-selector="i.fa" style="outline: none; cursor: default;"></i>
                     </div>
                     <div class="feature-details">
-                        <h4>Schedule Event</h4>
-                        <p>You can easily schedule events 24/7,&nbsp;&nbsp;any-time,&nbsp;&nbsp;any-where.  Sit back and relax, we will take care of the rest.</p>
+                        <h4><?= $schedule_event[0] ?></h4>
+                        <p>
+                            <?= $schedule_event[1] ?>
+                            <!--You can easily schedule events 24/7,&nbsp;&nbsp;any-time,&nbsp;&nbsp;any-where.  Sit back and relax, we will take care of the rest.-->
+                        </p>
                     </div>
 
                 </div>
@@ -334,8 +342,11 @@
                     <div class="feature-icon2 text-right pull-right">
                         <i class="fa fa-share" data-selector="i.fa" style="outline: none; cursor: default;"></i>
                     </div>
-                    <h4>Recurring Event</h4>
-                    <p>Set it and forget it! Have a family member or client whose birthday you have to remember every year?<br/> Just set an event to repeat, and you'll never have to think about it again!</p>
+                    <h4><?= $recurring_event[0] ?></h4>
+                    <p>
+                        <?= $recurring_event[1] ?>
+                        <!--Set it and forget it! Have a family member or client whose birthday you have to remember every year?<br/> Just set an event to repeat, and you'll never have to think about it again!-->
+                    </p>
                 </div>
             </div>
             <div class="col-sm-6 wow fadeInRight animated" data-wow-offset="10" data-wow-duration="1.5s">
@@ -343,22 +354,31 @@
                     <div class="feature-icon2 pull-left">
                         <i class="fa fa-users" data-selector="i.fa" style="outline: none; cursor: default;"></i>
                     </div>
-                    <h4>Contact Management</h4>
-                    <p>Adding new contacts takes only few seconds.<br/> You can even import your contact list from Google, Facebook, or an excel spreadsheet.</p>
+                    <h4><?= $contact_management[0] ?></h4>
+                    <p>
+                        <?= $contact_management[1] ?>
+                        <!--Adding new contacts takes only few seconds.<br/> You can even import your contact list from Google, Facebook, or an excel spreadsheet.-->
+                    </p>
                 </div>
                 <div class="feature-item pull-left">
                     <div class="feature-icon2  pull-left">
                         <i class="fa fa-arrows" data-selector="i.fa" style="outline: none; cursor: default;"></i>
                     </div>
-                    <h4>Drag & Drop Event</h4>
-                    <p>Our dynamic calendar allows you to quickly see what events are coming up, and re-arrange them if your schedule changes.</p>
+                    <h4><?= $drag_drop_event[0] ?></h4>
+                    <p>
+                        <?= $drag_drop_event[1] ?>
+                        <!--Our dynamic calendar allows you to quickly see what events are coming up, and re-arrange them if your schedule changes.-->
+                    </p>
                 </div>
                 <div class="feature-item pull-left">
                     <div class="feature-icon2 pull-left">
                         <i class="fa fa-cloud-download" data-selector="i.fa" style="outline: none; cursor: default;"></i>
                     </div>
-                    <h4>Nothing to Install</h4>
-                    <p>Since Wish-Fish is web-based, you never need to worry about installation: just open your web browser & rock n' roll!</p>
+                    <h4><?= $nothing_install[0] ?></h4>
+                    <p>
+                        <?= $nothing_install[1] ?>
+                        <!--Since Wish-Fish is web-based, you never need to worry about installation: just open your web browser & rock n' roll!-->
+                    </p>
                 </div>
             </div>
         </div>
@@ -415,14 +435,15 @@
 
                 <!--  Heading-->
                 <div class="heading black-text wow fadeIn animated" data-wow-offset="120" data-wow-duration="1.5s">
-                    <div class="title-half"><h1>Wish-Fish is Awesome</h1></div>
+                    <div class="title-half"><h1><?= $wishfish_awesome[0] ?></h1></div>
                     <div class="subtitle-half"><h5>Don't just think different, live different.</h5></div>
                     <div class="separator-left"></div>
                 </div>
 
                 <div class="describe-details wow fadeInRight animated" data-wow-offset="10" data-wow-duration="1.5s">
                     <p>
-                        In a world of chaos, we all have those moments when we wish we could just take a deep breath. With an intuitive dashboard and a customer-driven feature set, not only will you be able to sleep like a baby at night, you will also experience new levels of accomplishment you never before thought possible, here's why:
+                        <?= $wishfish_awesome[1] ?>
+                        <!--In a world of chaos, we all have those moments when we wish we could just take a deep breath. With an intuitive dashboard and a customer-driven feature set, not only will you be able to sleep like a baby at night, you will also experience new levels of accomplishment you never before thought possible, here's why:-->
                     </p>
 
                     <ul class="describe-list">

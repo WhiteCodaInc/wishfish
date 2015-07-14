@@ -41,6 +41,14 @@
                             </div>
                         </div>
                         <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Title</label>
+                                    <input type="text" class="form-control" value="" id="title" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <div class='row'>
@@ -109,9 +117,11 @@
                 data: {sectionid: section},
                 url: "<?= site_url() ?>admin/sections/getContent",
                 success: function (data, textStatus, jqXHR) {
+                    var json = JSON.parse(data);
                     $('.overlay').hide();
                     $('.loading-img').hide();
-                    CKEDITOR.instances['editor1'].setData(data);
+                    $('#title').val(json.title);
+                    CKEDITOR.instances['editor1'].setData(json.content);
                 }
             });
         }
@@ -125,6 +135,7 @@
                 if (section.trim() != "") {
                     getSection(ids[sections.indexOf(section)]);
                 } else {
+                    $('#title').val("");
                     CKEDITOR.instances['editor1'].setData("");
                 }
             }
@@ -134,11 +145,12 @@
             $('.overlay').show();
             $('.loading-img').show();
             var section = $('#sections').val();
+            var title = $('#title').val();
             var sectionid = ids[sections.indexOf(section)];
             var content = CKEDITOR.instances['editor1'].getData();
             $.ajax({
                 type: 'POST',
-                data: {sectionid: sectionid, content: content},
+                data: {sectionid: sectionid, title: title, content: content},
                 url: "<?= site_url() ?>admin/sections/update",
                 success: function (data, textStatus, jqXHR) {
                     $('.overlay').hide();
