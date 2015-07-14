@@ -272,7 +272,7 @@
                     <i class="fa fa-user" data-selector="i.fa" style="outline: none; cursor: default;"></i>
                     <h4 class="text-white"><?= $add_friend[0] ?></h4>
                     <p class="text-white">
-                        <?= $add_friend[0] ?>
+                        <?= $add_friend[1] ?>
                         <!--The busier we get, the less time we have,<br/> but there are always those special people in our lives that we never want to forget.<br/> Wish-fish keeps track of their birthdays,<br/> so you don't have to.-->
                     </p>
                 </div><!--end feature-->

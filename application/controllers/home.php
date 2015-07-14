@@ -44,10 +44,13 @@ class Home extends CI_Controller {
             $data['stripe'] = $this->wi_common->getPaymentGatewayInfo("STRIPE");
             $data['paypal'] = $this->wi_common->getPaymentGatewayInfo("PAYPAL");
             $sections = $this->objregister->getSections();
-
+            $data = array_merge($sections);
+            echo '<pre>';
+            print_r($data);
+            die();
             $this->load->view('header');
             $this->load->view('navbar');
-            $this->load->view('home', $data . $sections);
+            $this->load->view('home', $data);
             $this->load->view('footer');
         }
     }
