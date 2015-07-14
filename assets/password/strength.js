@@ -144,6 +144,7 @@
                 } else {
                     $('input[type="text"][data-password="' + thisid + '"]').show().focus();
                     $('input[type="password"][data-password="' + thisid + '"]').hide();
+                    $('#confirm_passwd').prop('type','text');
                     $('a[data-password-button="' + thisid + '"]').addClass(thisclass).html(strengthButtonTextToggle);
                     isShown = true;
 
