@@ -38,8 +38,8 @@ class M_register extends CI_Model {
         $section = array();
         $query = $this->db->get('sections');
         foreach ($query->result() as $value) {
-            $section[$value->name] = $value->title;
-            $section[$value->name] = $value->content;
+            $section[$value->name][] = $value->title;
+            $section[$value->name][] = $value->content;
         }
         echo '<pre>';
         print_r($section);
