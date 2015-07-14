@@ -88,7 +88,6 @@ and open the template in the editor.
         <!--Alertify-->
         <script type="text/javascript" src="<?= base_url() ?>assets/alertify/alertify.js"></script>
         <script type="text/javascript" src="<?= base_url() ?>assets/alertify/alertify.min.js"></script>
-
     </head>
     <body>
         <!--Contact form-->
