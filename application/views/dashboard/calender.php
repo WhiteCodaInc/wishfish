@@ -965,7 +965,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                 } else {
                     $('#' + form + ' input[name="notify"]:nth(1)').removeAttr('checked');
                     $('#' + form + ' input[name="notify"]:nth(0)').prop('checked', true);
-                    $('#' + form + ' input[name="notify"]:nth(1)').prop('disabled', false);
+                    $('#' + form + ' input[name="notify"]:nth(0)').prop('disabled', false);
 
                     var con = user.split('||');
                     var name = con[0].split(' ');
