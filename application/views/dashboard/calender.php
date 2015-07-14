@@ -962,12 +962,12 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                             "Can not Email this user because no email address is assigned!";
                     $('.msgChoose').text($msg);
                 } else {
-                    $('#' + form + ' input[name="notify"]:nth(1)').removeAttr('checked');
+
                     $('#' + form + ' input[name="notify"]:nth(0)').prop('disabled', false);
 
                     var con = user.split('||');
                     var name = con[0].split(' ');
-                    $('#eventForm input[name="event"]').prop('placeholder', name[0] + "'s Event Name");
+                    $('#' + form + ' input[name="event"]').prop('placeholder', name[0] + "'s Event Name");
                     $('.msgChoose').empty();
                 }
             }

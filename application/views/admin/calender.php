@@ -926,15 +926,25 @@
 
     function chooseContact() {
         $('div.choose input:text').focusout(function () {
+            var form = $(this).parents('form').prop('id');
             var event_type = $('#eventForm input[name="event_type"]:checked').val();
             var user = $('#users').val().trim();
             if (user != "") {
                 if (!validateContact(user)) {
+
+                    $('#' + form + ' input[name="notify"]:nth(0)').removeAttr('checked');
+                    $('#' + form + ' input[name="notify"]:nth(0)').prop('disabled', true);
+
                     $msg = (event_type == "notification" || event_type == "sms") ?
                             "Can not SMS this user because no phone number is assigned!" :
                             "Can not Email this user because no email address is assigned!";
                     $('.msgChoose').text($msg);
                 } else {
+                    $('#' + form + ' input[name="notify"]:nth(0)').prop('disabled', false);
+
+                    var con = user.split('||');
+                    var name = con[0].split(' ');
+                    $('#' + form + ' input[name="event"]').prop('placeholder', name[0] + "'s Event Name");
                     $('.msgChoose').empty();
                 }
             }
@@ -1118,7 +1128,15 @@
         });
 
         $('#edit').click(function () {
+            var formid = $(this).parents('form').prop('id');
             var id = $(this).prop('id');
+            var len = $('#' + formid + ' input[name="notify"]:checked').length;
+
+            if (!len) {
+                alertify.error("Please Select Notify Option..!");
+                return false;
+            }
+
             if ($('#editForm input[name="date"]').val().trim() == "") {
                 alertify.error("Please Select Date..!");
                 return false;
@@ -1166,8 +1184,14 @@
         });
 
         $('#insert,#n_insert').click(function () {
+            var formid = $(this).parents('form').prop('id');
             var id = $(this).prop('id');
+            var len = $('#' + formid + ' input[name="notify"]:checked').length;
             if (id == "insert") {
+                if (!len) {
+                    alertify.error("Please Select Notify Option..!");
+                    return false;
+                }
                 if ($("#rd_individual").prop('checked')) {
                     var cnt = $('#users').val().trim();
                     if (cnt == "") {
