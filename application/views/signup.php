@@ -8,7 +8,7 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title>Wish-Fish</title>
-        <link href="<?= base_url() ?>assets/img/favicon.ico" rel="Shortcut Icon" type="image/x-icon" />
+        <link href="<?= base_url() ?>assets/dashboard/favicon.ico" rel="Shortcut Icon" type="image/x-icon" />
 
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Raleway:500,400,300" rel="stylesheet" type="text/css">
@@ -156,7 +156,7 @@ and open the template in the editor.
                 </div>
                 <div class="row">
                     <div class="col-md-3"></div>
-                    <div class="col-md-6">
+                    <div class="col-md-6" style="margin-left: 35px;">
                         <a  href = "<?= $url ?>" style="padding: 11px 40px;" class="btn btn-block btn-social btn-google-plus">
                             <i class="fa fa-google-plus"></i> Sign up with Google
                         </a>
@@ -197,6 +197,17 @@ and open the template in the editor.
 <?php if ($msg): ?>
                 alertify.<?= $t ?>("<?= $m ?>");
 <?php endif; ?>
+            $(document).ready(function () {
+<?php
+$signup = $this->input->get('signup');
+if ($signup != "" && $signup == "fb"):
+    ?>
+                    setTimeout(function () {
+                        $('.facebook').trigger('click');
+                    }, 1000);
+
+<?php endif; ?>
+            });
         </script>
         <script type="text/javascript">
             window.fbAsyncInit = function () {
