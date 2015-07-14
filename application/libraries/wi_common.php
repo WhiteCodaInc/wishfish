@@ -64,6 +64,9 @@ class Wi_common {
     function getCurrentPlan($userid = NULL) {
         $uid = ($userid == NULL) ? $this->user_id : $userid;
         $query = $this->_CI->db->get_where('wi_plan_detail', array('user_id' => $uid, 'plan_status' => 1));
+        echo '<pre>';
+        print_r($query->row());
+        die();
         return $query->row();
     }
 
