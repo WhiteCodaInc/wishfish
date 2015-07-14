@@ -50,6 +50,7 @@
     text-decoration: none;
     /*    color: #FFF;*/
     font-size: 13px;
+    padding-left: 10px;
 }
 .strength_meter div{
     width:0%;

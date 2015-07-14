@@ -123,7 +123,6 @@
                 console.log(thisval);
                 $('input[type="password"][data-password="' + thisid + '"]').val(thisval);
                 check_strength(thisval, thisid);
-
             });
 
 
