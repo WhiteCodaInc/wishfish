@@ -62,8 +62,8 @@ class M_profile extends CI_Model {
             $this->sendActivationLink($set['email']);
         }
         unset($set['code'], $set['stripeToken']);
-        
-        
+
+
         if ($set['importUrl'] != "") {
             $img_url = FCPATH . "import/user.jpg";
             copy($set['importUrl'], $img_url);
@@ -209,6 +209,9 @@ class M_profile extends CI_Model {
         try {
             $uInfo = $this->wi_common->getUserInfo($this->userid);
             $customer = Stripe_Customer::retrieve($uInfo->customer_id);
+            echo '<pre>';
+            print_r($customer);
+            die();
             if ($customer->cards->total_count != 0) {
                 $cardid = $customer->cards->data[0]->id;
                 $card = $customer->sources->retrieve($cardid);
