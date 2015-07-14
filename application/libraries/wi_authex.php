@@ -54,7 +54,7 @@ class Wi_authex {
         $this->_CI->db->select('*');
         $query = $this->_CI->db->get_where('wi_plan_detail', $where);
         print_r($query->row());
-
+        echo '<br>'.$query->num_rows().'<br>';
         echo ($query->num_rows() && $query->row()->is_lifetime == 0) ? "false" : "true";
         die();
     }
