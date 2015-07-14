@@ -14,7 +14,6 @@
     #p1 #tg-container{
         z-index: 0
     }
-
     .timeglider-legend {
         width:180px;
     }

@@ -6,7 +6,7 @@
 
 $profile_pic = $this->session->userdata('u_profile_pic');
 $img_src = ($profile_pic != "") ?
-        "http://mikhailkuznetsov.s3.amazonaws.com/" . $profile_pic :
+        "https://mikhailkuznetsov.s3.amazonaws.com/" . $profile_pic :
         base_url() . 'assets/dashboard/img/default-avatar.png';
 ?>
 <div class="wrapper row-offcanvas row-offcanvas-left">

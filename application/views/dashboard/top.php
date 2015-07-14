@@ -52,7 +52,7 @@
 <?php
 $profile_pic = $this->session->userdata('u_profile_pic');
 $img_src = ($profile_pic != "") ?
-        "http://mikhailkuznetsov.s3.amazonaws.com/" . $profile_pic :
+        "https://mikhailkuznetsov.s3.amazonaws.com/" . $profile_pic :
         base_url() . 'assets/dashboard/img/default-avatar.png';
 $userid = $this->session->userdata('u_userid');
 ?>
@@ -559,7 +559,7 @@ $userid = $this->session->userdata('u_userid');
                         <?php
                         $path = $this->session->userdata('u_profile_pic');
                         $img_src_setup = ($path != "") ?
-                                "http://mikhailkuznetsov.s3.amazonaws.com/" . $path :
+                                "https://mikhailkuznetsov.s3.amazonaws.com/" . $path :
                                 base_url() . 'assets/dashboard/img/default-avatar.png';
                         ?>
                         <div class="modal fade" id="uploadSetup" tabindex="-1" role="dialog" aria-hidden="true">
