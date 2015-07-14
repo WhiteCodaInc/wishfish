@@ -50,7 +50,7 @@
                                                     <h3 class='box-title'>Content Editor</h3>
                                                 </div><!-- /.box-header -->
                                                 <div class='box-body pad'>
-                                                    <textarea id="editor1" name="content" rows="10" cols="80"></textarea>
+                                                    <textarea id="editor1" name="content" rows="6" cols="80"></textarea>
                                                 </div>
                                             </div><!-- /.box -->
                                         </div>
