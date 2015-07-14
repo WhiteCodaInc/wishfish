@@ -34,7 +34,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="name">Email</label>
-                                <input value="<?= isset($contacts) ? $contacts->email : '' ?>" type="email" name="email" class="form-control" placeholder="Email" required=""/>
+                                <input value="<?= isset($contacts) ? $contacts->email : '' ?>" type="email" name="email" class="form-control" placeholder="Email" />
                             </div>
                             <div class="form-group">
                                 <div class="row">
