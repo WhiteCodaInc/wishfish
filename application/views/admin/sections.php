@@ -133,7 +133,8 @@
         $('#save-section').click(function () {
             $('.overlay').show();
             $('.loading-img').show();
-            var sectionid = $('#sections').val();
+            var section = $('#sections').val();
+            var sectionid = ids[sections.indexOf(section)];
             var content = CKEDITOR.instances['editor1'].getData();
             $.ajax({
                 type: 'POST',
