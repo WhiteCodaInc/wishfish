@@ -947,6 +947,9 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
 
     function chooseContact() {
         $('div.choose input:text').focusout(function () {
+
+            console.log($(this).parent('form'));
+
             var event_type = $('#eventForm input[name="event_type"]:checked').val();
             var user = $('#users').val().trim();
             if (user != "") {
