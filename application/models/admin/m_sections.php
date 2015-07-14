@@ -17,7 +17,7 @@ class M_sections extends CI_Model {
         parent::__construct();
     }
 
-    function getPages() {
+    function getSections() {
         $query = $this->db->get('sections');
         return $query->result();
     }
