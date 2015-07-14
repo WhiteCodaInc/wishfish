@@ -36,7 +36,7 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Choose Section</label>
-                                    <input type="text" class="form-control"  id="sections" />
+                                    <input type="text" class="form-control" autofocus=""  id="sections" />
                                 </div>
                             </div>
                         </div>
