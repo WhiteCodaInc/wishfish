@@ -198,7 +198,7 @@
                                 <div class="row">
                                     <div class="col-md-4"><label>Days Left on Trial</label></div>
                                     <div class="col-md-6">
-                                        <span class="title" style="color:<?= (!$trialD) ? 'red' : '' ?>">
+                                        <span class="title" style="<?= ($customer->is_lifetime) ? "" : ((!$trialD) ? "color:red" : "") ?>">
                                             <?= ($customer->is_lifetime) ? "Lifetime" : (($trialD) ? $trialD : "Expired") ?>
                                         </span>
                                     </div>
