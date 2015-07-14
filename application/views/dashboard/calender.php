@@ -1146,7 +1146,15 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
             });
         });
         $('#edit').click(function () {
+            var formid = $(this).parents('form').prop('id');
             var id = $(this).prop('id');
+            var len = $('#' + formid + ' input[name="notify"]:checked').length;
+
+            if (!len) {
+                alertify.error("Please Select Notify Option..!");
+                return false;
+            }
+
             if ($('#editForm input[name="date"]').val().trim() == "") {
                 alertify.error("Please Select Date..!");
                 return false;
@@ -1199,9 +1207,13 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
 
         $('#insert,#n_insert').click(function () {
             var formid = $(this).parents('form').prop('id');
-            console.log(formid);
             var id = $(this).prop('id');
+            var len = $('#' + formid + ' input[name="notify"]:checked').length;
             if (id == "insert") {
+                if (!len) {
+                    alertify.error("Please Select Notify Option..!");
+                    return false;
+                }
                 if ($("#rd_individual").prop("checked")) {
                     var cnt = $('#users').val().trim();
                     if (cnt == "") {
