@@ -263,7 +263,7 @@
         </div>
     </div>
 </section>
-
+<?php print_r($add_friend); ?>
 <section id="service" class="sections colorsbg">
     <div class="container">
         <div class="row">
