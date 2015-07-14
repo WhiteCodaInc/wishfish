@@ -203,7 +203,7 @@ class M_customers extends CI_Model {
         try {
             $uInfo = $this->wi_common->getUserInfo($cid);
             $customer = Stripe_Customer::retrieve($uInfo->customer_id);
-            if ($customer->cards->total_count != 0) {
+            if (!$customer->deleted && $customer->cards->total_count != 0) {
                 $cardid = $customer->cards->data[0]->id;
                 $card = $customer->sources->retrieve($cardid);
                 $cardDetail = array(
