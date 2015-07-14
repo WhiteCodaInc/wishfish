@@ -209,11 +209,11 @@ class M_profile extends CI_Model {
         try {
             $uInfo = $this->wi_common->getUserInfo($this->userid);
             $customer = Stripe_Customer::retrieve($uInfo->customer_id);
-            echo '<pre>';
-            print_r($customer);
-            echo $customer->deleted;
-            die();
-            if ($customer->cards->total_count != 0) {
+//            echo '<pre>';
+//            print_r($customer);
+//            echo $customer->deleted;
+//            die();
+            if (!$customer->deleted && $customer->cards->total_count != 0) {
                 $cardid = $customer->cards->data[0]->id;
                 $card = $customer->sources->retrieve($cardid);
                 $cardDetail = array(
