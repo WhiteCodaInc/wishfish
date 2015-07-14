@@ -111,7 +111,7 @@
             var thisval = this.$elem.val();
 
             this.$elem.addClass(this.options.strengthClass).attr('data-password', thisid).after('<input style="display:none" class="form-control ' + this.options.strengthClass + '" data-password="' + thisid + '" type="text" name="" value="' + thisval + '"><div class="' + this.options.strengthMeterClass + '"><div data-meter="' + thisid + '"><p></p></div></div>');
-            $('#msgPass').after('<a data-password-button="' + thisid + '" href="" class="' + this.options.strengthButtonClass + '">' + this.options.strengthButtonText + '</a>');
+            $('button[type="submit"]').after('<a data-password-button="' + thisid + '" href="" class="' + this.options.strengthButtonClass + '">' + this.options.strengthButtonText + '</a><br>');
             this.$elem.bind('keyup keydown', function (event) {
                 thisval = $('#' + thisid).val();
                 $('input[type="text"][data-password="' + thisid + '"]').val(thisval);
