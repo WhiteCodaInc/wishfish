@@ -267,7 +267,6 @@
 <section id="service" class="sections colorsbg">
     <div class="container">
         <div class="row">
-
             <div class="col-sm-4 clearfix">
                 <div class="feature text-center  wow fadeInLeft animated" data-wow-offset="120" data-wow-duration="1.5s">
                     <i class="fa fa-user" data-selector="i.fa" style="outline: none; cursor: default;"></i>
