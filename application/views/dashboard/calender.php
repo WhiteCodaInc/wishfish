@@ -955,7 +955,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                 if (!validateContact(user)) {
 
                     $('#' + form + ' input[name="notify"]:nth(0)').removeAttr('checked');
-                    $('#' + form + ' input[name="notify"]:nth(1)').prop('checked', true);
+//                    $('#' + form + ' input[name="notify"]:nth(1)').prop('checked', true);
                     $('#' + form + ' input[name="notify"]:nth(0)').prop('disabled', true);
 
                     $msg = (event_type == "notification" || event_type == "sms") ?
@@ -964,7 +964,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                     $('.msgChoose').text($msg);
                 } else {
                     $('#' + form + ' input[name="notify"]:nth(1)').removeAttr('checked');
-                    $('#' + form + ' input[name="notify"]:nth(0)').prop('checked', true);
+//                    $('#' + form + ' input[name="notify"]:nth(0)').prop('checked', true);
                     $('#' + form + ' input[name="notify"]:nth(0)').prop('disabled', false);
 
                     var con = user.split('||');
