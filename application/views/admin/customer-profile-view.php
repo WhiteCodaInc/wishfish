@@ -558,10 +558,10 @@
         });
 
         $('#cardForm,#chargeForm').on('submit', function () {
-
-            console.log($(this).prop('id'));
-            return false;
-            $('#save').prop('disabled', true);
+            var formid = $(this).prop('id');
+            (formid == "cardForm") ?
+                    $('#save').prop('disabled', true) :
+                    $('#charge').prop('disabled', true);
             var error = false;
             var ccNum = $(this).find('.card_number').val(),
                     cvcNum = $(this).find('.cvc').val(),
@@ -571,32 +571,38 @@
             // Validate the number:
             if (!Stripe.card.validateCardNumber(ccNum)) {
                 error = true;
-                $('#msgCard').text('The credit card number appears to be invalid.');
-                $('#msgCard').show();
-                $('#save').prop('disabled', false);
+                $('#' + formid + ' #msgCard').text('The credit card number appears to be invalid.');
+                $('#' + formid + ' #msgCard').show();
+                (formid == "cardForm") ?
+                        $('#save').prop('disabled', false) :
+                        $('#charge').prop('disabled', false);
                 return false;
             }
             // Validate the CVC:
             if (!Stripe.card.validateCVC(cvcNum)) {
                 error = true;
-                $('#msgCard').text('The CVC number appears to be invalid.');
-                $('#msgCard').show();
-                $('#save').prop('disabled', false);
+                $('#' + formid + ' #msgCard').text('The CVC number appears to be invalid.');
+                $('#' + formid + ' #msgCard').show();
+                (formid == "cardForm") ?
+                        $('#save').prop('disabled', false) :
+                        $('#charge').prop('disabled', false);
                 return false;
             }
             // Validate the expiration:
             if (!Stripe.card.validateExpiry(expMonth, expYear)) {
                 error = true;
-                $('#msgCard').text('The expiration date appears to be invalid.');
-                $('#msgCard').show();
-                $('#save').prop('disabled', false);
+                $('#' + formid + ' #msgCard').text('The expiration date appears to be invalid.');
+                $('#' + formid + ' #msgCard').show();
+                (formid == "cardForm") ?
+                        $('#save').prop('disabled', false) :
+                        $('#charge').prop('disabled', false);
                 return false;
             }
             // Check for errors:
             if (!error) {
                 // Get the Stripe token:
-                $('#msgCard').hide();
-                $('#error').hide();
+                $('#' + formid + ' #msgCard').hide();
+                $('#' + formid + ' #error').hide();
                 Stripe.card.createToken({
                     number: ccNum,
                     cvc: cvcNum,
@@ -605,8 +611,8 @@
                 }, stripeResponseHandler);
                 return false;
             } else {
-                $('#error').show();
-                $('#msgCard').show();
+                $('#' + formid + ' #error').show();
+                $('#' + formid + ' #msgCard').show();
                 return false;
             }
             return false;
