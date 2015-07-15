@@ -480,8 +480,14 @@
                                 <option value="1 years">1 Years</option>
                             </select>
                         </div>
-                        <div id="recurringBox" class="form-group" style="display: none">
-                            <p>Next Recurring Date : <span id="recur_date"></span></p>
+                        <div class="form-group">
+                            <p>Next Recurring Date : 
+                                <strong>
+                                    <span id="recur_date">
+                                        <?= date('m-d-Y', strtotime($this->wi_common->getNextDate(date('Y-m-d'), "1 months"))); ?>
+                                    </span>
+                                </strong>
+                            </p>
                         </div>
                         <div class="form-group">
                             <span style="color: red;display: none" id="msgCard"></span>
