@@ -623,7 +623,7 @@
             if (response.error) {
                 reportError(response.error.message);
             } else { // No errors, submit the form:
-                var f = $("#cardForm");
+                var f = $(this);
 
                 // Token contains id, last4, and card type:
                 var token = response['id'];
