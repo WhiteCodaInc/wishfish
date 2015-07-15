@@ -666,7 +666,12 @@
 
         $('select[name="interval"]').change(function () {
             var interval = $(this).val();
+            var planid = $('select[name="plan"]').val();
             $('#month').text(interval);
+            $amt = (planid == '2') ?
+                    parseFloat('9.99') * parseInt(interval) :
+                    parseFloat('49.99') * parseInt(interval);
+            $('input[name="amount"]').val($amt);
             $.ajax({
                 type: 'POST',
                 url: "<?= site_url() ?>admin/customers/getRecurDate",
