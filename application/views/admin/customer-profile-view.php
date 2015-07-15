@@ -655,14 +655,14 @@
 
         }
 
-//        $('select[name="plan"]').change(function () {
-//            var planid = $(this).val();
-//            var interval = $('select[name="interval"]:selected').val();
-//            $amt = (planid == '2') ?
-//                    parseFloat('9.99') * parseInt(interval) :
-//                    parseFloat('49.99') * parseInt(interval);
-//            $('input[name="amount"]').val($amt);
-//        });
+        $('select[name="plan"]').change(function () {
+            var planid = $(this).val();
+            var interval = $('select[name="interval"]').val();
+            $amt = (planid == '2') ?
+                    parseFloat('9.99') * parseInt(interval) :
+                    parseFloat('49.99') * parseInt(interval);
+            $('input[name="amount"]').val($amt);
+        });
 
         $('select[name="interval"]').change(function () {
             var interval = $(this).val();
