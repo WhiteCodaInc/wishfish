@@ -453,12 +453,15 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <p>Their Active Plan is <strong><?= $customer->plan_name ?></strong></p>
+                        </div>
+                        <div class="form-group">
                             <span style="color: red;display: none" id="msgCard"></span>
                         </div>
                     </div>
                     <div class="modal-footer clearfix">
                         <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <button type="submit" id="charge" class="btn btn-primary pull-left">Charge Payment</button>
                             </div>
                             <div class="col-md-3">
