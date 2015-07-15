@@ -81,10 +81,10 @@ class Paypal extends CI_Controller {
                 $requestParams['TRIALTOTALBILLINGCYCLES'] = ($coupon->coupon_validity == '1') ?
                         1 : $coupon->month_duration;
             } else {
-                $amt = ($coupon->disc_type == "F") ?
-                        $planAmt - $coupon->disc_amount :
-                        $planAmt - ($planAmt * ($coupon->disc_amount / 100));
-                $requestParams['AMT'] = number_format($amt, 2);
+//                $amt = ($coupon->disc_type == "F") ?
+//                        $planAmt - $coupon->disc_amount :
+//                        $planAmt - ($planAmt * ($coupon->disc_amount / 100));
+                $requestParams['AMT'] = number_format($planAmt, 2);
             }
 
             $response = $this->paypal_lib->request('CreateRecurringPaymentsProfile', $requestParams);
