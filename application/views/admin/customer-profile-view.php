@@ -549,27 +549,14 @@
 <?php if ($this->input->get('msg') != ""): ?>
         alertify.error("Customer account currently was deactivated..!");
 <?php endif; ?>
-    $('select[name="interval"]').change(function () {
-        var interval = $(this).val();
-        var userid = "<?= $customer->user_id ?>";
-        $.ajax({
-            type: 'POST',
-            url: "<?= site_url() ?>admin/customers/getRecurDate",
-            data: {interval: interval},
-            success: function (data, textStatus, jqXHR) {
-                $('#recurringBox').show();
-                $('#recur_date').text(data);
-            }
-        });
-    });
+
 </script>       
 
 <script type="text/javascript">
     $(document).ready(function () {
 
-        $('select[name="interval"]').trigger('change');
-
         var formType = "";
+
         $('a.access').click(function () {
             var type = $(this).prop('id');
             $('#lifetimeForm input[name="type"]').val(type);
@@ -656,8 +643,18 @@
 
         }
 
-
-
-
+        $('select[name="interval"]').change(function () {
+            var interval = $(this).val();
+            var userid = "<?= $customer->user_id ?>";
+            $.ajax({
+                type: 'POST',
+                url: "<?= site_url() ?>admin/customers/getRecurDate",
+                data: {interval: interval},
+                success: function (data, textStatus, jqXHR) {
+                    $('#recurringBox').show();
+                    $('#recur_date').text(data);
+                }
+            });
+        });
     });
 </script>
