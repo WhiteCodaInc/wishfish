@@ -44,6 +44,9 @@
         <a href="#" id="<?= $id ?>" class="create btn <?= $color ?> access">
             <?= ucfirst($id) ?> Lifetime Access
         </a>
+        <a href="#" class="create btn bg-green" data-toggle="modal" data-target="#charge-modal">
+            Manually Charge User
+        </a>
     </section>
     <?php
     $img_src = ($customer->profile_pic != "") ?
@@ -397,6 +400,66 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <button type="submit" id="save" class="btn btn-primary pull-left">Save</button>
+                            </div>
+                            <div class="col-md-3">
+                                <button type="button" class="btn btn-danger discard" data-dismiss="modal">
+                                    <i class="fa fa-times"></i> Discard
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" name="userid" value="<?= $customer->user_id ?>" />
+                    <?php if (!$card): ?>
+                        <input type="hidden" name="isNew" value="1" />
+                    <?php endif; ?>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+    <!------------------------------------------------------------------------>
+
+    <!-------------------------------Charge  Model------------------------------------>
+    <div class="modal fade" id="charge-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" style="max-width: 400px">
+            <div class="modal-content">
+                <form id="chargeForm" role="form" action="<?= site_url() ?>admin/customers/chargeUser"  method="post">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Card Detail</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Credit Card Number </label>
+                            <input data-stripe="number" value=""  type="text" maxlength="16" class="card_number form-control" placeholder="Card Number" required=""/>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Expiration (MM/YYYY)</label>
+                                    <div class="row">
+                                        <div class="col-md-5" style="padding-right: 0">
+                                            <input value=""  data-stripe="exp-month" maxlength="2" type="text" class="month form-control" placeholder="MM" required=""/>
+                                        </div>
+                                        <div class="col-md-1" style="padding: 0 8px;font-size: 23px">/</div>
+                                        <div class="col-md-5" style="padding-left: 0">
+                                            <input value="" data-stripe="exp-year" type="text" maxlength="4" class="year form-control" placeholder="YYYY" required="" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>CVC</label>
+                                    <input maxlength="3" type="password" class="cvc form-control" required=""/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <span style="color: red;display: none" id="msgCard"></span>
+                        </div>
+                    </div>
+                    <div class="modal-footer clearfix">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <button type="submit" id="charge" class="btn btn-primary pull-left">Charge Payment</button>
                             </div>
                             <div class="col-md-3">
                                 <button type="button" class="btn btn-danger discard" data-dismiss="modal">
