@@ -484,7 +484,7 @@
                             <label>Amount</label>
                             <div class="row">
                                 <div class="col-md-8">
-                                    <input type="number" value="9.99" name="amount"  class="form-control" required=""/>
+                                    <input type="number" value="" name="amount" class="form-control" required=""/>
                                 </div>
                                 <div class="col-md-4">For <span id="month">1</span> Month</div>
                             </div>
