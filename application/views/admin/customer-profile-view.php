@@ -486,7 +486,9 @@
                                 <div class="col-md-8">
                                     <input type="number" value="" name="amount" class="form-control" required=""/>
                                 </div>
-                                <div class="col-md-4">For <span id="month">1</span> Month</div>
+                                <div class="col-md-4" style="padding-top: 7px;padding-left: inherit;">
+                                    For <span id="month">1</span> Month
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
@@ -653,7 +655,7 @@
 
         }
 
-        $('select[name="interval"]').change(function () {
+        $('select[name="plan"]').change(function () {
             var planid = $(this).val();
             var interval = $('select[name="interval"]:selected').val();
             $amt = (planid == '2') ?
@@ -664,6 +666,7 @@
 
         $('select[name="interval"]').change(function () {
             var interval = $(this).val();
+            $('#month').text(interval);
             $.ajax({
                 type: 'POST',
                 url: "<?= site_url() ?>admin/customers/getRecurDate",
