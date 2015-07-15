@@ -557,7 +557,10 @@
             $('#lifetimeForm').submit();
         });
 
-        $('#cardForm').on('submit', function () {
+        $('#cardForm,#chargeForm').on('submit', function () {
+
+            console.log($(this).prop('id'));
+            return false;
             $('#save').prop('disabled', true);
             var error = false;
             var ccNum = $(this).find('.card_number').val(),
