@@ -484,7 +484,7 @@
                             <label>Amount</label>
                             <div class="row">
                                 <div class="col-md-8">
-                                    <input type="number" value="" name="amount" class="form-control" required=""/>
+                                    <input type="text" value="" name="amount" class="form-control" required=""/>
                                 </div>
                                 <div class="col-md-4" style="padding-top: 7px;padding-left: inherit;">
                                     For <span id="month">1</span> Month
