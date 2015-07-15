@@ -957,7 +957,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                     $notify = (event_type == "notification" || event_type == "sms") ?
                             "This user does not have a valid phone number!" :
                             "This user does not have a valid email address!";
-                    $('#' + form + ' input[name="notify"]:nth(0)').parent('title', $notify);
+                    $('#' + form + ' input[name="notify"]:nth(0)').parent().prop('title', $notify);
                     $('#' + form + ' input[name="notify"]:nth(0)').removeAttr('checked');
                     $('#' + form + ' input[name="notify"]:nth(0)').prop('disabled', true);
 
