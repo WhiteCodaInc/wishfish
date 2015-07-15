@@ -483,11 +483,10 @@
                         <div class="form-group">
                             <label>Amount</label>
                             <div class="row">
-                                <div class="col-md-6">
-                                    <input type="number" value="9.99" name="amount"  class="form-control-inline" required=""/>
-                                    For <span id="month">1</span> Month
+                                <div class="col-md-8">
+                                    <input type="number" value="9.99" name="amount"  class="form-control" required=""/>
                                 </div>
-                                <div class="col-md-6">For <span id="month">1</span> Month</div>
+                                <div class="col-md-4">For <span id="month">1</span> Month</div>
                             </div>
                         </div>
                         <div class="form-group">
