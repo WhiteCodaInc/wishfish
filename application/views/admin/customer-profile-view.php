@@ -645,13 +645,11 @@
 
         $('select[name="interval"]').change(function () {
             var interval = $(this).val();
-            var userid = "<?= $customer->user_id ?>";
             $.ajax({
                 type: 'POST',
                 url: "<?= site_url() ?>admin/customers/getRecurDate",
                 data: {interval: interval},
                 success: function (data, textStatus, jqXHR) {
-                    $('#recurringBox').show();
                     $('#recur_date').text(data);
                 }
             });
