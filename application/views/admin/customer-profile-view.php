@@ -647,8 +647,8 @@
                 // Insert the token into the form so it gets submitted to the server
                 f.append("<input type='hidden' name='stripeToken' value='" + token + "' />");
                 // Submit the form:
-                f.get(0).submit();
-//                return false;
+//                f.get(0).submit();
+                return false;
             }
 
         }
