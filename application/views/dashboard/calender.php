@@ -961,7 +961,6 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                     $('#' + form + ' input[name="notify"]:nth(0)').removeAttr('checked');
                     $('#' + form + ' input[name="notify"]:nth(0)').prop('disabled', true);
 
-
                     $msg = (event_type == "notification" || event_type == "sms") ?
                             "Can not SMS this user because no phone number is assigned!" :
                             "Can not Email this user because no email address is assigned!";
@@ -1672,4 +1671,3 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
         console.log(hopscotch.getState());
     }, 2000);
 </script>
-
