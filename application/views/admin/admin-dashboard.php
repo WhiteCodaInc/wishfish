@@ -1,4 +1,8 @@
-
+<style type="text/css">
+    #customer-data-table tr td,#customer-data-table tr th{
+        text-align: center;
+    }
+</style>
 <aside class="right-side">
     <!-- Content Header (Page header) -->
     <section class="content-header" style="display: none">
@@ -606,3 +610,19 @@
     </section><!-- /.content -->
 </aside><!-- /.right-side -->
 </div>
+<script type="text/javascript">
+    $(function () {
+        $("#customer-data-table").dataTable({
+            aLengthMenu: [
+                [25, 50, 100, 200, -1],
+                [25, 50, 100, 200, "All"]
+            ],
+            aoColumnDefs: [{
+                    bSortable: false,
+                    aTargets: [0, 2, 3, 4, 5, 6]
+                }],
+            iDisplayLength: -1,
+            aaSorting: [[1, 'asc']]
+        });
+    });
+</script>

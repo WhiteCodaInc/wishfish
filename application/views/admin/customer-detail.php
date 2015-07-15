@@ -189,7 +189,6 @@
                 </div><!-- /.box -->
             </div>
         </div>
-
     </section><!-- /.content -->
 </aside><!-- /.right-side -->
 </div><!-- ./wrapper -->
