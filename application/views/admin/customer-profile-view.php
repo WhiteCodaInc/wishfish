@@ -506,7 +506,6 @@
                         </div>
                     </div>
                     <input type="hidden" name="userid" value="<?= $customer->user_id ?>" />
-                    <input type="hidden" name="amount" value="9.99" />
                 </form>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
@@ -643,13 +642,6 @@
             }
 
         }
-
-        $('select[name="interval"]').change(function () {
-            var planid = $(this).val();
-            (planid == '2') ?
-                    $('input[name="amount"]').val("9.99") :
-                    $('input[name="amount"]').val("49.99");
-        });
 
         $('select[name="interval"]').change(function () {
             var interval = $(this).val();

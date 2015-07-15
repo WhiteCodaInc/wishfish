@@ -143,9 +143,7 @@ class Customers extends CI_Controller {
 
     function chargeUser() {
         $post = $this->input->post();
-        echo '<pre>';
-        print_r($post);
-        die();
+        $this->objcustomer->chargeUser($post);
     }
 
 }

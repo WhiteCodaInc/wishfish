@@ -13,19 +13,23 @@
  */
 class M_customers extends CI_Model {
 
-    private $profileid;
-    private $bucket;
-    private $accessKey;
-    private $secretKey;
+    private $profileid, $bucket, $accessKey, $secretKey;
+    private $api_username, $api_password, $api_signature;
 
     function __construct() {
         parent::__construct();
         $this->load->library('amazons3');
+        $this->load->library('paypal_lib');
         $this->profileid = $this->session->userdata('profileid');
         $this->config->load('aws');
         $this->bucket = $this->encryption->decode($this->config->item('bucket', 'aws'));
         $this->accessKey = $this->encryption->decode($this->config->item('accessKey', 'aws'));
         $this->secretKey = $this->encryption->decode($this->config->item('secretKey', 'aws'));
+
+        $paypalGatewayInfo = $this->wi_common->getPaymentGatewayInfo("PAYPAL");
+        $this->api_username = $paypalGatewayInfo->api_username;
+        $this->api_password = $paypalGatewayInfo->api_password;
+        $this->api_signature = $paypalGatewayInfo->api_signature;
 
         $gatewayInfo = $this->wi_common->getPaymentGatewayInfo("STRIPE");
         require_once(FCPATH . 'stripe/lib/Stripe.php');
@@ -256,6 +260,90 @@ class M_customers extends CI_Model {
         } catch (Exception $e) {
             return FALSE;
         }
+    }
+
+    function chargeUser($post) {
+        try {
+            echo '<pre>';
+            print_r($post);
+            $uInfo = $this->wi_common->getUserInfo($post['userid']);
+            print_r($uInfo);
+            $pname = ($post['plan'] == '2') ? "wishfish-personal" : "wishfish-enterprise";
+            echo '<br>' . $pname . '<br>';
+            if ($uInfo->is_set && $uInfo->gateway == "PAYPAL") {
+                echo '<br>---------------PAYPAL CANCELD START-----------<br>';
+                $currPlan = $this->wi_common->getLatestPlan($post['userid']);
+                print_r($currPlan);
+                $profileId = $this->isExistProfileId($currPlan);
+                if ($profileId) {
+                    print_r($profileId);
+                    $this->cancelRecurringProfile($profileId->transaction_id);
+                } else {
+                    echo '<br>---PROFILE NOT EXIST--<br>';
+                }
+            } else if (!$uInfo->is_set || ($uInfo->is_set && $uInfo->gateway == "STRIPE")) {
+                echo '<br>---------------STRIPE START-----------<br>';
+                $customer = Stripe_Customer::retrieve($uInfo->customer_id);
+
+                print_r($customer);
+
+                if (isset($customer->subscriptions->data[0]->id)) {
+                    $subs = $customer->subscriptions->data[0]->id;
+                    echo "<br>Subscription ID : $subs<br>";
+//                    $customer->subscriptions->retrieve($subs)->cancel();
+                }
+            }
+//            $customer->sources->create(array("source" => $post['stripeToken']));
+//            $stripe = array(
+//                "plan" => $pname,
+//                "metadata" => array("userid" => $post['userid']),
+//            );
+//            $customer->subscriptions->create($stripe);
+//            $user_set = array(
+//                'gateway' => "STRIPE",
+//                'is_set' => 1
+//            );
+//            $this->db->update('wi_user_mst', $user_set, array('user_id' => $post['userid']));
+            die('SUCCESS');
+//            return TRUE;
+        } catch (Exception $e) {
+            echo $e->getMessage();
+//            return FALSE;
+        }
+    }
+
+    function isExistProfileId($currPlan) {
+        $this->db->select('*');
+        $this->db->limit(1);
+        $query = $this->db->get_where('wi_payment_mst', array('id' => $currPlan->id));
+        return ($query->num_rows()) ? $query->row() : FALSE;
+    }
+
+    function cancelRecurringProfile($id) {
+        if ($this->getRecurringProfile($id)) {
+            $this->paypal_lib->set_acct_info(
+                    $this->api_username, $this->api_password, $this->api_signature
+            );
+            $requestParams = array(
+                'PROFILEID' => $id,
+                'ACTION' => 'Cancel', //Cancel,Suspend,Reactivate
+            );
+            $response = $this->paypal_lib->request('ManageRecurringPaymentsProfileStatus', $requestParams);
+            return ($response['ACK'] == "Success") ? TRUE : FALSE;
+        } else {
+            return FALSE;
+        }
+    }
+
+    function getRecurringProfile($id) {
+        $this->paypal_lib->set_acct_info(
+                $this->api_username, $this->api_password, $this->api_signature
+        );
+        $requestParams = array(
+            'PROFILEID' => $id
+        );
+        $response = $this->paypal_lib->request('GetRecurringPaymentsProfileDetails', $requestParams);
+        return ($response['STATUS'] == "Active") ? TRUE : FALSE;
     }
 
 }
