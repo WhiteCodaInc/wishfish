@@ -610,6 +610,11 @@
     </section><!-- /.content -->
 </aside><!-- /.right-side -->
 </div>
+
+<!-- DATA TABES SCRIPT -->
+<script src="<?= base_url() ?>assets/dashboard/js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
+<script src="<?= base_url() ?>assets/dashboard/js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
+
 <script type="text/javascript">
     $(function () {
         $("#customer-data-table").dataTable({
