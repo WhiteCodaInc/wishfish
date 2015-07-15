@@ -954,8 +954,13 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
             if (user != "") {
                 if (!validateContact(user)) {
 
+                    $notify = (event_type == "notification" || event_type == "sms") ?
+                            "This user does not have a valid phone number!" :
+                            "This user does not have a valid email address!";
+                    $('#' + form + ' input[name="notify"]:nth(0)').parent('title', $notify);
                     $('#' + form + ' input[name="notify"]:nth(0)').removeAttr('checked');
                     $('#' + form + ' input[name="notify"]:nth(0)').prop('disabled', true);
+
 
                     $msg = (event_type == "notification" || event_type == "sms") ?
                             "Can not SMS this user because no phone number is assigned!" :
@@ -1483,8 +1488,8 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                 } else {
                     $('#rd_sms').prop("disabled", true);
                     $('#rd_email').prop("disabled", true);
-                    $('#rd_sms').prop("title", "You are not allowed to schedule this Event on previous date.");
-                    $('#rd_email').prop("title", "You are not allowed to schedule this Event on previous date.");
+                    $('#rd_sms').parent().prop("title", "You are not allowed to schedule this Event on previous date.");
+                    $('#rd_email').parent().prop("title", "You are not allowed to schedule this Event on previous date.");
                 }
                 highlightDay(jsEvent);
                 $('#dt').text(date.format("DD-MM-YYYY"));
