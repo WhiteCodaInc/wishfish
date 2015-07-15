@@ -456,6 +456,34 @@
                             <p>Their Active Plan is <strong><?= $customer->plan_name ?></strong></p>
                         </div>
                         <div class="form-group">
+                            <label>Choose Plan</label>
+                            <select name="plan" class="form-control m-bot15">
+                                <?php
+                                foreach ($plans as $value) {
+                                    if ($value->plan_id == 1)
+                                        continue;
+                                    ?>
+                                    <option value="<?= $value->plan_id ?>">
+                                        <?= $value->plan_name ?>  ($<?= $value->amount ?> / Month)
+                                    </option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Interval</label>
+                            <select name="interval" class="form-control m-bot15">
+                                <option value="1 months">1 Months</option>
+                                <option value="2 months">2 Months</option>
+                                <option value="3 months">3 Months</option>
+                                <option value="6 months">6 Months</option>
+                                <option value="9 months">9 Months</option>
+                                <option value="1 years">1 Years</option>
+                            </select>
+                        </div>
+                        <div id="recuringBox" class="form-group" style="display: none">
+                            <p>Next Recurring Date : <span id="recur_date"></span></p>
+                        </div>
+                        <div class="form-group">
                             <span style="color: red;display: none" id="msgCard"></span>
                         </div>
                     </div>

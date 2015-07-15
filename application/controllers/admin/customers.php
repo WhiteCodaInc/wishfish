@@ -52,6 +52,7 @@ class Customers extends CI_Controller {
         $data['phistory'] = $this->objcustomer->getPaymentHistory($cid);
         $data['card'] = $this->objcustomer->getCardDetail($cid);
         $data['gatewayInfo'] = $this->wi_common->getPaymentGatewayInfo("STRIPE");
+        $data['plans'] = $this->wi_common->getPlans();
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');
