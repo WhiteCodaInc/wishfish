@@ -16,6 +16,7 @@ RewriteRule ^(.*)$ /index.php?/$1 [L]
 RewriteCond %{REQUEST_URI} ^application.*
 RewriteRule ^(.*)$ /index.php?/$1 [L]
 
+RewriteRule ^favicon.ico$ favicon.ico [L]
 #Checks to see if the user is attempting to  access a valid file,
 #such as an image or css document,if this isn`t true sends the
 #request to index.php
