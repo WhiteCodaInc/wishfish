@@ -266,6 +266,7 @@ class M_customers extends CI_Model {
         try {
             echo '<pre>';
             print_r($post);
+            die();
             $uInfo = $this->wi_common->getUserInfo($post['userid']);
             print_r($uInfo);
             $pname = ($post['plan'] == '2') ? "wishfish-personal" : "wishfish-enterprise";
