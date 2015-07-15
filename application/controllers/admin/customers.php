@@ -136,4 +136,16 @@ class Customers extends CI_Controller {
         }
     }
 
+    function getRecurDate() {
+        $post = $this->input->post();
+        echo $this->wi_common->getNextDate(date('Y-m-d'), $post['interval']);
+    }
+
+    function chargeUser() {
+        $post = $this->input->post();
+        echo '<pre>';
+        print_r($post);
+        die();
+    }
+
 }

@@ -500,9 +500,6 @@
                         </div>
                     </div>
                     <input type="hidden" name="userid" value="<?= $customer->user_id ?>" />
-                    <?php if (!$card): ?>
-                        <input type="hidden" name="isNew" value="1" />
-                    <?php endif; ?>
                 </form>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
@@ -631,42 +628,25 @@
                 // Insert the token into the form so it gets submitted to the server
                 f.append("<input type='hidden' name='stripeToken' value='" + token + "' />");
                 // Submit the form:
-//                f.get(0).submit();
-                return false;
+                f.get(0).submit();
+//                return false;
             }
 
         }
 
-        /*
-         $('#extendDate').click(function () {
-         var edate = $('input[name="extend_date"]').val();
-         var userid = "<?= $customer->user_id ?>";
-         $('#load').css('display', 'block');
-         $('#msg').css('display', 'none');
-         $.ajax({
-         type: 'POST',
-         url: "<?= site_url() ?>admin/admin_access/addClass",
-         data: {userid: userid, edate: edate},
-         success: function (data, textStatus, jqXHR) {
-         setTimeout(function () {
-         if (data == "1") {
-         $('#msg').html("Trial Period Extend Successfully..");
-         $('#load').css('display', 'none');
-         $('#msg').css('display', 'block');
-         $('#msg').css('color', 'green');
-         $('#discard').trigger('click');
-         location.reload(true);
-         }
-         else if (data == "0") {
-         $('#loadDept').html("Insertion Failed. Try again..!");
-         $('#load').css('display', 'none');
-         $('#msg').css('display', 'block');
-         $('#msg').css('color', 'red');
-         }
-         }, 1000);
-         }
-         });
-         });
-         */
+
+        $('select[name="interval"]').change(function () {
+            var interval = $(this).val();
+            var userid = "<?= $customer->user_id ?>";
+            $.ajax({
+                type: 'POST',
+                url: "<?= site_url() ?>admin/customers/getRecurDate",
+                data: {interval: interval},
+                success: function (data, textStatus, jqXHR) {
+                    $('#recur_date').text(data);
+                }
+            });
+        });
+
     });
 </script>
