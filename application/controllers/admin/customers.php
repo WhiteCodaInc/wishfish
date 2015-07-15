@@ -138,7 +138,7 @@ class Customers extends CI_Controller {
 
     function getRecurDate() {
         $post = $this->input->post();
-        echo date('m-d-Y', strtotime($this->wi_common->getNextDate(date('Y-m-d'), "1 months")));
+        echo date('m-d-Y', strtotime($this->wi_common->getNextDate(date('Y-m-d'), $post['interval'])));
     }
 
     function chargeUser() {
