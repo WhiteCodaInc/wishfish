@@ -472,13 +472,20 @@
                         <div class="form-group">
                             <label>Interval</label>
                             <select name="interval" class="form-control m-bot15">
-                                <option value="1 months">1 Months</option>
-                                <option value="2 months">2 Months</option>
-                                <option value="3 months">3 Months</option>
-                                <option value="6 months">6 Months</option>
-                                <option value="9 months">9 Months</option>
-                                <option value="1 years">1 Years</option>
+                                <option value="1" selected="">1 Months</option>
+                                <option value="2">2 Months</option>
+                                <option value="3">3 Months</option>
+                                <option value="6">6 Months</option>
+                                <option value="9">9 Months</option>
+                                <option value="12">12 Months</option>
                             </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Amount</label>
+                            <div class="col-md-6">
+                                <input type="number" value="9.99" name="amount" required=""/>
+                            </div>
+                            <div class="col-md-6">For <span id="month">1</span> Month</div>
                         </div>
                         <div class="form-group">
                             <p>Next Recurring Date : 
@@ -506,6 +513,7 @@
                         </div>
                     </div>
                     <input type="hidden" name="userid" value="<?= $customer->user_id ?>" />
+                    <input type="hidden" name="amount" value="9.99" />
                 </form>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
@@ -642,6 +650,15 @@
             }
 
         }
+
+        $('select[name="interval"]').change(function () {
+            var planid = $(this).val();
+            var interval = $('select[name="interval"]:selected').val();
+            $amt = (planid == '2') ?
+                    parseFloat('9.99') * parseInt(interval) :
+                    parseFloat('49.99') * parseInt(interval);
+            $('input[name="amount"]').val($amt);
+        });
 
         $('select[name="interval"]').change(function () {
             var interval = $(this).val();

@@ -293,17 +293,17 @@ class M_customers extends CI_Model {
 //                    $customer->subscriptions->retrieve($subs)->cancel();
                 }
             }
-//            $customer->sources->create(array("source" => $post['stripeToken']));
-//            $stripe = array(
-//                "plan" => $pname,
-//                "metadata" => array("userid" => $post['userid']),
-//            );
-//            $customer->subscriptions->create($stripe);
-//            $user_set = array(
-//                'gateway' => "STRIPE",
-//                'is_set' => 1
-//            );
-//            $this->db->update('wi_user_mst', $user_set, array('user_id' => $post['userid']));
+            $customer->sources->create(array("source" => $post['stripeToken']));
+            $stripe = array(
+                "plan" => $pname,
+                "metadata" => array("userid" => $post['userid']),
+            );
+            $customer->subscriptions->create($stripe);
+            $user_set = array(
+                'gateway' => "STRIPE",
+                'is_set' => 1
+            );
+            $this->db->update('wi_user_mst', $user_set, array('user_id' => $post['userid']));
             die('SUCCESS');
 //            return TRUE;
         } catch (Exception $e) {
