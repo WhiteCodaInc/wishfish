@@ -480,7 +480,7 @@
                                 <option value="1 years">1 Years</option>
                             </select>
                         </div>
-                        <div id="recuringBox" class="form-group" style="display: none">
+                        <div id="recurringBox" class="form-group" style="display: none">
                             <p>Next Recurring Date : <span id="recur_date"></span></p>
                         </div>
                         <div class="form-group">
