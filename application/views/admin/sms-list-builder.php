@@ -26,16 +26,6 @@
                     <div class="box-header">
                         <h3 class="box-title">SMS List Detail</h3>
                     </div><!-- /.box-header -->
-                    <div class="row">
-                        <div class="col-xs-12" style="margin-left: 1%">
-<!--                            <a href="<?= site_url() ?>admin/sms_list_builder/addList" class="create btn btn-success btn-sm">
-                                <i class="fa fa-plus"></i>
-                                New SMS List
-                            </a>
-                            <button style="margin-left: 10px" value="Delete" class="delete btn btn-danger btn-sm" id="Delete" type="button" >Delete</button>-->
-                        </div>
-                    </div>
-
                     <form name="checkForm" id="checkForm" action="" method="post">
                         <div class="box-body table-responsive" id="data-panel">
 

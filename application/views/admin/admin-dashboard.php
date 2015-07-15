@@ -80,6 +80,81 @@
             </div><!-- ./col -->
         </div><!-- /.row -->
         <br/>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box" >
+                    <div class="box-header">
+                        <h3 class="box-title">Customers</h3>
+                    </div>
+                    <div class="box-body table-responsive">
+                        <table id="customer-data-table" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Profile</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Plan</th>
+                                    <th>Join Date & Time</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($customers as $value) { ?>
+                                    <?php
+                                    $img_src = ($value->profile_pic != "") ?
+                                            "http://mikhailkuznetsov.s3.amazonaws.com/" . $value->profile_pic :
+                                            base_url() . 'assets/dashboard/img/default-avatar.png';
+                                    ?>
+                                    <tr>
+                                        <td>
+                                            <a href="<?= site_url() . 'admin/customers/profile/' . $value->user_id ?>">
+                                                <img style="width:60px;height:60px" src="<?= $img_src ?>" class="img-circle" alt="User Image" />
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="<?= site_url() . 'admin/customers/profile/' . $value->user_id ?>" class="name">
+                                                <?= $value->name ?>
+                                            </a>
+                                        </td>
+                                        <td><?= $value->email ?></td>
+                                        <td>
+                                            <?=
+                                            ($value->phone != NULL) ?
+                                                    (($value->phone_verification) ? $value->phone : "Not Verified") :
+                                                    "N/A"
+                                            ?>
+                                        </td>
+                                        <td><?= $value->plan_name ?></td>
+                                        <td><?= date('m-d-Y H:i:s', strtotime($value->register_date)) ?></td>
+                                        <td>
+                                            <?php if ($value->status): ?>
+                                                <span class="btn btn-success btn-xs">Active</span>
+                                            <?php else : ?>
+                                                <span class="btn btn-danger btn-xs">Deactivate</span>
+                                            <?php endif; ?>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Profile</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Plan</th>
+                                    <th>Join Date & Time</th>
+                                    <th>Status</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+            </div>
+        </div>
+
         <!-- Small boxes (Stat box) -->
         <!--        <div class="row">
                     <div class="col-lg-3 col-xs-6">
