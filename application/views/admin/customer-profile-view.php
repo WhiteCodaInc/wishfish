@@ -577,7 +577,10 @@
         });
     });
 
-<?php if ($this->input->get('msg') != ""): ?>
+<?php
+$msg = $this->input->get('msg');
+if ($msg == "T"):
+    ?>
         alertify.error("Customer account currently was deactivated..!");
 <?php endif; ?>
 
