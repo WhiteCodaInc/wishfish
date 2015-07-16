@@ -377,9 +377,9 @@ class M_customers extends CI_Model {
 
     function getRecurringProfile($id) {
 
-//        $this->paypal_lib->set_acct_info(
-//                $this->api_username, $this->api_password, $this->api_signature
-//        );
+        $this->pay->set_acct_info(
+                $this->api_username, $this->api_password, $this->api_signature
+        );
         $requestParams = array(
             'PROFILEID' => $id
         );
