@@ -13,8 +13,14 @@ class Paypal_lib extends CI_Controller {
     var $_endPoint = '';
     var $_version = '74.0';
 
-    function __construct() {
+    function __construct($param) {
         parent::__construct();
+        $this->_credentials = array(
+            'USER' => $this->is_sandbox ? $param[0] : '',
+            'PWD' => $this->is_sandbox ? $param[1] : '',
+            'SIGNATURE' => $this->is_sandbox ? $param[2] : '',
+        );
+        $this->_endPoint = $this->is_sandbox ? 'https://api-3t.sandbox.paypal.com/nvp' : '';
     }
 
     function set_acct_info($user_id, $password, $sign) {
