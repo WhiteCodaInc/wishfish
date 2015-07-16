@@ -461,8 +461,8 @@
                                 <input type="radio" value="onetime"  name="type" checked="" class="simple">                          
                                 <span class="lbl padding-8">One-time&nbsp;</span>
                             </div>
-                            <div  style="float: left;padding-right: 5px;cursor: pointer">
-                                <input id="n_rd_sms" type="radio" value="forever"  name="type"  class="simple">                          
+                            <div  style="cursor: pointer">
+                                <input type="radio" value="forever"  name="type"  class="simple">                          
                                 <span class="lbl padding-8">Recurring&nbsp;</span>
                             </div>
                         </div>
