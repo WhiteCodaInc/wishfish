@@ -454,7 +454,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <p>Their Active Plan is <strong><?= $customer->plan_name ?></strong></p>
+                            <p><?= $customer->name ?>'s Active Plan is <strong><?= $customer->plan_name ?></strong></p>
                         </div>
                         <div class="form-group">
                             <div  style="float: left;padding:0 5px;cursor: pointer">
