@@ -18,7 +18,7 @@ class M_customers extends CI_Model {
 
     function __construct() {
         parent::__construct();
-
+//        $this->load->library('paypal_lib');
         $this->load->library('amazons3');
         $this->profileid = $this->session->userdata('profileid');
         $this->config->load('aws');
@@ -27,14 +27,10 @@ class M_customers extends CI_Model {
         $this->secretKey = $this->encryption->decode($this->config->item('secretKey', 'aws'));
 
         $paypalGatewayInfo = $this->wi_common->getPaymentGatewayInfo("PAYPAL");
-//        $this->api_username = $paypalGatewayInfo->api_username;
-//        $this->api_password = $paypalGatewayInfo->api_password;
-//        $this->api_signature = $paypalGatewayInfo->api_signature;
-        $ar[] = $paypalGatewayInfo->api_username;
-        $ar[] = $paypalGatewayInfo->api_password;
-        $ar[] = $paypalGatewayInfo->api_signature;
+        $this->api_username = $paypalGatewayInfo->api_username;
+        $this->api_password = $paypalGatewayInfo->api_password;
+        $this->api_signature = $paypalGatewayInfo->api_signature;
 
-        $this->load->library('paypal_lib', $ar, 'pay');
         $gatewayInfo = $this->wi_common->getPaymentGatewayInfo("STRIPE");
         require_once(FCPATH . 'stripe/lib/Stripe.php');
         Stripe::setApiKey($gatewayInfo->secret_key);
@@ -377,13 +373,13 @@ class M_customers extends CI_Model {
 
     function getRecurringProfile($id) {
 
-        $this->pay->set_acct_info(
+        $this->paypal_lib->set_acct_info(
                 $this->api_username, $this->api_password, $this->api_signature
         );
         $requestParams = array(
             'PROFILEID' => $id
         );
-        $response = $this->pay->request('GetRecurringPaymentsProfileDetails', $requestParams);
+        $response = $this->paypal_lib->request('GetRecurringPaymentsProfileDetails', $requestParams);
         return ($response['STATUS'] == "Active") ? TRUE : FALSE;
     }
 

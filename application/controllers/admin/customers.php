@@ -13,6 +13,8 @@
  */
 class Customers extends CI_Controller {
 
+    var $api_username, $api_password, $api_signature;
+
     function __construct() {
         parent::__construct();
         if (!$this->authex->logged_in()) {
@@ -20,7 +22,12 @@ class Customers extends CI_Controller {
         } else if (!$this->common->getPermission()->customers) {
             header('location:' . site_url() . 'admin/dashboard/error/500');
         } else {
+            $paypalGatewayInfo = $this->wi_common->getPaymentGatewayInfo("PAYPAL");
             $this->load->model('admin/m_customers', 'objcustomer');
+            $this->load->library('paypal_lib');
+            $this->api_username = $paypalGatewayInfo->api_username;
+            $this->api_password = $paypalGatewayInfo->api_password;
+            $this->api_signature = $paypalGatewayInfo->api_signature;
         }
     }
 
@@ -144,6 +151,17 @@ class Customers extends CI_Controller {
     function chargeUser() {
         $post = $this->input->post();
         $this->objcustomer->chargeUser($post);
+    }
+
+    function getRecurringProfile($id) {
+        $this->paypal_lib->set_acct_info(
+                $this->api_username, $this->api_password, $this->api_signature
+        );
+        $requestParams = array(
+            'PROFILEID' => $id
+        );
+        $response = $this->paypal_lib->request('GetRecurringPaymentsProfileDetails', $requestParams);
+        return ($response['STATUS'] == "Active") ? TRUE : FALSE;
     }
 
 }
