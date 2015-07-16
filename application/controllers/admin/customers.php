@@ -15,7 +15,7 @@ class Customers extends CI_Controller {
 
     function __construct() {
         parent::__construct();
-        $this->load->library('paypal_lib_1');
+        $this->load->library('paypal_lib');
         if (!$this->authex->logged_in()) {
             header('location:' . site_url() . 'admin/admin_login');
         } else if (!$this->common->getPermission()->customers) {
