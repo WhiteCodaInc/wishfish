@@ -269,8 +269,8 @@ class M_customers extends CI_Model {
             die();
             $uInfo = $this->wi_common->getUserInfo($post['userid']);
             print_r($uInfo);
-            $pname = ($post['plan'] == '2') ? "wishfish-personal" : "wishfish-enterprise";
-            echo '<br>' . $pname . '<br>';
+//            $pname = ($post['plan'] == '2') ? "wishfish-personal" : "wishfish-enterprise";
+//            echo '<br>' . $pname . '<br>';
             if ($uInfo->is_set && $uInfo->gateway == "PAYPAL") {
                 echo '<br>---------------PAYPAL CANCELD START-----------<br>';
                 $currPlan = $this->wi_common->getLatestPlan($post['userid']);
@@ -278,7 +278,8 @@ class M_customers extends CI_Model {
                 $profileId = $this->isExistProfileId($currPlan);
                 if ($profileId) {
                     print_r($profileId);
-                    $this->cancelRecurringProfile($profileId->transaction_id);
+                    echo "PROFILE ID : $profileId->transaction_id Cancelled";
+//                    $this->cancelRecurringProfile($profileId->transaction_id);
                 } else {
                     echo '<br>---PROFILE NOT EXIST--<br>';
                 }
@@ -290,28 +291,30 @@ class M_customers extends CI_Model {
 
                 if (isset($customer->subscriptions->data[0]->id)) {
                     $subs = $customer->subscriptions->data[0]->id;
-                    echo "<br>Subscription ID : $subs<br>";
+                    echo "<br>Subscription ID : $subs Cancelled<br>";
 //                    $customer->subscriptions->retrieve($subs)->cancel();
                 }
             }
-            Stripe_Plan::create(array(
-                "amount" => $post['amount'] * 100,
-                "currency" => 'USD',
-                "interval" => 'month',
-                "interval_count" => $post['interval'],
-                "name" => $uInfo->name . '(Individual)',
-                "id" => $uInfo->name.'_'.$this->wi_common->getRandomDigit(8)));
-            $customer->sources->create(array("source" => $post['stripeToken']));
-            $stripe = array(
-                "plan" => $pname,
-                "metadata" => array("userid" => $post['userid']),
-            );
-            $customer->subscriptions->create($stripe);
-            $user_set = array(
-                'gateway' => "STRIPE",
-                'is_set' => 1
-            );
-            $this->db->update('wi_user_mst', $user_set, array('user_id' => $post['userid']));
+            $planid = $uInfo->name . '_' . $post['userid'] . '_' . $this->wi_common->getRandomDigit(8);
+            echo "<br>Plan ID : $planid<br>";
+//            Stripe_Plan::create(array(
+//                "amount" => $post['amount'] * 100,
+//                "currency" => 'USD',
+//                "interval" => 'month',
+//                "interval_count" => $post['interval'],
+//                "name" => $uInfo->name . '(Individual)',
+//                "id" => $planid));
+//            $customer->sources->create(array("source" => $post['stripeToken']));
+//            $stripe = array(
+//                "plan" => $planid,
+//                "metadata" => array("userid" => $post['userid']),
+//            );
+//            $customer->subscriptions->create($stripe);
+//            $user_set = array(
+//                'gateway' => "STRIPE",
+//                'is_set' => 1
+//            );
+//            $this->db->update('wi_user_mst', $user_set, array('user_id' => $post['userid']));
             die('SUCCESS');
 //            return TRUE;
         } catch (Exception $e) {
