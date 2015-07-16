@@ -161,6 +161,7 @@ class Customers extends CI_Controller {
             'PROFILEID' => $id
         );
         $response = $this->paypal_lib->request('GetRecurringPaymentsProfileDetails', $requestParams);
+        print_r($response);
         return ($response['STATUS'] == "Active") ? TRUE : FALSE;
     }
 
