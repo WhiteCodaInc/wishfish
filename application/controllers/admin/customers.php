@@ -217,25 +217,16 @@ class Customers extends CI_Controller {
 
     function chargeUser() {
         $post = $this->input->post();
-        try {
+        if (is_array($post) && count($post) > 0) {
+            $error = "";
             $flag = TRUE;
-            echo '<pre>';
-//            print_r($post);
-//          die();
             $uInfo = $this->wi_common->getUserInfo($post['userid']);
-//            print_r($uInfo);
-//          $pname = ($post['plan'] == '2') ? "wishfish-personal" : "wishfish-enterprise";
-//          echo '<br>' . $pname . '<br>';
+
             if ($uInfo->is_set && $uInfo->gateway == "PAYPAL") {
-//                echo '<br>---------------PAYPAL CANCELD START-----------<br>';
                 $currPlan = $this->wi_common->getLatestPlan($post['userid']);
-//              print_r($currPlan);
                 $profileId = $this->objcustomer->isExistProfileId($currPlan);
+
                 if ($profileId) {
-//                    $status = $this->getRecurringProfile($profileId->transaction_id);
-//                    print_r($profileId);
-//                    echo "<br>------STATUS : $status -------------<br>";
-//                    echo "PROFILE ID : $profileId->transaction_id Cancelled";
                     $this->cancelRecurringProfile($profileId->transaction_id);
                 }
                 try {
@@ -243,8 +234,6 @@ class Customers extends CI_Controller {
                                 "email" => $uInfo->email,
                                 "metadata" => array("userid" => $post['userid']),
                     ));
-//                    echo '<br>-------NEW CUSTOMER---------<br>';
-//                    print_r($customer);
                     $user_set = array(
                         'gateway' => "STRIPE",
                         'is_set' => 1,
@@ -253,17 +242,14 @@ class Customers extends CI_Controller {
                     $this->objcustomer->updateCustomerInfo($post['userid'], $user_set);
                 } catch (Exception $e) {
                     $flag = FALSE;
-                    $e->getMessage();
+                    $error = $e->getMessage();
                 }
             } else if (!$uInfo->is_set || ($uInfo->is_set && $uInfo->gateway == "STRIPE")) {
-//              echo '<br>---------------STRIPE START-----------<br>';
                 try {
                     $customer = Stripe_Customer::retrieve($uInfo->customer_id);
-//                    echo '<br>--------OLD CUSTOMER---------<br>';
-//                    print_r($customer);
+
                     if (isset($customer->subscriptions->data[0]->id)) {
                         $subs = $customer->subscriptions->data[0]->id;
-//                        echo "<br>Subscription ID : $subs Cancelled<br>";
                         $customer->subscriptions->retrieve($subs)->cancel();
                     }
                     $user_set = array(
@@ -273,33 +259,41 @@ class Customers extends CI_Controller {
                     $this->objcustomer->updateCustomerInfo($post['userid'], $user_set);
                 } catch (Exception $e) {
                     $flag = FALSE;
-                    echo $e->getMessage();
+                    $error = $e->getMessage();
                 }
             }
             if ($flag) {
-                $random = $this->wi_common->getRandomDigit(5);
-                $planid = preg_replace('/\s\s+/', '_', trim($uInfo->name)) . '_' . $post['userid'] . '_' . $random;
-//              echo "<br>Plan ID : $planid<br>";
-                Stripe_Plan::create(array(
-                    "amount" => $post['amount'] * 100,
-                    "currency" => 'USD',
-                    "interval" => 'month',
-                    "interval_count" => $post['interval'],
-                    "name" => $uInfo->name . '(Individual)',
-                    "id" => $planid));
-                $customer->sources->create(array("source" => $post['stripeToken']));
-                $stripe = array(
-                    "plan" => $planid,
-                    "metadata" => array("userid" => $post['userid'], "payment_type" => $post['type'], "planid" => $post['plan']),
-                );
-                $customer->subscriptions->create($stripe);
-                return TRUE;
+                try {
+                    $random = $this->wi_common->getRandomDigit(5);
+                    $planid = preg_replace('/\s\s+/', '_', trim($uInfo->name)) . '_' . $post['userid'] . '_' . $random;
+                    Stripe_Plan::create(array(
+                        "amount" => $post['amount'] * 100,
+                        "currency" => 'USD',
+                        "interval" => 'month',
+                        "interval_count" => $post['interval'],
+                        "name" => $uInfo->name . '(Individual)',
+                        "id" => $planid));
+                    $customer->sources->create(array("source" => $post['stripeToken']));
+                    $stripe = array(
+                        "plan" => $planid,
+                        "metadata" => array("userid" => $post['userid'], "payment_type" => $post['type'], "planid" => $post['plan']),
+                    );
+                    $customer->subscriptions->create($stripe);
+                    header('location:' . site_url() . 'admin/customers/profile/' . $post['userid'] . '?msg=T');
+                } catch (Exception $e) {
+                    $flag = FALSE;
+                    $error = $e->getMessage();
+                }
             } else {
-                return FALSE;
+                $this->session->set_flashdata('error', $error);
+                header('location:' . site_url() . 'admin/customers/profile/' . $post['userid']);
             }
-        } catch (Exception $e) {
-            echo $e->getMessage();
-            return FALSE;
+            if (!$flag) {
+                $this->session->set_flashdata('error', $error);
+                header('location:' . site_url() . 'admin/customers/profile/' . $post['userid']);
+            }
+        } else {
+            header('location:' . site_url() . 'admin/customers');
         }
     }
 
