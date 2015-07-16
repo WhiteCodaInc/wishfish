@@ -26,10 +26,10 @@ class Plan_stripe_webhooker extends CI_Controller {
 
         $data = $this->wi_common->getPaymentGatewayInfo("STRIPE");
         Stripe::setApiKey($data->secret_key);
-        //$customer_id = $event_json->data->object->customer;
-        //$customer = Stripe_Customer::retrieve($customer_id);
-        //$myfile = fopen(FCPATH . 'events.txt', "a");
-        //fwrite($myfile, "Event :" . $event . "\n");
+        $customer_id = $event_json->data->object->customer;
+        $customer = Stripe_Customer::retrieve($customer_id);
+        $myfile = fopen(FCPATH . 'events.txt', "a");
+        fwrite($myfile, "Event :" . $customer . "\n");
         $this->objpayment->stripe($event_json);
     }
 
