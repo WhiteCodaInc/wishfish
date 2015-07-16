@@ -581,7 +581,7 @@
 $msg = $this->input->get('msg');
 if ($msg == "T"):
     ?>
-        alertify.error("Customer account currently was deactivated..!");
+        alertify.success("Manually charge to this user successfully ..!");
 <?php endif; ?>
 
 </script>       
