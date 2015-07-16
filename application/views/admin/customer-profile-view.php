@@ -525,7 +525,7 @@
                     </div>
                     <div class="modal-footer clearfix">
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <button type="submit" id="charge" class="btn btn-primary pull-left">Pay Now</button>
                             </div>
                             <div class="col-md-3">
