@@ -18,6 +18,7 @@ class M_customers extends CI_Model {
 
     function __construct() {
         parent::__construct();
+        $this->load->library('paypal_lib');
         $this->load->library('amazons3');
         $this->profileid = $this->session->userdata('profileid');
         $this->config->load('aws');
@@ -371,8 +372,8 @@ class M_customers extends CI_Model {
     }
 
     function getRecurringProfile($id) {
-        $this->load->library('paypal_lib');
-        $this->paypal->set_acct_info(
+
+        $this->paypal_lib->set_acct_info(
                 $this->api_username, $this->api_password, $this->api_signature
         );
         $requestParams = array(
