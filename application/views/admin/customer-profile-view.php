@@ -502,13 +502,21 @@
                                 </div>
                             </div>
                         </div>
+                        <style type="text/css">
+                            .line_onetime,
+                            .line_recur{
+                                float: left;
+                                padding-right: 10px;
+                            }
+                        </style>
                         <div class="form-group">
-                            <p>Next Recurring Date : 
-                                <strong>
-                                    <span id="recur_date">
-                                        <?= date('m-d-Y', strtotime($this->wi_common->getNextDate(date('Y-m-d'), "1 months"))); ?>
-                                    </span>
-                                </strong>
+                            <p class="line_onetime">Account will disable on : </p>
+                            <p class="line_recur" style="display: none">Next Recurring Date : </p>
+                            <strong>
+                                <span id="recur_date">
+                                    <?= date('m-d-Y', strtotime($this->wi_common->getNextDate(date('Y-m-d'), "1 months"))); ?>
+                                </span>
+                            </strong>
                             </p>
                         </div>
                         <div class="form-group">
@@ -672,6 +680,11 @@
             }
 
         }
+
+        $('input[name="type"]').change(function () {
+            var type = $(this).val();
+            console.log(type);
+        });
 
         $('select[name="plan"]').change(function () {
             var planid = $(this).val();
