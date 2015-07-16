@@ -21,7 +21,6 @@ class Customers extends CI_Controller {
         } else if (!$this->common->getPermission()->customers) {
             header('location:' . site_url() . 'admin/dashboard/error/500');
         } else {
-
             $this->load->model('admin/m_customers', 'objcustomer');
         }
     }
