@@ -34,8 +34,7 @@ class M_customers extends CI_Model {
         $ar[] = $paypalGatewayInfo->api_password;
         $ar[] = $paypalGatewayInfo->api_signature;
 
-        $this->load->library('paypal_lib', $ar);
-
+        $this->load->library('paypal_lib', $ar, 'pay');
         $gatewayInfo = $this->wi_common->getPaymentGatewayInfo("STRIPE");
         require_once(FCPATH . 'stripe/lib/Stripe.php');
         Stripe::setApiKey($gatewayInfo->secret_key);
@@ -384,7 +383,7 @@ class M_customers extends CI_Model {
         $requestParams = array(
             'PROFILEID' => $id
         );
-        $response = $this->paypal_lib->request('GetRecurringPaymentsProfileDetails', $requestParams);
+        $response = $this->pay->request('GetRecurringPaymentsProfileDetails', $requestParams);
         return ($response['STATUS'] == "Active") ? TRUE : FALSE;
     }
 
