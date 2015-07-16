@@ -218,8 +218,8 @@ class Customers extends CI_Controller {
     function chargeUser() {
         $post = $this->input->post();
         try {
-            $flag = FALSE;
-//            echo '<pre>';
+            $flag = TRUE;
+            echo '<pre>';
 //            print_r($post);
 //          die();
             $uInfo = $this->wi_common->getUserInfo($post['userid']);
@@ -273,7 +273,7 @@ class Customers extends CI_Controller {
                     $this->objcustomer->updateCustomerInfo($post['userid'], $user_set);
                 } catch (Exception $e) {
                     $flag = FALSE;
-                    $e->getMessage();
+                    echo $e->getMessage();
                 }
             }
             if ($flag) {
@@ -298,7 +298,7 @@ class Customers extends CI_Controller {
                 return FALSE;
             }
         } catch (Exception $e) {
-//            echo $e->getMessage();
+            echo $e->getMessage();
             return FALSE;
         }
     }
