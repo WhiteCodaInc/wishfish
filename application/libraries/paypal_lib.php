@@ -15,6 +15,9 @@ class Paypal_lib extends CI_Controller {
 
     function __construct($param) {
         parent::__construct();
+
+        print_r($param);
+
         $this->_credentials = array(
             'USER' => $this->is_sandbox ? $param[0] : '',
             'PWD' => $this->is_sandbox ? $param[1] : '',
