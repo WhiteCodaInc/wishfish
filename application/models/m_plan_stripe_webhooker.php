@@ -26,17 +26,21 @@ class M_plan_stripe_webhooker extends CI_Model {
 
 //        $customer_id = $event_json->data->object->customer;
 //        $customer = Stripe_Customer::retrieve($customer_id);
-//        $myfile = fopen(FCPATH . 'events.txt', "a");
-//        fwrite($myfile, "Event :" . $event . "\n");
+        $myfile = fopen(FCPATH . 'events.txt', "a");
+        fwrite($myfile, "Event :" . $event . "\n");
+
 
 
         switch ($event) {
             case "customer.subscription.created":
                 $customer = Stripe_Customer::retrieve($event_json->data->object->customer);
+                fwrite($myfile, "Event :" . $customer . "\n");
                 $pname = $event_json->data->object->plan->id;
+                fwrite($myfile, "Plan ID :" . $pname . "\n");
                 $plan_array = array("wishfish-free", "wishfish-personal", "wishfish-enterprise");
 
                 if (in_array($pname, $plan_array)) {
+                    fwrite($myfile, "------------REGULAR------------\n");
                     $planid = ($pname == "wishfish-free") ? 1 :
                             (($pname == "wishfish-personal") ? 2 : 3);
                     if ($planid != 1 && !isset($event_json->data->object->metadata->userid)) {
@@ -66,9 +70,17 @@ class M_plan_stripe_webhooker extends CI_Model {
                         $this->insertPaymentDetail($pid, $customer);
                     }
                 } else {
+
+                    fwrite($myfile, "------------NEW PLAN------------\n");
+
                     $ptype = $event_json->data->object->metadata->payment_type;
                     $uid = $event_json->data->object->metadata->userid;
                     $planid = $event_json->data->object->metadata->random;
+
+                    fwrite($myfile, "------------$ptype------------\n");
+                    fwrite($myfile, "------------$uid------------\n");
+                    fwrite($myfile, "------------$planid------------\n");
+
                     $pid = $this->insertPlanDetail($uid, $planid, $customer, $ptype);
                     $this->insertPaymentDetail($pid, $customer);
                 }
