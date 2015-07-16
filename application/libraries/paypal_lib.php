@@ -18,7 +18,6 @@ class Paypal_lib extends CI_Controller {
     }
 
     function set_acct_info($user_id, $password, $sign) {
-        die("called");
         //Set 2Checkout account details
         $this->_credentials = array(
             'USER' => $this->is_sandbox ? $user_id : '',
