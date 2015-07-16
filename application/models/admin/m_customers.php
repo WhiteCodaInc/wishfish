@@ -19,7 +19,6 @@ class M_customers extends CI_Model {
     function __construct() {
         parent::__construct();
         $this->load->library('amazons3');
-//        $this->load->library('paypal_lib');
         $this->profileid = $this->session->userdata('profileid');
         $this->config->load('aws');
         $this->bucket = $this->encryption->decode($this->config->item('bucket', 'aws'));
