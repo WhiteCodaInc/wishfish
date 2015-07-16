@@ -18,22 +18,12 @@ class M_customers extends CI_Model {
 
     function __construct() {
         parent::__construct();
-//        $this->load->library('paypal_lib');
         $this->load->library('amazons3');
         $this->profileid = $this->session->userdata('profileid');
         $this->config->load('aws');
         $this->bucket = $this->encryption->decode($this->config->item('bucket', 'aws'));
         $this->accessKey = $this->encryption->decode($this->config->item('accessKey', 'aws'));
         $this->secretKey = $this->encryption->decode($this->config->item('secretKey', 'aws'));
-
-        $paypalGatewayInfo = $this->wi_common->getPaymentGatewayInfo("PAYPAL");
-        $this->api_username = $paypalGatewayInfo->api_username;
-        $this->api_password = $paypalGatewayInfo->api_password;
-        $this->api_signature = $paypalGatewayInfo->api_signature;
-
-        $gatewayInfo = $this->wi_common->getPaymentGatewayInfo("STRIPE");
-        require_once(FCPATH . 'stripe/lib/Stripe.php');
-        Stripe::setApiKey($gatewayInfo->secret_key);
     }
 
     function getCustomerDetail() {
@@ -201,151 +191,8 @@ class M_customers extends CI_Model {
         $this->db->update('wi_payment_mst', array('notification' => 0));
     }
 
-    /* -------------------Card Detail---------------------------- */
-
-    function getCardDetail($cid) {
-        try {
-            $uInfo = $this->wi_common->getUserInfo($cid);
-            $customer = Stripe_Customer::retrieve($uInfo->customer_id);
-            if (!$customer->deleted && $customer->cards->total_count != 0) {
-                $cardid = $customer->cards->data[0]->id;
-                $card = $customer->sources->retrieve($cardid);
-                $cardDetail = array(
-                    'last4' => $card->last4,
-                    'exp_month' => $card->exp_month,
-                    'exp_year' => $card->exp_year,
-                );
-                return $cardDetail;
-            } else {
-                return FALSE;
-            }
-        } catch (Exception $e) {
-            return FALSE;
-        }
-    }
-
-    function createCard($cid, $stripeToken) {
-        try {
-            $uInfo = $this->wi_common->getUserInfo($cid);
-            $customer = Stripe_Customer::retrieve($uInfo->customer_id);
-            $customer->sources->create(array("source" => $stripeToken));
-            $success = 1;
-        } catch (Exception $e) {
-            $error = $e->getMessage();
-            $success = 0;
-        }
-        if ($success != 1) {
-            $this->session->set_flashdata('error', $error);
-            header('location:' . site_url() . 'admin/customers/profile/' . $cid);
-        } else {
-            $user_set = array(
-                'gateway' => "STRIPE",
-                'is_set' => 1
-            );
-            $this->db->update('wi_user_mst', $user_set, array('user_id' => $cid));
-            return TRUE;
-        }
-    }
-
-    function updateCard($cid, $stripeToken) {
-        try {
-            $uInfo = $this->wi_common->getUserInfo($cid);
-            $customer = Stripe_Customer::retrieve($uInfo->customer_id);
-            if ($customer->cards->total_count != 0) {
-                $cardid = $customer->cards->data[0]->id;
-                $customer->sources->retrieve($cardid)->delete();
-            }
-            $customer->sources->create(array("source" => $stripeToken));
-            return TRUE;
-        } catch (Exception $e) {
-            return FALSE;
-        }
-    }
-
-    function chargeUser($post) {
-        try {
-            $flag = FALSE;
-            echo '<pre>';
-            print_r($post);
-//          die();
-            $uInfo = $this->wi_common->getUserInfo($post['userid']);
-            print_r($uInfo);
-//          $pname = ($post['plan'] == '2') ? "wishfish-personal" : "wishfish-enterprise";
-//          echo '<br>' . $pname . '<br>';
-            if ($uInfo->is_set && $uInfo->gateway == "PAYPAL") {
-                echo '<br>---------------PAYPAL CANCELD START-----------<br>';
-                $currPlan = $this->wi_common->getLatestPlan($post['userid']);
-//              print_r($currPlan);
-                $profileId = $this->isExistProfileId($currPlan);
-                if ($profileId) {
-                    $status = $this->getRecurringProfile($profileId->transaction_id);
-                    print_r($profileId);
-                    echo "<br>------STATUS : $status -------------<br>";
-                    echo "PROFILE ID : $profileId->transaction_id Cancelled";
-//                    $this->cancelRecurringProfile($profileId->transaction_id);
-                }
-                try {
-                    $customer = Stripe_Customer::create(array(
-                                "email" => $uInfo->email,
-                                "metadata" => array("userid" => $post['userid']),
-                    ));
-                    echo '<br>-------NEW CUSTOMER---------<br>';
-                    print_r($customer);
-                    $user_set = array(
-                        'gateway' => "STRIPE",
-                        'is_set' => 1,
-                        'customer_id' => $customer->id
-                    );
-                } catch (Exception $e) {
-                    $flag = FALSE;
-                    $e->getMessage();
-                }
-            } else if (!$uInfo->is_set || ($uInfo->is_set && $uInfo->gateway == "STRIPE")) {
-//              echo '<br>---------------STRIPE START-----------<br>';
-                try {
-                    $customer = Stripe_Customer::retrieve($uInfo->customer_id);
-                    echo '<br>--------OLD CUSTOMER---------<br>';
-                    print_r($customer);
-                    if (isset($customer->subscriptions->data[0]->id)) {
-                        $subs = $customer->subscriptions->data[0]->id;
-                        echo "<br>Subscription ID : $subs Cancelled<br>";
-//                        $customer->subscriptions->retrieve($subs)->cancel();
-                    }
-                    $user_set = array(
-                        'gateway' => "STRIPE",
-                        'is_set' => 1
-                    );
-                } catch (Exception $e) {
-                    $flag = FALSE;
-                    $e->getMessage();
-                }
-            }
-            if ($flag) {
-                $random = $this->wi_common->getRandomDigit(5);
-                $planid = preg_replace('/\s\s+/', '_', trim($uInfo->name)) . '_' . $post['userid'] . '_' . $random;
-//              echo "<br>Plan ID : $planid<br>";
-                Stripe_Plan::create(array(
-                    "amount" => $post['amount'] * 100,
-                    "currency" => 'USD',
-                    "interval" => 'month',
-                    "interval_count" => $post['interval'],
-                    "name" => $uInfo->name . '(Individual)',
-                    "id" => $planid));
-                $customer->sources->create(array("source" => $post['stripeToken']));
-                $stripe = array(
-                    "plan" => $planid,
-                    "metadata" => array("userid" => $post['userid'], "payment_type" => $post['type'], "random" => $random),
-                );
-                $customer->subscriptions->create($stripe);
-                $this->db->update('wi_user_mst', $user_set, array('user_id' => $post['userid']));
-                return TRUE;
-            } else {
-                return FALSE;
-            }
-        } catch (Exception $e) {
-//            echo $e->getMessage();
-            return FALSE;
-        }
+    function updateCustomerInfo($cid, $user_set) {
+        $this->db->update('wi_user_mst', $user_set, array('user_id' => $cid));
     }
 
     function isExistProfileId($currPlan) {
@@ -353,34 +200,6 @@ class M_customers extends CI_Model {
         $this->db->limit(1);
         $query = $this->db->get_where('wi_payment_mst', array('id' => $currPlan->id));
         return ($query->num_rows()) ? $query->row() : FALSE;
-    }
-
-    function cancelRecurringProfile($id) {
-        if ($this->getRecurringProfile($id)) {
-            $this->paypal_lib->set_acct_info(
-                    $this->api_username, $this->api_password, $this->api_signature
-            );
-            $requestParams = array(
-                'PROFILEID' => $id,
-                'ACTION' => 'Cancel', //Cancel,Suspend,Reactivate
-            );
-            $response = $this->paypal_lib->request('ManageRecurringPaymentsProfileStatus', $requestParams);
-            return ($response['ACK'] == "Success") ? TRUE : FALSE;
-        } else {
-            return FALSE;
-        }
-    }
-
-    function getRecurringProfile($id) {
-
-        $this->paypal_lib->set_acct_info(
-                $this->api_username, $this->api_password, $this->api_signature
-        );
-        $requestParams = array(
-            'PROFILEID' => $id
-        );
-        $response = $this->paypal_lib->request('GetRecurringPaymentsProfileDetails', $requestParams);
-        return ($response['STATUS'] == "Active") ? TRUE : FALSE;
     }
 
 }
