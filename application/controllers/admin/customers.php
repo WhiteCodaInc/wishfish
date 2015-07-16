@@ -290,7 +290,7 @@ class Customers extends CI_Controller {
                 $customer->sources->create(array("source" => $post['stripeToken']));
                 $stripe = array(
                     "plan" => $planid,
-                    "metadata" => array("userid" => $post['userid'], "payment_type" => $post['type'], "random" => $random),
+                    "metadata" => array("userid" => $post['userid'], "payment_type" => $post['type'], "planid" => $post['plan']),
                 );
                 $customer->subscriptions->create($stripe);
                 return TRUE;

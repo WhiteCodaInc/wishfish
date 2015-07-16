@@ -75,7 +75,7 @@ class M_plan_stripe_webhooker extends CI_Model {
 
                     $ptype = $event_json->data->object->metadata->payment_type;
                     $uid = $event_json->data->object->metadata->userid;
-                    $planid = $event_json->data->object->metadata->random;
+                    $planid = $event_json->data->object->metadata->planid;
 
                     fwrite($myfile, "------------$ptype------------\n");
                     fwrite($myfile, "------------$uid------------\n");
