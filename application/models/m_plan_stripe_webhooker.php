@@ -28,34 +28,42 @@ class M_plan_stripe_webhooker extends CI_Model {
             case "customer.subscription.created":
                 $customer = Stripe_Customer::retrieve($event_json->data->object->customer);
                 $pname = $event_json->data->object->plan->id;
+                $plan_array = array("wishfish-free", "wishfish-personal", "wishfish-enterprise");
 
-                $planid = ($pname == "wishfish-free") ? 1 :
-                        (($pname == "wishfish-personal") ? 2 : 3);
+                if (in_array($pname, $plan_array)) {
+                    $planid = ($pname == "wishfish-free") ? 1 :
+                            (($pname == "wishfish-personal") ? 2 : 3);
+                    if ($planid != 1 && !isset($event_json->data->object->metadata->userid)) {
+                        $user_set = array(
+                            'email' => $customer->email,
+                            'password' => $this->generateRandomString(5),
+                            'customer_id' => $customer->id,
+                            'gateway' => "STRIPE",
+                            'is_set' => 1,
+                            'register_date' => date('Y-m-d', $customer->subscriptions->data[0]->current_period_start)
+                        );
+                        $this->db->insert('wi_user_mst', $user_set);
+                        $uid = $this->db->insert_id();
 
-                if ($planid != 1 && !isset($event_json->data->object->metadata->userid)) {
-                    $user_set = array(
-                        'email' => $customer->email,
-                        'password' => $this->generateRandomString(5),
-                        'customer_id' => $customer->id,
-                        'gateway' => "STRIPE",
-                        'is_set' => 1,
-                        'register_date' => date('Y-m-d', $customer->subscriptions->data[0]->current_period_start)
-                    );
-                    $this->db->insert('wi_user_mst', $user_set);
-                    $uid = $this->db->insert_id();
-
-                    $pid = $this->insertPlanDetail($uid, $planid, $customer);
-                    $this->insertUserSetting($uid);
-                    $this->insertPaymentDetail($pid, $customer);
-                    $this->updateCardDetail($customer, $uid, $pid);
-                    $this->sendMail($user_set, $uid);
-                } else {
-                    if (isset($event_json->data->object->metadata->userid)) {
-                        $uid = $event_json->data->object->metadata->userid;
                         $pid = $this->insertPlanDetail($uid, $planid, $customer);
+                        $this->insertUserSetting($uid);
+                        $this->insertPaymentDetail($pid, $customer);
+                        $this->updateCardDetail($customer, $uid, $pid);
+                        $this->sendMail($user_set, $uid);
                     } else {
-                        $pid = $customer->metadata->planid;
+                        if (isset($event_json->data->object->metadata->userid)) {
+                            $uid = $event_json->data->object->metadata->userid;
+                            $pid = $this->insertPlanDetail($uid, $planid, $customer);
+                        } else {
+                            $pid = $customer->metadata->planid;
+                        }
+                        $this->insertPaymentDetail($pid, $customer);
                     }
+                } else {
+                    $ptype = $event_json->data->object->metadata->payment_type;
+                    $uid = $event_json->data->object->metadata->userid;
+                    $planid = $event_json->data->object->metadata->random;
+                    $pid = $this->insertPlanDetail($uid, $planid, $customer, $ptype);
                     $this->insertPaymentDetail($pid, $customer);
                 }
                 break;
@@ -118,9 +126,13 @@ class M_plan_stripe_webhooker extends CI_Model {
         return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
     }
 
-    function insertPlanDetail($userid, $planid, $customer) {
+    function insertPlanDetail($userid, $planid, $customer, $type = NULL) {
         $amount = $customer->subscriptions->data[0]->plan->amount / 100;
         $planInfo = $this->wi_common->getPlan($planid);
+
+        $startDt = date('Y-m-d', $customer->subscriptions->data[0]->current_period_start);
+        $endDt = date('Y-m-d', $customer->subscriptions->data[0]->current_period_end);
+
         $plan_set = array(
             'user_id' => $userid,
             'plan_id' => $planid,
@@ -130,9 +142,10 @@ class M_plan_stripe_webhooker extends CI_Model {
             'group_events' => $planInfo->group_events,
             'amount' => $amount,
             'plan_status' => 1,
-            'start_date' => date('Y-m-d', $customer->subscriptions->data[0]->current_period_start),
-            'expiry_date' => date('Y-m-d', $customer->subscriptions->data[0]->current_period_end)
+            'start_date' => $startDt
         );
+        $plan_set['expiry_date'] = ($type != NULL) ?
+                (($type == "onetime") ? $endDt : NULL) : NULL;
         $this->db->insert('wi_plan_detail', $plan_set);
         return $this->db->insert_id();
     }
