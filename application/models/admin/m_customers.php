@@ -372,6 +372,7 @@ class M_customers extends CI_Model {
     }
 
     function getRecurringProfile($id) {
+        $this->load->library('paypal_lib');
         echo "<br>PROFILE ID : $id <br>";
         echo "<br>$this->api_username<br>";
         echo "<br>$this->api_password<br>";
