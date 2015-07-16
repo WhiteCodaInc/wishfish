@@ -295,7 +295,7 @@ class M_customers extends CI_Model {
 //                    $customer->subscriptions->retrieve($subs)->cancel();
                 }
             }
-            $planid = str_replace(' ', '_', $uInfo->name) . '_' . $post['userid'] . '_' . $this->wi_common->getRandomDigit(8);
+            $planid = str_replace(' ', '_', trim($uInfo->name)) . '_' . $post['userid'] . '_' . $this->wi_common->getRandomDigit(8);
             echo "<br>Plan ID : $planid<br>";
 //            Stripe_Plan::create(array(
 //                "amount" => $post['amount'] * 100,
