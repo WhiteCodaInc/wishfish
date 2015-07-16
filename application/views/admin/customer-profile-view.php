@@ -683,7 +683,13 @@
 
         $('input[name="type"]').change(function () {
             var type = $(this).val();
-            console.log(type);
+            if (type == "onetime") {
+                $('p.line_onetime').show();
+                $('p.line_recur').hide();
+            } else {
+                $('p.line_onetime').hide();
+                $('p.line_recur').show();
+            }
         });
 
         $('select[name="plan"]').change(function () {
