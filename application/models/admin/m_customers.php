@@ -294,6 +294,13 @@ class M_customers extends CI_Model {
 //                    $customer->subscriptions->retrieve($subs)->cancel();
                 }
             }
+            Stripe_Plan::create(array(
+                "amount" => $post['amount'] * 100,
+                "currency" => 'USD',
+                "interval" => 'month',
+                "interval_count" => $post['interval'],
+                "name" => $uInfo->name . '(Individual)',
+                "id" => $uInfo->name.'_'.$this->wi_common->getRandomDigit(8)));
             $customer->sources->create(array("source" => $post['stripeToken']));
             $stripe = array(
                 "plan" => $pname,

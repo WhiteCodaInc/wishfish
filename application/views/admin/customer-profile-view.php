@@ -425,7 +425,7 @@
                 <form id="chargeForm" role="form" action="<?= site_url() ?>admin/customers/chargeUser"  method="post">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title">Card Detail</h4>
+                        <h4 class="modal-title">Manually Charge User</h4>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
@@ -456,6 +456,16 @@
                             <p>Their Active Plan is <strong><?= $customer->plan_name ?></strong></p>
                         </div>
                         <div class="form-group">
+                            <div  style="float: left;padding:0 5px;cursor: pointer">
+                                <input type="radio" value="onetime"  name="type" checked="" class="simple">                          
+                                <span class="lbl padding-8">One-time&nbsp;</span>
+                            </div>
+                            <div  style="float: left;padding-right: 5px;cursor: pointer">
+                                <input id="n_rd_sms" type="radio" value="forever"  name="type"  class="simple">                          
+                                <span class="lbl padding-8">Recurring&nbsp;</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label>Choose Plan</label>
                             <select name="plan" class="form-control m-bot15">
                                 <?php
@@ -484,7 +494,7 @@
                             <label>Amount</label>
                             <div class="row">
                                 <div class="col-md-8">
-                                    <input type="text" value="" name="amount" class="form-control" required=""/>
+                                    <input type="text" value="9.99" name="amount" class="form-control" required=""/>
                                 </div>
                                 <div class="col-md-4" style="padding-top: 7px;padding-left: inherit;">
                                     For <span id="month">1</span> Month
@@ -566,7 +576,13 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $('input[name="amount"]').val("9.99");
+
+        $('span.lbl').click(function () {
+            $name = $(this).prev().prop('name');
+            $('input[name="' + $name + '"]').prop('checked', false);
+            $(this).prev().trigger('click');
+        });
+
         var formType = "";
 
         $('a.access').click(function () {
