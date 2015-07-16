@@ -19,7 +19,6 @@ class M_customers extends CI_Model {
     function __construct() {
         parent::__construct();
         $this->load->library('amazons3');
-        $this->load->library('paypal_lib');
         $this->profileid = $this->session->userdata('profileid');
         $this->config->load('aws');
         $this->bucket = $this->encryption->decode($this->config->item('bucket', 'aws'));
@@ -372,7 +371,7 @@ class M_customers extends CI_Model {
     }
 
     function getRecurringProfile($id) {
-        $this->load->library('paypal_lib');
+
         echo "<br>PROFILE ID : $id <br>";
         echo "<br>$this->api_username<br>";
         echo "<br>$this->api_password<br>";
