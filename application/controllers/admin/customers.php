@@ -15,13 +15,13 @@ class Customers extends CI_Controller {
 
     function __construct() {
         parent::__construct();
-        
+        $this->load->library('paypal_lib');
         if (!$this->authex->logged_in()) {
             header('location:' . site_url() . 'admin/admin_login');
         } else if (!$this->common->getPermission()->customers) {
             header('location:' . site_url() . 'admin/dashboard/error/500');
         } else {
-            
+
             $this->load->model('admin/m_customers', 'objcustomer');
         }
     }
