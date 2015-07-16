@@ -15,6 +15,7 @@ class Paypal_lib extends CI_Controller {
 
     function __construct() {
         parent::__construct();
+        die("called");
     }
 
     function set_acct_info($user_id, $password, $sign) {

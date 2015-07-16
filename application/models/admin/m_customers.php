@@ -25,7 +25,7 @@ class M_customers extends CI_Model {
         $this->accessKey = $this->encryption->decode($this->config->item('accessKey', 'aws'));
         $this->secretKey = $this->encryption->decode($this->config->item('secretKey', 'aws'));
 
-
+        $this->load->library('paypal_lib');
         $paypalGatewayInfo = $this->wi_common->getPaymentGatewayInfo("PAYPAL");
         $this->api_username = $paypalGatewayInfo->api_username;
         $this->api_password = $paypalGatewayInfo->api_password;
@@ -372,7 +372,7 @@ class M_customers extends CI_Model {
     }
 
     function getRecurringProfile($id) {
-        $this->load->library('paypal_lib');
+
         $this->paypal_lib->set_acct_info(
                 $this->api_username, $this->api_password, $this->api_signature
         );
