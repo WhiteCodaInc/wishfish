@@ -23,7 +23,8 @@ class Welcome extends CI_Controller {
     public function index() {
         $charge = fopen(FCPATH . 'charge', 'r');
         $chargeid = fread($charge, filesize($charge));
-        unlink(FCPATH . 'charge');
+        echo $chargeid;
+//        unlink(FCPATH . 'charge');
 //        $this->load->view('welcome_message');
     }
 
