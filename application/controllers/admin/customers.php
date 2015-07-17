@@ -339,7 +339,7 @@ class Customers extends CI_Controller {
             ));
             print_r($res);
             die();
-            $this->db->update('wi_payment_mst', array('status' => 0), array('invoice_id' => $chargeid));
+//            $this->db->update('wi_payment_mst', array('status' => 0), array('invoice_id' => $chargeid));
         } catch (Exception $e) {
             $this->session->set_flashdata('error', $e->getMessage());
         }
