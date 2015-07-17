@@ -96,7 +96,9 @@ class Customers extends CI_Controller {
             if ($type == "Delete") {
                 foreach ($ids as $value) {
                     $uInfo = $this->wi_common->getUserInfo($value);
-                    echo $uInfo->customer_id . '<br>';
+                    if (!$uInfo->is_set || ($uInfo->is_set && $uInfo->gateway == "STRIPE")) {
+                        echo $uInfo->customer_id . '<br>';
+                    }
                 }
                 die();
 //                $cu = \Stripe\Customer::retrieve("cus_6cPa2QXTF5C5x0");
