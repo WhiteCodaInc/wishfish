@@ -582,9 +582,9 @@
                 [25, 50, 100, 200, "All"]
             ],
             aoColumnDefs: [{
-                    targets: 'no-sort'
+                    targets: 'no-sort',
 //                    bSortable: false,
-//                    aTargets: [0, 1, 2, 3, 4, 5, 6]
+                    aTargets: []
                 }],
             iDisplayLength: -1,
 //            aaSorting: [[0, 'asc']]
