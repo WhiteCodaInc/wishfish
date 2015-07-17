@@ -334,8 +334,11 @@ class Customers extends CI_Controller {
             $charge = Stripe_Charge::retrieve($chargeid);
             echo '<pre>';
             print_r($charge);
+            $res = $charge->refunds->create(array(
+                'amount' => 1 * 100
+            ));
+            print_r($res);
             die();
-            $charge->refunds->create();
             $this->db->update('wi_payment_mst', array('status' => 0), array('invoice_id' => $chargeid));
         } catch (Exception $e) {
             $this->session->set_flashdata('error', $e->getMessage());
