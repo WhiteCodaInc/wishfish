@@ -581,7 +581,7 @@
             ],
             aoColumnDefs: [{
                     bSortable: false,
-                    aTargets: [0, 1, 2, 3, 4]
+                    aTargets: [0, 1, 2, 3, 4, 5, 6]
                 }],
             iDisplayLength: -1,
 //            aaSorting: [[0, 'asc']]
