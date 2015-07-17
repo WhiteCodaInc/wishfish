@@ -582,10 +582,12 @@
                 [25, 50, 100, 200, "All"]
             ],
             aoColumnDefs: [{
-                    targets: 'no-sort',
-                    orderable: false
+                    targets: 'no-sort'
+//                    bSortable: false,
+//                    aTargets: [0, 1, 2, 3, 4, 5, 6]
                 }],
-            iDisplayLength: -1
+            iDisplayLength: -1,
+//            aaSorting: [[0, 'asc']]
         });
 
         $('.default-date-picker').datepicker({
