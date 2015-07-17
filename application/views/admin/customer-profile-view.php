@@ -229,6 +229,7 @@
                                         <th>Installment Number</th>
                                         <th>Payment Method</th>
                                         <th>Plan</th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -236,9 +237,16 @@
                                         <tr>
                                             <td><?= date('m-d-Y', strtotime($value->payment_date)) ?></td>
                                             <td>$ <?= $value->mc_gross ?></td>
-                                            <td><?= $value->transaction_id ?></td>
+                                            <td><?= $value->invoice_id ?></td>
                                             <td><?= $value->gateway ?></td>
                                             <td><?= $value->plan_name ?></td>
+                                            <td>
+                                                <?php if ($value->status): ?>
+                                                    <span class="btn btn-success btn-xs">Approved</span>
+                                                <?php else : ?>
+                                                    <span class="btn btn-warning btn-xs">Refunded</span>
+                                                <?php endif; ?>
+                                            </td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
@@ -249,6 +257,7 @@
                                         <th>Installment Number</th>
                                         <th>Payment Method</th>
                                         <th>Plan</th>
+                                        <th>Status</th>
                                     </tr>
                                 </tfoot>
                             </table>
