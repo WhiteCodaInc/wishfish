@@ -583,11 +583,9 @@
             ],
             aoColumnDefs: [{
                     targets: 'no-sort',
-//                    bSortable: false,
                     aTargets: []
                 }],
-            iDisplayLength: -1,
-//            aaSorting: [[0, 'asc']]
+            iDisplayLength: -1
         });
 
         $('.default-date-picker').datepicker({
