@@ -199,8 +199,8 @@ class Customers extends CI_Controller {
         try {
             $uInfo = $this->wi_common->getUserInfo($cid);
             $customer = Stripe_Customer::retrieve($uInfo->customer_id);
-            if ($customer->cards->total_count != 0) {
-                $cardid = $customer->cards->data[0]->id;
+            if ($customer->sources->total_count != 0) {
+                $cardid = $customer->sources->data[0]->id;
                 $customer->sources->retrieve($cardid)->delete();
             }
             $customer->sources->create(array("source" => $stripeToken));
