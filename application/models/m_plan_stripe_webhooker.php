@@ -184,7 +184,7 @@ class M_plan_stripe_webhooker extends CI_Model {
     function insertPaymentDetail($pid, $customer) {
 
         $charge = fopen(FCPATH . 'charge', 'r');
-        $chargeid = fread($charge, filesize($charge));
+        $chargeid = fread($charge, filesize(FCPATH . 'charge'));
         unlink(FCPATH . 'charge');
 
         $amount = $customer->subscriptions->data[0]->plan->amount / 100;
