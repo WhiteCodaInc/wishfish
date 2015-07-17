@@ -250,7 +250,7 @@
                                             </td>
                                             <td>
                                                 <?php if ($value->status && $value->mc_gross > 0 && $value->invoice_id): ?>
-                                                    <a class="btn btn-primary btn-xs" href="<?= site_url() ?>/customers/refund/<?= $value->invoice_id ?>">
+                                                    <a class="btn btn-primary btn-xs" href="<?= site_url() ?>/customers/refund/<?= $customer->user_id ?>/<?= $value->invoice_id ?>">
                                                         Refund
                                                     </a>
                                                 <?php endif; ?>

@@ -210,6 +210,10 @@ class Customers extends CI_Controller {
         }
     }
 
+    /* -------------------Card Detail END---------------------------- */
+
+    /* -------------------Manually User Charge---------------------------- */
+
     function getRecurDate() {
         $post = $this->input->post();
         echo date('m-d-Y', strtotime($this->wi_common->getNextDate(date('Y-m-d'), $post['interval'] . ' months')));
@@ -323,6 +327,16 @@ class Customers extends CI_Controller {
         } else {
             return FALSE;
         }
+    }
+
+    function refund($userid, $chargeid) {
+        try {
+            $charge = Stripe_Charge::retrieve($chargeid);
+            $charge->refunds->create();
+        } catch (Exception $e) {
+            $this->session->set_flashdata('error', $e->getMessage());
+        }
+        header('location:' . site_url() . 'admin/customers/profile/' . $userid);
     }
 
 }
