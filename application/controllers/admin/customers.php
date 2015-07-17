@@ -341,6 +341,7 @@ class Customers extends CI_Controller {
             die();
 //            $this->db->update('wi_payment_mst', array('status' => 0), array('invoice_id' => $chargeid));
         } catch (Exception $e) {
+            echo $e->getMessage();
             $this->session->set_flashdata('error', $e->getMessage());
         }
         header('location:' . site_url() . 'admin/customers/profile/' . $userid);
