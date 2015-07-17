@@ -60,7 +60,7 @@ class Paypal extends CI_Controller {
                 'TOKEN' => $this->input->get('token'),
                 'PROFILESTARTDATE' => $checkoutDetails['TIMESTAMP'],
                 'DESC' => $this->session->flashdata('item_name'),
-                'BILLINGPERIOD' => 'Month',
+                'BILLINGPERIOD' => 'Day',
                 'PROFILEREFERENCE' => $uid,
                 'BILLINGFREQUENCY' => 1,
                 'TOTALBILLINGCYCLES' => 0,
