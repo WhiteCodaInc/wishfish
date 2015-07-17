@@ -81,7 +81,7 @@ class M_customers extends CI_Model {
         $this->db->join('wi_plan_detail as PD', 'P.id = PD.id');
         $this->db->join('wi_plans as PL', 'PD.plan_id = PL.plan_id');
         $this->db->where('PD.user_id', $cid);
-        $this->db->order_by('P.payment_date', 'desc');
+        $this->db->order_by('P.payment_id', 'desc');
         $query = $this->db->get();
         return $query->result();
     }

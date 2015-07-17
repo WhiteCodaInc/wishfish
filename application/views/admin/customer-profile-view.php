@@ -576,16 +576,16 @@
         Stripe.setPublishableKey('<?= $gatewayInfo->publish_key ?>');
 
         $("#payment-data-table").dataTable({
+            order: [],
             aLengthMenu: [
                 [25, 50, 100, 200, -1],
                 [25, 50, 100, 200, "All"]
             ],
             aoColumnDefs: [{
-                    bSortable: false,
-                    aTargets: [0, 1, 2, 3, 4, 5, 6]
+                    targets: 'no-sort',
+                    orderable: false
                 }],
-            iDisplayLength: -1,
-//            aaSorting: [[0, 'asc']]
+            iDisplayLength: -1
         });
 
         $('.default-date-picker').datepicker({
