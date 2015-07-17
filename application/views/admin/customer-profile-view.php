@@ -266,6 +266,7 @@
                                         <th>Payment Method</th>
                                         <th>Plan</th>
                                         <th>Status</th>
+                                        <th>Refund</th>
                                     </tr>
                                 </tfoot>
                             </table>
