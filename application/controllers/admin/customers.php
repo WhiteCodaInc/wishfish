@@ -91,7 +91,17 @@ class Customers extends CI_Controller {
     function action() {
         $type = $this->input->post('actionType');
         if ($type == "Delete" || $type == "Active" || $type == "Deactive") {
-            $msg = $this->objcustomer->setAction($type);
+            $ids = $this->input->post('customer');
+//            $msg = $this->objcustomer->setAction($type, $ids);
+            if ($type == "Delete") {
+                foreach ($ids as $value) {
+                    $uInfo = $this->wi_common->getUserInfo($value);
+                    echo $uInfo->customer_id . '<br>';
+                }
+                die();
+//                $cu = \Stripe\Customer::retrieve("cus_6cPa2QXTF5C5x0");
+//                $cu->delete();
+            }
             header('location:' . site_url() . 'admin/customers?msg=' . $msg);
         } else {
             header('location:' . site_url() . 'admin/customers');

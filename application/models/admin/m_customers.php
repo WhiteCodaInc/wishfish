@@ -86,8 +86,7 @@ class M_customers extends CI_Model {
         return $query->result();
     }
 
-    function setAction($type) {
-        $ids = $this->input->post('customer');
+    function setAction($type, $ids) {
         $msg = "";
         $where = 'user_id in (' . implode(',', $ids) . ')';
         $this->db->where($where);
