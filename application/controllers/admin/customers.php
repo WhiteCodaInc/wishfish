@@ -92,17 +92,19 @@ class Customers extends CI_Controller {
         $type = $this->input->post('actionType');
         if ($type == "Delete" || $type == "Active" || $type == "Deactive") {
             $ids = $this->input->post('customer');
-//            $msg = $this->objcustomer->setAction($type, $ids);
-            if ($type == "Delete") {
-                foreach ($ids as $value) {
-                    $uInfo = $this->wi_common->getUserInfo($value);
-                    if (!$uInfo->is_set || ($uInfo->is_set && $uInfo->gateway == "STRIPE")) {
-                        echo $uInfo->customer_id . '<br>';
+            $msg = $this->objcustomer->setAction($type, $ids);
+            try {
+                if ($type == "Delete") {
+                    foreach ($ids as $value) {
+                        $uInfo = $this->wi_common->getUserInfo($value);
+                        if (!$uInfo->is_set || ($uInfo->is_set && $uInfo->gateway == "STRIPE")) {
+                            $cu = Stripe_Customer::retrieve($uInfo->customer_id);
+                            $cu->delete();
+                        }
                     }
                 }
-                die();
-//                $cu = \Stripe\Customer::retrieve("cus_6cPa2QXTF5C5x0");
-//                $cu->delete();
+            } catch (Exception $e) {
+                $e->getMessage();
             }
             header('location:' . site_url() . 'admin/customers?msg=' . $msg);
         } else {
