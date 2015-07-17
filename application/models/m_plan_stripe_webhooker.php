@@ -35,7 +35,6 @@ class M_plan_stripe_webhooker extends CI_Model {
             case "charge.succeeded":
                 $charge = fopen(FCPATH . 'charge', "a");
                 fwrite($charge, $event_json->data->object->id);
-//                unlink(FCPATH . 'charge');
                 break;
             case "customer.subscription.created":
                 $customer = Stripe_Customer::retrieve($event_json->data->object->customer);
@@ -156,6 +155,7 @@ class M_plan_stripe_webhooker extends CI_Model {
         $startDt = date('Y-m-d', $customer->subscriptions->data[0]->current_period_start);
         $endDt = date('Y-m-d', $customer->subscriptions->data[0]->current_period_end);
 
+
         $plan_set = array(
             'user_id' => $userid,
             'plan_id' => $planid,
@@ -182,10 +182,16 @@ class M_plan_stripe_webhooker extends CI_Model {
     }
 
     function insertPaymentDetail($pid, $customer) {
+
+        $charge = fopen(FCPATH . 'charge', 'r');
+        $chargeid = fread($charge, filesize($charge));
+        unlink(FCPATH . 'charge');
+
         $amount = $customer->subscriptions->data[0]->plan->amount / 100;
         $insert_set = array(
             'id' => $pid,
             'transaction_id' => $customer->subscriptions->data[0]->id,
+            'invoice_id' => $chargeid,
             'payer_id' => $customer->id,
             'payer_email' => $customer->email,
             'mc_gross' => $amount,
