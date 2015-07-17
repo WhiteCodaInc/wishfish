@@ -21,7 +21,10 @@ class Welcome extends CI_Controller {
      * @see http://codeigniter.com/user_guide/general/urls.html
      */
     public function index() {
-        $this->load->view('welcome_message');
+        $charge = fopen(FCPATH . 'charge', 'r');
+        $chargeid = fread($charge, filesize($charge));
+        unlink(FCPATH . 'charge');
+//        $this->load->view('welcome_message');
     }
 
 }
