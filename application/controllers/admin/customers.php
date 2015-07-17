@@ -329,10 +329,30 @@ class Customers extends CI_Controller {
         }
     }
 
-    function refund($userid, $chargeid) {
+    function refundStripe($userid, $chargeid) {
         try {
             $charge = Stripe_Charge::retrieve($chargeid);
             $charge->refunds->create();
+            $this->db->update('wi_payment_mst', array('status' => 0), array('invoice_id' => $chargeid));
+        } catch (Exception $e) {
+            $this->session->set_flashdata('error', $e->getMessage());
+        }
+        header('location:' . site_url() . 'admin/customers/profile/' . $userid);
+    }
+
+    function refundPaypal($userid, $chargeid) {
+        try {
+            $this->paypal_lib->set_acct_info(
+                    $this->api_username, $this->api_password, $this->api_signature
+            );
+
+            $requestParams = array(
+                'TRANSACTIONID' => $chargeid,
+                'REFUNDTYPE' => 'Full', //Partial
+            );
+            $response = $this->paypal_lib->request('RefundTransaction', $requestParams);
+            return ($response['ACK'] == "Success") ? TRUE : FALSE;
+
             $this->db->update('wi_payment_mst', array('status' => 0), array('invoice_id' => $chargeid));
         } catch (Exception $e) {
             $this->session->set_flashdata('error', $e->getMessage());

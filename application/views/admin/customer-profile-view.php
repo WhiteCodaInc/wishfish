@@ -249,8 +249,9 @@
                                                 <?php endif; ?>
                                             </td>
                                             <td>
+                                                <?php $method = ($value->gateway == "STRIPE") ? "refundStripe" : "refundPaypal"; ?>
                                                 <?php if ($value->status && $value->mc_gross > 0 && $value->invoice_id): ?>
-                                                    <a class="btn btn-primary btn-xs" href="<?= site_url() ?>admin/customers/refund/<?= $customer->user_id ?>/<?= $value->invoice_id ?>">
+                                                    <a class="btn btn-primary btn-xs" href="<?= site_url() ?>admin/customers/<?= $method ?>/<?= $customer->user_id ?>/<?= $value->invoice_id ?>">
                                                         Refund
                                                     </a>
                                                 <?php endif; ?>
