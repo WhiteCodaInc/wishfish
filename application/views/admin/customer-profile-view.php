@@ -230,6 +230,7 @@
                                         <th>Payment Method</th>
                                         <th>Plan</th>
                                         <th>Status</th>
+                                        <th>Refund</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -245,6 +246,13 @@
                                                     <span class="btn btn-success btn-xs">Approved</span>
                                                 <?php else : ?>
                                                     <span class="btn btn-warning btn-xs">Refunded</span>
+                                                <?php endif; ?>
+                                            </td>
+                                            <td>
+                                                <?php if ($value->status && $value->mc_gross > 0 && $value->invoice_id): ?>
+                                                    <a class="btn btn-primary btn-xs" href="<?= site_url() ?>/customers/refund/<?= $value->invoice_id ?>">
+                                                        Refund
+                                                    </a>
                                                 <?php endif; ?>
                                             </td>
                                         </tr>
