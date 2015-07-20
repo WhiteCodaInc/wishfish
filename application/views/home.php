@@ -745,14 +745,19 @@
                                 $('form#personal input[name="coupon"]').val(code);
                             else if (id == "e_coupon")
                                 $('form#enterprise input[name="coupon"]').val(code);
-                            if (data == "1")
+                            if (data == "1") {
                                 $('form#paypal input[name="coupon"]').val(code);
+                            } else {
+                                (id == "p_coupon") ?
+                                        $('#wishfish-personal').hide() :
+                                        $('#wishfish-enterprise').hide();
+                            }
+
                         }
                     }
                 });
             }
         });
-
         var emailV = 1;
         var captchaV = 1;
         var sess_word = "<?= $this->session->userdata('captchaWord') ?>";
@@ -778,7 +783,6 @@
                 emailV = 0;
             }
         });
-
         $('#captcha_word').focusout(function () {
             var word = $(this).val();
             if (word.trim() != "") {
@@ -793,7 +797,6 @@
                 captchaV = 0;
             }
         });
-
         $('#send').click(function () {
             var email = $('#forgotEmail').val();
             if (emailV === 0 || captchaV === 0)
@@ -819,11 +822,9 @@
                         $('#msgSend').empty();
                         $('.close').trigger('click');
                     }, 1000);
-
                 }
             });
         });
-
         $("#refresh").click(function () {
             $(this).css('cursor', 'progress');
             $.ajax({
@@ -838,7 +839,6 @@
                 }
             });
         });
-
         $('a#log,a#reg').click(function () {
             $("html, body").animate({scrollTop: 0}, 1000);
             setTimeout(function () {
@@ -854,7 +854,6 @@
                 $('form.registration').css('display', 'block');
             }
         });
-
         $('.pricing2 a').on('click', function () {
             var id = $(this).prop('id');
             switch (id) {
@@ -890,14 +889,12 @@
                     break;
             }
         });
-
         $('a.cancel').click(function () {
             $('.social-register').css('display', 'none');
             $('.overlay').css('display', 'none');
             $('.sign').css('display', 'none');
         });
-    });
-</script>
+    });</script>
 <script type="text/javascript">
     window.fbAsyncInit = function () {
         //Initiallize the facebook using the facebook javascript sdk
@@ -932,8 +929,7 @@
                 parent.location = url; //redirect uri after closing the facebook popup
             }
         }, {scope: 'email,read_stream,user_birthday,user_photos'}); //permissions for facebook
-    });
-</script>
+    });</script>
 
 <script src="<?= base_url() ?>assets/wow/js/typed.js" type="text/javascript"></script>
 <script src="<?= base_url() ?>assets/wow/js/jquery-contact.js" type="text/javascript"></script>
@@ -954,11 +950,9 @@
                 newTyped();
             }
         });
-
         $(".reset").click(function () {
             $("#typed").typed('reset');
         });
-
     });
     function newTyped() { /* A new typed object */
     }
