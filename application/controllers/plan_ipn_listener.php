@@ -154,10 +154,10 @@ class Plan_ipn_listener extends CI_Controller {
             $cn = 1;
             fwrite($myfile, "-----------{$myPost['txn_type']}-------------- \n");
             foreach ($myPost as $key => $value) {
-                fwrite($myfile, "{$cnt}. {$key} => {$value} \n");
+                fwrite($myfile, "{$cn}. {$key} => {$value} \n");
                 $cn++;
             }
-            fwrite($myfile, "-----------END {$data['txn_type']}-------------- \n");
+            fwrite($myfile, "-----------END {$myPost['txn_type']}-------------- \n");
             $userid = $data['rp_invoice_id'];
             $currPlan = $this->wi_common->getLatestPlan($userid);
             $this->insertPaymentDetail($currPlan->id, $myPost);
