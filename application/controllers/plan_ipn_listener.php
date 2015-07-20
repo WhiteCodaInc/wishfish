@@ -114,8 +114,12 @@ class Plan_ipn_listener extends CI_Controller {
 
         // Inspect IPN validation result and act accordingly
         $myfile = fopen(FCPATH . 'paypal.txt', "a");
-        fwrite($myfile, "-----------REQ : {$req}-------------- \n");
-        fwrite($myfile, "-----------REQ : END-------------- \n");
+//        fwrite($myfile, "-----------{$data['txn_type']}-------------- \n");
+        foreach ($myPost as $key => $value) {
+            fwrite($myfile, "{$key} => {$value} \n");
+        }
+//        fwrite($myfile, "-----------REQ : {$req}-------------- \n");
+//        fwrite($myfile, "-----------REQ : END-------------- \n");
         if (strcmp($res, "VERIFIED") == 0) {
             fwrite($myfile, "-----------VERIFIED IN-------------- \n");
             $data = $this->input->post();
