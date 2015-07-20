@@ -196,6 +196,7 @@ class M_plan_stripe_webhooker extends CI_Model {
 
         $amount = $customer->subscriptions->data[0]->plan->amount / 100;
         $myfile = fopen(FCPATH . 'temp.txt', "a");
+        fwrite($myfile, "CUSTOMER :" . $customer . "\n");
         fwrite($myfile, "AMOUNT :" . $amount . "\n");
         if (isset($customer->metadata->coupon)) {
             $coupon = $this->getCoupon($customer->metadata->coupon);
