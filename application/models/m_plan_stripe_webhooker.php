@@ -160,8 +160,6 @@ class M_plan_stripe_webhooker extends CI_Model {
             $amount = ($coupon->disc_type == "F") ?
                     $amount - $coupon->disc_amount :
                     $amount - ($amount * ($coupon->disc_amount / 100));
-            $customer->metadata = array();
-            $customer->save();
         }
         $plan_set = array(
             'user_id' => $userid,
@@ -204,10 +202,7 @@ class M_plan_stripe_webhooker extends CI_Model {
             $amount = ($coupon->disc_type == "F") ?
                     $amount - $coupon->disc_amount :
                     $amount - ($amount * ($coupon->disc_amount / 100));
-
             fwrite($myfile, "NEW AMT :" . $amount . "\n");
-            $customer->metadata = array();
-            $customer->save();
         } else {
             fwrite($myfile, "COUPON NOT EXIST :" . $coupon . "\n");
         }
