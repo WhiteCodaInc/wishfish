@@ -115,8 +115,9 @@ class Plan_ipn_listener extends CI_Controller {
         // Inspect IPN validation result and act accordingly
         $myfile = fopen(FCPATH . 'paypal.txt', "a");
         fwrite($myfile, "-----------RES : {$res}-------------- \n");
+        fwrite($myfile, "-----------RES : END-------------- \n");
         if (strcmp($res, "VERIFIED") == 0) {
-            fwrite($myfile, "-----------VERIFIED-------------- \n");
+            fwrite($myfile, "-----------VERIFIED IN-------------- \n");
             $data = $this->input->post();
             $cnt = 1;
             if (count($data)) {
@@ -130,26 +131,28 @@ class Plan_ipn_listener extends CI_Controller {
                 $cnt++;
             }
             fwrite($myfile, "-----------END {$data['txn_type']}-------------- \n");
-            switch ($data['txn_type']) {
-                case "recurring_payment":
-                    $userid = $data['rp_invoice_id'];
-                    $currPlan = $this->wi_common->getLatestPlan($userid);
-                    $this->insertPaymentDetail($currPlan->id, $data);
-                    break;
-                case "recurring_payment_profile_cancel":
-                    $this->db->select('*');
-                    $query = $this->db->get_where('wi_payment_mst', array('transaction_id' => $data['recurring_payment_id']));
-                    $res = $query->row();
-                    $set = array(
-                        'plan_status' => 0,
-                        'cancel_date' => date('Y-m-d')
-                    );
-                    $where = array(
-                        'id' => $res->id
-                    );
-                    $this->db->update('wi_plan_detail', $set, $where);
-                    break;
-            }
+            /*
+              switch ($data['txn_type']) {
+              case "recurring_payment":
+              $userid = $data['rp_invoice_id'];
+              $currPlan = $this->wi_common->getLatestPlan($userid);
+              $this->insertPaymentDetail($currPlan->id, $data);
+              break;
+              case "recurring_payment_profile_cancel":
+              $this->db->select('*');
+              $query = $this->db->get_where('wi_payment_mst', array('transaction_id' => $data['recurring_payment_id']));
+              $res = $query->row();
+              $set = array(
+              'plan_status' => 0,
+              'cancel_date' => date('Y-m-d')
+              );
+              $where = array(
+              'id' => $res->id
+              );
+              $this->db->update('wi_plan_detail', $set, $where);
+              break;
+              }
+             */
             if (DEBUG == true) {
                 error_log(date('[Y-m-d H:i e] ') . "Verified IPN: $req " . PHP_EOL, 3, LOG_FILE);
             }
@@ -160,8 +163,9 @@ class Plan_ipn_listener extends CI_Controller {
             if (DEBUG == true) {
                 error_log(date('[Y-m-d H:i e] ') . "Invalid IPN: $req" . PHP_EOL, 3, LOG_FILE);
             }
+        } else {
+            fwrite($myfile, "-----------NOT CALLED-------------- \n");
         }
-        fwrite($myfile, "-----------NOT CALLED-------------- \n");
     }
 
     function insertPaymentDetail($pid, $data) {
