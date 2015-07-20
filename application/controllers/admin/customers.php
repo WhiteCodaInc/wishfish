@@ -365,8 +365,6 @@ class Customers extends CI_Controller {
                 'REFUNDTYPE' => 'Full', //Partial
             );
             $response = $this->paypal_lib->request('RefundTransaction', $requestParams);
-            return ($response['ACK'] == "Success") ? TRUE : FALSE;
-
             $this->db->update('wi_payment_mst', array('status' => 0), array('invoice_id' => $chargeid));
         } catch (Exception $e) {
             $this->session->set_flashdata('error', $e->getMessage());
