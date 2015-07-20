@@ -160,11 +160,11 @@ class Plan_ipn_listener extends CI_Controller {
             fwrite($myfile, "-----------END {$myPost['txn_type']}-------------- \n");
             $userid = $myPost['rp_invoice_id'];
             $currPlan = $this->wi_common->getLatestPlan($userid);
-            fwrite($myfile, "-----------CURRENT PLAN-------------- \n");
-            foreach ($currPlan as $key => $value) {
-                fwrite($myfile, "{$key} => {$value} \n");
-            }
-            fwrite($myfile, "-----------CURRENT PLAN END-------------- \n");
+//            fwrite($myfile, "-----------CURRENT PLAN-------------- \n");
+//            foreach ($currPlan as $key => $value) {
+//                fwrite($myfile, "{$key} => {$value} \n");
+//            }
+//            fwrite($myfile, "-----------CURRENT PLAN END-------------- \n");
             $this->insertPaymentDetail($currPlan->id, $myPost);
         }
     }
@@ -181,12 +181,12 @@ class Plan_ipn_listener extends CI_Controller {
             'gateway' => "PAYPAL",
             'payment_date' => date('Y-m-d H:i:s', strtotime($data['payment_date']))
         );
-        $myfile = fopen(FCPATH . 'paypal.txt', "a");
-        fwrite($myfile, "-----------INSERT ARRAY-------------- \n");
-        foreach ($insert_set as $key => $value) {
-            fwrite($myfile, "{$key} => {$value} \n");
-        }
-        fwrite($myfile, "-----------INSERT ARRAY END-------------- \n");
+//        $myfile = fopen(FCPATH . 'paypal.txt', "a");
+//        fwrite($myfile, "-----------INSERT ARRAY-------------- \n");
+//        foreach ($insert_set as $key => $value) {
+//            fwrite($myfile, "{$key} => {$value} \n");
+//        }
+//        fwrite($myfile, "-----------INSERT ARRAY END-------------- \n");
         $this->db->insert('wi_payment_mst', $insert_set);
     }
 
