@@ -71,7 +71,7 @@ class Paypal extends CI_Controller {
             );
 
             $coupon = $this->objregister->checkCoupon($code);
-            if ($coupon && $coupon->coupon_validity != '3') {
+            if (!empty($coupon) && $coupon->coupon_validity != '3') {
                 $requestParams['TRIALBILLINGPERIOD'] = 'Month';
                 $requestParams['TRIALBILLINGFREQUENCY'] = 1;
                 $amt = ($coupon->disc_type == "F") ?
