@@ -53,7 +53,7 @@
         $lbl = ($test) ? "disable" : "enable";
         $clr = ($test) ? "btn-danger" : "bg-maroon";
         ?>
-        <a href="<?= site_url() ?>admin/admin/customers/<?= $lbl ?>Testmode/<?= $customer->user_id ?>" class="create btn <?= $clr ?>">
+        <a href="<?= site_url() ?>admin/customers/<?= $lbl ?>Testmode/<?= $customer->user_id ?>" class="create btn <?= $clr ?>">
             <?= ucfirst($lbl) ?> Test mode
         </a>
     </section>
