@@ -48,6 +48,14 @@
         <a href="#" class="create btn bg-green" data-toggle="modal" data-target="#charge-modal">
             Manually Charge User
         </a>
+        <?php
+        $test = $customer->testmode;
+        $lbl = ($test) ? "disable" : "enable";
+        $clr = ($test) ? "bg-maroon" : "btn-danger";
+        ?>
+        <a href="<?= site_url() ?>admin/admin/customers/<?= $lbl ?>Testmode/<?= $customer->user_id ?>" class="create btn <?= $color ?>">
+            <?= ucfirst($lbl) ?> Test mode
+        </a>
     </section>
     <?php
     $img_src = ($customer->profile_pic != "") ?

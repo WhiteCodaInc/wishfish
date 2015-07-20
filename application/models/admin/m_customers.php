@@ -179,6 +179,16 @@ class M_customers extends CI_Model {
         return true;
     }
 
+    function enableTestmode($uid) {
+        $this->db->update('wi_user_mst', array('testmode' => 1), array('user_id' => $uid));
+        return true;
+    }
+
+    function disableTestmode($uid) {
+        $this->db->update('wi_user_mst', array('testmode' => 0), array('user_id' => $uid));
+        return true;
+    }
+
     function updateCustomerNotification() {
         $this->db->where('notification', 1);
         $this->db->update('wi_user_mst', array('notification' => 0));

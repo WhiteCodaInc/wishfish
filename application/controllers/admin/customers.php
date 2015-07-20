@@ -143,6 +143,24 @@ class Customers extends CI_Controller {
         }
     }
 
+    function enableTestmode($uid = NULL) {
+        if ($uid != NULL) {
+            $this->objcustomer->enableTestmode($uid);
+            header('location:' . site_url() . 'admin/customers/profile/' . $uid);
+        } else {
+            header('location:' . site_url() . 'admin/customers');
+        }
+    }
+
+    function disableTestmode($uid = NULL) {
+        if ($uid != NULL) {
+            $this->objcustomer->disableTestmode($uid);
+            header('location:' . site_url() . 'admin/customers/profile/' . $uid);
+        } else {
+            header('location:' . site_url() . 'admin/customers');
+        }
+    }
+
     function updateCustomerNotification() {
         $this->objcustomer->updateCustomerNotification();
     }
