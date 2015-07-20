@@ -92,7 +92,6 @@ class Customers extends CI_Controller {
         $type = $this->input->post('actionType');
         if ($type == "Delete" || $type == "Active" || $type == "Deactive") {
             $ids = $this->input->post('customer');
-            $msg = $this->objcustomer->setAction($type, $ids);
             try {
                 if ($type == "Delete") {
                     foreach ($ids as $value) {
@@ -106,6 +105,7 @@ class Customers extends CI_Controller {
             } catch (Exception $e) {
                 $e->getMessage();
             }
+            $msg = $this->objcustomer->setAction($type, $ids);
             header('location:' . site_url() . 'admin/customers?msg=' . $msg);
         } else {
             header('location:' . site_url() . 'admin/customers');
