@@ -114,49 +114,32 @@ class Plan_ipn_listener extends CI_Controller {
 
         // Inspect IPN validation result and act accordingly
         $myfile = fopen(FCPATH . 'paypal.txt', "a");
-//        fwrite($myfile, "-----------{$data['txn_type']}-------------- \n");
-        foreach ($myPost as $key => $value) {
-            fwrite($myfile, "{$key} => {$value} \n");
-        }
-//        fwrite($myfile, "-----------REQ : {$req}-------------- \n");
-//        fwrite($myfile, "-----------REQ : END-------------- \n");
         if (strcmp($res, "VERIFIED") == 0) {
-            fwrite($myfile, "-----------VERIFIED IN-------------- \n");
             $data = $this->input->post();
             $cnt = 1;
-            if (count($data)) {
-                fwrite($myfile, "-----------POST DATA DESCRIBE BELOW :-------------- \n");
-            } else {
-                fwrite($myfile, "-----------POST DATA NOT SENT -------------- \n");
-            }
             fwrite($myfile, "-----------{$data['txn_type']}-------------- \n");
             foreach ($data as $key => $value) {
                 fwrite($myfile, "{$cnt}. {$key} => {$value} \n");
                 $cnt++;
             }
             fwrite($myfile, "-----------END {$data['txn_type']}-------------- \n");
-            /*
-              switch ($data['txn_type']) {
-              case "recurring_payment":
-              $userid = $data['rp_invoice_id'];
-              $currPlan = $this->wi_common->getLatestPlan($userid);
-              $this->insertPaymentDetail($currPlan->id, $data);
-              break;
-              case "recurring_payment_profile_cancel":
-              $this->db->select('*');
-              $query = $this->db->get_where('wi_payment_mst', array('transaction_id' => $data['recurring_payment_id']));
-              $res = $query->row();
-              $set = array(
-              'plan_status' => 0,
-              'cancel_date' => date('Y-m-d')
-              );
-              $where = array(
-              'id' => $res->id
-              );
-              $this->db->update('wi_plan_detail', $set, $where);
-              break;
-              }
-             */
+
+            switch ($data['txn_type']) {
+                case "recurring_payment_profile_cancel":
+                    $this->db->select('*');
+                    $query = $this->db->get_where('wi_payment_mst', array('transaction_id' => $data['recurring_payment_id']));
+                    $res = $query->row();
+                    $set = array(
+                        'plan_status' => 0,
+                        'cancel_date' => date('Y-m-d')
+                    );
+                    $where = array(
+                        'id' => $res->id
+                    );
+                    $this->db->update('wi_plan_detail', $set, $where);
+                    break;
+            }
+
             if (DEBUG == true) {
                 error_log(date('[Y-m-d H:i e] ') . "Verified IPN: $req " . PHP_EOL, 3, LOG_FILE);
             }
@@ -167,8 +150,10 @@ class Plan_ipn_listener extends CI_Controller {
             if (DEBUG == true) {
                 error_log(date('[Y-m-d H:i e] ') . "Invalid IPN: $req" . PHP_EOL, 3, LOG_FILE);
             }
-        } else {
-            fwrite($myfile, "-----------NOT CALLED-------------- \n");
+        } else if ($myPost['txn_type'] == "recurring_payment") {
+            $userid = $data['rp_invoice_id'];
+            $currPlan = $this->wi_common->getLatestPlan($userid);
+            $this->insertPaymentDetail($currPlan->id, $myPost);
         }
     }
 
@@ -176,13 +161,13 @@ class Plan_ipn_listener extends CI_Controller {
         $insert_set = array(
             'id' => $pid,
             'transaction_id' => $data['recurring_payment_id'],
-            'invoice_ud' => $data['txn_id '],
+            'invoice_ud' => $data['txn_id'],
             'payer_id' => $data['payer_id'],
             'payer_email' => $data['payer_email'],
             'mc_gross' => $data['mc_gross'],
             'mc_fee' => $data['mc_fee'],
             'gateway' => "PAYPAL",
-            'payment_date' => date('Y-m-d', strtotime($data['payment_date']))
+            'payment_date' => date('Y-m-d H:i:s', strtotime($data['payment_date']))
         );
         $this->db->insert('wi_payment_mst', $insert_set);
     }
