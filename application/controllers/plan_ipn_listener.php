@@ -113,10 +113,11 @@ class Plan_ipn_listener extends CI_Controller {
         }
 
         // Inspect IPN validation result and act accordingly
-
+        $myfile = fopen(FCPATH . 'paypal.txt', "a");
+        fwrite($myfile, "-----------RES : {$res}-------------- \n");
         if (strcmp($res, "VERIFIED") == 0) {
+            fwrite($myfile, "-----------VERIFIED-------------- \n");
             $data = $this->input->post();
-            $myfile = fopen(FCPATH . 'paypal.txt', "a");
             $cnt = 1;
             if (count($data)) {
                 fwrite($myfile, "-----------POST DATA DESCRIBE BELOW :-------------- \n");
@@ -153,12 +154,14 @@ class Plan_ipn_listener extends CI_Controller {
                 error_log(date('[Y-m-d H:i e] ') . "Verified IPN: $req " . PHP_EOL, 3, LOG_FILE);
             }
         } else if (strcmp($res, "INVALID") == 0) {
+            fwrite($myfile, "-----------INVALID-------------- \n");
             // log for manual investigation
             // Add business logic here which deals with invalid IPN messages
             if (DEBUG == true) {
                 error_log(date('[Y-m-d H:i e] ') . "Invalid IPN: $req" . PHP_EOL, 3, LOG_FILE);
             }
         }
+        fwrite($myfile, "-----------NOT CALLED-------------- \n");
     }
 
     function insertPaymentDetail($pid, $data) {
