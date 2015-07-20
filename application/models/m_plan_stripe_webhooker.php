@@ -155,7 +155,14 @@ class M_plan_stripe_webhooker extends CI_Model {
         $startDt = date('Y-m-d', $customer->subscriptions->data[0]->current_period_start);
         $endDt = date('Y-m-d', $customer->subscriptions->data[0]->current_period_end);
 
-
+        if (isset($customer->metadata->coupon)) {
+            $coupon = $this->getCoupon($customer->metadata->coupon);
+            $amount = ($coupon->disc_type == "F") ?
+                    $amount - $coupon->disc_amount :
+                    $amount - ($amount * ($coupon->disc_amount / 100));
+            $customer->metadata = array();
+            $customer->save();
+        }
         $plan_set = array(
             'user_id' => $userid,
             'plan_id' => $planid,
@@ -188,6 +195,16 @@ class M_plan_stripe_webhooker extends CI_Model {
         unlink(FCPATH . 'charge');
 
         $amount = $customer->subscriptions->data[0]->plan->amount / 100;
+
+        if (isset($customer->metadata->coupon)) {
+            $coupon = $this->getCoupon($customer->metadata->coupon);
+            $amount = ($coupon->disc_type == "F") ?
+                    $amount - $coupon->disc_amount :
+                    $amount - ($amount * ($coupon->disc_amount / 100));
+            $customer->metadata = array();
+            $customer->save();
+        }
+
         $insert_set = array(
             'id' => $pid,
             'transaction_id' => $customer->subscriptions->data[0]->id,
@@ -210,6 +227,14 @@ class M_plan_stripe_webhooker extends CI_Model {
         } catch (Exception $e) {
             return FALSE;
         }
+    }
+
+    function getCoupon($code) {
+        $where = array(
+            'coupon_code' => $code
+        );
+        $query = $this->db->get_where('coupons', $where);
+        return $query->num_rows();
     }
 
     function sendMail($post, $userid) {
