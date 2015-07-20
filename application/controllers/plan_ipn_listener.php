@@ -173,7 +173,7 @@ class Plan_ipn_listener extends CI_Controller {
         $insert_set = array(
             'id' => $pid,
             'transaction_id' => $data['recurring_payment_id'],
-            'invoice_ud' => $data['txn_id'],
+            'invoice_id' => $data['txn_id'],
             'payer_id' => $data['payer_id'],
             'payer_email' => $data['payer_email'],
             'mc_gross' => $data['mc_gross'],
