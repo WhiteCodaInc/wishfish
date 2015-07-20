@@ -41,10 +41,12 @@ class Stripe_payment extends CI_Controller {
                     $stripe = array(
                         "card" => $this->input->post('stripeToken'),
                         "email" => $this->input->post('stripeEmail'),
-                        "metadata" => array(),
                         "plan" => $set['plan']
                     );
-                    ($set['coupon'] != "") ? $stripe['coupon'] = $set['coupon'] : '';
+                    if ($set['coupon'] != "") {
+                        $stripe['coupon'] = $set['coupon'];
+                        $stripe["metadata"] = array('coupon' => $set['coupon']);
+                    }
                     $customer = Stripe_Customer::create($stripe);
                     if ($set['coupon'] != "")
                         $this->objregister->updateCoupon($set['coupon']);
