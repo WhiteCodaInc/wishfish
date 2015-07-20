@@ -568,11 +568,11 @@
                                 <?php if ($plan->plan_id != 1): ?>
                                     <a href="javascript:void(0);" id="<?= $pname ?>" class="btn btn-primary">Sign Up With Paypal</a>
                                     <div id="<?= $couponbox ?>">
-                                        <p class="link" style="padding: 55px;line-height: 3">
+                                        <p class="link" style="text-align: center">
                                             Have you a coupon code? 
                                             <a href="javascript:void(0);" class="coupon">Click Here</a>
                                         </p>
-                                        <p style="padding: 0 37px;color:green;display: none;line-height: 3" class="success"></p>
+                                        <p style="text-align: center;color:green;display: none;" class="success"></p>
                                         <div class="row couponbox" style="padding: 10px;display: none">
                                             <div class="col-md-9">
                                                 <input style="height: 35px" type="text" class="form-control couponcode" placeholder="Coupon Code" />
