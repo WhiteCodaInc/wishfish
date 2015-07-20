@@ -26,13 +26,13 @@ class Dashboard extends CI_Controller {
             header('location:' . site_url() . 'admin/admin_login');
         } else {
             $this->load->model('admin/m_admin_calender', 'objcal');
-            $this->load->model('admin/m_customers', 'objcustomer');
+            $this->load->model('admin/m_admin_dashboard', 'objdashboard');
         }
     }
 
     function index() {
         $data['card'] = $this->objcal->getCards();
-        $data['customers'] = $this->objcustomer->getCustomerDetail();
+        $data['customers'] = $this->objdashboard->getLoginUsers();
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');

@@ -24,7 +24,8 @@ class Wi_authex {
              * were not found in the databse */
             return FALSE;
         } else if ($query->row()->status) {
-            $last_login = date("Y-m-d H-i-s");
+//            $last_login = date("Y-m-d H-i-s");
+            $last_login = $this->_CI->wi_common->getUTCDateWithTime($query->row()->timezones);
             $data = array(
                 "is_login" => 1,
                 "last_login" => $last_login

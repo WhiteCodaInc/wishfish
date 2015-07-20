@@ -100,7 +100,7 @@
                                     <th>Email</th>
                                     <th>Phone</th>
                                     <th>Plan</th>
-                                    <th>Join Date & Time</th>
+                                    <th>Login Date & Time</th>
                                     <th>Status</th>
                                 </tr>
                             </thead>
@@ -131,7 +131,7 @@
                                             ?>
                                         </td>
                                         <td><?= $value->plan_name ?></td>
-                                        <td><?= date('m-d-Y H:i:s', strtotime($value->register_date)) ?></td>
+                                        <td><?= date('m-d-Y H:i:s', strtotime($value->last_login)) ?></td>
                                         <td>
                                             <?php if ($value->status): ?>
                                                 <span class="btn btn-success btn-xs">Active</span>
