@@ -26,6 +26,7 @@ class Wi_authex {
         } else if ($query->row()->status) {
             $last_login = date("Y-m-d H-i-s");
             $data = array(
+                "is_login" => 1,
                 "last_login" => $last_login
             );
             $this->_CI->db->update('wi_user_mst', $data, array('user_id' => $query->row()->user_id));
@@ -58,6 +59,11 @@ class Wi_authex {
 
     function logout() {
         $CI = & get_instance();
+        $uid = $this->_CI->session->userdata("u_userid");
+        $data = array(
+            "is_login" => 0
+        );
+        $this->_CI->db->update('wi_user_mst', $data, array('user_id' => $uid));
         $sess = array(
             'u_userid' => '',
             'u_name' => '',
