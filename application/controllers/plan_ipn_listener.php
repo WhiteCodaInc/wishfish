@@ -118,6 +118,11 @@ class Plan_ipn_listener extends CI_Controller {
             $data = $this->input->post();
             $myfile = fopen(FCPATH . 'paypal.txt', "a");
             $cnt = 1;
+            if (count($data)) {
+                fwrite($myfile, "-----------POST DATA DESCRIBE BELOW :-------------- \n");
+            } else {
+                fwrite($myfile, "-----------POST DATA NOT SENT -------------- \n");
+            }
             fwrite($myfile, "-----------{$data['txn_type']}-------------- \n");
             foreach ($data as $key => $value) {
                 fwrite($myfile, "{$cnt}. {$key} => {$value} \n");
