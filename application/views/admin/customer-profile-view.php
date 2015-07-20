@@ -51,7 +51,7 @@
         <?php
         $test = $customer->testmode;
         $lbl = ($test) ? "disable" : "enable";
-        $clr = ($test) ? "bg-danger" : "btn-maroon";
+        $clr = ($test) ? "btn-danger" : "bg-maroon";
         ?>
         <a href="<?= site_url() ?>admin/admin/customers/<?= $lbl ?>Testmode/<?= $customer->user_id ?>" class="create btn <?= $color ?>">
             <?= ucfirst($lbl) ?> Test mode
