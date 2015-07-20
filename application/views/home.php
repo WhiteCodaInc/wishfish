@@ -568,11 +568,11 @@
                                 <?php if ($plan->plan_id != 1): ?>
                                     <a href="javascript:void(0);" id="<?= $pname ?>" class="btn btn-primary">Sign Up With Paypal</a>
                                     <div id="<?= $couponbox ?>">
-                                        <span class="link" style="padding: 55px;line-height: 3">
+                                        <p class="link" style="padding: 55px;line-height: 3">
                                             Have you a coupon code? 
                                             <a href="javascript:void(0);" class="coupon">Click Here</a>
-                                        </span>
-                                        <span style="padding: 0 37px;color:green;display: none;line-height: 3" class="success"></span>
+                                        </p>
+                                        <p style="padding: 0 37px;color:green;display: none;line-height: 3" class="success"></p>
                                         <div class="row couponbox" style="padding: 10px;display: none">
                                             <div class="col-md-9">
                                                 <input style="height: 35px" type="text" class="form-control couponcode" placeholder="Coupon Code" />
@@ -739,8 +739,8 @@
                         } else {
                             couponCode = code;
                             $('#' + id + ' div.couponbox').hide();
-                            $('#' + id + ' span.success').html("Coupon <b style='color:#1ac6ff'>" + code + "</b> was apply successfully..!");
-                            $('#' + id + ' span.success').show();
+                            $('#' + id + ' p.success').html("Coupon <b style='color:#1ac6ff'>" + code + "</b> was apply successfully..!");
+                            $('#' + id + ' p.success').show();
                             if (id == "p_coupon")
                                 $('form#personal input[name="coupon"]').val(code);
                             else if (id == "e_coupon")
