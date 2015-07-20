@@ -193,20 +193,13 @@ class M_plan_stripe_webhooker extends CI_Model {
         unlink(FCPATH . 'charge');
 
         $amount = $customer->subscriptions->data[0]->plan->amount / 100;
-        $myfile = fopen(FCPATH . 'temp.txt', "a");
-        fwrite($myfile, "CUSTOMER :" . $customer . "\n");
-        fwrite($myfile, "AMOUNT :" . $amount . "\n");
+
         if (isset($customer->metadata->coupon)) {
             $coupon = $this->getCoupon($customer->metadata->coupon);
-            fwrite($myfile, "COUPON EXIST :" . $coupon . "\n");
             $amount = ($coupon->disc_type == "F") ?
                     $amount - $coupon->disc_amount :
                     $amount - ($amount * ($coupon->disc_amount / 100));
-            fwrite($myfile, "NEW AMT :" . $amount . "\n");
-        } else {
-            fwrite($myfile, "COUPON NOT EXIST :" . $coupon . "\n");
         }
-
         $insert_set = array(
             'id' => $pid,
             'transaction_id' => $customer->subscriptions->data[0]->id,
@@ -214,7 +207,7 @@ class M_plan_stripe_webhooker extends CI_Model {
             'payer_id' => $customer->id,
             'payer_email' => $customer->email,
             'mc_gross' => $amount,
-            'mc_fee' => ($amount * 0.029) + 0.30,
+            'mc_fee' => ($amount != 0) ? ($amount * 0.029) + 0.30 : 0,
             'gateway' => "STRIPE",
             'payment_date' => date('Y-m-d', $customer->subscriptions->data[0]->current_period_start)
         );
