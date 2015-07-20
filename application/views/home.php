@@ -732,25 +732,21 @@
                     data: {code: code},
                     url: "<?= site_url() ?>home/checkCoupon",
                     success: function (data, textStatus, jqXHR) {
-                        if (data == "1") {
+                        if (data == "0") {
+                            $('#' + id + ' button').show();
+                            $('#' + id + ' img').hide();
+                            $('#' + id + ' .msgCoupon').text("Coupon Code is Invalid..!");
+                        } else {
                             couponCode = code;
                             $('#' + id + ' div.couponbox').hide();
                             $('#' + id + ' span.success').html("Coupon <b style='color:#1ac6ff'>" + code + "</b> was apply successfully..!");
                             $('#' + id + ' span.success').show();
-                            $('form#paypal input[name="coupon"]').val(code);
                             if (id == "p_coupon")
                                 $('form#personal input[name="coupon"]').val(code);
                             else if (id == "e_coupon")
                                 $('form#enterprise input[name="coupon"]').val(code);
-                        } else if (data == "2") {
-                            if (id == "p_coupon")
-                                $('form#personal #wishfish-personal').hide();
-                            else if (id == "e_coupon")
-                                $('form#personal #wishfish-enterprise').hide();
-                        } else {
-                            $('#' + id + ' button').show();
-                            $('#' + id + ' img').hide();
-                            $('#' + id + ' .msgCoupon').text("Coupon Code is Invalid..!");
+                            if (data == "1")
+                                $('form#paypal input[name="coupon"]').val(code);
                         }
                     }
                 });
