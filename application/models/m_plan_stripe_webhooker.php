@@ -236,7 +236,7 @@ class M_plan_stripe_webhooker extends CI_Model {
             'coupon_code' => $code
         );
         $query = $this->db->get_where('coupons', $where);
-        return $query->num_rows();
+        return $query->row();
     }
 
     function sendMail($post, $userid) {
