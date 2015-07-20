@@ -195,14 +195,20 @@ class M_plan_stripe_webhooker extends CI_Model {
         unlink(FCPATH . 'charge');
 
         $amount = $customer->subscriptions->data[0]->plan->amount / 100;
-
+        $myfile = fopen(FCPATH . 'temp.txt', "a");
+        fwrite($myfile, "AMOUNT :" . $amount . "\n");
         if (isset($customer->metadata->coupon)) {
             $coupon = $this->getCoupon($customer->metadata->coupon);
+            fwrite($myfile, "COUPON EXIST :" . $coupon . "\n");
             $amount = ($coupon->disc_type == "F") ?
                     $amount - $coupon->disc_amount :
                     $amount - ($amount * ($coupon->disc_amount / 100));
+
+            fwrite($myfile, "NEW AMT :" . $amount . "\n");
             $customer->metadata = array();
             $customer->save();
+        } else {
+            fwrite($myfile, "COUPON NOT EXIST :" . $coupon . "\n");
         }
 
         $insert_set = array(
