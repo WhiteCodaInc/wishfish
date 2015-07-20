@@ -236,7 +236,7 @@
                                 <tbody>
                                     <?php foreach ($phistory as $value) { ?>
                                         <tr>
-                                            <td><?= date('m-d-Y', strtotime($value->payment_date)) ?></td>
+                                            <td><?= date('m-d-Y H:i:s', strtotime($value->payment_date)) ?></td>
                                             <td>$ <?= $value->mc_gross ?></td>
                                             <td><?= ($value->invoice_id) ? $value->invoice_id : "N/A" ?></td>
                                             <td><?= $value->gateway ?></td>
