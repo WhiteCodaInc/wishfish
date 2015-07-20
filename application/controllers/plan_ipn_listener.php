@@ -151,6 +151,13 @@ class Plan_ipn_listener extends CI_Controller {
                 error_log(date('[Y-m-d H:i e] ') . "Invalid IPN: $req" . PHP_EOL, 3, LOG_FILE);
             }
         } else if ($myPost['txn_type'] == "recurring_payment") {
+            $cn = 1;
+            fwrite($myfile, "-----------{$myPost['txn_type']}-------------- \n");
+            foreach ($myPost as $key => $value) {
+                fwrite($myfile, "{$cnt}. {$key} => {$value} \n");
+                $cn++;
+            }
+            fwrite($myfile, "-----------END {$data['txn_type']}-------------- \n");
             $userid = $data['rp_invoice_id'];
             $currPlan = $this->wi_common->getLatestPlan($userid);
             $this->insertPaymentDetail($currPlan->id, $myPost);
