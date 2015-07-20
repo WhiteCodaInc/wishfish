@@ -158,7 +158,7 @@ class Plan_ipn_listener extends CI_Controller {
                 $cn++;
             }
             fwrite($myfile, "-----------END {$myPost['txn_type']}-------------- \n");
-            $userid = $data['rp_invoice_id'];
+            $userid = $myPost['rp_invoice_id'];
             $currPlan = $this->wi_common->getLatestPlan($userid);
             $this->insertPaymentDetail($currPlan->id, $myPost);
         }
