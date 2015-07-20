@@ -742,6 +742,11 @@
                                 $('form#personal input[name="coupon"]').val(code);
                             else if (id == "e_coupon")
                                 $('form#enterprise input[name="coupon"]').val(code);
+                        } else if (data == "2") {
+                            if (id == "p_coupon")
+                                $('form#personal #wishfish-personal').hide();
+                            else if (id == "e_coupon")
+                                $('form#personal #wishfish-enterprise').hide();
                         } else {
                             $('#' + id + ' button').show();
                             $('#' + id + ' img').hide();

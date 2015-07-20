@@ -61,7 +61,14 @@ class Home extends CI_Controller {
 
     function checkCoupon() {
         $code = $this->input->post('code');
-        echo ($this->objregister->checkCoupon($code)) ? 1 : 0;
+        $coupon = $this->objregister->checkCoupon($code);
+        if (!$coupon) {
+            echo 0;
+        } else if ($coupon->disc_type == "P" && $coupon->disc_amount == 100.00) {
+            echo 2;
+        } else {
+            echo 1;
+        }
     }
 
     function checkEmail() {

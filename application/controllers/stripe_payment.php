@@ -27,10 +27,10 @@ class Stripe_payment extends CI_Controller {
 
     function pay() {
         $success = 0;
-        $flag = TRUE;
+        $flag = 1;
         $set = $this->input->post();
         if ($set['coupon'] != "") {
-            $flag = ($this->objregister->checkCoupon($set['coupon'])) ? TRUE : FALSE;
+            $flag = $this->objregister->checkCoupon($set['coupon']);
         }
         if ($flag) {
             $gatewayInfo = $this->wi_common->getPaymentGatewayInfo("STRIPE");
