@@ -31,9 +31,9 @@ class M_analytics extends CI_Model {
         $this->db->join('wi_user_mst as U', 'PD.user_id = U.user_id');
         $this->db->where($where);
         $query = $this->db->get();
-//        echo '<pre>';
-//        print_r($query->result());
-//        die();
+        echo '<pre>';
+        print_r($query->result());
+        die();
         return $query->result();
     }
 
