@@ -22,22 +22,23 @@
             <div class="col-md-8">
                 <div class="box" >
                     <div class="box-header" style="margin: 20px 10px;">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="input-group input-large input-daterange" >
-                                    <input type="text" na class="form-control" placeholder="Select Start Date" id="from">
-                                    <span class="input-group-addon">To</span>
-                                    <input type="text" class="form-control" placeholder="Select End Date" id="to">
+                        <form action="<?= site_url() ?>/admin/analytics/getPayments" method="post">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="input-group input-large input-daterange" >
+                                        <input type="text" na class="form-control" placeholder="Select Start Date" id="from">
+                                        <span class="input-group-addon">To</span>
+                                        <input type="text" class="form-control" placeholder="Select End Date" id="to">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="submit" class="btn btn-success">Search</button>
                                 </div>
                             </div>
-                            <div class="col-md-2">
-                                <button id="search" type="button" class="btn btn-success">Search</button>
-                            </div>
-                        </div>
+                        </form>`
                     </div><!-- /.box-header -->
-
                     <div class="box-body table-responsive" id="data-panel">
-                        <table class="table table-bordered table-striped">
+                        <table id="payment-data-table" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th>Payment Date </th>
@@ -46,6 +47,13 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php foreach ($phistory as $value) { ?>
+                                    <tr>
+                                        <td><?= date('m-d-Y', strtotime($value->pdate)) ?></td>
+                                        <td><?= $value->totalP ?></td>
+                                        <td><?= number_format($value->totalA, 2) ?></td>
+                                    </tr>
+                                <?php } ?>
                             </tbody>
                             <tfoot>
                                 <tr>
@@ -83,41 +91,41 @@
     $(document).ready(function () {
 //        var oTable;
 //        function datatable() {
-//            oTable = $("#payment-data-table").dataTable({
-//                order: [],
-////                bDestroy: true,
-//                aLengthMenu: [
-//                    [10, 25, 50, 100, -1],
-//                    [10, 25, 50, 100, "All"]
-//                ],
-//                aoColumnDefs: [{
-//                        targets: 'no-sort',
-//                        bSortable: false,
-//                        aTargets: [0, 1, 2]
-//                    }],
-//                iDisplayLength: 10,
-//            });
+        oTable = $("#payment-data-table").dataTable({
+            order: [],
+//                bDestroy: true,
+            aLengthMenu: [
+                [10, 25, 50, 100, -1],
+                [10, 25, 50, 100, "All"]
+            ],
+            aoColumnDefs: [{
+                    targets: 'no-sort',
+                    bSortable: false,
+                    aTargets: [0, 1, 2]
+                }],
+            iDisplayLength: 10,
+        });
 //        }
 //        datatable();
-        $('#search').click(function () {
-            $('.overlay').show();
-            $('.loading-img').show();
-            var from = $('#from').val();
-            var to = $('#to').val();
-            $.ajax({
-                type: 'POST',
-                data: {from: from, to: to},
-                url: "<?= site_url() ?>admin/analytics/getPayments",
-                success: function (data, textStatus, jqXHR) {
-                    $('.overlay').hide();
-                    $('.loading-img').hide();
-//                    oTable.fnDestroy();
-                    $('#data-panel').empty();
-                    $('#data-panel').html(data);
-//                    datatable();
-//                    oTable.fnDraw();
-                }
-            });
-        });
+//        $('#search').click(function () {
+//            $('.overlay').show();
+//            $('.loading-img').show();
+//            var from = $('#from').val();
+//            var to = $('#to').val();
+//            $.ajax({
+//                type: 'POST',
+//                data: {from: from, to: to},
+//                url: "<?= site_url() ?>admin/analytics/getPayments",
+//                success: function (data, textStatus, jqXHR) {
+//                    $('.overlay').hide();
+//                    $('.loading-img').hide();
+////                    oTable.fnDestroy();
+//                    $('#data-panel').empty();
+//                    $('#data-panel').html(data);
+////                    datatable();
+////                    oTable.fnDraw();
+//                }
+//            });
+//        });
     });
 </script>
