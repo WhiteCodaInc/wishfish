@@ -284,7 +284,7 @@ $img_src = ($avatar != "") ?
                     </a>
                     <ul class="treeview-menu">
                         <li>
-                            <a href="#">
+                            <a href="<?= site_url() ?>admin/analytics">
                                 <i class="fa fa-angle-double-right"></i> <span>Total Payment</span>
                             </a>
                         </li>
