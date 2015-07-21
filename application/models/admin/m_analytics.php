@@ -24,7 +24,7 @@ class M_analytics extends CI_Model {
             'DATE(payment_date) >=' => $this->common->getMySqlDate($post['from'], "mm-dd-yyyy"),
             'DATE(payment_date) <=' => $this->common->getMySqlDate($post['to'], "mm-dd-yyyy"),
             'testmode' => 0,
-            'status' => 1
+            'P.status' => 1
         );
 
         $this->db->select('DATE(payment_date) as pdate,count(*) as totalP,sum(mc_gross) as totalA', FALSE);
@@ -42,7 +42,7 @@ class M_analytics extends CI_Model {
         $where = array(
             'DATE(payment_date) =' => $post['pdate'],
             'testmode' => 0,
-            'status' => 1
+            'P.status' => 1
         );
         $this->db->select('U.user_id,name,email,plan_name,P.gateway,mc_gross');
         $this->db->from('wi_payment_mst as P');
