@@ -276,6 +276,20 @@ $img_src = ($avatar != "") ?
                         <i class="fa fa-angle-double-right"></i> <span>Coupons</span>
                     </a>
                 </li>
+                <li class="treeview" id="15">
+                    <a href="#">
+                        <i class="fa fa-wrench"></i>
+                        <span>Analytics</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-angle-double-right"></i> <span>Total Payment</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
             <script type="text/javascript">
                 $(document).ready(function () {
