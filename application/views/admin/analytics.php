@@ -87,7 +87,7 @@
         function datatable() {
             oTable = $("#payment-data-table").dataTable({
                 order: [],
-                bDestroy: true,
+//                bDestroy: true,
                 aLengthMenu: [
                     [10, 25, 50, 100, -1],
                     [10, 25, 50, 100, "All"]
@@ -95,7 +95,7 @@
                 aoColumnDefs: [{
                         targets: 'no-sort',
                         bSortable: false,
-//                        aTargets: [0, 1, 2]
+                        aTargets: [0, 1, 2]
                     }],
                 iDisplayLength: 10,
             });
