@@ -73,18 +73,6 @@
 <!-- page script -->
 <script type="text/javascript">
     $(function () {
-        oTable = $("#payment-data-table").dataTable({
-            aLengthMenu: [
-                [10, 25, 50, 100, -1],
-                [10, 25, 50, 100, "All"]
-            ],
-            aoColumnDefs: [{
-                    targets: 'no-sort',
-                    bSortable: false,
-                    aTargets: [0, 1, 2]
-                }],
-            iDisplayLength: 10,
-        });
         $('.input-daterange').datepicker({
             format: "mm-dd-yyyy",
             todayBtn: "linked",
@@ -94,7 +82,21 @@
     });</script>
 <script type="text/javascript">
     $(document).ready(function () {
-
+        function datatable() {
+            oTable = $("#payment-data-table").dataTable({
+                aLengthMenu: [
+                    [10, 25, 50, 100, -1],
+                    [10, 25, 50, 100, "All"]
+                ],
+                aoColumnDefs: [{
+                        targets: 'no-sort',
+                        bSortable: false,
+                        aTargets: [0, 1, 2]
+                    }],
+                iDisplayLength: 10,
+            }).fnDraw();
+        }
+        datatable();
         $('#search').click(function () {
             $('.overlay').show();
             $('.loading-img').show();
@@ -108,7 +110,7 @@
                     $('.overlay').hide();
                     $('.loading-img').hide();
                     $('#payment-data-table tbody').html(data);
-//                    oTable.fnDraw();
+                    datatable();
                 }
             });
         });
