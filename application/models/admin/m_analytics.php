@@ -56,18 +56,35 @@ class M_analytics extends CI_Model {
     }
 
     function getTotalUser($post) {
+        $from = $this->common->getMySqlDate($post['from'], "mm-dd-yyyy");
+        $to = $this->common->getMySqlDate($post['to'], "mm-dd-yyyy");
+        $d1 = date_create($from);
+        $d2 = date_create($to);
+        echo date_diff($d2, $d1)->format('%a');
 
-        $where = array(
-            'DATE(register_date) >=' => $this->common->getMySqlDate($post['from'], "mm-dd-yyyy"),
-            'DATE(register_date) <=' => $this->common->getMySqlDate($post['to'], "mm-dd-yyyy"),
-            'testmode' => 0
-        );
-        $this->db->where($where);
-        $query = $this->db->get_where('wi_user_mst');
-        $res = $query->result();
-        echo '<pre>';
-        print_r($res);
-        die();
+
+//        $where = array(
+//            'DATE(P.register_date) >=' => $this->common->getMySqlDate($post['from'], "mm-dd-yyyy"),
+//            'DATE(P.register_date) <=' => $this->common->getMySqlDate($post['to'], "mm-dd-yyyy"),
+//            'testmode' => 0,
+//        );
+//        $this->db->select('id,P.user_id,plan_id,plan_status,is_lifetime,expiry_date,P.register_date');
+//        $this->db->from('wi_plan_detail');
+//        $this->db->join('wi_user_mst as U', 'P.iser_id = U.user_id');
+//        $this->db->order_by('DATE(P.register_date)', 'desc');
+//        $this->db->where($where);
+//        $query = $this->db->get();
+//        $res = $query->result();
+//        $customer = array();
+//        $expired = $non_expired = 0;
+//        foreach ($res as $key => $val) {
+//            //---------------Free Trial (non-expired)--------------//
+//            $currPlan = $this->wi_common->getCurrentPlan($val->user_id);
+//            if (count($currPlan) && $currPlan->plan_id == 1 && $currPlan->is_lifetime != 1 && $cur) {
+//                $trialD = $this->common->getDateDiff($val, $currPlan);
+//                ($trialD) ? $non_expired++ : $expired++;
+//            }
+//        }
     }
 
 }
