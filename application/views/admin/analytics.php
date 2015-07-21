@@ -71,6 +71,7 @@
                 <div class="box" >
                     <div class="box-header">
                         <h3 class="box-title">Payment Detail</h3>
+                        <button type="button" id="goBack" class="btn btn-danger btn-sm">Back</button>
                     </div><!-- /.box-header -->
                     <div class="box-body table-responsive" id="data-panel">
                         <table id="pdetail-data-table" class="table table-bordered table-striped">
@@ -161,8 +162,6 @@
                 }
             });
         });
-
-
         function pDetail() {
             $('a.totalP').on('click', function () {
                 $('.overlay').show();
@@ -184,5 +183,9 @@
             });
         }
 
+        $('#goBack').click(function () {
+            $('.pdetail').hide();
+            $('.payments').show();
+        });
     });
 </script>
