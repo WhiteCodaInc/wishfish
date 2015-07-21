@@ -71,7 +71,7 @@
                 <div class="box" >
                     <div class="box-header">
                         <h3 class="box-title">Payment Detail</h3>
-                        <button style="float: right" type="button" id="goBack" class="btn btn-danger btn-sm">Back</button>
+                        <button style="float: right;margin: 10px;" type="button" id="goBack" class="btn btn-danger btn-sm">Back</button>
                     </div><!-- /.box-header -->
                     <div class="box-body table-responsive" id="data-panel">
                         <table id="pdetail-data-table" class="table table-bordered table-striped">
