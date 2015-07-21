@@ -2,6 +2,9 @@
     #payment-data-table tr td,#payment-data-table tr th{
         text-align: center;
     }
+    .dataTables_wrapper > div.row:first-child{
+        display: none
+    }
 </style>
 <!-- Right side column. Contains the navbar and content of the page -->
 <aside class="right-side">
@@ -15,10 +18,10 @@
     <!-- Main content -->
     <section class="content">
         <div class="row">
-            <div class="col-xs-3"></div>
-            <div class="col-xs-6">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
                 <div class="box" >
-                    <div class="box-header">
+                    <div class="box-header" style="margin: 20px 10px;">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="input-group input-large input-daterange" >
@@ -61,7 +64,7 @@
                     </div><!-- /.box-body -->
                 </div><!-- /.box -->
             </div>
-            <div class="col-xs-3"></div>
+            <div class="col-md-2"></div>
         </div>
     </section><!-- /.content -->
 </aside><!-- /.right-side -->
@@ -85,6 +88,12 @@
                     aTargets: [0, 1, 2]
                 }],
             iDisplayLength: -1,
+        });
+        $('.input-daterange').datepicker({
+            format: "mm-dd-yyyy",
+            todayBtn: "linked",
+            autoclose: true,
+            todayHighlight: true
         });
     });
 </script>
