@@ -1,3 +1,8 @@
+<style type="text/css">
+    #payment-data-table tr td,#payment-data-table tr th{
+        text-align: center;
+    }
+</style>
 <table id="payment-data-table" class="table table-bordered table-striped">
     <thead>
         <tr>
