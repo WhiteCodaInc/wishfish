@@ -74,13 +74,27 @@
 <script type="text/javascript">
     $(function () {
         $("#empty-data-table").dataTable();
+        $("#payment-data-table").dataTable({
+            aLengthMenu: [
+                [10, 25, 50, 100, -1],
+                [10, 25, 50, 100, "All"]
+            ],
+            aoColumnDefs: [{
+                    targets: 'no-sort',
+                    bSortable: false,
+                    aTargets: [0, 1, 2]
+                }],
+            iDisplayLength: 10,
+        });
+
         $('.input-daterange').datepicker({
             format: "mm-dd-yyyy",
             todayBtn: "linked",
             autoclose: true,
             todayHighlight: true
         });
-    });</script>
+    });
+</script>
 <script type="text/javascript">
     $(document).ready(function () {
 
@@ -100,6 +114,5 @@
                 }
             });
         });
-
     });
 </script>
