@@ -116,7 +116,7 @@
 //                    oTable.fnClearTable();
                     $('#payment-data-table tbody').html(data);
 //                    datatable();
-                    oTable.ajax.reload();
+                    oTable.fnDraw();
 
                 }
             });
