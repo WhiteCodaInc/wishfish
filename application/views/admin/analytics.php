@@ -85,7 +85,6 @@
     $(document).ready(function () {
         var oTable;
         function datatable() {
-            oTable.fnClearTable();
             oTable = $("#payment-data-table").dataTable({
                 bDestroy: true,
                 aLengthMenu: [
@@ -115,6 +114,7 @@
                     $('.loading-img').hide();
                     $('#payment-data-table tbody').html(data);
                     datatable();
+                    oTable.fnClearTable();
                 }
             });
         });
