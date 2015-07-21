@@ -25,8 +25,8 @@
                 <div class="box" >
                     <div class="box-header" style="margin: 20px 10px;">
                         <div class="row">
-                            <div class="col-md-2"></div>
-                            <div class="col-md-6">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-4">
                                 <div class="input-group input-large input-daterange" >
                                     <input type="text" na class="form-control" placeholder="Select Start Date" id="from">
                                     <span class="input-group-addon">To</span>
@@ -36,7 +36,7 @@
                             <div class="col-md-2">
                                 <button id="search" type="button" class="btn btn-success">Search</button>
                             </div>
-                            <div class="col-md-2"></div>
+                            <div class="col-md-3"></div>
                         </div>
                     </div><!-- /.box-header -->
 
