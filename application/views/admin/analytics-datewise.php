@@ -38,7 +38,7 @@
                     bSortable: false,
                     aTargets: [0, 1, 2]
                 }],
-            iDisplayLength: 25,
+            iDisplayLength: 10,
         });
     });
 </script>
