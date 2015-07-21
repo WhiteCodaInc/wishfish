@@ -173,7 +173,10 @@
                 }
             });
         });
-        $('a.totalP').click(function () {
+
+
+
+        $('a.totalP').on('click', function () {
             $('.overlay').show();
             $('.loading-img').show();
             var dt = $(this).parents('tr').prop('id');
