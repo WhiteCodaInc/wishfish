@@ -1,5 +1,5 @@
 <style type="text/css">
-    #empty-data-table tr td,#empty-data-table tr th{
+    #payment-data-table tr td,#payment-data-table tr th{
         text-align: center;
     }
     .dataTables_wrapper > div.row:first-child{
@@ -37,7 +37,7 @@
                     </div><!-- /.box-header -->
 
                     <div class="box-body table-responsive" id="data-panel">
-                        <table id="empty-data-table" class="table table-bordered table-striped">
+                        <table id="payment-data-table" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th>Payment Date </th>
@@ -73,8 +73,7 @@
 <!-- page script -->
 <script type="text/javascript">
     $(function () {
-        $("#empty-data-table").dataTable();
-        $("#payment-data-table").dataTable({
+        oTable = $("#payment-data-table").dataTable({
             aLengthMenu: [
                 [10, 25, 50, 100, -1],
                 [10, 25, 50, 100, "All"]
@@ -86,15 +85,13 @@
                 }],
             iDisplayLength: 10,
         });
-
         $('.input-daterange').datepicker({
             format: "mm-dd-yyyy",
             todayBtn: "linked",
             autoclose: true,
             todayHighlight: true
         });
-    });
-</script>
+    });</script>
 <script type="text/javascript">
     $(document).ready(function () {
 
@@ -110,9 +107,11 @@
                 success: function (data, textStatus, jqXHR) {
                     $('.overlay').hide();
                     $('.loading-img').hide();
-                    $('#data-panel').html(data);
+                    $('#payment-data-table tbody').html(data);
+                    oTable.fnDraw();
                 }
             });
         });
+
     });
 </script>
