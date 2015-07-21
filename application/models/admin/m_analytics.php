@@ -61,6 +61,7 @@ class M_analytics extends CI_Model {
         $d1 = date_create($from);
         $d2 = date_create($to);
         echo date_diff($d2, $d1)->format('%a');
+        die();
 
 
 //        $where = array(
