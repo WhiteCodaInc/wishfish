@@ -85,6 +85,7 @@
     $(document).ready(function () {
         var oTable;
         function datatable() {
+            oTable.fnClearTable();
             oTable = $("#payment-data-table").dataTable({
                 bDestroy: true,
                 aLengthMenu: [
