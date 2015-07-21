@@ -39,7 +39,6 @@
                             <div class="col-md-3"></div>
                         </div>
                     </div><!-- /.box-header -->
-
                     <div class="box-body table-responsive" id="data-panel">
                         <table id="users-data-table" class="table table-bordered table-striped">
                             <thead>
@@ -159,12 +158,12 @@
             $.ajax({
                 type: 'POST',
                 data: {from: from, to: to},
-                url: "<?= site_url() ?>admin/analytics/getPayments",
+                url: "<?= site_url() ?>admin/analytics/getTotalUser",
                 success: function (data, textStatus, jqXHR) {
                     $('.overlay').hide();
                     $('.loading-img').hide();
                     oTable.fnClearTable();
-                    $('#payment-data-table tbody').html(data);
+                    $('#users-data-table tbody').html(data);
                     datatable();
                     pDetail();
                 }
