@@ -113,8 +113,9 @@
                     $('.overlay').hide();
                     $('.loading-img').hide();
                     $('#payment-data-table tbody').html(data);
-                    datatable();
                     oTable.fnClearTable();
+                    datatable();
+
                 }
             });
         });
