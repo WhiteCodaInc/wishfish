@@ -29,62 +29,34 @@ class Analytics extends CI_Controller {
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');
-        $this->load->view('admin/analytics');
+        $this->load->view('admin/analytics-payment');
         $this->load->view('admin/admin_footer');
     }
 
     function getPayments() {
         $post = $this->input->post();
         $data['phistory'] = $this->objanalytics->getPayments($post);
-        $this->load->view('admin/analytics-datewise', $data);
+        $this->load->view('admin/analytics-datewise-payment', $data);
     }
 
     function getPaymentDetail() {
         $post = $this->input->post();
-        $data['phistory'] = $this->objanalytics->getPaymentDetail($post);
-        $this->load->view('admin/analytics-pdetail', $data);
+        $data['pdetail'] = $this->objanalytics->getPaymentDetail($post);
+        $this->load->view('admin/analytics-payment-detail', $data);
     }
 
-    function access_class() {
-        $data['class'] = $this->objanalytics->getAdminAccessClass();
+    function totalUser() {
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');
-        $this->load->view('admin/admin-access-class', $data);
+        $this->load->view('admin/analytics-total-users');
         $this->load->view('admin/admin_footer');
     }
 
-    function addClass() {
+    function getTotalUser() {
         $post = $this->input->post();
-        if ($this->objanalytics->addClass($post)) {
-            echo "1";
-        } else {
-            echo "0";
-        }
-    }
-
-    function permission() {
-        $post = $this->input->post();
-        $result = $this->objanalytics->getPermission($post);
-        echo json_encode($result);
-    }
-
-    function addPermission() {
-        $post = $this->input->post();
-        $res = $this->objanalytics->addPermission($post);
-        if ($res) {
-            $data['msg'] = "U";
-            $data['id'] = $res;
-        } else {
-            $data['id'] = "-1";
-            $data['msg'] = "F";
-        }
-        $data['class'] = $this->objanalytics->getAdminAccessClass();
-        $this->load->view('admin/admin_header');
-        $this->load->view('admin/admin_top');
-        $this->load->view('admin/admin_navbar');
-        $this->load->view('admin/admin-access-class', $data);
-        $this->load->view('admin/admin_footer');
+        $data['users'] = $this->objanalytics->getTotalUser($post);
+        $this->load->view('admin/analytics-datewise-user', $data);
     }
 
 }

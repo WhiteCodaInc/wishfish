@@ -55,4 +55,19 @@ class M_analytics extends CI_Model {
         return $query->result();
     }
 
+    function getTotalUser($post) {
+
+        $where = array(
+            'DATE(register_date) >=' => $this->common->getMySqlDate($post['from'], "mm-dd-yyyy"),
+            'DATE(register_date) <=' => $this->common->getMySqlDate($post['to'], "mm-dd-yyyy"),
+            'testmode' => 0
+        );
+        $this->db->where($where);
+        $query = $this->db->get_where('wi_user_mst');
+        $res = $query->result();
+        echo '<pre>';
+        print_r($res);
+        die();
+    }
+
 }

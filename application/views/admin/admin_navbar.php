@@ -288,6 +288,11 @@ $img_src = ($avatar != "") ?
                                 <i class="fa fa-angle-double-right"></i> <span>Total Payment</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="<?= site_url() ?>admin/analytics/totalUser">
+                                <i class="fa fa-angle-double-right"></i> <span>Total Users</span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
             </ul>
