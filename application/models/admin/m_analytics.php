@@ -24,6 +24,7 @@ class M_analytics extends CI_Model {
             'DATE(payment_date) >=' => $this->common->getMySqlDate($post['from'], "mm-dd-yyyy"),
             'DATE(payment_date) <=' => $this->common->getMySqlDate($post['to'], "mm-dd-yyyy"),
             'testmode' => 0,
+            'status' => 1
         );
 
         $this->db->select('DATE(payment_date) as pdate,count(*) as totalP,sum(mc_gross) as totalA', FALSE);
@@ -34,9 +35,22 @@ class M_analytics extends CI_Model {
         $this->db->order_by('DATE(payment_date)', 'desc');
         $this->db->where($where);
         $query = $this->db->get();
-//        echo '<pre>';
-//        print_r($query->result());
-//        die();
+        return $query->result();
+    }
+
+    function getPaymentDetail($post) {
+        $where = array(
+            'DATE(payment_date) =' => $post['pdate'],
+            'testmode' => 0,
+            'status' => 1
+        );
+        $this->db->select('U.user_id,name,email,plan_name,P.gateway,mc_gross');
+        $this->db->from('wi_payment_mst as P');
+        $this->db->join('wi_plan_detail as PD', 'P.id = PD.id');
+        $this->db->join('wi_user_mst as U', 'PD.user_id = U.user_id');
+        $this->db->order_by('DATE(payment_date)', 'desc');
+        $this->db->where($where);
+        $query = $this->db->get();
         return $query->result();
     }
 

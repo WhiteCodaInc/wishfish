@@ -1,5 +1,8 @@
 <style type="text/css">
-    #payment-data-table tr td,#payment-data-table tr th{
+    #payment-data-table tr td,
+    #payment-data-table tr th,
+    #pdetail-data-table tr td,
+    #pdetail-data-table tr th{
         text-align: center;
     }
     .dataTables_wrapper > div.row:first-child{
@@ -17,7 +20,7 @@
 
     <!-- Main content -->
     <section class="content">
-        <div class="row">
+        <div class="row payments">
             <div class="col-md-2"></div>
             <div class="col-md-8">
                 <div class="box" >
@@ -38,6 +41,39 @@
 
                     <div class="box-body table-responsive" id="data-panel">
                         <table id="payment-data-table" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Payment Date </th>
+                                    <th>Total Payment</th>
+                                    <th>Total Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Payment Date </th>
+                                    <th>Total Payment</th>
+                                    <th>Total Amount</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div><!-- /.box-body -->
+                    <div style="display: none" class="overlay"></div>
+                    <div style="display: none" class="loading-img"></div>
+                </div><!-- /.box -->
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+        <div class="row pdetail">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="box" >
+                    <div class="box-header">
+                        <h3 class="box-title">Payment Detail</h3>
+                    </div><!-- /.box-header -->
+                    <div class="box-body table-responsive" id="data-panel">
+                        <table id="pdetail-data-table" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th>Payment Date </th>
@@ -84,6 +120,23 @@
 <script type="text/javascript">
     $(document).ready(function () {
         var oTable;
+
+        $("#pdetail-data-table").dataTable({
+            order: [],
+            bDestroy: true,
+            aLengthMenu: [
+                [10, 25, 50, 100, -1],
+                [10, 25, 50, 100, "All"]
+            ],
+            aoColumnDefs: [{
+                    targets: 'no-sort',
+                    bSortable: false,
+                    aTargets: [0, 1, 2]
+                }],
+            iDisplayLength: 10,
+//            aaSorting: [[0, 'desc']]
+        });
+
         function datatable() {
             oTable = $("#payment-data-table").dataTable({
                 order: [],
@@ -117,7 +170,22 @@
                     oTable.fnClearTable();
                     $('#payment-data-table tbody').html(data);
                     datatable();
-
+                }
+            });
+        });
+        $('a.totalP').click(function () {
+            $('.overlay').show();
+            $('.loading-img').show();
+            var dt = $(this).parents('tr').prop('id');
+            console.log(dt);
+            $.ajax({
+                type: 'POST',
+                data: {pdate: dt},
+                url: "<?= site_url() ?>admin/analytics/getPaymentDetail",
+                success: function (data, textStatus, jqXHR) {
+                    $('.overlay').hide();
+                    $('.loading-img').hide();
+                    $('#pdetail-data-table tbody').html(data);
                 }
             });
         });

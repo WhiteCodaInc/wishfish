@@ -39,6 +39,12 @@ class Analytics extends CI_Controller {
         $this->load->view('admin/analytics-datewise', $data);
     }
 
+    function getPaymentDetail() {
+        $post = $this->input->post();
+        $data['phistory'] = $this->objanalytics->getPaymentDetail($post);
+        $this->load->view('admin/analytics-pdetail', $data);
+    }
+
     function access_class() {
         $data['class'] = $this->objanalytics->getAdminAccessClass();
         $this->load->view('admin/admin_header');
