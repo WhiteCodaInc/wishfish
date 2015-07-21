@@ -87,7 +87,7 @@
         function datatable() {
             oTable = $("#payment-data-table").dataTable({
                 order: [],
-                bDestroy: true,
+//                bDestroy: true,
                 aLengthMenu: [
                     [10, 25, 50, 100, -1],
                     [10, 25, 50, 100, "All"]
@@ -113,7 +113,7 @@
                 success: function (data, textStatus, jqXHR) {
                     $('.overlay').hide();
                     $('.loading-img').hide();
-//                    oTable.fnClearTable();
+                    oTable.fnDestroy();
                     $('#payment-data-table tbody').empty();
                     $('#payment-data-table tbody').html(data);
                     datatable();
