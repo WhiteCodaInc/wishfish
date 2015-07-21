@@ -15,8 +15,8 @@
     <!-- Main content -->
     <section class="content">
         <div class="row">
-            <div class="col-xs-4"></div>
-            <div class="col-xs-4">
+            <div class="col-xs-3"></div>
+            <div class="col-xs-6">
                 <div class="box" >
                     <div class="box-header">
                         <div class="row">
@@ -61,7 +61,7 @@
                     </div><!-- /.box-body -->
                 </div><!-- /.box -->
             </div>
-            <div class="col-xs-4"></div>
+            <div class="col-xs-3"></div>
         </div>
     </section><!-- /.content -->
 </aside><!-- /.right-side -->
