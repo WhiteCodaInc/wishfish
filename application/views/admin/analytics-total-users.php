@@ -26,52 +26,52 @@
                     <div class="box-header" style="margin: 20px 10px;">
                         <div class="row">
                             <div class="col-md-3"></div>
-                            <div class="col-md-5>
-                                 <div class="input-group input-large input-daterange" >
-                                 <input type="text" na class="form-control" placeholder="Select Start Date" id="from">
-                                <span class="input-group-addon">To</span>
-                                <input type="text" class="form-control" placeholder="Select End Date" id="to">
+                            <div class="col-md-5">
+                                <div class="input-group input-large input-daterange" >
+                                    <input type="text" na class="form-control" placeholder="Select Start Date" id="from">
+                                    <span class="input-group-addon">To</span>
+                                    <input type="text" class="form-control" placeholder="Select End Date" id="to">
+                                </div>
                             </div>
+                            <div class="col-md-1">
+                                <button id="search" type="button" class="btn btn-success">Search</button>
+                            </div>
+                            <div class="col-md-3"></div>
                         </div>
-                        <div class="col-md-1">
-                            <button id="search" type="button" class="btn btn-success">Search</button>
-                        </div>
-                        <div class="col-md-3"></div>
-                    </div>
-                </div><!-- /.box-header -->
+                    </div><!-- /.box-header -->
 
-                <div class="box-body table-responsive" id="data-panel">
-                    <table id="users-data-table" class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th>Register Date</th>
-                                <th>All Users</th>
-                                <th>Free Trial(non-expired)</th>
-                                <th>Free Trial(expired)</th>
-                                <th>Personal</th>
-                                <th>Enterprise</th>
-                                <th>Total Revenue</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <th>Register Date</th>
-                                <th>All Users</th>
-                                <th>Free Trial(non-expired)</th>
-                                <th>Free Trial(expired)</th>
-                                <th>Personal</th>
-                                <th>Enterprise</th>
-                                <th>Total Revenue</th>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </div><!-- /.box-body -->
-                <div style="display: none" class="overlay"></div>
-                <div style="display: none" class="loading-img"></div>
-            </div><!-- /.box -->
-        </div>
+                    <div class="box-body table-responsive" id="data-panel">
+                        <table id="users-data-table" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Register Date</th>
+                                    <th>All Users</th>
+                                    <th>Free Trial(non-expired)</th>
+                                    <th>Free Trial(expired)</th>
+                                    <th>Personal</th>
+                                    <th>Enterprise</th>
+                                    <th>Total Revenue</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Register Date</th>
+                                    <th>All Users</th>
+                                    <th>Free Trial(non-expired)</th>
+                                    <th>Free Trial(expired)</th>
+                                    <th>Personal</th>
+                                    <th>Enterprise</th>
+                                    <th>Total Revenue</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div><!-- /.box-body -->
+                    <div style="display: none" class="overlay"></div>
+                    <div style="display: none" class="loading-img"></div>
+                </div><!-- /.box -->
+            </div>
         </div>
         <div class="row pdetail" style="display: none">
             <div class="col-md-2"></div>
