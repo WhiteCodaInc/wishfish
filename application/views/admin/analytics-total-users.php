@@ -1,6 +1,6 @@
 <style type="text/css">
-    #totalU-data-table tr td,
-    #totalU-data-table tr th,
+    #users-data-table tr td,
+    #users-data-table tr th,
     #udetail-data-table tr td,
     #udetail-data-table tr th{
         text-align: center;
@@ -41,7 +41,7 @@
                     </div><!-- /.box-header -->
 
                     <div class="box-body table-responsive" id="data-panel">
-                        <table id="payment-data-table" class="table table-bordered table-striped">
+                        <table id="users-data-table" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th>Register Date</th>
@@ -134,7 +134,7 @@
     $(document).ready(function () {
         var oTable;
         function datatable() {
-            oTable = $("#payment-data-table").dataTable({
+            oTable = $("#users-data-table").dataTable({
                 order: [],
                 bDestroy: true,
                 aLengthMenu: [
