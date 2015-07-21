@@ -74,26 +74,15 @@
 </aside><!-- /.right-side -->
 </div><!-- ./wrapper -->
 
-
+<!-- DATA TABES SCRIPT -->
+<script src="<?= base_url() ?>assets/dashboard/js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
+<script src="<?= base_url() ?>assets/dashboard/js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
 
 <!-- page script -->
 <script type="text/javascript">
     $(function () {
-        $('.input-daterange').datepicker({
-            format: "mm-dd-yyyy",
-            todayBtn: "linked",
-            autoclose: true,
-            todayHighlight: true
-        });
-    });
-</script>
-<script type="text/javascript">
-    $(document).ready(function () {
-//        var oTable;
-//        function datatable() {
         oTable = $("#payment-data-table").dataTable({
             order: [],
-//                bDestroy: true,
             aLengthMenu: [
                 [10, 25, 50, 100, -1],
                 [10, 25, 50, 100, "All"]
@@ -105,27 +94,16 @@
                 }],
             iDisplayLength: 10,
         });
-//        }
-//        datatable();
-//        $('#search').click(function () {
-//            $('.overlay').show();
-//            $('.loading-img').show();
-//            var from = $('#from').val();
-//            var to = $('#to').val();
-//            $.ajax({
-//                type: 'POST',
-//                data: {from: from, to: to},
-//                url: "<?= site_url() ?>admin/analytics/getPayments",
-//                success: function (data, textStatus, jqXHR) {
-//                    $('.overlay').hide();
-//                    $('.loading-img').hide();
-////                    oTable.fnDestroy();
-//                    $('#data-panel').empty();
-//                    $('#data-panel').html(data);
-////                    datatable();
-////                    oTable.fnDraw();
-//                }
-//            });
-//        });
+        $('.input-daterange').datepicker({
+            format: "mm-dd-yyyy",
+            todayBtn: "linked",
+            autoclose: true,
+            todayHighlight: true
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
     });
 </script>
