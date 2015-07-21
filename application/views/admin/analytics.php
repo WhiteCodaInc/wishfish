@@ -46,13 +46,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($phistory as $value) { ?>
-                                    <tr>
-                                        <td><?= date('m-d-Y', strtotime($value->payment_date)) ?></td>
-                                        <td><?= $value->totalP ?></td>
-                                        <td><?= $value->totalA ?></td>
-                                    </tr>
-                                <?php } ?>
                             </tbody>
                             <tfoot>
                                 <tr>
@@ -63,6 +56,8 @@
                             </tfoot>
                         </table>
                     </div><!-- /.box-body -->
+                    <div style="display: none" class="overlay"></div>
+                    <div style="display: none" class="loading-img"></div>
                 </div><!-- /.box -->
             </div>
             <div class="col-md-2"></div>
@@ -96,11 +91,26 @@
             autoclose: true,
             todayHighlight: true
         });
-    });
-</script>
+    });</script>
 <script type="text/javascript">
     $(document).ready(function () {
 
+        $('#search').click(function () {
+            $('.overlay').show();
+            $('.loading-img').show();
+            var from = $('#from').val();
+            var to = $('#to').val();
+            $.ajax({
+                type: 'POST',
+                data: {from: from, to: to},
+                url: "<?= site_url() ?>admin/analytics/getPayments",
+                success: function (data, textStatus, jqXHR) {
+                    $('.overlay').hide();
+                    $('.loading-img').hide();
+                    $('##payment-data-table tbody').html(data);
+                }
+            });
+        });
 
     });
 </script>
