@@ -25,10 +25,12 @@ class M_analytics extends CI_Model {
             'testmode' => 0
         );
 
-        $this->db->select('DATE(payment_date) as payment_date,count(*) as totalP,sum(mc_gross) as totalA', FALSE);
+        $this->db->select('DATE(payment_date) as pdate,count(*) as totalP,sum(mc_gross) as totalA', FALSE);
         $this->db->from('wi_payment_mst as P');
         $this->db->join('wi_plan_detail as PD', 'P.id = PD.id');
         $this->db->join('wi_user_mst as U', 'PD.user_id = U.user_id');
+        $this->db->group_by('DATE(payment_date)');
+        $this->db->order_by('DATE(payment_date)', 'desc');
         $this->db->where($where);
         $query = $this->db->get();
         echo '<pre>';
