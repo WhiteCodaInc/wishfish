@@ -113,7 +113,7 @@
                 success: function (data, textStatus, jqXHR) {
                     $('.overlay').hide();
                     $('.loading-img').hide();
-                    oTable.clear();
+                    oTable.clear().draw();
                     $('#payment-data-table tbody').html(data);
                     datatable();
 //                    oTable.fnDraw();
