@@ -8,6 +8,6 @@
         <td><?= $value->email ?></td>
         <td><?= $value->plan_name ?></td>
         <td><?= $value->gateway ?></td>
-        <td><?= number_format($value->mc_gross, 2) ?></td>
+        <td>$ <?= number_format($value->mc_gross, 2) ?></td>
     </tr>
 <?php } ?>
