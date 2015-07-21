@@ -152,7 +152,7 @@ class Plan_ipn_listener extends CI_Controller {
             }
         } else if ($myPost['txn_type'] == "recurring_payment") {
             $cn = 1;
-            fwrite($myfile, "-----------{$myPost['txn_type']}-------------- \n");
+            fwrite($myfile, "-----------{$myPost['txn_type']} : {$myPost['payment_date']}-------------- \n");
             foreach ($myPost as $key => $value) {
                 fwrite($myfile, "{$cn}. {$key} => {$value} \n");
                 $cn++;
