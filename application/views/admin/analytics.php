@@ -83,7 +83,7 @@
                     bSortable: false,
                     aTargets: [0, 1, 2]
                 }],
-            iDisplayLength: -1,
+            iDisplayLength: 25,
         });
         $('.input-daterange').datepicker({
             format: "mm-dd-yyyy",
