@@ -37,7 +37,7 @@
                     </div><!-- /.box-header -->
 
                     <div class="box-body table-responsive" id="data-panel">
-                        <table id="payment-data-table" class="table table-bordered table-striped">
+                        <table class="table table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th>Payment Date </th>
@@ -66,9 +66,7 @@
 </aside><!-- /.right-side -->
 </div><!-- ./wrapper -->
 
-<!-- DATA TABES SCRIPT -->
-<script src="<?= base_url() ?>assets/dashboard/js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
-<script src="<?= base_url() ?>assets/dashboard/js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
+
 
 <!-- page script -->
 <script type="text/javascript">
@@ -83,24 +81,24 @@
 </script>
 <script type="text/javascript">
     $(document).ready(function () {
-        var oTable;
-        function datatable() {
-            oTable = $("#payment-data-table").dataTable({
-                order: [],
-//                bDestroy: true,
-                aLengthMenu: [
-                    [10, 25, 50, 100, -1],
-                    [10, 25, 50, 100, "All"]
-                ],
-                aoColumnDefs: [{
-                        targets: 'no-sort',
-                        bSortable: false,
-                        aTargets: [0, 1, 2]
-                    }],
-                iDisplayLength: 10,
-            });
-        }
-        datatable();
+//        var oTable;
+//        function datatable() {
+//            oTable = $("#payment-data-table").dataTable({
+//                order: [],
+////                bDestroy: true,
+//                aLengthMenu: [
+//                    [10, 25, 50, 100, -1],
+//                    [10, 25, 50, 100, "All"]
+//                ],
+//                aoColumnDefs: [{
+//                        targets: 'no-sort',
+//                        bSortable: false,
+//                        aTargets: [0, 1, 2]
+//                    }],
+//                iDisplayLength: 10,
+//            });
+//        }
+//        datatable();
         $('#search').click(function () {
             $('.overlay').show();
             $('.loading-img').show();
@@ -113,15 +111,13 @@
                 success: function (data, textStatus, jqXHR) {
                     $('.overlay').hide();
                     $('.loading-img').hide();
-                    oTable.fnDestroy();
-                    $('#payment-data-table tbody').empty();
-                    $('#payment-data-table tbody').html(data);
-                    datatable();
+//                    oTable.fnDestroy();
+                    $('#data-panel').empty();
+                    $('#data-panel').html(data);
+//                    datatable();
 //                    oTable.fnDraw();
-
                 }
             });
         });
-
     });
 </script>
