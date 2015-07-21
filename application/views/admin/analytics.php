@@ -76,18 +76,22 @@
                         <table id="pdetail-data-table" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th>Payment Date </th>
-                                    <th>Total Payment</th>
-                                    <th>Total Amount</th>
+                                    <th>Customer Name</th>
+                                    <th>Email</th>
+                                    <th>Plan Name</th>
+                                    <th>Gateway</th>
+                                    <th>Amount</th>
                                 </tr>
                             </thead>
                             <tbody>
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th>Payment Date </th>
-                                    <th>Total Payment</th>
-                                    <th>Total Amount</th>
+                                    <th>Customer Name</th>
+                                    <th>Email</th>
+                                    <th>Plan Name</th>
+                                    <th>Gateway</th>
+                                    <th>Amount</th>
                                 </tr>
                             </tfoot>
                         </table>
@@ -120,23 +124,6 @@
 <script type="text/javascript">
     $(document).ready(function () {
         var oTable;
-
-        $("#pdetail-data-table").dataTable({
-            order: [],
-            bDestroy: true,
-            aLengthMenu: [
-                [10, 25, 50, 100, -1],
-                [10, 25, 50, 100, "All"]
-            ],
-            aoColumnDefs: [{
-                    targets: 'no-sort',
-                    bSortable: false,
-                    aTargets: [0, 1, 2]
-                }],
-            iDisplayLength: 10,
-//            aaSorting: [[0, 'desc']]
-        });
-
         function datatable() {
             oTable = $("#payment-data-table").dataTable({
                 order: [],
