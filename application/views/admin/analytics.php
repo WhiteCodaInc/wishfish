@@ -65,7 +65,7 @@
             </div>
             <div class="col-md-2"></div>
         </div>
-        <div class="row pdetail">
+        <div class="row pdetail" style="display: none">
             <div class="col-md-2"></div>
             <div class="col-md-8">
                 <div class="box" >
@@ -183,8 +183,10 @@
                 data: {pdate: dt},
                 url: "<?= site_url() ?>admin/analytics/getPaymentDetail",
                 success: function (data, textStatus, jqXHR) {
+                    $('.payments').hide();
                     $('.overlay').hide();
                     $('.loading-img').hide();
+                    $('.pdetail').show();
                     $('#pdetail-data-table tbody').html(data);
                 }
             });
