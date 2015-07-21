@@ -95,7 +95,7 @@
                 aoColumnDefs: [{
                         targets: 'no-sort',
                         bSortable: false,
-                        aTargets: [0, 1, 2]
+//                        aTargets: [0, 1, 2]
                     }],
                 iDisplayLength: 10,
             });
