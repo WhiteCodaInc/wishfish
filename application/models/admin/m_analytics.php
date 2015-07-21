@@ -30,7 +30,6 @@ class M_analytics extends CI_Model {
         $this->db->select('DATE(payment_date) as pdate,count(*) as totalP,sum(mc_gross) as totalA', FALSE);
         $this->db->from('wi_payment_mst as P');
         $this->db->join('wi_plan_detail as PD', 'P.id = PD.id');
-        $this->db->join('wi_plans as PL', 'PD.plan_id = PL.plan_id');
         $this->db->join('wi_user_mst as U', 'PD.user_id = U.user_id');
         $this->db->group_by('DATE(payment_date)');
         $this->db->order_by('DATE(payment_date)', 'desc');
@@ -48,6 +47,7 @@ class M_analytics extends CI_Model {
         $this->db->select('U.user_id,name,email,plan_name,P.gateway,mc_gross');
         $this->db->from('wi_payment_mst as P');
         $this->db->join('wi_plan_detail as PD', 'P.id = PD.id');
+        $this->db->join('wi_plans as PL', 'PD.plan_id = PL.plan_id');
         $this->db->join('wi_user_mst as U', 'PD.user_id = U.user_id');
         $this->db->order_by('DATE(payment_date)', 'desc');
         $this->db->where($where);
