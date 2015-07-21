@@ -1,5 +1,5 @@
 <style type="text/css">
-    #payment-data-table tr td,#payment-data-table tr th{
+    #empty-data-table tr td,#empty-data-table tr th{
         text-align: center;
     }
     .dataTables_wrapper > div.row:first-child{
@@ -37,7 +37,7 @@
                     </div><!-- /.box-header -->
 
                     <div class="box-body table-responsive" id="data-panel">
-                        <table id="payment-data-table" class="table table-bordered table-striped">
+                        <table id="empty-data-table" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th>Payment Date </th>
@@ -73,7 +73,7 @@
 <!-- page script -->
 <script type="text/javascript">
     $(function () {
-        $("#payment-data-table").dataTable();
+        $("#empty-data-table").dataTable();
         $('.input-daterange').datepicker({
             format: "mm-dd-yyyy",
             todayBtn: "linked",
