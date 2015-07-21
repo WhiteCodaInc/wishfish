@@ -21,8 +21,7 @@
     <!-- Main content -->
     <section class="content">
         <div class="row totalU">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="box" >
                     <div class="box-header" style="margin: 20px 10px;">
                         <div class="row">
@@ -73,7 +72,6 @@
                     <div style="display: none" class="loading-img"></div>
                 </div><!-- /.box -->
             </div>
-            <div class="col-md-2"></div>
         </div>
         <div class="row pdetail" style="display: none">
             <div class="col-md-2"></div>
