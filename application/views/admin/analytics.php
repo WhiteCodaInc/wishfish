@@ -86,6 +86,7 @@
         var oTable;
         function datatable() {
             oTable = $("#payment-data-table").dataTable({
+                order: [],
                 bDestroy: true,
                 aLengthMenu: [
                     [10, 25, 50, 100, -1],
