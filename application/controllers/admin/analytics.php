@@ -36,6 +36,9 @@ class Analytics extends CI_Controller {
 
     function getPayments() {
         $post = $this->input->post();
+        echo '<pre>';
+        print_r($post);
+        die();
         $data['phistory'] = $this->objanalytics->getPayments($post);
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
