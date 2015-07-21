@@ -170,30 +170,32 @@
                     oTable.fnClearTable();
                     $('#payment-data-table tbody').html(data);
                     datatable();
+                    pDetail();
                 }
             });
         });
 
 
-
-        $('a.totalP').on('click', function () {
-            $('.overlay').show();
-            $('.loading-img').show();
-            var dt = $(this).parents('tr').prop('id');
-            console.log(dt);
-            $.ajax({
-                type: 'POST',
-                data: {pdate: dt},
-                url: "<?= site_url() ?>admin/analytics/getPaymentDetail",
-                success: function (data, textStatus, jqXHR) {
-                    $('.payments').hide();
-                    $('.overlay').hide();
-                    $('.loading-img').hide();
-                    $('.pdetail').show();
-                    $('#pdetail-data-table tbody').html(data);
-                }
+        function pDetail() {
+            $('a.totalP').on('click', function () {
+                $('.overlay').show();
+                $('.loading-img').show();
+                var dt = $(this).parents('tr').prop('id');
+                console.log(dt);
+                $.ajax({
+                    type: 'POST',
+                    data: {pdate: dt},
+                    url: "<?= site_url() ?>admin/analytics/getPaymentDetail",
+                    success: function (data, textStatus, jqXHR) {
+                        $('.payments').hide();
+                        $('.overlay').hide();
+                        $('.loading-img').hide();
+                        $('.pdetail').show();
+                        $('#pdetail-data-table tbody').html(data);
+                    }
+                });
             });
-        });
+        }
 
     });
 </script>
