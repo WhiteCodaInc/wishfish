@@ -81,7 +81,7 @@
 <!-- page script -->
 <script type="text/javascript">
     $(function () {
-        oTable = $("#payment-data-table").dataTable({
+        $("#payment-data-table").dataTable({
             order: [],
             aLengthMenu: [
                 [10, 25, 50, 100, -1],
