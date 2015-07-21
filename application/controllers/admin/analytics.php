@@ -26,7 +26,8 @@ class Analytics extends CI_Controller {
     }
 
     function index() {
-        $data['phistory'] = $this->objanalytics->getPayments();
+//        $data['phistory'] = $this->objanalytics->getPayments();
+        $data['phistory'] = array();
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');
