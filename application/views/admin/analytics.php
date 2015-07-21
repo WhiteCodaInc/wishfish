@@ -83,18 +83,23 @@
 </script>
 <script type="text/javascript">
     $(document).ready(function () {
-        var oTable = $("#payment-data-table").dataTable({
-            aLengthMenu: [
-                [10, 25, 50, 100, -1],
-                [10, 25, 50, 100, "All"]
-            ],
-            aoColumnDefs: [{
-                    targets: 'no-sort',
-                    bSortable: false,
-                    aTargets: [0, 1, 2]
-                }],
-            iDisplayLength: 10,
-        });
+        var oTable;
+        function datatable() {
+            oTable = $("#payment-data-table").dataTable({
+                bDestroy: true,
+                aLengthMenu: [
+                    [10, 25, 50, 100, -1],
+                    [10, 25, 50, 100, "All"]
+                ],
+                aoColumnDefs: [{
+                        targets: 'no-sort',
+                        bSortable: false,
+                        aTargets: [0, 1, 2]
+                    }],
+                iDisplayLength: 10,
+            });
+        }
+        datatable();
         $('#search').click(function () {
             $('.overlay').show();
             $('.loading-img').show();
@@ -108,7 +113,7 @@
                     $('.overlay').hide();
                     $('.loading-img').hide();
                     $('#payment-data-table tbody').html(data);
-//                    oTable.fnDraw();
+                    datatable();
                 }
             });
         });
