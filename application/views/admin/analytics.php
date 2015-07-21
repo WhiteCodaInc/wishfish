@@ -25,13 +25,14 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="input-group input-large input-daterange" >
-                                    <input type="text" na class="form-control" placeholder="Select Start Date" name="from">
+                                    <input type="text" na class="form-control" placeholder="Select Start Date" id="from">
                                     <span class="input-group-addon">To</span>
-                                    <input type="text" class="form-control" placeholder="Select End Date" name="to">
+                                    <input type="text" class="form-control" placeholder="Select End Date" id="to">
                                 </div>
                             </div>
-                            <!--<div class="col-md-5"></div>-->
-                            <div class="col-md-2"></div>
+                            <div class="col-md-2">
+                                <button id="search" type="button" class="btn btn-success">Search</button>
+                            </div>
                         </div>
                     </div><!-- /.box-header -->
 
