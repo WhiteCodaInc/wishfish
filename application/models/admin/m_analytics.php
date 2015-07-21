@@ -22,7 +22,7 @@ class M_analytics extends CI_Model {
         $where = array(
             'DATE(payment_date) >=' => $this->common->getMySqlDate($post['from'], "mm-dd-yyyy"),
             'DATE(payment_date) <=' => $this->common->getMySqlDate($post['to'], "mm-dd-yyyy"),
-            'testmode' => 0
+            'testmode' => 0,
         );
 
         $this->db->select('DATE(payment_date) as pdate,count(*) as totalP,sum(mc_gross) as totalA', FALSE);
@@ -31,12 +31,11 @@ class M_analytics extends CI_Model {
         $this->db->join('wi_user_mst as U', 'PD.user_id = U.user_id');
         $this->db->group_by('DATE(payment_date)');
         $this->db->order_by('DATE(payment_date)', 'desc');
-        $this->db->having('toalA >', 0);
         $this->db->where($where);
         $query = $this->db->get();
-        echo '<pre>';
-        print_r($query->result());
-        die();
+//        echo '<pre>';
+//        print_r($query->result());
+//        die();
         return $query->result();
     }
 
