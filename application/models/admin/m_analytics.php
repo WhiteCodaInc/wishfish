@@ -19,6 +19,9 @@ class M_analytics extends CI_Model {
     }
 
     function getPayments($post) {
+        echo '<pre>';
+        print_r($post);
+        die();
         $where = array(
             'DATE(payment_date) >=' => $this->common->getMySqlDate($post['from'], "mm-dd-yyyy"),
             'DATE(payment_date) <=' => $this->common->getMySqlDate($post['to'], "mm-dd-yyyy"),
@@ -33,9 +36,7 @@ class M_analytics extends CI_Model {
         $this->db->order_by('DATE(payment_date)', 'desc');
         $this->db->where($where);
         $query = $this->db->get();
-//        echo '<pre>';
-//        print_r($query->result());
-//        die();
+
         return $query->result();
     }
 
