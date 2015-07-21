@@ -79,24 +79,22 @@
             autoclose: true,
             todayHighlight: true
         });
-    });</script>
+    });
+</script>
 <script type="text/javascript">
     $(document).ready(function () {
-        function datatable() {
-            oTable = $("#payment-data-table").dataTable({
-                aLengthMenu: [
-                    [10, 25, 50, 100, -1],
-                    [10, 25, 50, 100, "All"]
-                ],
-                aoColumnDefs: [{
-                        targets: 'no-sort',
-                        bSortable: false,
-                        aTargets: [0, 1, 2]
-                    }],
-                iDisplayLength: 10,
-            }).fnDraw();
-        }
-        datatable();
+        var oTable = $("#payment-data-table").dataTable({
+            aLengthMenu: [
+                [10, 25, 50, 100, -1],
+                [10, 25, 50, 100, "All"]
+            ],
+            aoColumnDefs: [{
+                    targets: 'no-sort',
+                    bSortable: false,
+                    aTargets: [0, 1, 2]
+                }],
+            iDisplayLength: 10,
+        });
         $('#search').click(function () {
             $('.overlay').show();
             $('.loading-img').show();
@@ -110,7 +108,7 @@
                     $('.overlay').hide();
                     $('.loading-img').hide();
                     $('#payment-data-table tbody').html(data);
-                    datatable();
+                    oTable.fnDraw();
                 }
             });
         });
