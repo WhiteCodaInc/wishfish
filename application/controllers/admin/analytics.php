@@ -26,28 +26,17 @@ class Analytics extends CI_Controller {
     }
 
     function index() {
-        $data['phistory'] = array();
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');
-        $this->load->view('admin/analytics', $data);
+        $this->load->view('admin/analytics');
         $this->load->view('admin/admin_footer');
     }
 
     function getPayments() {
         $post = $this->input->post();
-        print_r($post);
-        echo is_array($post);
-        if (is_array($post) > 0) {
-            $data['phistory'] = $this->objanalytics->getPayments($post);
-            $this->load->view('admin/admin_header');
-            $this->load->view('admin/admin_top');
-            $this->load->view('admin/admin_navbar');
-            $this->load->view('admin/analytics', $data);
-            $this->load->view('admin/admin_footer');
-        } else {
-            header('location:' . site_url() . 'admin/analytics');
-        }
+        $data['phistory'] = $this->objanalytics->getPayments($post);
+        $this->load->view('admin/analytics-datewise', $data);
     }
 
     function access_class() {
