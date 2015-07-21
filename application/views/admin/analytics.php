@@ -73,18 +73,7 @@
 <!-- page script -->
 <script type="text/javascript">
     $(function () {
-        $("#payment-data-table").dataTable({
-            aLengthMenu: [
-                [25, 50, 100, 200, -1],
-                [25, 50, 100, 200, "All"]
-            ],
-            aoColumnDefs: [{
-                    targets: 'no-sort',
-                    bSortable: false,
-                    aTargets: [0, 1, 2]
-                }],
-            iDisplayLength: 25,
-        });
+        $("#payment-data-table").dataTable();
         $('.input-daterange').datepicker({
             format: "mm-dd-yyyy",
             todayBtn: "linked",
@@ -107,7 +96,7 @@
                 success: function (data, textStatus, jqXHR) {
                     $('.overlay').hide();
                     $('.loading-img').hide();
-                    $('#payment-data-table tbody').html(data);
+                    $('#data-panel').html(data);
                 }
             });
         });
