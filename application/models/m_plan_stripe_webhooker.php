@@ -32,8 +32,7 @@ class M_plan_stripe_webhooker extends CI_Model {
         switch ($event) {
             case "customer.created":
                 $customer = Stripe_Customer::retrieve($event_json->data->object->id);
-                fwrite($myfile, "Customer :" . $customer->subscription->data[0]->id . "\n");
-                fwrite($myfile, "Customer :" . $customer->subscription->data->id . "\n");
+                fwrite($myfile, "Customer :" . $customer . "\n");
                 $pname = $customer->subscription->data[0]->plan->id;
                 fwrite($myfile, "\n----------Plan : $pname---------------- \n");
                 if ($pname != "wishfish-free") {
