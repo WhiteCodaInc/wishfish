@@ -200,7 +200,7 @@ class M_plan_stripe_webhooker extends CI_Model {
             'mc_gross' => $amount,
             'mc_fee' => ($amount != 0) ? ($amount * 0.029) + 0.30 : 0,
             'gateway' => "STRIPE",
-            'payment_date' => date('Y-m-d', $customer->subscriptions->data[0]->current_period_start)
+            'payment_date' => date('Y-m-d H:i:s', $customer->subscriptions->data[0]->current_period_start)
         );
         $this->db->insert('wi_payment_mst', $insert_set);
     }
