@@ -31,10 +31,10 @@ class M_plan_stripe_webhooker extends CI_Model {
         fwrite($myfile, "Event :" . json_encode($event_json) . "\n");
         switch ($event) {
             case "customer.created":
-                $pname = $event_json->data->object->subscription->data->plan->id;
+                $cus = $event_json->data->object;
+                $pname = $cus->subscription->data[0]->plan->id;
                 fwrite($myfile, "\n----------Plan : $pname---------------- \n");
                 if ($pname != "wishfish-free") {
-                    $cus = $event_json->data->object;
                     $user_set = array(
                         'email' => $cus->email,
                         'password' => $this->generateRandomString(5),
@@ -100,18 +100,16 @@ class M_plan_stripe_webhooker extends CI_Model {
 //                    }
                 } else {
 
-//                    fwrite($myfile, "------------NEW PLAN------------\n");
+                    fwrite($myfile, "------------NEW PLAN------------\n");
 
-                    $ptype = $event_json->data->object->metadata->payment_type;
-                    $uid = $event_json->data->object->metadata->userid;
-                    $planid = $event_json->data->object->metadata->planid;
-
+//                    $ptype = $event_json->data->object->metadata->payment_type;
+//                    $uid = $event_json->data->object->metadata->userid;
+//                    $planid = $event_json->data->object->metadata->planid;
 //                    fwrite($myfile, "------------$ptype------------\n");
 //                    fwrite($myfile, "------------$uid------------\n");
 //                    fwrite($myfile, "------------$planid------------\n");
-
-                    $pid = $this->insertPlanDetail($uid, $planid, $customer, $ptype);
-                    $this->insertPaymentDetail($pid, $customer);
+//                    $pid = $this->insertPlanDetail($uid, $planid, $customer, $ptype);
+//                    $this->insertPaymentDetail($pid, $customer);
                 }
                 break;
 //            case "invoice.payment_succeeded":
