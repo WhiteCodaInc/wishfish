@@ -26,14 +26,17 @@ class M_plan_stripe_webhooker extends CI_Model {
 
 //        $customer_id = $event_json->data->object->customer;
 //        $customer = Stripe_Customer::retrieve($customer_id);
+//        
         $myfile = fopen(FCPATH . 'events.txt', "a");
         fwrite($myfile, "\n-----------------$event------------------- \n");
         fwrite($myfile, "Event :" . json_encode($event_json) . "\n");
+
+
         switch ($event) {
             case "customer.created":
                 $cus = $event_json->data->object;
                 $pname = $cus->subscriptions->data[0]->plan->id;
-                fwrite($myfile, "\n----------Plan : $pname---------------- \n");
+//                fwrite($myfile, "\n----------Plan : $pname---------------- \n");
                 if ($pname != "wishfish-free") {
                     $user_set = array(
                         'email' => $cus->email,
@@ -100,8 +103,7 @@ class M_plan_stripe_webhooker extends CI_Model {
 //                    }
                 } else {
 
-                    fwrite($myfile, "------------NEW PLAN------------\n");
-
+//                    fwrite($myfile, "------------NEW PLAN------------\n");
 //                    $ptype = $event_json->data->object->metadata->payment_type;
 //                    $uid = $event_json->data->object->metadata->userid;
 //                    $planid = $event_json->data->object->metadata->planid;
@@ -112,8 +114,8 @@ class M_plan_stripe_webhooker extends CI_Model {
 //                    $this->insertPaymentDetail($pid, $customer);
                 }
                 break;
-//            case "invoice.payment_succeeded":
-//                break;
+            case "invoice.payment_succeeded":
+                break;
 //            case "customer.subscription.deleted":
 //                $customer = Stripe_Customer::retrieve($event_json->data->object->customer);
 //                $subsid = $event_json->data->object->id;
