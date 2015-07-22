@@ -405,7 +405,7 @@
         $('#userForm,#cardForm').on('submit', function () {
             cardForm = $(this).attr('id');
             $('#save').prop('disabled', true);
-            if (gatewayFlag || (!cardFlag || cardForm == "cardForm")) {
+            if (gatewayFlag && (!cardFlag || cardForm == "cardForm")) {
                 var error = false;
                 var ccNum = $(this).find('.card_number').val(),
                         cvcNum = $(this).find('.cvc').val(),
@@ -472,7 +472,6 @@
             if (response.error) {
                 reportError(response.error.message);
             } else { // No errors, submit the form:
-                alert(cardForm);
                 var f = $("#" + cardForm);
 
                 // Token contains id, last4, and card type:
