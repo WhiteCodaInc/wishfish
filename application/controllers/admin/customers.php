@@ -390,4 +390,13 @@ class Customers extends CI_Controller {
         header('location:' . site_url() . 'admin/customers/profile/' . $userid);
     }
 
+    function deleteUser() {
+        try {
+            $customers = Stripe_Customer::all(array('limit' => 1));
+            print_r($customers);
+        } catch (Exception $e) {
+            echo $$e->getMessage();
+        }
+    }
+
 }
