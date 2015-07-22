@@ -27,10 +27,8 @@ class M_plan_stripe_webhooker extends CI_Model {
 //        $customer_id = $event_json->data->object->customer;
 //        $customer = Stripe_Customer::retrieve($customer_id);
         $myfile = fopen(FCPATH . 'events.txt', "a");
-        fwrite($myfile, "Event :" . $event . "\n");
-
-
-
+        fwrite($myfile, "\n-----------------$event------------------- \n");
+        fwrite($myfile, "Event :" . $event_json . "\n");
         switch ($event) {
             case "charge.succeeded":
                 $charge = fopen(FCPATH . 'charge', "a");
