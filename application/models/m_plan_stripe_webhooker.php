@@ -118,6 +118,7 @@ class M_plan_stripe_webhooker extends CI_Model {
                 fwrite($myfile, "------------CUSTOMER : $inv->customer------------\n");
                 $customer = Stripe_Customer::retrieve($inv->customer);
                 $pid = $customer->metadata->planid;
+                fwrite($myfile, "------------PLAN ID : $pid------------\n");
                 $this->insertPaymentDetail($pid, $customer);
                 break;
 //            case "customer.subscription.deleted":
