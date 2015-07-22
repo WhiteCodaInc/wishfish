@@ -392,10 +392,10 @@ class Customers extends CI_Controller {
 
     function deleteUser() {
         try {
-            $customers = Stripe_Customer::all(array('limit' => 1));
-            echo '<pre>';
-//            print_r($customers->data[0]->id);
-            echo $customers->data[0]->id;
+            $customers = Stripe_Customer::all(array('limit' => 100));
+            foreach ($customers->data as $customer) {
+                echo $customer->id . '<br/>';
+            }
         } catch (Exception $e) {
             echo $$e->getMessage();
         }
