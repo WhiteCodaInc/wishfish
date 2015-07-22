@@ -41,8 +41,8 @@ class Stripe_payment extends CI_Controller {
                     $stripe = array(
                         "card" => $this->input->post('stripeToken'),
                         "email" => $this->input->post('stripeEmail'),
-//                        "plan" => $set['plan']
-                        "plan" => "test"
+                        "plan" => $set['plan']
+//                        "plan" => "test"
                     );
                     if ($set['coupon'] != "") {
                         $stripe['coupon'] = $set['coupon'];
