@@ -318,10 +318,10 @@
                     $('#planUpgrade .box-body button').prop('disabled', true);
                     $('.personal .overlay').show();
                     $('.personal .loading-img').show();
-                    coupon = $('form#personal input[name="coupon"]').val();
+//                    coupon = $('form#personal input[name="coupon"]').val();
                     $.ajax({
                         type: 'POST',
-                        data: {plan: "wishfish-personal", planid: 2, coupon: coupon},
+                        data: {plan: "wishfish-personal", planid: 2, coupon: code},
                         url: "<?= site_url() ?>app/upgrade/upgradePlan",
                         success: function (data, textStatus, jqXHR) {
                             $('#a_personal').prop('disabled', false);
