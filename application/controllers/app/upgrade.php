@@ -29,7 +29,7 @@ class Upgrade extends CI_Controller {
             $this->userid = $this->session->userdata('u_userid');
             $this->load->model('dashboard/m_profile', 'objprofile');
             $this->load->model('m_register', 'objregister');
-            $this->load->model('m_upgrade', 'objupgrade');
+            $this->load->model('dashboard/m_upgrade', 'objupgrade');
         }
     }
 
