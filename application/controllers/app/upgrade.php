@@ -116,11 +116,14 @@ class Upgrade extends CI_Controller {
 
     function upgradePlan() {
         $flag = TRUE;
-        $plan = $this->input->post('plan');
-        $code = $this->input->post('code');
 
-        if ($code != "") {
-            $flag = ($this->objregister->checkCoupon($code)) ? TRUE : FALSE;
+        $set = $this->input->post();
+//        $plan = $this->input->post('plan');
+//        $planid = $this->input->post('planid');
+//        $code = $this->input->post('code');
+
+        if ($set['coupon'] != "") {
+            $flag = ($this->objregister->checkCoupon($set['coupon'])) ? TRUE : FALSE;
         }
         if ($flag) {
             $gatewayInfo = $this->wi_common->getPaymentGatewayInfo("STRIPE");
@@ -134,14 +137,26 @@ class Upgrade extends CI_Controller {
                     $subs = $customer->subscriptions->data[0]->id;
                     $customer->subscriptions->retrieve($subs)->cancel();
                 }
+//                $stripe = array(
+//                    "plan" => $plan,
+//                    "metadata" => array("userid" => $this->userid),
+//                );
                 $stripe = array(
-                    "plan" => $plan,
-                    "metadata" => array("userid" => $this->userid),
+                    "plan" => $set['plan']
                 );
-                ($code != "") ? $stripe['coupon'] = $code : '';
+                ($set['coupon'] != "") ? $stripe['coupon'] = $set['coupon'] : '';
                 $customer->subscriptions->create($stripe);
-                if ($code != "")
-                    $this->objregister->updateCoupon($code);
+
+                if ($set['coupon'] != "")
+                    $this->objregister->updateCoupon($set['coupon']);
+
+                $pid = $this->objcustomer->insertPlanDetail($set['planid'], $customer, $set);
+
+                $data = array("userid" => $this->userid, "planid" => $pid);
+                ($set['coupon'] != "") ? $data['coupon'] = $set['coupon'] : '';
+                $customer->metadata = $data;
+                $customer->save();
+
                 $success = 1;
             } catch (Exception $e) {
                 $error = $e->getMessage();

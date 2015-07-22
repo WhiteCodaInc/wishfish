@@ -277,7 +277,7 @@
                     } else {
                         $.ajax({
                             type: 'POST',
-                            data: {plan: "wishfish-enterprise", code: code},
+                            data: {plan: "wishfish-enterprise", planid: 3, coupon: code},
                             url: "<?= site_url() ?>app/upgrade/upgradePlan",
                             success: function (data, textStatus, jqXHR) {
                                 $('#planUpgrade .box-body button').prop('disabled', false);
@@ -315,12 +315,13 @@
                 }
 
                 function upgradeWithStripe() {
-                    $('#planUpgrade .box-body button').prop('disabled', 'disabled');
+                    $('#planUpgrade .box-body button').prop('disabled', true);
                     $('.personal .overlay').show();
                     $('.personal .loading-img').show();
+                    coupon = $('form#personal input[name="coupon"]').val();
                     $.ajax({
                         type: 'POST',
-                        data: {plan: "wishfish-personal"},
+                        data: {plan: "wishfish-personal", planid: 2, coupon: coupon},
                         url: "<?= site_url() ?>app/upgrade/upgradePlan",
                         success: function (data, textStatus, jqXHR) {
                             $('#a_personal').prop('disabled', false);
