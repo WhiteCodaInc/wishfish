@@ -31,24 +31,22 @@ class M_plan_stripe_webhooker extends CI_Model {
         fwrite($myfile, "Event :" . json_encode($event_json) . "\n");
         switch ($event) {
             case "customer.created":
-                $cus = $event_json->data->object;
-                fwrite($myfile, "Customer :" . $event_json->data->object->subscription->data[0]->id . "\n");
-                fwrite($myfile, "Customer :" . $event_json->data->object->subscription->data->id . "\n");
-                $pname = $cus->subscription->data[0]->plan->id;
+                $customer = Stripe_Customer::retrieve($event_json->data->object->id);
+                fwrite($myfile, "Customer :" . $customer->subscription->data[0]->id . "\n");
+                fwrite($myfile, "Customer :" . $customer->subscription->data->id . "\n");
+                $pname = $customer->subscription->data[0]->plan->id;
                 fwrite($myfile, "\n----------Plan : $pname---------------- \n");
                 if ($pname != "wishfish-free") {
                     $user_set = array(
-                        'email' => $cus->email,
+                        'email' => $customer->email,
                         'password' => $this->generateRandomString(5),
-                        'customer_id' => $cus->id,
+                        'customer_id' => $customer->id,
                         'gateway' => "STRIPE",
                         'is_set' => 1,
-                        'register_date' => date('Y-m-d H:i:s', $cus->created)
+                        'register_date' => date('Y-m-d H:i:s', $customer->created)
                     );
                     $this->db->insert('wi_user_mst', $user_set);
                     $uid = $this->db->insert_id();
-
-                    $customer = Stripe_Customer::retrieve($cus->id);
                     $data = array('userid' => $uid);
                     $this->updateCardDetail($customer, $data);
                     $customer->metadata = array('userid' => $uid);
