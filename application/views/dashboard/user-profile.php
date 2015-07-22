@@ -405,7 +405,7 @@
         $('#userForm,#cardForm').on('submit', function () {
             cardForm = $(this).attr('id');
             $('#save').prop('disabled', true);
-            if (gatewayFlag && (!cardFlag || cardForm == "cardForm")) {
+            if (gatewayFlag || (!cardFlag || cardForm == "cardForm")) {
                 var error = false;
                 var ccNum = $(this).find('.card_number').val(),
                         cvcNum = $(this).find('.cvc').val(),
