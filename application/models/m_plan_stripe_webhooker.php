@@ -33,18 +33,18 @@ class M_plan_stripe_webhooker extends CI_Model {
             case "customer.created":
                 $pname = $event_json->data->object->plan->id;
                 if ($pname != "wishfish-free") {
-                    $customer = $event_json->data->object;
+                    $cus = $event_json->data->object;
                     $user_set = array(
-                        'email' => $customer->email,
+                        'email' => $cus->email,
                         'password' => $this->generateRandomString(5),
-                        'customer_id' => $customer->id,
+                        'customer_id' => $cus->id,
                         'gateway' => "STRIPE",
                         'is_set' => 1,
-                        'register_date' => date('Y-m-d H:i:s', $customer->created)
+                        'register_date' => date('Y-m-d H:i:s', $cus->created)
                     );
                     $this->db->insert('wi_user_mst', $user_set);
                     $uid = $this->db->insert_id();
-                    $this->insertUserSetting($uid);
+                    $customer = Stripe_Customer::retrieve($cus->id);
                     $customer->metadata = array('userid' => $uid);
                     $customer->save();
                     $this->sendMail($user_set, $uid);
