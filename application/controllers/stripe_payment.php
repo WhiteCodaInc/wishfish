@@ -50,7 +50,6 @@ class Stripe_payment extends CI_Controller {
 
                     $user_set = array(
                         'email' => $customer->email,
-//                        'password' => $this->generateRandomString(5),
                         'customer_id' => $customer->id,
                         'gateway' => "STRIPE",
                         'is_set' => 1,
