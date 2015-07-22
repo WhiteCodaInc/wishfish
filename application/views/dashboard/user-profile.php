@@ -393,8 +393,8 @@
 //        var gatewayFlag = false;
         var cardForm;
 <?php if ($user->gateway == "STRIPE"): ?>
-            cardFlag = <?= (!$card) ? false : true ?>;
-            gatewayFlag = true;
+//            cardFlag = <?= (!$card) ? false : true ?>;
+    //            gatewayFlag = true;
 <?php else: ?>
 
 <?php endif; ?>
