@@ -373,6 +373,9 @@
             }
 
         });
+
+
+        var cardForm;
         var cardFlag;
         if ($('#userForm .card_number').prop('readonly')) {
             cardFlag = false;
@@ -389,15 +392,6 @@
                 cardFlag = false;
             }
         }
-
-//        var gatewayFlag = false;
-        var cardForm;
-<?php if ($user->gateway == "STRIPE"): ?>
-//            cardFlag = <?= (!$card) ? false : true ?>;
-    //            gatewayFlag = true;
-<?php else: ?>
-
-<?php endif; ?>
 
 <?php if ($user->phone): ?>
             $('select[name="code"]').val("<?= substr($user->phone, -strlen($user->phone), 2) ?>");
@@ -423,8 +417,6 @@
         $('#userForm,#cardForm').on('submit', function () {
             cardForm = $(this).attr('id');
             $('#save').prop('disabled', true);
-//            if (gatewayFlag && (!cardFlag || cardForm == "cardForm")) {
-            alert(cardFlag);
             if (cardFlag || cardForm == "cardForm") {
                 var error = false;
                 var ccNum = $(this).find('.card_number').val(),
