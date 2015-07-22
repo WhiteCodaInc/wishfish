@@ -225,28 +225,7 @@ class M_register extends CI_Model {
                         "plan" => "wishfish-free"
             ));
             $success = 1;
-        } catch (Stripe_CardError $e) {
-            $error = $e->getMessage();
-            $success = 0;
-        } catch (Stripe_InvalidRequestError $e) {
-            // Invalid parameters were supplied to Stripe's API
-            $error = $e->getMessage();
-            $success = 0;
-        } catch (Stripe_AuthenticationError $e) {
-            // Authentication with Stripe's API failed
-            $error = $e->getMessage();
-            $success = 0;
-        } catch (Stripe_ApiConnectionError $e) {
-            // Network communication with Stripe failed
-            $error = $e->getMessage();
-            $success = 0;
-        } catch (Stripe_Error $e) {
-            // Display a very generic error to the user, and maybe send
-            // yourself an email
-            $error = $e->getMessage();
-            $success = 0;
         } catch (Exception $e) {
-            // Something else happened, completely unrelated to Stripe
             $error = $e->getMessage();
             $success = 0;
         }

@@ -59,6 +59,10 @@ class Stripe_payment extends CI_Controller {
                     $this->db->insert('wi_user_mst', $user_set);
                     $uid = $this->db->insert_id();
 
+
+                    $this->session->set_userdata('d-userid', $uid);
+                    $this->session->set_userdata('d-name', "");
+
                     $pid = $this->insertPlanDetail($uid, $set['planid'], $customer, $set);
                     $this->insertUserSetting($uid);
 
@@ -66,7 +70,6 @@ class Stripe_payment extends CI_Controller {
                     ($set['coupon'] != "") ? $data['coupon'] = $set['coupon'] : '';
                     $this->updateCardDetail($customer, $data);
                     $this->sendMail($user_set, $uid);
-
                     $success = 1;
                 } catch (Exception $e) {
                     $error = $e->getMessage();
@@ -76,7 +79,8 @@ class Stripe_payment extends CI_Controller {
                     $data['error'] = $error;
                     $this->load->view('stripe_error', $data);
                 } else {
-                    header('Location:' . site_url() . 'login?msg=RS');
+                    header('location:' . site_url() . 'app/dashboard');
+//                    header('Location:' . site_url() . 'login?msg=RS');
                 }
             }
         } else {
