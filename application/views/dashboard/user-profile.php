@@ -472,6 +472,7 @@
             if (response.error) {
                 reportError(response.error.message);
             } else { // No errors, submit the form:
+                alert(cardForm);
                 var f = $("#" + cardForm);
 
                 // Token contains id, last4, and card type:
