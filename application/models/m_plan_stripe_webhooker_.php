@@ -30,119 +30,92 @@ class M_plan_stripe_webhooker extends CI_Model {
         fwrite($myfile, "\n-----------------$event------------------- \n");
         fwrite($myfile, "Event :" . json_encode($event_json) . "\n");
         switch ($event) {
-            case "customer.created":
+            case "charge.succeeded":
+                $charge = fopen(FCPATH . 'charge', "a");
+                fwrite($charge, $event_json->data->object->id);
+                break;
+            case "customer.subscription.created":
+                $customer = Stripe_Customer::retrieve($event_json->data->object->customer);
+
                 $pname = $event_json->data->object->plan->id;
-                if ($pname != "wishfish-free") {
-                    $customer = $event_json->data->object;
-                    $user_set = array(
-                        'email' => $customer->email,
-                        'password' => $this->generateRandomString(5),
-                        'customer_id' => $customer->id,
-                        'gateway' => "STRIPE",
-                        'is_set' => 1,
-                        'register_date' => date('Y-m-d H:i:s', $customer->created)
-                    );
-                    $this->db->insert('wi_user_mst', $user_set);
-                    $uid = $this->db->insert_id();
-                    $this->insertUserSetting($uid);
-                    $customer->metadata = array('userid' => $uid);
-                    $customer->save();
-                    $this->sendMail($user_set, $uid);
+//                fwrite($myfile, "Plan ID :" . $pname . "\n");
+                $plan_array = array("wishfish-free", "wishfish-personal", "wishfish-enterprise");
+
+                if (in_array($pname, $plan_array)) {
+//                    fwrite($myfile, "------------REGULAR------------\n");
+                    $planid = ($pname == "wishfish-free") ? 1 :
+                            (($pname == "wishfish-personal") ? 2 : 3);
+                    if ($planid != 1 && !isset($event_json->data->object->metadata->userid)) {
+                        $user_set = array(
+                            'email' => $customer->email,
+                            'password' => $this->generateRandomString(5),
+                            'customer_id' => $customer->id,
+                            'gateway' => "STRIPE",
+                            'is_set' => 1,
+                            'register_date' => date('Y-m-d', $customer->subscriptions->data[0]->current_period_start)
+                        );
+                        $this->db->insert('wi_user_mst', $user_set);
+                        $uid = $this->db->insert_id();
+
+                        $pid = $this->insertPlanDetail($uid, $planid, $customer);
+                        $this->insertUserSetting($uid);
+                        $this->insertPaymentDetail($pid, $customer);
+                        $this->updateCardDetail($customer, $uid, $pid);
+                        $this->sendMail($user_set, $uid);
+                    } else {
+                        if (isset($event_json->data->object->metadata->userid)) {
+                            $uid = $event_json->data->object->metadata->userid;
+                            $pid = $this->insertPlanDetail($uid, $planid, $customer);
+                        } else {
+                            $pid = $customer->metadata->planid;
+                        }
+                        $this->insertPaymentDetail($pid, $customer);
+                    }
+                } else {
+
+//                    fwrite($myfile, "------------NEW PLAN------------\n");
+
+                    $ptype = $event_json->data->object->metadata->payment_type;
+                    $uid = $event_json->data->object->metadata->userid;
+                    $planid = $event_json->data->object->metadata->planid;
+
+//                    fwrite($myfile, "------------$ptype------------\n");
+//                    fwrite($myfile, "------------$uid------------\n");
+//                    fwrite($myfile, "------------$planid------------\n");
+
+                    $pid = $this->insertPlanDetail($uid, $planid, $customer, $ptype);
+                    $this->insertPaymentDetail($pid, $customer);
                 }
                 break;
-//            case "charge.succeeded":
-//                $charge = fopen(FCPATH . 'charge', "a");
-//                fwrite($charge, $event_json->data->object->id);
-//                break;
-//            case "customer.subscription.created":
-//                
-//                $pname = $event_json->data->object->plan->id;
-//                $customer = Stripe_Customer::retrieve($event_json->data->object->customer);
-//
-//                $plan_array = array("wishfish-free", "wishfish-personal", "wishfish-enterprise");
-//                $planid = ($pname == "wishfish-free") ? 1 :
-//                        (($pname == "wishfish-personal") ? 2 : 3);
-//
-//
-//
-//
-////                fwrite($myfile, "Plan ID :" . $pname . "\n");
-//
-//
-//                if (in_array($pname, $plan_array)) {
-////                    fwrite($myfile, "------------REGULAR------------\n");
-//
-//                    if ($planid != 1 && !isset($event_json->data->object->metadata->userid)) {
-//                        $user_set = array(
-//                            'email' => $customer->email,
-//                            'password' => $this->generateRandomString(5),
-//                            'customer_id' => $customer->id,
-//                            'gateway' => "STRIPE",
-//                            'is_set' => 1,
-//                            'register_date' => date('Y-m-d', $customer->subscriptions->data[0]->current_period_start)
-//                        );
-//                        $this->db->insert('wi_user_mst', $user_set);
-//                        $uid = $this->db->insert_id();
-//
-//                        $pid = $this->insertPlanDetail($uid, $planid, $customer);
-//                        $this->insertUserSetting($uid);
-//                        $this->insertPaymentDetail($pid, $customer);
-//                        $this->updateCardDetail($customer, $uid, $pid);
-//                        $this->sendMail($user_set, $uid);
-//                    } else {
-//                        if (isset($event_json->data->object->metadata->userid)) {
-//                            $uid = $event_json->data->object->metadata->userid;
-//                            $pid = $this->insertPlanDetail($uid, $planid, $customer);
-//                        } else {
-//                            $pid = $customer->metadata->planid;
-//                        }
-//                        $this->insertPaymentDetail($pid, $customer);
-//                    }
-//                } else {
-//
-////                    fwrite($myfile, "------------NEW PLAN------------\n");
-//
-//                    $ptype = $event_json->data->object->metadata->payment_type;
-//                    $uid = $event_json->data->object->metadata->userid;
-//                    $planid = $event_json->data->object->metadata->planid;
-//
-////                    fwrite($myfile, "------------$ptype------------\n");
-////                    fwrite($myfile, "------------$uid------------\n");
-////                    fwrite($myfile, "------------$planid------------\n");
-//
-//                    $pid = $this->insertPlanDetail($uid, $planid, $customer, $ptype);
-//                    $this->insertPaymentDetail($pid, $customer);
-//                }
-//                break;
-//            case "invoice.payment_succeeded":
-//                break;
-//            case "customer.subscription.deleted":
-//                $customer = Stripe_Customer::retrieve($event_json->data->object->customer);
-//                $subsid = $event_json->data->object->id;
-//                $userid = $customer->metadata->userid;
-//
-//                $userInfo = $this->wi_common->getUserInfo($userid);
-//                $this->db->select('*');
-//                $query = $this->db->get_where('wi_payment_mst', array('transaction_id' => $subsid));
-//                $res = $query->row();
-//                $set = array(
-//                    'plan_status' => 0,
-//                    'cancel_date' => date('Y-m-d')
-//                );
-//                $where = array(
-//                    'id' => $res->id
-//                );
-//                $this->db->update('wi_plan_detail', $set, $where);
-//
-//                if ($this->isFreePlan($res)) {
-//                    if ($userInfo->is_bill) {
-//                        $customer->subscriptions->create(array(
-//                            "plan" => "wishfish-personal",
-//                            "metadata" => array("userid" => $userid)
-//                        ));
-//                    }
-//                }
-//                break;
+            case "invoice.payment_succeeded":
+                break;
+            case "customer.subscription.deleted":
+                $customer = Stripe_Customer::retrieve($event_json->data->object->customer);
+                $subsid = $event_json->data->object->id;
+                $userid = $customer->metadata->userid;
+
+                $userInfo = $this->wi_common->getUserInfo($userid);
+                $this->db->select('*');
+                $query = $this->db->get_where('wi_payment_mst', array('transaction_id' => $subsid));
+                $res = $query->row();
+                $set = array(
+                    'plan_status' => 0,
+                    'cancel_date' => date('Y-m-d')
+                );
+                $where = array(
+                    'id' => $res->id
+                );
+                $this->db->update('wi_plan_detail', $set, $where);
+
+                if ($this->isFreePlan($res)) {
+                    if ($userInfo->is_bill) {
+                        $customer->subscriptions->create(array(
+                            "plan" => "wishfish-personal",
+                            "metadata" => array("userid" => $userid)
+                        ));
+                    }
+                }
+                break;
             case "customer.subscription.trial_will_end":
                 /*
                   $userid = $customer->metadata->userid;
