@@ -115,9 +115,14 @@ class M_plan_stripe_webhooker extends CI_Model {
                 $inv = $event_json->data->object;
                 fwrite($myfile, "------------CUSTOMER : $inv->customer------------\n");
                 $customer = Stripe_Customer::retrieve($inv->customer);
+                $uid = $customer->metadata->userid;
                 $pid = $customer->metadata->planid;
                 fwrite($myfile, "------------PLAN ID : $pid------------\n");
                 $this->insertPaymentDetail($pid, $inv->charge, $customer);
+                if (isset($customer->metadata->coupon)) {
+                    $data = array('planid' => $pid, 'userid' => $uid);
+                    $this->updateCardDetail($customer, $data);
+                }
                 break;
 //            case "customer.subscription.deleted":
 //                $customer = Stripe_Customer::retrieve($event_json->data->object->customer);
@@ -198,6 +203,16 @@ class M_plan_stripe_webhooker extends CI_Model {
             'payment_date' => date('Y-m-d', $customer->subscriptions->data[0]->current_period_start)
         );
         $this->db->insert('wi_payment_mst', $insert_set);
+    }
+
+    function updateCardDetail($customer, $data) {
+        try {
+            $customer->metadata = $data;
+            $customer->save();
+            return TRUE;
+        } catch (Exception $e) {
+            return FALSE;
+        }
     }
 
 }
