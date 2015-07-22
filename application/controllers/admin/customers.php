@@ -394,7 +394,7 @@ class Customers extends CI_Controller {
         try {
             $customers = Stripe_Customer::all(array('limit' => 1));
             echo '<pre>';
-            print_r($customers);
+            print_r($customers->data);
         } catch (Exception $e) {
             echo $$e->getMessage();
         }
