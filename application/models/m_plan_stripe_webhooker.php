@@ -32,8 +32,8 @@ class M_plan_stripe_webhooker extends CI_Model {
         switch ($event) {
             case "customer.created":
                 $cus = $event_json->data->object;
-                fwrite($myfile, "Customer :" . $cus->subscription->data[0]->id . "\n");
-                fwrite($myfile, "Customer :" . $cus->subscription->data->id . "\n");
+                fwrite($myfile, "Customer :" . $event_json->data->object->subscription->data[0]->id . "\n");
+                fwrite($myfile, "Customer :" . $event_json->data->object->subscription->data->id . "\n");
                 $pname = $cus->subscription->data[0]->plan->id;
                 fwrite($myfile, "\n----------Plan : $pname---------------- \n");
                 if ($pname != "wishfish-free") {
