@@ -33,48 +33,47 @@ class M_plan_stripe_webhooker extends CI_Model {
 
 
         switch ($event) {
-            case "customer.created":
-                $cus = $event_json->data->object;
-                $pname = $cus->subscriptions->data[0]->plan->id;
-//                fwrite($myfile, "\n----------Plan : $pname---------------- \n");
-                if ($pname != "wishfish-free") {
-                    $user_set = array(
-                        'email' => $cus->email,
-                        'password' => $this->generateRandomString(5),
-                        'customer_id' => $cus->id,
-                        'gateway' => "STRIPE",
-                        'is_set' => 1,
-                        'register_date' => date('Y-m-d H:i:s', $cus->created)
-                    );
-                    $this->db->insert('wi_user_mst', $user_set);
-                    $uid = $this->db->insert_id();
-
-                    $customer = Stripe_Customer::retrieve($cus->id);
-                    $data = array('userid' => $uid);
-                    $this->updateCardDetail($customer, $data);
-                    $customer->metadata = array('userid' => $uid);
-                    $customer->save();
-
-                    $this->sendMail($user_set, $uid);
-                }
-                break;
+//            case "customer.created":
+//                $cus = $event_json->data->object;
+//                $pname = $cus->subscriptions->data[0]->plan->id;
+////                fwrite($myfile, "\n----------Plan : $pname---------------- \n");
+//                if ($pname != "wishfish-free") {
+//                    $user_set = array(
+//                        'email' => $cus->email,
+//                        'password' => $this->generateRandomString(5),
+//                        'customer_id' => $cus->id,
+//                        'gateway' => "STRIPE",
+//                        'is_set' => 1,
+//                        'register_date' => date('Y-m-d H:i:s', $cus->created)
+//                    );
+//                    $this->db->insert('wi_user_mst', $user_set);
+//                    $uid = $this->db->insert_id();
+//
+//                    $customer = Stripe_Customer::retrieve($cus->id);
+//                    $data = array('userid' => $uid);
+//                    $this->updateCardDetail($customer, $data);
+//                    $customer->metadata = array('userid' => $uid);
+//                    $customer->save();
+//
+//                    $this->sendMail($user_set, $uid);
+//                }
+//                break;
             case "customer.subscription.created":
-                $customer = Stripe_Customer::retrieve($event_json->data->object->customer);
-                $uid = $customer->metadata->userid;
-                $pname = $event_json->data->object->plan->id;
-
-                $plan_array = array("wishfish-free", "wishfish-personal", "wishfish-enterprise");
-
-                if (in_array($pname, $plan_array)) {
-
-                    $planid = ($pname == "wishfish-free") ? 1 :
-                            (($pname == "wishfish-personal") ? 2 : 3);
-
-                    $pid = $this->insertPlanDetail($uid, $planid, $customer);
-
-                    $data = array('planid' => $pid, 'userid' => $uid);
-                    $this->updateCardDetail($customer, $data);
-
+//                $customer = Stripe_Customer::retrieve($event_json->data->object->customer);
+//                $uid = $customer->metadata->userid;
+//                $pname = $event_json->data->object->plan->id;
+//
+//                $plan_array = array("wishfish-free", "wishfish-personal", "wishfish-enterprise");
+//
+//                if (in_array($pname, $plan_array)) {
+//
+//                    $planid = ($pname == "wishfish-free") ? 1 :
+//                            (($pname == "wishfish-personal") ? 2 : 3);
+//
+//                    $pid = $this->insertPlanDetail($uid, $planid, $customer);
+//
+//                    $data = array('planid' => $pid, 'userid' => $uid);
+//                    $this->updateCardDetail($customer, $data);
 //                    if ($planid != 1 && !isset($event_json->data->object->metadata->userid)) {
 //                        $user_set = array(
 //                            'email' => $customer->email,
@@ -101,8 +100,7 @@ class M_plan_stripe_webhooker extends CI_Model {
 //                        }
 //                        $this->insertPaymentDetail($pid, $customer);
 //                    }
-                } else {
-
+//                } else {
 //                    $ptype = $event_json->data->object->metadata->payment_type;
 //                    $uid = $event_json->data->object->metadata->userid;
 //                    $planid = $event_json->data->object->metadata->planid;
@@ -111,7 +109,7 @@ class M_plan_stripe_webhooker extends CI_Model {
 //                    fwrite($myfile, "------------$planid------------\n");
 //                    $pid = $this->insertPlanDetail($uid, $planid, $customer, $ptype);
 //                    $this->insertPaymentDetail($pid, $customer);
-                }
+//                }
                 break;
             case "invoice.payment_succeeded":
                 $inv = $event_json->data->object;
@@ -119,7 +117,7 @@ class M_plan_stripe_webhooker extends CI_Model {
                 $customer = Stripe_Customer::retrieve($inv->customer);
                 $pid = $customer->metadata->planid;
                 fwrite($myfile, "------------PLAN ID : $pid------------\n");
-                $this->insertPaymentDetail($pid, $customer);
+                $this->insertPaymentDetail($pid, $inv->charge, $customer);
                 break;
 //            case "customer.subscription.deleted":
 //                $customer = Stripe_Customer::retrieve($event_json->data->object->customer);
@@ -174,53 +172,11 @@ class M_plan_stripe_webhooker extends CI_Model {
         return ($query->row()->plan_id == 1) ? TRUE : FALSE;
     }
 
-    function generateRandomString($length = 5) {
-        return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
-    }
+//    function generateRandomString($length = 5) {
+//        return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
+//    }
 
-    function insertPlanDetail($userid, $planid, $customer, $type = NULL) {
-        $amount = $customer->subscriptions->data[0]->plan->amount / 100;
-        $planInfo = $this->wi_common->getPlan($planid);
-
-        $startDt = date('Y-m-d', $customer->subscriptions->data[0]->current_period_start);
-        $endDt = date('Y-m-d', $customer->subscriptions->data[0]->current_period_end);
-
-        if (isset($customer->metadata->coupon)) {
-            $coupon = $this->getCoupon($customer->metadata->coupon);
-            $amount = ($coupon->disc_type == "F") ?
-                    $amount - $coupon->disc_amount :
-                    $amount - ($amount * ($coupon->disc_amount / 100));
-        }
-        $plan_set = array(
-            'user_id' => $userid,
-            'plan_id' => $planid,
-            'contacts' => $planInfo->contacts,
-            'sms_events' => $planInfo->sms_events,
-            'email_events' => $planInfo->email_events,
-            'group_events' => $planInfo->group_events,
-            'amount' => $amount,
-            'plan_status' => 1,
-            'start_date' => $startDt
-        );
-        $plan_set['expiry_date'] = ($type != NULL) ?
-                (($type == "onetime") ? $endDt : NULL) : NULL;
-        $this->db->insert('wi_plan_detail', $plan_set);
-        return $this->db->insert_id();
-    }
-
-    function insertUserSetting($uid) {
-        $set = array(
-            'user_id' => $uid,
-            'redirect_uri' => site_url() . 'app/calender'
-        );
-        $this->db->insert('wi_user_setting', $set);
-    }
-
-    function insertPaymentDetail($pid, $customer) {
-
-        $charge = fopen(FCPATH . 'charge', 'r');
-        $chargeid = fread($charge, filesize(FCPATH . 'charge'));
-        unlink(FCPATH . 'charge');
+    function insertPaymentDetail($pid, $charge, $customer) {
 
         $amount = $customer->subscriptions->data[0]->plan->amount / 100;
 
@@ -233,7 +189,7 @@ class M_plan_stripe_webhooker extends CI_Model {
         $insert_set = array(
             'id' => $pid,
             'transaction_id' => $customer->subscriptions->data[0]->id,
-            'invoice_id' => $chargeid,
+            'invoice_id' => $charge,
             'payer_id' => $customer->id,
             'payer_email' => $customer->email,
             'mc_gross' => $amount,
@@ -242,53 +198,6 @@ class M_plan_stripe_webhooker extends CI_Model {
             'payment_date' => date('Y-m-d', $customer->subscriptions->data[0]->current_period_start)
         );
         $this->db->insert('wi_payment_mst', $insert_set);
-    }
-
-    function updateCardDetail($customer, $data) {
-        try {
-            $customer->metadata = $data;
-            $customer->save();
-            return TRUE;
-        } catch (Exception $e) {
-            return FALSE;
-        }
-    }
-
-    function getCoupon($code) {
-        $where = array(
-            'coupon_code' => $code
-        );
-        $query = $this->db->get_where('coupons', $where);
-        return $query->row();
-    }
-
-    function sendMail($post, $userid) {
-        $uid = $this->encryption->encode($userid);
-        $templateInfo = $this->wi_common->getAutomailTemplate("NEW USER REGISTRATION");
-        $url = site_url() . 'app/dashboard?uid=' . $uid;
-        $link = "<table border='0' align='center' cellpadding='0' cellspacing='0' class='mainBtn' style='margin-top: 0;margin-left: auto;margin-right: auto;margin-bottom: 0;padding-top: 0;padding-bottom: 0;padding-left: 0;padding-right: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-collapse: collapse;border-spacing: 0;'>";
-        $link .= "<tr>";
-        $link .= "<td align='center' valign='middle' class='btnMain' style='margin-top: 0;margin-left: 0;margin-right: 0;margin-bottom: 0;padding-top: 12px;padding-bottom: 12px;padding-left: 22px;padding-right: 22px;border-collapse: collapse;border-spacing: 0;-webkit-text-size-adjust: none;font-family: Arial, Helvetica, sans-serif;background-color: {$templateInfo['color']};height: 20px;font-size: 18px;line-height: 20px;mso-line-height-rule: exactly;text-align: center;vertical-align: middle;'>
-                                            <a href='{$url}' style='padding-top: 0;padding-bottom: 0;padding-left: 0;padding-right: 0;display: inline-block;text-decoration: none;-webkit-text-size-adjust: none;font-family: Arial, Helvetica, sans-serif;color: #ffffff;font-weight: bold;'>
-                                                <span style='text-decoration: none;color: #ffffff;'>
-                                                    Activate Your Account
-                                                </span>
-                                            </a>
-                                        </td>";
-        $link .= "</tr></table>";
-        $tag = array(
-            'NAME' => "User",
-            'LINK' => $link,
-            'THISDOMAIN' => "Wish-Fish"
-        );
-        $subject = $this->parser->parse_string($templateInfo['mail_subject'], $tag, TRUE);
-        $this->load->view('email_format', $templateInfo, TRUE);
-        $body = $this->parser->parse('email_format', $tag, TRUE);
-
-        $from = ($templateInfo['from'] != "") ? $templateInfo['from'] : NULL;
-        $name = ($templateInfo['name'] != "") ? $templateInfo['name'] : NULL;
-
-        return $this->wi_common->sendAutoMail($post['email'], $subject, $body, $from, $name);
     }
 
 }
