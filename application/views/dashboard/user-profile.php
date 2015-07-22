@@ -375,9 +375,20 @@
         });
         var cardFlag;
         if ($('#userForm .card_number').prop('readonly')) {
-            cardFlag = true;
-        } else {
             cardFlag = false;
+        }
+        else {
+            var ccNum = $('#userForm').find('.card_number').val(),
+                    cvcNum = $('#userForm').find('.cvc').val(),
+                    expMonth = $('#userForm').find('.month').val(),
+                    expYear = $('#userForm').find('.year').val();
+            if (ccNum.trim() != "" || cvcNum.trim() != "" ||
+                    expMonth.trim() != "" || expYear.trim() != "") {
+                cardFlag = true;
+            } else {
+                cardFlag = false;
+            }
+
         }
 
 //        var gatewayFlag = false;
