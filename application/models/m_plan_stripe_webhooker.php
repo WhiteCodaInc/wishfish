@@ -24,8 +24,8 @@ class M_plan_stripe_webhooker extends CI_Model {
     function stripe($event_json) {
         $event = $event_json->type;
 
-        $customer_id = $event_json->data->object->customer;
-        $customer = Stripe_Customer::retrieve($customer_id);
+//        $customer_id = $event_json->data->object->customer;
+//        $customer = Stripe_Customer::retrieve($customer_id);
         $myfile = fopen(FCPATH . 'events.txt', "a");
         fwrite($myfile, "Event :" . $event . "\n");
 
