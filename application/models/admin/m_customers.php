@@ -210,4 +210,27 @@ class M_customers extends CI_Model {
         return ($query->num_rows()) ? $query->row() : FALSE;
     }
 
+    function insertPlanDetail($userid, $planid, $customer) {
+        $amount = $customer->subscriptions->data[0]->plan->amount / 100;
+        $planInfo = $this->wi_common->getPlan($planid);
+
+        $startDt = date('Y-m-d', $customer->subscriptions->data[0]->current_period_start);
+        $endDt = date('Y-m-d', $customer->subscriptions->data[0]->current_period_end);
+
+        $plan_set = array(
+            'user_id' => $userid,
+            'plan_id' => $planid,
+            'contacts' => $planInfo->contacts,
+            'sms_events' => $planInfo->sms_events,
+            'email_events' => $planInfo->email_events,
+            'group_events' => $planInfo->group_events,
+            'amount' => $amount,
+            'plan_status' => 1,
+            'start_date' => $startDt,
+            'expiry_date' => $endDt
+        );
+        $this->db->insert('wi_plan_detail', $plan_set);
+        return $this->db->insert_id();
+    }
+
 }

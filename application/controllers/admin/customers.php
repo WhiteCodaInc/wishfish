@@ -309,12 +309,16 @@ class Customers extends CI_Controller {
                         "interval_count" => $post['interval'],
                         "name" => $uInfo->name . '(Individual)',
                         "id" => $planid));
-                    $customer->sources->create(array("source" => $post['stripeToken']));
+//                    $customer->sources->create(array("source" => $post['stripeToken']));
                     $stripe = array(
                         "plan" => $planid,
-                        "metadata" => array("userid" => $post['userid'], "payment_type" => $post['type'], "planid" => $post['plan']),
+                        "source" => $post['stripeToken']
                     );
                     $customer->subscriptions->create($stripe);
+                    $pid = $this->objcustomer->insertPlanDetail($post['userid'], $post['plan'], $customer);
+                    $data = array("userid" => $post['userid'], "planid" => $pid);
+                    $customer->metadata = $data;
+                    $customer->save();
                     header('location:' . site_url() . 'admin/customers/profile/' . $post['userid'] . '?msg=T');
                 } catch (Exception $e) {
                     $flag = FALSE;
