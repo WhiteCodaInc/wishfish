@@ -103,7 +103,6 @@ class M_plan_stripe_webhooker extends CI_Model {
 //                    }
                 } else {
 
-//                    fwrite($myfile, "------------NEW PLAN------------\n");
 //                    $ptype = $event_json->data->object->metadata->payment_type;
 //                    $uid = $event_json->data->object->metadata->userid;
 //                    $planid = $event_json->data->object->metadata->planid;
@@ -115,6 +114,11 @@ class M_plan_stripe_webhooker extends CI_Model {
                 }
                 break;
             case "invoice.payment_succeeded":
+                $inv = $event_json->data->object;
+                fwrite($myfile, "------------CUSTOMER : $inv->customer------------\n");
+                $customer = Stripe_Customer::retrieve($inv->customer);
+                $pid = $customer->metadata->planid;
+                $this->insertPaymentDetail($pid, $customer);
                 break;
 //            case "customer.subscription.deleted":
 //                $customer = Stripe_Customer::retrieve($event_json->data->object->customer);
