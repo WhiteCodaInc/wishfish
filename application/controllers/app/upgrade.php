@@ -121,8 +121,7 @@ class Upgrade extends CI_Controller {
 //        $plan = $this->input->post('plan');
 //        $planid = $this->input->post('planid');
 //        $code = $this->input->post('code');
-        print_r($set);
-        die();
+
         if ($set['coupon'] != "") {
             $flag = ($this->objregister->checkCoupon($set['coupon'])) ? TRUE : FALSE;
         }

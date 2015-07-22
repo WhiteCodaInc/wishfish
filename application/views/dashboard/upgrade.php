@@ -318,7 +318,6 @@
                     $('#planUpgrade .box-body button').prop('disabled', true);
                     $('.personal .overlay').show();
                     $('.personal .loading-img').show();
-//                    coupon = $('form#personal input[name="coupon"]').val();
                     $.ajax({
                         type: 'POST',
                         data: {plan: "wishfish-personal", planid: 2, coupon: code},
