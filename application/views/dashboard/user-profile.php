@@ -388,7 +388,6 @@
             } else {
                 cardFlag = false;
             }
-
         }
 
 //        var gatewayFlag = false;
@@ -425,6 +424,7 @@
             cardForm = $(this).attr('id');
             $('#save').prop('disabled', true);
 //            if (gatewayFlag && (!cardFlag || cardForm == "cardForm")) {
+            alert(cardFlag);
             if (cardFlag || cardForm == "cardForm") {
                 var error = false;
                 var ccNum = $(this).find('.card_number').val(),
