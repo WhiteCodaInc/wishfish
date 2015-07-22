@@ -29,6 +29,7 @@ class Upgrade extends CI_Controller {
             $this->userid = $this->session->userdata('u_userid');
             $this->load->model('dashboard/m_profile', 'objprofile');
             $this->load->model('m_register', 'objregister');
+            $this->load->model('m_upgrade', 'objupgrade');
         }
     }
 
@@ -63,50 +64,40 @@ class Upgrade extends CI_Controller {
                 try {
                     $userInfo = $this->wi_common->getUserInfo($this->userid);
                     $customer = Stripe_Customer::retrieve($userInfo->customer_id);
-                    $customer->sources->create(array("source" => $this->input->post('stripeToken')));
+//                    $customer->sources->create(array("source" => $this->input->post('stripeToken')));
                     if ($customer->subscriptions->total_count) {
                         $subs = $customer->subscriptions->data[0]->id;
                         $customer->subscriptions->retrieve($subs)->cancel();
                     }
+//                    $stripe = array(
+//                        "plan" => $set['plan'],
+//                        "metadata" => array("userid" => $this->userid),
+//                    );
                     $stripe = array(
                         "plan" => $set['plan'],
-                        "metadata" => array("userid" => $this->userid),
+                        "source" => $set['stripeToken']
                     );
                     ($set['coupon'] != "") ? $stripe['coupon'] = $set['coupon'] : '';
-
                     $customer->subscriptions->create($stripe);
 
                     if ($set['coupon'] != "")
                         $this->objregister->updateCoupon($set['coupon']);
+
+                    $pid = $this->objcustomer->insertPlanDetail($set['planid'], $customer, $set);
+
+                    $data = array("userid" => $this->userid, "planid" => $pid);
+                    ($set['coupon'] != "") ? $data['coupon'] = $set['coupon'] : '';
+                    $customer->metadata = $data;
+                    $customer->save();
 
                     $user_set = array(
                         'gateway' => "STRIPE",
                         'is_set' => 1
                     );
                     $this->db->update('wi_user_mst', $user_set, array('user_id' => $this->userid));
+
                     $success = 1;
-                } catch (Stripe_CardError $e) {
-                    $error = $e->getMessage();
-                    $success = 0;
-                } catch (Stripe_InvalidRequestError $e) {
-                    // Invalid parameters were supplied to Stripe's API
-                    $error = $e->getMessage();
-                    $success = 0;
-                } catch (Stripe_AuthenticationError $e) {
-                    // Authentication with Stripe's API failed
-                    $error = $e->getMessage();
-                    $success = 0;
-                } catch (Stripe_ApiConnectionError $e) {
-                    // Network communication with Stripe failed
-                    $error = $e->getMessage();
-                    $success = 0;
-                } catch (Stripe_Error $e) {
-                    // Display a very generic error to the user, and maybe send
-                    // yourself an email
-                    $error = $e->getMessage();
-                    $success = 0;
                 } catch (Exception $e) {
-                    // Something else happened, completely unrelated to Stripe
                     $error = $e->getMessage();
                     $success = 0;
                 }

@@ -104,6 +104,7 @@
             <?php if (!$card): ?>
                 <form style="display: none" id="personal" action="<?= site_url() ?>app/upgrade/pay" method="post">
                     <input type="hidden" name="plan" value="wishfish-personal"/>
+                    <input type="hidden" name="planid" value="2">
                     <input type="hidden" name="coupon" value="">
                     <script
                         src="https://checkout.stripe.com/checkout.js" class="stripe-button"
@@ -117,6 +118,7 @@
                 </form>
                 <form style="display: none" id="enterprise" action="<?= site_url() ?>app/upgrade/pay" method="post">
                     <input type="hidden" name="plan" value="wishfish-enterprise"/>
+                    <input type="hidden" name="planid" value="3">
                     <input type="hidden" name="coupon" value="">
                     <script
                         src="https://checkout.stripe.com/checkout.js" class="stripe-button"
