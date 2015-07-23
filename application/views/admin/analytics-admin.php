@@ -49,7 +49,7 @@
                                         <th style="font-size: 17px;padding-right: 18px;text-align: center;">
                                             <i class="fa fa-level-down"></i>
                                         </th>
-                                        <th>Profile</th>
+<!--                                        <th>Profile</th>-->
                                         <th>Full Name</th>
                                         <th class="hidden-xs hidden-sm">Username</th>
                                         <th class="hidden-xs hidden-sm">Assign Admin Access Class</th>
@@ -62,9 +62,9 @@
                                 <tbody>
                                     <?php foreach ($profiles as $value) { ?>
                                         <?php
-                                        $img_src = ($value->admin_avatar != "") ?
-                                                "http://mikhailkuznetsov.s3.amazonaws.com/" . $value->admin_avatar :
-                                                base_url() . 'assets/dashboard/img/default-avatar.png';
+//                                        $img_src = ($value->admin_avatar != "") ?
+//                                                "http://mikhailkuznetsov.s3.amazonaws.com/" . $value->admin_avatar :
+//                                                base_url() . 'assets/dashboard/img/default-avatar.png';
                                         ?>
                                         <tr>
                                             <td>
@@ -74,9 +74,9 @@
                                                     </label>
                                                 </div>
                                             </td>
-                                            <td>
+<!--                                            <td>
                                                 <img style="width:60px;height:60px" src="<?= $img_src ?>" class="img-circle" alt="User Image" />
-                                            </td>
+                                            </td>-->
                                             <td>
                                                 <a href="<?= site_url() . 'admin/admin_profile/profile/' . $value->profile_id ?>" class="name">
                                                     <?= $value->fname . ' ' . $value->lname ?>
@@ -112,7 +112,7 @@
                                 <tfoot>
                                     <tr>
                                         <th></th>
-                                        <th>Profile</th>
+                                        <!--<th>Profile</th>-->
                                         <th>Full Name</th>
                                         <th class="hidden-xs hidden-sm">Username</th>
                                         <th class="hidden-xs hidden-sm">Assign Admin Access Class</th>
