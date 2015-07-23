@@ -91,9 +91,9 @@ class Trigger_report extends CI_Controller {
         $totalP = $res->totalP + $res->totalE;
         $totalR = number_format($res->personal + $res->enterprise, 2);
         $body = "New Users : {$res->totalU}<br>"
-                . "Today's Free-Trial Users : ${$totalU}<br>"
-                . "Today's Premium Users : ${$totalP}<br>"
-                . "Today's Revenue : ${$totalR}<br>";
+                . "Today's Free-Trial Users : $ {$totalU}<br>"
+                . "Today's Premium Users : $ {$totalP}<br>"
+                . "Today's Revenue : $ {$totalR}<br>";
         return $body;
     }
 
