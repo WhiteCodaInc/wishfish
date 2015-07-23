@@ -105,14 +105,14 @@
                                             ?>
                                             <td class="hidden-xs hidden-sm"><?= $phone ?></td>
                                             <td>
-                                                <?php if ($value->email_status): ?>
+                                                <?php if ($value->email_report): ?>
                                                     <span class="btn btn-success btn-xs">Enable</span>
                                                 <?php else : ?>
                                                     <span class="btn btn-danger btn-xs">Disable</span>
                                                 <?php endif; ?>
                                             </td>
                                             <td>
-                                                <?php if ($value->sms_status): ?>
+                                                <?php if ($value->sms_report): ?>
                                                     <span class="btn btn-success btn-xs">Enable</span>
                                                 <?php else : ?>
                                                     <span class="btn btn-danger btn-xs">Disable</span>
