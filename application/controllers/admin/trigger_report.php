@@ -84,10 +84,11 @@ class Trigger_report extends CI_Controller {
     }
 
     function makeEmailBody($res) {
-        $body = "New Users : {$res->totalU}<br>";
-        $body .= "Today's Free-Trial Users : " . $res->expired + $res->non_expired . "<br>";
-        $body .= "Today's Premium Users : " . $res->totalP + $res->totalE . "<br>";
-        $body .= "Today's Revenue : $" . $res->personal + $res->enterprise . "<br>";
+        $body = "New Users : {$res->totalU}<br>"
+                . "Today's Free-Trial Users : " . $res->expired + $res->non_expired . "<br>"
+                . "Today's Free-Trial Users : " . $res->expired + $res->non_expired . "<br>"
+                . "Today's Premium Users : " . $res->totalP + $res->totalE . "<br>"
+                . "Today's Revenue : $" . $res->personal + $res->enterprise . "<br>";
         return $body;
     }
 
