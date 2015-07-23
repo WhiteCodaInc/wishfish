@@ -10,9 +10,9 @@
         </tr>
     <?php } ?>
 <?php else: ?>
-    <tr class="odd">
-        <td valign="top" colspan="2" class="dataTables_empty">
-            No data available in table
-        </td>
-    </tr>
+        <!--    <tr class="odd">
+            <td valign="top" colspan="2" class="dataTables_empty">
+                No data available in table
+            </td>
+        </tr>-->
 <?php endif; ?>
