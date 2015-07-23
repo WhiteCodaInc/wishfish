@@ -1,8 +1,3 @@
-<?php
-print_r($users);
-echo count($users);
-die();
-?>
 <?php if (count($users) > 0): ?>
     <?php foreach ($users as $value) { ?>
         <tr id="<?= $value->date ?>">
