@@ -61,6 +61,9 @@ class Trigger_report extends CI_Controller {
 //            if ($this->hour == "11" && $this->minute == "59") {
             if ($value->sms_report) {
                 $body = $this->makeSMSBody($res);
+
+                echo $body;
+
                 if ($value->phone != NULL && $this->common->sendSMS($value->phone, $body)) {
                     echo '<br>-------------SMS SENT SUCCESSFULLY---------------<br>';
                 } else {
