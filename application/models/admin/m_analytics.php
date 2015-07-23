@@ -111,12 +111,10 @@ class M_analytics extends CI_Model {
     }
 
     function getNewUserDetail($post) {
-        $where = array(
-            'DATE(register_date) =' => $post['pdate']
-        );
         $this->db->select('*');
+        $this->db->where('DATE(register_date)', $post['pdate']);
         $this->db->order_by('register_date', 'desc');
-        $query = $this->db->get('wi_user_mst', $where);
+        $query = $this->db->get('wi_user_mst');
         return $query->result();
     }
 
