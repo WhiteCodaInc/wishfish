@@ -13,7 +13,6 @@
                     "N/A"
             ?>
         </td>
-        <td><?= $value->plan_name ?></td>
         <td><?= date('m-d-Y H:i:s', strtotime($value->register_date)) ?></td>
         <td>
             <?php if ($value->status): ?>

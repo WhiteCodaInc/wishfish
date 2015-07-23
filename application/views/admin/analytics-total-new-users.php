@@ -78,7 +78,6 @@
                                     <th>Customer Name</th>
                                     <th>Email</th>
                                     <th>Phone</th>
-                                    <th>Plan</th>
                                     <th>Join Date & Time</th>
                                     <th>Status</th>
                                 </tr>
@@ -90,7 +89,6 @@
                                     <th>Customer Name</th>
                                     <th>Email</th>
                                     <th>Phone</th>
-                                    <th>Plan</th>
                                     <th>Join Date & Time</th>
                                     <th>Status</th>
                                 </tr>
