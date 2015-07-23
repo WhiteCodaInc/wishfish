@@ -70,6 +70,9 @@ class Trigger_report extends CI_Controller {
             if ($value->email_report) {
                 $subject = "Wish-Fish Daily Report";
                 $body = $this->makeEmailBody($res);
+
+                echo $body;
+
                 if ($value->email != NULL && $this->common->sendMail($value->email, $subject, $body)) {
                     echo '<br>-------------EMAIL SENT SUCCESSFULLY---------------<br>';
                 } else {
