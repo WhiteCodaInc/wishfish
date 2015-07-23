@@ -64,12 +64,13 @@ class Trigger extends CI_Controller {
 //            if ($this->hour == "11" && $this->minute == "59") {
                 if ($value->sms_report) {
                     $body = $this->makeSMSBody($users);
-                    if ($value->phone != NULL && $this->common->sendSMS($value->phone, $body)) {
-                        echo $body . '<br>';
-                        echo '<br>-------------SMS SENT SUCCESSFULLY---------------<br>';
-                    } else {
-                        echo '<br>-------------SMS NOT SUCCESSFULLY SENT---------------<br>';
-                    }
+                    echo "Length : " . strlen($body);
+//                    if ($value->phone != NULL && $this->common->sendSMS($value->phone, $body)) {
+//                        echo $body . '<br>';
+//                        echo '<br>-------------SMS SENT SUCCESSFULLY---------------<br>';
+//                    } else {
+//                        echo '<br>-------------SMS NOT SUCCESSFULLY SENT---------------<br>';
+//                    }
                 }
                 if ($value->email_report) {
                     $subject = "Wish-Fish Daily Report";
