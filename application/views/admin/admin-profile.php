@@ -160,7 +160,7 @@
                                     <?php foreach ($result as $value) { ?>
                                         <?php
                                         $img_src = ($value->admin_avatar != "") ?
-                                                "http://mikhailkuznetsov.s3.amazonaws.com/" . $value->admin_avatar :
+                                                "https://mikhailkuznetsov.s3.amazonaws.com/" . $value->admin_avatar :
                                                 base_url() . 'assets/dashboard/img/default-avatar.png';
                                         ?>
                                         <tr>
