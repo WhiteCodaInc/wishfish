@@ -1,4 +1,5 @@
 <?php
+print_r($users);
 echo count($users);
 die();
 ?>
