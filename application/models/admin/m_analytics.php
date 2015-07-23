@@ -119,4 +119,10 @@ class M_analytics extends CI_Model {
         return $query->result();
     }
 
+    function getProfiles() {
+        $this->db->order_by('fname', 'asc');
+        $query = $this->db->get_where('admin_profile');
+        return $query->result();
+    }
+
 }

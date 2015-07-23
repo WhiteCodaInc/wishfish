@@ -86,7 +86,7 @@ class Analytics extends CI_Controller {
     }
 
     function adminReport() {
-        $data['profiles'] = array();
+        $data['profiles'] = $this->objanalytics->getProfiles();
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');

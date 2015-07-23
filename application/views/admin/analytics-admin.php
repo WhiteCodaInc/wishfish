@@ -14,8 +14,8 @@
         <h1 style="display: none">
             Admin Profiles
         </h1>
-        <div style="float:left">
-            <select id="action" class="form-control" style="float: left;width: 30%">
+        <div style="float:left;margin-left:  20px">
+            <select id="atype" class="form-control">
                 <option value="-1">------Select------</option>
                 <option value="-1">Enable Daily Email Report</option>
                 <option value="-1">Enable Daily SMS Report</option>
@@ -23,7 +23,7 @@
                 <option value="-1">Disable Daily Email Report</option>
             </select>
         </div>
-        <button  value="Action" class="btn btn-primary btn-sm delete" type="button" >Action</button>
+        <button value="Action" id="action" class="btn btn-primary delete" type="button" >Action</button>
         <div class="search" style="float:right;width: 25%">
             <select id="page_length" class="form-control" style="float: left;width: 30%">
                 <option value="25">25</option>
