@@ -54,9 +54,8 @@ class Trigger_report extends CI_Controller {
         echo "MINUTE : " . $this->minute . '<br>';
         echo "SECOND : " . $this->second . '<br>';
 
-//        print_r($profiles);
-//        print_r($res);
-//        die();
+        print_r($profiles);
+        print_r($res);
 
         foreach ($profiles as $value) {
 //            if ($this->hour == "11" && $this->minute == "59") {
