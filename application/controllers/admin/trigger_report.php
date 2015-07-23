@@ -29,7 +29,7 @@ class Trigger_report extends CI_Controller {
         $this->load->model('admin/m_trigger', 'objtrigger');
     }
 
-    function index() {
+    function index($dt) {
         // UM =  - to UTC 
         // UP = UTC to + 
         $this->timezone = "UM8";
@@ -44,7 +44,8 @@ class Trigger_report extends CI_Controller {
         $this->second = date('s', strtotime($datetime));
 
         $profiles = $this->objtrigger->getProfiles();
-        $res = $this->objanalytics->getTotalUser($this->date);
+//        $res = $this->objanalytics->getTotalUser($this->date);
+        $res = $this->objanalytics->getTotalUser($dt);
 
 
 
@@ -69,7 +70,7 @@ class Trigger_report extends CI_Controller {
             }
             if ($value->email_report) {
                 $subject = "Wish-Fish Daily Report";
-                $body = $this->makeSMSBody($res);
+                $body = $this->makeEmailBody($res);
                 if ($value->email != NULL && $this->common->sendMail($value->email, $subject, $body)) {
                     echo '<br>-------------EMAIL SENT SUCCESSFULLY---------------<br>';
                 } else {
