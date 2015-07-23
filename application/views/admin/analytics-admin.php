@@ -21,6 +21,7 @@
                 <option value="es">Enable Daily SMS Report</option>
                 <option value="de">Disable Daily Email Report</option>
                 <option value="ds">Disable Daily SMS Report</option>
+                <option value="ea">Enable All</option>
                 <option value="da">Disable All</option>
             </select>
         </div>
