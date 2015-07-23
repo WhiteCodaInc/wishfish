@@ -88,20 +88,31 @@ class Trigger_report extends CI_Controller {
 
     function makeEmailBody($res) {
         $totalU = $res->expired + $res->non_expired;
-        $totalP = $res->totalP + $res->totalE;
-        $totalR = number_format($res->personal + $res->enterprise, 2);
+        $totalPA = number_format($res->personal, 2);
+        $totalEA = number_format($res->enterprise, 2);
+        $totalR = $totalPA + $totalEA;
         $body = "New Users : {$res->totalU}<br>"
                 . "Today's Free-Trial Users : {$totalU}<br>"
-                . "Today's Premium Users : {$totalP}<br>"
-                . "Today's Revenue : $ {$totalR}<br>";
+                . "Today's Personal Plan Users : {$res->totalP}<br>"
+                . "Today's Enterprise Plan Users : {$res->totalE}<br>"
+                . "Today's Personal Plan Amount : {$totalPA}"
+                . "Today's Enterprise Plan Amount : {$totalEA}"
+                . "Today's Total Revenue : $ {$totalR}<br>";
         return $body;
     }
 
     function makeSMSBody($res) {
+        $totalU = $res->expired + $res->non_expired;
+        $totalPA = number_format($res->personal, 2);
+        $totalEA = number_format($res->enterprise, 2);
+        $totalR = $totalPA + $totalEA;
         $body = "New Users : {$res->totalU} "
-                . "Today's Free-Trial Users : " . $res->expired + $res->non_expired . " "
-                . "Today's Premium Users :</b> " . $res->totalP + $res->totalE . " "
-                . "Today's Revenue : $" . $res->personal + $res->enterprise . " ";
+                . "Today's Free-Trial Users : {$totalU} "
+                . "Today's Personal Plan Users : {$res->totalP} "
+                . "Today's Enterprise Plan Users : {$res->totalE} "
+                . "Today's Personal Plan Amount : {$totalPA} "
+                . "Today's Enterprise Plan Amount : {$totalEA} "
+                . "Today's Total Revenue : $ {$totalR}";
         return $body;
     }
 
