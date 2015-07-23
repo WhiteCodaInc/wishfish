@@ -17,6 +17,7 @@ class Trigger_report extends CI_Controller {
     private $date = "";
     private $hour = "";
     private $minute = "";
+    private $second = "";
 
     function __construct() {
         parent::__construct();
