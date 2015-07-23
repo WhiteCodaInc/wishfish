@@ -42,7 +42,8 @@ class Trigger extends CI_Controller {
         $this->hour = date('H', strtotime($datetime));
         if ($this->hour == -1)
             $this->hour = 23;
-        $this->minute = date('i', strtotime($datetime));
+//        $this->minute = date('i', strtotime($datetime));
+        $this->minute = date('i', strtotime("2015-07-23 04:01:21"));
 
         $blackList = $this->objcon->getBlackList();
         $res = $this->objtrigger->getEvents($this->date);
