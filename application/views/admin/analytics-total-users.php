@@ -20,7 +20,7 @@
 
     <!-- Main content -->
     <section class="content">
-        <div class="row totalU">
+        <div class="row users">
             <div class="col-md-12">
                 <div class="box" >
                     <div class="box-header" style="margin: 20px 10px;">
@@ -72,12 +72,12 @@
                 </div><!-- /.box -->
             </div>
         </div>
-        <div class="row pdetail" style="display: none">
+        <div class="row udetail" style="display: none">
             <div class="col-md-2"></div>
             <div class="col-md-8">
                 <div class="box" >
                     <div class="box-header">
-                        <h3 class="box-title">Payment Detail</h3>
+                        <h3 class="box-title">User Payment Detail</h3>
                         <button style="float: right;margin: 10px;" type="button" id="goBack" class="btn btn-danger btn-sm">Back</button>
                     </div><!-- /.box-header -->
                     <div class="box-body table-responsive" id="data-panel">
@@ -170,7 +170,7 @@
             });
         });
         function pDetail() {
-            $('a.totalP').on('click', function () {
+            $('a.totalU').on('click', function () {
                 $('.overlay').show();
                 $('.loading-img').show();
                 var dt = $(this).parents('tr').prop('id');
@@ -178,21 +178,21 @@
                 $.ajax({
                     type: 'POST',
                     data: {pdate: dt},
-                    url: "<?= site_url() ?>admin/analytics/getPaymentDetail",
+                    url: "<?= site_url() ?>admin/analytics/getUserDetail",
                     success: function (data, textStatus, jqXHR) {
-                        $('.payments').hide();
+                        $('.users').hide();
                         $('.overlay').hide();
                         $('.loading-img').hide();
-                        $('.pdetail').show();
-                        $('#pdetail-data-table tbody').html(data);
+                        $('.udetail').show();
+                        $('#udetail-data-table tbody').html(data);
                     }
                 });
             });
         }
 
         $('#goBack').click(function () {
-            $('.pdetail').hide();
-            $('.payments').show();
+            $('.udetail').hide();
+            $('.users').show();
         });
     });
 </script>
