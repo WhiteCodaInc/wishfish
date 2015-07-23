@@ -216,14 +216,14 @@ class Trigger extends CI_Controller {
         $totalPA = number_format($res->personal, 2);
         $totalEA = number_format($res->enterprise, 2);
         $totalR = $totalPA + $totalEA;
-        $body = "<h1>Today's Report</h1><br>"
-                . "<b>New Users :</b> {$res->totalU}<br>"
-                . "<b>Free-Trial Users :</b> {$totalU}<br>"
-                . "<b>Personal Plan Users :</b> {$res->totalP}<br>"
-                . "<b>Enterprise Plan Users :</b> {$res->totalE}<br>"
-                . "<b>Personal Plan Amount :</b> {$totalPA} <br>"
-                . "<b>Enterprise Plan Amount :</b> {$totalEA} <br>"
-                . "<b>Total Revenue :</b> $ {$totalR}<br>";
+        $body = "<h2>Today's Report</h2><br>"
+                . "New Users : {$res->totalU}<br>"
+                . "Free-Trial Users : {$totalU}<br>"
+                . "Personal Plan Users : {$res->totalP}<br>"
+                . "Enterprise Plan Users : {$res->totalE}<br>"
+                . "Personal Plan Amount : {$totalPA} <br>"
+                . "Enterprise Plan Amount : {$totalEA} <br>"
+                . "Total Revenue : $ {$totalR}<br>";
         return $body;
     }
 
@@ -232,10 +232,10 @@ class Trigger extends CI_Controller {
         $totalPA = number_format($res->personal, 2);
         $totalEA = number_format($res->enterprise, 2);
         $totalR = $totalPA + $totalEA;
-        $body = "Today's Report%0a"
-                . "Free Plan : {$totalU} Users%0a"
-                . "Personal Plan : {$res->totalP} Users%0a"
-                . "Enterprise Plan : {$res->totalE} Users%0a"
+        $body = "Today's Report %0a \r\n"
+                . "Free Plan : {$totalU} Users %0a \r\n"
+                . "Personal Plan : {$res->totalP} Users %0a \r\n"
+                . "Enterprise Plan : {$res->totalE} Users %0a \r\n"
                 . "Total Revenue : $ {$totalR}";
         return $body;
     }
