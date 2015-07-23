@@ -152,7 +152,7 @@
             $.ajax({
                 type: 'POST',
                 data: {from: from, to: to},
-                url: "<?= site_url() ?>admin/analytics/getTotalUser",
+                url: "<?= site_url() ?>admin/analytics/getTotalNewUser",
                 success: function (data, textStatus, jqXHR) {
                     $('.overlay').hide();
                     $('.loading-img').hide();
@@ -172,7 +172,7 @@
                 $.ajax({
                     type: 'POST',
                     data: {pdate: dt},
-                    url: "<?= site_url() ?>admin/analytics/getUserDetail",
+                    url: "<?= site_url() ?>admin/analytics/getNewUserDetail",
                     success: function (data, textStatus, jqXHR) {
                         $('.users').hide();
                         $('.overlay').hide();
