@@ -104,8 +104,20 @@
                                             }
                                             ?>
                                             <td class="hidden-xs hidden-sm"><?= $phone ?></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td>
+                                                <?php if ($value->email_status): ?>
+                                                    <span class="btn btn-success btn-xs">Enable</span>
+                                                <?php else : ?>
+                                                    <span class="btn btn-danger btn-xs">Disable</span>
+                                                <?php endif; ?>
+                                            </td>
+                                            <td>
+                                                <?php if ($value->sms_status): ?>
+                                                    <span class="btn btn-success btn-xs">Enable</span>
+                                                <?php else : ?>
+                                                    <span class="btn btn-danger btn-xs">Disable</span>
+                                                <?php endif; ?>
+                                            </td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
