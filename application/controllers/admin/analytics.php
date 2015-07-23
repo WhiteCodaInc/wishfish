@@ -59,4 +59,10 @@ class Analytics extends CI_Controller {
         $this->load->view('admin/analytics-datewise-user', $data);
     }
 
+    function getUserDetail() {
+        $post = $this->input->post();
+        $data['udetail'] = $this->objanalytics->getUserDetail($post);
+        $this->load->view('admin/analytics-user-detail', $data);
+    }
+
 }

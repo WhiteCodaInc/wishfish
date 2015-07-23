@@ -1,4 +1,4 @@
-<?php foreach ($phistory as $value) { ?>
+<?php foreach ($udetail as $value) { ?>
     <tr>
         <td>
             <a href="<?= site_url() ?>admin/customers/profile/<?= $value->user_id ?>">
