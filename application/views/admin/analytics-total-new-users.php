@@ -65,8 +65,7 @@
             <div class="col-md-3"></div>
         </div>
         <div class="row udetail" style="display: none">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="box" >
                     <div class="box-header">
                         <h3 class="box-title">User Detail</h3>
@@ -102,7 +101,6 @@
                     <div style="display: none" class="loading-img"></div>
                 </div><!-- /.box -->
             </div>
-            <div class="col-md-2"></div>
         </div>
     </section><!-- /.content -->
 </aside><!-- /.right-side -->
