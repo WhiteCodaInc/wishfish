@@ -19,6 +19,7 @@
             Create New Admin Profile
         </a>
         <button  value="Delete" class="btn btn-danger btn-sm delete" id="Delete" type="button" >Delete</button>
+        <a href="#" download="" id="btnExport" class="btn btn-warning btn-sm create">Export</a>
         <div class="search" style="float:right;width: 25%">
             <select id="page_length" class="form-control" style="float: left;width: 30%">
                 <option value="25">25</option>
@@ -128,7 +129,7 @@
         </div>
         <div class="row">
             <div class="col-xs-12">
-                <div class="box" >
+                <div class="box">
                     <form name="checkForm" id="checkForm" action="" method="post">
                         <div class="box-body table-responsive" id="data-panel">
 
@@ -278,6 +279,10 @@ switch ($msg) {
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
 
+<!--Export Table-->
+<script src="<?= base_url() ?>assets/dashboard/exportToExcel/exportjquery.min.js"></script>
+<script src="<?= base_url() ?>assets/dashboard/exportToExcel/jquery.battatech.excelexport.js"></script>
+
 <!-- page script -->
 <script type="text/javascript">
     $(function () {
@@ -350,6 +355,16 @@ switch ($msg) {
             $('#checkForm').attr('action', "<?= site_url() ?>admin/admin_profile/action");
             $('#checkForm').submit();
         }
+
+
+        $("#btnExport").click(function () {
+            var uri = $("#dynamic-table").btechco_excelexport({
+                containerid: "data-panel",
+                datatype: $datatype.Table,
+                returnuri: true
+            });
+            $(this).attr('download', 'admin_profile.xls').attr('href', uri).attr('target', '_blank');
+        });
     });
 
 </script>
