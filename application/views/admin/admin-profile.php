@@ -294,7 +294,11 @@ switch ($msg) {
                     aTargets: [0, 1, 4, 5, 6, 7]
                 }],
             iDisplayLength: -1,
-            aaSorting: [[2, 'asc']]
+            aaSorting: [[2, 'asc']],
+            dom: 'T<"clear">lfrtip',
+            tableTools: {
+                "sSwfPath": "/swf/copy_csv_xls_pdf.swf"
+            }
         });
         $("#searchbox").on("keyup search input paste cut", function () {
             oTable.fnFilter(this.value);
@@ -361,7 +365,7 @@ switch ($msg) {
 </script>
 <!--Export Table-->
 
-<script type="text/javascript">
+<!--<script type="text/javascript">
     $("#btnExport").click(function () {
         var uri = $("#dynamic-table").btechco_excelexport({
             containerid: "data-panel",
@@ -370,4 +374,4 @@ switch ($msg) {
         });
         $(this).attr('download', 'admin_profile.xls').attr('href', uri).attr('target', '_blank');
     });
-</script>
+</script>-->

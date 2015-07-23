@@ -70,6 +70,6 @@
 <!-- CK Editor -->
 <script src="//cdn.ckeditor.com/4.4.3/standard/ckeditor.js"></script>
 
-<script src="<?= base_url() ?>assets/dashboard/exportToExcel/exportjquery.min.js"></script>
-<script src="<?= base_url() ?>assets/dashboard/exportToExcel/jquery.battatech.excelexport.js"></script>
+<!--<script src="<?= base_url() ?>assets/dashboard/exportToExcel/exportjquery.min.js"></script>
+<script src="<?= base_url() ?>assets/dashboard/exportToExcel/jquery.battatech.excelexport.js"></script>-->
 
