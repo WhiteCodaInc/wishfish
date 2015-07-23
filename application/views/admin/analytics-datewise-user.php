@@ -8,8 +8,8 @@
         <td><?= $value->expired ?></td>
         <td><?= $value->totalP ?></td>
         <td><?= $value->totalE ?></td>
-        <td><?= number_format($value->personal, 2) ?></td>
-        <td><?= number_format($value->enterprise, 2) ?></td>
+        <td>$ <?= number_format($value->personal, 2) ?></td>
+        <td>$ <?= number_format($value->enterprise, 2) ?></td>
         <td>$ <?= number_format($value->personal + $value->enterprise, 2) ?></td>
     </tr>
 <?php } ?>
