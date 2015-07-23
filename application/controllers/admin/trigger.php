@@ -61,27 +61,27 @@ class Trigger extends CI_Controller {
         print_r($users);
 
         foreach ($profiles as $value) {
-            if ($this->hour == "11" && $this->minute == "59") {
-                if ($value->sms_report) {
-                    $body = $this->makeSMSBody($users);
-                    if ($value->phone != NULL && $this->common->sendSMS($value->phone, $body)) {
-                        echo $body . '<br>';
-                        echo '<br>-------------SMS SENT SUCCESSFULLY---------------<br>';
-                    } else {
-                        echo '<br>-------------SMS NOT SUCCESSFULLY SENT---------------<br>';
-                    }
-                }
-                if ($value->email_report) {
-                    $subject = "Wish-Fish Daily Report";
-                    $body = $this->makeEmailBody($users);
-                    if ($value->email != NULL && $this->common->sendMail($value->email, $subject, $body)) {
-                        echo '<br>-------------EMAIL SENT SUCCESSFULLY---------------<br>';
-                        echo $body . '<br>';
-                    } else {
-                        echo '<br>-------------EMAIL NOT SUCCESSFULLY SENT---------------<br>';
-                    }
+//            if ($this->hour == "11" && $this->minute == "59") {
+            if ($value->sms_report) {
+                $body = $this->makeSMSBody($users);
+                if ($value->phone != NULL && $this->common->sendSMS($value->phone, $body)) {
+                    echo $body . '<br>';
+                    echo '<br>-------------SMS SENT SUCCESSFULLY---------------<br>';
+                } else {
+                    echo '<br>-------------SMS NOT SUCCESSFULLY SENT---------------<br>';
                 }
             }
+            if ($value->email_report) {
+                $subject = "Wish-Fish Daily Report";
+                $body = $this->makeEmailBody($users);
+                if ($value->email != NULL && $this->common->sendMail($value->email, $subject, $body)) {
+                    echo '<br>-------------EMAIL SENT SUCCESSFULLY---------------<br>';
+                    echo $body . '<br>';
+                } else {
+                    echo '<br>-------------EMAIL NOT SUCCESSFULLY SENT---------------<br>';
+                }
+            }
+//            }
         }
 
         foreach ($res as $value) {
