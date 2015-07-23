@@ -14,10 +14,4 @@
             <td>$ <?= number_format($value->personal + $value->enterprise, 2) ?></td>
         </tr>
     <?php } ?>
-<?php else: ?>
-        <!--    <tr class="odd">
-                <td valign="top" colspan="9" class="dataTables_empty">
-                    No data available table
-                </td>
-            </tr>-->
 <?php endif; ?>
