@@ -57,8 +57,8 @@ class M_analytics extends CI_Model {
 
     function getTotalUser($post) {
         $where = array(
-            'DATE(register_date) >=' => $this->common->getMySqlDate($post['from'], "mm-dd-yyyy"),
-            'DATE(register_date) <=' => $this->common->getMySqlDate($post['to'], "mm-dd-yyyy"),
+            'DATE(PD.register_date) >=' => $this->common->getMySqlDate($post['from'], "mm-dd-yyyy"),
+            'DATE(PD.register_date) <=' => $this->common->getMySqlDate($post['to'], "mm-dd-yyyy"),
             'testmode' => 0,
         );
         $this->db->select('DATE(PD.register_date) as date,count(*) totalU,sum(case when plan_id = 1 and CURDATE() >= expiry_date then 1 else 0 end) expired,sum(case when plan_id = 1 and CURDATE() < expiry_date then 1 else 0 end) non_expired,sum(case when plan_id = 2 then mc_gross else 0 end) personal,sum(case when plan_id = 3 then mc_gross else 0 end) enterprise', FALSE);
