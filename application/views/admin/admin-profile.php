@@ -279,9 +279,7 @@ switch ($msg) {
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
 
-<!--Export Table-->
-<script src="<?= base_url() ?>assets/dashboard/exportToExcel/exportjquery.min.js"></script>
-<script src="<?= base_url() ?>assets/dashboard/exportToExcel/jquery.battatech.excelexport.js"></script>
+
 
 <!-- page script -->
 <script type="text/javascript">
@@ -357,14 +355,20 @@ switch ($msg) {
         }
 
 
-        $("#btnExport").click(function () {
-            var uri = $("#dynamic-table").btechco_excelexport({
-                containerid: "data-panel",
-                datatype: $datatype.Table,
-                returnuri: true
-            });
-            $(this).attr('download', 'admin_profile.xls').attr('href', uri).attr('target', '_blank');
-        });
+
     });
 
+</script>
+<!--Export Table-->
+<script src="<?= base_url() ?>assets/dashboard/exportToExcel/exportjquery.min.js"></script>
+<script src="<?= base_url() ?>assets/dashboard/exportToExcel/jquery.battatech.excelexport.js"></script>
+<script type="text/javascript">
+    $("#btnExport").click(function () {
+        var uri = $("#dynamic-table").btechco_excelexport({
+            containerid: "data-panel",
+            datatype: $datatype.Table,
+            returnuri: true
+        });
+        $(this).attr('download', 'admin_profile.xls').attr('href', uri).attr('target', '_blank');
+    });
 </script>
