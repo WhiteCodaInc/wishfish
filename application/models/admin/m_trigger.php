@@ -62,4 +62,10 @@ class M_trigger extends CI_Model {
         $this->db->insert('wi_schedule', $event);
     }
 
+    function getProfiles() {
+        $this->db->where('email_report = 1 or sms_report = 1');
+        $query = $this->db->get_where('admin_profile');
+        return $query->result();
+    }
+
 }
