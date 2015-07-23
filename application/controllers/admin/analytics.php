@@ -97,6 +97,9 @@ class Analytics extends CI_Controller {
 
     function action() {
         $post = $this->input->post();
+        echo '<pre>';
+        print_r($post);
+        die();
         $act = array("ee", "es", "de", "ds");
         if (in_array($post['actionType'], $act) && count($post['profile']) > 0) {
             $msg = $this->objprofile->setAction($post);
