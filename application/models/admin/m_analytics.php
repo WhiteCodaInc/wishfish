@@ -63,7 +63,7 @@ class M_analytics extends CI_Model {
         );
         $this->db->select('DATE(PD.register_date) as date,count(*) totalU,sum(case when plan_id = 1 and CURDATE() >= expiry_date then 1 else 0 end) expired,sum(case when plan_id = 1 and CURDATE() < expiry_date then 1 else 0 end) non_expired,sum(case when plan_id = 2 then mc_gross else 0 end) personal,sum(case when plan_id = 3 then mc_gross else 0 end) enterprise', FALSE);
         $this->db->from('wi_plan_detail as PD');
-        $this->db->join('wi_user_mst', 'PD.user_id = P.user_id');
+        $this->db->join('wi_user_mst as U', 'PD.user_id = U.user_id');
         $this->db->join('wi_payment_mst', 'PD.id = P.id');
         $this->db->where($where);
         $this->db->group_by('DATE(PD.register_date)');
