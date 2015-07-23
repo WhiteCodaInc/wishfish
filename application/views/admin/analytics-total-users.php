@@ -147,7 +147,7 @@
                 aoColumnDefs: [{
                         targets: 'no-sort',
                         bSortable: false,
-                        aTargets: [1, 2, 3, 4, 5, 6]
+                        aTargets: [1, 2, 3, 4, 5, 6, 7, 8]
                     }],
                 iDisplayLength: 10,
                 aaSorting: [[0, 'desc']]
