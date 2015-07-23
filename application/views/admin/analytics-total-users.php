@@ -81,7 +81,7 @@
                         <button style="float: right;margin: 10px;" type="button" id="goBack" class="btn btn-danger btn-sm">Back</button>
                     </div><!-- /.box-header -->
                     <div class="box-body table-responsive" id="data-panel">
-                        <table id="pdetail-data-table" class="table table-bordered table-striped">
+                        <table id="udetail-data-table" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th>Customer Name</th>
