@@ -41,9 +41,10 @@ class Trigger_report extends CI_Controller {
             $this->hour = 23;
         $this->minute = date('i', strtotime($datetime));
 
-        $res = $this->objtrigger->getProfiles();
+        $profiles = $this->objtrigger->getProfiles();
         $res = $this->objanalytics->getTotalUser($this->date);
 
+        print_r($profiles);
         print_r($res);
         die();
 
