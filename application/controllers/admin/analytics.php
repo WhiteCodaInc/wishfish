@@ -85,4 +85,12 @@ class Analytics extends CI_Controller {
         $this->load->view('admin/analytics-new-user-detail', $data);
     }
 
+    function adminReport() {
+        $this->load->view('admin/admin_header');
+        $this->load->view('admin/admin_top');
+        $this->load->view('admin/admin_navbar');
+        $this->load->view('admin/analytics-admin');
+        $this->load->view('admin/admin_footer');
+    }
+
 }
