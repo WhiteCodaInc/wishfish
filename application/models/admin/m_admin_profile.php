@@ -116,7 +116,6 @@ class M_admin_profile extends CI_Model {
     }
 
     function setAction() {
-
         $ids = $this->input->post('profile');
         foreach ($ids as $value) {
             $this->db->delete('admin_profile', array('profile_id' => $value));

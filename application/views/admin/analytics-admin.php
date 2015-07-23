@@ -17,13 +17,13 @@
         <div style="float:left;margin-right:20px">
             <select id="atype" class="form-control">
                 <option value="-1">------Select------</option>
-                <option value="-1">Enable Daily Email Report</option>
-                <option value="-1">Enable Daily SMS Report</option>
-                <option value="-1">Disable Daily Email Report</option>
-                <option value="-1">Disable Daily Email Report</option>
+                <option value="ee">Enable Daily Email Report</option>
+                <option value="es">Enable Daily SMS Report</option>
+                <option value="de">Disable Daily Email Report</option>
+                <option value="ds">Disable Daily SMS Report</option>
             </select>
         </div>
-        <button value="Action" id="action" class="btn btn-primary delete" type="button" >Action</button>
+        <button value="Action" id="action" class="btn btn-primary" type="button" >Action</button>
         <div class="search" style="float:right;width: 25%">
             <select id="page_length" class="form-control" style="float: left;width: 30%">
                 <option value="25">25</option>
@@ -149,24 +149,20 @@
 <?php $data = $this->input->post(); ?>
 <?php
 switch ($msg) {
-    case "I":
-        $m = "Admin Profile Successfully Created..!";
+    case "ES":
+        $m = "SMS Daily Report Successfully Enable..!";
         $t = "success";
         break;
-    case "U":
-        $m = "Admin Profile Successfully Updated..!";
+    case "DS":
+        $m = "SMS Daily Report Successfully Disable..!";
+        $t = "error";
+        break;
+    case "EE":
+        $m = "Email Daily Report Successfully Enable..!";
         $t = "success";
         break;
-    case "UF":
-        $m = "Admin Avatar not uploaded..!";
-        $t = "error";
-        break;
-    case "IF":
-        $m = "Invalid File Format..!";
-        $t = "error";
-        break;
-    case "D":
-        $m = "Admin Profile(s) Successfully Deleted..!";
+    case "DE":
+        $m = "Email Daily Report Successfully Disale..!";
         $t = "error";
         break;
     default:
@@ -220,27 +216,13 @@ switch ($msg) {
 <script type="text/javascript">
     $(document).ready(function () {
 
-        $('button.delete').click(function (e) {
-            var profile = "";
-            var act = $(this).val();
-            $('#profile-data-table tbody tr').each(function () {
-                if ($(this).children('td:first').find('div.checked').length) {
-                    $txt = $(this).children('td:nth-child(3)').children('a').text();
-                    profile += $txt.trim() + ",";
-                }
-            });
-
-            profile = profile.substring(0, profile.length - 1);
-
-            alertify.confirm("Are you sure want to delete profile(s):<br/>" + profile, function (e) {
-                if (e) {
-                    action(act);
-                    return true;
-                }
-                else {
-                    return false;
-                }
-            });
+        $('#action').click(function (e) {
+            var act = $('#atype').val();
+            if (act == "-1") {
+                alertify.error("Please Select Option..!");
+                return false;
+            }
+            action(act);
         });
 
         function action(actiontype) {

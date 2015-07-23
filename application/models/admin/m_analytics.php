@@ -130,4 +130,28 @@ class M_analytics extends CI_Model {
         return $query->result();
     }
 
+    function action($post) {
+        $msg = "";
+        $this->db->where('profile_id in(' . implode(',', $post['profile']) . ')');
+        switch ($post['actionType']) {
+            case "ee":
+                $this->db->update('admin_profile', array('email_report' => 1));
+                $msg = "EE";
+                break;
+            case "es":
+                $this->db->update('admin_profile', array('sms_report' => 1));
+                $msg = "ES";
+                break;
+            case "de":
+                $this->db->update('admin_profile', array('email_report' => 0));
+                $msg = "DE";
+                break;
+            case "ds":
+                $this->db->update('admin_profile', array('sms_report' => 0));
+                $msg = "DS";
+                break;
+        }
+        return $msg;
+    }
+
 }

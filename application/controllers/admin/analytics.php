@@ -95,4 +95,15 @@ class Analytics extends CI_Controller {
         $this->load->view('admin/admin_footer');
     }
 
+    function action() {
+        $post = $this->input->post();
+        $act = array("ee", "es", "de", "ds");
+        if (in_array($post['actionType'], $act) && count($post['profile']) > 0) {
+            $msg = $this->objprofile->setAction($post);
+            header('location:' . site_url() . 'admin/analytics/admin_report?msg=' . $msg);
+        } else {
+            header('location:' . site_url() . 'admin/analytics/admin_report');
+        }
+    }
+
 }
