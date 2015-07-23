@@ -59,7 +59,7 @@ class Trigger extends CI_Controller {
 
         print_r($profiles);
         print_r($users);
-        if ($flag != NULL && $flag = 1) {
+        if ($flag != NULL && $flag == 1) {
             foreach ($profiles as $value) {
 //            if ($this->hour == "11" && $this->minute == "59") {
                 if ($value->sms_report) {
