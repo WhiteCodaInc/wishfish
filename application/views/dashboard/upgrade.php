@@ -110,8 +110,8 @@
                         src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                         data-key="<?= $stripe->publish_key ?>"
                         data-image="/square-image.png"
-                        data-name="Personal"
-                        data-description="Product"                    
+                        data-name="$9.99"
+                        data-description="1-month of Wish-Fish Personal"                    
                         data-label="Stripe"                    
                         >
                     </script>
@@ -124,8 +124,8 @@
                         src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                         data-key="<?= $stripe->publish_key ?>"
                         data-image="/square-image.png"
-                        data-name="Enterprise"
-                        data-description="Product"                    
+                        data-name="$49.99"
+                        data-description="1-month of Wish-Fish Enterprise"                    
                         data-label="Stripe"                    
                         >
                     </script>
