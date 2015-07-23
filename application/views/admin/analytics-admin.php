@@ -60,14 +60,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php
-                                    if (isset($profile)) {
-                                        $result = $profile;
-                                    } elseif (isset($searchResult)) {
-                                        $result = $searchResult;
-                                    }
-                                    ?>
-                                    <?php foreach ($result as $value) { ?>
+                                    <?php foreach ($profiles as $value) { ?>
                                         <?php
                                         $img_src = ($value->admin_avatar != "") ?
                                                 "http://mikhailkuznetsov.s3.amazonaws.com/" . $value->admin_avatar :

@@ -86,10 +86,11 @@ class Analytics extends CI_Controller {
     }
 
     function adminReport() {
+        $data['profiles'] = array();
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');
-        $this->load->view('admin/analytics-admin');
+        $this->load->view('admin/analytics-admin', $data);
         $this->load->view('admin/admin_footer');
     }
 
