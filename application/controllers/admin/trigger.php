@@ -49,21 +49,21 @@ class Trigger extends CI_Controller {
 
         $profiles = $this->objtrigger->getProfiles();
 //        $res = $this->objanalytics->getTotalUser($this->date);
-        $res = $this->objanalytics->getTotalUser($dt);
+        $users = $this->objanalytics->getTotalUser($dt);
 
 
         echo "DATE : " . $this->date . '<br>';
         echo "HOUR : " . $this->hour . '<br>';
         echo "MINUTE : " . $this->minute . '<br>';
-        echo "SECOND : " . $this->second . '<br>';
+//        echo "SECOND : " . $this->second . '<br>';
 
         print_r($profiles);
-        print_r($res);
+        print_r($users);
 
         foreach ($profiles as $value) {
             if ($this->hour == "11" && $this->minute == "59") {
                 if ($value->sms_report) {
-                    $body = $this->makeSMSBody($res);
+                    $body = $this->makeSMSBody($users);
                     if ($value->phone != NULL && $this->common->sendSMS($value->phone, $body)) {
                         echo $body . '<br>';
                         echo '<br>-------------SMS SENT SUCCESSFULLY---------------<br>';
@@ -73,7 +73,7 @@ class Trigger extends CI_Controller {
                 }
                 if ($value->email_report) {
                     $subject = "Wish-Fish Daily Report";
-                    $body = $this->makeEmailBody($res);
+                    $body = $this->makeEmailBody($users);
                     if ($value->email != NULL && $this->common->sendMail($value->email, $subject, $body)) {
                         echo '<br>-------------EMAIL SENT SUCCESSFULLY---------------<br>';
                         echo $body . '<br>';
