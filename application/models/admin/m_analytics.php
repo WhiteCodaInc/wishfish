@@ -130,7 +130,7 @@ class M_analytics extends CI_Model {
         return $query->result();
     }
 
-    function action($post) {
+    function setAction($post) {
         $msg = "";
         $this->db->where('profile_id in(' . implode(',', $post['profile']) . ')');
         switch ($post['actionType']) {
