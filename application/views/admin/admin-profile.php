@@ -280,8 +280,8 @@ switch ($msg) {
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
 
 <!--Export Table-->
-<!--<script src="<?= base_url() ?>assets/dashboard/exportToExcel/exportjquery.min.js"></script>-->
-<!--<script src="<?= base_url() ?>assets/dashboard/exportToExcel/jquery.battatech.excelexport.js"></script>-->
+<script src="<?= base_url() ?>assets/dashboard/exportToExcel/exportjquery.min.js"></script>
+<script src="<?= base_url() ?>assets/dashboard/exportToExcel/jquery.battatech.excelexport.js"></script>
 
 <!-- page script -->
 <script type="text/javascript">
