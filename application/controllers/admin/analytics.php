@@ -97,7 +97,7 @@ class Analytics extends CI_Controller {
 
     function action() {
         $post = $this->input->post();
-        $act = array("ee", "es", "de", "ds");
+        $act = array("ee", "es", "de", "ds", "da", "ea");
         if (in_array($post['actionType'], $act) && isset($post['profile']) && count($post['profile']) > 0) {
             $msg = $this->objanalytics->setAction($post);
             header('location:' . site_url() . 'admin/analytics/adminReport?msg=' . $msg);

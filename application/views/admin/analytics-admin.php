@@ -16,11 +16,12 @@
         </h1>
         <div style="float:left;margin-right:20px">
             <select id="atype" class="form-control">
-                <option value="-1">------Select------</option>
+                <option value="-1">----------Select---------</option>
                 <option value="ee">Enable Daily Email Report</option>
                 <option value="es">Enable Daily SMS Report</option>
                 <option value="de">Disable Daily Email Report</option>
                 <option value="ds">Disable Daily SMS Report</option>
+                <option value="da">Disable All</option>
             </select>
         </div>
         <button value="Action" id="action" class="btn btn-primary" type="button" >Submit</button>
@@ -162,8 +163,15 @@ switch ($msg) {
         $t = "success";
         break;
     case "DE":
-        $m = "Email Daily Report Successfully Disale..!";
+        $m = "Email Daily Report Successfully Disable..!";
         $t = "error";
+        break;
+    case "DA":
+        $m = "All Daily Report Successfully Disable..!";
+        $t = "error";
+    case "EA":
+        $m = "All Daily Report Successfully Enable..!";
+        $t = "success";
         break;
     default:
         $m = 0;

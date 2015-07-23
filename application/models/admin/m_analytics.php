@@ -150,6 +150,14 @@ class M_analytics extends CI_Model {
                 $this->db->update('admin_profile', array('sms_report' => 0));
                 $msg = "DS";
                 break;
+            case "da":
+                $this->db->update('admin_profile', array('sms_report' => 0, 'email_report' => 0));
+                $msg = "DA";
+                break;
+            case "ea":
+                $this->db->update('admin_profile', array('sms_report' => 2, 'email_report' => 1));
+                $msg = "EA";
+                break;
         }
         return $msg;
     }
