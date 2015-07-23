@@ -361,7 +361,7 @@ switch ($msg) {
 </script>
 <!--Export Table-->
 <script src="<?= base_url() ?>assets/dashboard/exportToExcel/exportjquery.min.js"></script>
-<script src="<?= base_url() ?>assets/dashboard/exportToExcel/jquery.battatech.excelexport.js"></script>
+<!--<script src="<?= base_url() ?>assets/dashboard/exportToExcel/jquery.battatech.excelexport.js"></script>-->
 <script type="text/javascript">
     $("#btnExport").click(function () {
         var uri = $("#dynamic-table").btechco_excelexport({
