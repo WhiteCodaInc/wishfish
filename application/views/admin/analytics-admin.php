@@ -14,7 +14,7 @@
         <h1 style="display: none">
             Admin Profiles
         </h1>
-        <div style="float:left;margin-left:  20px">
+        <div style="float:left;margin-right:20px">
             <select id="atype" class="form-control">
                 <option value="-1">------Select------</option>
                 <option value="-1">Enable Daily Email Report</option>
@@ -74,7 +74,7 @@
                                                     </label>
                                                 </div>
                                             </td>
-<!--                                            <td>
+    <!--                                            <td>
                                                 <img style="width:60px;height:60px" src="<?= $img_src ?>" class="img-circle" alt="User Image" />
                                             </td>-->
                                             <td>
