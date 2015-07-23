@@ -65,4 +65,24 @@ class Analytics extends CI_Controller {
         $this->load->view('admin/analytics-user-detail', $data);
     }
 
+    function totalNewUser() {
+        $this->load->view('admin/admin_header');
+        $this->load->view('admin/admin_top');
+        $this->load->view('admin/admin_navbar');
+        $this->load->view('admin/analytics-total-new-users');
+        $this->load->view('admin/admin_footer');
+    }
+
+    function getTotalNewUser() {
+        $post = $this->input->post();
+        $data['users'] = $this->objanalytics->getTotalNewUser($post);
+        $this->load->view('admin/analytics-datewise-new-user', $data);
+    }
+
+    function getNewUserDetail() {
+        $post = $this->input->post();
+        $data['udetail'] = $this->objanalytics->getNewUserDetail($post);
+        $this->load->view('admin/analytics-new-user-detail', $data);
+    }
+
 }

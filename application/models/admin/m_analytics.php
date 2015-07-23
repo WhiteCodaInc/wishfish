@@ -49,7 +49,7 @@ class M_analytics extends CI_Model {
         $this->db->join('wi_plan_detail as PD', 'P.id = PD.id');
         $this->db->join('wi_plans as PL', 'PD.plan_id = PL.plan_id');
         $this->db->join('wi_user_mst as U', 'PD.user_id = U.user_id');
-        $this->db->order_by('DATE(payment_date)', 'desc');
+        $this->db->order_by('payment_date', 'desc');
         $this->db->where($where);
         $query = $this->db->get();
         return $query->result();
@@ -74,6 +74,7 @@ class M_analytics extends CI_Model {
         $this->db->join('wi_user_mst as U', 'PD.user_id = U.user_id');
         $this->db->join('wi_payment_mst as P', 'PD.id = P.id');
         $this->db->where($where);
+        $this->db->order_by('PD.register_date', 'desc');
         $this->db->group_by('DATE(PD.register_date)');
         $query = $this->db->get();
         return $query->result();
@@ -90,9 +91,32 @@ class M_analytics extends CI_Model {
         $this->db->join('wi_plan_detail as PD', 'P.id = PD.id');
         $this->db->join('wi_plans as PL', 'PD.plan_id = PL.plan_id');
         $this->db->join('wi_user_mst as U', 'PD.user_id = U.user_id');
-        $this->db->order_by('DATE(PD.register_date)', 'desc');
+        $this->db->order_by('PD.register_date', 'desc');
         $this->db->where($where);
         $query = $this->db->get();
+        return $query->result();
+    }
+
+    function getTotalNewUser($post) {
+
+        $where = array(
+            'DATE(register_date) >=' => $this->common->getMySqlDate($post['from'], "mm-dd-yyyy"),
+            'DATE(register_date) <=' => $this->common->getMySqlDate($post['to'], "mm-dd-yyyy")
+        );
+
+        $this->db->select('DATE(register_date) as date,count(*) as totalU');
+        $this->db->order_by('register_date', 'desc');
+        $query = $this->db->get('wi_user_mst', $where);
+        return $query->result();
+    }
+
+    function getNewUserDetail($post) {
+        $where = array(
+            'DATE(payment_date) =' => $post['pdate']
+        );
+        $this->db->select('*');
+        $this->db->order_by('register_date', 'desc');
+        $query = $this->db->get('wi_user_mst', $where);
         return $query->result();
     }
 
