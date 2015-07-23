@@ -58,25 +58,25 @@ class Trigger_report extends CI_Controller {
 //        die();
 
         foreach ($profiles as $value) {
-            if ($this->hour == "11" && $this->minute == "59") {
-                if ($value->sms_report) {
-                    $body = $this->makeSMSBody($res);
-                    if ($value->phone != NULL && $this->common->sendSMS($value->phone, $body)) {
-                        echo '<br>-------------SMS SENT SUCCESSFULLY---------------<br>';
-                    } else {
-                        echo '<br>-------------SMS NOT SUCCESSFULLY SENT---------------<br>';
-                    }
-                }
-                if ($value->email_report) {
-                    $subject = "Wish-Fish Daily Report";
-                    $body = $this->makeSMSBody($res);
-                    if ($value->email != NULL && $this->common->sendMail($value->email, $subject, $body)) {
-                        echo '<br>-------------EMAIL SENT SUCCESSFULLY---------------<br>';
-                    } else {
-                        echo '<br>-------------EMAIL NOT SUCCESSFULLY SENT---------------<br>';
-                    }
+//            if ($this->hour == "11" && $this->minute == "59") {
+            if ($value->sms_report) {
+                $body = $this->makeSMSBody($res);
+                if ($value->phone != NULL && $this->common->sendSMS($value->phone, $body)) {
+                    echo '<br>-------------SMS SENT SUCCESSFULLY---------------<br>';
+                } else {
+                    echo '<br>-------------SMS NOT SUCCESSFULLY SENT---------------<br>';
                 }
             }
+            if ($value->email_report) {
+                $subject = "Wish-Fish Daily Report";
+                $body = $this->makeSMSBody($res);
+                if ($value->email != NULL && $this->common->sendMail($value->email, $subject, $body)) {
+                    echo '<br>-------------EMAIL SENT SUCCESSFULLY---------------<br>';
+                } else {
+                    echo '<br>-------------EMAIL NOT SUCCESSFULLY SENT---------------<br>';
+                }
+            }
+//            }
         }
     }
 
