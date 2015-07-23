@@ -38,24 +38,19 @@ class Trigger extends CI_Controller {
         echo "{$this->session->userdata('email')}<br>";
         echo "<pre>";
         echo "FULL TIME : {$datetime}<br>";
+
         $this->date = date('Y-m-d', strtotime($datetime));
         $this->hour = date('H', strtotime($datetime));
         if ($this->hour == -1)
             $this->hour = 23;
-//        $this->minute = date('i', strtotime($datetime));
-        $this->minute = date('i', strtotime("2015-07-23 04:01:21"));
+        $this->minute = date('i', strtotime($datetime));
 
         $blackList = $this->objcon->getBlackList();
         $res = $this->objtrigger->getEvents($this->date);
 
-
-
-
         echo "DATE : " . $this->date . '<br>';
         echo "HOUR : " . $this->hour . '<br>';
         echo "MINUTE : " . $this->minute . '<br>';
-
-
 
         if ($this->hour == "00" && $this->minute == "01") {
 
