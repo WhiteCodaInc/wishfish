@@ -105,6 +105,7 @@ class M_analytics extends CI_Model {
         );
 
         $this->db->select('DATE(register_date) as date,count(*) as totalU');
+        $this->db->group_by('DATE(PD.register_date)');
         $this->db->order_by('register_date', 'desc');
         $query = $this->db->get_where('wi_user_mst', $where);
         return $query->result();
