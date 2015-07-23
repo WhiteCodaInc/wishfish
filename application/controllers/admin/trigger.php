@@ -233,10 +233,10 @@ class Trigger extends CI_Controller {
         $totalPA = number_format($res->personal, 2);
         $totalEA = number_format($res->enterprise, 2);
         $totalR = $totalPA + $totalEA;
-        $body = "Today's Report %0a \r\n"
-                . "Free Plan : {$totalU} Users %0a \r\n"
-                . "Personal Plan : {$res->totalP} Users %0a \r\n"
-                . "Enterprise Plan : {$res->totalE} Users %0a \r\n"
+        $body = "Today's Report : \r\n"
+                . "Free Plan : {$totalU} Users \r\n"
+                . "Personal Plan : {$res->totalP} Users \r\n"
+                . "Enterprise Plan : {$res->totalE} Users \r\n"
                 . "Total Revenue : $ {$totalR}";
         return $body;
     }
