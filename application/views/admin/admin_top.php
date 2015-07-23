@@ -16,7 +16,7 @@
     $avatar = $this->session->userdata('avatar');
 
     $admin_img_src = ($avatar != "") ?
-            "http://mikhailkuznetsov.s3.amazonaws.com/" . $avatar :
+            "https://mikhailkuznetsov.s3.amazonaws.com/" . $avatar :
             base_url() . 'assets/dashboard/img/default-avatar.png';
     ?>
     <a href="<?= site_url() ?>admin/dashboard" class="logo">
@@ -51,7 +51,7 @@
                                 <?php foreach ($payments as $value) { ?>
                                     <?php
                                     $img_src = ($value->profile_pic != "") ?
-                                            "http://mikhailkuznetsov.s3.amazonaws.com/" . $value->profile_pic :
+                                            "https://mikhailkuznetsov.s3.amazonaws.com/" . $value->profile_pic :
                                             base_url() . 'assets/dashboard/img/default-avatar.png';
                                     ?>
                                     <li><!-- start message -->
@@ -92,7 +92,7 @@
                                 <?php foreach ($customers as $value) { ?>
                                     <?php
                                     $img_src = ($value->profile_pic != "") ?
-                                            "http://mikhailkuznetsov.s3.amazonaws.com/" . $value->profile_pic :
+                                            "https://mikhailkuznetsov.s3.amazonaws.com/" . $value->profile_pic :
                                             base_url() . 'assets/dashboard/img/default-avatar.png';
                                     ?>
                                     <li><!-- start message -->
@@ -131,7 +131,7 @@
                                 <?php foreach ($inbox as $sms) { ?>
                                     <?php
                                     $img_src = ($sms->contact_avatar != "") ?
-                                            "http://mikhailkuznetsov.s3.amazonaws.com/" . $sms->contact_avatar :
+                                            "https://mikhailkuznetsov.s3.amazonaws.com/" . $sms->contact_avatar :
                                             base_url() . 'assets/dashboard/img/default-avatar.png';
                                     ?>
                                     <li><!-- start message -->
