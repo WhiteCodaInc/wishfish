@@ -93,10 +93,10 @@ class Trigger_report extends CI_Controller {
     }
 
     function makeSMSBody($res) {
-        $body = "New Users : {$res->totalU} ";
-        $body .= "Today's Free-Trial Users : " . $res->expired + $res->non_expired . " ";
-        $body .= "Today's Premium Users :</b> " . $res->totalP + $res->totalE . " ";
-        $body .= "Today's Revenue : $" . $res->personal + $res->enterprise . " ";
+        $body = "New Users : {$res->totalU} "
+                . "Today's Free-Trial Users : " . $res->expired + $res->non_expired . " "
+                . "Today's Premium Users :</b> " . $res->totalP + $res->totalE . " "
+                . "Today's Revenue : $" . $res->personal + $res->enterprise . " ";
         return $body;
     }
 
