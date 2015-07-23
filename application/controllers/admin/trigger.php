@@ -27,9 +27,10 @@ class Trigger extends CI_Controller {
         $this->load->model("admin/m_admin_contacts", 'objcon');
         $this->load->model('admin/m_trigger', 'objtrigger');
         $this->load->model('admin/m_list_builder', 'objbuilder');
+        $this->load->model("admin/m_analytics", 'objanalytics');
     }
 
-    function index() {
+    function index($dt = NULL) {
         // UM =  - to UTC 
         // UP = UTC to + 
         $this->timezone = "UM8";
@@ -46,10 +47,42 @@ class Trigger extends CI_Controller {
         $blackList = $this->objcon->getBlackList();
         $res = $this->objtrigger->getEvents($this->date);
 
+        $profiles = $this->objtrigger->getProfiles();
+//        $res = $this->objanalytics->getTotalUser($this->date);
+        $res = $this->objanalytics->getTotalUser($dt);
+
+
         echo "DATE : " . $this->date . '<br>';
         echo "HOUR : " . $this->hour . '<br>';
         echo "MINUTE : " . $this->minute . '<br>';
         echo "SECOND : " . $this->second . '<br>';
+
+        print_r($profiles);
+        print_r($res);
+
+        foreach ($profiles as $value) {
+            if ($this->hour == "11" && $this->minute == "59") {
+                if ($value->sms_report) {
+                    $body = $this->makeSMSBody($res);
+                    if ($value->phone != NULL && $this->common->sendSMS($value->phone, $body)) {
+                        echo $body . '<br>';
+                        echo '<br>-------------SMS SENT SUCCESSFULLY---------------<br>';
+                    } else {
+                        echo '<br>-------------SMS NOT SUCCESSFULLY SENT---------------<br>';
+                    }
+                }
+                if ($value->email_report) {
+                    $subject = "Wish-Fish Daily Report";
+                    $body = $this->makeEmailBody($res);
+                    if ($value->email != NULL && $this->common->sendMail($value->email, $subject, $body)) {
+                        echo '<br>-------------EMAIL SENT SUCCESSFULLY---------------<br>';
+                        echo $body . '<br>';
+                    } else {
+                        echo '<br>-------------EMAIL NOT SUCCESSFULLY SENT---------------<br>';
+                    }
+                }
+            }
+        }
 
         foreach ($res as $value) {
             if ($this->hour == $value->h && $this->minute == $value->m) {
@@ -176,6 +209,35 @@ class Trigger extends CI_Controller {
         } else {
             return FALSE;
         }
+    }
+
+    function makeEmailBody($res) {
+        $totalU = $res->expired + $res->non_expired;
+        $totalPA = number_format($res->personal, 2);
+        $totalEA = number_format($res->enterprise, 2);
+        $totalR = $totalPA + $totalEA;
+        $body = "<h1>Today's Report</h1><br>"
+                . "<b>New Users :</b> {$res->totalU}<br>"
+                . "<b>Free-Trial Users :</b> {$totalU}<br>"
+                . "<b>Personal Plan Users :</b> {$res->totalP}<br>"
+                . "<b>Enterprise Plan Users :</b> {$res->totalE}<br>"
+                . "<b>Personal Plan Amount :</b> {$totalPA} <br>"
+                . "<b>Enterprise Plan Amount :</b> {$totalEA} <br>"
+                . "<b>Total Revenue :</b> $ {$totalR}<br>";
+        return $body;
+    }
+
+    function makeSMSBody($res) {
+        $totalU = $res->expired + $res->non_expired;
+        $totalPA = number_format($res->personal, 2);
+        $totalEA = number_format($res->enterprise, 2);
+        $totalR = $totalPA + $totalEA;
+        $body = "Today's Report%0a"
+                . "Free Plan : {$totalU} Users%0a"
+                . "Personal Plan : {$res->totalP} Users%0a"
+                . "Enterprise Plan : {$res->totalE} Users%0a"
+                . "Total Revenue : $ {$totalR}";
+        return $body;
     }
 
 }
