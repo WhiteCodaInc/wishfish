@@ -49,6 +49,8 @@
                                     <th>Free Trial(expired)</th>
                                     <th>Personal</th>
                                     <th>Enterprise</th>
+                                    <th>Personal</th>
+                                    <th>Enterprise</th>
                                     <th>Total Revenue</th>
                                 </tr>
                             </thead>
@@ -60,6 +62,8 @@
                                     <th>All Users</th>
                                     <th>Free Trial(non-expired)</th>
                                     <th>Free Trial(expired)</th>
+                                    <th>Personal</th>
+                                    <th>Enterprise</th>
                                     <th>Personal</th>
                                     <th>Enterprise</th>
                                     <th>Total Revenue</th>
