@@ -125,4 +125,9 @@ class M_analytics extends CI_Model {
         return $query->result();
     }
 
+    function getAdminAccessClass() {
+        $query = $this->db->get_where('access_class');
+        return $query->result();
+    }
+
 }
