@@ -30,7 +30,7 @@ class Trigger extends CI_Controller {
         $this->load->model("admin/m_analytics", 'objanalytics');
     }
 
-    function index($dt = NULL, $flag = NULL) {
+    function index() {
         // UM =  - to UTC 
         // UP = UTC to + 
         $this->timezone = "UM8";
@@ -48,8 +48,8 @@ class Trigger extends CI_Controller {
         $res = $this->objtrigger->getEvents($this->date);
 
         $profiles = $this->objtrigger->getProfiles();
-//        $res = $this->objanalytics->getTotalUser($this->date);
-        $users = $this->objanalytics->getTotalUser($dt);
+        $users = $this->objanalytics->getTotalUser($this->date);
+//        $users = $this->objanalytics->getTotalUser($dt);
 
 
         echo "DATE : " . $this->date . '<br>';
@@ -61,28 +61,28 @@ class Trigger extends CI_Controller {
         print_r($users);
         if ($flag != NULL && $flag == 1) {
             foreach ($profiles as $value) {
-//            if ($this->hour == "11" && $this->minute == "59") {
-                if ($value->sms_report) {
-                    $body = $this->makeSMSBody($users);
-                    echo "Length : " . strlen($body);
-//                    if ($value->phone != NULL && $this->common->sendSMS($value->phone, $body)) {
-//                        echo $body . '<br>';
-//                        echo '<br>-------------SMS SENT SUCCESSFULLY---------------<br>';
-//                    } else {
-//                        echo '<br>-------------SMS NOT SUCCESSFULLY SENT---------------<br>';
-//                    }
-                }
-                if ($value->email_report) {
-                    $subject = "Wish-Fish Daily Report";
-                    $body = $this->makeEmailBody($users);
-                    if ($value->email != NULL && $this->common->sendMail($value->email, $subject, $body)) {
-                        echo '<br>-------------EMAIL SENT SUCCESSFULLY---------------<br>';
-                        echo $body . '<br>';
-                    } else {
-                        echo '<br>-------------EMAIL NOT SUCCESSFULLY SENT---------------<br>';
+                if ($this->hour == "00" && $this->minute == "01") {
+                    if ($value->sms_report) {
+                        $body = $this->makeSMSBody($users);
+                        echo "Length : " . strlen($body);
+                        if ($value->phone != NULL && $this->common->sendSMS($value->phone, $body)) {
+                            echo $body . '<br>';
+                            echo '<br>-------------SMS SENT SUCCESSFULLY---------------<br>';
+                        } else {
+                            echo '<br>-------------SMS NOT SUCCESSFULLY SENT---------------<br>';
+                        }
+                    }
+                    if ($value->email_report) {
+                        $subject = "Wish-Fish Daily Report";
+                        $body = $this->makeEmailBody($users);
+                        if ($value->email != NULL && $this->common->sendMail($value->email, $subject, $body)) {
+                            echo '<br>-------------EMAIL SENT SUCCESSFULLY---------------<br>';
+                            echo $body . '<br>';
+                        } else {
+                            echo '<br>-------------EMAIL NOT SUCCESSFULLY SENT---------------<br>';
+                        }
                     }
                 }
-//            }
             }
         }
 
