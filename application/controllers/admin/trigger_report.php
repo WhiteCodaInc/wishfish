@@ -44,16 +44,16 @@ class Trigger_report extends CI_Controller {
         $profiles = $this->objtrigger->getProfiles();
         $res = $this->objanalytics->getTotalUser($this->date);
 
-        print_r($profiles);
-        print_r($res);
-        die();
+//        print_r($profiles);
+//        print_r($res);
+//        die();
 
         echo "DATE : " . $this->date . '<br>';
         echo "HOUR : " . $this->hour . '<br>';
         echo "MINUTE : " . $this->minute . '<br>';
         echo "SECOND : " . $this->second . '<br>';
 
-        foreach ($res as $value) {
+        foreach ($profiles as $value) {
             if ($this->hour == $value->h && $this->minute == $value->m) {
                 echo "<br>-------------Event ID : {$value->event_id} ...! ----------------<br>";
                 echo "HOUR : " . $value->h . '<br>';

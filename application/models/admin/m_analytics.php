@@ -82,7 +82,8 @@ class M_analytics extends CI_Model {
         $this->db->order_by('PD.register_date', 'desc');
         $this->db->group_by('DATE(PD.register_date)');
         $query = $this->db->get();
-        return $query->result();
+
+        return (is_array($post)) ? $query->result() : $query->row();
     }
 
     function getUserDetail($post) {
@@ -160,7 +161,7 @@ class M_analytics extends CI_Model {
                 $msg = "DA";
                 break;
             case "ea":
-                $this->db->update('admin_profile', array('sms_report' => 2, 'email_report' => 1));
+                $this->db->update('admin_profile', array('sms_report' => 1, 'email_report' => 1));
                 $msg = "EA";
                 break;
         }
