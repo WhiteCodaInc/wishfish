@@ -57,11 +57,16 @@ class M_analytics extends CI_Model {
 
     function getTotalUser($post) {
         $where = array(
-            'DATE(PD.register_date) >=' => $this->common->getMySqlDate($post['from'], "mm-dd-yyyy"),
-            'DATE(PD.register_date) <=' => $this->common->getMySqlDate($post['to'], "mm-dd-yyyy"),
             'testmode' => 0,
             'P.status' => 1
         );
+        if (is_array($post)) {
+            $where ['DATE(PD.register_date) >='] = $this->common->getMySqlDate($post['from'], "mm-dd-yyyy");
+            $where ['DATE(PD.register_date) <='] = $this->common->getMySqlDate($post['to'], "mm-dd-yyyy");
+        } else {
+            $where ['DATE(PD.register_date)'] = $post;
+        }
+
         $this->db->select(' DATE(PD.register_date) as date,
                             count(DISTINCT U.user_id) totalU,
                             sum(case when plan_id = 2 then 1 else 0 end) totalP,
