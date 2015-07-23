@@ -7,7 +7,7 @@ $rule = $CI->common->getPermission();
 
 $avatar = $this->session->userdata('avatar');
 $img_src = ($avatar != "") ?
-        "http://mikhailkuznetsov.s3.amazonaws.com/" . $avatar :
+        "https://mikhailkuznetsov.s3.amazonaws.com/" . $avatar :
         base_url() . 'assets/dashboard/img/default-avatar.png';
 ?>
 <div class="wrapper row-offcanvas row-offcanvas-left">
