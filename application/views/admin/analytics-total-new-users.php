@@ -21,8 +21,8 @@
     <!-- Main content -->
     <section class="content">
         <div class="row users">
-            <div class="col-md-4"></div>
-            <div class="col-md-4">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
                 <div class="box" >
                     <div class="box-header" style="margin: 20px 10px;">
                         <div class="row">
@@ -62,7 +62,7 @@
                     <div style="display: none" class="loading-img"></div>
                 </div><!-- /.box -->
             </div>
-            <div class="col-md-4"></div>
+            <div class="col-md-3"></div>
         </div>
         <div class="row udetail" style="display: none">
             <div class="col-md-2"></div>
