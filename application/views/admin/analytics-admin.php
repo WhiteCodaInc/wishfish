@@ -23,7 +23,7 @@
                 <option value="ds">Disable Daily SMS Report</option>
             </select>
         </div>
-        <button value="Action" id="action" class="btn btn-primary" type="button" >Action</button>
+        <button value="Action" id="action" class="btn btn-primary" type="button" >Submit</button>
         <div class="search" style="float:right;width: 25%">
             <select id="page_length" class="form-control" style="float: left;width: 30%">
                 <option value="25">25</option>
