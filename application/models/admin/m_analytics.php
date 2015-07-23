@@ -111,12 +111,13 @@ class M_analytics extends CI_Model {
     }
 
     function getNewUserDetail($post) {
-        $where = array(
-            'DATE(payment_date) =' => $post['pdate']
-        );
-        $this->db->select('*');
-        $this->db->order_by('register_date', 'desc');
-        $query = $this->db->get('wi_user_mst', $where);
+        $this->db->select('U.user_id,U.register_date,name,email,phone,phone_verification,P.plan_name,status');
+        $this->db->from('wi_user_mst as U');
+        $this->db->join('wi_plan_detail as PD', 'U.user_id = PD.user_id', 'left outer');
+        $this->db->join('wi_plans as P', 'PD.plan_id = P.plan_id');
+        $this->db->where('DATE(U.register_date)', $post['pdate']);
+        $this->db->order_by('U.register_date', 'desc');
+        $query = $this->db->get();
         return $query->result();
     }
 
