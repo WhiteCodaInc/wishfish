@@ -134,7 +134,26 @@ class Login extends CI_Controller {
                 if ($user === -1) {
                     header('location: ' . site_url() . 'login?msg=DA');
                 } else if (!$is_user) {
-                    header('location: ' . site_url() . 'login?signup=fb&msg=NR');
+                    $joinVia = array(
+                        'name' => 'JoinVia',
+                        'value' => 'register',
+                        'expire' => 3600,
+                        'domain' => '.wish-fish.com'
+                    );
+                    $this->input->set_cookie($joinVia);
+                    if ($this->objregister->registerWithSocial($user_profile, "facebook")) {
+                        $facebookid = array(
+                            'name' => 'facebookid',
+                            'value' => $user_profile['id'],
+                            'expire' => time() + 86500,
+                            'domain' => '.wish-fish.com'
+                        );
+                        $this->input->set_cookie($facebookid);
+                        header('location:' . site_url() . 'app/dashboard');
+                    } else {
+                        header('location: ' . site_url() . 'register?msg=RF');
+                    }
+//                    header('location: ' . site_url() . 'login?signup=fb&msg=NR');
                 } else {
                     $this->objregister->linkWithProfile($user_profile['email']);
                     $is_login = array(
