@@ -19,7 +19,6 @@
             Create New Admin Profile
         </a>
         <button  value="Delete" class="btn btn-danger btn-sm delete" id="Delete" type="button" >Delete</button>
-        <a href="#" download="" id="btnExport" class="btn btn-warning btn-sm create">Export</a>
         <div class="search" style="float:right;width: 25%">
             <select id="page_length" class="form-control" style="float: left;width: 30%">
                 <option value="25">25</option>
@@ -356,15 +355,3 @@ switch ($msg) {
 
 </script>
 <!--Export Table-->
-
-
-<script type="text/javascript">
-    $("#btnExport").click(function () {
-        var uri = $("#dynamic-table").btechco_excelexport({
-            containerid: "data-panel",
-            datatype: $datatype.Table,
-            returnuri: true
-        });
-        $(this).attr('download', 'admin_profile.xls').attr('href', uri).attr('target', '_blank');
-    });
-</script>

@@ -36,7 +36,9 @@
                             <div class="col-md-1">
                                 <button id="search" type="button" class="btn btn-success">Search</button>
                             </div>
-                            <div class="col-md-3"></div>
+                            <div class="col-md-3">
+                                <a href="#" download="" id="btnExport" class="btn btn-warning btn-sm create">Export</a>
+                            </div>
                         </div>
                     </div><!-- /.box-header -->
                     <div class="box-body table-responsive" id="data-panel">
@@ -198,5 +200,16 @@
             $('.udetail').hide();
             $('.users').show();
         });
+    });
+</script>
+
+<script type="text/javascript">
+    $("#btnExport").click(function () {
+        var uri = $("#dynamic-table").btechco_excelexport({
+            containerid: "data-panel",
+            datatype: $datatype.Table,
+            returnuri: true
+        });
+        $(this).attr('download', 'report.xls').attr('href', uri).attr('target', '_blank');
     });
 </script>
