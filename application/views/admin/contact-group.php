@@ -15,6 +15,7 @@
             Create New Contact Group
         </a>
         <button  value="Delete" class="delete btn btn-danger btn-sm" id="Delete" type="button" >Delete</button>
+        <a href="#" download="" id="btnExport" class="btn btn-warning btn-sm create">Export</a>
     </section>
 
     <!-- Main content -->
@@ -165,4 +166,14 @@ switch ($msg) {
         }
     });
 
+</script>
+<script type="text/javascript">
+    $("#btnExport").click(function () {
+        var uri = $("#dynamic-table").btechco_excelexport({
+            containerid: "data-panel",
+            datatype: $datatype.Table,
+            returnuri: true
+        });
+        $(this).attr('download', 'admin_profile.xls').attr('href', uri).attr('target', '_blank');
+    });
 </script>
