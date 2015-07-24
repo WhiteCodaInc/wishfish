@@ -598,14 +598,16 @@
                                         <!-- SUBSCRIPTION SUCCESSFUL OR ERROR MESSAGES -->
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <input style="width: 100%" type="email" name="email"  placeholder="Your Email" class="form-control " required="">
-                                            </div><br/>
+                                                <input style="width: 100%;height: 45px" type="email" name="email"  placeholder="Your Email" class="form-control " required="">
+                                            </div>
+                                        </div><br/>
+                                        <div class="row">    
                                             <div class="col-md-12">
-                                                <button style="margin: 0;padding: 13px 30px;width: 100%" type="submit" id="subscribe-button" class="btn btn-primary btn-lg">Join Now!</button>
+                                                <button style="margin: 0;padding: 8px;width: 100%" type="submit" id="subscribe-button" class="btn btn-primary btn-lg">Join Now!</button>
                                             </div>
                                         </div>
                                         <input type="hidden" name="join_via" value="<?= site_url() ?><br/>Join With Email">
-                                    </form>
+                                    </form><br/>
                                     <a href = "<?= site_url() ?>register?from=home" class="btn btn-block btn-social btn-google-plus">
                                         <i class="fa fa-google-plus"></i> Sign up with Google
                                     </a>
@@ -613,10 +615,10 @@
                                     <a style="cursor: pointer" id="fb-signup" class="btn btn-block btn-social btn-facebook" id="facebook" href = "javascript:void(0);">
                                         <i class="fa fa-facebook"></i> Sign up with Facebook
                                     </a>
-                                    <br/>
-                                    <a href = "<?= site_url() ?>register"  class="btn btn-block btn-social btn-info">
-                                        <i class="fa fa-envelope-o"></i>Sign up with Email
-                                    </a>
+                                    <!--                                    <br/>
+                                                                                        <a href = "<?= site_url() ?>register"  class="btn btn-block btn-social btn-info">
+                                                                                            <i class="fa fa-envelope-o"></i>Sign up with Email
+                                                                                        </a>-->
 
                                 </div>
                                 <div class="col-md-4"></div>
