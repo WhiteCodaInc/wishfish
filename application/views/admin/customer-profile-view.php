@@ -259,7 +259,7 @@
                                             <td>
                                                 <?php $method = ($value->gateway == "STRIPE") ? "refundStripe" : "refundPaypal"; ?>
                                                 <?php if ($value->status && $value->mc_gross > 0 && $value->invoice_id): ?>
-                                                    <a class="btn btn-primary btn-xs" href="<?= site_url() ?>admin/customers/<?= $method ?>/<?= $customer->user_id ?>/<?= $value->invoice_id ?>">
+                                                    <a class="btn btn-primary btn-xs refund" href="<?= site_url() ?>admin/customers/<?= $method ?>/<?= $customer->user_id ?>/<?= $value->invoice_id ?>">
                                                         Refund
                                                     </a>
                                                 <?php endif; ?>
@@ -746,6 +746,17 @@ if ($msg == "T"):
                 data: {interval: interval},
                 success: function (data, textStatus, jqXHR) {
                     $('#recur_date').text(data);
+                }
+            });
+        });
+
+        $('a.refund').click(function (e) {
+            alertify.confirm("Are you sure want to Refund to <?= $customer->name ?>", function (e) {
+                if (e) {
+                    return true;
+                }
+                else {
+                    return false;
                 }
             });
         });

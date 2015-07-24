@@ -366,6 +366,7 @@ class Customers extends CI_Controller {
     }
 
     function refundStripe($userid, $chargeid) {
+        die("REFUND");
         try {
             $charge = Stripe_Charge::retrieve($chargeid);
             $charge->refunds->create();
