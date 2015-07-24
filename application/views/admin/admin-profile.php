@@ -353,9 +353,6 @@ switch ($msg) {
             $('#checkForm').attr('action', "<?= site_url() ?>admin/admin_profile/action");
             $('#checkForm').submit();
         }
-
-
-
     });
 
 </script>
