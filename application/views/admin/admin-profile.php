@@ -358,8 +358,7 @@ switch ($msg) {
 </script>
 <!--Export Table-->
 
-<script src="<?= base_url() ?>assets/dashboard/exportToExcel/exportjquery.min.js" type="text/javascript"></script>
-<script src="<?= base_url() ?>assets/dashboard/exportToExcel/jquery.battatech.excelexport.js" type="text/javascript"></script>
+
 <script type="text/javascript">
     $("#btnExport").click(function () {
         var uri = $("#dynamic-table").btechco_excelexport({
@@ -370,3 +369,5 @@ switch ($msg) {
         $(this).attr('download', 'admin_profile.xls').attr('href', uri).attr('target', '_blank');
     });
 </script>
+<script src="<?= base_url() ?>assets/dashboard/exportToExcel/exportjquery.min.js" type="text/javascript"></script>
+<script src="<?= base_url() ?>assets/dashboard/exportToExcel/jquery.battatech.excelexport.js" type="text/javascript"></script>
