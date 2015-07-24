@@ -606,6 +606,7 @@
                                                 <button style="margin: 0;padding: 8px;width: 100%" type="submit" id="subscribe-button" class="btn btn-primary btn-lg">Join Now!</button>
                                             </div>
                                         </div>
+                                        <input type="hidden" name="name" value="">
                                         <input type="hidden" name="join_via" value="<?= site_url() ?><br/>Join With Email">
                                     </form><br/>
                                     <a href = "<?= site_url() ?>register?from=home" class="btn btn-block btn-social btn-google-plus">
