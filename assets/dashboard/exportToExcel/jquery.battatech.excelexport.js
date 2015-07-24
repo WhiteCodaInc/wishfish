@@ -38,15 +38,19 @@
 
                     switch ($settings.datatype) {
                         case 1:
+                            console.log("ConvertFromTable");
                             excelData = Export(ConvertFromTable());
                             break;
                         case 2:
+                            console.log("ConvertDataStructureToTable");
                             excelData = Export(ConvertDataStructureToTable());
                             break;
                         case 3:
+                            console.log("ConvertDataStructureToTable");
                             excelData = Export(ConvertDataStructureToTable());
                             break;
                         case 4:
+                            console.log("ConvertDataStructureToTable");
                             excelData = Export(ConvertDataStructureToTable());
                             break;
                     }
@@ -96,6 +100,7 @@
                 }
 
                 function ConvertFromTable() {
+
                     var result = $('<div>').append($('#' + $settings.containerid).clone()).html();
                     return result;
                 }
@@ -105,6 +110,8 @@
 
                     result += "<thead><tr>";
                     $($settings.columns).each(function (key, value) {
+                        console.log("KEY :" + key);
+                        console.log("VALUE :" + value);
                         if (this.ishidden != true) {
                             result += "<th";
                             if (this.width != null) {
