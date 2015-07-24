@@ -14,8 +14,6 @@ and open the template in the editor.
         <meta property="og:type" content="article" />
         <meta property="og:image" content="<?= base_url() ?>assets/wow/main.png" />
         <meta property="og:url" content="<?= site_url() ?>" />
-        <meta property="og:image:width" content="797" />
-        <meta property="og:image:height" content="597" />
         <meta property="og:description" content="" />
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
