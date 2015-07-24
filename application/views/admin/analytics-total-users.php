@@ -206,7 +206,7 @@
 <script type="text/javascript">
     $("#btnExport").click(function () {
         var uri = $("#dynamic-table").btechco_excelexport({
-            containerid: "data-panel",
+            containerid: "users-data-table",
             datatype: $datatype.Table,
             returnuri: true
         });
