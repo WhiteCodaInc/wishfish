@@ -11,7 +11,7 @@ and open the template in the editor.
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
         <meta property="og:title" content="Wish-Fish" />
-        <meta property="og:type" content="article" />
+        <meta property="og:type" content="profile" />
         <meta property="og:image" content="<?= base_url() ?>assets/wow/main.png" />
         <meta property="og:url" content="<?= site_url() ?>" />
         <meta property="og:description" content="" />
