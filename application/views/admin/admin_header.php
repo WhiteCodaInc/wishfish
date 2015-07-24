@@ -93,7 +93,7 @@
         <script type="text/javascript" src="<?= base_url() ?>assets/dashboard/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 
         <!--Cookie-->
-        <script type="text/javascript" src="<?= base_url() ?>assets/dashboard/js/jquery.cookie.js"></script>
+        <!--<script type="text/javascript" src="<?= base_url() ?>assets/dashboard/js/jquery.cookie.js"></script>-->
 
         <!--Alertify-->
         <script type="text/javascript" src="<?= base_url() ?>assets/dashboard/js/alertify.js"></script>
