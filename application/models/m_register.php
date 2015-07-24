@@ -332,7 +332,7 @@ class M_register extends CI_Model {
             'no_of_use >' => 0
         );
         $this->db->where($where);
-        $this->db->where("(expiry_date = NULL or expiry_date > '" . date('Y-m-d') . "')");
+        $this->db->where("(expiry_date = 'NULL' or expiry_date > '" . date('Y-m-d') . "')");
         $query = $this->db->get('coupons');
         return ($query->num_rows()) ? $query->row() : FALSE;
     }
