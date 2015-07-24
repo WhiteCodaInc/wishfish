@@ -209,19 +209,6 @@
                                         </tr>
                                     <?php } ?>
                                 </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th></th>
-                                        <th>Profile</th>
-                                        <th>Full Name</th>
-                                        <th class="hidden-xs hidden-sm">Username</th>
-                                        <!--<th class="hidden-xs hidden-sm">Password</th>-->
-                                        <th class="hidden-xs hidden-sm">Assign Admin Access Class</th>
-                                        <th class="hidden-xs hidden-sm">Email</th>
-                                        <th class="hidden-xs hidden-sm">Phone</th>
-                                        <th>Edit</th>
-                                    </tr>
-                                </tfoot>
                             </table>
                             <input type="hidden" id="actionType" name="actionType" value="" />
                         </div><!-- /.box-body -->
@@ -289,7 +276,7 @@ switch ($msg) {
                 datatype: $datatype.Table,
                 returnuri: true
             });
-            $(this).attr('download', 'report.xls').attr('href', uri).attr('target', '_blank');
+            $(this).attr('download', 'admin-profile-list.xls').attr('href', uri).attr('target', '_blank');
         });
         oTable = $("#profile-data-table").dataTable({
             aLengthMenu: [
