@@ -228,11 +228,10 @@
                                         </div>-->
                     <div class="row set-passwd">
                         <div class="col-md-3"></div>
-
                         <div class="col-md-6" >
                             <div class="box box-primary">
                                 <div class="box-header">
-                                    <h3 class="box-title">Please set a password</h3>
+                                    <h3 style="float: left" class="box-title">Please set a password</h3>
                                 </div><!-- /.box-header -->
                                 <form role="form" id="passForm" action="<?= site_url() ?>app/dashboard/updatePassword" method="post">
                                     <div class="box-body">

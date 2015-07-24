@@ -278,7 +278,6 @@ switch ($msg) {
 <!-- DATA TABES SCRIPT -->
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
-<script src="<?= base_url() ?>assets/dashboard/js/plugins/datatables/dataTables.tableTools.js" type="text/javascript"></script>
 
 
 
@@ -296,10 +295,6 @@ switch ($msg) {
                 }],
             iDisplayLength: -1,
             aaSorting: [[2, 'asc']],
-            dom: 'T<"clear">lfrtip',
-            tableTools: {
-                "sSwfPath": "/swf/copy_csv_xls_pdf.swf"
-            }
         });
         $("#searchbox").on("keyup search input paste cut", function () {
             oTable.fnFilter(this.value);
