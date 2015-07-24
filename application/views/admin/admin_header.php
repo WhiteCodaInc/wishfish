@@ -89,6 +89,10 @@
         <!--BOOTSTRAP--> 
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js" type="text/javascript"></script>
 
+        <script src="<?= base_url() ?>assets/dashboard/exportToExcel/exportjquery.min.js"></script>
+        <script src="<?= base_url() ?>assets/dashboard/exportToExcel/jquery.battatech.excelexport.js"></script>
+
+
         <!--pickers plugins-->
         <script type="text/javascript" src="<?= base_url() ?>assets/dashboard/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 
