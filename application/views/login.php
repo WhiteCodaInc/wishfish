@@ -275,10 +275,12 @@ if ($type != "" && $type == "fb"):
 <?php
 $signup = $this->input->get('signup');
 
-if ($msg == "NR" && $signup != "" && ($signup == "google" || $signup == "fb")):
-    $url = ($signup == "google") ?
-            site_url() . 'register?from=home' :
-            site_url() . 'register?signup=fb';
+//if ($msg == "NR" && $signup != "" && ($signup == "google" || $signup == "fb")):
+if ($msg == "NR" && $signup == "google"):
+//    $url = ($signup == "google") ?
+//            site_url() . 'register?from=home' :
+//            site_url() . 'register?signup=fb';
+    $url = site_url() . 'register?from=home';
     ?>
                     alertify.confirm("Your email address is not register.<br>Are you really want to register?", function (e) {
                         if (e) {
