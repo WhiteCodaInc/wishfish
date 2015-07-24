@@ -19,7 +19,7 @@
                 containerid: null
                 , datatype: $datatype.Table
                 , dataset: null
-                , columns: null
+                , columns: array('1', '2', '3')
                 , returnUri: false
             };
 
@@ -106,15 +106,15 @@
 
                     result += "<thead><tr>";
                     $($settings.columns).each(function (key, value) {
-//                        if (this.ishidden != true) {
-//                            result += "<th";
-//                            if (this.width != null) {
-//                                result += " style='width: " + this.width + "'";
-//                            }
-//                            result += ">";
-//                            result += this.headertext;
-//                            result += "</th>";
-//                        }
+                        if (this.ishidden != true) {
+                            result += "<th";
+                            if (this.width != null) {
+                                result += " style='width: " + this.width + "'";
+                            }
+                            result += ">";
+                            result += this.headertext;
+                            result += "</th>";
+                        }
                     });
                     result += "</tr></thead>";
 
