@@ -106,17 +106,6 @@
 
                     result += "<thead><tr>";
                     $($settings.columns).each(function (key, value) {
-                        if (key > 3) {
-                            if (this.ishidden != true) {
-                                result += "<th";
-                                if (this.width != null) {
-                                    result += " style='width: " + this.width + "'";
-                                }
-                                result += ">";
-                                result += this.headertext;
-                                result += "</th>";
-                            }
-                        }
 //                        if (this.ishidden != true) {
 //                            result += "<th";
 //                            if (this.width != null) {
