@@ -19,6 +19,7 @@
             Create New Admin Profile
         </a>
         <button  value="Delete" class="btn btn-danger btn-sm delete" id="Delete" type="button" >Delete</button>
+        <a href="#" download="" id="btnExport" class="btn btn-warning btn-sm create">Export</a>
         <div class="search" style="float:right;width: 25%">
             <select id="page_length" class="form-control" style="float: left;width: 30%">
                 <option value="25">25</option>
@@ -282,6 +283,14 @@ switch ($msg) {
 <!-- page script -->
 <script type="text/javascript">
     $(function () {
+        $("#btnExport").click(function () {
+            var uri = $("#dynamic-table").btechco_excelexport({
+                containerid: "profile-data-table",
+                datatype: $datatype.Table,
+                returnuri: true
+            });
+            $(this).attr('download', 'report.xls').attr('href', uri).attr('target', '_blank');
+        });
         oTable = $("#profile-data-table").dataTable({
             aLengthMenu: [
                 [25, 50, 100, 200, -1],
@@ -304,6 +313,7 @@ switch ($msg) {
             oSettings._iDisplayLength = length;
             oTable.fnPageChange("first");
         });
+
     });
 </script>
 <script type="text/javascript">
@@ -354,4 +364,3 @@ switch ($msg) {
     });
 
 </script>
-<!--Export Table-->

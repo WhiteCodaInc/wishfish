@@ -86,7 +86,6 @@
         <script src="//code.jquery.com/ui/1.11.1/jquery-ui.min.js" type="text/javascript"></script>
         <script type="text/javascript" src="<?= base_url() ?>assets/dashboard/js/AdminLTE/jquery.resize.js"></script>
 
-        <!--<script src="<?= base_url() ?>assets/dashboard/exportToExcel/exportjquery.min.js"></script>-->
         <script src="<?= base_url() ?>assets/dashboard/exportToExcel/jquery.battatech.excelexport.js"></script>
 
         <!--BOOTSTRAP--> 
