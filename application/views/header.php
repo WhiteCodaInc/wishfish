@@ -13,8 +13,8 @@ and open the template in the editor.
         <meta property="og:title" content="Wish-Fish" />
         <!--<meta property="og:type" content="article" />-->
         <meta property="og:image" content="<?= base_url() ?>assets/wow/200x200.png" />
-        <meta property="og:url" content="http://mikhailkuznetsov.com/home/blogs/single_post/<?= $single->blog_id ?>" />
-        <meta property="og:description" content="<?= chop_string($single->content, 100) ?>" />
+        <meta property="og:url" content="<?= site_url() ?>" />
+        <meta property="og:description" content="" />
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
         <link href="<?= base_url() ?>assets/dashboard/favicon.ico" rel="Shortcut Icon" type="image/x-icon" />
