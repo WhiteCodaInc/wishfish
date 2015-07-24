@@ -12,7 +12,7 @@ and open the template in the editor.
 
         <meta property="og:title" content="Wish-Fish" />
         <meta property="og:type" content="article" />
-        <meta property="og:image" content="<?= base_url() ?>assets/wow/200x200.png" />
+        <meta property="og:image" content="<?= base_url() ?>assets/wow/main.png" />
         <meta property="og:url" content="<?= site_url() ?>" />
         <meta property="og:description" content="" />
 
