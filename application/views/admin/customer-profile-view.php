@@ -751,6 +751,8 @@ if ($msg == "T"):
         });
 
         $('a.refund').click(function (e) {
+            var href = $(this).prop('href');
+            alert(href);
             alertify.confirm("Are you sure want to Refund to <?= $customer->name ?>", function (e) {
                 if (e) {
                     return true;
