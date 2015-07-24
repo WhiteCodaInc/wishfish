@@ -597,13 +597,10 @@
                                     <form  action="<?= site_url() ?>register/createAccount"  method="post"  class="subscription-form mailchimp form-inline" role="form">
                                         <!-- SUBSCRIPTION SUCCESSFUL OR ERROR MESSAGES -->
                                         <div class="row">
-                                            <div class="col-md-4">
-                                                <input style="width: 100%" type="text" name="name"  placeholder="Your Name" class="form-control " required="">
-                                            </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-12">
                                                 <input style="width: 100%" type="email" name="email"  placeholder="Your Email" class="form-control " required="">
-                                            </div>
-                                            <div class="col-md-3">
+                                            </div><br/>
+                                            <div class="col-md-12">
                                                 <button style="margin: 0;padding: 13px 30px;width: 100%" type="submit" id="subscribe-button" class="btn btn-primary btn-lg">Join Now!</button>
                                             </div>
                                         </div>
