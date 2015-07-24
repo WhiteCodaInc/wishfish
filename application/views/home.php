@@ -603,10 +603,13 @@
                                         </div><br/>
                                         <div class="row">    
                                             <div class="col-md-12">
-                                                <button style="margin: 0;padding: 8px;width: 100%" type="submit" id="subscribe-button" class="btn btn-primary btn-lg">
-                                                    <i class="fa fa-envelope-o"></i>
-                                                    Sign up with Email
+                                                <button type="submit" class="btn btn-block btn-social btn-info">
+                                                    <i class="fa fa-envelope-o"></i>Sign up with Email
                                                 </button>
+                                                <!--                                                <button style="margin: 0;padding: 8px;width: 100%" type="submit" id="subscribe-button" class="btn btn-primary btn-lg">
+                                                                                                    <i class="fa fa-envelope-o"></i>
+                                                                                                    Sign up with Email
+                                                                                                </button>-->
                                             </div>
                                         </div>
                                         <input type="hidden" name="name" value="">
@@ -619,10 +622,10 @@
                                     <a style="cursor: pointer" id="fb-signup" class="btn btn-block btn-social btn-facebook" id="facebook" href = "javascript:void(0);">
                                         <i class="fa fa-facebook"></i> Sign up with Facebook
                                     </a>
-                                    <!--                                    <br/>
-                                                                                        <a href = "<?= site_url() ?>register"  class="btn btn-block btn-social btn-info">
-                                                                                            <i class="fa fa-envelope-o"></i>Sign up with Email
-                                                                                        </a>-->
+                                    <br/>
+                                    <a href = "<?= site_url() ?>register"  class="btn btn-block btn-social btn-info">
+                                        <i class="fa fa-envelope-o"></i>Sign up with Email
+                                    </a>
 
                                 </div>
                                 <div class="col-md-4"></div>
