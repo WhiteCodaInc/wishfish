@@ -603,7 +603,10 @@
                                         </div><br/>
                                         <div class="row">    
                                             <div class="col-md-12">
-                                                <button style="margin: 0;padding: 8px;width: 100%" type="submit" id="subscribe-button" class="btn btn-primary btn-lg">Join Now!</button>
+                                                <button style="margin: 0;padding: 8px;width: 100%" type="submit" id="subscribe-button" class="btn btn-primary btn-lg">
+                                                    <i class="fa fa-envelope-o"></i>
+                                                    Sign up with Email
+                                                </button>
                                             </div>
                                         </div>
                                         <input type="hidden" name="name" value="">
