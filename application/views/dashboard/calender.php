@@ -1071,7 +1071,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
 
         $('#popup').click(function () {
 <?php if (!$userInfo->email_verification): ?>
-                alertify.alert("You can not schedule an events until you verify your email address.<br/><a href='javascript:void(0);' id='sendAgain'>Click Here</a> to send verification email.");
+                alertify.alert("You cannot schedule events until you verify your email address.<br/><a href='javascript:void(0);' id='sendAgain'>Click Here</a> to send a verification email.");
                 varifyEmail();
                 return false;
 <?php endif; ?>

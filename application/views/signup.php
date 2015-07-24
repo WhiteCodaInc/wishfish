@@ -128,7 +128,7 @@ and open the template in the editor.
                                             <div class="form-group">
                                                 <p style="text-align: center">
                                                     By clicking Register,<br/> I agree to the 
-                                                    <a href="<?= site_url() ?>terms-of-services">Terms of Service</a> and 
+                                                    <a href="<?= site_url() ?>terms-of-services">Terms of Service</a><br/> and 
                                                     <a href="<?= site_url() ?>privacy-policy">Privacy Policy</a>.
                                                 </p>
                                             </div>
