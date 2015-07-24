@@ -594,7 +594,7 @@
                             <div class="row" style="  margin: 18% 10%;">
                                 <div class="col-md-4"></div>
                                 <div class="col-md-4">
-                                    <form id="overlay">
+                                    <form id="">
                                         <a href = "<?= site_url() ?>register?from=home" class="btn btn-block btn-social btn-google-plus">
                                             <i class="fa fa-google-plus"></i> Sign up with Google
                                         </a>
