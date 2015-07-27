@@ -98,6 +98,8 @@
         $('#addPlan').click(function () {
             var intervalC = parseInt($('input[name="interval_count"]').val());
             var interval = $('select[name="interval"]').val();
+            console.log(intervalC);
+            console.log(interval);
             if (interval == "day" && intervalC < 0 && intervalC > 365) {
                 alertify.error("Please Enter Interval Between 1 To 365 Day");
                 return false;
