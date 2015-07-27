@@ -21,6 +21,7 @@ class M_plans extends CI_Model {
     }
 
     function getPlans() {
+        $this->db->select();
         $query = $this->db->get('wi_payment_plan');
         return $query->result();
     }
@@ -43,8 +44,8 @@ class M_plans extends CI_Model {
     }
 
     function assignPlan($set) {
-        $this->db->where('plan_id', $set['productid']);
-        $this->db->update('wi_plans', array('payment_plan_id' => $set['planid']));
+        $this->db->update('wi_plans', array('payment_plan_id' => $set['planid']), array('plan_id' => $set['productid']));
+        $this->db->update('wi_payment_plan', array('assign_to' => $set['productid']), array('payment_plan_id' => $set['planid']));
     }
 
     function setAction($type) {
