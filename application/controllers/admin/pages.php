@@ -45,6 +45,15 @@ class Pages extends CI_Controller {
         $this->load->view('admin/admin_footer');
     }
 
+    function getCommercialTerm() {
+        $data['page'] = $this->objpage->getCommercialTerm();
+        $this->load->view('admin/admin_header');
+        $this->load->view('admin/admin_top');
+        $this->load->view('admin/admin_navbar');
+        $this->load->view('admin/page-commercial-term', $data);
+        $this->load->view('admin/admin_footer');
+    }
+
     function update() {
         $post = $this->input->post();
         $this->objpage->update($post);
@@ -53,7 +62,13 @@ class Pages extends CI_Controller {
     function updateTerm() {
         $post = $this->input->post();
         $this->objpage->updateTerm($post);
-        header('location:' . site_url() . 'admin/pages/getTerm');
+        header('location:' . site_url() . 'admin/pages/getCommercialTerm');
+    }
+
+    function updateCommercialTerm() {
+        $post = $this->input->post();
+        $this->objpage->updateCommercialTerm($post);
+        header('location:' . site_url() . 'admin/pages/getCommercialTerm');
     }
 
 }

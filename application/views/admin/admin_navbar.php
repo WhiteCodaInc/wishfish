@@ -260,6 +260,11 @@ $img_src = ($avatar != "") ?
                             </a>
                         </li>
                         <li>
+                            <a href="<?= site_url() ?>admin/pages/getCommercialTerm">
+                                <i class="fa fa-angle-double-right"></i> <span>Commercial Terms</span>
+                            </a>
+                        </li>
+                        <li>
                             <a href="<?= site_url() ?>admin/sections/">
                                 <i class="fa fa-angle-double-right"></i> <span>Homepage Section</span>
                             </a>
