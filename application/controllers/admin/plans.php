@@ -67,12 +67,19 @@ class Plans extends CI_Controller {
         header('location:' . site_url() . 'admin/plans?msg=U');
     }
 
+    function assignPlan() {
+        $post = $this->input->post();
+        $this->objplan->assignPlan($post);
+    }
+
     function action() {
         $type = $this->input->post('actionType');
-        if ($type == "Delete") {
-            $this->objplan->setAction();
+        if ($type == "Delete" || $type == "Assign") {
+            $msg = $this->objplan->setAction($type);
+            header('location:' . site_url() . 'admin/plans?msg=' . $msg);
+        } else {
+            header('location:' . site_url() . 'admin/plans');
         }
-        header('location:' . site_url() . 'admin/plans?msg=D');
     }
 
 }

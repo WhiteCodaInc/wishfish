@@ -42,10 +42,24 @@ class M_plans extends CI_Model {
         return TRUE;
     }
 
-    function setAction() {
+    function assignPlan($set) {
+        $this->db->where('plan_id', $set['productid']);
+        $this->db->update('wi_plans', array('payment_plan_id' => $set['planid']));
+    }
+
+    function setAction($type) {
+        $msg = "";
         $ids = $this->input->post('plan');
-        foreach ($ids as $value) {
-            $this->db->delete('wi_payment_plan', array('payment_plan_id' => $value));
+        switch ($type) {
+            case "Assign":
+
+                break;
+            case "Delete":
+                foreach ($ids as $value) {
+                    $this->db->delete('wi_payment_plan', array('payment_plan_id' => $value));
+                }
+                $msg = "D";
+                break;
         }
     }
 
