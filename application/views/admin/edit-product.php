@@ -47,7 +47,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-7">
+                                <div class="col-md-5">
                                     <div class="form-group">
                                         <label for="title">Product Setting</label>
                                         <input value="<?= $product->setting ?>" type="text" name="setting" class="form-control" placeholder="Product Setting" required="" />
