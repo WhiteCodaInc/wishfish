@@ -63,9 +63,9 @@
                                     </div>
                                     <div class="col-md-4">
                                         <select name="interval" class="form-control">
-                                            <option value="day">Days</option>
+                                            <option value="day">Day</option>
                                             <option value="week">Week</option>
-                                            <option value="month">Months</option>
+                                            <option value="month">Month</option>
                                             <option value="year">Year</option>
                                         </select>
                                     </div>
