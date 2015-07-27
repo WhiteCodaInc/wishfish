@@ -25,7 +25,7 @@
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     <div class="box-body">
-                        <form id="termForm" action="<?= site_url() ?>admin/pages/updateTerm" method="post">
+                        <form id="termForm" action="<?= site_url() ?>admin/pages/updateCommercialTerm" method="post">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
