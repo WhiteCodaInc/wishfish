@@ -26,7 +26,7 @@ class M_products extends CI_Model {
     }
 
     function getProduct($pid) {
-        $query = $this->db->get_where('wi_plans', array('template_id' => $pid));
+        $query = $this->db->get_where('wi_plans', array('plan_id' => $pid));
         return $query->row();
     }
 
