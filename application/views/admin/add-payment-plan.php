@@ -113,7 +113,7 @@
                 alertify.error("Maximum of 1 year interval allowed");
                 return false;
             } else {
-                $('#planForm').submit();
+//                $('#planForm').submit();
             }
         });
     });
