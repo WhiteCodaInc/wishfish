@@ -164,10 +164,10 @@ switch ($msg) {
             $('#plan-data-table tbody tr').each(function () {
                 if ($(this).children('td:first').find('div.checked').length) {
                     if ($(this).children('td:nth-child(4) select').val() != "-1") {
+                        alertify.error("One of the plan has been assigned to product already,<br>You dont't allow to delete plan(s)..!");
+                    } else {
                         $txt = $(this).children('td:nth-child(2)').text();
                         plans += $txt.trim() + ",";
-                    } else {
-                        alertify.error("One of the plan has been assigned to product already,<br>You dont't allow to delete plan(s)..!");
                     }
                 }
             });
