@@ -28,14 +28,21 @@
                                 <label>Payment Plan</label>
                                 <input value="<?= isset($plans) ? $plans->payment_plan : '' ?>" type="text" name="payment_plan" autofocus="autofocus" class="form-control" placeholder="Payment Plan Name" />
                             </div>
-                            <div class="form-control">
+                            <div class="form-group">
                                 Charge Customer <strong>$</strong>
                                 <input name="initial_amt" type="number" class="form-control-inline" required="" >
-                                immediately<br/>
+                                immediately
+                            </div>
+                            <div class="form-group">
+                                then after
                                 <input name="trial_period" type="number" class="form-control-inline" required="" >
-                                days<br/>
+                                days
+                            </div>
+                            <div class="form-group">
                                 charge <strong>$</strong>
-                                <input name="amount" type="number" class="form-control-inline" required="" ><br/>
+                                <input name="amount" type="number" class="form-control-inline" required="" >
+                            </div>
+                            <div class="form-group">
                                 every <input name="interval_count" type="number" class="form-control-inline" required="" >
                                 <select name="interval" class="form-control-inline">
                                     <option value="day">Days</option>
