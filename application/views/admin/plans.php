@@ -158,22 +158,12 @@ switch ($msg) {
             });
         });
 
-
-        $('#Assign').click(function (e) {
-            if ($('#product').val() == "-1") {
-                alertify.error("Please Select Product First..!");
-                return false;
-            } else {
-                action($(this).val());
-                e.preventDefault();
-            }
-        });
         $('button.delete').click(function (e) {
             var plans = "";
             var act = $(this).val();
             $('#plan-data-table tbody tr').each(function () {
                 if ($(this).children('td:first').find('div.checked').length) {
-                    $txt = $(this).children('td:nth-child(1)').text();
+                    $txt = $(this).children('td:nth-child(2)').text();
                     plans += $txt.trim() + ",";
                 }
             });
