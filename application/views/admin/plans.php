@@ -58,7 +58,7 @@
                                                     after <strong><?= $value->trial_period ?> days.</strong>
                                                 </td>
                                                 <td>
-                                                    <select id="product"  class="form-control m-bot15">
+                                                    <select class="form-control m-bot15 product">
                                                         <option value="-1">Assign To</option>
                                                         <?php foreach ($products as $val) { ?>
                                                             <option value="<?= $val->plan_id ?>" <?= ($value->assign_to == $val->plan_id) ? 'selected' : '' ?>>
@@ -141,7 +141,7 @@ switch ($msg) {
 <script type="text/javascript">
     $(document).ready(function () {
 
-        $('#product').change(function () {
+        $('select.product').change(function () {
             $('.overlay').show();
             $('.loading-img').show();
             var productid = $(this).val();
