@@ -165,7 +165,7 @@ switch ($msg) {
             $('#plan-data-table tbody tr').each(function () {
                 if ($(this).children('td:first').find('div.checked').length) {
                     console.log($(this).children('td:nth-child(4) select').val());
-                    if ($(this).children('td:nth-child(4) select').val() != "-1") {
+                    if ($(this).children('td:nth-child(4)').children().val() != "-1") {
                         flag = false;
                     } else {
                         $txt = $(this).children('td:nth-child(2)').text();
