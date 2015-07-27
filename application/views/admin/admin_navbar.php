@@ -308,7 +308,7 @@ $img_src = ($avatar != "") ?
             </ul>
             <script type="text/javascript">
                 $(document).ready(function () {
-                    /*
+
                     $("ul.sidebar-menu li a").click(function () {
                         if ($(this).attr("href") != "#") {
                             var active = $(this).parent('li').attr('id');
@@ -329,7 +329,7 @@ $img_src = ($avatar != "") ?
                     } else {
                         $("#1").addClass("active");
                     }
-                    */
+
                 });
             </script>
             <script type="text/javascript">

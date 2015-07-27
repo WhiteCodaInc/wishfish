@@ -622,10 +622,10 @@
                                     <a style="cursor: pointer" id="fb-signup" class="btn btn-block btn-social btn-facebook" id="facebook" href = "javascript:void(0);">
                                         <i class="fa fa-facebook"></i> Sign up with Facebook
                                     </a>
-<!--                                    <br/>
-                                    <a href = "<?= site_url() ?>register"  class="btn btn-block btn-social btn-info">
-                                        <i class="fa fa-envelope-o"></i>Sign up with Email
-                                    </a>-->
+                                    <!--                                    <br/>
+                                                                        <a href = "<?= site_url() ?>register"  class="btn btn-block btn-social btn-info">
+                                                                            <i class="fa fa-envelope-o"></i>Sign up with Email
+                                                                        </a>-->
 
                                 </div>
                                 <div class="col-md-4"></div>
