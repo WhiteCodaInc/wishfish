@@ -352,9 +352,7 @@
 <script type="text/javascript">
     $(document).ready(function (e) {
 
-<?php if (!$card): ?>
-            $('#userForm').find('.cvc').val('');
-<?php endif; ?>
+
 
         $('#profile-pic img').click(function () {
             $('#profile-pic #profilePic').trigger('click');
