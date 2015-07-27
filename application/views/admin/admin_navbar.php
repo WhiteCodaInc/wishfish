@@ -310,6 +310,11 @@ $img_src = ($avatar != "") ?
                         </li>
                     </ul>
                 </li>
+                <li class="" id="16">
+                    <a href="<?= site_url() ?>admin/products">
+                        <i class="fa fa-angle-double-right"></i> <span>Product Builder</span>
+                    </a>
+                </li>
             </ul>
             <script type="text/javascript">
                 $(document).ready(function () {
