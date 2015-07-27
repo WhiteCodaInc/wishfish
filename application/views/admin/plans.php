@@ -59,7 +59,7 @@
                                                 </td>
                                                 <td>
                                                     <select class="form-control m-bot15 product">
-                                                        <option value="-1" <?= (!$value->assign_to) ? 'disabled' : '' ?>>Assign To</option>
+                                                        <option value="-1" <?= ($value->assign_to) ? 'disabled' : '' ?>>Assign To</option>
                                                         <?php foreach ($products as $val) { ?>
                                                             <option value="<?= $val->plan_id ?>" <?= ($value->assign_to == $val->plan_id) ? 'selected' : '' ?>>
                                                                 <?= $val->plan_name ?></option>
