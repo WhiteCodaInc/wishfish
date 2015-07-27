@@ -1,5 +1,5 @@
 <style type="text/css">
-    #contact-data-table tr td,#contact-data-table tr th{
+    #plan-data-table tr td,#plan-data-table tr th{
         text-align: center;
     }
 </style>
@@ -8,11 +8,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1 style="display: none">
-            Contact Groups
+            Payment Plans
         </h1>
-        <a href="<?= site_url() ?>admin/contact_groups/addContactGroup" class="create btn btn-success btn-sm">
+        <a href="<?= site_url() ?>admin/plans/addPlan" class="create btn btn-success btn-sm">
             <i class="fa fa-plus"></i>
-            Create New Contact Group
+            Create New Payment Plan
         </a>
         <button  value="Delete" class="delete btn btn-danger btn-sm" id="Delete" type="button" >Delete</button>       
     </section>
@@ -24,46 +24,40 @@
             <div class="col-xs-12">
                 <div class="box" >
                     <div class="box-header">
-                        <h3 class="box-title">Contact Group Detail</h3>
+                        <h3 class="box-title">Payment Plan Detail</h3>
                     </div><!-- /.box-header -->
-                    <div class="row">
-                        <div class="col-xs-12" style="margin-left: 1%">
-<!--                            <a href="<?= site_url() ?>admin/contact_groups/addContactGroup" class="create btn btn-success btn-sm">
-                                <i class="fa fa-plus"></i>
-                                Create New Contact Group
-                            </a>
-                            <button style="margin-left: 10px" value="Delete" class="delete btn btn-danger btn-sm" id="Delete" type="button" >Delete</button>-->
-                        </div>
-                    </div>
-
                     <form name="checkForm" id="checkForm" action="" method="post">
                         <div class="box-body table-responsive" id="data-panel">
 
-                            <table id="contact-data-table" class="table table-bordered table-striped">
+                            <table id="plan-data-table" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
                                         <th style="padding: 10px;">
                                             <input type="checkbox"/>
                                         </th>
-                                        <th class="hidden-xs hidden-sm">Group Id</th>
-                                        <th>Group Name</th>
-                                        <th>Edit</th>
+                                        <th>Payment Plan</th>
+                                        <th>Description</th>
+                                        <th>Assign To</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($groups as $value) { ?>
+                                    <?php foreach ($plans as $value) { ?>
                                         <tr>
                                             <td>
                                                 <div>
                                                     <label>
-                                                        <input type="checkbox" name="group[]" value="<?= $value->group_id ?>"/>
+                                                        <input type="checkbox" name="plan[]" value="<?= $value->payment_plan_id ?>"/>
                                                     </label>
                                                 </div>
                                             </td>
-                                            <td class="hidden-xs hidden-sm"><?= $value->group_id ?></td>
-                                            <td><?= $value->group_name ?></td>
+                                            <td><?= $value->payment_plan_id ?></td>
                                             <td>
-                                                <a href="<?= site_url() ?>admin/contact_groups/editContactGroup/<?= $value->group_id ?>" class="btn bg-navy btn-xs">
+                                                <strong>$ <?= $value->initial_amt ?></strong> immediately,
+                                                and <strong>$ <?= $value->amount . ' / ' . $value->interval ?></strong> 
+                                                after <strong><?= $value->trial_period ?> days.</strong>
+                                            </td>
+                                            <td>
+                                                <a href="<?= site_url() ?>admin/plans/editPlan/<?= $value->payment_plan_id ?>" class="btn bg-navy btn-xs">
                                                     <i class="fa fa-edit"></i>
                                                     Edit
                                                 </a>
@@ -74,9 +68,9 @@
                                 <tfoot>
                                     <tr>
                                         <th></th>
-                                        <th class="hidden-xs hidden-sm">Group Id</th>
-                                        <th>Group Name</th>
-                                        <th>Edit</th>
+                                        <th>Payment Plan</th>
+                                        <th>Description</th>
+                                        <th>Assign To</th>
                                     </tr>
                                 </tfoot>
                             </table>
@@ -93,15 +87,15 @@
 <?php
 switch ($msg) {
     case "I":
-        $m = "Contact Group Successfully Created..!";
+        $m = "Payment Plan Successfully Created..!";
         $t = "success";
         break;
     case "U":
-        $m = "Contact Group Successfully Updated..!";
+        $m = "Payment Plan Successfully Updated..!";
         $t = "success";
         break;
     case "D":
-        $m = "Contact Group(s) Successfully Deleted..!";
+        $m = "Payment Plan(s) Successfully Deleted..!";
         $t = "error";
         break;
     default:
@@ -122,32 +116,27 @@ switch ($msg) {
 <!-- page script -->
 <script type="text/javascript">
     $(function () {
-        $("#contact-data-table").dataTable({
+        $("#plan-data-table").dataTable({
             aoColumnDefs: [{
                     bSortable: false,
-                    aTargets: [0, 3]
+                    aTargets: [0, 1, 2, 3]
                 }]
         });
     });
 </script>
 <script type="text/javascript">
     $(document).ready(function () {
-
-
-
         $('button.delete').click(function (e) {
-            var cgroup = "";
+            var plans = "";
             var act = $(this).val();
-            $('#contact-data-table tbody tr').each(function () {
+            $('#plan-data-table tbody tr').each(function () {
                 if ($(this).children('td:first').find('div.checked').length) {
-                    $txt = $(this).children('td:nth-child(3)').text();
-                    cgroup += $txt.trim() + ",";
+                    $txt = $(this).children('td:nth-child(1)').text();
+                    plans += $txt.trim() + ",";
                 }
             });
-
-            cgroup = cgroup.substring(0, cgroup.length - 1);
-
-            alertify.confirm("Are you sure want to delete contact group(s):<br/>" + cgroup, function (e) {
+            plans = plans.substring(0, plans.length - 1);
+            alertify.confirm("Are you sure want to delete payment plan(s):<br/>" + plans, function (e) {
                 if (e) {
                     action(act);
                     return true;
@@ -160,7 +149,7 @@ switch ($msg) {
 
         function action(actiontype) {
             $('#actionType').val(actiontype);
-            $('#checkForm').attr('action', "<?= site_url() ?>admin/contact_groups/action");
+            $('#checkForm').attr('action', "<?= site_url() ?>admin/plans/action");
             $('#checkForm').submit();
         }
     });
