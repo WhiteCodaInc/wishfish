@@ -165,7 +165,6 @@ switch ($msg) {
             $('#plan-data-table tbody tr').each(function () {
                 if ($(this).children('td:first').find('div.checked').length) {
                     if ($(this).children('td:nth-child(4) select').val() != "-1") {
-                        alertify.error("One of the plan has been assigned to product,<br>You don't allow to delete plan(s)..!");
                         flag = false;
                     } else {
                         $txt = $(this).children('td:nth-child(2)').text();
@@ -185,6 +184,7 @@ switch ($msg) {
                     }
                 });
             } else {
+                alertify.error("One of the plan has been assigned to product,<br>You don't allow to delete plan(s)..!");
                 return false;
             }
         });
