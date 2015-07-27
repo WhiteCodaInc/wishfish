@@ -100,16 +100,16 @@
             var interval = $('select[name="interval"]').val();
             console.log(intervalC);
             console.log(interval);
-            if (interval == "day" && intervalC < 0 && intervalC > 365) {
+            if (interval == "day" && (intervalC < 0 || intervalC > 365)) {
                 alertify.error("Please Enter Interval Between 1 To 365 Day");
                 return false;
-            } else if (interval == "week" && intervalC < 0 && intervalC > 52) {
+            } else if (interval == "week" && (intervalC < 0 || intervalC > 52)) {
                 alertify.error("Please Enter Interval Between 1 To 52 Week");
                 return false;
-            } else if (interval == "month" && intervalC < 0 && intervalC > 12) {
+            } else if (interval == "month" && (intervalC < 0 || intervalC > 12)) {
                 alertify.error("Please Enter Interval Between 1 To 12 Month");
                 return false;
-            } else if (interval == "year" && intervalC < 0 && intervalC > 1) {
+            } else if (interval == "year" && (intervalC < 0 || intervalC > 1)) {
                 alertify.error("Maximum of 1 year interval allowed");
                 return false;
             } else {
