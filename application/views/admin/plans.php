@@ -50,7 +50,7 @@
                                                     </label>
                                                 </div>
                                             </td>
-                                            <td><?= $value->payment_plan_id ?></td>
+                                            <td><?= $value->payment_plan ?></td>
                                             <td>
                                                 <strong>$ <?= $value->initial_amt ?></strong> immediately,
                                                 and <strong>$ <?= $value->amount . ' / ' . $value->interval ?></strong> 
