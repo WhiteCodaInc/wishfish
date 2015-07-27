@@ -234,7 +234,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label>CVC</label>
-                                <input maxlength="3" type="password" class="cvc form-control" />
+                                <input maxlength="4" placeholder="CVC Code" type="password" class="cvc form-control" />
                             </div>
                         </div>
                     </div>
