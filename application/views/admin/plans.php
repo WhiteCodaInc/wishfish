@@ -164,7 +164,7 @@ switch ($msg) {
             var act = $(this).val();
             $('#plan-data-table tbody tr').each(function () {
                 if ($(this).children('td:first').find('div.checked').length) {
-                    console.log($(this).children('td:nth-child(4) select').val());
+                    console.log($(this).find('select.product').val());
                     if ($(this).children('td:nth-child(4)').children().val() != "-1") {
                         flag = false;
                     } else {
