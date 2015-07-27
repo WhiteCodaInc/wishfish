@@ -1,3 +1,8 @@
+<style type="text/css">
+    #planForm row:first-child{
+        text-align: right
+    }
+</style>
 <aside class="right-side">
     <!-- Content Header (Page header) -->
     <section class="content-header">
