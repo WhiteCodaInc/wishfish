@@ -160,28 +160,33 @@ switch ($msg) {
 
         $('button.delete').click(function (e) {
             var plans = "";
+            var flag = true;
             var act = $(this).val();
             $('#plan-data-table tbody tr').each(function () {
                 if ($(this).children('td:first').find('div.checked').length) {
                     if ($(this).children('td:nth-child(4) select').val() != "-1") {
                         alertify.error("One of the plan has been assigned to product already,<br>You dont't allow to delete plan(s)..!");
-                        return false;
+                        flag = false;
                     } else {
                         $txt = $(this).children('td:nth-child(2)').text();
                         plans += $txt.trim() + ",";
                     }
                 }
             });
-            plans = plans.substring(0, plans.length - 1);
-            alertify.confirm("Are you sure want to delete payment plan(s):<br/>" + plans, function (e) {
-                if (e) {
-                    action(act);
-                    return true;
-                }
-                else {
-                    return false;
-                }
-            });
+            if (flag) {
+                plans = plans.substring(0, plans.length - 1);
+                alertify.confirm("Are you sure want to delete payment plan(s):<br/>" + plans, function (e) {
+                    if (e) {
+                        action(act);
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                });
+            } else {
+                return false;
+            }
         });
 
         function action(actiontype) {
