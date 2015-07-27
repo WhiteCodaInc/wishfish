@@ -61,8 +61,8 @@
                                                     <select id="product"  class="form-control m-bot15">
                                                         <option value="-1">Assign To</option>
                                                         <?php foreach ($products as $val) { ?>
-                                                            <option value="<?= ($value->assign_to == $val->plan_id) ? 'selected' : '' ?>">
-                                                                <?= $val->plan_name ?></option>
+                                                            <option value="<?= $value->plan_id ?>" <?= ($value->assign_to == $val->plan_id) ? 'selected' : '' ?>>
+                                                                <?= $value->plan_name ?></option>
                                                         <?php } ?>
                                                     </select>
                                                 </td>
