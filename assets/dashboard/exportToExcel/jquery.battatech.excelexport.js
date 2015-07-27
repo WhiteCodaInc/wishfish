@@ -19,7 +19,7 @@
                 containerid: null
                 , datatype: $datatype.Table
                 , dataset: null
-                , columns: array('1', '2', '3')
+                , columns: null
                 , returnUri: false
             };
 
