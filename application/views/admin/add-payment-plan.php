@@ -29,27 +29,47 @@
                                 <input value="<?= isset($plans) ? $plans->payment_plan : '' ?>" type="text" name="payment_plan" autofocus="autofocus" class="form-control" placeholder="Payment Plan Name" />
                             </div>
                             <div class="form-group">
-                                Charge Customer <strong>$</strong>
-                                <input name="initial_amt" type="number" class="form-control-inline" required="" >
-                                immediately
+                                <div class="row">
+                                    <div class="col-md-4">Charge Customer <strong>$</strong></div>
+                                    <div class="col-md-4">
+                                        <input name="initial_amt" type="number" class="form-control" required="" >
+                                    </div>
+                                    <div class="col-md-4">immediately</div>
+                                </div>
                             </div>
                             <div class="form-group">
-                                then after
-                                <input name="trial_period" type="number" class="form-control-inline" required="" >
-                                days
+                                <div class="row">
+                                    <div class="col-md-4">then after</div>
+                                    <div class="col-md-4">
+                                        <input name="trial_period" type="number" class="form-control" required="" >
+                                    </div>
+                                    <div class="col-md-4">days</div>
+                                </div>
                             </div>
                             <div class="form-group">
-                                charge <strong>$</strong>
-                                <input name="amount" type="number" class="form-control-inline" required="" >
+                                <div class="row">
+                                    <div class="col-md-4">charge <strong>$</strong></div>
+                                    <div class="col-md-4">
+                                        <input name="amount" type="number" class="form-control" required="" >
+                                    </div>
+                                    <div class="col-md-4"></div>
+                                </div>
                             </div>
                             <div class="form-group">
-                                every <input name="interval_count" type="number" class="form-control-inline" required="" >
-                                <select name="interval" class="form-control-inline">
-                                    <option value="day">Days</option>
-                                    <option value="week">Week</option>
-                                    <option value="month">Months</option>
-                                    <option value="year">Year</option>
-                                </select>
+                                <div class="row">
+                                    <div class="col-md-4">every</div>
+                                    <div class="col-md-4">
+                                        <input name="interval_count" type="number" class="form-control" required="" >
+                                    </div>
+                                    <div class="col-md-4">
+                                        <select name="interval" class="form-control-inline">
+                                            <option value="day">Days</option>
+                                            <option value="week">Week</option>
+                                            <option value="month">Months</option>
+                                            <option value="year">Year</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                         </div><!-- /.box-body -->
 
