@@ -46,7 +46,7 @@
                                 <div class="row">
                                     <div class="col-md-4">then after</div>
                                     <div class="col-md-4">
-                                        <input value="<?= isset($plans) ? $plans->trial_period : '' ?>" name="trial_period" type="number" class="form-control" required="" >
+                                        <input value="<?= isset($plans) ? $plans->trial_period : '' ?>" name="trial_period" placeholder="Trial Period" type="number" class="form-control" required="" >
                                     </div>
                                     <div class="col-md-4">days</div>
                                 </div>
