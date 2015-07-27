@@ -31,13 +31,13 @@
                         <div class="box-body">
                             <div class="form-group">
                                 <label>Payment Plan</label>
-                                <input value="<?= isset($plans) ? $plans->payment_plan : '' ?>" type="text" name="payment_plan" autofocus="autofocus" class="form-control" placeholder="Payment Plan Name" />
+                                <input value="<?= isset($plans) ? $plans->payment_plan : '' ?>" type="text" name="payment_plan" placeholder="Payment Plan" autofocus="autofocus" class="form-control" placeholder="Payment Plan Name" />
                             </div>
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-4">Charge Customer <strong>$</strong></div>
                                     <div class="col-md-4">
-                                        <input value="<?= isset($plans) ? $plans->initial_amt : '' ?>" name="initial_amt" type="number" class="form-control" required="" >
+                                        <input value="<?= isset($plans) ? $plans->initial_amt : '' ?>" name="initial_amt" placeholder="Initial Amount" type="number" class="form-control" required="" >
                                     </div>
                                     <div class="col-md-4">immediately</div>
                                 </div>
@@ -55,7 +55,7 @@
                                 <div class="row">
                                     <div class="col-md-4">charge <strong>$</strong></div>
                                     <div class="col-md-4">
-                                        <input value="<?= isset($plans) ? $plans->amount : '' ?>" name="amount" type="number" class="form-control" required="" >
+                                        <input value="<?= isset($plans) ? $plans->amount : '' ?>" name="amount" placeholder="Plan Amount" type="number" class="form-control" required="" >
                                     </div>
                                     <div class="col-md-4"></div>
                                 </div>
@@ -64,7 +64,7 @@
                                 <div class="row">
                                     <div class="col-md-4">every</div>
                                     <div class="col-md-4">
-                                        <input value="<?= isset($plans) ? $plans->interval_count : '' ?>" name="interval_count" type="number" class="form-control" required="" >
+                                        <input value="<?= isset($plans) ? $plans->interval_count : '' ?>" name="interval_count" placeholder="Interval" type="number" class="form-control"  required="" >
                                     </div>
                                     <div class="col-md-4">
                                         <select name="interval" class="form-control">
