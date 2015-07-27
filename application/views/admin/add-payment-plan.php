@@ -88,7 +88,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
 <?php if (isset($plans)): ?>
-            $('select [name="interval"]').val("<?= $plans->interval ?>");
+            $('select[name="interval"]').val("<?= $plans->interval ?>");
 <?php endif; ?>
         $('#addPlan').click(function () {
             $('#planForm').submit();
