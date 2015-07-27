@@ -2,10 +2,10 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1 style="display: none">
-            Add New Product
+            Edit Existing Product
         </h1>
         <button type="button" id="addProduct"  class="btn btn-warning">
-            <?= isset($product) ? 'Update Product' : 'Add Product' ?>
+            Update Product
         </button>
     </section>
 
@@ -17,11 +17,10 @@
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="box-header">
-                        <h3 class="box-title">New Product</h3>
+                        <h3 class="box-title"><?= $product->plan_name ?></h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
-                    <?php $method = isset($product) ? "updateProduct" : "createProduct"; ?>
-                    <form id="productForm" role="form" action="<?= site_url() . "admin/products/$method" ?>" method="post">
+                    <form id="productForm" role="form" action="<?= site_url() . "admin/products/updateProduct" ?>" method="post">
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-md-5">

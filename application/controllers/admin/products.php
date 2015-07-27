@@ -37,7 +37,7 @@ class Products extends CI_Controller {
     }
 
     function editProduct($pid) {
-        $data['products'] = $this->objproduct->getProduct($pid);
+        $data['product'] = $this->objproduct->getProduct($pid);
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');
