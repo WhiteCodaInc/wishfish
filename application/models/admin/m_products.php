@@ -21,32 +21,20 @@ class M_products extends CI_Model {
     }
 
     function getProducts() {
-        $query = $this->db->get('sms_template');
+        $query = $this->db->get('wi_plans');
         return $query->result();
     }
 
-    function getProduct($tid) {
-        $query = $this->db->get_where('sms_template', array('template_id' => $tid));
+    function getProduct($pid) {
+        $query = $this->db->get_where('wi_plans', array('template_id' => $pid));
         return $query->row();
     }
 
-    function createProduct($set) {
-        $this->db->insert('sms_template', $set);
-        return TRUE;
-    }
-
     function updateProduct($set) {
-        $tid = $set['templateid'];
-        unset($set['templateid']);
-        $this->db->update('sms_template', $set, array('template_id' => $tid));
+        $pid = $set['planid'];
+        unset($set['planid']);
+        $this->db->update('wi_plans', $set, array('plan_id' => $pid));
         return TRUE;
-    }
-
-    function setAction() {
-        $ids = $this->input->post('template');
-        foreach ($ids as $value) {
-            $this->db->delete('sms_template', array('template_id' => $value));
-        }
     }
 
 }

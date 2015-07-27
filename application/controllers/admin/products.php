@@ -36,26 +36,12 @@ class Products extends CI_Controller {
         $this->load->view('admin/admin_footer');
     }
 
-    function addProduct() {
-        $this->load->view('admin/admin_header');
-        $this->load->view('admin/admin_top');
-        $this->load->view('admin/admin_navbar');
-        $this->load->view('admin/add-product');
-        $this->load->view('admin/admin_footer');
-    }
-
-    function createProduct() {
-        $post = $this->input->post();
-        $this->objproduct->createProduct($post);
-        header('location:' . site_url() . 'admin/products?msg=I');
-    }
-
     function editProduct($pid) {
         $data['products'] = $this->objproduct->getProduct($pid);
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');
-        $this->load->view('admin/add-product', $data);
+        $this->load->view('admin/edit-product', $data);
         $this->load->view('admin/admin_footer');
     }
 
@@ -63,14 +49,6 @@ class Products extends CI_Controller {
         $post = $this->input->post();
         $this->objproduct->updateProduct($post);
         header('location:' . site_url() . 'admin/products?msg=U');
-    }
-
-    function action() {
-        $type = $this->input->post('actionType');
-        if ($type == "Delete") {
-            $this->objproduct->setAction();
-        }
-        header('location:' . site_url() . 'admin/products?msg=D');
     }
 
 }
