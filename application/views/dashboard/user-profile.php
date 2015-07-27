@@ -352,8 +352,6 @@
 <script type="text/javascript">
     $(document).ready(function (e) {
 
-
-
         $('#profile-pic img').click(function () {
             $('#profile-pic #profilePic').trigger('click');
         });
