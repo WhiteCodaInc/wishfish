@@ -24,7 +24,7 @@ class Pay extends CI_Controller {
     function index() {
         $currPlan = $this->wi_common->getLatestPlan($this->userid);
         $userInfo = $this->wi_common->getUserInfo($this->userid);
-        
+
         if (!$userInfo->is_set || ($userInfo->is_set && $this->isExistProfileId($currPlan))) {
             $post = $this->input->post();
             $this->session->set_flashdata($post);
@@ -88,24 +88,26 @@ class Pay extends CI_Controller {
             );
 
             $coupon = $this->objregister->checkCoupon($code);
-            if (!empty($coupon) && $coupon->coupon_validity != '3') {
-                $requestParams['TRIALBILLINGPERIOD'] = 'Month';
-                $requestParams['TRIALBILLINGFREQUENCY'] = 1;
-                $amt = ($coupon->disc_type == "F") ?
-                        $planAmt - $coupon->disc_amount :
-                        $planAmt - ($planAmt * ($coupon->disc_amount / 100));
-                $requestParams['TRIALAMT'] = number_format($amt, 2);
-                $requestParams['TRIALTOTALBILLINGCYCLES'] = ($coupon->coupon_validity == '1') ?
-                        1 : $coupon->month_duration;
-            } else {
-                $amt = ($coupon->disc_type == "F") ?
-                        $planAmt - $coupon->disc_amount :
-                        $planAmt - ($planAmt * ($coupon->disc_amount / 100));
-                $requestParams['AMT'] = number_format($amt, 2);
+            if (!empty($coupon)) {
+                if ($coupon->coupon_validity != '3') {
+                    $requestParams['TRIALBILLINGPERIOD'] = 'Month';
+                    $requestParams['TRIALBILLINGFREQUENCY'] = 1;
+                    $amt = ($coupon->disc_type == "F") ?
+                            $planAmt - $coupon->disc_amount :
+                            $planAmt - ($planAmt * ($coupon->disc_amount / 100));
+                    $requestParams['TRIALAMT'] = number_format($amt, 2);
+                    $requestParams['TRIALTOTALBILLINGCYCLES'] = ($coupon->coupon_validity == '1') ?
+                            1 : $coupon->month_duration;
+                } else {
+                    $amt = ($coupon->disc_type == "F") ?
+                            $planAmt - $coupon->disc_amount :
+                            $planAmt - ($planAmt * ($coupon->disc_amount / 100));
+                    $requestParams['AMT'] = number_format($amt, 2);
+                }
             }
 
             $response = $this->paypal_lib->request('CreateRecurringPaymentsProfile', $requestParams);
-            
+
             if (is_array($response) && $response['ACK'] == 'Success') {
                 if ($code != "")
                     $this->objregister->updateCoupon($code);
