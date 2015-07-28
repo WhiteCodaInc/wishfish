@@ -49,9 +49,9 @@ class M_plans extends CI_Model {
         } else {
             $update_set = array('payment_plan_id' => $set['planid']);
         }
-//        print_r($update_set);
-//        print_r($set);
-//        die();
+        print_r($update_set);
+        print_r($set);
+        die();
         $this->db->update('wi_products', $update_set, array('plan_id' => $set['planid']));
         $this->db->update('wi_payment_plan', array('assign_to' => $set['productid']), array('payment_plan_id' => $set['planid']));
     }
