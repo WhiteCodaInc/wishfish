@@ -74,9 +74,9 @@ class Plans extends CI_Controller {
 
     function action() {
         $type = $this->input->post('actionType');
-        if ($type == "Delete" || $type == "Assign") {
-            $msg = $this->objplan->setAction($type);
-            header('location:' . site_url() . 'admin/plans?msg=' . $msg);
+        if ($type == "Delete") {
+            $this->objplan->setAction();
+            header('location:' . site_url() . 'admin/plans?msg=D');
         } else {
             header('location:' . site_url() . 'admin/plans');
         }
