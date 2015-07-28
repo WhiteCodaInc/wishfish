@@ -145,7 +145,7 @@ switch ($msg) {
             var planid = $(this).parents('tr').prop('id');
             $alertPro = false;
             $select = $(this);
-            $('#plan-data-table tr:not(#' + planid + ') select.product"]').each(function () {
+            $('#plan-data-table tr:not("#' + planid + '") select.product"]').each(function () {
                 if (productid == $(this).val()) {
                     $alertPro = true;
                     $select.val("-1");
