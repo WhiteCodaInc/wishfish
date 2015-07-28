@@ -169,16 +169,14 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title">Upload Your Profile Picture</h4>
+                        <h4 class="modal-title">We're still in beta! Please give us your feedback!</h4>
                     </div>
-                    <form id="feedbackForm" method="post" enctype="multipart/form-data">
+                    <form id="feedbackForm" method="post">
                         <div class="modal-body">
                             <div class="form-group">
                                 <div class="row" style="margin-bottom: 5%">
                                     <div class="col-md-12" style="text-align: center">
-                                        <div  class="image" style="text-align: center">
-                                            <img id="profile_previewing" style="width: 100px;height: 100px"  src="<?= $img_src_setup ?>" class="img-circle" alt="User Image" />
-                                        </div>
+
                                     </div>
                                 </div>
                                 <div class="row">
@@ -192,10 +190,10 @@
                         <div class="modal-footer clearfix">
                             <div class="row">
                                 <div class="col-md-3">
-                                    <button type="submit" id="uploadBtn" class="btn btn-primary pull-left">Upload</button>
+                                    <button type="submit" id="feedback_submit" class="btn btn-primary pull-left">Submit</button>
                                 </div>
                                 <div class="col-md-2">
-                                    <div id="loadUpload" style="display: none">
+                                    <div id="loadFeedback" style="display: none">
                                         <img src="<?= base_url() ?>assets/dashboard/img/load.GIF" alt="" />
                                     </div>
                                 </div>
