@@ -2,6 +2,9 @@
     #offer-data-table tr td,#offer-data-table tr th{
         text-align: center;
     }
+    .dataTables_wrapper > div.row:first-child{
+        display: none
+    }
 </style>
 <!-- Right side column. Contains the navbar and content of the page -->
 <aside class="right-side">
