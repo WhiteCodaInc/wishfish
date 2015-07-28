@@ -153,11 +153,11 @@ switch ($msg) {
             });
             if ($alertPro) {
                 alertify.error("Product is already assigned..!");
+                return false;
             }
 
             $('.overlay').show();
             $('.loading-img').show();
-
             $.ajax({
                 type: 'POST',
                 data: {productid: productid, planid: planid},
