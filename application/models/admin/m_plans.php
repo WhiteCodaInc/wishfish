@@ -45,7 +45,7 @@ class M_plans extends CI_Model {
 
     function assignPlan($set) {
         if ($set['productid'] == "-1") {
-            $update_set = array('payment_plan_id' => NULL);
+            $update_set = array('payment_plan_id' => 'NULL');
         } else {
             $update_set = array('payment_plan_id' => $set['planid']);
         }
