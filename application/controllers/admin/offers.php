@@ -50,7 +50,7 @@ class Offers extends CI_Controller {
 
     function createOffer() {
         $post = $this->input->post();
-        $this->objplan->createOffer($post);
+        $this->objoffer->createOffer($post);
         header('location:' . site_url() . 'admin/offers?msg=I');
     }
 
