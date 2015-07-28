@@ -131,7 +131,7 @@ class Sms extends CI_Controller {
             case 4:
                 $individual = $this->objcustomer->getCustomerDetail();
                 foreach ($individual as $key => $value) {
-                    $user[$key] = $value->fname . '  ' . $value->lname . ' || ' . $value->phone;
+                    $user[$key] = $value->name . ' || ' . $value->phone;
                     $ids[$key] = $value->customer_id;
                 }
                 break;
