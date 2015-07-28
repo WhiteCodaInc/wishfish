@@ -155,7 +155,6 @@ switch ($msg) {
                 alertify.error("Product is already assigned..!");
                 return false;
             }
-
             $('.overlay').show();
             $('.loading-img').show();
             $.ajax({
@@ -165,7 +164,8 @@ switch ($msg) {
                 success: function (data, textStatus, jqXHR) {
                     $('.overlay').hide();
                     $('.loading-img').hide();
-                    alertify.success("Payment Plan Successfully Assigned..!");
+                    if (productid != "-1")
+                        alertify.success("Payment Plan Successfully Assigned..!");
                 }
             });
         });
