@@ -39,8 +39,8 @@ class Offers extends CI_Controller {
     }
 
     function addOffer() {
-        $data['plans'] = $this->objplan->getOffers();
-        $data['products'] = $this->objproduct->getOffers();
+        $data['plans'] = $this->objplan->getPlans();
+        $data['products'] = $this->objproduct->getProducts();
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');
