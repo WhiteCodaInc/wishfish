@@ -24,7 +24,7 @@ class M_offers extends CI_Model {
         $this->db->select('*');
         $this->db->from('offers as O');
         $this->db->join('products as P', 'O.product_id = P.product_id', 'left outer');
-        $this->db->join('payment_plan as PL', 'O.payment_plan_id = O.payment_plan_id', 'left outer');
+        $this->db->join('payment_plan as PL', 'O.payment_plan_id = PL.payment_plan_id', 'left outer');
         $query = $this->db->get();
         return $query->result();
     }
