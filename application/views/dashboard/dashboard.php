@@ -163,6 +163,51 @@
                 </div>
             </div>
         </div>
+        <a href="javascript:void(0);" data-toggle="modal" data-target="#feedback-model">Give</a>
+        <div class="modal fade" id="feedback-model" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" style="max-width: 400px">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Upload Your Profile Picture</h4>
+                    </div>
+                    <form id="feedbackForm" method="post" enctype="multipart/form-data">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <div class="row" style="margin-bottom: 5%">
+                                    <div class="col-md-12" style="text-align: center">
+                                        <div  class="image" style="text-align: center">
+                                            <img id="profile_previewing" style="width: 100px;height: 100px"  src="<?= $img_src_setup ?>" class="img-circle" alt="User Image" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12" style="text-align: center">
+                                        <input title="Add a photo so we can recognize you !" name="profile_pic"  type="file" id="profilePic" class="form-control" />
+                                        <span id="error_message"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer clearfix">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <button type="submit" id="uploadBtn" class="btn btn-primary pull-left">Upload</button>
+                                </div>
+                                <div class="col-md-2">
+                                    <div id="loadUpload" style="display: none">
+                                        <img src="<?= base_url() ?>assets/dashboard/img/load.GIF" alt="" />
+                                    </div>
+                                </div>
+                                <div class="col-md-7" style="text-align: right">
+                                    <button type="button" class="btn btn-danger discard" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
     </section>
 
     <!-- Main content -->
