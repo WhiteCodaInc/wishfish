@@ -34,7 +34,7 @@ class M_offers extends CI_Model {
         return $query->row();
     }
 
-    function createPlan($set) {
+    function createOffer($set) {
         $this->db->insert('offers', $set);
         return TRUE;
     }
