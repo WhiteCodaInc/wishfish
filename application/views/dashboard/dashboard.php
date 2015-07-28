@@ -163,7 +163,7 @@
                 </div>
             </div>
         </div>
-        <a href="javascript:void(0);" data-toggle="modal" data-target="#feedback-model">Give</a>
+        <a href="javascript:void(0);" class="feedback" data-toggle="modal" data-target="#feedback-model">Give</a>
         <div class="modal fade" id="feedback-model" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog" style="max-width: 400px">
                 <div class="modal-content">
@@ -408,9 +408,11 @@
     });
 
     $(document).ready(function () {
-        setTimeout(function () {
-            $('.modal-backdrop').css('z-index', '999');
-        }, 300);
+        $('a.feedback').click(function () {
+            setTimeout(function () {
+                $('.modal-backdrop').css('z-index', '999');
+            }, 100);
+        });
     });
 
 </script>
