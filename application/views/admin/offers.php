@@ -53,7 +53,7 @@
                                             <td>
                                                 <div>
                                                     <label>
-                                                        <input type="checkbox" class="check"  name="offer[]" value="<?= $value->offer_id ?>"/>
+                                                        <input type="checkbox" class="check"  name="offers[]" value="<?= $value->offer_id ?>"/>
                                                     </label>
                                                 </div>
                                             </td>
