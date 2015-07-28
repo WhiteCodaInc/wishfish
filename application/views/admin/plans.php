@@ -146,7 +146,7 @@ switch ($msg) {
             $alertPro = false;
             $select = $(this);
             $('#plan-data-table tr:not(#' + planid + ') select.product').each(function () {
-                if (productid == $(this).val()) {
+                if (productid != "-1" && productid == $(this).val()) {
                     $alertPro = true;
                     $select.val("-1");
                 }
