@@ -44,7 +44,7 @@
                             <div class="row">
                                 <div class="col-md-5">
                                     <div class="form-group">
-                                        <label>Total Email Event</label>
+                                        <label>Total Email Event</label><span style="color: red;margin-left: 5px">(-1 For Infinite)</span>
                                         <input value="<?= isset($product) ? $product->email_events : '' ?>" type="text" name="email_events" class="form-control" placeholder="No. of Email Event" required="" />
                                     </div>
                                 </div>
@@ -52,7 +52,7 @@
                             <div class="row">
                                 <div class="col-md-5">
                                     <div class="form-group">
-                                        <label>Total Group Event</label>
+                                        <label>Total Group Event</label><span style="color: red;margin-left: 5px">(-1 For Infinite)</span>
                                         <input value="<?= isset($product) ? $product->group_events : '' ?>" type="text" name="group_events" class="form-control" placeholder="No. of Email Event" required="" />
                                     </div>
                                 </div>
