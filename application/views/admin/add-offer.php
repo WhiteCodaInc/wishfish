@@ -88,7 +88,6 @@
     </section><!-- /.content -->
 </aside><!-- /.right-side -->
 </div><!-- ./wrapper -->
-
 <script type="text/javascript">
     $(document).ready(function () {
         $('#save-offer').click(function () {

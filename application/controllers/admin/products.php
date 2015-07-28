@@ -17,7 +17,6 @@ class Products extends CI_Controller {
         parent::__construct();
         $this->load->library("authex");
         $this->load->library("common");
-
         if (!$this->authex->logged_in()) {
             header('location:' . site_url() . 'admin/admin_login');
 //        } else if (!$this->common->getPermission()->sms) {

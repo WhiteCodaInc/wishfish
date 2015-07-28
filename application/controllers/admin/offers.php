@@ -28,9 +28,6 @@ class Offers extends CI_Controller {
 
     function index() {
         $data['offers'] = $this->objoffer->getOffers();
-//        echo '<pre>';
-//        print_r($data);
-//        die();
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');

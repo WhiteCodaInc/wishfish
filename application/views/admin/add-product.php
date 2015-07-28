@@ -8,7 +8,6 @@
             <?= isset($product) ? 'Update Product' : 'Add Product' ?>
         </button>
     </section>
-
     <!-- Main content -->
     <section class="content">
         <div class="row">

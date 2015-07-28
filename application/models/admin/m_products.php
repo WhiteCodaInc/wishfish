@@ -19,7 +19,6 @@ class M_products extends CI_Model {
         parent::__construct();
         $this->profileid = $this->session->userdata('profileid');
     }
-
     function getProducts() {
         $query = $this->db->get('products');
         return $query->result();
