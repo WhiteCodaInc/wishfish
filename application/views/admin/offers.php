@@ -10,6 +10,10 @@
         <h1 style=" display: none">
             Offers
         </h1>
+        <a href="<?= site_url() ?>admin/offers/addOffer" class="create btn btn-success btn-sm">
+            <i class="fa fa-plus"></i>
+            Create New Offer
+        </a>
         <button value="Active" class="add btn btn-success btn-sm" id="Active" type="button" >Active</button>
         <button value="Deactive" class="remove btn btn-warning btn-sm" id="Deactive" type="button" >Deactivate</button>
         <button value="Delete" class="delete btn btn-danger btn-sm" id="Delete" type="button" >Delete</button>
