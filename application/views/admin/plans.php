@@ -36,7 +36,6 @@
                                             </th>
                                             <th>Payment Plan</th>
                                             <th>Description</th>
-                                            <th>Product</th>
                                             <th>Edit</th>
                                         </tr>
                                     </thead>
@@ -70,7 +69,6 @@
                                             <th></th>
                                             <th>Payment Plan</th>
                                             <th>Description</th>
-                                            <th>Product</th>
                                             <th>Edit</th>
                                         </tr>
                                     </tfoot>
