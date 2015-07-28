@@ -2,10 +2,10 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1 style="display: none">
-            Edit Existing Product
+            <?= isset($product) ? 'Edit Existing Product' : 'Add New Product' ?>
         </h1>
         <button type="button" id="addProduct"  class="btn btn-warning">
-            Update Product
+            <?= isset($product) ? 'Update Product' : 'Add Product' ?>
         </button>
     </section>
 
@@ -17,16 +17,19 @@
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="box-header">
-                        <h3 class="box-title"><?= $product->plan_name ?></h3>
+                        <h3 class="box-title">
+                            <?= isset($product) ? $product->plan_name : 'New Product' ?>
+                        </h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
-                    <form id="productForm" role="form" action="<?= site_url() . "admin/products/updateProduct" ?>" method="post">
+                    <?php $method = isset($product) ? "updateProduct" : "createProduct"; ?>
+                    <form id="productForm" role="form" action="<?= site_url() . "admin/products/$method" ?>" method="post">
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-md-5">
                                     <div class="form-group">
                                         <label for="title">Product Name</label>
-                                        <input value="<?= $product->plan_name ?>" type="text" autofocus="autofocus" name="plan_name" class="form-control" placeholder="Product Name" required="" />
+                                        <input value="<?= isset($product) ? $product->plan_name : '' ?>" type="text" autofocus="autofocus" name="plan_name" class="form-control" placeholder="Product Name" required="" />
                                     </div>
                                 </div>
                             </div>
@@ -34,7 +37,7 @@
                                 <div class="col-md-5">
                                     <div class="form-group">
                                         <label>Total SMS Event</label>
-                                        <input value="<?= $product->sms_events ?>" type="text" name="sms_events" class="form-control" placeholder="No. of SMS Event" required="" />
+                                        <input value="<?= isset($product) ? $product->sms_events : '' ?>" type="text" name="sms_events" class="form-control" placeholder="No. of SMS Event" required="" />
                                     </div>
                                 </div>
                             </div>
@@ -42,7 +45,7 @@
                                 <div class="col-md-5">
                                     <div class="form-group">
                                         <label>Total Email Event</label>
-                                        <input value="<?= $product->email_events ?>" type="text" name="email_events" class="form-control" placeholder="No. of Email Event" required="" />
+                                        <input value="<?= isset($product) ? $product->email_events : '' ?>" type="text" name="email_events" class="form-control" placeholder="No. of Email Event" required="" />
                                     </div>
                                 </div>
                             </div>
@@ -50,7 +53,7 @@
                                 <div class="col-md-5">
                                     <div class="form-group">
                                         <label for="title">Product Setting</label>
-                                        <input value="<?= $product->setting ?>" type="text" name="setting" class="form-control" placeholder="Product Setting" required="" />
+                                        <input value="<?= isset($product) ? $product->setting : '' ?>" type="text" name="setting" class="form-control" placeholder="Product Setting" required="" />
                                     </div>
                                 </div>
                             </div>
@@ -65,7 +68,7 @@
                                                     </div><!-- /.box-header -->
                                                     <div class='box-body pad'>
                                                         <textarea id="editor1" name="content" rows="10" cols="80">
-                                                            <?= $product->content ?>
+                                                            <?= isset($product) ? $product->content : '' ?>
                                                         </textarea>
                                                     </div>
                                                 </div><!-- /.box -->
