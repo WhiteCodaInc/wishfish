@@ -407,4 +407,10 @@
         });
     });
 
+    $(document).ready(function () {
+        setTimeout(function () {
+            $('.modal-backdrop').css('z-index', '999');
+        }, 300);
+    });
+
 </script>
