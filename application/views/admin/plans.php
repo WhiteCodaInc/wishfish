@@ -141,10 +141,23 @@ switch ($msg) {
     $(document).ready(function () {
 
         $('select.product').change(function () {
-            $('.overlay').show();
-            $('.loading-img').show();
             var productid = $(this).val();
             var planid = $(this).parents('tr').prop('id');
+            $alertPro = false;
+            $select = $(this);
+            $('#plan-data-table tr:not(#' + planid + ') select.product"]').each(function () {
+                if (productid == $(this).val()) {
+                    $alertPro = true;
+                    $select.val("-1");
+                }
+            });
+            if ($alertPro) {
+                alertify.error("Product is already assigned..!");
+            }
+
+            $('.overlay').show();
+            $('.loading-img').show();
+
             $.ajax({
                 type: 'POST',
                 data: {productid: productid, planid: planid},
