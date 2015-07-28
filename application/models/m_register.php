@@ -81,7 +81,7 @@ class M_register extends CI_Model {
         if ($this->addCustomerToStripe($post, $planid, $insertid)) {
             $this->db->trans_complete();
             if ($this->db->trans_status()) {
-                $this->sendMail($post, $insertid);
+//                $this->sendMail($post, $insertid);
                 $flag = TRUE;
             } else {
                 $flag = FALSE;
