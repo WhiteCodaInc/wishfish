@@ -117,7 +117,7 @@ switch ($msg) {
         $("#product-data-table").dataTable({
             aoColumnDefs: [{
                     bSortable: false,
-                    aTargets: [0, 1, 2 3, 4]
+                    aTargets: [0, 1, 2, 3, 4]
                 }]
         });
     });
