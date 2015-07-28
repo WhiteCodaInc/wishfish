@@ -64,12 +64,16 @@
                                             </td>
 
                                             <td><?= $value->offer_name ?></td>
-                                            <td><?= $value->product_name ?></td>
+                                            <td><?= ($value->product_id) ? $value->product_name : "N/A" ?></td>
                                             <td>
-                                                <strong><?= $value->payment_plan ?></strong><br/>
-                                                <strong>$ <?= $value->initial_amt ?></strong> immediately,
-                                                and <strong>$ <?= $value->amount . ' / ' . $value->interval ?></strong> 
-                                                after <strong><?= $value->trial_period ?> days.</strong>
+                                                <?php if ($value->payment_plan_id): ?>
+                                                    <strong><?= $value->payment_plan ?></strong><br/>
+                                                    <strong>$ <?= $value->initial_amt ?></strong> immediately,
+                                                    and <strong>$ <?= $value->amount . ' / ' . $value->interval ?></strong> 
+                                                    after <strong><?= $value->trial_period ?> days.</strong>
+                                                <?php else: ?>
+                                                    N/A
+                                                <?php endif; ?>
                                             </td>
                                             <td>
                                                 <?php if ($value->status): ?>
