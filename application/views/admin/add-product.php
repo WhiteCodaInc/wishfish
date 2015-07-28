@@ -36,7 +36,7 @@
                             <div class="row">
                                 <div class="col-md-5">
                                     <div class="form-group">
-                                        <label>Total SMS Event</label>
+                                        <label>Total SMS Event</label><span style="color: red">* -1 For Infinite</span>
                                         <input value="<?= isset($product) ? $product->sms_events : '' ?>" type="text" name="sms_events" class="form-control" placeholder="No. of SMS Event" required="" />
                                     </div>
                                 </div>
