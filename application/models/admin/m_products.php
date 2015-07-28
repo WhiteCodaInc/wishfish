@@ -30,7 +30,7 @@ class M_products extends CI_Model {
         return $query->row();
     }
 
-    function createTemplate($set) {
+    function createProduct($set) {
         $this->db->insert('wi_products', $set);
         return TRUE;
     }
