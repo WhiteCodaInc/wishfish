@@ -5,6 +5,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 /**
  * Description of m_admin_login
  *
@@ -38,11 +39,11 @@ class M_offers extends CI_Model {
         return TRUE;
     }
 
-    function updatePlan($set) {
+    function updateOffer($set) {
         $oid = $set['offerid'];
         unset($set['offerid']);
         $this->db->update('offers', $set, array('offer_id' => $oid));
-        return TRUE;
+        return "U";
     }
 
     function setAction($type, $ids) {

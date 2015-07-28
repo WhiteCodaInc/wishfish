@@ -17,7 +17,7 @@
                 <div class="box box-primary">
                     <div class="box-header">
                         <h3 class="box-title">
-                            <?= isset($product) ? $product->plan_name : 'New Product' ?>
+                            <?= isset($product) ? $product->product_name : 'New Product' ?>
                         </h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->

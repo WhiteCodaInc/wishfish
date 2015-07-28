@@ -49,6 +49,7 @@
                                         <th>Product</th>
                                         <th>Payment Plan</th>
                                         <th>Status</th>
+                                        <th>Edit</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -77,6 +78,12 @@
                                                     <span class="btn btn-danger btn-xs">Deactivate</span>
                                                 <?php endif; ?>
                                             </td>
+                                            <td>
+                                                <a href="<?= site_url() ?>admin/offers/editOffer/<?= $value->offer_id ?>" class="btn bg-navy btn-xs">
+                                                    <i class="fa fa-edit"></i>
+                                                    Edit
+                                                </a>
+                                            </td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
@@ -87,6 +94,7 @@
                                         <th>Product</th>
                                         <th>Payment Plan</th>
                                         <th>Status</th>
+                                        <th>Edit</th>
                                     </tr>
                                 </tfoot>
                             </table>
@@ -177,7 +185,7 @@ switch ($msg) {
             var act = $(this).val();
             $('#offer-data-table tbody tr').each(function () {
                 if ($(this).children('td:first').find('div.checked').length) {
-                    $txt = $(this).children('td:nth-child(4)').text();
+                    $txt = $(this).children('td:nth-child(2)').text();
                     offer += $txt.trim() + "<br/>";
                 }
             });
