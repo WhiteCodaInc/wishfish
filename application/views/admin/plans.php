@@ -57,15 +57,6 @@
                                                     after <strong><?= $value->trial_period ?> days.</strong>
                                                 </td>
                                                 <td>
-                                                    <select class="form-control m-bot15 product">
-                                                        <option value="-1">-------Assign To-------</option>
-                                                        <?php foreach ($products as $val) { ?>
-                                                            <option value="<?= $val->plan_id ?>" <?= ($value->assign_to == $val->plan_id) ? 'selected' : '' ?>>
-                                                                <?= $val->plan_name ?></option>
-                                                        <?php } ?>
-                                                    </select>
-                                                </td>
-                                                <td>
                                                     <a href="<?= site_url() ?>admin/plans/editPlan/<?= $value->payment_plan_id ?>" class="btn bg-navy btn-xs">
                                                         <i class="fa fa-edit"></i>
                                                         Edit
@@ -132,44 +123,13 @@ switch ($msg) {
         $("#plan-data-table").dataTable({
             aoColumnDefs: [{
                     bSortable: false,
-                    aTargets: [0, 1, 2, 3, 4]
+                    aTargets: [0, 1, 2, 3]
                 }]
         });
     });
 </script>
 <script type="text/javascript">
     $(document).ready(function () {
-
-        $('select.product').change(function () {
-            var productid = $(this).val();
-            var planid = $(this).parents('tr').prop('id');
-            $alertPro = false;
-            $select = $(this);
-            $('#plan-data-table tr:not(#' + planid + ') select.product').each(function () {
-                if (productid != "-1" && productid == $(this).val()) {
-                    $alertPro = true;
-                    $select.val("-1");
-                }
-            });
-            if ($alertPro) {
-                alertify.error("Product is already assigned..!");
-                return false;
-            }
-            $('.overlay').show();
-            $('.loading-img').show();
-            $.ajax({
-                type: 'POST',
-                data: {productid: productid, planid: planid},
-                url: "<?= site_url() ?>admin/plans/assignPlan",
-                success: function (data, textStatus, jqXHR) {
-                    $('.overlay').hide();
-                    $('.loading-img').hide();
-                    if (productid != "-1")
-                        alertify.success("Payment Plan Successfully Assigned..!");
-                }
-            });
-        });
-
         $('button.delete').click(function (e) {
             var plans = "";
             var act = $(this).val();

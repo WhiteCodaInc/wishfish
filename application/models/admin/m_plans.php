@@ -22,46 +22,32 @@ class M_plans extends CI_Model {
 
     function getPlans() {
         $this->db->select();
-        $query = $this->db->get('wi_payment_plan');
+        $query = $this->db->get('payment_plan');
         return $query->result();
     }
 
     function getPlan($pid) {
-        $query = $this->db->get_where('wi_payment_plan', array('payment_plan_id' => $pid));
+        $query = $this->db->get_where('payment_plan', array('payment_plan_id' => $pid));
         return $query->row();
     }
 
     function createPlan($set) {
-        $this->db->insert('wi_payment_plan', $set);
+        $this->db->insert('payment_plan', $set);
         return TRUE;
     }
 
     function updatePlan($set) {
         $pid = $set['planid'];
         unset($set['planid']);
-        $this->db->update('wi_payment_plan', $set, array('payment_plan_id' => $pid));
+        $this->db->update('payment_plan', $set, array('payment_plan_id' => $pid));
         return TRUE;
-    }
-
-    function assignPlan($set) {
-        if ($set['productid'] == "-1") {
-            $update_set = array('payment_plan_id' => NULL);
-            $this->db->update('wi_products', $update_set, array('payment_plan_id' => $set['planid']));
-        } else {
-            $update_set = array('payment_plan_id' => $set['planid']);
-            $this->db->update('wi_products', $update_set, array('plan_id' => $set['productid']));
-        }
-//        print_r($update_set);
-//        print_r($set);
-//        die();
-        $this->db->update('wi_payment_plan', array('assign_to' => $set['productid']), array('payment_plan_id' => $set['planid']));
     }
 
     function setAction() {
         $ids = $this->input->post('plan');
         $where = 'payment_plan_id IN (' . implode(',', $ids) . ')';
-        $this->db->delete('wi_payment_plan', $where);
-        $this->db->update('wi_products', array('payment_plan_id' => NULL), $where);
+        $this->db->delete('payment_plan', $where);
+        $this->db->update('products', array('payment_plan_id' => NULL), $where);
     }
 
 }

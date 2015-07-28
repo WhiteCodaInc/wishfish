@@ -21,31 +21,31 @@ class M_products extends CI_Model {
     }
 
     function getProducts() {
-        $query = $this->db->get('wi_products');
+        $query = $this->db->get('products');
         return $query->result();
     }
 
     function getProduct($pid) {
-        $query = $this->db->get_where('wi_products', array('plan_id' => $pid));
+        $query = $this->db->get_where('products', array('plan_id' => $pid));
         return $query->row();
     }
 
     function createProduct($set) {
-        $this->db->insert('wi_products', $set);
+        $this->db->insert('products', $set);
         return TRUE;
     }
 
     function updateProduct($set) {
         $pid = $set['planid'];
         unset($set['planid']);
-        $this->db->update('wi_products', $set, array('plan_id' => $pid));
+        $this->db->update('products', $set, array('plan_id' => $pid));
         return TRUE;
     }
 
     function setAction() {
         $ids = $this->input->post('products');
         foreach ($ids as $value) {
-            $this->db->delete('wi_products', array('plan_id' => $value));
+            $this->db->delete('products', array('plan_id' => $value));
         }
     }
 

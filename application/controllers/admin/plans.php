@@ -23,14 +23,12 @@ class Plans extends CI_Controller {
 //        } else if (!$this->common->getPermission()->contacts) {
 //            header('location:' . site_url() . 'admin/dashboard/error/500');
         } else {
-            $this->load->model('admin/m_products', 'objproduct');
             $this->load->model('admin/m_plans', 'objplan');
         }
     }
 
     function index() {
         $data['plans'] = $this->objplan->getPlans();
-        $data['products'] = $this->objproduct->getProducts();
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');
@@ -65,11 +63,6 @@ class Plans extends CI_Controller {
         $post = $this->input->post();
         $this->objplan->updatePlan($post);
         header('location:' . site_url() . 'admin/plans?msg=U');
-    }
-
-    function assignPlan() {
-        $post = $this->input->post();
-        $this->objplan->assignPlan($post);
     }
 
     function action() {
