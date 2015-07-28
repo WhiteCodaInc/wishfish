@@ -28,7 +28,6 @@
                     <div class="box-body">
                         <form name="checkForm" id="checkForm" action="" method="post">
                             <div class="box-body table-responsive" id="data-panel">
-
                                 <table id="plan-data-table" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
@@ -59,7 +58,7 @@
                                                 </td>
                                                 <td>
                                                     <select class="form-control m-bot15 product">
-                                                        <option value="-1" <?= ($value->assign_to != "-1") ? 'disabled' : '' ?>>Assign To</option>
+                                                        <option value="-1">---Assign To---</option>
                                                         <?php foreach ($products as $val) { ?>
                                                             <option value="<?= $val->plan_id ?>" <?= ($value->assign_to == $val->plan_id) ? 'selected' : '' ?>>
                                                                 <?= $val->plan_name ?></option>
@@ -160,34 +159,23 @@ switch ($msg) {
 
         $('button.delete').click(function (e) {
             var plans = "";
-            var flag = true;
             var act = $(this).val();
             $('#plan-data-table tbody tr').each(function () {
                 if ($(this).children('td:first').find('div.checked').length) {
-                    console.log($(this).find('select.product').val());
-                    if ($(this).find('select.product').val() != "-1") {
-                        flag = false;
-                    } else {
-                        $txt = $(this).children('td:nth-child(2)').text();
-                        plans += $txt.trim() + ",";
-                    }
+                    $txt = $(this).children('td:nth-child(2)').text();
+                    plans += $txt.trim() + ",";
                 }
             });
-            if (flag) {
-                plans = plans.substring(0, plans.length - 1);
-                alertify.confirm("Are you sure want to delete payment plan(s):<br/>" + plans, function (e) {
-                    if (e) {
-                        action(act);
-                        return true;
-                    }
-                    else {
-                        return false;
-                    }
-                });
-            } else {
-                alertify.error("One of the plan has been assigned to product,<br>You don't allow to delete plan(s)..!");
-                return false;
-            }
+            plans = plans.substring(0, plans.length - 1);
+            alertify.confirm("Are you sure want to delete payment plan(s):<br/>" + plans, function (e) {
+                if (e) {
+                    action(act);
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            });
         });
 
         function action(actiontype) {
