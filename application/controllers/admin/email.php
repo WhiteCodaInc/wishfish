@@ -75,8 +75,8 @@ class Email extends CI_Controller {
             case 4:
                 $individual = $this->objcustomer->getCustomerDetail();
                 foreach ($individual as $key => $value) {
-                    $user[$key] = $value->fname . '  ' . $value->lname . ' || ' . $value->email;
-                    $ids[$key] = $value->customer_id;
+                    $user[$key] = $value->name . ' || ' . $value->email;
+                    $ids[$key] = $value->user_id;
                 }
                 break;
         }
