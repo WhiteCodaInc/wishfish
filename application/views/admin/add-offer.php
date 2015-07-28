@@ -92,6 +92,10 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $('#save-offer').click(function () {
+            if ($('input[name="offer_name"]').val().trim() == "") {
+                alertify.error("Enter Offer Name..!");
+                return false;
+            }
             $('#offerForm').submit();
         });
     });
