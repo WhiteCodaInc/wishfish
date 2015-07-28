@@ -26,7 +26,7 @@ class M_products extends CI_Model {
     }
 
     function getProduct($pid) {
-        $query = $this->db->get_where('products', array('plan_id' => $pid));
+        $query = $this->db->get_where('products', array('product_id' => $pid));
         return $query->row();
     }
 
@@ -36,16 +36,16 @@ class M_products extends CI_Model {
     }
 
     function updateProduct($set) {
-        $pid = $set['planid'];
-        unset($set['planid']);
-        $this->db->update('products', $set, array('plan_id' => $pid));
+        $pid = $set['productid'];
+        unset($set['productid']);
+        $this->db->update('products', $set, array('product_id' => $pid));
         return TRUE;
     }
 
     function setAction() {
         $ids = $this->input->post('products');
         foreach ($ids as $value) {
-            $this->db->delete('products', array('plan_id' => $value));
+            $this->db->delete('products', array('product_id' => $value));
         }
     }
 

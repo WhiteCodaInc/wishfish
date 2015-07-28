@@ -46,15 +46,15 @@
                                             <td>
                                                 <div>
                                                     <label>
-                                                        <input type="checkbox" name="product[]" value="<?= $value->plan_id ?>"/>
+                                                        <input type="checkbox" name="products[]" value="<?= $value->product_id ?>"/>
                                                     </label>
                                                 </div>
                                             </td>
-                                            <td><?= $value->plan_name ?></td>
+                                            <td><?= $value->product_name ?></td>
                                             <td><?= $value->content ?></td>
                                             <td><?= $value->setting ?></td>
                                             <td>
-                                                <a href="<?= site_url() ?>admin/products/editProduct/<?= $value->plan_id ?>" class="btn bg-navy btn-xs">
+                                                <a href="<?= site_url() ?>admin/products/editProduct/<?= $value->product_id ?>" class="btn bg-navy btn-xs">
                                                     <i class="fa fa-edit"></i>
                                                     Edit
                                                 </a>

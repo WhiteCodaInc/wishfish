@@ -29,7 +29,7 @@
                                 <div class="col-md-5">
                                     <div class="form-group">
                                         <label for="title">Product Name</label>
-                                        <input value="<?= isset($product) ? $product->plan_name : '' ?>" type="text" autofocus="autofocus" name="plan_name" class="form-control" placeholder="Product Name" required="" />
+                                        <input value="<?= isset($product) ? $product->product_name : '' ?>" type="text" autofocus="autofocus" name="product_name" class="form-control" placeholder="Product Name" required="" />
                                     </div>
                                 </div>
                             </div>
@@ -87,7 +87,7 @@
                             </div>
                         </div>
                         <?php if (isset($product)): ?>
-                            <input type="hidden" name="planid" value="<?= $product->plan_id ?>" />
+                            <input type="hidden" name="productid" value="<?= $product->product_id ?>" />
                         <?php endif; ?>
                     </form>
                 </div><!-- /.box -->

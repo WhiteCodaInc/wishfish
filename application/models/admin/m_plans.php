@@ -47,7 +47,6 @@ class M_plans extends CI_Model {
         $ids = $this->input->post('plan');
         $where = 'payment_plan_id IN (' . implode(',', $ids) . ')';
         $this->db->delete('payment_plan', $where);
-        $this->db->update('products', array('payment_plan_id' => NULL), $where);
     }
 
 }
