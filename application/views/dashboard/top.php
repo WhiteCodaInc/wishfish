@@ -56,7 +56,7 @@ $img_src = ($profile_pic != "") ?
         base_url() . 'assets/dashboard/img/default-avatar.png';
 $userid = $this->session->userdata('u_userid');
 ?>
-<header class="main-header" style="z-index: 1;">
+<header class="main-header">
     <nav class="navbar navbar-static-top">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -692,9 +692,9 @@ $userid = $this->session->userdata('u_userid');
                                 var isValid = true;
                                 $('.setup a').on('click', function () {
                                     var id = $(this).prop('id');
-//                                    setTimeout(function () {
-//                                        $('.modal-backdrop').css('z-index', '999');
-//                                    }, 300);
+                                    setTimeout(function () {
+                                        $('.modal-backdrop').css('z-index', '999');
+                                    }, 300);
                                     switch (id) {
                                         case "upload":
                                             $('#uploadSetup .modal-title').text("Complete Your Profile");
@@ -939,18 +939,12 @@ $userid = $this->session->userdata('u_userid');
                 </script>
                 <script type="text/javascript">
                     $(document).ready(function (e) {
-                        $('#wishfish-title').click(function () {
-                            $('div.event').css('z-index', '0');
+                        $('.scrape-contact,.query_popup').click(function () {
+                            $('#supportForm .msg').text('');
+                            setTimeout(function () {
+                                $('.modal-backdrop').css('z-index', '999');
+                            }, 100);
                         });
-                        $('div.event').click(function () {
-                            $(this).css('z-index', '1');
-                        });
-//                        $('.scrape-contact,.query_popup').click(function () {
-//                            $('#supportForm .msg').text('');
-//                            setTimeout(function () {
-//                                $('.modal-backdrop').css('z-index', '999');
-//                            }, 100);
-//                        });
                         $('.send-query').click(function () {
                             var val = $(this).val();
                             var form = (val == "support") ? "#supportForm" : "#feedbackForm";
