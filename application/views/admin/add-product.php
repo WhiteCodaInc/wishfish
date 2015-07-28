@@ -52,6 +52,14 @@
                             <div class="row">
                                 <div class="col-md-5">
                                     <div class="form-group">
+                                        <label>Total Group Event</label>
+                                        <input value="<?= isset($product) ? $product->group_events : '' ?>" type="text" name="group_events" class="form-control" placeholder="No. of Email Event" required="" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="form-group">
                                         <label for="title">Product Setting</label>
                                         <input value="<?= isset($product) ? $product->setting : '' ?>" type="text" name="setting" class="form-control" placeholder="Product Setting" required="" />
                                     </div>
