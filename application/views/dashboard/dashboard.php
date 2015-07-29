@@ -408,11 +408,11 @@
     });
 
     $(document).ready(function () {
-//        $('a.feedback').click(function () {
-//            setTimeout(function () {
-////                $('.modal-backdrop').css('z-index', '999');
-//            }, 100);
-//        });
+        $('a.feedback').click(function () {
+            setTimeout(function () {
+                $('.modal-backdrop').css('z-index', '0');
+            }, 100);
+        });
     });
 
 </script>
