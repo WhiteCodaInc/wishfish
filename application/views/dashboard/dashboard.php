@@ -48,7 +48,7 @@
 <aside class="right-side" style="min-height: 542px;">
     <a href="#" style="display: none" class="feedback" data-toggle="modal" data-target="#feedback-model">Review</a>
     <div class="modal fade" id="feedback-model" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" style="max-width: 400px">
+        <div class="modal-dialog" style="max-width: 550px">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -59,13 +59,8 @@
                         <div class="form-group">
                             <div class="row" style="margin-bottom: 5%">
                                 <div class="col-md-12" style="text-align: center">
-
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12" style="text-align: center">
-                                    <input title="Add a photo so we can recognize you !" name="profile_pic"  type="file" id="profilePic" class="form-control" />
-                                    <span id="error_message"></span>
+                                    <textarea id="review" class="form-control"></textarea>
+                                    <span id="review_error"></span>
                                 </div>
                             </div>
                         </div>
