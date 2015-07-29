@@ -267,8 +267,7 @@ class Dashboard extends CI_Controller {
                 $body .= "Customer Feedback: {$post['query']}<br>";
 
                 $this->email->from($email, $name);
-//                $this->email->to("support@wish-fish.com");
-                $this->email->to("vishaltesting8@gmail.com");
+                $this->email->to("support@wish-fish.com");
                 $this->email->subject("Feddback From {$name}");
                 $this->email->message($body);
                 if ($this->email->send()) {

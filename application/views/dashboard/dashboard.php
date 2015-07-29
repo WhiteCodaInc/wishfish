@@ -412,7 +412,6 @@
                 alertify.error('Please Write Your Feedback In Box..!');
                 return false;
             }
-
             $(this).prop('disabled', true);
             $('div.review .overlay').show();
             $('div.review .loading-img').show();
