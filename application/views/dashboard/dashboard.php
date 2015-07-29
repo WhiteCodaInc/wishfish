@@ -46,7 +46,7 @@
     }
 </style>
 <aside class="right-side" style="min-height: 542px;">
-    <section class="content-header">
+    <section class="content-header" style="z-index: 0">
         <h1 style="float: left">
             Dashboard
         </h1>
@@ -413,7 +413,7 @@
                 $('.modal-backdrop').css('z-index', '0');
             }, 100);
         });
-        
+
     });
 
 </script>
