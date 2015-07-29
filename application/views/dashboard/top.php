@@ -693,7 +693,7 @@ $userid = $this->session->userdata('u_userid');
                                 $('.setup a').on('click', function () {
                                     var id = $(this).prop('id');
                                     setTimeout(function () {
-                                        $('.modal-backdrop').css('z-index', '999');
+                                        $('.modal-backdrop').css('z-index', '1');
                                     }, 300);
                                     switch (id) {
                                         case "upload":
