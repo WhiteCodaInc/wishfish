@@ -56,7 +56,7 @@ $img_src = ($profile_pic != "") ?
         base_url() . 'assets/dashboard/img/default-avatar.png';
 $userid = $this->session->userdata('u_userid');
 ?>
-<header class="main-header" style="z-index: 1;">
+<header class="main-header">
     <nav class="navbar navbar-static-top">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -942,7 +942,7 @@ $userid = $this->session->userdata('u_userid');
                         $('.scrape-contact,.query_popup').click(function () {
                             $('#supportForm .msg').text('');
                             setTimeout(function () {
-                                $('.modal-backdrop').css('z-index', '0');
+                                $('.modal-backdrop').css('z-index', '999');
                             }, 100);
                         });
                         $('.send-query').click(function () {
