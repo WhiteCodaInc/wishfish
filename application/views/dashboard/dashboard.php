@@ -46,6 +46,49 @@
     }
 </style>
 <aside class="right-side" style="min-height: 542px;">
+    <a href="#" class="feedback" data-toggle="modal" data-target="#feedback-model">Give</a>
+    <div class="modal fade" id="feedback-model" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" style="max-width: 400px">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">We're still in beta! Please give us your feedback!</h4>
+                </div>
+                <form id="reviewForm" method="post">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <div class="row" style="margin-bottom: 5%">
+                                <div class="col-md-12" style="text-align: center">
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12" style="text-align: center">
+                                    <input title="Add a photo so we can recognize you !" name="profile_pic"  type="file" id="profilePic" class="form-control" />
+                                    <span id="error_message"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer clearfix">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <button type="submit" id="feedback_submit" class="btn btn-primary pull-left">Submit</button>
+                            </div>
+                            <div class="col-md-2">
+                                <div id="loadFeedback" style="display: none">
+                                    <img src="<?= base_url() ?>assets/dashboard/img/load.GIF" alt="" />
+                                </div>
+                            </div>
+                            <div class="col-md-7" style="text-align: right">
+                                <button type="button" class="btn btn-danger discard" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
     <section class="content-header">
         <h1 style="float: left">
             Dashboard
@@ -67,49 +110,7 @@
         Create Email Template
     </a>-->
 
-        <a href="#" class="feedback" data-toggle="modal" data-target="#feedback-model">Give</a>
-        <div class="modal fade" id="feedback-model" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog" style="max-width: 400px">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title">We're still in beta! Please give us your feedback!</h4>
-                    </div>
-                    <form id="reviewForm" method="post">
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <div class="row" style="margin-bottom: 5%">
-                                    <div class="col-md-12" style="text-align: center">
 
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12" style="text-align: center">
-                                        <input title="Add a photo so we can recognize you !" name="profile_pic"  type="file" id="profilePic" class="form-control" />
-                                        <span id="error_message"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer clearfix">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <button type="submit" id="feedback_submit" class="btn btn-primary pull-left">Submit</button>
-                                </div>
-                                <div class="col-md-2">
-                                    <div id="loadFeedback" style="display: none">
-                                        <img src="<?= base_url() ?>assets/dashboard/img/load.GIF" alt="" />
-                                    </div>
-                                </div>
-                                <div class="col-md-7" style="text-align: right">
-                                    <button type="button" class="btn btn-danger discard" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div>
 
 
         <div class="box box-solid box-primary collapsed-box event">
