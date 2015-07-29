@@ -46,7 +46,7 @@
     }
 </style>
 <aside class="right-side" style="min-height: 542px;">
-    <a href="#" class="feedback" data-toggle="modal" data-target="#feedback-model">Give</a>
+    <a href="#" style="display: none" class="feedback" data-toggle="modal" data-target="#feedback-model">Review</a>
     <div class="modal fade" id="feedback-model" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" style="max-width: 400px">
             <div class="modal-content">
@@ -412,12 +412,7 @@
     });
 
     $(document).ready(function () {
-        $('a.feedback').click(function () {
-//            setTimeout(function () {
-//                $('.modal-backdrop').css('z-index', '0');
-//            }, 100);
-        });
-
+        $('a.feedback').trigger('click');
     });
 
 </script>
