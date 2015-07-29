@@ -426,11 +426,11 @@
                     $('div.review .loading-img').hide();
                     $('#review_error').show();
                     if (data == "1") {
-                        $('#review_error span').css('color', 'red');
-                        $('#review_error span').text("We can't receive your feedback..! Try Again..!");
-                    } else {
                         $('#review_error span').css('color', 'green');
                         $('#review_error span').text("Thank You..!");
+                    } else {
+                        $('#review_error span').css('color', 'red');
+                        $('#review_error span').text("We can't receive your feedback..! Try Again..!");
                     }
                     $('#review').empty();
                     setTimeout(function () {
