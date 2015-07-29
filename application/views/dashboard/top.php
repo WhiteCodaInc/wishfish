@@ -693,7 +693,7 @@ $userid = $this->session->userdata('u_userid');
                                 $('.setup a').on('click', function () {
                                     var id = $(this).prop('id');
                                     setTimeout(function () {
-                                        $('.modal-backdrop').css('z-index', '1');
+                                        $('.modal-backdrop').css('z-index', '0');
                                     }, 300);
                                     switch (id) {
                                         case "upload":
@@ -942,7 +942,7 @@ $userid = $this->session->userdata('u_userid');
                         $('.scrape-contact,.query_popup').click(function () {
                             $('#supportForm .msg').text('');
                             setTimeout(function () {
-                                $('.modal-backdrop').css('z-index', '1');
+                                $('.modal-backdrop').css('z-index', '0');
                             }, 100);
                         });
                         $('.send-query').click(function () {
