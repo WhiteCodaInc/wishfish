@@ -56,7 +56,7 @@ $img_src = ($profile_pic != "") ?
         base_url() . 'assets/dashboard/img/default-avatar.png';
 $userid = $this->session->userdata('u_userid');
 ?>
-<header class="main-header" style="z-index: 0;">
+<header class="main-header" style="z-index: 1;">
     <nav class="navbar navbar-static-top">
         <div class="container-fluid">
             <div class="navbar-header">
