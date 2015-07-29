@@ -54,29 +54,27 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title">We're still in beta! Please give us your feedback!</h4>
                 </div>
-                <form id="reviewForm" method="post">
-                    <div class="modal-body" style="padding: 0">
-                        <div class="box box-primary review" style="border-radius: 0">
-                            <div class="box-body">
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-12" style="text-align: center">
-                                            <textarea id="review" rows="10" style="border: 1px solid #3c8dbc;" class="form-control"></textarea>
-                                        </div>
+                <div class="modal-body" style="padding: 0">
+                    <div class="box box-primary review" style="border-radius: 0">
+                        <div class="box-body">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-12" style="text-align: center">
+                                        <textarea id="review" rows="10" style="border: 1px solid #3c8dbc;" class="form-control"></textarea>
                                     </div>
                                 </div>
-                                <div id="review_error" class="form-group" style="text-align: center;display: none">
-                                    <span style="color: red">Error</span>
-                                </div>
-                                <div class="form-group" style="text-align: center">
-                                    <button type="submit" id="review_submit" class="btn btn-primary btn-lg">Submit</button>
-                                </div>
                             </div>
-                            <div class="overlay" style="display: none"></div>
-                            <div class="loading-img" style="display: none"></div>
+                            <div id="review_error" class="form-group" style="text-align: center;display: none">
+                                <span></span>
+                            </div>
+                            <div class="form-group" style="text-align: center">
+                                <button type="submit" id="review_submit" class="btn btn-primary btn-lg">Submit</button>
+                            </div>
                         </div>
+                        <div class="overlay" style="display: none"></div>
+                        <div class="loading-img" style="display: none"></div>
                     </div>
-                </form>
+                </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div>
@@ -406,5 +404,40 @@
         setTimeout(function () {
             $('a.feedback').trigger('click');
         }, 500);
+
+        $('#review_submit').click(function () {
+            var msg = $('#review').val();
+            var id = $(this).prop('id');
+            if (msg.trim() == "") {
+                alertify.error('Please Write Your Feedback In Box..!');
+                return false;
+            }
+
+            $(this).prop('disabled', true);
+            $('div.review .overlay').show();
+            $('div.review .loading-img').show();
+            $.ajax({
+                type: 'POST',
+                url: "<?= site_url() ?>app/dashboard/sendReview",
+                data: {query: msg},
+                success: function (data, textStatus, jqXHR) {
+                    $('#' + id).prop('disabled', false);
+                    $('div.review .overlay').hide();
+                    $('div.review .loading-img').hide();
+                    $('#review_error').show();
+                    if (data == "1") {
+                        $('#review_error span').css('color', 'red');
+                        $('#review_error span').text("We can't receive your feedback..! Try Again..!");
+                    } else {
+                        $('#review_error span').css('color', 'green');
+                        $('#review_error span').text("Thank You..!");
+                    }
+                    $('#review').empty();
+                    setTimeout(function () {
+                        $('#feedback-model .close').trigger('click');
+                    }, 500);
+                }
+            });
+        });
     });
 </script>

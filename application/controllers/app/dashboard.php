@@ -255,5 +255,35 @@ class Dashboard extends CI_Controller {
     function get12HourFormat($time) {
         $t = explode(':', $time);
     }
+    
+    function sendReview() {
+        if ($this->wi_authex->logged_in()) {
+            $post = $this->input->post();
+            if (isset($post['query'])) {
+                $this->objdashboard->addFeedback($post);
+                $name = $this->session->userdata('u_name');
+                $email = $this->session->userdata('u_email');
+                $body = "Customer Name : {$name}<br>";
+                $body .= "Customer Email : {$email}<br>";
+                ($post['country'] != "" && $post['country'] != "-1") ?
+                                $body .= "Customer Country : {$post['country']}<br>" : "";
+                $body .= "Customer Query : {$post['query']}<br>";
+
+                $this->email->from($email, $name);
+                $this->email->to("support@wish-fish.com");
+                $this->email->subject("Support / Feddback From {$name}");
+                $this->email->message($body);
+                if ($this->email->send()) {
+                    echo 1;
+                } else {
+                    echo 0;
+                }
+            } else {
+                header('location:' . site_url() . 'app/dashboard');
+            }
+        } else {
+            header('location:' . site_url() . 'home');
+        }
+    }
 
 }
