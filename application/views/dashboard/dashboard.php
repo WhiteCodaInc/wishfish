@@ -56,12 +56,12 @@
                 </div>
                 <form id="reviewForm" method="post">
                     <div class="modal-body" style="padding: 0">
-                        <div class="box box-primary parse">
+                        <div class="box box-primary review" style="border-radius: 0">
                             <div class="box-body">
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-md-12" style="text-align: center">
-                                            <textarea id="review" rows="10" class="form-control"></textarea>
+                                            <textarea id="review" rows="10" style="border: 1px solid #3c8dbc;" class="form-control"></textarea>
                                         </div>
                                     </div>
                                 </div>
