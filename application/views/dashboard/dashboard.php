@@ -433,9 +433,9 @@
                         $('#review_error span').text("We can't receive your feedback..! Try Again..!");
                     }
                     $('#review').empty();
-                    setTimeout(function () {
-                        $('#feedback-model .close').trigger('click');
-                    }, 500);
+//                    setTimeout(function () {
+//                        $('#feedback-model .close').trigger('click');
+//                    }, 500);
                 }
             });
         });
