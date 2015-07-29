@@ -56,27 +56,25 @@
                 </div>
                 <form id="reviewForm" method="post">
                     <div class="modal-body">
-                        <div class="form-group">
-                            <div class="row" style="margin-bottom: 5%">
-                                <div class="col-md-12" style="text-align: center">
-                                    <textarea id="review" class="form-control"></textarea>
-                                    <span id="review_error"></span>
+                        <div class="box box-primary parse">
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <div class="row" style="margin-bottom: 5%">
+                                        <div class="col-md-12" style="text-align: center">
+                                            <textarea id="review" rows="10" class="form-control"></textarea>
+                                        </div>
+                                    </div>
+                                    <span id="review_error" style="color: red">Error</span>
                                 </div>
                             </div>
+                            <div class="overlay" style="display: none"></div>
+                            <div class="loading-img" style="display: none"></div>
                         </div>
                     </div>
                     <div class="modal-footer clearfix">
                         <div class="row">
                             <div class="col-md-3">
                                 <button type="submit" id="feedback_submit" class="btn btn-primary pull-left">Submit</button>
-                            </div>
-                            <div class="col-md-2">
-                                <div id="loadFeedback" style="display: none">
-                                    <img src="<?= base_url() ?>assets/dashboard/img/load.GIF" alt="" />
-                                </div>
-                            </div>
-                            <div class="col-md-7" style="text-align: right">
-                                <button type="button" class="btn btn-danger discard" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
                             </div>
                         </div>
                     </div>
