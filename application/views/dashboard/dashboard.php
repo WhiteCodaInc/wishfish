@@ -55,7 +55,7 @@
                     <h4 class="modal-title">We're still in beta! Please give us your feedback!</h4>
                 </div>
                 <form id="reviewForm" method="post">
-                    <div class="modal-body">
+                    <div class="modal-body" style="padding: 0">
                         <div class="box box-primary parse">
                             <div class="box-body">
                                 <div class="form-group">
