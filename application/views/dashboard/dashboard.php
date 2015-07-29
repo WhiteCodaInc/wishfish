@@ -409,9 +409,9 @@
 
     $(document).ready(function () {
         $('a.feedback').click(function () {
-//            setTimeout(function () {
-//                $('.modal-backdrop').css('z-index', '0');
-//            }, 100);
+            setTimeout(function () {
+                $('.modal-backdrop').css('z-index', '0');
+            }, 100);
         });
         
     });
