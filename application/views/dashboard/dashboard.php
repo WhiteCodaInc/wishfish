@@ -171,7 +171,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <h4 class="modal-title">We're still in beta! Please give us your feedback!</h4>
                     </div>
-                    <form id="feedbackForm" method="post">
+                    <form id="reviewForm" method="post">
                         <div class="modal-body">
                             <div class="form-group">
                                 <div class="row" style="margin-bottom: 5%">
@@ -413,6 +413,7 @@
                 $('.modal-backdrop').css('z-index', '0');
             }, 100);
         });
+        
     });
 
 </script>

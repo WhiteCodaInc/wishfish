@@ -942,7 +942,7 @@ $userid = $this->session->userdata('u_userid');
                         $('.scrape-contact,.query_popup').click(function () {
                             $('#supportForm .msg').text('');
                             setTimeout(function () {
-                                $('.modal-backdrop').css('z-index', '999');
+                                $('.modal-backdrop').css('z-index', '1');
                             }, 100);
                         });
                         $('.send-query').click(function () {
@@ -1044,6 +1044,7 @@ $userid = $this->session->userdata('u_userid');
             border: 1px solid transparent;
             border-radius: 4px;
         }
+
         .alert-danger1 {
             color: #a94442;
             background-color: #f2dede;
