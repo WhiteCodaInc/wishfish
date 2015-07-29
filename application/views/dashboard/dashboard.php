@@ -65,7 +65,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group" style="text-align: center">
                                     <span id="review_error" style="color: red">Error</span>
                                 </div>
                             </div>
