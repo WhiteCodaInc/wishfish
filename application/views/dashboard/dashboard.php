@@ -50,7 +50,7 @@
     <div class="modal fade" id="feedback-model" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" style="max-width: 550px">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header" style="text-align: center">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title">We're still in beta! Please give us your feedback!</h4>
                 </div>
@@ -65,19 +65,15 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div id="review_error" class="form-group" style="text-align: center">
+                                    <span style="color: red">Error</span>
+                                </div>
                                 <div class="form-group" style="text-align: center">
-                                    <span id="review_error" style="color: red">Error</span>
+                                    <button type="submit" id="review_submit" class="btn btn-primary btn-lg">Submit</button>
                                 </div>
                             </div>
                             <div class="overlay" style="display: none"></div>
                             <div class="loading-img" style="display: none"></div>
-                        </div>
-                    </div>
-                    <div class="modal-footer clearfix">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <button type="submit" id="feedback_submit" class="btn btn-primary pull-left">Submit</button>
-                            </div>
                         </div>
                     </div>
                 </form>
