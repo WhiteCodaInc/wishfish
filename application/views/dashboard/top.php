@@ -942,7 +942,7 @@ $userid = $this->session->userdata('u_userid');
                         $('.scrape-contact,.query_popup').click(function () {
                             $('#supportForm .msg').text('');
                             setTimeout(function () {
-                                $('.modal-backdrop').css('z-index', '999');
+                                $('.modal-backdrop').css('z-index', '0');
                             }, 100);
                         });
                         $('.send-query').click(function () {
