@@ -403,7 +403,8 @@
     });
 
     $(document).ready(function () {
-        $('a.feedback').trigger('click');
+        setTimeout(function () {
+            $('a.feedback').trigger('click');
+        }, 500);
     });
-
 </script>
