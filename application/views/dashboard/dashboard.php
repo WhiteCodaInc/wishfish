@@ -164,7 +164,7 @@
             </div>
         </div>
         <a href="#" class="feedback" data-toggle="modal" data-target="#feedback-model">Give</a>
-        <div class="modal fade" id="feedback-model" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal fade" id="feedback-model"  role="dialog" aria-hidden="true">
             <div class="modal-dialog" style="max-width: 400px">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -413,7 +413,7 @@
 //                $('.modal-backdrop').css('z-index', '0');
 //            }, 100);
         });
-        
+
     });
 
 </script>
