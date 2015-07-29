@@ -432,7 +432,7 @@
                         $('#review_error span').css('color', 'red');
                         $('#review_error span').text("We can't receive your feedback..! Try Again..!");
                     }
-                    $('#review').empty();
+                    $('#review').val("");
 //                    setTimeout(function () {
 //                        $('#feedback-model .close').trigger('click');
 //                    }, 500);
