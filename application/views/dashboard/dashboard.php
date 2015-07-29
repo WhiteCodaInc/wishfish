@@ -59,11 +59,13 @@
                         <div class="box box-primary parse">
                             <div class="box-body">
                                 <div class="form-group">
-                                    <div class="row" style="margin-bottom: 5%">
+                                    <div class="row">
                                         <div class="col-md-12" style="text-align: center">
                                             <textarea id="review" rows="10" class="form-control"></textarea>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="form-group">
                                     <span id="review_error" style="color: red">Error</span>
                                 </div>
                             </div>
