@@ -46,7 +46,7 @@
     }
 </style>
 <aside class="right-side" style="min-height: 542px;">
-    <section class="content-header" style="z-index: 0;">
+    <section class="content-header">
         <h1 style="float: left">
             Dashboard
         </h1>
@@ -409,11 +409,11 @@
 
     $(document).ready(function () {
         $('a.feedback').click(function () {
-            setTimeout(function () {
-                $('.modal-backdrop').css('z-index', '0');
-            }, 100);
+//            setTimeout(function () {
+//                $('.modal-backdrop').css('z-index', '0');
+//            }, 100);
         });
-
+        
     });
 
 </script>
