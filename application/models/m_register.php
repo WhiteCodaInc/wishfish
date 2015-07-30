@@ -307,8 +307,12 @@ class M_register extends CI_Model {
             'u_name' => $name,
             'u_profile_pic' => $fname
         );
+        $update_set = array(
+            'name' => $name,
+            'profile_pic' => $fname
+        );
         $this->session->set_userdata($set);
-        $this->db->update('wi_user_mst', $set, array('user_id' => $res->user_id));
+        $this->db->update('wi_user_mst', $update_set, array('user_id' => $res->user_id));
     }
 
     function curl_file_get_contents($url) {
