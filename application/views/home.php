@@ -711,6 +711,10 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
+                        <label>Email</label>
+                        <input  type="email" name="stripeEmail" class="form-control" placeholder="Email" required=""/>
+                    </div>
+                    <div class="form-group">
                         <label>Credit Card Number </label>
                         <input data-stripe="number" value=""  type="text" maxlength="16" class="card_number form-control" placeholder="Card Number" required=""/>
                     </div>
@@ -761,6 +765,10 @@
                     <span class="modal-descritpion">1-month of wish-fish Personal</span>
                 </div>
                 <div class="modal-body">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input  type="email" name="stripeEmail" class="form-control" placeholder="Email" required=""/>
+                    </div>
                     <div class="form-group">
                         <label>Credit Card Number </label>
                         <input data-stripe="number" value=""  type="text" maxlength="16" class="card_number form-control" placeholder="Card Number" required=""/>

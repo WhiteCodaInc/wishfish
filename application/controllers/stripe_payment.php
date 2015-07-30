@@ -30,9 +30,7 @@ class Stripe_payment extends CI_Controller {
         $flag = TRUE;
         $set = $this->input->post();
 
-        echo '<pre>';
-        print_r($set);
-        die();
+
 
         if ($set['coupon'] != "") {
             $flag = ($this->objregister->checkCoupon($set['coupon'])) ? TRUE : FALSE;
@@ -41,7 +39,7 @@ class Stripe_payment extends CI_Controller {
             $gatewayInfo = $this->wi_common->getPaymentGatewayInfo("STRIPE");
             require_once(FCPATH . 'stripe/lib/Stripe.php');
             Stripe::setApiKey($gatewayInfo->secret_key);
-            if ($this->input->post('stripeToken') != "") {
+            if ($set['stripeToken'] != "") {
                 try {
                     $stripe = array(
                         "card" => $this->input->post('stripeToken'),
