@@ -693,17 +693,90 @@
     </div>
 </section>
 
+<a href="#" id="card" class="create btn btn-info" style="" data-toggle="modal" data-target="#card-modal">
+    Pay
+</a>
+<!-------------------------------Card Detail Model------------------------------------>
+<div class="modal fade" id="card-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" style="max-width: 400px">
+        <div class="modal-content">
+            <form id="cardForm" role="form" action="<?= site_url() ?>admin/customers/updatePaymentDetail"  method="post">
+                <div class="modal-header" style="text-align: center">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Card Detail</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="box box-primary review" style="border-radius: 0">
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label>Credit Card Number </label>
+                                <input data-stripe="number" value=""  type="text" maxlength="16" class="card_number form-control" placeholder="Card Number" required=""/>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Expiration (MM/YYYY)</label>
+                                        <div class="row">
+                                            <div class="col-md-5" style="padding-right: 0">
+                                                <input value="<?= ($card) ? $card['exp_month'] : "" ?>"  data-stripe="exp-month" maxlength="2" type="text" class="month form-control" placeholder="MM" required=""/>
+                                            </div>
+                                            <div class="col-md-1" style="padding: 0 8px;font-size: 23px">/</div>
+                                            <div class="col-md-5" style="padding-left: 0">
+                                                <input value="<?= ($card) ? $card['exp_year'] : "" ?>" data-stripe="exp-year" type="text" maxlength="4" class="year form-control" placeholder="YYYY" required="" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>CVC</label>
+                                        <input maxlength="3" type="password" class="cvc form-control" required=""/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <span style="color: red;display: none" id="msgCard"></span>
+                            </div>
+                        </div>
+                        <div class="overlay" style="display: none"></div>
+                        <div class="loading-img" style="display: none"></div>
+                    </div>
+                </div>
+                <div class="modal-footer clearfix">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <button type="submit" id="save" class="btn btn-primary pull-left">Save</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-danger discard" data-dismiss="modal">
+                                <i class="fa fa-times"></i> Discard
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" name="userid" value="<?= $customer->user_id ?>" />
+                <?php if (!$card): ?>
+                    <input type="hidden" name="isNew" value="1" />
+                <?php endif; ?>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<!------------------------------------------------------------------------>
+
+
+
 <form id="paypal" action="<?= site_url() ?>app/pay">
     <input type="hidden" name="item_name" value="">
     <input type="hidden" name="amount" value="">
     <input type="hidden" name="coupon" value="">
 </form>
 
-<form style="display: none" id="personal" action="<?= site_url() ?>stripe_payment/pay" method="post">
+
+
+<!--<form style="display: none" id="personal" action="<?= site_url() ?>stripe_payment/pay" method="post">
     <input type="hidden" name="plan" value="wishfish-personal"/>
     <input type="hidden" name="planid" value="2"/>
     <input type="hidden" name="coupon" value=""/>
-    <!--data-image="/square-image.png"-->
+    data-image="/square-image.png"
     <script
         src="https://checkout.stripe.com/checkout.js" class="stripe-button"
         data-key="<?= $stripe->publish_key ?>"
@@ -712,9 +785,9 @@
         data-label="Stripe"                    
         >
     </script>
-</form>
+</form>-->
 
-<form style="display: none" id="enterprise" action="<?= site_url() ?>stripe_payment/pay" method="post">
+<!--<form style="display: none" id="enterprise" action="<?= site_url() ?>stripe_payment/pay" method="post">
     <input type="hidden" name="plan" value="wishfish-enterprise"/>
     <input type="hidden" name="planid" value="3"/>
     <input type="hidden" name="coupon" value=""/>
@@ -726,9 +799,86 @@
         data-label="Stripe"                    
         >
     </script>
-</form>
+</form>-->
+
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 
 <script type="text/javascript">
+    $(function () {
+        Stripe.setPublishableKey('<?= $stripe->publish_key ?>');
+        $('#cardForm').on('submit', function () {
+            $('div.review .overlay').show();
+            $('div.review .loading-img').show();
+            formType = $(this).prop('id');
+            (formType == "cardForm") ?
+                    $('#save').prop('disabled', true) :
+                    $('#charge').prop('disabled', true);
+            var error = false;
+            var ccNum = $(this).find('.card_number').val(),
+                    cvcNum = $(this).find('.cvc').val(),
+                    expMonth = $(this).find('.month').val(),
+                    expYear = $(this).find('.year').val();
+
+            // Validate the number:
+            if (!Stripe.card.validateCardNumber(ccNum)) {
+                error = true;
+                $('#' + formType + ' #msgCard').text('The credit card number appears to be invalid.');
+                $('#' + formType + ' #msgCard').show();
+                (formType == "cardForm") ?
+                        $('#save').prop('disabled', false) :
+                        $('#charge').prop('disabled', false);
+                return false;
+            }
+            // Validate the CVC:
+            if (!Stripe.card.validateCVC(cvcNum)) {
+                error = true;
+                $('#' + formType + ' #msgCard').text('The CVC number appears to be invalid.');
+                $('#' + formType + ' #msgCard').show();
+                (formType == "cardForm") ?
+                        $('#save').prop('disabled', false) :
+                        $('#charge').prop('disabled', false);
+                return false;
+            }
+            // Validate the expiration:
+            if (!Stripe.card.validateExpiry(expMonth, expYear)) {
+                error = true;
+                $('#' + formType + ' #msgCard').text('The expiration date appears to be invalid.');
+                $('#' + formType + ' #msgCard').show();
+                (formType == "cardForm") ?
+                        $('#save').prop('disabled', false) :
+                        $('#charge').prop('disabled', false);
+                return false;
+            }
+            // Check for errors:
+            if (!error) {
+                // Get the Stripe token:
+                $('#' + formType + ' #msgCard').hide();
+                $('#' + formType + ' #error').hide();
+                Stripe.card.createToken({
+                    number: ccNum,
+                    cvc: cvcNum,
+                    exp_month: expMonth,
+                    exp_year: expYear
+                }, stripeResponseHandler);
+                return false;
+            } else {
+                $('#' + formType + ' #error').show();
+                $('#' + formType + ' #msgCard').show();
+                return false;
+            }
+            return false;
+        });
+        function stripeResponseHandler(status, response) {
+            if (response.error) {
+                reportError(response.error.message);
+            } else { // No errors, submit the form:
+                var f = $('#' + formType);
+                var token = response['id'];
+                f.append("<input type='hidden' name='stripeToken' value='" + token + "' />");
+                f.get(0).submit();
+            }
+        }
+    });
     $(document).ready(function () {
         var couponCode = "";
         $('#remember').click(function () {
@@ -925,6 +1075,7 @@
         });
     });</script>
 <script type="text/javascript">
+
     window.fbAsyncInit = function () {
         //Initiallize the facebook using the facebook javascript sdk
         FB.init({
