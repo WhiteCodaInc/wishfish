@@ -733,20 +733,22 @@
                     <div class="form-group">
                         <span style="color: red;display: none" id="msgCard"></span>
                     </div>
-                </div>
-                <div class="modal-footer clearfix">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <!--<button type="submit"  class="btn btn-primary btn-lg">Log In</button>-->
-                            <button type="submit" id="save" class="btn btn-primary pull-left">Save</button>
-                        </div>
-                        <div class="col-md-3">
-                            <button type="button" class="btn btn-danger discard" data-dismiss="modal">
-                                <i class="fa fa-times"></i> Discard
-                            </button>
-                        </div>
+                    <div class="form-group" style="text-align: center">
+                        <button type="submit" id="save" class="btn btn-primary btn-lg ">Pay</button>
                     </div>
                 </div>
+                <!--                <div class="modal-footer clearfix">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                
+                                        </div>
+                                        <div class="col-md-3">
+                                            <button type="button" class="btn btn-danger discard" data-dismiss="modal">
+                                                <i class="fa fa-times"></i> Discard
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>-->
             </form>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
