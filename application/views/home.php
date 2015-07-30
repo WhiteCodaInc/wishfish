@@ -700,10 +700,11 @@
 <div class="modal fade" id="card-modal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" style="max-width: 425px">
         <div class="modal-content">
-            <form id="cardForm" role="form" action="<?= site_url() ?>admin/customers/updatePaymentDetail"  method="post">
+            <form id="cardForm" role="form" action="<?= site_url() ?>stripe_payment/pay"  method="post">
                 <div class="modal-header" style="text-align: center">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Card Detail</h4>
+                    <h4 class="modal-title"></h4>
+                    <h6 class="modal-descritpion"></h6>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
@@ -737,18 +738,9 @@
                         <button style="width: 50%" id="pay" type="submit" class="btn btn-success btn-lg">Pay</button>
                     </div>
                 </div>
-                <!--                <div class="modal-footer clearfix">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                
-                                        </div>
-                                        <div class="col-md-3">
-                                            <button type="button" class="btn btn-danger discard" data-dismiss="modal">
-                                                <i class="fa fa-times"></i> Discard
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>-->
+                <input type="hidden" name="plan" value="wishfish-personal"/>
+                <input type="hidden" name="planid" value="2"/>
+                <input type="hidden" name="coupon" value=""/>
             </form>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -863,11 +855,13 @@
                 $('#remember').click(function () {
                     $('input[name="remember"]').trigger('click');
                 });
+
                 $('.coupon').click(function () {
                     var id = $(this).parents().eq(1).prop('id');
                     $('#' + id + ' .link').hide();
                     $('#' + id + ' div.couponbox').show();
                 });
+
                 $('button.apply').click(function () {
                     var id = $(this).parents().eq(2).prop('id');
                     console.log(id);
@@ -916,6 +910,7 @@
                         });
                     }
                 });
+
                 var emailV = 1;
                 var captchaV = 1;
                 var sess_word = "<?= $this->session->userdata('captchaWord') ?>";
@@ -941,6 +936,7 @@
                         emailV = 0;
                     }
                 });
+
                 $('#captcha_word').focusout(function () {
                     var word = $(this).val();
                     if (word.trim() != "") {
@@ -955,6 +951,7 @@
                         captchaV = 0;
                     }
                 });
+
                 $('#send').click(function () {
                     var email = $('#forgotEmail').val();
                     if (emailV === 0 || captchaV === 0)
@@ -983,6 +980,7 @@
                         }
                     });
                 });
+
                 $("#refresh").click(function () {
                     $(this).css('cursor', 'progress');
                     $.ajax({
@@ -997,6 +995,7 @@
                         }
                     });
                 });
+
                 $('a#log,a#reg').click(function () {
                     $("html, body").animate({scrollTop: 0}, 1000);
                     setTimeout(function () {
@@ -1012,6 +1011,7 @@
                         $('form.registration').css('display', 'block');
                     }
                 });
+
                 $('.pricing2 a').on('click', function () {
                     var id = $(this).prop('id');
                     switch (id) {
@@ -1019,10 +1019,16 @@
                             $('.social-register').css('display', 'block');
                             break;
                         case "a_personal":
-                            $('#personal button').trigger('click');
+                            $('#cardForm .modal-title').text("$9.99");
+                            $('#cardForm .modal-descritpion').text("1-month of wish-fish Personal");
+//                            $('#personal button').trigger('click');
+                            $('#card').trigger('click');
                             break;
                         case "a_enterprise":
-                            $('#enterprise button').trigger('click');
+                            $('#cardForm .modal-title').text("$49.99");
+                            $('#cardForm .modal-descritpion').text("1-month of wish-fish Enterprise");
+//                            $('#enterprise button').trigger('click');
+                            $('#card').trigger('click');
                             break;
                         case "wishfish-personal":
                         case "wishfish-enterprise":
@@ -1047,11 +1053,13 @@
                             break;
                     }
                 });
+
                 $('a.cancel').click(function () {
                     $('.social-register').css('display', 'none');
                     $('.overlay').css('display', 'none');
                     $('.sign').css('display', 'none');
                 });
+
             });</script>
 <script type="text/javascript">
 
