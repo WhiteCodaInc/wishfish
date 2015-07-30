@@ -111,7 +111,7 @@ $userid = $this->session->userdata('u_userid');
                     </li>
                     <li>
                         <a href="<?= site_url() ?>app/calender">
-                            <i class="fa fa-th"></i> <span>Calender</span>
+                            <i class="fa fa-th"></i> <span>Calendar</span>
                         </a>
                     </li>
                     <li class="dropdown">

@@ -84,7 +84,7 @@ $img_src = ($profile_pic != "") ?
                 </li>
                 <li class="" id="9">
                     <a href="<?= site_url() ?>app/calender">
-                        <i class="fa fa-th"></i> <span>Calender</span>
+                        <i class="fa fa-th"></i> <span>Calendar</span>
                     </a>
                 </li>
             </ul>

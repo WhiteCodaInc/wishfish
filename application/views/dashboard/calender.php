@@ -43,7 +43,7 @@
         <?php $token = $this->input->cookie('token', TRUE); ?>
         <a href="<?= site_url() ?>app/calender/connect" style="margin-left: 2%"  class="btn btn-warning btn-sm" <?= ($token) ? "disabled" : "" ?> >
             <i class="fa fa-calendar"></i>&nbsp;
-            Connect With Google Calender
+            Connect With Google Calendar
         </a>
     </section>
     <!-- Main content -->
