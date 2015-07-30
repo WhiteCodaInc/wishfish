@@ -61,17 +61,18 @@ class Home extends CI_Controller {
 
     function checkCoupon() {
         $post = $this->input->post();
-        $coupon = $this->objregister->checkCoupon($post);
+        $coupon = $this->objregister->checkCoupon($post['code']);
         if (!$coupon) {
             echo 0;
         } else {
+            $discAmt = $this->objregister->applyCoupon($coupon, $post);
             if ($coupon->disc_type == "P" && $coupon->disc_amount == 100.00) {
                 $data['flag'] = 2;
-                $data['discAmt'] = $coupon->discAmt;
+                $data['discAmt'] = $discAmt;
                 echo json_encode($data);
             } else {
                 $data['flag'] = 1;
-                $data['discAmt'] = $coupon->discAmt;
+                $data['discAmt'] = $discAmt;
                 echo json_encode($data);
             }
         }
