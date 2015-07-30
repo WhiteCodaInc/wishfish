@@ -819,7 +819,7 @@
 
 
 
-<form style="display: none" id="personal" action="<?= site_url() ?>stripe_payment/pay" method="post">
+<!--<form style="display: none" id="personal" action="<?= site_url() ?>stripe_payment/pay" method="post">
     <input type="hidden" name="plan" value="wishfish-personal"/>
     <input type="hidden" name="planid" value="2"/>
     <input type="hidden" name="coupon" value=""/>
@@ -831,9 +831,9 @@
         data-label="Stripe"                    
         >
     </script>
-</form>
+</form>-->
 
-<form style="display: none" id="enterprise" action="<?= site_url() ?>stripe_payment/pay" method="post">
+<!--<form style="display: none" id="enterprise" action="<?= site_url() ?>stripe_payment/pay" method="post">
     <input type="hidden" name="plan" value="wishfish-enterprise"/>
     <input type="hidden" name="planid" value="3"/>
     <input type="hidden" name="coupon" value=""/>
@@ -845,7 +845,7 @@
         data-label="Stripe"                    
         >
     </script>
-</form>
+</form>-->
 
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 
@@ -940,7 +940,6 @@
 
                 $('button.apply').click(function () {
                     var id = $(this).parents().eq(2).prop('id');
-                    console.log(id);
                     var amt = (id == "p_coupon") ? "9.99" : "49.99";
                     var code = $('#' + id + ' .couponcode').val().trim();
                     var rgex_code = /^[A-Za-z0-9]+$/;
@@ -956,7 +955,6 @@
                             data: {code: code, amount: amt},
                             url: "<?= site_url() ?>home/checkCoupon",
                             success: function (data, textStatus, jqXHR) {
-                                console.log(data);
                                 if (data == "0") {
                                     $('#' + id + ' button').show();
                                     $('#' + id + ' img').hide();

@@ -183,8 +183,23 @@ class Upgrade extends CI_Controller {
     }
 
     function checkCoupon() {
-        $code = $this->input->post('code');
-        echo ($this->objregister->checkCoupon($code)) ? 1 : 0;
+        $post = $this->input->post();
+        $coupon = $this->objregister->checkCoupon($post['code']);
+//        echo ($this->objregister->checkCoupon($code)) ? 1 : 0;
+        if (!$coupon) {
+            echo 0;
+        } else {
+            $discAmt = $this->objregister->applyCoupon($coupon, $post);
+            if ($coupon->disc_type == "P" && $coupon->disc_amount == 100.00) {
+                $data['flag'] = 2;
+                $data['discAmt'] = $discAmt;
+                echo json_encode($data);
+            } else {
+                $data['flag'] = 1;
+                $data['discAmt'] = $discAmt;
+                echo json_encode($data);
+            }
+        }
     }
 
     /* function checkout() {
