@@ -246,16 +246,29 @@ class M_register extends CI_Model {
         if ($profile_type != "" && $profile_link != "") {
             switch ($profile_type) {
                 case "facebook":
-                    $base_url = "http://graph.facebook.com/";
-                    $url = $base_url . $profile_link;
-                    $data = json_decode($this->curl_file_get_contents($url));
-                    if (!isset($data->error)) {
-                        copy("{$url}/picture?width=215&height=215", FCPATH . "user.jpg");
-                        $this->updateProfile($res, $data->name);
+                    $base_url = "https://www.facebook.com/";
+                    $html = $this->curl_file_get_contents($base_url . $profile_link);
+                    $dom = new DOMDocument();
+                    @$dom->loadHTML($html, 0);
+                    $nodes = $dom->getElementsByTagName('title');
+                    $name = explode('|', $nodes->item(0)->nodeValue);
+                    if (isset($name[0]) && $name[0] != "Page Not Found") {
+                        copy("https://graph.facebook.com/{$profile_link}/picture?width=215&height=215", FCPATH . "user.jpg");
+                        $this->updateProfile($res, $name[0]);
                         return true;
                     } else {
                         return false;
                     }
+//                    $base_url = "http://graph.facebook.com/";
+//                    $url = $base_url . $profile_link;
+//                    $data = json_decode($this->curl_file_get_contents($url));
+//                    if (!isset($data->error)) {
+//                        copy("{$url}/picture?width=215&height=215", FCPATH . "user.jpg");
+//                        $this->updateProfile($res, $data->name);
+//                        return true;
+//                    } else {
+//                        return false;
+//                    }
                     break;
                 case "linkedin":
                     $html = @file_get_html($profile_link);
