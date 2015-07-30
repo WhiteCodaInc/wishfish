@@ -730,11 +730,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" style="text-align: center">
                         <span style="color: red;display: none" id="msgCard"></span>
                     </div>
                     <div class="form-group" style="text-align: center">
-                        <button type="submit" id="save" class="btn btn-primary btn-lg ">Pay</button>
+                        <button style="width: 50%" id="pay" type="submit" class="btn btn-success btn-lg">Pay</button>
                     </div>
                 </div>
                 <!--                <div class="modal-footer clearfix">
@@ -799,12 +799,7 @@
             $(function () {
                 Stripe.setPublishableKey('<?= $stripe->publish_key ?>');
                 $('#cardForm').on('submit', function () {
-                    $('div.review .overlay').show();
-                    $('div.review .loading-img').show();
-                    formType = $(this).prop('id');
-                    (formType == "cardForm") ?
-                            $('#save').prop('disabled', true) :
-                            $('#charge').prop('disabled', true);
+                    $('#pay').prop('disabled', true);
                     var error = false;
                     var ccNum = $(this).find('.card_number').val(),
                             cvcNum = $(this).find('.cvc').val(),
@@ -814,38 +809,31 @@
                     // Validate the number:
                     if (!Stripe.card.validateCardNumber(ccNum)) {
                         error = true;
-                        $('#' + formType + ' #msgCard').text('The credit card number appears to be invalid.');
-                        $('#' + formType + ' #msgCard').show();
-                        (formType == "cardForm") ?
-                                $('#save').prop('disabled', false) :
-                                $('#charge').prop('disabled', false);
+                        $('#msgCard').text('The credit card number appears to be invalid.');
+                        $('#msgCard').show();
+                        $('#pay').prop('disabled', false);
                         return false;
                     }
                     // Validate the CVC:
                     if (!Stripe.card.validateCVC(cvcNum)) {
                         error = true;
-                        $('#' + formType + ' #msgCard').text('The CVC number appears to be invalid.');
-                        $('#' + formType + ' #msgCard').show();
-                        (formType == "cardForm") ?
-                                $('#save').prop('disabled', false) :
-                                $('#charge').prop('disabled', false);
+                        $('#msgCard').text('The CVC number appears to be invalid.');
+                        $('#msgCard').show();
+                        $('#pay').prop('disabled', false);
                         return false;
                     }
                     // Validate the expiration:
                     if (!Stripe.card.validateExpiry(expMonth, expYear)) {
                         error = true;
-                        $('#' + formType + ' #msgCard').text('The expiration date appears to be invalid.');
-                        $('#' + formType + ' #msgCard').show();
-                        (formType == "cardForm") ?
-                                $('#save').prop('disabled', false) :
-                                $('#charge').prop('disabled', false);
+                        $('#msgCard').text('The expiration date appears to be invalid.');
+                        $('#msgCard').show();
+                        $('#pay').prop('disabled', false);
                         return false;
                     }
                     // Check for errors:
                     if (!error) {
                         // Get the Stripe token:
-                        $('#' + formType + ' #msgCard').hide();
-                        $('#' + formType + ' #error').hide();
+                        $('#msgCard').hide();
                         Stripe.card.createToken({
                             number: ccNum,
                             cvc: cvcNum,
@@ -854,8 +842,7 @@
                         }, stripeResponseHandler);
                         return false;
                     } else {
-                        $('#' + formType + ' #error').show();
-                        $('#' + formType + ' #msgCard').show();
+                        $('#msgCard').show();
                         return false;
                     }
                     return false;
@@ -864,7 +851,7 @@
                     if (response.error) {
                         reportError(response.error.message);
                     } else { // No errors, submit the form:
-                        var f = $('#' + formType);
+                        var f = $('#cardForm');
                         var token = response['id'];
                         f.append("<input type='hidden' name='stripeToken' value='" + token + "' />");
                         f.get(0).submit();
