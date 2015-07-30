@@ -757,6 +757,7 @@
                     data: {code: code, amount: amt},
                     url: "<?= site_url() ?>home/checkCoupon",
                     success: function (data, textStatus, jqXHR) {
+                        console.log(data);
                         if (data == "0") {
                             $('#' + id + ' button').show();
                             $('#' + id + ' img').hide();
