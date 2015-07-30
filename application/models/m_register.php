@@ -238,6 +238,9 @@ class M_register extends CI_Model {
     }
 
     function linkWithProfile($post) {
+        echo '<pre>';
+        print_r($this->session->all_userdata());
+        die();
         $email = (is_array($post)) ? $post['email'] : $post;
         $query = $this->db->get_where('wi_user_mst', array('email' => $email));
         $res = $query->row();
@@ -304,8 +307,8 @@ class M_register extends CI_Model {
         $this->s3->putObjectFile(FCPATH . "user.jpg", $this->bucket, $fname, "public-read");
         unlink(FCPATH . "user.jpg");
         $set = array(
-            'name' => $name,
-            'profile_pic' => $fname
+            'u_name' => $name,
+            'u_profile_pic' => $fname
         );
         $this->session->set_userdata($set);
         $this->db->update('wi_user_mst', $set, array('user_id' => $res->user_id));
