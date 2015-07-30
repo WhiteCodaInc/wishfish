@@ -768,10 +768,14 @@
                             $('#' + id + ' div.couponbox').hide();
                             $('#' + id + ' p.success').html("Coupon <b style='color:#1ac6ff'>" + code + "</b> was apply successfully..!");
                             $('#' + id + ' p.success').show();
-                            if (id == "p_coupon")
+                            if (id == "p_coupon") {
                                 $('form#personal input[name="coupon"]').val(code);
-                            else if (id == "e_coupon")
+                                var _html = $('form#personal');
+                                var planAmt = _html.find('script').prop('data-name');
+                                console.log(planAmt);
+                            } else if (id == "e_coupon") {
                                 $('form#enterprise input[name="coupon"]').val(code);
+                            }
 
                             if (json.flag == "1") {
                                 $('form#paypal input[name="coupon"]').val(code);
