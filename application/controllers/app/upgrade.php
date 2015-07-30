@@ -83,7 +83,7 @@ class Upgrade extends CI_Controller {
                     if ($set['coupon'] != "")
                         $this->objregister->updateCoupon($set['coupon']);
 
-                    $pid = $this->objcustomer->insertPlanDetail($set['planid'], $customer, $set);
+                    $pid = $this->objupgrade->insertPlanDetail($set['planid'], $customer, $set);
 
                     $data = array("userid" => $this->userid, "planid" => $pid);
                     ($set['coupon'] != "") ? $data['coupon'] = $set['coupon'] : '';
