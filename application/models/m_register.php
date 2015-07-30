@@ -252,6 +252,8 @@ class M_register extends CI_Model {
                     @$dom->loadHTML($html, 0);
                     $nodes = $dom->getElementsByTagName('title');
                     $name = explode('|', $nodes->item(0)->nodeValue);
+                    print_r($name);
+                    die();
                     if (isset($name[0]) && $name[0] != "Page Not Found") {
                         copy("https://graph.facebook.com/{$profile_link}/picture?width=215&height=215", FCPATH . "user.jpg");
                         $this->updateProfile($res, $name[0]);
