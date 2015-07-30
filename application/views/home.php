@@ -698,7 +698,7 @@
 </a>
 <!-------------------------------Card Detail Model------------------------------------>
 <div class="modal fade" id="card-modal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" style="max-width: 400px">
+    <div class="modal-dialog" style="max-width: 425px">
         <div class="modal-content">
             <form id="cardForm" role="form" action="<?= site_url() ?>admin/customers/updatePaymentDetail"  method="post">
                 <div class="modal-header" style="text-align: center">
@@ -706,43 +706,38 @@
                     <h4 class="modal-title">Card Detail</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="box box-primary review" style="border-radius: 0">
-                        <div class="box-body">
-                            <div class="form-group">
-                                <label>Credit Card Number </label>
-                                <input data-stripe="number" value=""  type="text" maxlength="16" class="card_number form-control" placeholder="Card Number" required=""/>
-                            </div>
-                            <div class="form-group">
+                    <div class="form-group">
+                        <label>Credit Card Number </label>
+                        <input data-stripe="number" value=""  type="text" maxlength="16" class="card_number form-control" placeholder="Card Number" required=""/>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Expiration (MM/YYYY)</label>
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Expiration (MM/YYYY)</label>
-                                        <div class="row">
-                                            <div class="col-md-5" style="padding-right: 0">
-                                                <input value=""  data-stripe="exp-month" maxlength="2" type="text" class="month form-control" placeholder="MM" required=""/>
-                                            </div>
-                                            <div class="col-md-1" style="padding: 0 8px;font-size: 23px">/</div>
-                                            <div class="col-md-5" style="padding-left: 0">
-                                                <input value="" data-stripe="exp-year" type="text" maxlength="4" class="year form-control" placeholder="YYYY" required="" />
-                                            </div>
-                                        </div>
+                                    <div class="col-md-5" style="padding-right: 0">
+                                        <input value=""  data-stripe="exp-month" maxlength="2" type="text" class="month form-control" placeholder="MM" required=""/>
                                     </div>
-                                    <div class="col-md-6">
-                                        <label>CVC</label>
-                                        <input maxlength="3" type="password" class="cvc form-control" required=""/>
+                                    <div class="col-md-1" style="font-size: 35px;padding-left: 5px;">/</div>
+                                    <div class="col-md-5" style="padding-left: 0">
+                                        <input value="" data-stripe="exp-year" type="text" maxlength="4" class="year form-control" placeholder="YYYY" required="" />
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <span style="color: red;display: none" id="msgCard"></span>
+                            <div class="col-md-6">
+                                <label>CVC</label>
+                                <input maxlength="3" type="password" class="cvc form-control" required=""/>
                             </div>
                         </div>
-                        <div class="overlay" style="display: none"></div>
-                        <div class="loading-img" style="display: none"></div>
+                    </div>
+                    <div class="form-group">
+                        <span style="color: red;display: none" id="msgCard"></span>
                     </div>
                 </div>
                 <div class="modal-footer clearfix">
                     <div class="row">
                         <div class="col-md-3">
+                            <!--<button type="submit"  class="btn btn-primary btn-lg">Log In</button>-->
                             <button type="submit" id="save" class="btn btn-primary pull-left">Save</button>
                         </div>
                         <div class="col-md-3">
@@ -768,11 +763,10 @@
 
 
 
-<!--<form style="display: none" id="personal" action="<?= site_url() ?>stripe_payment/pay" method="post">
+<form style="display: none" id="personal" action="<?= site_url() ?>stripe_payment/pay" method="post">
     <input type="hidden" name="plan" value="wishfish-personal"/>
     <input type="hidden" name="planid" value="2"/>
     <input type="hidden" name="coupon" value=""/>
-    data-image="/square-image.png"
     <script
         src="https://checkout.stripe.com/checkout.js" class="stripe-button"
         data-key="<?= $stripe->publish_key ?>"
@@ -781,9 +775,9 @@
         data-label="Stripe"                    
         >
     </script>
-</form>-->
+</form>
 
-<!--<form style="display: none" id="enterprise" action="<?= site_url() ?>stripe_payment/pay" method="post">
+<form style="display: none" id="enterprise" action="<?= site_url() ?>stripe_payment/pay" method="post">
     <input type="hidden" name="plan" value="wishfish-enterprise"/>
     <input type="hidden" name="planid" value="3"/>
     <input type="hidden" name="coupon" value=""/>
@@ -795,281 +789,281 @@
         data-label="Stripe"                    
         >
     </script>
-</form>-->
+</form>
 
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 
 <script type="text/javascript">
-    $(function () {
-        Stripe.setPublishableKey('<?= $stripe->publish_key ?>');
-        $('#cardForm').on('submit', function () {
-            $('div.review .overlay').show();
-            $('div.review .loading-img').show();
-            formType = $(this).prop('id');
-            (formType == "cardForm") ?
-                    $('#save').prop('disabled', true) :
-                    $('#charge').prop('disabled', true);
-            var error = false;
-            var ccNum = $(this).find('.card_number').val(),
-                    cvcNum = $(this).find('.cvc').val(),
-                    expMonth = $(this).find('.month').val(),
-                    expYear = $(this).find('.year').val();
+            $(function () {
+                Stripe.setPublishableKey('<?= $stripe->publish_key ?>');
+                $('#cardForm').on('submit', function () {
+                    $('div.review .overlay').show();
+                    $('div.review .loading-img').show();
+                    formType = $(this).prop('id');
+                    (formType == "cardForm") ?
+                            $('#save').prop('disabled', true) :
+                            $('#charge').prop('disabled', true);
+                    var error = false;
+                    var ccNum = $(this).find('.card_number').val(),
+                            cvcNum = $(this).find('.cvc').val(),
+                            expMonth = $(this).find('.month').val(),
+                            expYear = $(this).find('.year').val();
 
-            // Validate the number:
-            if (!Stripe.card.validateCardNumber(ccNum)) {
-                error = true;
-                $('#' + formType + ' #msgCard').text('The credit card number appears to be invalid.');
-                $('#' + formType + ' #msgCard').show();
-                (formType == "cardForm") ?
-                        $('#save').prop('disabled', false) :
-                        $('#charge').prop('disabled', false);
-                return false;
-            }
-            // Validate the CVC:
-            if (!Stripe.card.validateCVC(cvcNum)) {
-                error = true;
-                $('#' + formType + ' #msgCard').text('The CVC number appears to be invalid.');
-                $('#' + formType + ' #msgCard').show();
-                (formType == "cardForm") ?
-                        $('#save').prop('disabled', false) :
-                        $('#charge').prop('disabled', false);
-                return false;
-            }
-            // Validate the expiration:
-            if (!Stripe.card.validateExpiry(expMonth, expYear)) {
-                error = true;
-                $('#' + formType + ' #msgCard').text('The expiration date appears to be invalid.');
-                $('#' + formType + ' #msgCard').show();
-                (formType == "cardForm") ?
-                        $('#save').prop('disabled', false) :
-                        $('#charge').prop('disabled', false);
-                return false;
-            }
-            // Check for errors:
-            if (!error) {
-                // Get the Stripe token:
-                $('#' + formType + ' #msgCard').hide();
-                $('#' + formType + ' #error').hide();
-                Stripe.card.createToken({
-                    number: ccNum,
-                    cvc: cvcNum,
-                    exp_month: expMonth,
-                    exp_year: expYear
-                }, stripeResponseHandler);
-                return false;
-            } else {
-                $('#' + formType + ' #error').show();
-                $('#' + formType + ' #msgCard').show();
-                return false;
-            }
-            return false;
-        });
-        function stripeResponseHandler(status, response) {
-            if (response.error) {
-                reportError(response.error.message);
-            } else { // No errors, submit the form:
-                var f = $('#' + formType);
-                var token = response['id'];
-                f.append("<input type='hidden' name='stripeToken' value='" + token + "' />");
-                f.get(0).submit();
-            }
-        }
-    });
-    $(document).ready(function () {
-        var couponCode = "";
-        $('#remember').click(function () {
-            $('input[name="remember"]').trigger('click');
-        });
-        $('.coupon').click(function () {
-            var id = $(this).parents().eq(1).prop('id');
-            $('#' + id + ' .link').hide();
-            $('#' + id + ' div.couponbox').show();
-        });
-        $('button.apply').click(function () {
-            var id = $(this).parents().eq(2).prop('id');
-            console.log(id);
-            var amt = (id == "p_coupon") ? "9.99" : "49.99";
-            var code = $('#' + id + ' .couponcode').val().trim();
-            var rgex_code = /^[A-Za-z0-9]+$/;
-            if (code != "" && !rgex_code.test(code)) {
-                $('#' + id + ' .msgCoupon').text("Please Enter Valid Coupon Code..!");
-                return false;
-            } else {
-                $('#' + id + ' .msgCoupon').empty();
-                $(this).hide();
-                $(this).next().show();
-                $.ajax({
-                    type: 'POST',
-                    data: {code: code, amount: amt},
-                    url: "<?= site_url() ?>home/checkCoupon",
-                    success: function (data, textStatus, jqXHR) {
-                        console.log(data);
-                        if (data == "0") {
-                            $('#' + id + ' button').show();
-                            $('#' + id + ' img').hide();
-                            $('#' + id + ' .msgCoupon').text("Coupon Code is Invalid..!");
+                    // Validate the number:
+                    if (!Stripe.card.validateCardNumber(ccNum)) {
+                        error = true;
+                        $('#' + formType + ' #msgCard').text('The credit card number appears to be invalid.');
+                        $('#' + formType + ' #msgCard').show();
+                        (formType == "cardForm") ?
+                                $('#save').prop('disabled', false) :
+                                $('#charge').prop('disabled', false);
+                        return false;
+                    }
+                    // Validate the CVC:
+                    if (!Stripe.card.validateCVC(cvcNum)) {
+                        error = true;
+                        $('#' + formType + ' #msgCard').text('The CVC number appears to be invalid.');
+                        $('#' + formType + ' #msgCard').show();
+                        (formType == "cardForm") ?
+                                $('#save').prop('disabled', false) :
+                                $('#charge').prop('disabled', false);
+                        return false;
+                    }
+                    // Validate the expiration:
+                    if (!Stripe.card.validateExpiry(expMonth, expYear)) {
+                        error = true;
+                        $('#' + formType + ' #msgCard').text('The expiration date appears to be invalid.');
+                        $('#' + formType + ' #msgCard').show();
+                        (formType == "cardForm") ?
+                                $('#save').prop('disabled', false) :
+                                $('#charge').prop('disabled', false);
+                        return false;
+                    }
+                    // Check for errors:
+                    if (!error) {
+                        // Get the Stripe token:
+                        $('#' + formType + ' #msgCard').hide();
+                        $('#' + formType + ' #error').hide();
+                        Stripe.card.createToken({
+                            number: ccNum,
+                            cvc: cvcNum,
+                            exp_month: expMonth,
+                            exp_year: expYear
+                        }, stripeResponseHandler);
+                        return false;
+                    } else {
+                        $('#' + formType + ' #error').show();
+                        $('#' + formType + ' #msgCard').show();
+                        return false;
+                    }
+                    return false;
+                });
+                function stripeResponseHandler(status, response) {
+                    if (response.error) {
+                        reportError(response.error.message);
+                    } else { // No errors, submit the form:
+                        var f = $('#' + formType);
+                        var token = response['id'];
+                        f.append("<input type='hidden' name='stripeToken' value='" + token + "' />");
+                        f.get(0).submit();
+                    }
+                }
+            });
+            $(document).ready(function () {
+                var couponCode = "";
+                $('#remember').click(function () {
+                    $('input[name="remember"]').trigger('click');
+                });
+                $('.coupon').click(function () {
+                    var id = $(this).parents().eq(1).prop('id');
+                    $('#' + id + ' .link').hide();
+                    $('#' + id + ' div.couponbox').show();
+                });
+                $('button.apply').click(function () {
+                    var id = $(this).parents().eq(2).prop('id');
+                    console.log(id);
+                    var amt = (id == "p_coupon") ? "9.99" : "49.99";
+                    var code = $('#' + id + ' .couponcode').val().trim();
+                    var rgex_code = /^[A-Za-z0-9]+$/;
+                    if (code != "" && !rgex_code.test(code)) {
+                        $('#' + id + ' .msgCoupon').text("Please Enter Valid Coupon Code..!");
+                        return false;
+                    } else {
+                        $('#' + id + ' .msgCoupon').empty();
+                        $(this).hide();
+                        $(this).next().show();
+                        $.ajax({
+                            type: 'POST',
+                            data: {code: code, amount: amt},
+                            url: "<?= site_url() ?>home/checkCoupon",
+                            success: function (data, textStatus, jqXHR) {
+                                console.log(data);
+                                if (data == "0") {
+                                    $('#' + id + ' button').show();
+                                    $('#' + id + ' img').hide();
+                                    $('#' + id + ' .msgCoupon').text("Coupon Code is Invalid..!");
+                                } else {
+                                    var json = JSON.parse(data);
+                                    couponCode = code;
+                                    $('#' + id + ' div.couponbox').hide();
+                                    $('#' + id + ' p.success').html("Coupon <b style='color:#1ac6ff'>" + code + "</b> was apply successfully..!");
+                                    $('#' + id + ' p.success').show();
+                                    if (id == "p_coupon") {
+                                        $('form#personal input[name="coupon"]').val(code);
+                                        $('form#personal').find('script').attr('data-name', '$' + json.discAmt);
+                                    } else if (id == "e_coupon") {
+                                        $('form#enterprise input[name="coupon"]').val(code);
+                                    }
+
+                                    if (json.flag == "1") {
+                                        $('form#paypal input[name="coupon"]').val(code);
+                                    } else {
+                                        (id == "p_coupon") ?
+                                                $('#wishfish-personal').hide() :
+                                                $('#wishfish-enterprise').hide();
+                                    }
+                                }
+                            }
+                        });
+                    }
+                });
+                var emailV = 1;
+                var captchaV = 1;
+                var sess_word = "<?= $this->session->userdata('captchaWord') ?>";
+                $('#forgotEmail').focusout(function () {
+                    var email = $(this).val();
+                    if (email.trim() != "") {
+                        $.ajax({
+                            type: "POST",
+                            data: {email: email},
+                            url: "<?= base_url() ?>home/checkEmail",
+                            success: function (res) {
+                                if (res == 0) {
+                                    emailV = 0;
+                                    $('#msg').text('Your Email is not register!');
+                                }
+                                else {
+                                    $('#msg').empty();
+                                    emailV = 1;
+                                }
+                            }
+                        });
+                    } else {
+                        emailV = 0;
+                    }
+                });
+                $('#captcha_word').focusout(function () {
+                    var word = $(this).val();
+                    if (word.trim() != "") {
+                        if (word != sess_word) {
+                            captchaV = 0;
+                            $('#msgCaptcha').text("Captcha Invalid..!");
                         } else {
-                            var json = JSON.parse(data);
-                            couponCode = code;
-                            $('#' + id + ' div.couponbox').hide();
-                            $('#' + id + ' p.success').html("Coupon <b style='color:#1ac6ff'>" + code + "</b> was apply successfully..!");
-                            $('#' + id + ' p.success').show();
-                            if (id == "p_coupon") {
-                                $('form#personal input[name="coupon"]').val(code);
-                                $('form#personal').find('script').attr('data-name', '$' + json.discAmt);
-                            } else if (id == "e_coupon") {
-                                $('form#enterprise input[name="coupon"]').val(code);
-                            }
-
-                            if (json.flag == "1") {
-                                $('form#paypal input[name="coupon"]').val(code);
-                            } else {
-                                (id == "p_coupon") ?
-                                        $('#wishfish-personal').hide() :
-                                        $('#wishfish-enterprise').hide();
-                            }
+                            captchaV = 1;
+                            $('#msgCaptcha').empty();
                         }
+                    } else {
+                        captchaV = 0;
                     }
                 });
-            }
-        });
-        var emailV = 1;
-        var captchaV = 1;
-        var sess_word = "<?= $this->session->userdata('captchaWord') ?>";
-        $('#forgotEmail').focusout(function () {
-            var email = $(this).val();
-            if (email.trim() != "") {
-                $.ajax({
-                    type: "POST",
-                    data: {email: email},
-                    url: "<?= base_url() ?>home/checkEmail",
-                    success: function (res) {
-                        if (res == 0) {
-                            emailV = 0;
-                            $('#msg').text('Your Email is not register!');
-                        }
-                        else {
-                            $('#msg').empty();
-                            emailV = 1;
-                        }
-                    }
-                });
-            } else {
-                emailV = 0;
-            }
-        });
-        $('#captcha_word').focusout(function () {
-            var word = $(this).val();
-            if (word.trim() != "") {
-                if (word != sess_word) {
-                    captchaV = 0;
-                    $('#msgCaptcha').text("Captcha Invalid..!");
-                } else {
-                    captchaV = 1;
-                    $('#msgCaptcha').empty();
-                }
-            } else {
-                captchaV = 0;
-            }
-        });
-        $('#send').click(function () {
-            var email = $('#forgotEmail').val();
-            if (emailV === 0 || captchaV === 0)
-                return false;
-            $('#refresh').trigger('click');
-            $('#loadSend').css('display', 'block');
-            $.ajax({
-                type: "POST",
-                data: {email: email},
-                url: "<?= base_url() ?>home/sendMail",
-                success: function (res) {
-                    $('#loadSend').css('display', 'none');
-                    if (res == 1) {
-                        $('#msgSend').css('color', 'green');
-                        $('#msgSend').text('Check your email to get your link..!');
-                    } else {
-                        $('#msgSend').css('color', 'red');
-                        $('#msgSend').text('Email sending failed..!Try Again!');
-                    }
-                    $('#forgotEmail').val("");
-                    $('#captcha_word').val("");
-                    setTimeout(function () {
-                        $('#msgSend').empty();
-                        $('.close').trigger('click');
-                    }, 1000);
-                }
-            });
-        });
-        $("#refresh").click(function () {
-            $(this).css('cursor', 'progress');
-            $.ajax({
-                type: "POST",
-                url: "<?= base_url() ?>home/captcha_refresh",
-                success: function (res) {
-                    $('#refresh').removeAttr('style');
-                    if (res) {
-                        sess_word = res;
-                        $("#captcha_img").html(res);
-                    }
-                }
-            });
-        });
-        $('a#log,a#reg').click(function () {
-            $("html, body").animate({scrollTop: 0}, 1000);
-            setTimeout(function () {
-                $('html, body').animate({scrollTop: 0}, 4000);
-            }, 4000);
-            $('.sign').css('display', 'block');
-            var id = $(this).attr('id');
-            if (id == "log") {
-                $('form.login').css('display', 'block');
-                $('form.registration').css('display', 'none');
-            } else if (id == "reg") {
-                $('form.login').css('display', 'none');
-                $('form.registration').css('display', 'block');
-            }
-        });
-        $('.pricing2 a').on('click', function () {
-            var id = $(this).prop('id');
-            switch (id) {
-                case "free":
-                    $('.social-register').css('display', 'block');
-                    break;
-                case "a_personal":
-                    $('#personal button').trigger('click');
-                    break;
-                case "a_enterprise":
-                    $('#enterprise button').trigger('click');
-                    break;
-                case "wishfish-personal":
-                case "wishfish-enterprise":
-                    var item_name = "";
-                    var amount = "";
-                    $(this).prop('disabled', 'disabled');
-                    if (id == "wishfish-personal") {
-                        item_name = "wishfish-personal";
-                        amount = "9.99";
-                    } else {
-                        item_name = "wishfish-enterprise";
-                        amount = "49.99";
-                    }
+                $('#send').click(function () {
+                    var email = $('#forgotEmail').val();
+                    if (emailV === 0 || captchaV === 0)
+                        return false;
+                    $('#refresh').trigger('click');
+                    $('#loadSend').css('display', 'block');
                     $.ajax({
-                        type: 'POST',
-                        url: "<?= site_url() ?>paypal",
-                        data: {item_name: item_name, amount: amount, code: couponCode},
-                        success: function (answer) {
-                            window.location = answer;
+                        type: "POST",
+                        data: {email: email},
+                        url: "<?= base_url() ?>home/sendMail",
+                        success: function (res) {
+                            $('#loadSend').css('display', 'none');
+                            if (res == 1) {
+                                $('#msgSend').css('color', 'green');
+                                $('#msgSend').text('Check your email to get your link..!');
+                            } else {
+                                $('#msgSend').css('color', 'red');
+                                $('#msgSend').text('Email sending failed..!Try Again!');
+                            }
+                            $('#forgotEmail').val("");
+                            $('#captcha_word').val("");
+                            setTimeout(function () {
+                                $('#msgSend').empty();
+                                $('.close').trigger('click');
+                            }, 1000);
                         }
                     });
-                    break;
-            }
-        });
-        $('a.cancel').click(function () {
-            $('.social-register').css('display', 'none');
-            $('.overlay').css('display', 'none');
-            $('.sign').css('display', 'none');
-        });
-    });</script>
+                });
+                $("#refresh").click(function () {
+                    $(this).css('cursor', 'progress');
+                    $.ajax({
+                        type: "POST",
+                        url: "<?= base_url() ?>home/captcha_refresh",
+                        success: function (res) {
+                            $('#refresh').removeAttr('style');
+                            if (res) {
+                                sess_word = res;
+                                $("#captcha_img").html(res);
+                            }
+                        }
+                    });
+                });
+                $('a#log,a#reg').click(function () {
+                    $("html, body").animate({scrollTop: 0}, 1000);
+                    setTimeout(function () {
+                        $('html, body').animate({scrollTop: 0}, 4000);
+                    }, 4000);
+                    $('.sign').css('display', 'block');
+                    var id = $(this).attr('id');
+                    if (id == "log") {
+                        $('form.login').css('display', 'block');
+                        $('form.registration').css('display', 'none');
+                    } else if (id == "reg") {
+                        $('form.login').css('display', 'none');
+                        $('form.registration').css('display', 'block');
+                    }
+                });
+                $('.pricing2 a').on('click', function () {
+                    var id = $(this).prop('id');
+                    switch (id) {
+                        case "free":
+                            $('.social-register').css('display', 'block');
+                            break;
+                        case "a_personal":
+                            $('#personal button').trigger('click');
+                            break;
+                        case "a_enterprise":
+                            $('#enterprise button').trigger('click');
+                            break;
+                        case "wishfish-personal":
+                        case "wishfish-enterprise":
+                            var item_name = "";
+                            var amount = "";
+                            $(this).prop('disabled', 'disabled');
+                            if (id == "wishfish-personal") {
+                                item_name = "wishfish-personal";
+                                amount = "9.99";
+                            } else {
+                                item_name = "wishfish-enterprise";
+                                amount = "49.99";
+                            }
+                            $.ajax({
+                                type: 'POST',
+                                url: "<?= site_url() ?>paypal",
+                                data: {item_name: item_name, amount: amount, code: couponCode},
+                                success: function (answer) {
+                                    window.location = answer;
+                                }
+                            });
+                            break;
+                    }
+                });
+                $('a.cancel').click(function () {
+                    $('.social-register').css('display', 'none');
+                    $('.overlay').css('display', 'none');
+                    $('.sign').css('display', 'none');
+                });
+            });</script>
 <script type="text/javascript">
 
     window.fbAsyncInit = function () {
