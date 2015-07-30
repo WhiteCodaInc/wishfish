@@ -447,7 +447,8 @@
             $('.personal .loading-img').show();
             if (!cardFlag) {
                 setTimeout(function () {
-                    $('#personal button').trigger('click');
+//                    $('#personal button').trigger('click');
+                    $('#cardPersonal').trigger('click');
                     $('#planUpgrade .box-body button').prop('disabled', false);
                     $('.personal .overlay').hide();
                     $('.personal .loading-img').hide();
@@ -481,7 +482,8 @@
             $('.enterprise .loading-img').show();
             if (!cardFlag) {
                 setTimeout(function () {
-                    $('#enterprise button').trigger('click');
+//                    $('#enterprise button').trigger('click');
+                    $('#cardEnterprise').trigger('click');
                     $('#planUpgrade .box-body button').prop('disabled', false);
                     $('.enterprise .overlay').hide();
                     $('.enterprise .loading-img').hide();
