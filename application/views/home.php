@@ -693,7 +693,7 @@
     </div>
 </section>
 
-<a href="#" id="card" class="create btn btn-info" style="" data-toggle="modal" data-target="#card-modal">
+<a href="#" id="card" class="create btn btn-info" style="display: none" data-toggle="modal" data-target="#card-modal">
     Pay
 </a>
 <!-------------------------------Card Detail Model------------------------------------>
