@@ -7,6 +7,13 @@
         right: 0px;
         font-size: 13px;
     }
+    a.button_strength1{
+        position: absolute;
+        padding: 0;
+        top: 40px;
+        left: 0px;
+        font-size: 13px;
+    }
 </style>
 <aside class="right-side">
     <!-- Content Header (Page header) -->
