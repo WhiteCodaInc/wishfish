@@ -354,12 +354,14 @@ class M_register extends CI_Model {
         $this->db->where($where);
         $this->db->where("(expiry_date IS NULL or expiry_date > '" . date('Y-m-d') . "')");
         $query = $this->db->get('coupons');
+        $res = $query->row();
+        $res->discAmt = $this->applyCoupon($res, $post);
         return ($query->num_rows()) ? $query->row() : FALSE;
     }
 
-    function updateCoupon($code) {
+    function updateCoupon($post) {
         $where = array(
-            'coupon_code' => $code
+            'coupon_code' => $post['code']
         );
         $query = $this->db->get_where('coupons', $where);
         $set = array(
@@ -367,6 +369,20 @@ class M_register extends CI_Model {
         );
         $this->db->update('coupons', $set, $where);
         return TRUE;
+    }
+
+    function applyCoupon($coupon, $post) {
+        if ($coupon->coupon_validity != '3') {
+            $amt = ($coupon->disc_type == "F") ?
+                    $post['amount'] - $coupon->disc_amount :
+                    $post['amount'] - ($post['amount'] * ($coupon->disc_amount / 100));
+            return number_format($amt, 2);
+        } else {
+            $amt = ($coupon->disc_type == "F") ?
+                    $post['amount'] - $coupon->disc_amount :
+                    $post['amount'] - ($post['amount'] * ($coupon->disc_amount / 100));
+            return number_format($amt, 2);
+        }
     }
 
 }

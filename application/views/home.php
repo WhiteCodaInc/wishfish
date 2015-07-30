@@ -698,6 +698,7 @@
     <input type="hidden" name="amount" value="">
     <input type="hidden" name="coupon" value="">
 </form>
+
 <form style="display: none" id="personal" action="<?= site_url() ?>stripe_payment/pay" method="post">
     <input type="hidden" name="plan" value="wishfish-personal"/>
     <input type="hidden" name="planid" value="2"/>
@@ -741,6 +742,7 @@
         $('button.apply').click(function () {
             var id = $(this).parents().eq(2).prop('id');
             console.log(id);
+            var amt = (id == "p_coupon") ? "9.99" : "49.99";
             var code = $('#' + id + ' .couponcode').val().trim();
             var rgex_code = /^[A-Za-z0-9]+$/;
             if (code != "" && !rgex_code.test(code)) {
@@ -752,7 +754,7 @@
                 $(this).next().show();
                 $.ajax({
                     type: 'POST',
-                    data: {code: code},
+                    data: {code: code, amount: amt},
                     url: "<?= site_url() ?>home/checkCoupon",
                     success: function (data, textStatus, jqXHR) {
                         if (data == "0") {
