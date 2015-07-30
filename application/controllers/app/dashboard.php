@@ -26,6 +26,7 @@ class Dashboard extends CI_Controller {
         $userid = $this->input->get('uid');
         $this->type = $this->input->get('type');
         $this->uid = ($userid != "") ? $this->encryption->decode($userid) : '';
+
         if ($this->session->userdata('d-userid')) {
             $this->duid = $this->session->userdata('d-userid');
         } else if ($this->input->cookie('d-userid')) {
@@ -68,7 +69,7 @@ class Dashboard extends CI_Controller {
                     if ($this->wi_authex->login($login)) {
                         header('location:' . site_url() . 'app/dashboard');
                     } else {
-                        header('location:' . site_url() . 'app/login');
+                        header('location:' . site_url() . 'login');
                     }
                 } else {
                     $data['userInfo'] = $userInfo;
