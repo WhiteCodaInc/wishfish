@@ -740,6 +740,7 @@
         });
         $('button.apply').click(function () {
             var id = $(this).parents().eq(2).prop('id');
+            console.log(id);
             var code = $('#' + id + ' .couponcode').val().trim();
             var rgex_code = /^[A-Za-z0-9]+$/;
             if (code != "" && !rgex_code.test(code)) {
