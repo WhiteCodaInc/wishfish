@@ -263,7 +263,7 @@ class M_register extends CI_Model {
                     foreach ($images as $image) {
 //                        $image->setAttribute('src', 'http://example.com/' . $image->getAttribute('src'));
                         echo $image->getAttribute('src') . '<br>';
-                        echo $image->getClass() . '<br>';
+                        echo $image->getAttribute('class') . '<br>';
                     }
                     die();
 
