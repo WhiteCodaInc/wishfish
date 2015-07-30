@@ -46,7 +46,7 @@ $img_src = ($avatar != "") ?
                 <?php if (isset($rule->calender) && $rule->calender): ?>
                     <li class="" id="2">
                         <a href="<?= site_url() ?>admin/calender">
-                            <i class="fa fa-th"></i> <span>Calender</span>
+                            <i class="fa fa-th"></i> <span>Calendar</span>
                         </a>
                     </li>
                 <?php endif; ?>

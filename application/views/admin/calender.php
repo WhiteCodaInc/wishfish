@@ -34,7 +34,6 @@
     <section class="content-header">
         <h1 style="display: none">
             Calendar
-            <small>Control panel</small>
         </h1>
         <button disabled=""  class="btn btn-success btn-sm create" id="popup" data-toggle="modal" data-target="#compose-modal">
             <i class="fa fa-plus"></i>
