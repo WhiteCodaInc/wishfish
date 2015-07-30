@@ -29,6 +29,11 @@ class Stripe_payment extends CI_Controller {
         $success = 0;
         $flag = TRUE;
         $set = $this->input->post();
+
+        echo '<pre>';
+        print_r($set);
+        die();
+
         if ($set['coupon'] != "") {
             $flag = ($this->objregister->checkCoupon($set['coupon'])) ? TRUE : FALSE;
         }
