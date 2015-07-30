@@ -703,8 +703,8 @@
             <form id="cardForm" role="form" action="<?= site_url() ?>stripe_payment/pay"  method="post">
                 <div class="modal-header" style="text-align: center">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title"></h4>
-                    <h6 class="modal-descritpion"></h6>
+                    <h4 class="modal-title"></h4><br>
+                    <span class="modal-descritpion"></span>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
