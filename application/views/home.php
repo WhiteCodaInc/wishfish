@@ -738,8 +738,8 @@
                         <button style="width: 50%" id="pay" type="submit" class="btn btn-success btn-lg">Pay</button>
                     </div>
                 </div>
-                <input type="hidden" name="plan" value="wishfish-personal"/>
-                <input type="hidden" name="planid" value="2"/>
+                <input type="hidden" name="plan" value=""/>
+                <input type="hidden" name="planid" value=""/>
                 <input type="hidden" name="coupon" value=""/>
             </form>
         </div><!-- /.modal-content -->
@@ -891,12 +891,9 @@
                                     $('#' + id + ' div.couponbox').hide();
                                     $('#' + id + ' p.success').html("Coupon <b style='color:#1ac6ff'>" + code + "</b> was apply successfully..!");
                                     $('#' + id + ' p.success').show();
-                                    if (id == "p_coupon") {
-                                        $('form#personal input[name="coupon"]').val(code);
-                                        $('form#personal').find('script').attr('data-name', '$' + json.discAmt);
-                                    } else if (id == "e_coupon") {
-                                        $('form#enterprise input[name="coupon"]').val(code);
-                                    }
+
+                                    $('#cardForm .modal-title').text("$" + json.discAmt);
+                                    $('#cardForm input[name="coupon"]').val(code);
 
                                     if (json.flag == "1") {
                                         $('form#paypal input[name="coupon"]').val(code);
@@ -1019,12 +1016,17 @@
                             $('.social-register').css('display', 'block');
                             break;
                         case "a_personal":
+                            $('#cardForm input[name="plan"]').val("wishfish-personal");
+                            $('#cardForm input[name="planid"]').val("2");
                             $('#cardForm .modal-title').text("$9.99");
                             $('#cardForm .modal-descritpion').text("1-month of wish-fish Personal");
+
 //                            $('#personal button').trigger('click');
                             $('#card').trigger('click');
                             break;
                         case "a_enterprise":
+                            $('#cardForm input[name="plan"]').val("wishfish-enterprise");
+                            $('#cardForm input[name="planid"]').val("3");
                             $('#cardForm .modal-title').text("$49.99");
                             $('#cardForm .modal-descritpion').text("1-month of wish-fish Enterprise");
 //                            $('#enterprise button').trigger('click');
