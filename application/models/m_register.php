@@ -238,9 +238,6 @@ class M_register extends CI_Model {
     }
 
     function linkWithProfile($post) {
-        echo '<pre>';
-        print_r($this->session->all_userdata());
-        die();
         $email = (is_array($post)) ? $post['email'] : $post;
         $query = $this->db->get_where('wi_user_mst', array('email' => $email));
         $res = $query->row();
