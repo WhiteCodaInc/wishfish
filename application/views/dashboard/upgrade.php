@@ -113,7 +113,7 @@
                             <form id="personalCardForm" role="form" action="<?= site_url() ?>stripe_payment/pay"  method="post">
                                 <div class="modal-header" style="text-align: center">
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                    <h4 class="modal-title">$9.99</h4><br>
+                                    <h2 class="modal-title">$9.99</h2>
                                     <span class="modal-descritpion">1-month of wish-fish Personal</span>
                                 </div>
                                 <div class="modal-body">
@@ -133,7 +133,7 @@
                                                     <div class="col-md-5" style="padding-right: 0">
                                                         <input value=""  data-stripe="exp-month" maxlength="2" type="text" class="month form-control" placeholder="MM" required=""/>
                                                     </div>
-                                                    <div class="col-md-1" style="font-size: 35px;padding-left: 5px;">/</div>
+                                                    <div class="col-md-1" style="font-size: 25px;padding-left: 10px;">/</div>
                                                     <div class="col-md-5" style="padding-left: 0">
                                                         <input value="" data-stripe="exp-year" type="text" maxlength="4" class="year form-control" placeholder="YYYY" required="" />
                                                     </div>
@@ -168,7 +168,7 @@
                             <form id="enterpriseCardForm" role="form" action="<?= site_url() ?>stripe_payment/pay"  method="post">
                                 <div class="modal-header" style="text-align: center">
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                    <h4 class="modal-title">$49.99</h4><br>
+                                    <h2 class="modal-title">$49.99</h2>
                                     <span class="modal-descritpion">1-month of wish-fish Personal</span>
                                 </div>
                                 <div class="modal-body">
@@ -188,7 +188,7 @@
                                                     <div class="col-md-5" style="padding-right: 0">
                                                         <input value=""  data-stripe="exp-month" maxlength="2" type="text" class="month form-control" placeholder="MM" required=""/>
                                                     </div>
-                                                    <div class="col-md-1" style="font-size: 35px;padding-left: 5px;">/</div>
+                                                    <div class="col-md-1" style="font-size: 25px;padding-left: 10px;">/</div>
                                                     <div class="col-md-5" style="padding-left: 0">
                                                         <input value="" data-stripe="exp-year" type="text" maxlength="4" class="year form-control" placeholder="YYYY" required="" />
                                                     </div>
