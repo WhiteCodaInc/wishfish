@@ -41,16 +41,26 @@ class Scrape extends CI_Controller {
     }
 
     function facebook() {
+        $src = "";
         $base_url = "https://www.facebook.com/";
         $uid = $this->input->post('userid');
         $html = $this->curl_file_get_contents($base_url . $uid);
 
+        $page = str_replace(array('<!--', '-->'), '', $html);
         $dom = new DOMDocument();
-        @$dom->loadHTML($html, 0);
+        @$dom->loadHTML($page, 0);
+
+        $images = $dom->getElementsByTagName('img');
+        foreach ($images as $image) {
+            if ($image->getAttribute('class') == "profilePic img") {
+                $src = $image->getAttribute('src');
+            }
+        }
         $nodes = $dom->getElementsByTagName('title');
         $name = explode('|', $nodes->item(0)->nodeValue);
+
         if (isset($name[0]) && $name[0] != "Page Not Found") {
-            $data['profile'] = "https://graph.facebook.com/{$uid}/picture?width=215&height=215";
+            $data['profile'] = $src;
             $data['name'] = $name[0];
             echo json_encode($data);
         } else {

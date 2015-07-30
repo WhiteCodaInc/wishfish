@@ -249,18 +249,20 @@ class M_register extends CI_Model {
                     $src = "";
                     $base_url = "https://www.facebook.com/";
                     $html = $this->curl_file_get_contents($base_url . $profile_link);
+
                     $page = str_replace(array('<!--', '-->'), '', $html);
                     $dom = new DOMDocument();
                     @$dom->loadHTML($page, 0);
 
-                    $nodes = $dom->getElementsByTagName('title');
                     $images = $dom->getElementsByTagName('img');
                     foreach ($images as $image) {
                         if ($image->getAttribute('class') == "profilePic img") {
                             $src = $image->getAttribute('src');
                         }
                     }
+                    $nodes = $dom->getElementsByTagName('title');
                     $name = explode('|', $nodes->item(0)->nodeValue);
+
                     if (isset($name[0]) && $name[0] != "Page Not Found") {
                         copy($src, FCPATH . "user.jpg");
                         $this->updateProfile($res, $name[0]);
@@ -268,16 +270,6 @@ class M_register extends CI_Model {
                     } else {
                         return false;
                     }
-//                    $base_url = "http://graph.facebook.com/";
-//                    $url = $base_url . $profile_link;
-//                    $data = json_decode($this->curl_file_get_contents($url));
-//                    if (!isset($data->error)) {
-//                        copy("{$url}/picture?width=215&height=215", FCPATH . "user.jpg");
-//                        $this->updateProfile($res, $data->name);
-//                        return true;
-//                    } else {
-//                        return false;
-//                    }
                     break;
                 case "linkedin":
                     $html = @file_get_html($profile_link);
