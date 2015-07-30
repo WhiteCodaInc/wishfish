@@ -752,10 +752,6 @@
                         </div>
                     </div>
                 </div>
-                <input type="hidden" name="userid" value="<?= $customer->user_id ?>" />
-                <?php if (!$card): ?>
-                    <input type="hidden" name="isNew" value="1" />
-                <?php endif; ?>
             </form>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
