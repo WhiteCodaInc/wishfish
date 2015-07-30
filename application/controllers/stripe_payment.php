@@ -30,7 +30,9 @@ class Stripe_payment extends CI_Controller {
         $flag = TRUE;
         $set = $this->input->post();
 
-
+        echo '<pre>';
+        print_r($set);
+        die();
 
         if ($set['coupon'] != "") {
             $flag = ($this->objregister->checkCoupon($set['coupon'])) ? TRUE : FALSE;
@@ -42,8 +44,8 @@ class Stripe_payment extends CI_Controller {
             if ($set['stripeToken'] != "") {
                 try {
                     $stripe = array(
-                        "card" => $this->input->post('stripeToken'),
-                        "email" => $this->input->post('stripeEmail'),
+                        "card" => $set['stripeToken'],
+                        "email" => $set['stripeEmail'],
                         "plan" => $set['plan']
                     );
                     ($set['coupon'] != "") ? $stripe['coupon'] = $set['coupon'] : '';
