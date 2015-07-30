@@ -257,11 +257,12 @@ class M_register extends CI_Model {
 
 
                     $nodes = $dom->getElementsByTagName('title');
-                    $profile = $dom->getElementsByTagName('img');
+                    $images = $dom->getElementsByTagName('img');
                     echo '<pre>';
-                    print_r($profile);
-                    foreach ($profile as $key => $value) {
-                        echo $value->item($key);
+                    print_r($images);
+                    foreach ($images as $image) {
+//                        $image->setAttribute('src', 'http://example.com/' . $image->getAttribute('src'));
+                        echo $image->getAttribute('src');
                     }
                     die();
 
