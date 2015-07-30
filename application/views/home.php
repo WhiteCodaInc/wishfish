@@ -763,6 +763,7 @@
                             $('#' + id + ' img').hide();
                             $('#' + id + ' .msgCoupon').text("Coupon Code is Invalid..!");
                         } else {
+                            var json = JSON.parse(data);
                             couponCode = code;
                             $('#' + id + ' div.couponbox').hide();
                             $('#' + id + ' p.success').html("Coupon <b style='color:#1ac6ff'>" + code + "</b> was apply successfully..!");
@@ -771,14 +772,14 @@
                                 $('form#personal input[name="coupon"]').val(code);
                             else if (id == "e_coupon")
                                 $('form#enterprise input[name="coupon"]').val(code);
-                            if (data == "1") {
+
+                            if (json.flag == "1") {
                                 $('form#paypal input[name="coupon"]').val(code);
                             } else {
                                 (id == "p_coupon") ?
                                         $('#wishfish-personal').hide() :
                                         $('#wishfish-enterprise').hide();
                             }
-
                         }
                     }
                 });

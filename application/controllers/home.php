@@ -64,10 +64,16 @@ class Home extends CI_Controller {
         $coupon = $this->objregister->checkCoupon($post);
         if (!$coupon) {
             echo 0;
-        } else if ($coupon->disc_type == "P" && $coupon->disc_amount == 100.00) {
-            echo 2;
         } else {
-            echo $coupon->discAmt;
+            if ($coupon->disc_type == "P" && $coupon->disc_amount == 100.00) {
+                $data['flag'] = 2;
+                $data['discAmt'] = $coupon->discAmt;
+                echo json_encode($data);
+            } else {
+                $data['flag'] = 1;
+                $data['discAmt'] = $coupon->discAmt;
+                echo json_encode($data);
+            }
         }
     }
 
