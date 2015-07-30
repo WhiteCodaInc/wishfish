@@ -66,8 +66,6 @@ class Dashboard extends CI_Controller {
                     $login = array(
                         'email' => $userInfo->email
                     );
-                    print_r($login);
-                    die();
                     if ($this->wi_authex->login($login)) {
                         header('location:' . site_url() . 'app/dashboard');
                     } else {
