@@ -110,17 +110,13 @@
                 <div class="modal fade" id="personal-card-modal" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog" style="max-width: 425px">
                         <div class="modal-content">
-                            <form id="personalCardForm" role="form" action="<?= site_url() ?>stripe_payment/pay"  method="post">
+                            <form id="personalCardForm" role="form" action="<?= site_url() ?>app/upgrade/pay"  method="post">
                                 <div class="modal-header" style="text-align: center">
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                     <h2 class="modal-title">$9.99</h2>
                                     <span class="modal-descritpion">1-month of wish-fish Personal</span>
                                 </div>
                                 <div class="modal-body">
-                                    <div class="form-group">
-                                        <label>Email</label>
-                                        <input  type="email" name="stripeEmail" class="form-control" placeholder="Email" required=""/>
-                                    </div>
                                     <div class="form-group">
                                         <label>Credit Card Number </label>
                                         <input data-stripe="number" value=""  type="text" maxlength="16" class="card_number form-control" placeholder="Card Number" required=""/>
@@ -165,17 +161,13 @@
                 <div class="modal fade" id="enterprise-card-modal" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog" style="max-width: 425px">
                         <div class="modal-content">
-                            <form id="enterpriseCardForm" role="form" action="<?= site_url() ?>stripe_payment/pay"  method="post">
+                            <form id="enterpriseCardForm" role="form" action="<?= site_url() ?>app/upgrade/pay"  method="post">
                                 <div class="modal-header" style="text-align: center">
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                     <h2 class="modal-title">$49.99</h2>
                                     <span class="modal-descritpion">1-month of wish-fish Personal</span>
                                 </div>
                                 <div class="modal-body">
-                                    <div class="form-group">
-                                        <label>Email</label>
-                                        <input  type="email" name="stripeEmail" class="form-control" placeholder="Email" required=""/>
-                                    </div>
                                     <div class="form-group">
                                         <label>Credit Card Number </label>
                                         <input data-stripe="number" value=""  type="text" maxlength="16" class="card_number form-control" placeholder="Card Number" required=""/>

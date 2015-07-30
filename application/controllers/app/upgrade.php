@@ -60,7 +60,7 @@ class Upgrade extends CI_Controller {
             $gatewayInfo = $this->wi_common->getPaymentGatewayInfo("STRIPE");
             require_once(FCPATH . 'stripe/lib/Stripe.php');
             Stripe::setApiKey($gatewayInfo->secret_key);
-            if ($this->input->post('stripeToken') != "") {
+            if ($set['stripeToken'] != "") {
                 try {
                     $userInfo = $this->wi_common->getUserInfo($this->userid);
                     $customer = Stripe_Customer::retrieve($userInfo->customer_id);
