@@ -3,16 +3,12 @@
 <style type="text/css">
     .strength_meter div p {
         position: absolute;
-        top: 40px;
+        top: 34px;
         right: 0px;
         font-size: 13px;
     }
     a.button_strength{
-        position: absolute;
         padding: 0;
-        top: 40px;
-        left: 0px;
-        font-size: 13px;
     }
 </style>
 <aside class="right-side">
