@@ -7,7 +7,7 @@
         right: 0px;
         font-size: 13px;
     }
-    a.button_strength1{
+    a.button_strength{
         position: absolute;
         padding: 0;
         top: 40px;
