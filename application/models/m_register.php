@@ -246,32 +246,23 @@ class M_register extends CI_Model {
         if ($profile_type != "" && $profile_link != "") {
             switch ($profile_type) {
                 case "facebook":
+                    $src = "";
                     $base_url = "https://www.facebook.com/";
                     $html = $this->curl_file_get_contents($base_url . $profile_link);
                     $page = str_replace(array('<!--', '-->'), '', $html);
-                    echo $page;
-//                    die();
                     $dom = new DOMDocument();
                     @$dom->loadHTML($page, 0);
 
-
-
                     $nodes = $dom->getElementsByTagName('title');
                     $images = $dom->getElementsByTagName('img');
-                    echo '<pre>';
-                    print_r($images);
                     foreach ($images as $image) {
-//                        $image->setAttribute('src', 'http://example.com/' . $image->getAttribute('src'));
-                        echo $image->getAttribute('src') . '<br>';
-                        echo $image->getAttribute('class') . '<br>';
+                        if ($image->getAttribute('class') == "profilePic img") {
+                            $src = $image->getAttribute('src');
+                        }
                     }
-                    die();
-
                     $name = explode('|', $nodes->item(0)->nodeValue);
-                    print_r($name);
-                    die();
                     if (isset($name[0]) && $name[0] != "Page Not Found") {
-                        copy("https://graph.facebook.com/{$profile_link}/picture?width=215&height=215", FCPATH . "user.jpg");
+                        copy($src, FCPATH . "user.jpg");
                         $this->updateProfile($res, $name[0]);
                         return true;
                     } else {
