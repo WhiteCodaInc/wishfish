@@ -110,8 +110,14 @@
             thisid = this.$elem.attr('id');
             var thisval = this.$elem.val();
 
-            this.$elem.addClass(this.options.strengthClass).attr('data-password', thisid).after('<input style="display:none" class="form-control ' + this.options.strengthClass + '" data-password="' + thisid + '" type="text" name="" value="' + thisval + '"><div class="' + this.options.strengthMeterClass + '"><div data-meter="' + thisid + '"><p></p></div></div>');
-            $('button[type="submit"]').after('<a data-password-button="' + thisid + '" href="" class="' + this.options.strengthButtonClass + '">' + this.options.strengthButtonText + '</a><br>');
+
+            if ($('#passForm button[type="submit"]').length > 0) {
+                this.$elem.addClass(this.options.strengthClass).attr('data-password', thisid).after('<input style="display:none" class="form-control ' + this.options.strengthClass + '" data-password="' + thisid + '" type="text" name="" value="' + thisval + '"><div class="' + this.options.strengthMeterClass + '"><div data-meter="' + thisid + '"><p></p></div></div>');
+                $('#passForm button[type="submit"]').after('<a data-password-button="' + thisid + '" href="" class="' + this.options.strengthButtonClass + '">' + this.options.strengthButtonText + '</a><br>');
+            } else {
+                this.$elem.addClass(this.options.strengthClass).attr('data-password', thisid).after('<input style="display:none" class="' + this.options.strengthClass + '" data-password="' + thisid + '" type="text" name="" value=""><a data-password-button="' + thisid + '" href="" class="' + this.options.strengthButtonClass + '">' + this.options.strengthButtonText + '</a><div class="' + this.options.strengthMeterClass + '"><div data-meter="' + thisid + '">Strength</div></div>');
+            }
+
             this.$elem.bind('keyup keydown', function (event) {
                 thisval = $('#' + thisid).val();
                 $('input[type="text"][data-password="' + thisid + '"]').val(thisval);

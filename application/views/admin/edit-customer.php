@@ -1,5 +1,13 @@
 <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/password/strength.css"/>
 <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/dashboard/css/checkbox.css"/>
+<style type="text/css">
+    .strength_meter div p {
+        position: absolute;
+        top: 40px;
+        right: 0px;
+        font-size: 13px;
+    }
+</style>
 <aside class="right-side">
     <!-- Content Header (Page header) -->
     <section class="content-header">
