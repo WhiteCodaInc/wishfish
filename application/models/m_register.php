@@ -345,9 +345,9 @@ class M_register extends CI_Model {
         return $contents;
     }
 
-    function checkCoupon($code) {
+    function checkCoupon($post) {
         $where = array(
-            'coupon_code' => $code,
+            'coupon_code' => $post['code'],
             'status' => 1,
             'no_of_use >' => 0
         );
@@ -359,9 +359,9 @@ class M_register extends CI_Model {
         return ($query->num_rows()) ? $query->row() : FALSE;
     }
 
-    function updateCoupon($post) {
+    function updateCoupon($code) {
         $where = array(
-            'coupon_code' => $post['code']
+            'coupon_code' => $code
         );
         $query = $this->db->get_where('coupons', $where);
         $set = array(
