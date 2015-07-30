@@ -770,9 +770,7 @@
                             $('#' + id + ' p.success').show();
                             if (id == "p_coupon") {
                                 $('form#personal input[name="coupon"]').val(code);
-                                var _html = $('form#personal');
-                                var planAmt = _html.find('script').prop('data-name');
-                                console.log(planAmt);
+                                $('form#personal').find('script').attr('data-name', '$' + json.discAmt);
                             } else if (id == "e_coupon") {
                                 $('form#enterprise input[name="coupon"]').val(code);
                             }
