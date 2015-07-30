@@ -253,10 +253,16 @@ class M_register extends CI_Model {
 //                    die();
                     $dom = new DOMDocument();
                     @$dom->loadHTML($page, 0);
+
+
+
                     $nodes = $dom->getElementsByTagName('title');
                     $profile = $dom->getElementsByTagName('img');
                     echo '<pre>';
                     print_r($profile);
+                    foreach ($profile as $key => $value) {
+                        echo $value->item($key);
+                    }
                     die();
 
                     $name = explode('|', $nodes->item(0)->nodeValue);
