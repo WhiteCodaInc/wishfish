@@ -693,18 +693,21 @@
     </div>
 </section>
 
-<a href="#" id="card" class="create btn btn-info" style="display: none" data-toggle="modal" data-target="#card-modal">
+<a href="#" id="cardPersonal" class="create btn btn-info" style="display: none" data-toggle="modal" data-target="#personal-card-modal">
     Pay
 </a>
-<!-------------------------------Card Detail Model------------------------------------>
-<div class="modal fade" id="card-modal" tabindex="-1" role="dialog" aria-hidden="true">
+<a href="#" id="cardEnterprise" class="create btn btn-info" style="display: none" data-toggle="modal" data-target="#enterprise-card-modal">
+    Pay
+</a>
+<!-------------------------------Personal Card Detail Model------------------------------------>
+<div class="modal fade" id="personal-card-modal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" style="max-width: 425px">
         <div class="modal-content">
-            <form id="cardForm" role="form" action="<?= site_url() ?>stripe_payment/pay"  method="post">
+            <form id="personalCardForm" role="form" action="<?= site_url() ?>stripe_payment/pay"  method="post">
                 <div class="modal-header" style="text-align: center">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title"></h4><br>
-                    <span class="modal-descritpion"></span>
+                    <h4 class="modal-title">$9.99</h4><br>
+                    <span class="modal-descritpion">1-month of wish-fish Personal</span>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
@@ -735,11 +738,62 @@
                         <span style="color: red;display: none" id="msgCard"></span>
                     </div>
                     <div class="form-group" style="text-align: center">
-                        <button style="width: 50%" id="pay" type="submit" class="btn btn-success btn-lg">Pay</button>
+                        <button style="width: 50%" id="payPersonal" type="submit" class="btn btn-success btn-lg">Pay</button>
                     </div>
                 </div>
-                <input type="hidden" name="plan" value=""/>
-                <input type="hidden" name="planid" value=""/>
+                <input type="hidden" name="plan" value="wishfish-personal"/>
+                <input type="hidden" name="planid" value="2"/>
+                <input type="hidden" name="coupon" value=""/>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<!------------------------------------------------------------------------>
+
+<!-------------------------------Enterprise Card Detail Model------------------------------------>
+<div class="modal fade" id="enterprise-card-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" style="max-width: 425px">
+        <div class="modal-content">
+            <form id="enterpriseCardForm" role="form" action="<?= site_url() ?>stripe_payment/pay"  method="post">
+                <div class="modal-header" style="text-align: center">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">$49.99</h4><br>
+                    <span class="modal-descritpion">1-month of wish-fish Personal</span>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Credit Card Number </label>
+                        <input data-stripe="number" value=""  type="text" maxlength="16" class="card_number form-control" placeholder="Card Number" required=""/>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Expiration (MM/YYYY)</label>
+                                <div class="row">
+                                    <div class="col-md-5" style="padding-right: 0">
+                                        <input value=""  data-stripe="exp-month" maxlength="2" type="text" class="month form-control" placeholder="MM" required=""/>
+                                    </div>
+                                    <div class="col-md-1" style="font-size: 35px;padding-left: 5px;">/</div>
+                                    <div class="col-md-5" style="padding-left: 0">
+                                        <input value="" data-stripe="exp-year" type="text" maxlength="4" class="year form-control" placeholder="YYYY" required="" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label>CVC</label>
+                                <input maxlength="3" type="password" class="cvc form-control" required=""/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" style="text-align: center">
+                        <span style="color: red;display: none" id="msgCard"></span>
+                    </div>
+                    <div class="form-group" style="text-align: center">
+                        <button style="width: 50%" id="payEnterprise" type="submit" class="btn btn-success btn-lg">Pay</button>
+                    </div>
+                </div>
+                <input type="hidden" name="plan" value="wishfish-enterprise"/>
+                <input type="hidden" name="planid" value="3"/>
                 <input type="hidden" name="coupon" value=""/>
             </form>
         </div><!-- /.modal-content -->
@@ -788,10 +842,15 @@
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 
 <script type="text/javascript">
+
             $(function () {
+                var formType = "";
                 Stripe.setPublishableKey('<?= $stripe->publish_key ?>');
-                $('#cardForm').on('submit', function () {
-                    $('#pay').prop('disabled', true);
+                $('#personalCardForm,#enterpriseCardForm').on('submit', function () {
+                    formType = $(this).prop('id');
+                    (formType == "personalCardForm") ?
+                            $('#payPersonal').prop('disabled', true) :
+                            $('#payEnterprise').prop('disabled', true);
                     var error = false;
                     var ccNum = $(this).find('.card_number').val(),
                             cvcNum = $(this).find('.cvc').val(),
@@ -801,31 +860,37 @@
                     // Validate the number:
                     if (!Stripe.card.validateCardNumber(ccNum)) {
                         error = true;
-                        $('#msgCard').text('The credit card number appears to be invalid.');
-                        $('#msgCard').show();
-                        $('#pay').prop('disabled', false);
+                        $('#' + formType + ' #msgCard').text('The credit card number appears to be invalid.');
+                        $('#' + formType + ' #msgCard').show();
+                        (formType == "personalCardForm") ?
+                                $('#payPersonal').prop('disabled', false) :
+                                $('#payEnterprise').prop('disabled', false);
                         return false;
                     }
                     // Validate the CVC:
                     if (!Stripe.card.validateCVC(cvcNum)) {
                         error = true;
-                        $('#msgCard').text('The CVC number appears to be invalid.');
-                        $('#msgCard').show();
-                        $('#pay').prop('disabled', false);
+                        $('#' + formType + ' #msgCard').text('The CVC number appears to be invalid.');
+                        $('#' + formType + ' #msgCard').show();
+                        (formType == "personalCardForm") ?
+                                $('#payPersonal').prop('disabled', false) :
+                                $('#payEnterprise').prop('disabled', false);
                         return false;
                     }
                     // Validate the expiration:
                     if (!Stripe.card.validateExpiry(expMonth, expYear)) {
                         error = true;
-                        $('#msgCard').text('The expiration date appears to be invalid.');
-                        $('#msgCard').show();
-                        $('#pay').prop('disabled', false);
+                        $('#' + formType + ' #msgCard').text('The expiration date appears to be invalid.');
+                        $('#' + formType + ' #msgCard').show();
+                        (formType == "personalCardForm") ?
+                                $('#payPersonal').prop('disabled', false) :
+                                $('#payEnterprise').prop('disabled', false);
                         return false;
                     }
                     // Check for errors:
                     if (!error) {
                         // Get the Stripe token:
-                        $('#msgCard').hide();
+                        $('#' + formType + ' #msgCard').hide();
                         Stripe.card.createToken({
                             number: ccNum,
                             cvc: cvcNum,
@@ -834,18 +899,21 @@
                         }, stripeResponseHandler);
                         return false;
                     } else {
-                        $('#msgCard').show();
+                        $('#' + formType + ' #msgCard').show();
                         return false;
                     }
                     return false;
                 });
+
                 function stripeResponseHandler(status, response) {
                     if (response.error) {
                         reportError(response.error.message);
                     } else { // No errors, submit the form:
-                        var f = $('#cardForm');
+                        var f = $('#' + formType);
                         var token = response['id'];
+                        // Insert the token into the form so it gets submitted to the server
                         f.append("<input type='hidden' name='stripeToken' value='" + token + "' />");
+                        // Submit the form:
                         f.get(0).submit();
                     }
                 }
@@ -892,8 +960,12 @@
                                     $('#' + id + ' p.success').html("Coupon <b style='color:#1ac6ff'>" + code + "</b> was apply successfully..!");
                                     $('#' + id + ' p.success').show();
 
-                                    $('#cardForm .modal-title').text("$");
-                                    $('#cardForm input[name="coupon"]').val(code);
+                                    (id == "p_coupon") ?
+                                            $('#personalCardForm .modal-title').text("$" + json.discAmt) :
+                                            $('#enterpriseCardForm .modal-title').text("$" + json.discAmt);
+                                    (id == "p_coupon") ?
+                                            $('#personalCardForm input[name="coupon"]').val(code) :
+                                            $('#enterpriseCardForm input[name="coupon"]').val(code);
 
                                     if (json.flag == "1") {
                                         $('form#paypal input[name="coupon"]').val(code);
@@ -1016,21 +1088,12 @@
                             $('.social-register').css('display', 'block');
                             break;
                         case "a_personal":
-                            $('#cardForm input[name="plan"]').val("wishfish-personal");
-                            $('#cardForm input[name="planid"]').val("2");
-                            $('#cardForm .modal-title').text("$9.99");
-                            $('#cardForm .modal-descritpion').text("1-month of wish-fish Personal");
-
 //                            $('#personal button').trigger('click');
-                            $('#card').trigger('click');
+                            $('#cardPersonal').trigger('click');
                             break;
                         case "a_enterprise":
-                            $('#cardForm input[name="plan"]').val("wishfish-enterprise");
-                            $('#cardForm input[name="planid"]').val("3");
-                            $('#cardForm .modal-title').text("$49.99");
-                            $('#cardForm .modal-descritpion').text("1-month of wish-fish Enterprise");
 //                            $('#enterprise button').trigger('click');
-                            $('#card').trigger('click');
+                            $('#cardEnterprise').trigger('click');
                             break;
                         case "wishfish-personal":
                         case "wishfish-enterprise":
