@@ -892,7 +892,7 @@
                                     $('#' + id + ' p.success').html("Coupon <b style='color:#1ac6ff'>" + code + "</b> was apply successfully..!");
                                     $('#' + id + ' p.success').show();
 
-                                    $('#cardForm .modal-title').text("$" + json.discAmt);
+                                    $('#cardForm .modal-title').text("$");
                                     $('#cardForm input[name="coupon"]').val(code);
 
                                     if (json.flag == "1") {
