@@ -248,12 +248,17 @@ class M_register extends CI_Model {
                 case "facebook":
                     $base_url = "https://www.facebook.com/";
                     $html = $this->curl_file_get_contents($base_url . $profile_link);
-                    echo str_replace(array('<!--', '-->'), '', $html);
+                    $page = str_replace(array('<!--', '-->'), '', $html);
 //                    echo $html;
-                    die();
+//                    die();
                     $dom = new DOMDocument();
-                    @$dom->loadHTML($html, 0);
+                    @$dom->loadHTML($page, 0);
                     $nodes = $dom->getElementsByTagName('title');
+                    $profile = $dom->getElementsByTagName('img');
+                    echo '<pre>';
+                    print_r($profile);
+                    die();
+
                     $name = explode('|', $nodes->item(0)->nodeValue);
                     print_r($name);
                     die();
