@@ -105,15 +105,26 @@ class Login extends CI_Controller {
                 } else if (!$user) {
                     header('location: ' . site_url() . 'login?signup=google&msg=NR');
                 } else {
-                    $this->objregister->linkWithProfile($data['email']);
-                    $is_login = array(
-                        'name' => 'isLogin',
-                        'value' => $data['id'],
-                        'expire' => time() + 86500,
-                        'domain' => '.wish-fish.com'
-                    );
-                    $this->input->set_cookie($is_login);
-                    header('location:' . site_url() . 'app/dashboard');
+                    switch ($user) {
+                        case "LN":
+                            header('location: ' . site_url() . 'login?&msg=LN');
+                            break;
+                        case "LG":
+                            $this->objregister->linkWithProfile($data['email']);
+                            $is_login = array(
+                                'name' => 'isLogin',
+                                'value' => $data['id'],
+                                'expire' => time() + 86500,
+                                'domain' => '.wish-fish.com'
+                            );
+                            $this->input->set_cookie($is_login);
+                            header('location:' . site_url() . 'app/dashboard');
+
+                            break;
+                        case "LF":
+                            header('location: ' . site_url() . 'login?&msg=LF');
+                            break;
+                    }
                 }
             } else {
                 header('Location: ' . site_url() . 'login');
