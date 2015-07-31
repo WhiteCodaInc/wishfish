@@ -137,7 +137,7 @@ class M_dashboard extends CI_Model {
             'email' => $email,
             'query' => $post['query']
         );
-        ($post['country'] != "" && $post['country'] != "-1") ?
+        (isset($post['country']) && $post['country'] != "" && $post['country'] != "-1") ?
                         $set['country'] = $post['country'] : "";
         $this->db->insert('feedback', $set);
         return true;
