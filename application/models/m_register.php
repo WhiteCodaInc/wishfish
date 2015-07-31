@@ -132,7 +132,9 @@ class M_register extends CI_Model {
         } else {
             if ($res->status) {
                 if ($res->join_type == $type) {
-                    return ($type == "google") ? "LG" : "LF";
+                    return ($type == "google") ?
+                            (($res->status) ? "LG" : -1) :
+                            (($res->status) ? "LF" : -1);
                 } else if ($res->join_type == NULL) {
                     return "LN";
                 } else if ($res->join_type == "google") {
