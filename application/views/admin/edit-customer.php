@@ -188,7 +188,7 @@
 <?php endif; ?>
 
         $('#addCustomer').click(function () {
-            if (!$('input[name="password"]').prop('readonly')) {
+            if (!$('input[name="password"]').prop('disabled')) {
                 return false;
             } else {
                 var passwd = $('input[name="password"]').val();
