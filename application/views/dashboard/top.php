@@ -140,7 +140,11 @@ $userid = $this->session->userdata('u_userid');
                         ?>
                         <li style="margin: 13px 30px;color: white;">
                             <span style="font-size: 17px">
-                                Days Left on Trial: <?= $this->wi_common->getDateDiff($currPlan) ?>
+                                <?php if ($currPlan->is_lifetime): ?>
+                                    Free Lifetime Access
+                                <?php else: ?>
+                                    Days Left on Trial: <?= $this->wi_common->getDateDiff($currPlan) ?>
+                                <?php endif; ?>
                             </span>
                         </li>
                     <?php } ?>
