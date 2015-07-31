@@ -48,7 +48,7 @@
                                 <div class="col-md-2"></div>
                             </div>
                             <div style="display: none;margin-top: 10px" class="alert alert-danger alert-dismissable">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <!--<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>-->
                                 <span class="errorMsg"></span> 
                             </div>
                         </form>
