@@ -195,8 +195,12 @@ class Common {
         }
     }
 
-    function setToken($user) {
-
+    function setToken($user, $userType = NULL) {
+        if ($userType != NULL) {
+            $name = explode(' ', $user->name);
+            $user->fname = (isset($name[0])) ? $name[0] : "";
+            $user->lname = (isset($name[1])) ? $name[1] : "";
+        }
         $tag = array(
             'FIRST_NAME' => $user->fname,
             'LAST_NAME' => $user->lname,
@@ -204,14 +208,15 @@ class Common {
             'PHONE' => $user->phone,
 //            'GROUP' => $user->group_name,
             'BIRTHDAY' => $user->birthday,
-            'ZODIAC' => $user->zodiac,
-            'AGE' => $user->age,
-            'SOCIAL' => $user->social_media,
-            'COUNTRY' => $user->country,
-            'CITY' => $user->city,
-            'ADDRESS' => $user->address,
-            'RATING' => ($user->rating == "-1") ? "Not Assign" : $user->rating
+//            'ZODIAC' => $user->zodiac,
+//            'AGE' => $user->age,
+//            'SOCIAL' => $user->social_media,
+//            'COUNTRY' => $user->country,
+//            'CITY' => $user->city,
+//            'ADDRESS' => $user->address,
+//            'RATING' => ($user->rating == "-1") ? "Not Assign" : $user->rating
         );
+
         return $tag;
     }
 
