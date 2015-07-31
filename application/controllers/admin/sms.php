@@ -182,23 +182,27 @@ class Sms extends CI_Controller {
                 switch ($post['user']) {
                     case 1:
                         $user = $this->objprofile->getProfile($post['user_id']);
+                        $tag = $this->common->setToken($user);
                         break;
                     case 2:
                         if (!in_array($post['user_id'], $blackList)) {
                             $user = $this->objcon->getContactInfo($post['user_id']);
+                            $tag = $this->common->setToken($user);
                         } else {
                             $user = array();
                         }
                         break;
                     case 3:
                         $user = $this->objaffiliate->getAffiliateInfo($post['user_id']);
+                        $tag = $this->common->setToken($user);
                         break;
                     case 4:
                         $user = $this->objcustomer->getCustomerInfo($post['user_id']);
+                        $tag = $this->common->setToken($user, "customer");
                         break;
                 }
                 if (count($user) && $user->phone != NULL) {
-                    $tag = $this->common->setToken($user);
+
                     $body = $this->parser->parse_string($post['body'], $tag, TRUE);
                     $is_send = $this->sendSMS($user->phone, $body);
                 } else {
