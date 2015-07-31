@@ -188,15 +188,17 @@
 <?php endif; ?>
 
         $('#addCustomer').click(function () {
-            if (!$('input[name="password"]').prop('disabled')) {
-                return false;
+            if ($('input[name="password"]').prop('disabled')) {
+                $('#customerForm').submit();
             } else {
                 var passwd = $('input[name="password"]').val();
                 if (passwd.trim() == "") {
                     alertify.error("Password can not be blank..!");
                     return false;
+                } else {
+                    $('#customerForm').submit();
                 }
-                $('#customerForm').submit();
+
             }
 
         });
