@@ -99,20 +99,10 @@ class M_register extends CI_Model {
 
     function isUserExist($data) {
         $where = array(
-//            'user_unique_id' => $data['id'],
             'email' => $data['email']
         );
         $query = $this->db->get_where('wi_user_mst', $where);
         $res = $query->row();
-//        if ($query->num_rows() !== 1) {
-//            return FALSE;
-//        } else if ($res->status) {
-//            return TRUE;
-//        } else {
-//            return -1;
-//        }
-
-
         if ($query->num_rows() !== 1) {
             return false;
         } else {
@@ -123,6 +113,32 @@ class M_register extends CI_Model {
                     return "RG";
                 } else if ($res->join_type == "facebook") {
                     return "RF";
+                }
+            } else {
+                return -1;
+            }
+        }
+    }
+
+    function isUserLogin($data, $type) {
+        $where = array(
+            'email' => $data['email']
+        );
+        $query = $this->db->get_where('wi_user_mst', $where);
+        $res = $query->row();
+
+        if ($query->num_rows() !== 1) {
+            return false;
+        } else {
+            if ($res->status) {
+                if ($res->join_type == $type) {
+                    return ($type == "google") ? "LG" : "LF";
+                } else if ($res->join_type == NULL) {
+                    return "LN";
+                } else if ($res->join_type == "google") {
+                    return "LG";
+                } else if ($res->join_type == "facebook") {
+                    return "LF";
                 }
             } else {
                 return -1;

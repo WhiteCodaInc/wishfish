@@ -250,13 +250,21 @@ and open the template in the editor.
                 $m = "This Email Has Already Been Register With Facebook! Please Try to signin with Facebook!:)";
                 $t = "error";
                 break;
-//            case "NR":
-//                $m = "Your Email address not register..!";
-//                $t = "error";
-//                break;
-            case "RS":
-                $m = "Please Check Your Email To Get Started..!";
-                $t = "success";
+            case "LN":
+                $m = "This Email Has Been Link up With Normal Account! Please Use Forgot Password!..:)";
+                $t = "error";
+                break;
+            case "LG":
+                $m = "This Email Has Been Link up With Google! Please Try to signin with Google!:)";
+                $t = "error";
+                break;
+            case "LF":
+                $m = "This Email Has Been Link up With Facebook! Please Try to signin with Facebook!:)";
+                $t = "error";
+                break;
+//            case "RS":
+//                $m = "Please Check Your Email To Get Started..!";
+//                $t = "success";
                 break;
             default:
                 $m = 0;

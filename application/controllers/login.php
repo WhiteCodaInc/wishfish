@@ -99,7 +99,7 @@ class Login extends CI_Controller {
             if ($this->client->getAccessToken()) {
                 $data = $this->service->userinfo->get();
                 $this->session->set_userdata('token', $this->client->getAccessToken());
-                $user = $this->objregister->isUserExist($data);
+                $user = $this->objregister->isUserLogin($data, "google");
                 if ($user === -1) {
                     header('location: ' . site_url() . 'login?msg=DA');
                 } else if (!$user) {
@@ -130,7 +130,7 @@ class Login extends CI_Controller {
         if ($user) {
             try {
                 $user_profile = $facebook->api('/me');  //Get the facebook user profile data
-                $is_user = $this->objregister->isUserExist($user_profile);
+                $is_user = $this->objregister->isUserLogin($user_profile, "facebook");
                 if ($user === -1) {
                     header('location: ' . site_url() . 'login?msg=DA');
                 } else if (!$is_user) {
@@ -155,15 +155,25 @@ class Login extends CI_Controller {
                     }
 //                    header('location: ' . site_url() . 'login?signup=fb&msg=NR');
                 } else {
-                    $this->objregister->linkWithProfile($user_profile['email']);
-                    $is_login = array(
-                        'name' => 'isLogin',
-                        'value' => $user_profile['id'],
-                        'expire' => time() + 86500,
-                        'domain' => '.wish-fish.com'
-                    );
-                    $this->input->set_cookie($is_login);
-                    header('location:' . site_url() . 'app/dashboard');
+                    switch ($is_user) {
+                        case "LN":
+                            header('location: ' . site_url() . 'login?&msg=LN');
+                            break;
+                        case "LG":
+                            header('location: ' . site_url() . 'login?&msg=LG');
+                            break;
+                        case "LF":
+                            $this->objregister->linkWithProfile($user_profile['email']);
+                            $is_login = array(
+                                'name' => 'isLogin',
+                                'value' => $user_profile['id'],
+                                'expire' => time() + 86500,
+                                'domain' => '.wish-fish.com'
+                            );
+                            $this->input->set_cookie($is_login);
+                            header('location:' . site_url() . 'app/dashboard');
+                            break;
+                    }
                 }
             } catch (FacebookApiException $e) {
                 error_log($e);
