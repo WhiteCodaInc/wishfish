@@ -17,12 +17,11 @@ class Wi_authex {
     }
 
     function login($where) {
-        echo '<pre>';
+       
         (isset($where['password'])) ? $where['password'] = sha1($where['password']) : '';
-        print_r($where);
+        
         $query = $this->_CI->db->get_where('wi_user_mst', $where);
-        print_r($query->row());
-        die();
+       
         if ($query->num_rows() !== 1) {
             /* their username and password combination
              * were not found in the databse */
