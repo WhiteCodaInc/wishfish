@@ -298,7 +298,13 @@ $userid = $this->session->userdata('u_userid');
                                 success: function (data, textStatus, jqXHR) {
                                     $('.parse .overlay').hide();
                                     $('.parse .loading-img').hide();
-                                    if (data != "0") {
+                                    if (data == "0") {
+                                        $('#scrapeContact .parse .alert').show();
+                                        $('#scrapeContact span.errorMsg').text("Please Enter Valid Username..!");
+                                    } else if (data == "1") {
+                                        $('#scrapeContact .parse .alert').show();
+                                        $('#scrapeContact span.errorMsg').text("Your Profile Is Not Visible Publically..!");
+                                    } else {
                                         var json = JSON.parse(data);
                                         var name = json.name.split(' ');
                                         $('#scrapeContact .parse').hide();
@@ -306,9 +312,6 @@ $userid = $this->session->userdata('u_userid');
                                         $('#scrapeContact .lname').text(name[1]);
                                         $('#scrapeContact .picture').prop('src', json.profile);
                                         $('#scrapeContact .contactInfo').show();
-                                    } else {
-                                        $('#scrapeContact .parse .alert').show();
-                                        $('#scrapeContact span.errorMsg').text("Please Enter Valid Username..!");
                                     }
                                 }
                             });

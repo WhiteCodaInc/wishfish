@@ -59,12 +59,14 @@ class Scrape extends CI_Controller {
         $nodes = $dom->getElementsByTagName('title');
         $name = explode('|', $nodes->item(0)->nodeValue);
 
-        if (isset($name[0]) && $name[0] != "Page Not Found") {
+        if (isset($name[0]) && $name[0] == "Page Not Found") {
+            echo '0';
+        } else if (isset($name[0]) && $name[0] == "Facebook") {
+            echo '1';
+        } else {
             $data['profile'] = $src;
             $data['name'] = $name[0];
             echo json_encode($data);
-        } else {
-            echo 0;
         }
     }
 

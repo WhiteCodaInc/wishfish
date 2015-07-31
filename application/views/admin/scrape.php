@@ -159,7 +159,14 @@
                 success: function (data, textStatus, jqXHR) {
                     $('.parse .overlay').hide();
                     $('.parse .loading-img').hide();
-                    if (data != "0") {
+
+                    if (data == "0") {
+                        $('.parse .alert').show();
+                        $('span.errorMsg').text("Please Enter Valid Username..!");
+                    } else if (data == "1") {
+                        $('.parse .alert').show();
+                        $('span.errorMsg').text("Your Profile Is Not Visible Publically..!");
+                    } else {
                         var json = JSON.parse(data);
                         var name = json.name.split(' ');
                         $('.parse').hide();
@@ -167,9 +174,6 @@
                         $('.lname').text(name[1]);
                         $('.picture').prop('src', json.profile);
                         $('.contactInfo').show();
-                    } else {
-                        $('.parse .alert').show();
-                        $('span.errorMsg').text("Please Enter Valid Username..!");
                     }
                 }
             });
