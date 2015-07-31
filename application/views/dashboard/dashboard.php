@@ -417,7 +417,7 @@
             $('div.review .loading-img').show();
             $.ajax({
                 type: 'POST',
-                url: "<?= site_url() ?>app/dashboard/sendReview",
+                url: "<?= site_url() ?>app/dashboard/sendQuery",
                 data: {query: msg},
                 success: function (data, textStatus, jqXHR) {
                     $('#' + id).prop('disabled', false);
