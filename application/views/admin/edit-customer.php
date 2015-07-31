@@ -207,6 +207,7 @@
             $('input[name="password"]').val('');
             $('input[name="password"]').removeAttr('style');
             $('input[name="password"]').prop('disabled', false);
+            $('a.button_strength').show();
         });
 
         $("input:file").change(function () {
