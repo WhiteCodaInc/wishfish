@@ -128,7 +128,7 @@
                                             <strong>{PHONE}</strong><br/>
                                             <!--<strong>{GROUP}</strong><br/>-->
                                             <strong>{BIRTHDAY}</strong><br/>
-                                            <strong>{ZODIAC}</strong><br/>
+<!--                                            <strong>{ZODIAC}</strong><br/>
                                             <strong>{AGE}</strong><br/>
                                             <strong>{BIRTHDAY_ALERT}</strong><br/>
                                             <strong>{SOCIAL}</strong><br/>
@@ -136,7 +136,7 @@
                                             <strong>{COUNTRY}</strong><br/>
                                             <strong>{CITY}</strong><br/>
                                             <strong>{ADDRESS}</strong><br/>
-                                            <strong>{RATING}</strong><br/>
+                                            <strong>{RATING}</strong><br/>-->
                                         </div><!-- /.box-body -->
                                     </div><!-- /.box -->
                                 </div><!-- /.col -->
