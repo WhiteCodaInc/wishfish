@@ -99,17 +99,30 @@ class M_register extends CI_Model {
 
     function isUserExist($data) {
         $where = array(
-            'user_unique_id' => $data['id'],
+//            'user_unique_id' => $data['id'],
             'email' => $data['email']
         );
         $query = $this->db->get_where('wi_user_mst', $where);
+        $res = $query->row();
+//        if ($query->num_rows() !== 1) {
+//            return FALSE;
+//        } else if ($res->status) {
+//            return TRUE;
+//        } else {
+//            return -1;
+//        }
+
+
         if ($query->num_rows() !== 1) {
-            echo "";
-            return FALSE;
-        } else if ($query->row()->status) {
-            return TRUE;
+            return false;
         } else {
-            return -1;
+            if ($res->join_type == NULL) {
+                return "RN";
+            } else if ($res->join_type == "google") {
+                return "RG";
+            } else if ($res->join_type == "facebook") {
+                return "RF";
+            }
         }
     }
 
@@ -129,6 +142,7 @@ class M_register extends CI_Model {
             'name' => $data['name'],
             'email' => $data['email'],
             'user_unique_id' => $data['id'],
+            'join_type' => $type,
             'join_via' => $joinVia
         );
         $this->db->trans_start();

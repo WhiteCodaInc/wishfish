@@ -242,6 +242,18 @@ and open the template in the editor.
                 $m = "This Email Has Already Been Used! Please Use Forgot Password!..:)";
                 $t = "error";
                 break;
+            case "RN":
+                $m = "This Email Has Already Been Used! Please Use Forgot Password!..:)";
+                $t = "error";
+                break;
+            case "RG":
+                $m = "This Email Has Already Been Register With Google! Please Try to signin with Google!:)";
+                $t = "error";
+                break;
+            case "RF":
+                $m = "This Email Has Already Been Register With Facebook! Please Try to signin with Facebook!:)";
+                $t = "error";
+                break;
 //            case "NR":
 //                $m = "Your Email address not register..!";
 //                $t = "error";

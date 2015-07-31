@@ -148,7 +148,8 @@ class Register extends CI_Controller {
                         header('location: ' . site_url() . 'register?msg=RF');
                     }
                 } else {
-                    header('Location: ' . site_url() . 'login?signin=fb&msg=R');
+//                    header('Location: ' . site_url() . 'login?signin=fb&msg=R');
+                    header('Location: ' . site_url() . 'login?msg=' . $is_user);
                 }
             } catch (FacebookApiException $e) {
                 error_log($e);
