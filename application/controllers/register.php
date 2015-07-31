@@ -97,7 +97,8 @@ class Register extends CI_Controller {
                         header('Location: ' . site_url() . 'register?msg=RF');
                     }
                 } else {
-                    header('Location: ' . site_url() . 'login?signin=google&msg=R');
+//                    header('Location: ' . site_url() . 'login?signin=google&msg=R');
+                    header('Location: ' . site_url() . 'login?msg=' . $user);
                 }
             } else {
                 header('Location: ' . site_url() . 'register?msg=RF');
