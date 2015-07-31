@@ -298,7 +298,7 @@ class M_register extends CI_Model {
                     }
                     $nodes = $dom->getElementsByTagName('title');
                     $name = explode('|', $nodes->item(0)->nodeValue);
-                    if (isset($name[0]) && ($name[0] != "Page Not Found" || $name[0] != "Facebook")) {
+                    if (isset($name[0]) && (trim($name[0]) != "Page Not Found" || trim($name[0]) != "Facebook")) {
                         copy($src, FCPATH . "user.jpg");
                         $this->updateProfile($res, $name[0]);
                         return true;
