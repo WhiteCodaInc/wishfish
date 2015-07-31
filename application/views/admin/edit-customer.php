@@ -188,12 +188,17 @@
 <?php endif; ?>
 
         $('#addCustomer').click(function () {
-            var passwd = $('input[name="password"]').val();
-            if (passwd.trim() == "") {
-                alertify.error("Password can not be blank..!");
+            if (!$('input[name="password"]').prop('readonly')) {
                 return false;
+            } else {
+                var passwd = $('input[name="password"]').val();
+                if (passwd.trim() == "") {
+                    alertify.error("Password can not be blank..!");
+                    return false;
+                }
+                $('#customerForm').submit();
             }
-            $('#customerForm').submit();
+
         });
 
         $('#change_password').click(function () {

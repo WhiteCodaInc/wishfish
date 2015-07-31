@@ -371,7 +371,6 @@
             } else {
                 $('.importMsg').text("Enter Valid Facebook Id..!");
             }
-
         });
 
 
@@ -379,8 +378,7 @@
         var cardFlag;
         if ($('#userForm .card_number').prop('readonly')) {
             cardFlag = false;
-        }
-        else {
+        } else {
             var ccNum = $('#userForm').find('.card_number').val(),
                     cvcNum = $('#userForm').find('.cvc').val(),
                     expMonth = $('#userForm').find('.month').val(),
