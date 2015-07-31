@@ -167,7 +167,8 @@ class Register extends CI_Controller {
 
     function createAccount() {
         $post = $this->input->post();
-        if (!$this->wi_authex->can_register($post['email'])) {
+        $res = $this->wi_authex->can_register($post['email']);
+        if (!$res) {
             $flag = $this->objregister->register($post);
             if ($flag) {
                 header('location:' . site_url() . 'app/dashboard');
@@ -175,7 +176,7 @@ class Register extends CI_Controller {
                 header('location:' . site_url() . 'register?msg=RF');
             }
         } else {
-            header('location:' . site_url() . 'login?msg=RN');
+            header('location:' . site_url() . 'login?msg=' . $res);
         }
     }
 
