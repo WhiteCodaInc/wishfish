@@ -116,12 +116,16 @@ class M_register extends CI_Model {
         if ($query->num_rows() !== 1) {
             return false;
         } else {
-            if ($res->join_type == NULL) {
-                return "RN";
-            } else if ($res->join_type == "google") {
-                return "RG";
-            } else if ($res->join_type == "facebook") {
-                return "RF";
+            if ($res->status) {
+                if ($res->join_type == NULL) {
+                    return "RN";
+                } else if ($res->join_type == "google") {
+                    return "RG";
+                } else if ($res->join_type == "facebook") {
+                    return "RF";
+                }
+            } else {
+                return -1;
             }
         }
     }
