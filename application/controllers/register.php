@@ -167,7 +167,7 @@ class Register extends CI_Controller {
 
     function createAccount() {
         $post = $this->input->post();
-        if ($this->wi_authex->can_register($post['email'])) {
+        if (!$this->wi_authex->can_register($post['email'])) {
             $flag = $this->objregister->register($post);
             if ($flag) {
                 header('location:' . site_url() . 'app/dashboard');
