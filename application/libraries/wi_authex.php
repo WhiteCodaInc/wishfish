@@ -17,11 +17,11 @@ class Wi_authex {
     }
 
     function login($where) {
-       
+
         (isset($where['password'])) ? $where['password'] = sha1($where['password']) : '';
-        
+
         $query = $this->_CI->db->get_where('wi_user_mst', $where);
-       
+
         if ($query->num_rows() !== 1) {
             /* their username and password combination
              * were not found in the databse */
@@ -82,7 +82,19 @@ class Wi_authex {
 
     function can_register($email) {
         $query = $this->_CI->db->get_where("wi_user_mst", array("email" => $email));
-        return ($query->num_rows() > 0) ? FALSE : TRUE;
+        $res = $query->row();
+        if ($query->num_rows() !== 1) {
+            return false;
+        } else {
+            if ($res->join_type == NULL) {
+                return "RN";
+            } else if ($res->join_type == "google") {
+                return "RG";
+            } else if ($res->join_type == "facebook") {
+                return "RF";
+            }
+        }
+//        return ($query->num_rows() > 0) ? FALSE : TRUE;
     }
 
     function isTrue($password) {

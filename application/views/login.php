@@ -238,10 +238,6 @@ and open the template in the editor.
         </footer>
         <?php
         switch ($msg) {
-            case "R":
-                $m = "This Email Has Already Been Used! Please Use Forgot Password!..:)";
-                $t = "error";
-                break;
             case "RN":
                 $m = "This Email Has Already Been Used! Please Use Forgot Password!..:)";
                 $t = "error";

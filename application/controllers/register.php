@@ -175,7 +175,7 @@ class Register extends CI_Controller {
                 header('location:' . site_url() . 'register?msg=RF');
             }
         } else {
-            header('location:' . site_url() . 'login?msg=R');
+            header('location:' . site_url() . 'login?msg=RN');
         }
     }
 
