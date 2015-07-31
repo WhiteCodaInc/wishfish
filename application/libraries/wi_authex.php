@@ -77,7 +77,6 @@ class Wi_authex {
             'u_date_format' => ''
         );
         $CI->session->unset_userdata($sess);
-        header('location:' . site_url() . 'login');
     }
 
     function can_register($email) {

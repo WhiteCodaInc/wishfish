@@ -16,7 +16,6 @@ class Logout extends CI_Controller {
     //put your code here
     function __construct() {
         parent::__construct();
-        
     }
 
     function index() {
@@ -24,6 +23,7 @@ class Logout extends CI_Controller {
 //        $this->session->unset_userdata('name');
 //        $this->session->unset_userdata('email');
         $this->wi_authex->logout();
+        header('location:' . site_url() . 'login');
         //header('location:' . site_url() . 'home');
     }
 

@@ -25,6 +25,7 @@ class Dashboard extends CI_Controller {
 
         $userid = $this->input->get('uid');
         $this->type = $this->input->get('type');
+        $this->directLogin = $this->input->get('d');
         $this->uid = ($userid != "") ? $this->encryption->decode($userid) : '';
 
         if ($this->session->userdata('d-userid')) {
@@ -51,7 +52,7 @@ class Dashboard extends CI_Controller {
         if ($this->uid) {
             $this->objdashboard->verifyEmail($this->uid);
         }
-        if ($this->wi_authex->logged_in()) {
+        if (!$this->directLogin && $this->wi_authex->logged_in()) {
             $card = $this->objcalender->getCards();
             $uid = $this->session->userdata('u_userid');
             $card['userInfo'] = $this->wi_common->getUserInfo($uid);

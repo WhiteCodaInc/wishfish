@@ -116,7 +116,7 @@ class Customers extends CI_Controller {
         $customer = $this->objcustomer->getCustomerInfo($cid);
         if ($customer->status) {
             $uid = $this->encryption->encode($customer->user_id);
-            $url = 'https://wish-fish.com/app/dashboard?uid=' . $uid;
+            $url = 'https://wish-fish.com/app/dashboard?d=direct&uid=' . $uid;
             header('location:' . $url);
         } else {
             echo '<script>alert("Customer account currently was deactivated..!");close();</script>';
