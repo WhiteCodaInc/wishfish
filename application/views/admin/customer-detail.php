@@ -159,7 +159,7 @@
                                                 ?>
                                             </td>
                                             <td>
-                                                <?= ($value->plan_id == 1 && $value->is_lifetime) ? "Free LifeTime Access" : $value->plan_name ?></td>
+                                                <?= ($value->plan_id == 1 && $value->is_lifetime) ? "Free Lifetime Access" : $value->plan_name ?></td>
                                             <td><?= date('m-d-Y H:i:s', strtotime($value->register_date)) ?></td>
                                             <td>
                                                 <?php if ($value->status): ?>
