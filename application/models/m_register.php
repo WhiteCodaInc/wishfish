@@ -99,7 +99,7 @@ class M_register extends CI_Model {
 
     function isUserExist($data) {
         $where = array(
-//            'user_unique_id' => $data['id'],
+            'user_unique_id' => $data['id'],
             'email' => $data['email']
         );
         $query = $this->db->get_where('wi_user_mst', $where);
