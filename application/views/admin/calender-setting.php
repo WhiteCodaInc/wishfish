@@ -27,7 +27,7 @@
 <aside class="right-side">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <h1 style="display: none">Google Calender Setting</h1>
+        <h1 style="display: none">Google Calendar Setting</h1>
         <button type="button" id="save-setting" class="btn btn-primary">Save Setting</button>
     </section>
     <!-- Main content -->
