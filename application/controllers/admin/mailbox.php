@@ -138,7 +138,7 @@ class Mailbox extends CI_Controller {
                                 date('m-d-Y H:i', strtotime($overview[0]->date)) :
                                 '';
                         $mailbox[$key]['status'] = ($overview[0]->seen) ? 1 : 0;
-                        $mailbox[$key]['body'] = quoted_printable_decode(imap_fetchbody($this->stream, $email_id, 1));
+                        $mailbox[$key]['body'] = quoted_printable_decode(imap_fetchbody($this->stream, $email_id, 2));
                     }
                 }
             }
