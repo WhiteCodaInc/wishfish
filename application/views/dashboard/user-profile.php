@@ -19,7 +19,7 @@
         <?php if ($user->is_set && $user->gateway == "STRIPE"): ?>
             <button type="button" id="cancel-account" class="btn btn-danger">Cancel Your Account</button>
         <?php endif; ?>
-        <a href="<?= site_url() ?>app/setting" class="btn bg-maroon">Settings</a>
+        <a href="<?= site_url() ?>app/setting" class="btn bg-maroon">Google Sync Setting</a>
     </section>
     <!-- Main content -->
     <section class="content">
