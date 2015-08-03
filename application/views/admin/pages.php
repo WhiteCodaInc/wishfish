@@ -124,14 +124,18 @@
         $('ul.ui-autocomplete').on('click', function () {
             var page = $('#pages').val();
             getPage(ids[pages.indexOf(page)]);
+            $('.box-title').text(page);
         });
         $('#pages').on("keypress", function (e) {
             if (e.keyCode == 13) {
                 var page = $('#pages').val();
                 if (page.trim() != "") {
                     getPage(ids[pages.indexOf(page)]);
+                    $('.box-title').text(page);
+
                 } else {
                     CKEDITOR.instances['editor1'].setData("");
+                    $('.box-title').text("Page");
                 }
             }
         });
@@ -141,17 +145,6 @@
             var pageid = ids[pages.indexOf(page)];
             $('input[name="pageid"]').val(pageid);
             $('#pageForm').submit();
-            //var content = CKEDITOR.instances['editor1'].getData();
-//            $.ajax({
-//                type: 'POST',
-//                data: {pageid: pageid, content: content},
-//                url: "<?= site_url() ?>admin/pages/update",
-//                success: function (data, textStatus, jqXHR) {
-//                    $('.overlay').hide();
-//                    $('.loading-img').hide();
-//                    alertify.success("Content Successfully Updated..!");
-//                }
-//            });
         });
 
 <?php if ($pageid != ""): ?>
@@ -163,7 +156,5 @@
                 }, 500);
             }
 <?php endif; ?>
-
-
     });
 </script>
