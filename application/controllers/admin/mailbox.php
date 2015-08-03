@@ -63,9 +63,11 @@ class Mailbox extends CI_Controller {
         print_r($imap_obj);
         if (!$imap_obj) {
             $mailbox = array();
-        } else if (!$imap_obj->Nmsgs) {
-            $mailbox = array();
-        } else {
+        }
+//        else if (!$imap_obj->Nmsgs) {
+//            $mailbox = array();
+//        } 
+        else {
             imap_reopen($this->stream, $url);
             $emails = imap_search($this->stream, 'ALL');
             echo "<br>-------FOLDER : {$url}-----------<br>";
