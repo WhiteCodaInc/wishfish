@@ -123,7 +123,7 @@ class Mailbox extends CI_Controller {
 //                $mailbox = array();
 //            }
             else {
-                $display = ($post['type'] == "Inbox") ? 2 : 1;
+                $display = ($post['type'] == "Sent") ? 1 : 2;
                 imap_reopen($this->stream, $url);
                 $emails = imap_search($this->stream, 'ALL');
                 if (is_array($emails)) {
@@ -138,7 +138,7 @@ class Mailbox extends CI_Controller {
                                 date('m-d-Y H:i', strtotime($overview[0]->date)) :
                                 '';
                         $mailbox[$key]['status'] = ($overview[0]->seen) ? 1 : 0;
-                        $mailbox[$key]['body'] = quoted_printable_decode(imap_fetchbody($this->stream, $email_id, 1));
+                        $mailbox[$key]['body'] = quoted_printable_decode(imap_fetchbody($this->stream, $email_id, $display));
                     }
                 }
             }
