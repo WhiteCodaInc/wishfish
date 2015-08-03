@@ -105,7 +105,11 @@
     });
     $(document).ready(function () {
 
-<?php $post = $this->input->post(); ?>
+<?php
+echo '<pre>';
+$post = $this->input->post();
+print_r($post);
+?>
 <?php if (is_array($post) && count($post)) { ?>
             CKEDITOR.instances['editor1'].setData(<?= $post['content'] ?>);
 <?php } ?>
@@ -156,5 +160,7 @@
 //                }
 //            });
         });
+
+
     });
 </script>

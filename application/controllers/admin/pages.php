@@ -60,7 +60,13 @@ class Pages extends CI_Controller {
 //        print_r($post);
 //        die();
         $this->objpage->update($post);
-        header('location:' . site_url() . 'admin/pages');
+        $data['pages'] = $this->objpage->getPages();
+        $this->load->view('admin/admin_header');
+        $this->load->view('admin/admin_top');
+        $this->load->view('admin/admin_navbar');
+        $this->load->view('admin/pages', $data);
+        $this->load->view('admin/admin_footer');
+//        header('location:' . site_url() . 'admin/pages');
     }
 
     function updateTerm() {
