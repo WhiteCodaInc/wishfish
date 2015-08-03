@@ -142,7 +142,7 @@ class Cpanel extends CI_Controller {
     function openInbox($uname, $passwd) {
         $this->stream = @imap_open('{mail.mikhailkuznetsov.com:143/notls}INBOX', $uname, $passwd);
         imap_errors();
-        $imap_obj = imap_check($this->stream);
+        $imap_obj = ($this->stream) ? imap_check($this->stream) : FALSE;
         return ($imap_obj) ? TRUE : FALSE;
     }
 
