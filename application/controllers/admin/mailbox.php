@@ -58,7 +58,7 @@ class Mailbox extends CI_Controller {
                 "{mail.mikhailkuznetsov.com:143/notls}INBOX.{$folder}" :
                 "{mail.mikhailkuznetsov.com:143/notls}INBOX";
         echo $url . '<br>';
-        $imap_obj = imap_check($this->stream, $url);
+        $imap_obj = imap_check($this->stream);
         echo '<pre>';
         print_r($imap_obj);
         if (!$imap_obj) {
