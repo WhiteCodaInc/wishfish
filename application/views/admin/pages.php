@@ -32,15 +32,15 @@
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     <div class="box-body">
-                        <form id="pageForm" action="<?= site_url() ?>admin/pages/update" method="post">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>Choose Webpage</label>
-                                        <input type="text" class="form-control"  id="pages" value="" />
-                                    </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Choose Webpage</label>
+                                    <input type="text" class="form-control"  id="pages" value="" />
                                 </div>
                             </div>
+                        </div>
+                        <form id="pageForm" action="<?= site_url() ?>admin/pages/update" method="post">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
