@@ -56,10 +56,11 @@ class Pages extends CI_Controller {
 
     function update() {
         $post = $this->input->post();
-        echo '<pre>';
-        print_r($post);
-        die();
+//        echo '<pre>';
+//        print_r($post);
+//        die();
         $this->objpage->update($post);
+        header('location:' . site_url() . 'admin/pages');
     }
 
     function updateTerm() {

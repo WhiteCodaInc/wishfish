@@ -85,6 +85,12 @@
     $(function () {
         // Replace the <textarea id="editor1"> with a CKEditor
         // instance, using default configuration.
+
+<?php $post = $this->input->post(); ?>
+<?php if (is_array($post) && count($post)) { ?>
+
+<?php } ?>
+
         CKEDITOR.replace('editor1');
         //bootstrap WYSIHTML5 - text editor
         $(".textarea").wysihtml5();
