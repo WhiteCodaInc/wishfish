@@ -151,6 +151,7 @@
             if (ids.indexOf("<?= $pageid ?>") != "-1") {
                 var id = ids.indexOf("<?= $pageid ?>");
                 $('#pages').val(pages[id]);
+                $('.box-title').text(pages[id]);
                 setTimeout(function () {
                     $('ul.ui-autocomplete').trigger('click');
                 }, 500);
