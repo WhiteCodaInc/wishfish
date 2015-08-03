@@ -401,9 +401,11 @@
     });
 
     $(document).ready(function () {
-        setTimeout(function () {
-            $('a.feedback').trigger('click');
-        }, 500);
+        if (hopscotch.getState() != "welcome:7") {
+            setTimeout(function () {
+                $('a.feedback').trigger('click');
+            }, 500);
+        }
 
         $('#review_submit').click(function () {
             var msg = $('#review').val();
