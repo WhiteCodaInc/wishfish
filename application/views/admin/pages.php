@@ -37,7 +37,7 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label>Choose Webpage</label>
-                                        <input type="text" class="form-control"  id="pages" />
+                                        <input type="text" class="form-control"  id="pages" value="" />
                                     </div>
                                 </div>
                             </div>
@@ -141,7 +141,6 @@
         });
 
         $('#save-page').click(function () {
-            return false;
             var page = $('#pages').val();
             var pageid = ids[pages.indexOf(page)];
             $('input[name="pageid"]').val(pageid);
