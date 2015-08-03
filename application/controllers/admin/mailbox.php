@@ -129,7 +129,7 @@ class Mailbox extends CI_Controller {
                 if (is_array($emails)) {
                     rsort($emails);
                     foreach ($emails as $key => $email_id) {
-                        $overview = imap_fetch_overview($this->stream, $email_id, 0);
+                        $overview = imap_fetch_overview($this->stream, $email_id, 2);
                         $mailbox[$key]['id'] = $overview[0]->uid;
                         $mailbox[$key]['subject'] = $this->decode_imap_text($overview[0]->subject);
                         $mailbox[$key]['from'] = $this->decode_imap_text($overview[0]->from);
