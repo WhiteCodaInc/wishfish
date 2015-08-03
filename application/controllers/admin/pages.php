@@ -36,43 +36,10 @@ class Pages extends CI_Controller {
         echo $this->objpage->getContent($pageid);
     }
 
-    function getTerm() {
-        $data['page'] = $this->objpage->getTerm();
-        $this->load->view('admin/admin_header');
-        $this->load->view('admin/admin_top');
-        $this->load->view('admin/admin_navbar');
-        $this->load->view('admin/page-term-service', $data);
-        $this->load->view('admin/admin_footer');
-    }
-
-    function getCommercialTerm() {
-        $data['page'] = $this->objpage->getCommercialTerm();
-        $this->load->view('admin/admin_header');
-        $this->load->view('admin/admin_top');
-        $this->load->view('admin/admin_navbar');
-        $this->load->view('admin/page-commercial-term', $data);
-        $this->load->view('admin/admin_footer');
-    }
-
     function update() {
         $post = $this->input->post();
-//        echo '<pre>';
-//        print_r($post);
-//        die();
         $this->objpage->update($post);
         header('location:' . site_url() . 'admin/pages?id=' . $post['pageid']);
-    }
-
-    function updateTerm() {
-        $post = $this->input->post();
-        $this->objpage->updateTerm($post);
-        header('location:' . site_url() . 'admin/pages/getCommercialTerm');
-    }
-
-    function updateCommercialTerm() {
-        $post = $this->input->post();
-        $this->objpage->updateCommercialTerm($post);
-        header('location:' . site_url() . 'admin/pages/getCommercialTerm');
     }
 
 }
