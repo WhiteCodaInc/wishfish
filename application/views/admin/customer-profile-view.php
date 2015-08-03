@@ -408,7 +408,7 @@
                                         <div class="col-md-5" style="padding-right: 0">
                                             <input value="<?= ($card) ? $card['exp_month'] : "" ?>"  data-stripe="exp-month" maxlength="2" type="text" class="month form-control" placeholder="MM" required=""/>
                                         </div>
-                                        <div class="col-md-1" style="padding: 0 8px;font-size: 23px">/</div>
+                                        <div class="col-md-1" style="padding: 0 5px;font-size: 23px">/</div>
                                         <div class="col-md-5" style="padding-left: 0">
                                             <input value="<?= ($card) ? $card['exp_year'] : "" ?>" data-stripe="exp-year" type="text" maxlength="4" class="year form-control" placeholder="YYYY" required="" />
                                         </div>
@@ -468,7 +468,7 @@
                                         <div class="col-md-5" style="padding-right: 0">
                                             <input value=""  data-stripe="exp-month" maxlength="2" type="text" class="month form-control" placeholder="MM" required=""/>
                                         </div>
-                                        <div class="col-md-1" style="padding: 0 8px;font-size: 23px">/</div>
+                                        <div class="col-md-1" style="padding: 0 5px;font-size: 23px">/</div>
                                         <div class="col-md-5" style="padding-left: 0">
                                             <input value="" data-stripe="exp-year" type="text" maxlength="4" class="year form-control" placeholder="YYYY" required="" />
                                         </div>
