@@ -103,6 +103,9 @@
             $(this).autocomplete("search", "");
         });
     });
+
+<?php $pageid = $this->input->get('id'); ?>
+
     $(document).ready(function () {
         function getPage(page) {
             $('.overlay').show();
@@ -150,6 +153,15 @@
 //                }
 //            });
         });
+
+<?php if ($pageid != ""): ?>
+            if (ids.indexOf("<?= $pageid ?>") != "-1") {
+                var id = ids.indexOf("<?= $pageid ?>");
+                $('#pages').val(pages[id]);
+                $('ul.ui-autocomplete').trigger('click');
+
+            }
+<?php endif; ?>
 
 
     });
