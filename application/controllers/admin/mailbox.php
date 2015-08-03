@@ -60,7 +60,7 @@ class Mailbox extends CI_Controller {
 //        echo $url . '<br>';
         $imap_obj = imap_check($this->stream);
 //        echo '<pre>';
-        print_r($imap_obj);
+//        print_r($imap_obj);
         if (!$imap_obj) {
             $mailbox = array();
         }
