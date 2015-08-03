@@ -223,6 +223,9 @@ class Mailbox extends CI_Controller {
                 "Subject: " . $post['email_subject'] . "\r\n" .
                 "To: " . $post['email_to'] . "\r\n" .
                 "Date: " . date('Y-m-d H:i:s') . "\r\n" .
+                "MIME-Version: 1 \r\n" .
+                "Content-Type: text/html;\r\n\tcharset=\"ISO-8859-1\"\r\n" .
+                "Content-Transfer-Encoding: 8bit \r\n" .
                 "\r\n" .
                 $post['message'] .
                 "\r\n"
