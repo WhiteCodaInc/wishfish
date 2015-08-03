@@ -406,7 +406,6 @@
                 $('a.feedback').trigger('click');
             }, 500);
         }
-
         $('#review_submit').click(function () {
             var msg = $('#review').val();
             var id = $(this).prop('id');
