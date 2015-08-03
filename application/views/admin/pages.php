@@ -106,11 +106,10 @@
     $(document).ready(function () {
 
 <?php
-echo '<pre>';
-$post = $this->input->post();
-print_r($post);
-?>
-<?php if (is_array($post) && count($post)) { ?>
+if (is_array($post) && count($post)) {
+    $post = $this->input->post();
+    print_r($post);
+    ?>
             CKEDITOR.instances['editor1'].setData(<?= $post['content'] ?>);
 <?php } ?>
 
