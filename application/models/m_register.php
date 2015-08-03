@@ -194,6 +194,14 @@ class M_register extends CI_Model {
         );
         $this->db->insert('wi_plan_detail', $plan_set);
         $pid = $this->db->insert_id();
+
+        //--------------Insert Google API Credential-----------------//
+        $set = array(
+            'user_id' => $insertid,
+            'redirect_uri' => site_url() . 'app/calender'
+        );
+        $this->db->insert('wi_user_setting', $set);
+
         if ($this->addCustomerToStripe($set, $pid, $insertid)) {
             $this->db->trans_complete();
             $this->sendMail($set, $insertid);
