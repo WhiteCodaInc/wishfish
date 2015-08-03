@@ -97,7 +97,6 @@
 
 <script type="text/javascript">
     $(document).ready(function (e) {
-
         $('.copyText').click(
                 function () {
                     if ($('#tmp').length) {
