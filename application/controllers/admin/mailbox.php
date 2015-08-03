@@ -118,7 +118,7 @@ class Mailbox extends CI_Controller {
             $imap_obj = imap_check($this->stream);
             if (!$imap_obj) {
                 $mailbox = array();
-            } 
+            }
 //            else if (!$imap_obj->Nmsgs) {
 //                $mailbox = array();
 //            }
@@ -134,7 +134,9 @@ class Mailbox extends CI_Controller {
                         $mailbox[$key]['subject'] = $this->decode_imap_text($overview[0]->subject);
                         $mailbox[$key]['from'] = $this->decode_imap_text($overview[0]->from);
                         $mailbox[$key]['to'] = $this->decode_imap_text($overview[0]->to);
-                        $mailbox[$key]['date'] = date('m-d-Y H:i', strtotime($overview[0]->date));
+                        $mailbox[$key]['date'] = (isset($overview[0]->date)) ?
+                                date('m-d-Y H:i', strtotime($overview[0]->date)) :
+                                '';
                         $mailbox[$key]['status'] = ($overview[0]->seen) ? 1 : 0;
                         $mailbox[$key]['body'] = quoted_printable_decode(imap_fetchbody($this->stream, $email_id, 2));
                     }
