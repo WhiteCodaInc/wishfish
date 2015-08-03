@@ -18,7 +18,7 @@ class M_pages extends CI_Model {
     }
 
     function getPages() {
-        $this->db->where_not_in('name', array('terms-of-services', 'commercial-terms'));
+//        $this->db->where_not_in('name', array('terms-of-services', 'commercial-terms'));
         $query = $this->db->get('pages');
         return $query->result();
     }
