@@ -108,7 +108,6 @@
 <?php
 $post = $this->input->post();
 if (is_array($post) && count($post)) {
-    print_r($post);
     ?>
             CKEDITOR.instances['editor1'].setData("<?= $post['content'] ?>");
 <?php } ?>
