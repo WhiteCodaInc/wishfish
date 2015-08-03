@@ -118,9 +118,11 @@ class Mailbox extends CI_Controller {
             $imap_obj = imap_check($this->stream);
             if (!$imap_obj) {
                 $mailbox = array();
-            } else if (!$imap_obj->Nmsgs) {
-                $mailbox = array();
-            } else {
+            } 
+//            else if (!$imap_obj->Nmsgs) {
+//                $mailbox = array();
+//            }
+            else {
                 $display = ($post['type'] == "Inbox") ? 2 : 1;
                 imap_reopen($this->stream, $url);
                 $emails = imap_search($this->stream, 'ALL');
