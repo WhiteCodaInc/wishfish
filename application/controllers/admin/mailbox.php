@@ -129,7 +129,7 @@ class Mailbox extends CI_Controller {
                 if (is_array($emails)) {
                     rsort($emails);
                     foreach ($emails as $key => $email_id) {
-                        $overview = imap_fetch_overview($this->stream, $email_id, 2);
+                        $overview = imap_fetch_overview($this->stream, $email_id, 0);
                         $mailbox[$key]['id'] = $overview[0]->uid;
                         $mailbox[$key]['subject'] = $this->decode_imap_text($overview[0]->subject);
                         $mailbox[$key]['from'] = $this->decode_imap_text($overview[0]->from);
@@ -138,7 +138,7 @@ class Mailbox extends CI_Controller {
                                 date('m-d-Y H:i', strtotime($overview[0]->date)) :
                                 '';
                         $mailbox[$key]['status'] = ($overview[0]->seen) ? 1 : 0;
-                        $mailbox[$key]['body'] = quoted_printable_decode(imap_fetchbody($this->stream, $email_id, 2));
+                        $mailbox[$key]['body'] = quoted_printable_decode(imap_fetchbody($this->stream, $email_id, 1));
                     }
                 }
             }
