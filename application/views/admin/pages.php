@@ -32,32 +32,35 @@
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     <div class="box-body">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label>Choose Webpage</label>
-                                    <input type="text" class="form-control"  id="pages" />
+                        <form id="pageForm" action="<?= site_url() ?>admin/pages/update" method="post">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Choose Webpage</label>
+                                        <input type="text" class="form-control"  id="pages" />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <div class='row'>
-                                        <div class='col-md-12'>
-                                            <div class='box box-info'>
-                                                <div class='box-header'>
-                                                    <h3 class='box-title'>Content Editor</h3>
-                                                </div><!-- /.box-header -->
-                                                <div class='box-body pad'>
-                                                    <textarea id="editor1" name="content" rows="10" cols="80"></textarea>
-                                                </div>
-                                            </div><!-- /.box -->
-                                        </div>
-                                    </div><!-- /.box-body -->
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class='row'>
+                                            <div class='col-md-12'>
+                                                <div class='box box-info'>
+                                                    <div class='box-header'>
+                                                        <h3 class='box-title'>Content Editor</h3>
+                                                    </div><!-- /.box-header -->
+                                                    <div class='box-body pad'>
+                                                        <textarea id="editor1" name="content" rows="10" cols="80"></textarea>
+                                                    </div>
+                                                </div><!-- /.box -->
+                                            </div>
+                                        </div><!-- /.box-body -->
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                            <input type="hidden" name="pageid" value="" />
+                        </form>
                     </div>
                     <div style="display: none" class="overlay"></div>
                     <div style="display: none" class="loading-img"></div>
@@ -131,21 +134,21 @@
         });
 
         $('#save-page').click(function () {
-            $('.overlay').show();
-            $('.loading-img').show();
             var page = $('#pages').val();
             var pageid = ids[pages.indexOf(page)];
-            var content = CKEDITOR.instances['editor1'].getData();
-            $.ajax({
-                type: 'POST',
-                data: {pageid: pageid, content: content},
-                url: "<?= site_url() ?>admin/pages/update",
-                success: function (data, textStatus, jqXHR) {
-                    $('.overlay').hide();
-                    $('.loading-img').hide();
-                    alertify.success("Content Successfully Updated..!");
-                }
-            });
+            $('input[name="pageid"]').val(pageid);
+
+            //var content = CKEDITOR.instances['editor1'].getData();
+//            $.ajax({
+//                type: 'POST',
+//                data: {pageid: pageid, content: content},
+//                url: "<?= site_url() ?>admin/pages/update",
+//                success: function (data, textStatus, jqXHR) {
+//                    $('.overlay').hide();
+//                    $('.loading-img').hide();
+//                    alertify.success("Content Successfully Updated..!");
+//                }
+//            });
         });
     });
 </script>
