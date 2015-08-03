@@ -421,10 +421,9 @@ class Mailbox extends CI_Controller {
         foreach ($boxes as $box) {
             imap_reopen($this->stream, $box);
             $emails = imap_search($this->stream, "ALL");
-            echo '<br>-------FOLDER-----------<br>';
+            echo "<br>-------FOLDER : {$box}-----------<br>";
             $mailbox = array();
             if (is_array($emails)) {
-                echo "<br>-------FOLDER : {$box}-----------<br>";
                 echo "<br>All Emails : <br>";
                 print_r($emails);
                 foreach ($emails as $key => $email_id) {
