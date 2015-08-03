@@ -141,6 +141,7 @@
         });
 
         $('#save-page').click(function () {
+            return false;
             var page = $('#pages').val();
             var pageid = ids[pages.indexOf(page)];
             $('input[name="pageid"]').val(pageid);
