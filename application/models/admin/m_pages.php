@@ -18,6 +18,7 @@ class M_pages extends CI_Model {
     }
 
     function getPages() {
+        $this->db->order_by('title', 'asc');
         $query = $this->db->get('pages');
         return $query->result();
     }
