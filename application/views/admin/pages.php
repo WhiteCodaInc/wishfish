@@ -104,14 +104,6 @@
         });
     });
     $(document).ready(function () {
-
-<?php
-$post = $this->input->post();
-if (is_array($post) && count($post)) {
-    ?>
-            CKEDITOR.instances['editor1'].setData("<?= $post['content'] ?>");
-<?php } ?>
-
         function getPage(page) {
             $('.overlay').show();
             $('.loading-img').show();
