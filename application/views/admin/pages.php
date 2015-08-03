@@ -137,7 +137,7 @@
             var page = $('#pages').val();
             var pageid = ids[pages.indexOf(page)];
             $('input[name="pageid"]').val(pageid);
-
+            $('#pageForm').submit();
             //var content = CKEDITOR.instances['editor1'].getData();
 //            $.ajax({
 //                type: 'POST',
