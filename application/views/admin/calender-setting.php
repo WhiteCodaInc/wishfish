@@ -76,7 +76,7 @@
                                     <li>Click on APIs & auth from left an sidebar and click on Credentials</li>
                                     <li>Click on 'create Client ID' and choose 'web application' click on configure consent screen.</li>
                                     <li>On Consent screen Enter Project name as a 'Wish-Fish' and save it.</li>
-                                    <li class="copy">Enter Authorized redirect URIs "<span class="copyText">https://www.wish-fish.com/admin/calender</span>".</li>
+                                    <li class="copy">Enter Authorized redirect URIs "<span class="copyText">https://wish-fish.com/admin/calender</span>".</li>
                                     <li>Copy Client ID and Client secret key and paste it on above setting form.</li>
                                     <li>Click on 'Create new key' and select 'Server key'.</li>
                                     <li>Enter following IP Address '50.28.18.90'.</li>
