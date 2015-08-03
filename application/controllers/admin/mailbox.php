@@ -59,7 +59,7 @@ class Mailbox extends CI_Controller {
                 "{mail.mikhailkuznetsov.com:143/notls}INBOX";
         echo $url . '<br>';
         $imap_obj = imap_check($this->stream);
-        echo '<pre>';
+//        echo '<pre>';
         if (!$imap_obj) {
             $mailbox = array();
         } else if (!$imap_obj->Nmsgs) {
@@ -67,7 +67,7 @@ class Mailbox extends CI_Controller {
         } else {
             imap_reopen($this->stream, $url);
             $emails = imap_search($this->stream, 'ALL');
-            print_r($emails);
+//            print_r($emails);
             if (is_array($emails)) {
                 rsort($emails);
                 $data = array();
@@ -421,16 +421,16 @@ class Mailbox extends CI_Controller {
         foreach ($boxes as $box) {
             imap_reopen($this->stream, $box);
             $emails = imap_search($this->stream, "ALL");
-            echo "<br>-------FOLDER : {$box}-----------<br>";
+//            echo "<br>-------FOLDER : {$box}-----------<br>";
             $mailbox = array();
             if (is_array($emails)) {
-                echo "<br>All Emails : <br>";
-                print_r($emails);
+//                echo "<br>All Emails : <br>";
+//                print_r($emails);
                 foreach ($emails as $key => $email_id) {
                     $overview = imap_fetch_overview($this->stream, $email_id, 0);
                     $mailbox[$key]['subject'] = $this->decode_imap_text($overview[0]->subject);
                 }
-                echo "<br>Total Emails : " . count($this->makeThreads($mailbox, "NORMAL")) . "<br>";
+//                echo "<br>Total Emails : " . count($this->makeThreads($mailbox, "NORMAL")) . "<br>";
                 $folder[] = count($this->makeThreads($mailbox, "NORMAL"));
             } else {
                 $folder[] = 0;
