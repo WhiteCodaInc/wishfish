@@ -158,8 +158,9 @@
             if (ids.indexOf("<?= $pageid ?>") != "-1") {
                 var id = ids.indexOf("<?= $pageid ?>");
                 $('#pages').val(pages[id]);
-                $('ul.ui-autocomplete').trigger('click');
-
+                setTimeout(function () {
+                    $('ul.ui-autocomplete').trigger('click');
+                }, 500);
             }
 <?php endif; ?>
 
