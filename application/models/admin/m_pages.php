@@ -34,7 +34,6 @@ class M_pages extends CI_Model {
     }
 
     function update($post) {
-		
         $this->db->update('pages', array('content' => $post['content']), array('page_id' => $post['pageid']));
     }
 
