@@ -11,7 +11,6 @@
  *
  * @author Laxmisoft
  */
- ini_set('post_max_size', '500M');
 class Pages extends CI_Controller {
 
     function __construct() {
