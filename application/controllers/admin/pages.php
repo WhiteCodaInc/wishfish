@@ -15,6 +15,11 @@ class Pages extends CI_Controller {
 
     function __construct() {
         parent::__construct();
+		
+		ini_set('memory_limit', '96M');
+		ini_set('post_max_size', '64M');
+		ini_set('upload_max_filesize', '64M');
+		
         if (!$this->authex->logged_in()) {
             header('location:' . site_url() . 'admin/admin_login');
         } else {
