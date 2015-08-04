@@ -50,6 +50,7 @@ class Pages extends CI_Controller {
     function update() {
         $post = $this->input->post();
 		echo '<pre>';
+		echo "LENGTH : ".strlen($post['cotent']).'<br>';
 		print_r($post);
 		die();
         $this->objpage->update($post);
