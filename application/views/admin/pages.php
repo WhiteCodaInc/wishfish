@@ -117,14 +117,22 @@
                 success: function (data, textStatus, jqXHR) {
                     $('.overlay').hide();
                     $('.loading-img').hide();
-                    CKEDITOR.instances['editor1'].setData(data);
+					if(data == "0"){
+						alertify.error("Page does not exists..!");
+						$('#pages').val("");
+						CKEDITOR.instances['editor1'].setData("");
+						$('.box-title').text("Page");
+					}else{
+						CKEDITOR.instances['editor1'].setData(data);
+					}
+                    
                 }
             });
         }
         $('ul.ui-autocomplete').on('click', function () {
             var page = $('#pages').val();
             getPage(ids[pages.indexOf(page)]);
-            $('.box-title').text(page);
+			$('.box-title').text(page);			
         });
         $('#pages').on("keypress", function (e) {
             if (e.keyCode == 13) {
@@ -154,7 +162,7 @@
                 $('.box-title').text(pages[id]);
                 setTimeout(function () {
                     $('ul.ui-autocomplete').trigger('click');
-                }, 500);
+                }, 1000);
             }
 <?php endif; ?>
     });

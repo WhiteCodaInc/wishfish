@@ -33,7 +33,12 @@ class Pages extends CI_Controller {
 
     function getContent() {
         $pageid = $this->input->post('pageid');
-        echo $this->objpage->getContent($pageid);
+		$res = $this->objpage->getContent($pageid);
+        if($res){
+			echo $res->content;
+		}else{
+			echo 0;
+		}
     }
 
     function update() {
