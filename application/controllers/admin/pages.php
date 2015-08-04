@@ -45,15 +45,15 @@ class Pages extends CI_Controller {
     }
 
     function update() {
-		ini_set('memory_limit', '96M');
-		ini_set('post_max_size', '64M');
-		ini_set('upload_max_filesize', '64M');
-		ini_set('display_errors', 'true');
+		//ini_set('memory_limit', '96M');
+		//ini_set('post_max_size', '64M');
+		//ini_set('upload_max_filesize', '64M');
+		//ini_set('display_errors', 'true');
         $post = $this->input->post();
-		echo '<pre>';
-		echo "LENGTH : ".strlen($post['content']).'<br>';
-		print_r($post);
-		die();
+		//echo '<pre>';
+		//echo "LENGTH : ".strlen($post['content']).'<br>';
+		//print_r($post);
+		//die();
         $this->objpage->update($post);
         header('location:' . site_url() . 'admin/pages?id=' . $post['pageid']);
     }
