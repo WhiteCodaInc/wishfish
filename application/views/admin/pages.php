@@ -124,8 +124,7 @@
 						$('.box-title').text("Page");
 					}else{
 						CKEDITOR.instances['editor1'].setData(data);
-					}
-                    
+					}    
                 }
             });
         }
@@ -137,11 +136,13 @@
         $('#pages').on("keypress", function (e) {
             if (e.keyCode == 13) {
                 var page = $('#pages').val();
-                if (page.trim() != "") {
+                if (page.trim() != "" && pages.indexOf(page) != "-1") {
                     getPage(ids[pages.indexOf(page)]);
                     $('.box-title').text(page);
 
                 } else {
+					alertify.error("Page does not exists..!");
+					$('#pages').val("");
                     CKEDITOR.instances['editor1'].setData("");
                     $('.box-title').text("Page");
                 }
