@@ -35,4 +35,5 @@ RewriteRule .* index.php?/$0[PT,L]
 ErrorDocument 404 /index.php
 </IfModule> 
 
-#---------------------------------------------------------------------------------------------------------------------------------
+#set max post size
+php_value post_max_size 20M
