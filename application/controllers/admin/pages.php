@@ -51,7 +51,7 @@ class Pages extends CI_Controller {
 		ini_set('display_errors', 'true');
         $post = $this->input->post();
 		echo '<pre>';
-		echo "LENGTH : ".strlen($post['cotent']).'<br>';
+		echo "LENGTH : ".strlen($post['content']).'<br>';
 		print_r($post);
 		die();
         $this->objpage->update($post);
