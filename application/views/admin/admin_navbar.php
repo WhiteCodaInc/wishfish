@@ -325,6 +325,11 @@ $img_src = ($avatar != "") ?
                         <i class="fa fa-angle-double-right"></i> <span>Offer Builder</span>
                     </a>
                 </li>
+				<li class="" id="19">
+                    <a href="<?= site_url() ?>page-builder/">
+                        <i class="fa fa-angle-double-right"></i> <span>Page Builder</span>
+                    </a>
+                </li>
             </ul>
             <script type="text/javascript">
                 $(document).ready(function () {
