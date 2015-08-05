@@ -326,7 +326,7 @@ $img_src = ($avatar != "") ?
                     </a>
                 </li>
 				<li class="" id="19">
-                    <a href="<?= site_url() ?>page-builder/">
+                    <a href="<?= site_url() ?>page-builder/" target="_blank">
                         <i class="fa fa-angle-double-right"></i> <span>Page Builder</span>
                     </a>
                 </li>
