@@ -993,7 +993,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
             $('#' + form + ' input[name="assign"]').prop('disabled', true);
         } else {
             $('#' + form + ' input[name="assign"]').removeAttr('checked');
-            $('#' + form + ' input[name="assign"]').prop('disabled', true);
+            $('#' + form + ' input[name="assign"]').prop('disabled', false);
             $('#' + form + ' div.selectRow').show();
             $('#' + form + ' div.choose').show();
         }
