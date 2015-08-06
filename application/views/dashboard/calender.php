@@ -987,6 +987,8 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
         console.log(form);
         if ($(this).val() == "me") {
             $('#users').prop('disabled', true);
+        }else{
+            $('#users').prop('disabled', false);
         }
     });
 
