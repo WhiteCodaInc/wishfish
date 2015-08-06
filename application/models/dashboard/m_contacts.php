@@ -124,20 +124,21 @@ class M_contacts extends CI_Model {
         unset($set['code']);
         $this->db->insert('wi_contact_detail', $set);
         $insertid = $this->db->insert_id();
-
-        $event_data = array(
-            'user_id' => $this->userid,
-            'is_birthday' => 1,
-            'event' => 'Birthday : ' . $set['fname'],
-            'event_type' => "notification",
-            'group_type' => "individual",
-            'contact_id' => $insertid,
-            'color' => "#BDBDBD",
-            'notification' => "0",
-            'notify' => "them",
-            'date' => $this->getFutureDate($set['birthday'])
-        );
-        $this->db->insert('wi_schedule', $event_data);
+        if ($set['birthday'] != NULL) {
+            $event_data = array(
+                'user_id' => $this->userid,
+                'is_birthday' => 1,
+                'event' => 'Birthday : ' . $set['fname'],
+                'event_type' => "notification",
+                'group_type' => "individual",
+                'contact_id' => $insertid,
+                'color' => "#BDBDBD",
+                'notification' => "0",
+                'notify' => "them",
+                'date' => $this->getFutureDate($set['birthday'])
+            );
+            $this->db->insert('wi_schedule', $event_data);
+        }
         $m = "I";
         if (isset($_FILES['contact_avatar'])) {
             if ($_FILES['contact_avatar']['error'] == 0) {
