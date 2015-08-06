@@ -664,7 +664,7 @@
                         </div>
                     </div>
                     <br/>
-                    <div class="row m-bot15">                        
+                    <div class="row m-bot15 selectRow">                        
                         <div class="col-md-12">	
                             <div class="form-group">
                                 <div class="form-group">
@@ -987,9 +987,15 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
         var form = $(this).parents('form').prop('id');
         console.log(form);
         if ($(this).val() == "me") {
-            $('#users').prop('disabled', true);
+            $('div.selectRow').hide();
+            $('div.choose').hide();
+            $('#' + form + ' input[name="assign"]').removeAttr('checked');
+            $('#' + form + ' input[name="assign"]').prop('disabled', true);
         } else {
-            $('#users').prop('disabled', false);
+            $('#' + form + ' input[name="assign"]').removeAttr('checked');
+            $('#' + form + ' input[name="assign"]').prop('disabled', true);
+            $('#' + form + ' div.selectRow').show();
+            $('#' + form + ' div.choose').show();
         }
     });
 
