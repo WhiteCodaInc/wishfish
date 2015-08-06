@@ -1010,12 +1010,12 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                     type: 'POST',
                     url: "<?= site_url() ?>app/calender/allGroup",
                     success: function (data, textStatus, jqXHR) {
-                        if (data != 0) {
-                            $("#lbl_select").text("Group");
-                            $('#user-tag').html(data);
-                        } else {
+                        if (data == '0') {
                             $('#rd_individual').trigger('click');
                             alertify.alert("You have already reach your Group event  limit..!\nYou can not add more..!");
+                        } else {
+                            $("#lbl_select").text("Group");
+                            $('#user-tag').html(data);
                         }
                     }
                 });
