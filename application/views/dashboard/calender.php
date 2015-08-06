@@ -1099,7 +1099,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                 return false;
 <?php else: ?>
                 $('#eventForm').trigger("reset");
-                $('#eventForm input[name="notify"]').trigger('change');
+                $('#eventForm input[name="notify"]:nth(0)').trigger('click');
                 $('#all_c').trigger("change");
                 $('#rd_individual').trigger('change');
 <?php endif; ?>
