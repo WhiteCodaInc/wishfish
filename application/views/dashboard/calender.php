@@ -987,7 +987,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
         console.log(form);
         if ($(this).val() == "me") {
             $('#users').prop('disabled', true);
-        }else{
+        } else {
             $('#users').prop('disabled', false);
         }
     });
@@ -1068,7 +1068,9 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
             $(this).css('cursor', 'pointer');
         });
     });
+
     $(document).ready(function () {
+
         $('span.lbl').click(function () {
             $name = $(this).prev().prop('name');
             $('input[name="' + $name + '"]').prop('checked', false);
@@ -1161,6 +1163,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                 }
             });
         });
+
         $('#edit').click(function () {
             var formid = $(this).parents('form').prop('id');
             var id = $(this).prop('id');
@@ -1230,7 +1233,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                     alertify.error("Please Select Notify Option..!");
                     return false;
                 }
-                if ($("#rd_individual").prop("checked")) {
+                if ($("#rd_individual").prop("checked") && $('#' + formid + ' input[name="notify"]:checked').val() == "them") {
                     var cnt = $('#users').val().trim();
                     if (cnt == "") {
                         alertify.error("Please Select Contact..!");
