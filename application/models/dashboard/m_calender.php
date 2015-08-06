@@ -195,7 +195,7 @@ class M_calender extends CI_Model {
 
         if ($eInfo->notify == "me") {
             $uInfo = $this->wi_common->getUserInfo();
-            $result->name = $uInfo->fname . ' ' . $uInfo->lname;
+            $result->name = $uInfo->name;
         }
         return $result;
     }
