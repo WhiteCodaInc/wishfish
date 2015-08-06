@@ -5,7 +5,7 @@
         <h1 style="display: none">
             Add New Contact
         </h1>
-        <button type="button" id="addContact" class="btn btn-primary">Create New Contact</button>
+        <button type="button" class="btn btn-primary addContact">Create New Contact</button>
     </section>
 
     <!-- Main content -->
@@ -82,6 +82,9 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <button type="button" class="btn btn-primary addContact">Create This Contact</button>
+                            </div>
                         </div><!-- /.box-body -->
                         <input value="" name="zodiac" type="hidden" class="form-control" >
                         <input value="" name="age" type="hidden" class="form-control" >
@@ -119,7 +122,7 @@
     });
     $(document).ready(function () {
 
-        $('#addContact').click(function () {
+        $('div.addContact').click(function () {
             $('#contactForm').submit();
         });
 
