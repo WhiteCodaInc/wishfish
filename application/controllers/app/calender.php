@@ -153,7 +153,7 @@ class Calender extends CI_Controller {
 
     function addEvent() {
         $post = $this->input->post();
-        
+
         $eventData = $this->addGoogleEvent($post);
         echo $eventData;
         die();
@@ -237,8 +237,11 @@ class Calender extends CI_Controller {
             );
             $this->input->set_cookie($userid);
         }
-        $this->setClient();
-        header('location:' . $this->client->createAuthUrl());
+        if ($this->setClient()) {
+            header('location:' . $this->client->createAuthUrl());
+        } else {
+            header('location:' . site_url() . 'app/setting');
+        }
     }
 
     function setClient() {
@@ -260,15 +263,16 @@ class Calender extends CI_Controller {
             $this->client->setUseObjects(true);
 
             $this->service = new Google_CalendarService($this->client);
+            return TRUE;
         } else {
-            header('location:' . site_url() . 'app/setting');
+            return FALSE;
+//            header('location:' . site_url() . 'app/setting');
         }
     }
 
     function refresh() {
         try {
-            $this->setClient();
-            if ($this->client->isAccessTokenExpired() && $this->input->cookie('token')) {
+            if ($this->setClient() && $this->client->isAccessTokenExpired() && $this->input->cookie('token')) {
                 $tkn = $this->encryption->decode($this->input->cookie('token', TRUE));
                 $this->client->refreshToken($tkn);
                 return TRUE;
@@ -294,23 +298,24 @@ class Calender extends CI_Controller {
 
     function events() {
         try {
-            $this->refresh();
-            $calendarList = $this->service->calendarList->listCalendarList();
-            echo '<pre>';
+            if ($this->refresh()) {
+                $calendarList = $this->service->calendarList->listCalendarList();
+                echo '<pre>';
 //            print_r($calendarList);
 //            die();
-            foreach ($calendarList->items as $calendarListEntry) {
-                echo '<br>-------------------------------------------------------<br>';
-                echo "ID : " . $calendarListEntry->id . "<br>\n";
-                echo "SUMMARY : " . $calendarListEntry->summary . "<br>\n";
-                // get events 
-                $events = $this->service->events->listEvents($calendarListEntry->id);
-                //print_r($events);
-                foreach ($events->items as $event) {
-                    echo "-----" . $event->summary . "<br>";
-                    print_r($event);
+                foreach ($calendarList->items as $calendarListEntry) {
+                    echo '<br>-------------------------------------------------------<br>';
+                    echo "ID : " . $calendarListEntry->id . "<br>\n";
+                    echo "SUMMARY : " . $calendarListEntry->summary . "<br>\n";
+                    // get events 
+                    $events = $this->service->events->listEvents($calendarListEntry->id);
+                    //print_r($events);
+                    foreach ($events->items as $event) {
+                        echo "-----" . $event->summary . "<br>";
+                        print_r($event);
+                    }
+                    die();
                 }
-                die();
             }
         } catch (Google_ServiceException $exc) {
             $error = $exc->getErrors();
