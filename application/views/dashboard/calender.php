@@ -981,6 +981,12 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
     var groupEvent = "<?= $planInfo->group_events ?>";
     var planid = "<?= $planInfo->plan_id ?>";
     var is_lifetime = "<?= $planInfo->is_lifetime ?>";
+
+    $('input[name="notify"]').change(function () {
+        var form = $(this).parents('form').prop('id');
+        console.log(form);
+    });
+
     $('#eventForm input[name="assign"]').change(function () {
         $('.msgChoose').empty();
         var event_type = $('#eventForm input[name="event_type"]:checked').val();
