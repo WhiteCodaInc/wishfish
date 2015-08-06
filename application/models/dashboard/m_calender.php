@@ -194,7 +194,7 @@ class M_calender extends CI_Model {
         $result->format_date = $this->wi_common->getUTCDate($result->format_date);
 
         if ($eInfo->notify == "me") {
-            $uInfo = $this->wi_common->getUserInfo();
+            $uInfo = $this->wi_common->getUserInfo($this->userid);
             $result->name = $uInfo->name;
             $result->contact_avatar = $uInfo->profile_pic();
         }
