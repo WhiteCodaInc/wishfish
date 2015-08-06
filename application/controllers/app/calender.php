@@ -84,6 +84,8 @@ class Calender extends CI_Controller {
     function allGroup() {
         $currPlan = $this->wi_common->getCurrentPlan();
         $res = $this->objcal->checkTotalGroupEvent();
+        echo ($res) ? "TRUE" : "FALSE";
+        die();
         if (!$res || $res->total < $currPlan->group_events) {
             $group = $this->objgroup->getContactGroups("simple");
             echo '<select  name="group_id" class="form-control">';
