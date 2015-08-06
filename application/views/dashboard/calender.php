@@ -985,6 +985,9 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
     $('input[name="notify"]').change(function () {
         var form = $(this).parents('form').prop('id');
         console.log(form);
+        if ($(this).val() == "me") {
+            $('#users').prop('disabled', true);
+        }
     });
 
     $('#eventForm input[name="assign"]').change(function () {
