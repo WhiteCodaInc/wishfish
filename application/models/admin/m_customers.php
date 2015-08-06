@@ -174,8 +174,16 @@ class M_customers extends CI_Model {
     }
 
     function lifetimeAccess($post) {
-        $is_lifetime = ($post['type'] == "assign") ? 1 : 0;
-        $this->db->update('wi_plan_detail', array('is_lifetime' => $is_lifetime), array('id' => $post['planid']));
+        $flag = ($post['type'] == "assign") ? 1 : 0;
+        $pInfo = $this->wi_common->getPlan(1);
+        $set = array(
+            'contacts' => ($flag) ? -1 : $pInfo->contacts,
+            'sms_events' => ($flag) ? -1 : $pInfo->sms_events,
+            'email_events' => ($flag) ? -1 : $pInfo->email_events,
+            'group_events' => ($flag) ? -1 : $pInfo->group_events,
+            'is_lifetime' => $flag
+        );
+        $this->db->update('wi_plan_detail', $set, array('id' => $post['planid']));
         return true;
     }
 
