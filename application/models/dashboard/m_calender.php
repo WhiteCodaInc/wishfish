@@ -197,6 +197,7 @@ class M_calender extends CI_Model {
             $uInfo = $this->wi_common->getUserInfo($this->userid);
             $result->name = $uInfo->name;
             $result->contact_avatar = $uInfo->profile_pic;
+            $result->contact_id = $uInfo->profile_id;
         }
         return $result;
     }
