@@ -181,7 +181,7 @@
                                 </div><!-- /.box-body -->
                             <?php endif; ?>
                             <?php if ($user->is_set && $user->gateway == "STRIPE"): ?>
-                                <div class="form-group">
+                                <div class="form-group" style="text-align: right">
                                     <button type="button" id="cancel-account" class="btn btn-danger">Cancel My Account</button>
                                 </div>
                             <?php endif; ?>
