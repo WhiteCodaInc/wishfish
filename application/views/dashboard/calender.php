@@ -987,8 +987,8 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
         var form = $(this).parents('form').prop('id');
         console.log(form);
         if ($(this).val() == "me") {
-            $('div.selectRow').hide();
-            $('div.choose').hide();
+            $('#' + form + ' div.selectRow').hide();
+            $('#' + form + ' div.choose').hide();
             $('#' + form + ' input[name="assign"]').prop('checked', false);
             $('#' + form + ' input[name="assign"]').prop('disabled', true);
         } else {
