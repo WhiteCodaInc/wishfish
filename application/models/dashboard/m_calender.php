@@ -183,6 +183,7 @@ class M_calender extends CI_Model {
     }
 
     function getEvent($eid) {
+        $eInfo = $this->getEventInfo($eid);
         $this->db->select('*,concat(fname," ",lname) as name,concat(DATE_FORMAT(date,"%M %d")," at ",TIME_FORMAT(time, "%h:%i %p")) as date,date as format_date', FALSE);
         $this->db->from('wi_schedule as S');
         $this->db->join('wi_contact_detail as C', 'S.contact_id = C.contact_id', 'left outer');
@@ -191,6 +192,11 @@ class M_calender extends CI_Model {
         $query = $this->db->get();
         $result = $query->row();
         $result->format_date = $this->wi_common->getUTCDate($result->format_date);
+
+        if ($eInfo->notify == "me") {
+            $uInfo = $this->wi_common->getUserInfo();
+            $result->name = $uInfo->fname . ' ' . $uInfo->lname;
+        }
         return $result;
     }
 
