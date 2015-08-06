@@ -1181,12 +1181,12 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
         $('#edit').click(function () {
             var formid = $(this).parents('form').prop('id');
             var id = $(this).prop('id');
-            var len = $('#' + formid + ' input[name="notify"]:checked').length;
-
-            if (!len) {
-                alertify.error("Please Select Notify Option..!");
-                return false;
-            }
+//            var len = $('#' + formid + ' input[name="notify"]:checked').length;
+//
+//            if (!len) {
+//                alertify.error("Please Select Notify Option..!");
+//                return false;
+//            }
 
             if ($('#editForm input[name="date"]').val().trim() == "") {
                 alertify.error("Please Select Date..!");
