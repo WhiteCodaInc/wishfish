@@ -1556,8 +1556,14 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                         }
                     } else {
                         $url = (data.contact_avatar != null) ?
-                                    "http://mikhailkuznetsov.s3.amazonaws.com/" + data.contact_avatar :
-                                    "<?= base_url() . 'assets/dashboard/img/default-avatar.png' ?>";
+                                "http://mikhailkuznetsov.s3.amazonaws.com/" + data.contact_avatar :
+                                "<?= base_url() . 'assets/dashboard/img/default-avatar.png' ?>";
+                        $('#e_user_img').prop('href', $href);
+                        $('#e_user_img img').prop('src', $url);
+                        $('#e_user_img').css('display', 'block');
+                        $('#e_user_img').css('float', 'left');
+                        $('#event_status').css('margin', '0 0 0 50px');
+                        $('#event_empty').css('margin', '0 0 0 50px');
                     }
 
                     $('#e_event_name').text(data.event);
