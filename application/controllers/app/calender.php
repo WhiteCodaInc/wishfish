@@ -102,8 +102,6 @@ class Calender extends CI_Controller {
         $currPlan = $this->wi_common->getCurrentPlan();
         foreach ($individual as $key => $value) {
             $res = $this->objcal->checkTotalEvent($value->contact_id);
-            print_r($res);
-            die();
             switch ($type) {
                 case "email":
                     if (!isset($res['email']) || $currPlan->email_events == '-1' || $res['email'] < $currPlan->email_events + 1) {
@@ -112,7 +110,7 @@ class Calender extends CI_Controller {
                     }
                     break;
                 case "sms":
-                    if (!isset($res['sms']) || (isset($res['sms']) && $res['sms'] < $currPlan->sms_events + 1)) {
+                    if (!isset($res['sms']) || $currPlan->sms_events == '-1' || $res['sms'] < $currPlan->sms_events + 1) {
                         $user[$key] = $value->fname . '  ' . $value->lname . ' || ' . $value->phone;
                         $ids[$key] = $value->contact_id;
                     }
