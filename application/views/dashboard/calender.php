@@ -1518,6 +1518,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                 $('#dt').text(date.format("DD-MM-YYYY"));
                 $('input[name="date"]').val(date.format());
                 $('#eventForm').trigger("reset");
+                $('#eventForm input[name="notify"]:nth(0)').trigger('change');
                 $('#all_c').trigger("change");
                 $('#rd_individual').trigger('change');
                 $('#popup').prop('disabled', false);
