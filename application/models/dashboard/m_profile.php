@@ -238,8 +238,7 @@ class M_profile extends CI_Model {
             if (isset($customer->subscriptions->data[0]->id)) {
                 $subs = $customer->subscriptions->data[0]->id;
                 $customer->subscriptions->retrieve($subs)->cancel();
-                $currPlan = $this->wi_common->getCurrentPlan();
-                $this->db->update('wi_plan_detail', array('cancel_by' => 1), array('id' => $currPlan->id));
+                $this->db->update('wi_user_mst', array('cancel_by' => 1), array('user_id' => $this->userid));
                 $success = 1;
             } else {
                 $error = "You have not currently subscribe any plan..!  <a href='" . site_url() . "app/upgrade'>Subscribe New Plan</a>";
