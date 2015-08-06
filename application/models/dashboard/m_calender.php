@@ -65,8 +65,7 @@ class M_calender extends CI_Model {
     }
 
     function addEvent($post, $google_event_id = NULL) {
-        print_r($post);
-        die();
+
         if ($post['notify'] == "them") {
             switch ($post['assign']) {
                 case 'all_c':
