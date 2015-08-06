@@ -17,7 +17,7 @@
             <button type="button" id="pay" class="btn btn-warning">Pay With Paypal</button>
         <?php endif; ?>
         <?php if ($user->is_set && $user->gateway == "STRIPE"): ?>
-            <button type="button" id="cancel-account" class="btn btn-danger">Cancel Your Account</button>
+            <button type="button" id="cancel-account" class="btn btn-danger">Cancel My Account</button>
         <?php endif; ?>
         <a href="<?= site_url() ?>app/setting" class="btn btn-success">Google Sync Setting</a>
     </section>
