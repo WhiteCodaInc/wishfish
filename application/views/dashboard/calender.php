@@ -1097,6 +1097,11 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                 alertify.alert("You cannot schedule events until you verify your email address.<br/><a href='javascript:void(0);' id='sendAgain'>Click Here</a> to send a verification email.");
                 varifyEmail();
                 return false;
+<?php else: ?>
+                $('#eventForm').trigger("reset");
+                $('#eventForm input[name="notify"]:nth(0)').trigger('click');
+                $('#all_c').trigger("change");
+                $('#rd_individual').trigger('change');
 <?php endif; ?>
         });
 
@@ -1517,10 +1522,6 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                 highlightDay(jsEvent);
                 $('#dt').text(date.format("DD-MM-YYYY"));
                 $('input[name="date"]').val(date.format());
-                $('#eventForm').trigger("reset");
-                $('#eventForm input[name="notify"]:nth(0)').trigger('click');
-                $('#all_c').trigger("change");
-                $('#rd_individual').trigger('change');
                 $('#popup').prop('disabled', false);
             }
         },
