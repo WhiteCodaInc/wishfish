@@ -68,16 +68,17 @@ class M_calender extends CI_Model {
 //        print_r($post);
 //        echo $google_event_id;
 //        die();
-        switch ($post['assign']) {
-            case 'all_c':
-                $post['group_type'] = "individual";
-                break;
-            case 'all_gc':
-                unset($post['contact_id']);
-                $post['group_type'] = "simple";
-                break;
-            default:
-                break;
+        if ($post['notify'] == "them") {
+            switch ($post['assign']) {
+                case 'all_c':
+                    $post['group_type'] = "individual";
+                    break;
+                case 'all_gc':
+                    unset($post['contact_id']);
+                    $post['group_type'] = "simple";
+                    break;
+            }
+            unset($post['assign']);
         }
 //        if (isset($post['contactid'])) {
 //            $post['contact_id'] = $post['contactid'];
@@ -91,9 +92,7 @@ class M_calender extends CI_Model {
         $post['occurance'] = ($post['occurance'] != "") ? $post['occurance'] : NULL;
         $post['user_id'] = $this->userid;
         $post['google_event_id'] = $google_event_id;
-        unset($post['assign']);
-        unset($post['smsbody']);
-        unset($post['emailbody']);
+        unset($post['smsbody'], $post['emailbody']);
 
         $this->db->trans_start();
         $post['color'] = "#0073b7";
