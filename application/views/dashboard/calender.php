@@ -398,7 +398,7 @@
                         </div>
                     </div>
                     <br/>
-                    <div class="row m-bot15">                        
+                    <!--<div class="row m-bot15">                        
                         <div class="col-md-12">	
                             <div class="form-group">
                                 <div  style="float: left;padding:0 5px;cursor: pointer">
@@ -412,7 +412,7 @@
                             </div>
                         </div>
                     </div>
-                    <br/>
+                    <br/>-->
                     <div class="row" id="tour-datetime">
                         <div class="col-md-5">
                             <div class="form-group">
