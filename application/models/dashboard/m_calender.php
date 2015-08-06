@@ -330,6 +330,8 @@ class M_calender extends CI_Model {
     function checkTotalGroupEvent() {
         $this->db->select('count(event_id) as total');
         $query = $this->db->get_where('wi_schedule', array('user_id' => $this->userid, 'group_type' => 'simple'));
+        print_r($query->row());
+        die();
         return ($query->num_rows() == 1) ? $query->row() : FALSE;
     }
 
