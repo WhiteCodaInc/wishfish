@@ -989,10 +989,10 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
         if ($(this).val() == "me") {
             $('div.selectRow').hide();
             $('div.choose').hide();
-            $('#' + form + ' input[name="assign"]').removeAttr('checked');
+            $('#' + form + ' input[name="assign"]').prop('checked', false);
             $('#' + form + ' input[name="assign"]').prop('disabled', true);
         } else {
-            $('#' + form + ' input[name="assign"]').removeAttr('checked');
+            $('#' + form + ' input[name="assign"]:nth(0)').prop('checked', true);
             $('#' + form + ' input[name="assign"]').prop('disabled', false);
             $('#' + form + ' div.selectRow').show();
             $('#' + form + ' div.choose').show();
