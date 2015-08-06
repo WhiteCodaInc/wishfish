@@ -165,7 +165,7 @@
                                                 <?php if ($value->status): ?>
                                                     <span class="btn btn-success btn-xs">Active</span>
                                                 <?php else : ?>
-                                                    <span class="btn btn-danger btn-xs">Deactivate</span>
+                                                    <span class="btn btn-danger btn-xs"><?= ($value->cancel_by) ? "Canceled" : "Deactivate" ?></span>
                                                 <?php endif; ?>
                                             </td>
                                         </tr>
