@@ -980,6 +980,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
 
     var groupEvent = "<?= $planInfo->group_events ?>";
     var planid = "<?= $planInfo->plan_id ?>";
+    var is_lifetime = "<?= $planInfo->is_lifetime ?>";
     $('#eventForm input[name="assign"]').change(function () {
         $('.msgChoose').empty();
         var event_type = $('#eventForm input[name="event_type"]:checked').val();
@@ -1092,7 +1093,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
         });
 
         $('#is_repeat,#e_is_repeat,#n_is_repeat').change(function () {
-            if (planid == "1") {
+            if (planid == "1" && (is_lifetime == null || is_lifetime == 2)) {
                 $(this).prop('checked', false);
                 alertify.confirm("Your Account is under 14 days trial period if you want this feature you should need to upgrade your account.Would you like to upgrade your plan?", function (e) {
                     if (e) {
