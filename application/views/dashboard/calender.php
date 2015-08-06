@@ -1535,28 +1535,42 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                     var data = JSON.parse(json);
                     $('#event-description input[name="date"]').val(data.format_date);
                     $('#eventid').val(data.event_id);
+//                    if (data.notify == "them") {
+//                        $('#e_notify_them').trigger('click');
+//                    } else {
+//                        $('#e_notify_me').trigger('click');
+//                    }
                     if (data.notify == "them") {
-                        $('#e_notify_them').trigger('click');
+                        if (data.group_type == "individual") {
+                            $('.e_user_name').text(data.name + " ");
+                            $url = (data.contact_avatar != null) ?
+                                    "http://mikhailkuznetsov.s3.amazonaws.com/" + data.contact_avatar :
+                                    "<?= base_url() . 'assets/dashboard/img/default-avatar.png' ?>";
+                            $href = "<?= site_url() ?>app/contacts/profile/" + data.contact_id;
+                            $('#e_user_img').prop('href', $href);
+                            $('#e_user_img img').prop('src', $url);
+                            $('#e_user_img').css('display', 'block');
+                            $('#e_user_img').css('float', 'left');
+                            $('#event_status').css('margin', '0 0 0 50px');
+                            $('#event_empty').css('margin', '0 0 0 50px');
+                        } else {
+                            $('#event_status').css('margin', '0');
+                            $('#event_empty').css('margin', '0');
+                            $('.e_user_name').text(data.group_name + " ");
+                            $('#e_user_img').css('display', 'none');
+                        }
                     } else {
-                        $('#e_notify_me').trigger('click');
-                    }
-                    if (data.group_type == "individual") {
                         $('.e_user_name').text(data.name + " ");
                         $url = (data.contact_avatar != null) ?
                                 "http://mikhailkuznetsov.s3.amazonaws.com/" + data.contact_avatar :
                                 "<?= base_url() . 'assets/dashboard/img/default-avatar.png' ?>";
-                        $href = "<?= site_url() ?>app/contacts/profile/" + data.contact_id;
+                        $href = "<?= site_url() ?>app/profile/" + data.contact_id;
                         $('#e_user_img').prop('href', $href);
                         $('#e_user_img img').prop('src', $url);
                         $('#e_user_img').css('display', 'block');
                         $('#e_user_img').css('float', 'left');
                         $('#event_status').css('margin', '0 0 0 50px');
                         $('#event_empty').css('margin', '0 0 0 50px');
-                    } else {
-                        $('#event_status').css('margin', '0');
-                        $('#event_empty').css('margin', '0');
-                        $('.e_user_name').text(data.group_name + " ");
-                        $('#e_user_img').css('display', 'none');
                     }
                     $('#e_event_name').text(data.event);
                     $('.e_event_time').text(data.date);
