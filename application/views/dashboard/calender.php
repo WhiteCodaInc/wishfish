@@ -117,7 +117,7 @@
                         </div>
                     </div>
                     <br/>
-                    <div class="row m-bot15">                        
+                    <!--<div class="row m-bot15">                        
                         <div class="col-md-12">	
                             <div class="form-group">
                                 <div  style="float: left;padding:0 5px;cursor: pointer">
@@ -131,7 +131,7 @@
                             </div>
                         </div>
                     </div>
-                    <br/>
+                    <br/>-->
                     <div class="row">
                         <div class="col-md-5">
                             <div class="form-group">
@@ -348,6 +348,7 @@
                     <button type="button" id="n_insert" class="btn btn-primary pull-left"><i class="fa fa-envelope"></i> Schedule Now</button>
 <!--                    <input type="hidden" name="color" value="#f4543c" />-->
                     <input type="hidden" name="assign" value="all_c" />
+                    <input type="hidden" name="notify" value="them" />
                     <input type="hidden" name="contact_id" value="<?= isset($contactInfo) ? $contactInfo->contact_id : '' ?>" />
                 </div>
             </form>
