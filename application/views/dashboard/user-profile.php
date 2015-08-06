@@ -177,6 +177,11 @@
                                                 <span class="lbl padding-8">Automatically bill me, when my trial is over.</span>
                                             </div>
                                         <?php endif; ?>
+                                        <?php if ($user->is_set && $user->gateway == "STRIPE"): ?>
+                                            <div class="form-group">
+                                                <button type="button" id="cancel-account" class="btn btn-danger">Cancel My Account</button>
+                                            </div>
+                                        <?php endif; ?>
                                     </div>
                                 </div><!-- /.box-body -->
                             <?php endif; ?>
@@ -184,13 +189,6 @@
                         </div>
                         <input type="hidden" name="importUrl" value="" />
                     </form>
-
-                    <?php if ($user->is_set && $user->gateway == "STRIPE"): ?>
-                        <div class="form-group">
-                            <button type="button" id="cancel-account" class="btn btn-danger">Cancel My Account</button>
-                        </div>
-                    <?php endif; ?>
-
                 </div><!-- /.box -->
             </div><!--/.col (left) -->
             <div class="col-md-3"></div>
