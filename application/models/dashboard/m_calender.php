@@ -65,9 +65,8 @@ class M_calender extends CI_Model {
     }
 
     function addEvent($post, $google_event_id = NULL) {
-//        print_r($post);
-//        echo $google_event_id;
-//        die();
+        print_r($post);
+        die();
         if ($post['notify'] == "them") {
             switch ($post['assign']) {
                 case 'all_c':
@@ -79,6 +78,8 @@ class M_calender extends CI_Model {
                     break;
             }
             unset($post['assign']);
+        } else {
+            $post['contact_id'] = NULL;
         }
 //        if (isset($post['contactid'])) {
 //            $post['contact_id'] = $post['contactid'];
