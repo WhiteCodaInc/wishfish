@@ -128,6 +128,7 @@
                     } else {
                         var json = JSON.parse(data);
                         $('.link').attr("href", json.url);
+                        $('.link').show();
                         CKEDITOR.instances['editor1'].setData(json.content);
                     }
                 }
