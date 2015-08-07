@@ -995,7 +995,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                 $('#' + form + ' #users').prop('disabled', true);
             } else {
                 $(this).prop('checked', false);
-                alrtify.alert("Your Phone Number IS Not Valid..!");
+                alertify.alert("Your Phone Number IS Not Valid..!");
             }
         } else {
             $('#' + form + ' input[name="assign"]:nth(0)').prop('checked', true);
