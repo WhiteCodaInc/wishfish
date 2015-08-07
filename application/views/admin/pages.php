@@ -36,11 +36,9 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Choose Webpage</label>
-                                    <input type="text" class="form-control"  id="pages" value="" />
+                                    <input type="text" class="form-control form-inline"  id="pages" value="" />
+                                    <a href="#" class="link" style="display: none">View</a>
                                 </div>
-                            </div>
-                            <div class="col-md-9 goto" style="display: none">
-                                <a href="#" class="link">View</a>
                             </div>
                         </div>
                         <form id="pageForm" action="<?= site_url() ?>admin/pages/update" method="post">
