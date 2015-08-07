@@ -66,6 +66,7 @@ $route['data-policy'] = "home/index/data-policy";
 $route['software'] = "home/index/software";
 $route['tasks'] = "home/index/tasks";
 $route['service'] = "home/index/service";
+$route['appendix'] = "home/index/appendix";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
