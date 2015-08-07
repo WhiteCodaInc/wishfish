@@ -987,7 +987,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
         var event_type = $('#' + form + ' input[name="event_type"]:checked').val();
         console.log(event_type);
         if ($(this).val() == "me") {
-            if (event_type != "email" && "<?= $userInfo->phone ?>" != "") {
+            if (event_type != "email" && "<?= $userInfo->phone ?>" == "") {
                 $(this).prop('checked', false);
                 $('#' + form + ' input[name="notify"]:nth(0)').prop('checked', true);
                 alertify.alert("Your Phone Number IS Not Valid..!");
