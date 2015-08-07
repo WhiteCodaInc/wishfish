@@ -35,7 +35,6 @@ class Common {
 
     function sendMail($to = NULL, $subject, $body, $bcc = NULL, $from = NULL) {
         $set = array(
-            'from' => 'Wish-Fish <notification@wish-fish.com>',
             'subject' => $subject,
             'html' => $body
         );
