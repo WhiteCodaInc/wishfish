@@ -44,12 +44,12 @@ class Trigger extends CI_Controller {
             $this->second = date('s', strtotime($time));
 
 
-            /* print_r($userInfo);
-              echo "Event TIME : {$value->time}<br>";
-              echo "DATE : " . $this->date . '<br>';
-              echo "HOUR : " . $this->hour . '<br>';
-              echo "MINUTE : " . $this->minute . '<br>';
-              echo "SECOND : " . $this->second . '<br>'; */
+            //print_r($userInfo);
+            echo "Event TIME : {$value->time}<br>";
+            echo "DATE : " . $this->date . '<br>';
+            echo "HOUR : " . $this->hour . '<br>';
+            echo "MINUTE : " . $this->minute . '<br>';
+            echo "SECOND : " . $this->second . '<br>';
 
 
             if ($this->hour == $value->h && $this->minute == $value->m) {
