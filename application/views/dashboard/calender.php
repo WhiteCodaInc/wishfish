@@ -75,10 +75,15 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
     <div class="modal-dialog">
         <div class="modal-content">
             <?php
-            $url = ($contactInfo->contact_avatar != null) ?
-                    "http://mikhailkuznetsov.s3.amazonaws.com/" + $contactInfo->contact_avatar :
-                    base_url() . 'assets/dashboard/img/default-avatar.png';
-            $href = site_url() . "admin/contacts/profile/" . $contactInfo->contact_id;
+            if ($contactInfo) {
+                $url = ($contactInfo->contact_avatar != null) ?
+                        "http://mikhailkuznetsov.s3.amazonaws.com/" + $contactInfo->contact_avatar :
+                        base_url() . 'assets/dashboard/img/default-avatar.png';
+                $href = site_url() . "admin/contacts/profile/" . $contactInfo->contact_id;
+            } else {
+                $url = "#";
+                $href = "#";
+            }
             ?>
             <div class="modal-header">
                 <button style="margin: -20px;opacity: 1;border-radius: 100%;" type="button" class="close" data-dismiss="modal" aria-hidden="true">
@@ -89,7 +94,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                         <img  src="<?= $url ?>" class="img-circle" alt="User Image" style="width: 45px;height: 45px" />
                     </a>
                     <div id="n_event_status" style="margin-left: 60px;padding-left: 10px;display: none" class="alert alert-info alert-dismissable">
-                        This event will send <b><?= $contactInfo->fname . ' ' . $contactInfo->lname ?></b> a <span id="n_event_type"></span><span id="n_event_dt"></span><span id="n_event_time"></span>
+                        This event will send <b><?= ($contactInfo) ? $contactInfo->fname . ' ' . $contactInfo->lname : '' ?></b> a <span id="n_event_type"></span><span id="n_event_dt"></span><span id="n_event_time"></span>
                     </div>
                     <div id="n_event_empty" style="margin-left: 60px;padding-left: 10px;" class="alert alert-info alert-dismissable">
                         This event is turned off, to turn on please select a notification type.
@@ -156,7 +161,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                         <div class="col-md-5">
                             <label>Event Name</label>
                             <div class="form-group" >
-                                <input type="text" name="event" class="form-control" placeholder="<?= $contactInfo->fname ?>'s Event Name"   />
+                                <input type="text" name="event" class="form-control" placeholder="<?= ($contactInfo) ? $contactInfo->fname : '' ?>'s Event Name"   />
                             </div>
                         </div>
                     </div>
@@ -178,7 +183,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                         <div class="col-md-5">
                             <label>Subject</label>
                             <div class="form-group" >
-                                <input type="text" name="subject" class="form-control" placeholder="<?= $contactInfo->fname ?>'s Subject"  />
+                                <input type="text" name="subject" class="form-control" placeholder="<?= ($contactInfo) ? $contactInfo->fname . "'s Subject" : "Subject" ?>"  />
                             </div>
                         </div>
                     </div>
@@ -355,7 +360,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
 <!--                    <input type="hidden" name="color" value="#f4543c" />-->
                     <input type="hidden" name="assign" value="all_c" />
                     <input type="hidden" name="notify" value="them" />
-                    <input type="hidden" name="contact_id" value="<?= isset($contactInfo) ? $contactInfo->contact_id : '' ?>" />
+                    <input type="hidden" name="contact_id" value="<?= isset($contactInfo) && $contactInfo ? $contactInfo->contact_id : '' ?>" />
                 </div>
             </form>
         </div><!-- /.modal-content -->
