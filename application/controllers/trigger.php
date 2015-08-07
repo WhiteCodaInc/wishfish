@@ -130,14 +130,12 @@ class Trigger extends CI_Controller {
                             break;
                     }
                 } else {
-                    $uInfo = $this->wi_common->getUserInfo($value->user_id);
-                    print_r($contact);
-                    $tag = $this->wi_common->setToken($uInfo);
+                    $tag = $this->wi_common->setToken($userInfo);
                     print_r($tag);
                     if ($value->event_type == "sms") {
                         $body = $this->parser->parse_string($value->body, $tag, TRUE);
 
-                        if ($this->wi_common->sendSMS($uInfo->phone, $body)) {
+                        if ($this->wi_common->sendSMS($userInfo->phone, $body)) {
                             if ($value->is_repeat && $value->end_type == "never")
                                 $this->objtrigger->addNextEvent($value->event_id);
                             $this->objtrigger->updateStatus($value->event_id);
@@ -148,7 +146,7 @@ class Trigger extends CI_Controller {
                         $subject = $this->parser->parse_string($value->subject, $tag, TRUE);
                         $body = $this->parser->parse_string($value->body, $tag, TRUE);
 
-                        if ($this->wi_common->sendMail($uInfo->email, $subject, $body)) {
+                        if ($this->wi_common->sendMail($userInfo->email, $subject, $body)) {
                             if ($value->is_repeat && $value->end_type == "never")
                                 $this->objtrigger->addNextEvent($value->event_id);
                             $this->objtrigger->updateStatus($value->event_id);
