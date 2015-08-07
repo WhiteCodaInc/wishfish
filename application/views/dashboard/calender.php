@@ -1261,6 +1261,8 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                         alertify.error("Please Select Valid Contact..!");
                         return false;
                     }
+                } else {
+                    $('input[name="contact_id"]').val("<?= $this->session->userdata('u_userid'); ?>");
                 }
                 if ($('#eventForm input[name="event"]').val().trim() == "") {
                     alertify.error("Please Enter Event Name..!");

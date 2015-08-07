@@ -77,8 +77,6 @@ class M_calender extends CI_Model {
                     break;
             }
             unset($post['assign']);
-        } else {
-            $post['contact_id'] = NULL;
         }
 //        if (isset($post['contactid'])) {
 //            $post['contact_id'] = $post['contactid'];
