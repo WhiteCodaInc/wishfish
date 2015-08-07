@@ -46,6 +46,7 @@ class Trigger extends CI_Controller {
 
 
             //print_r($userInfo);
+            echo "<br>-----------------------<br>";
             echo "Event TIME : {$value->time}<br>";
             echo "DATE : " . $this->date . '<br>';
             echo "HOUR : " . $this->hour . '<br>';
