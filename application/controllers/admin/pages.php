@@ -15,9 +15,9 @@ class Pages extends CI_Controller {
 
     function __construct() {
         parent::__construct();
-		
-		
-		
+
+
+
         if (!$this->authex->logged_in()) {
             header('location:' . site_url() . 'admin/admin_login');
         } else {
@@ -36,12 +36,12 @@ class Pages extends CI_Controller {
 
     function getContent() {
         $pageid = $this->input->post('pageid');
-		$res = $this->objpage->getContent($pageid);
-        if($res){
-			echo $res->content;
-		}else{
-			echo 0;
-		}
+        $res = $this->objpage->getContent($pageid);
+        if ($res) {
+            echo json_encode($res);
+        } else {
+            echo 0;
+        }
     }
 
     function update() {

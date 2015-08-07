@@ -25,12 +25,11 @@ class M_pages extends CI_Model {
 
     function getContent($pageid) {
         $query = $this->db->get_where('pages', array('page_id' => $pageid));
-		if($query->num_rows()){
-			return $query->row();
-		}else{
-			return FALSE;
-		}
-        
+        if ($query->num_rows()) {
+            return $query->row();
+        } else {
+            return FALSE;
+        }
     }
 
     function update($post) {

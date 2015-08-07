@@ -126,7 +126,9 @@
                         CKEDITOR.instances['editor1'].setData("");
                         $('.box-title').text("Page");
                     } else {
-                        CKEDITOR.instances['editor1'].setData(data);
+                        var json = JSON.parse(data);
+                        console.log(json);
+                        CKEDITOR.instances['editor1'].setData(json.content);
                     }
                 }
             });
