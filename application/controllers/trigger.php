@@ -29,8 +29,9 @@ class Trigger extends CI_Controller {
         $blackList = $this->objcontact->getBlackList();
         $res = $this->objtrigger->getEvents();
 
-        // echo '<pre>';
-
+         echo '<pre>';
+         print_r($res);
+         die();
         foreach ($res as $value) {
 
             $userInfo = $this->wi_common->getUserInfo($value->user_id);
