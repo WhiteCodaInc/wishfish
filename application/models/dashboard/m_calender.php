@@ -182,21 +182,26 @@ class M_calender extends CI_Model {
 
     function getEvent($eid) {
         $eInfo = $this->getEventInfo($eid);
+
         $this->db->select('*,concat(fname," ",lname) as name,concat(DATE_FORMAT(date,"%M %d")," at ",TIME_FORMAT(time, "%h:%i %p")) as date,date as format_date', FALSE);
         $this->db->from('wi_schedule as S');
-        $this->db->join('wi_contact_detail as C', 'S.contact_id = C.contact_id', 'left outer');
-        $this->db->join('wi_contact_groups as G', 'S.group_id = G.group_id', 'left outer');
+        if ($eInfo->notify == "them") {
+            $this->db->join('wi_contact_detail as C', 'S.contact_id = C.contact_id', 'left outer');
+            $this->db->join('wi_contact_groups as G', 'S.group_id = G.group_id', 'left outer');
+        } else {
+            $this->db->join('wi_user_mst as U', 'S.contact_id = U.user_id', 'left outer');
+        }
         $this->db->where('event_id', $eid);
         $query = $this->db->get();
         $result = $query->row();
         $result->format_date = $this->wi_common->getUTCDate($result->format_date);
 
-        if ($eInfo->notify == "me") {
-            $uInfo = $this->wi_common->getUserInfo($this->userid);
-            $result->name = $uInfo->name;
-            $result->contact_avatar = $uInfo->profile_pic;
-            $result->contact_id = $uInfo->user_id;
-        }
+//        if ($eInfo->notify == "me") {
+//            $uInfo = $this->wi_common->getUserInfo($this->userid);
+//            $result->name = $uInfo->name;
+//            $result->contact_avatar = $uInfo->profile_pic;
+//            $result->contact_id = $uInfo->user_id;
+//        }
         return $result;
     }
 
