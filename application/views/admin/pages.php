@@ -39,7 +39,7 @@
                                     <input type="text" class="form-control form-inline"  id="pages" value="" />
                                 </div>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-2" style="margin-top: 3%;">
                                 <a href="#" class="link" style="display: none">View</a>
                             </div>
                         </div>
