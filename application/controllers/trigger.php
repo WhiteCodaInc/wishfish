@@ -55,7 +55,7 @@ class Trigger extends CI_Controller {
 
 
             if ($this->hour == $value->h && $this->minute == $value->m) {
-                //echo "<br>-------------Event ID : {$value->event_id} Sucssfully Sent...! ----------------<br>";
+                echo "<br>-------------Event ID : {$value->event_id} Sucssfully Sent...! ----------------<br>";
                 if ($value->notify == "them") {
                     switch ($value->group_type) {
                         case 'individual':
