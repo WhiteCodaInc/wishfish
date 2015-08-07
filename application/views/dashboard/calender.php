@@ -982,6 +982,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
     var groupEvent = "<?= $planInfo->group_events ?>";
     var planid = "<?= $planInfo->plan_id ?>";
     var is_lifetime = "<?= $planInfo->is_lifetime ?>";
+
     $('input[name="notify"]').change(function () {
         var form = $(this).parents('form').prop('id');
         var event_type = $('#' + form + ' input[name="event_type"]:checked').val();
@@ -1006,6 +1007,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
             $('#' + form + ' div.choose').show();
         }
     });
+
     $('#eventForm input[name="assign"]').change(function () {
         $('.msgChoose').empty();
         var event_type = $('#eventForm input[name="event_type"]:checked').val();
@@ -1361,6 +1363,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                 $('#n_event_type').text($lbl);
             }
             if (etype == "sms" || etype == "notification") {
+                $('#eventForm input[name="notify"]:nth(0)').trigger('change');
                 $type = "sms";
                 $('#smsbody').val('');
                 $('#n_msbody').val('');
