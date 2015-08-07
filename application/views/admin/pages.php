@@ -40,10 +40,7 @@
                                 </div>
                             </div>
                             <div class="col-md-2">
-                                <div class="form-group">
-                                    <label>&nbsp;</label>
-                                    <a href="#" class="link" style="display: none">View</a>
-                                </div>
+                                <a href="#" class="link" style="display: none">View</a>
                             </div>
                         </div>
                         <form id="pageForm" action="<?= site_url() ?>admin/pages/update" method="post">
