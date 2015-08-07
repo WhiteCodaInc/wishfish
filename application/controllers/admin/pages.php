@@ -38,7 +38,7 @@ class Pages extends CI_Controller {
         $pageid = $this->input->post('pageid');
         $res = $this->objpage->getContent($pageid);
         if ($res) {
-            echo json_encode($res);
+            echo json_encode($res, JSON_HEX_QUOT | JSON_HEX_TAG);
         } else {
             echo 0;
         }
