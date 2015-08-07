@@ -35,6 +35,9 @@ class Calender extends CI_Controller {
     }
 
     function index() {
+        echo '<pre>';
+        print_r($this->session->all_userdata());
+        die();
         $get = $this->input->get();
         if (isset($get['error']) && $get['error'] == "access_denied") {
             header('location:' . site_url() . 'app/calender');
