@@ -40,7 +40,7 @@
                                 </div>
                             </div>
                             <div class="col-md-2" style="margin-top: 3%;">
-                                <a href="#" class="link" style="display: none">View</a>
+                                <a href="#" target="_blank" class="link" style="display: none">View</a>
                             </div>
                         </div>
                         <form id="pageForm" action="<?= site_url() ?>admin/pages/update" method="post">
@@ -125,6 +125,8 @@
                         $('#pages').val("");
                         CKEDITOR.instances['editor1'].setData("");
                         $('.box-title').text("Page");
+                        $('.link').attr("href", "#");
+                        $('.link').hide();
                     } else {
                         var json = JSON.parse(data);
                         $('.link').attr("href", json.url);
