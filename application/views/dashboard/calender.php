@@ -30,6 +30,12 @@
     }
 </style>
 <!-- Right side column. Contains the navbar and content of the page -->
+
+<?php
+$planInfo = $this->wi_common->getCurrentPlan();
+$userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
+?>
+
 <aside class="right-side">
     <!-- Content Header (Page header) -->
     <section class="content-header" style="z-index: 999">
@@ -914,10 +920,7 @@
     }
 </script>
 <!-- End Auto complete -->
-<?php
-$planInfo = $this->wi_common->getCurrentPlan();
-$userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
-?>
+
 
 <script type="text/javascript">
 
@@ -983,6 +986,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
     $('input[name="notify"]').change(function () {
         var form = $(this).parents('form').prop('id');
         var event_type = $('#' + form + ' input[name="event_type"]:checked').val();
+        console.log(event_type);
         if ($(this).val() == "me") {
             if ((event_type == "notification" || event_type == "sms") && "<?= $userInfo->phone ?>" != "") {
                 $('#' + form + ' div.selectRow').hide();
