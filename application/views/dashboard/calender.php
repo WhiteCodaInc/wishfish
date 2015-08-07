@@ -961,7 +961,6 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                     $('#' + form + ' input[name="notify"]:nth(0)').parent().prop('title', $notify);
                     $('#' + form + ' input[name="notify"]:nth(0)').removeAttr('checked');
                     $('#' + form + ' input[name="notify"]:nth(0)').prop('disabled', true);
-
                     $msg = (event_type == "notification" || event_type == "sms") ?
                             "Can not SMS this user because no phone number is assigned!" :
                             "Can not Email this user because no email address is assigned!";
@@ -969,7 +968,6 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                 } else {
 
                     $('#' + form + ' input[name="notify"]:nth(0)').prop('disabled', false);
-
                     var con = user.split('||');
                     var name = con[0].split(' ');
                     $('#' + form + ' input[name="event"]').prop('placeholder', name[0] + "'s Event Name");
@@ -982,12 +980,11 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
     var groupEvent = "<?= $planInfo->group_events ?>";
     var planid = "<?= $planInfo->plan_id ?>";
     var is_lifetime = "<?= $planInfo->is_lifetime ?>";
-
     $('input[name="notify"]').change(function () {
         var form = $(this).parents('form').prop('id');
-        console.log(form);
+        var event_type = $('#' + form + ' input[name="event_type"]:checked').val();
         if ($(this).val() == "me") {
-            if ("<?= $userInfo->phone ?>" != "") {
+            if ((event_type == "notification" || event_type == "sms") && "<?= $userInfo->phone ?>" != "") {
                 $('#' + form + ' div.selectRow').hide();
                 $('#' + form + ' div.choose').hide();
                 $('#' + form + ' input[name="assign"]').prop('checked', false);
@@ -1006,7 +1003,6 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
             $('#' + form + ' div.choose').show();
         }
     });
-
     $('#eventForm input[name="assign"]').change(function () {
         $('.msgChoose').empty();
         var event_type = $('#eventForm input[name="event_type"]:checked').val();
@@ -1074,7 +1070,6 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
         }).on('changeDate', function (ev) {
             $('#neweventForm input[name="date"]').focusout();
         });
-
         $('.set_repeat').click(function () {
             var id = $(this).prev().prop('id');
             $('#' + id).trigger('click');
@@ -1083,7 +1078,6 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
             $(this).css('cursor', 'pointer');
         });
     });
-
     $(document).ready(function () {
 
         $('span.lbl').click(function () {
@@ -1091,7 +1085,6 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
             $('input[name="' + $name + '"]').prop('checked', false);
             $(this).prev().trigger('click');
         });
-
 <?php if (isset($contactInfo) && $contactInfo): ?>
             $('#create_event').trigger('click');
 <?php elseif (isset($contactInfo) && !$contactInfo): ?>
@@ -1110,7 +1103,6 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                 $('#rd_individual').trigger('change');
 <?php endif; ?>
         });
-
         $('#freq_type,#e_freq_type,#n_freq_type').change(function () {
             var type = $(this).val();
             $msg = type.charAt(0).toUpperCase() + type.substring(1);
@@ -1124,7 +1116,6 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                 $('#n_txt_freq_type').text("");
             }
         });
-
         $('#is_repeat,#e_is_repeat,#n_is_repeat').change(function () {
             if (planid == "1" && is_lifetime != "1") {
                 $(this).prop('checked', false);
@@ -1151,7 +1142,6 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                 }
             }
         });
-
         $('input[name="end_type"]').change(function () {
             var end = $(this).val();
             if (end == "never") {
@@ -1164,9 +1154,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                 $('#n_end_block').css('display', 'block');
             }
         });
-
         $('#rd_individual').trigger('click');
-
         $('#delete').click(function () {
             var eid = $(this).val();
             $.ajax({
@@ -1183,7 +1171,6 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                 }
             });
         });
-
         $('#edit').click(function () {
             var formid = $(this).parents('form').prop('id');
             var id = $(this).prop('id');
@@ -1243,7 +1230,6 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                 }
             });
         });
-
         $('#insert,#n_insert').click(function () {
             var formid = $(this).parents('form').prop('id');
             var id = $(this).prop('id');
@@ -1349,7 +1335,6 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                 }
             });
         });
-
         $('#neweventForm input[name="date"]').focusout(function () {
             var dateObject = $('#neweventForm input[name="date"]').datepicker("getDate");
             var dateString = $.datepicker.formatDate("M d", dateObject);
@@ -1357,11 +1342,9 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
             $('#n_event_dt').text(" on " + dateString);
             $('#n_event_time').text(" at " + time);
         });
-
         $('#neweventForm input[name="time"]').timepicker().on('hide.timepicker', function (e) {
             $('#n_event_time').text(" at " + e.time.value);
         });
-
         $('#neweventForm input[name="event_type"],#eventForm input[name="event_type"],#editForm input[name="event_type"]').change(function ()
         {
             var etype = $(this).val();
@@ -1459,8 +1442,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                 });
             }
         });
-    });
-</script>
+    });</script>
 
 <!-- fullCalendar -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.min.js" type="text/javascript"></script>
@@ -1555,7 +1537,6 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                                     "http://mikhailkuznetsov.s3.amazonaws.com/" + data.contact_avatar :
                                     "<?= base_url() . 'assets/dashboard/img/default-avatar.png' ?>";
                             $href = "<?= site_url() ?>app/contacts/profile/" + data.contact_id;
-
                             $('#e_user_img').prop('href', $href);
                             $('#e_user_img img').prop('src', $url);
                             $('#e_user_img').css('display', 'block');
