@@ -127,7 +127,7 @@
                         $('.box-title').text("Page");
                     } else {
                         var json = JSON.parse(data);
-                        console.log(json);
+                        $('.link').attr("href", json.url);
                         CKEDITOR.instances['editor1'].setData(json.content);
                     }
                 }
