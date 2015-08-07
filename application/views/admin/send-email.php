@@ -72,7 +72,6 @@
                                     <div class="form-group">
                                         <label>From</label>
                                         <select name="from" class="form-control" >
-                                            <option value="-1">--Select--</option>
                                             <?php foreach ($accounts as $value) { ?>
                                                 <option value="<?= $value->email ?>"><?= $value->email ?></option>
                                             <?php } ?>
