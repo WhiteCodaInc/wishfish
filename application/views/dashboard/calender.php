@@ -1564,7 +1564,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                         }
                     } else {
                         $('.e_user_name').text(data.name + " ");
-                        $url = (data.profile_pic != "") ?
+                        $url = (data.profile_pic != null) ?
                                 "http://mikhailkuznetsov.s3.amazonaws.com/" + data.profile_pic :
                                 "<?= base_url() . 'assets/dashboard/img/default-avatar.png' ?>";
                         $href = "<?= site_url() ?>app/profile/" + data.contact_id;
