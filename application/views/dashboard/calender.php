@@ -987,11 +987,15 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
         var form = $(this).parents('form').prop('id');
         console.log(form);
         if ($(this).val() == "me") {
-            $('#' + form + ' div.selectRow').hide();
-            $('#' + form + ' div.choose').hide();
-            $('#' + form + ' input[name="assign"]').prop('checked', false);
-            $('#' + form + ' input[name="assign"]').prop('disabled', true);
-            $('#' + form + ' #users').prop('disabled', true);
+            if ("<?= $userInfo->phone ?>" != null) {
+                $('#' + form + ' div.selectRow').hide();
+                $('#' + form + ' div.choose').hide();
+                $('#' + form + ' input[name="assign"]').prop('checked', false);
+                $('#' + form + ' input[name="assign"]').prop('disabled', true);
+                $('#' + form + ' #users').prop('disabled', true);
+            }else{
+                alrtify.alert()
+            }
         } else {
             $('#' + form + ' input[name="assign"]:nth(0)').prop('checked', true);
             $('#' + form + ' input[name="assign"]').prop('disabled', false);
