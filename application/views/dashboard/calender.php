@@ -1544,7 +1544,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
 //                    }
                     if (data.notify == "them") {
                         if (data.group_type == "individual") {
-                            $('.e_user_name').text(data.name + " ");
+                            $('.e_user_name').text(data.fname + " " + data.lname + " ");
                             $url = (data.contact_avatar != null) ?
                                     "http://mikhailkuznetsov.s3.amazonaws.com/" + data.contact_avatar :
                                     "<?= base_url() . 'assets/dashboard/img/default-avatar.png' ?>";
