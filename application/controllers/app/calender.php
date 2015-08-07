@@ -153,7 +153,6 @@ class Calender extends CI_Controller {
 
     function addEvent() {
         $post = $this->input->post();
-
         $eventData = $this->addGoogleEvent($post);
         $data = (!$eventData) ?
                 $this->objcal->addEvent($post) :
@@ -226,20 +225,8 @@ class Calender extends CI_Controller {
 //---------------Google Calender Event Function---------------------------//
 
     function connect() {
-        if (!$this->input->cookie('userid')) {
-            $userid = array(
-                'name' => 'userid',
-                'value' => $this->encryption->encode($this->session->userdata('u_userid')),
-                'expire' => time() + 86500,
-                'domain' => '.wish-fish.com'
-            );
-            $this->input->set_cookie($userid);
-        }
-        if ($this->setClient()) {
-            header('location:' . $this->client->createAuthUrl());
-        } else {
-            header('location:' . site_url() . 'app/setting');
-        }
+        $this->setClient();
+        header('location:' . $this->client->createAuthUrl());
     }
 
     function setClient() {
