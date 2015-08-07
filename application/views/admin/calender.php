@@ -28,6 +28,9 @@
         border: 1px solid darkturquoise;
     }
 </style>
+<?php
+$adminInfo = $this->common->getAdminInfo($this->session->userdata('profileid'));
+?>
 <!-- Right side column. Contains the navbar and content of the page -->
 <aside class="right-side">
     <!-- Content Header (Page header) -->
@@ -73,7 +76,7 @@
                 <button style="margin: -20px;opacity: 1;border-radius: 100%;" type="button" class="close" data-dismiss="modal" aria-hidden="true">
                     <img src="<?= base_url() ?>assets/dashboard/img/close.png" width="20px" alt="close" style="" />
                 </button>
-                <h4 class="modal-title"><i class="fa fa-envelope-o"></i> Schedule SMS/Email For <label><?= $contactInfo->fname . ' ' . $contactInfo->lname ?></label></h4>
+                <h4 class="modal-title"><i class="fa fa-envelope-o"></i> Schedule SMS/Email For <label><?= (isset($contactInfo)) ? $contactInfo->fname . ' ' . $contactInfo->lname : '' ?></label></h4>
             </div>
             <form id="neweventForm"  method="post">
                 <div class="modal-body">
@@ -97,7 +100,7 @@
                         </div>
                     </div>
                     <br/>
-                    <div class="row m-bot15">                        
+                    <!--<div class="row m-bot15">                        
                         <div class="col-md-12">	
                             <div class="form-group">
                                 <div  style="float: left;padding:0 5px;cursor: pointer">
@@ -111,7 +114,7 @@
                             </div>
                         </div>
                     </div>
-                    <br/>
+                    <br/>-->
                     <div class="row">
                         <div class="col-md-5">
                             <div class="form-group">
@@ -130,7 +133,7 @@
                         <div class="col-md-5">
                             <label>Event Name</label>
                             <div class="form-group" >
-                                <input type="text" name="event" class="form-control"   />
+                                <input type="text" name="event" class="form-control" placeholder="<?= (isset($contactInfo)) ? $contactInfo->fname . "'s Event Name" : 'Event Name' ?>"   />
                             </div>
                         </div>
                     </div>
@@ -152,7 +155,7 @@
                         <div class="col-md-5">
                             <label>Subject</label>
                             <div class="form-group" >
-                                <input type="text" name="subject" class="form-control"  />
+                                <input type="text" name="subject" class="form-control" placeholder="<?= (isset($contactInfo)) ? $contactInfo->fname . "'s Subject" : "Subject" ?>"  />
                             </div>
                         </div>
                     </div>
@@ -378,7 +381,7 @@
                         </div>
                     </div>
                     <br/>
-                    <div class="row m-bot15">                        
+                    <!--<div class="row m-bot15">                        
                         <div class="col-md-12">	
                             <div class="form-group">
                                 <div  style="float: left;padding:0 5px;cursor: pointer">
@@ -392,7 +395,7 @@
                             </div>
                         </div>
                     </div>
-                    <br/>
+                    <br/>-->
                     <div class="row">
                         <div class="col-md-5">
                             <div class="form-group">
@@ -644,7 +647,7 @@
                         </div>
                     </div>
                     <br/>
-                    <div class="row m-bot15">
+                    <div class="row m-bot15 users">
                         <div class="col-md-5">
                             <div class="form-group">
                                 <label>Choose User</label>
@@ -657,7 +660,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row m-bot15">                        
+                    <div class="row m-bot15 selectRow">
                         <div class="col-md-12">	
                             <div class="form-group">
                                 <div class="form-group">
@@ -955,6 +958,38 @@
         });
     }
 
+    $('input[name="notify"]').change(function () {
+        var form = $(this).parents('form').prop('id');
+        var event_type = $('#' + form + ' input[name="event_type"]:checked').val();
+        console.log(event_type);
+        if ($(this).val() == "me") {
+            if (event_type != "email" && "<?= $adminInfo->phone ?>" == "") {
+                $(this).prop('checked', false);
+                $('#' + form + ' input[name="notify"]:nth(0)').prop('checked', true);
+                alertify.alert("It's look like you have not enter phone number..!");
+            } else if (event_type == "email" && "<?= $adminInfo->email ?>" == "") {
+                $(this).prop('checked', false);
+                $('#' + form + ' input[name="notify"]:nth(0)').prop('checked', true);
+                alertify.alert("It's look like you have not enter email address..!");
+            } else {
+                $('#' + form + ' div.users').hide();
+                $('#' + form + ' div.selectRow').hide();
+                $('#' + form + ' div.choose').hide();
+                $('#' + form + ' input[name="assign"]').prop('checked', false);
+                $('#' + form + ' input[name="assign"]').prop('disabled', true);
+                $('#' + form + ' #users').prop('disabled', true);
+            }
+        } else {
+            $('#' + form + ' input[name="assign"]:nth(0)').prop('checked', true);
+            $('#' + form + ' input[name="assign"]').prop('disabled', false);
+            $('#' + form + ' #users').prop('disabled', false);
+            $('#' + form + ' div.users').show();
+            $('#' + form + ' div.selectRow').show();
+            $('#' + form + ' div.choose').show();
+        }
+    });
+
+
     $('input[name="assign"]').change(function () {
         $('.msgChoose').empty();
         var user = $('#user').val();
@@ -1053,6 +1088,14 @@
             $('input[name="' + $name + '"]').prop('checked', false);
             $(this).prev().trigger('click');
         });
+        $('#popup').click(function () {
+            $('#eventForm').trigger("reset");
+            $('#eventForm input[name="notify"]:nth(0)').trigger('change');
+            $('#all_c').trigger("change");
+            $('#rd_individual').trigger('change');
+            $('#rd_sms').trigger("change");
+            $('#rd_individual').trigger('change');
+        });
 
         $('#freq_type,#e_freq_type,#n_freq_type').change(function () {
             var type = $(this).val();
@@ -1067,16 +1110,13 @@
                 $('#n_txt_freq_type').text("");
             }
         });
-
         $('.set_repeat').click(function () {
             var id = $(this).prev().prop('id');
             $('#' + id).trigger('click');
         });
-
         $('.set_repeat').hover(function () {
             $(this).css('cursor', 'pointer');
         });
-
         $('#is_repeat,#e_is_repeat,#n_is_repeat,.set_repeat').change(function () {
 
             if ($(this).is(':checked')) {
@@ -1087,18 +1127,14 @@
                 $('#repeat_block').css('display', 'none');
                 $('#e_repeat_block').css('display', 'none');
                 $('#n_repeat_block').css('display', 'none');
-
                 $('#freq_type').val("-1");
                 $('#e_freq_type').val("-1");
                 $('#n_freq_type').val("-1");
                 $('#freq_no').val("-1");
                 $('#e_freq_no').val("-1");
                 $('#n_freq_no').val("-1");
-
-
             }
         });
-
         $('input[name="end_type"]').change(function () {
             var end = $(this).val();
             if (end == "never") {
@@ -1111,9 +1147,7 @@
                 $('#n_end_block').css('display', 'block');
             }
         });
-
         $('#rd_individual').trigger('click');
-
         $('#delete').click(function () {
             var eid = $(this).val();
             $.ajax({
@@ -1130,16 +1164,15 @@
                 }
             });
         });
-
         $('#edit').click(function () {
             var formid = $(this).parents('form').prop('id');
             var id = $(this).prop('id');
-            var len = $('#' + formid + ' input[name="notify"]:checked').length;
-
-            if (!len) {
-                alertify.error("Please Select Notify Option..!");
-                return false;
-            }
+//            var len = $('#' + formid + ' input[name="notify"]:checked').length;
+//
+//            if (!len) {
+//                alertify.error("Please Select Notify Option..!");
+//                return false;
+//            }
 
             if ($('#editForm input[name="date"]').val().trim() == "") {
                 alertify.error("Please Select Date..!");
@@ -1186,7 +1219,6 @@
                 }
             });
         });
-
         $('#insert,#n_insert').click(function () {
             var formid = $(this).parents('form').prop('id');
             var id = $(this).prop('id');
@@ -1196,7 +1228,7 @@
                     alertify.error("Please Select Notify Option..!");
                     return false;
                 }
-                if ($("#rd_individual").prop('checked')) {
+                if ($("#rd_individual").prop('checked') && $('#' + formid + ' input[name="notify"]:checked').val() == "them") {
                     var cnt = $('#users').val().trim();
                     if (cnt == "") {
                         alertify.error("Please Select Contact..!");
@@ -1210,6 +1242,8 @@
                         alertify.error("Please Select Valid Contact..!");
                         return false;
                     }
+                } else {
+                    $('#' + formid + ' input[name="user_id"]').val("<?= $this->session->userdata('profileid'); ?>");
                 }
                 if ($('#eventForm input[name="event"]').val().trim() == "") {
                     alertify.error("Please Enter Event Name..!");
@@ -1286,9 +1320,9 @@
                 }
             });
         });
-
         $('#neweventForm input[name="event_type"],#eventForm input[name="event_type"],#editForm input[name="event_type"]').change(function ()
         {
+            $('#eventForm input[name="notify"]:nth(0)').trigger('click');
             if ($(this).val() == "sms" || $(this).val() == "notification") {
                 $type = "sms";
                 $('#user').trigger('change');
@@ -1335,7 +1369,6 @@
             });
         }
         );
-
         $('#user').change(function () {
             var user = $(this).val();
             $('#rd_individual').prop('checked', false);
@@ -1369,7 +1402,6 @@
                     break;
             }
         });
-
         $('#e_template,#n_template,#template').change(function () {
             if ($(this).prop('id') == "template") {
                 var event_type = $('#eventForm input[name="event_type"]:checked').val();
@@ -1414,7 +1446,6 @@
                 });
             }
         });
-
 //        $('#color-chooser li > a,#e_color-chooser li > a,#n_color-chooser li > a').click(function () {
 //
 //            var color = $(this).parent().prop('id');
@@ -1427,8 +1458,7 @@
 //        });
 
 //        $('#rd_individual').trigger('click');
-    });
-</script>
+    });</script>
 
 <!-- fullCalendar -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.min.js" type="text/javascript"></script>
@@ -1531,10 +1561,7 @@
                 highlightDay(jsEvent);
                 $('#dt').text(date.format("MM-DD-YYYY"));
                 $('input[name="date"]').val(date.format());
-                $('#eventForm').trigger("reset");
-                $('#all_c').trigger("change");
-                $('#rd_sms').trigger("change");
-                $('#rd_individual').trigger('change');
+
                 $('#popup').prop('disabled', false);
                 if (check < today) {
                     $('#rd_sms').parent().hide();
@@ -1554,35 +1581,48 @@
                 success: function (json, textStatus, jqXHR) {
                     var data = JSON.parse(json);
                     $('#eventid').val(data.event_id);
+//                    if (data.notify == "them") {
+//                        $('#e_notify_them').trigger('click');
+//                    } else {
+//                        $('#e_notify_me').trigger('click');
+//                    }
                     if (data.notify == "them") {
-                        $('#e_notify_them').trigger('click');
+                        if (data.group_type == "individual") {
+                            $('.e_user_name').text(data.name + " ");
+                            $url = (data.contact_avatar != null) ?
+                                    "http://mikhailkuznetsov.s3.amazonaws.com/" + data.contact_avatar :
+                                    "<?= base_url() . 'assets/dashboard/img/default-avatar.png' ?>";
+                            $href = "<?= site_url() ?>admin/contacts/profile/" + data.user_id;
+                            $('#e_user_img').prop('href', $href);
+                            $('#e_user_img img').prop('src', $url);
+                            $('#e_user_img').css('display', 'block');
+                            $('#e_user_img').css('float', 'left');
+                            $('#event_status').css('margin', '0 0 0 50px');
+                            $('#event_empty').css('margin', '0 0 0 50px');
+                        } else {
+                            $('#event_status').css('margin', '0');
+                            $('#event_empty').css('margin', '0');
+                            $('.e_user_name').text(data.group_name + " ");
+                            $('#e_user_img').css('display', 'none');
+                        }
                     } else {
-                        $('#e_notify_me').trigger('click');
-                    }
-                    if (data.group_type == "individual") {
                         $('.e_user_name').text(data.name + " ");
-                        $url = (data.contact_avatar != null) ?
-                                "http://mikhailkuznetsov.s3.amazonaws.com/" + data.contact_avatar :
+                        $url = (data.admin_avatar != null) ?
+                                "http://mikhailkuznetsov.s3.amazonaws.com/" + data.admin_avatar :
                                 "<?= base_url() . 'assets/dashboard/img/default-avatar.png' ?>";
-                        $href = "<?= site_url() ?>admin/contacts/profile/" + data.user_id;
+                        $href = "<?= site_url() ?>admin/admin_profile/profile/" + data.user_id;
                         $('#e_user_img').prop('href', $href);
                         $('#e_user_img img').prop('src', $url);
                         $('#e_user_img').css('display', 'block');
                         $('#e_user_img').css('float', 'left');
                         $('#event_status').css('margin', '0 0 0 50px');
                         $('#event_empty').css('margin', '0 0 0 50px');
-                    } else {
-                        $('#event_status').css('margin', '0');
-                        $('#event_empty').css('margin', '0');
-                        $('.e_user_name').text(data.group_name + " ");
-                        $('#e_user_img').css('display', 'none');
                     }
                     $('#e_event_name').text(data.event);
                     $('.e_event_time').text(data.date);
                     $('#e_event').val(data.event);
                     $('#e_time').val(data.time);
                     $('#editForm input[name="date"]').val(data.cal_dt);
-
                     $('#e_template').val(data.template_id);
 //                    $('#e_color-chooser-btn').css('background-color', data.color);
                     if (data.event_type == "sms" || data.event_type == "notification") {

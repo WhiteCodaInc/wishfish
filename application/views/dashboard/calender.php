@@ -155,7 +155,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                         <div class="col-md-5">
                             <label>Event Name</label>
                             <div class="form-group" >
-                                <input type="text" name="event" class="form-control" placeholder="<?= (isset($contactInfo)) ? $contactInfo->fname : '' ?>'s Event Name"   />
+                                <input type="text" name="event" class="form-control" placeholder="<?= (isset($contactInfo)) ? $contactInfo->fname . "'s Event Name" : 'Event Name' ?>"   />
                             </div>
                         </div>
                     </div>
@@ -331,22 +331,22 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                     </div>
                 </div>
                 <?php
-                if (isset($contactInfo->profile_id)) {
-                    $userid = $contactInfo->profile_id;
-                    $user = 1;
-                }
-                if (isset($contactInfo->contact_id)) {
-                    $userid = $contactInfo->contact_id;
-                    $user = 2;
-                }
-                if (isset($contactInfo->affiliate_id)) {
-                    $userid = $contactInfo->affiliate_id;
-                    $user = 3;
-                }
-                if (isset($contactInfo->customer_id)) {
-                    $userid = $contactInfo->customer_id;
-                    $user = 4;
-                }
+//                if (isset($contactInfo->profile_id)) {
+//                    $userid = $contactInfo->profile_id;
+//                    $user = 1;
+//                }
+//                if (isset($contactInfo->contact_id)) {
+//                    $userid = $contactInfo->contact_id;
+//                    $user = 2;
+//                }
+//                if (isset($contactInfo->affiliate_id)) {
+//                    $userid = $contactInfo->affiliate_id;
+//                    $user = 3;
+//                }
+//                if (isset($contactInfo->customer_id)) {
+//                    $userid = $contactInfo->customer_id;
+//                    $user = 4;
+//                }
                 ?>
                 <div class="modal-footer clearfix">
                     <button type="button" id="n_discard" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
@@ -1263,7 +1263,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                         return false;
                     }
                 } else {
-                    $('input[name="contact_id"]').val("<?= $this->session->userdata('u_userid'); ?>");
+                    $('#' + formid + ' input[name="contact_id"]').val("<?= $this->session->userdata('u_userid'); ?>");
                 }
                 if ($('#eventForm input[name="event"]').val().trim() == "") {
                     alertify.error("Please Enter Event Name..!");
@@ -1560,7 +1560,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                             $('#e_user_img').css('display', 'none');
                         }
                     } else {
-                        $('.e_user_name').text(data.name + " ");
+                        $('.e_user_name').text(data.fname + " " + data.lname + " ");
                         $url = (data.profile_pic != null) ?
                                 "http://mikhailkuznetsov.s3.amazonaws.com/" + data.profile_pic :
                                 "<?= base_url() . 'assets/dashboard/img/default-avatar.png' ?>";

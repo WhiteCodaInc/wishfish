@@ -41,19 +41,20 @@ class M_admin_calender extends CI_Model {
     }
 
     function addEvent($post, $google_event_id = NULL) {
-        switch ($post['assign']) {
-            case 'all_c':
-                $post['group_type'] = "individual";
-                break;
-            case 'all_gc':
-                unset($post['user_id']);
-                $post['group_type'] = "simple";
-                break;
-            case 'all_l':
-                $post['group_type'] = $post['event_type'];
-                break;
-            default:
-                break;
+        if ($post['notify'] == "them") {
+            switch ($post['assign']) {
+                case 'all_c':
+                    $post['group_type'] = "individual";
+                    break;
+                case 'all_gc':
+                    unset($post['user_id']);
+                    $post['group_type'] = "simple";
+                    break;
+                case 'all_l':
+                    $post['group_type'] = $post['event_type'];
+                    break;
+            }
+            unset($post['assign']);
         }
 
         if (isset($post['user_id'])) {
@@ -64,9 +65,7 @@ class M_admin_calender extends CI_Model {
         $post['notification'] = ($post['event_type'] == "notification") ? 0 : 1;
         $post['occurance'] = ($post['occurance'] != "") ? $post['occurance'] : NULL;
         $post['google_event_id'] = $google_event_id;
-        unset($post['assign']);
-        unset($post['smsbody']);
-        unset($post['emailbody']);
+        unset($post['smsbody'], $post['emailbody']);
 
         $this->db->trans_start();
         $post['color'] = "#0073b7";
@@ -149,8 +148,7 @@ class M_admin_calender extends CI_Model {
     }
 
     function getEvent($eid) {
-        $query = $this->db->get_where('schedule', array('event_id' => $eid));
-        $res = $query->row();
+        $res = $this->getEventInfo($eid);
         switch ($res->user) {
             case "1":
                 $this->db->select('*,concat(fname," ",lname) as name,concat(DATE_FORMAT(date,"%M %d")," at ",TIME_FORMAT(time, "%h:%i %p")) as date,DATE_FORMAT(date,"%m-%d-%Y") as cal_dt', FALSE);
@@ -163,8 +161,13 @@ class M_admin_calender extends CI_Model {
             case "2":
                 $this->db->select('*,concat(fname," ",lname) as name,concat(DATE_FORMAT(date,"%M %d")," at ",TIME_FORMAT(time, "%h:%i %p")) as date,DATE_FORMAT(date,"%m-%d-%Y") as cal_dt', FALSE);
                 $this->db->from('schedule as S');
-                $this->db->join('contact_detail as C', 'S.user_id = C.contact_id', 'left outer');
-                $this->db->join('contact_groups as G', 'S.group_id = G.group_id', 'left outer');
+                if ($res->notify == "them") {
+                    $this->db->join('contact_detail as C', 'S.user_id = C.contact_id', 'left outer');
+                    $this->db->join('contact_groups as G', 'S.group_id = G.group_id', 'left outer');
+                } else {
+                    $this->db->join('admin_profile as A', 'S.user_id = A.profile_id', 'left outer');
+                }
+
                 $this->db->where('event_id', $eid);
                 $query = $this->db->get();
                 $result = $query->row();
@@ -172,8 +175,13 @@ class M_admin_calender extends CI_Model {
             case "3":
                 $this->db->select('*,concat(fname," ",lname) as name,concat(DATE_FORMAT(date,"%M %d")," at ",TIME_FORMAT(time, "%h:%i %p")) as date,DATE_FORMAT(date,"%m-%d-%Y") as cal_dt', FALSE);
                 $this->db->from('schedule as S');
-                $this->db->join('affiliate_detail as A', 'S.user_id = A.affiliate_id', 'left outer');
-                $this->db->join('affiliate_groups as G', 'S.group_id = G.group_id', 'left outer');
+                if ($res->notify == "them") {
+                    $this->db->join('affiliate_detail as A', 'S.user_id = A.affiliate_id', 'left outer');
+                    $this->db->join('affiliate_groups as G', 'S.group_id = G.group_id', 'left outer');
+                } else {
+                    $this->db->join('admin_profile as A', 'S.user_id = A.profile_id', 'left outer');
+                }
+
                 $this->db->where('event_id', $eid);
                 $query = $this->db->get();
                 $result = $query->row();
@@ -181,8 +189,11 @@ class M_admin_calender extends CI_Model {
             case "4":
                 $this->db->select('*,concat(fname," ",lname) as name,concat(DATE_FORMAT(date,"%M %d")," at ",TIME_FORMAT(time, "%h:%i %p")) as date,DATE_FORMAT(date,"%m-%d-%Y") as cal_dt', FALSE);
                 $this->db->from('schedule as S');
-                $this->db->join('customer_detail as C', 'S.user_id = C.customer_id', 'left outer');
-                $this->db->join('customer_groups as G', 'S.group_id = G.group_id', 'left outer');
+                if ($res->notify == "them") {
+                    $this->db->join('wi_user_mst as U', 'S.user_id = U.user_id', 'left outer');
+                } else {
+                    $this->db->join('admin_profile as A', 'S.user_id = A.profile_id', 'left outer');
+                }
                 $this->db->where('event_id', $eid);
                 $query = $this->db->get();
                 $result = $query->row();
