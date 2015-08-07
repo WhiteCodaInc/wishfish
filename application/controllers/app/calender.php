@@ -58,6 +58,7 @@ class Calender extends CI_Controller {
             $this->addLocalEvent();
         }
         $data['template'] = $this->objsmstemplate->getTemplates();
+        $data['contactInfo'] = FALSE;
         $this->load->view('dashboard/header');
         $this->load->view('dashboard/top');
         $this->load->view('dashboard/calender', $data);

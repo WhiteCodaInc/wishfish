@@ -989,15 +989,15 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
         console.log(event_type);
         if ($(this).val() == "me") {
             if (event_type != "email" && "<?= $userInfo->phone ?>" != "") {
+                $(this).prop('checked', false);
+                $('#' + form + ' input[name="notify"]:nth(0)').prop('checked', true);
+                alertify.alert("Your Phone Number IS Not Valid..!");
+            } else {
                 $('#' + form + ' div.selectRow').hide();
                 $('#' + form + ' div.choose').hide();
                 $('#' + form + ' input[name="assign"]').prop('checked', false);
                 $('#' + form + ' input[name="assign"]').prop('disabled', true);
                 $('#' + form + ' #users').prop('disabled', true);
-            } else {
-                $(this).prop('checked', false);
-                $('#' + form + ' input[name="notify"]:nth(0)').prop('checked', true);
-                alertify.alert("Your Phone Number IS Not Valid..!");
             }
         } else {
             $('#' + form + ' input[name="assign"]:nth(0)').prop('checked', true);
