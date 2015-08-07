@@ -39,6 +39,9 @@
                                     <input type="text" class="form-control"  id="pages" value="" />
                                 </div>
                             </div>
+                            <div class="col-md-9 goto" style="display: none">
+                                <a href="#" class="link">View</a>
+                            </div>
                         </div>
                         <form id="pageForm" action="<?= site_url() ?>admin/pages/update" method="post">
                             <div class="row">
@@ -117,21 +120,21 @@
                 success: function (data, textStatus, jqXHR) {
                     $('.overlay').hide();
                     $('.loading-img').hide();
-					if(data == "0"){
-						alertify.error("Page does not exists..!");
-						$('#pages').val("");
-						CKEDITOR.instances['editor1'].setData("");
-						$('.box-title').text("Page");
-					}else{
-						CKEDITOR.instances['editor1'].setData(data);
-					}    
+                    if (data == "0") {
+                        alertify.error("Page does not exists..!");
+                        $('#pages').val("");
+                        CKEDITOR.instances['editor1'].setData("");
+                        $('.box-title').text("Page");
+                    } else {
+                        CKEDITOR.instances['editor1'].setData(data);
+                    }
                 }
             });
         }
         $('ul.ui-autocomplete').on('click', function () {
             var page = $('#pages').val();
             getPage(ids[pages.indexOf(page)]);
-			$('.box-title').text(page);			
+            $('.box-title').text(page);
         });
         $('#pages').on("keypress", function (e) {
             if (e.keyCode == 13) {
@@ -141,8 +144,8 @@
                     $('.box-title').text(page);
 
                 } else {
-					alertify.error("Page does not exists..!");
-					$('#pages').val("");
+                    alertify.error("Page does not exists..!");
+                    $('#pages').val("");
                     CKEDITOR.instances['editor1'].setData("");
                     $('.box-title').text("Page");
                 }
