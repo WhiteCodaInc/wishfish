@@ -988,7 +988,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
         var event_type = $('#' + form + ' input[name="event_type"]:checked').val();
         console.log(event_type);
         if ($(this).val() == "me") {
-            if ((event_type == "notification" || event_type == "sms") && "<?= $userInfo->phone ?>" != "") {
+            if (event_type != "email" && "<?= $userInfo->phone ?>" != "") {
                 $('#' + form + ' div.selectRow').hide();
                 $('#' + form + ' div.choose').hide();
                 $('#' + form + ' input[name="assign"]').prop('checked', false);
