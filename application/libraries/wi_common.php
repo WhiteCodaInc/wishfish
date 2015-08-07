@@ -146,22 +146,26 @@ class Wi_common {
     }
 
     function setToken($user) {
-
+        if (isset($user->name)) {
+            $name = explode(' ', $user->name);
+            $user->fname = (isset($name[0])) ? $name[0] : "";
+            $user->lname = (isset($name[1])) ? $name[1] : "";
+        }
         $tag = array(
             'FIRST_NAME' => $user->fname,
             'LAST_NAME' => $user->lname,
             'EMAIL' => $user->email,
             'PHONE' => $user->phone,
-            'BIRTHDAY' => $user->birthday,
-            'ZODIAC' => $user->zodiac,
-            'AGE' => $user->age,
-            'BIRTHDAY_ALERT' => $user->birthday_alert,
-            'SOCIAL' => $user->social_media,
-            'CONTACT' => $user->contact,
-            'COUNTRY' => $user->country,
-            'CITY' => $user->city,
-            'ADDRESS' => $user->address,
-            'RATING' => ($user->rating == "-1") ? "Not Assign" : $user->rating
+            'BIRTHDAY' => $user->birthday
+//            'ZODIAC' => $user->zodiac,
+//            'AGE' => $user->age,
+//            'BIRTHDAY_ALERT' => $user->birthday_alert,
+//            'SOCIAL' => $user->social_media,
+//            'CONTACT' => $user->contact,
+//            'COUNTRY' => $user->country,
+//            'CITY' => $user->city,
+//            'ADDRESS' => $user->address,
+//            'RATING' => ($user->rating == "-1") ? "Not Assign" : $user->rating
         );
         return $tag;
     }
