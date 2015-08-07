@@ -1363,7 +1363,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                 $('#n_event_type').text($lbl);
             }
             if (etype == "sms" || etype == "notification") {
-                $('#eventForm input[name="notify"]:nth(0)').trigger('change');
+                $('#eventForm input[name="notify"]:nth(0)').trigger('click');
                 $type = "sms";
                 $('#smsbody').val('');
                 $('#n_msbody').val('');
