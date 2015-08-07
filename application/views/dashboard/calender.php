@@ -991,7 +991,11 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
             if (event_type != "email" && "<?= $userInfo->phone ?>" == "") {
                 $(this).prop('checked', false);
                 $('#' + form + ' input[name="notify"]:nth(0)').prop('checked', true);
-                alertify.alert("Your Phone Number IS Not Valid..!");
+                alertify.alert("It's look like you have not enter phone number..!");
+            } else if (event_type == "email" && "<?= $userInfo->email ?>" == "") {
+                $(this).prop('checked', false);
+                $('#' + form + ' input[name="notify"]:nth(0)').prop('checked', true);
+                alertify.alert("It's look like you have not enter email address..!");
             } else {
                 $('#' + form + ' div.selectRow').hide();
                 $('#' + form + ' div.choose').hide();
