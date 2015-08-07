@@ -35,12 +35,14 @@ class Email extends CI_Controller {
             $this->load->model('admin/m_customer_groups', 'objcustomergroup');
             $this->load->model('admin/m_admin_email_template', 'objtmplt');
             $this->load->model('admin/m_list_builder', 'objbuilder');
+            $this->load->model('admin/m_cpanel', 'objcpanel');
         }
     }
 
     function send_email() {
         $data['individual'] = $this->objprofile->getProfiles();
         $data['template'] = $this->objtmplt->getTemplates();
+        $data['accounts'] = $this->objcpanel->getAccounts();
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');

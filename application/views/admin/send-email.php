@@ -70,6 +70,19 @@
                             <div class="row">
                                 <div class="col-md-5">
                                     <div class="form-group">
+                                        <label>From</label>
+                                        <select name="from" class="form-control" >
+                                            <option value="-1">--Select--</option>
+                                            <?php foreach ($accounts as $value) { ?>
+                                                <option value="<?= $value->email ?>"><?= $value->email ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="form-group">
                                         <label>Choose Email Template</label>
                                         <select name="template_id" class="form-control" >
                                             <option value="-1">--Select--</option>
