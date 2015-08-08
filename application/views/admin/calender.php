@@ -1367,8 +1367,7 @@ $adminInfo = $this->common->getAdminInfo($this->session->userdata('profileid'));
                     $('#e_template').html(data);
                 }
             });
-        }
-        );
+        });
         $('#user').change(function () {
             var user = $(this).val();
             $('#rd_individual').prop('checked', false);
@@ -1479,7 +1478,7 @@ $adminInfo = $this->common->getAdminInfo($this->session->userdata('profileid'));
             //right: 'month,agendaWeek,agendaDay'
             right: 'month'
         },
-        timezone: "America/Tijuana",
+        timezone: "Pacific/Pitcairn",
         buttonText: {
             today: 'today',
             month: 'month'
@@ -1561,7 +1560,6 @@ $adminInfo = $this->common->getAdminInfo($this->session->userdata('profileid'));
                 highlightDay(jsEvent);
                 $('#dt').text(date.format("MM-DD-YYYY"));
                 $('input[name="date"]').val(date.format());
-
                 $('#popup').prop('disabled', false);
                 if (check < today) {
                     $('#rd_sms').parent().hide();

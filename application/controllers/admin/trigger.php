@@ -85,45 +85,25 @@ class Trigger extends CI_Controller {
         }
 
         foreach ($res as $value) {
+
             if ($this->hour == $value->h && $this->minute == $value->m) {
                 echo "<br>-------------Event ID : {$value->event_id} ...! ----------------<br>";
                 echo "HOUR : " . $value->h . '<br>';
                 echo "MINUTE : " . $value->m . '<br>';
-                switch ($value->group_type) {
-                    case 'individual':
-                        if (!in_array($value->user_id, $blackList)) {
-                            $contact = $this->objcon->getContactInfo($value->user_id);
-                            $tag = $this->common->setToken($contact);
-                            if ($value->event_type == "sms") {
-                                $body = $this->parser->parse_string($value->body, $tag, TRUE);
-                                if ($this->sendSMS($contact->phone, $body, $value->notify)) {
-                                    if ($value->is_repeat && $value->end_type == "never")
-                                        $this->objtrigger->addNextEvent($value->event_id);
-                                    $this->objtrigger->updateStatus($value->event_id);
-                                } else {
-                                    echo "<br>-------------Event ID : {$value->event_id} Failed...! ----------------<br>";
-                                }
-                            } else if ($value->event_type == "email") {
-                                if ($this->sendMail($contact, $tag, $value, $value->notify)) {
-                                    if ($value->is_repeat && $value->end_type == "never")
-                                        $this->objtrigger->addNextEvent($value->event_id);
-                                    $this->objtrigger->updateStatus($value->event_id);
-                                } else {
-                                    echo "<br>-------------Event ID : {$value->event_id} Failed...! ----------------<br>";
-                                }
-                            }
-                        }
-                        break;
-                    case 'simple':
-                        $res = $this->objbuilder->getGroupContact($value->group_id);
-                        $cids = $res[1];
-                        foreach ($cids as $cid) {
-                            if (!in_array($cid, $blackList)) {
-                                $contact = $this->objcon->getContactInfo($cid);
+
+                if ($value->notify == "them") {
+                    switch ($value->group_type) {
+                        case 'individual':
+
+                            if (!in_array($value->user_id, $blackList)) {
+
+                                $contact = $this->objcon->getContactInfo($value->user_id);
                                 $tag = $this->common->setToken($contact);
+
                                 if ($value->event_type == "sms") {
                                     $body = $this->parser->parse_string($value->body, $tag, TRUE);
-                                    if ($this->sendSMS($contact->phone, $body, $value->notify)) {
+
+                                    if ($this->common->sendSMS($contact->phone, $body)) {
                                         if ($value->is_repeat && $value->end_type == "never")
                                             $this->objtrigger->addNextEvent($value->event_id);
                                         $this->objtrigger->updateStatus($value->event_id);
@@ -131,34 +111,11 @@ class Trigger extends CI_Controller {
                                         echo "<br>-------------Event ID : {$value->event_id} Failed...! ----------------<br>";
                                     }
                                 } else if ($value->event_type == "email") {
-                                    if ($this->sendMail($contact, $tag, $value, $value->notify)) {
-                                        if ($value->is_repeat && $value->end_type == "never")
-                                            $this->objtrigger->addNextEvent($value->event_id);
-                                        $this->objtrigger->updateStatus($value->event_id);
-                                    } else {
-                                        echo "<br>-------------Event ID : {$value->event_id} Failed...! ----------------<br>";
-                                    }
-                                }
-                            }
-                        }
-                        break;
-                    case 'sms':
-                        $cids = $this->objbuilder->getSubGroupContact($value->group_id);
-                        foreach ($cids as $cid) {
-                            if (!in_array($cid, $blackList)) {
-                                $contact = $this->objcon->getContactInfo($cid);
-                                $tag = $this->common->setToken($contact);
-                                if ($value->event_type == "sms") {
+
+                                    $subject = $this->parser->parse_string($value->subject, $tag, TRUE);
                                     $body = $this->parser->parse_string($value->body, $tag, TRUE);
-                                    if ($this->sendSMS($contact->phone, $body, $value->notify)) {
-                                        if ($value->is_repeat && $value->end_type == "never")
-                                            $this->objtrigger->addNextEvent($value->event_id);
-                                        $this->objtrigger->updateStatus($value->event_id);
-                                    } else {
-                                        echo "<br>-------------Event ID : {$value->event_id} Failed...! ----------------<br>";
-                                    }
-                                } else if ($value->event_type == "email") {
-                                    if ($this->sendMail($contact, $tag, $value, $value->notify)) {
+
+                                    if ($this->common->sendMail($contact->email, $subject, $body)) {
                                         if ($value->is_repeat && $value->end_type == "never")
                                             $this->objtrigger->addNextEvent($value->event_id);
                                         $this->objtrigger->updateStatus($value->event_id);
@@ -167,47 +124,98 @@ class Trigger extends CI_Controller {
                                     }
                                 }
                             }
+                            break;
+                        case 'simple':
+                            $res = $this->objbuilder->getGroupContact($value->group_id);
+                            $cids = $res[1];
+                            foreach ($cids as $cid) {
+                                if (!in_array($cid, $blackList)) {
+                                    $contact = $this->objcon->getContactInfo($cid);
+                                    $tag = $this->common->setToken($contact);
+                                    if ($value->event_type == "sms") {
+                                        $body = $this->parser->parse_string($value->body, $tag, TRUE);
+                                        if ($this->common->sendSMS($contact->phone, $body)) {
+                                            if ($value->is_repeat && $value->end_type == "never")
+                                                $this->objtrigger->addNextEvent($value->event_id);
+                                            $this->objtrigger->updateStatus($value->event_id);
+                                        } else {
+                                            echo "<br>-------------Event ID : {$value->event_id} Failed...! ----------------<br>";
+                                        }
+                                    } else if ($value->event_type == "email") {
+
+                                        $subject = $this->parser->parse_string($value->subject, $tag, TRUE);
+                                        $body = $this->parser->parse_string($value->body, $tag, TRUE);
+
+                                        if ($this->common->sendMail($contact->email, $subject, $body)) {
+                                            if ($value->is_repeat && $value->end_type == "never")
+                                                $this->objtrigger->addNextEvent($value->event_id);
+                                            $this->objtrigger->updateStatus($value->event_id);
+                                        } else {
+                                            echo "<br>-------------Event ID : {$value->event_id} Failed...! ----------------<br>";
+                                        }
+                                    }
+                                }
+                            }
+                            break;
+                        case 'sms':
+                            $cids = $this->objbuilder->getSubGroupContact($value->group_id);
+                            foreach ($cids as $cid) {
+                                if (!in_array($cid, $blackList)) {
+                                    $contact = $this->objcon->getContactInfo($cid);
+                                    $tag = $this->common->setToken($contact);
+                                    if ($value->event_type == "sms") {
+                                        $body = $this->parser->parse_string($value->body, $tag, TRUE);
+                                        if ($this->common->sendSMS($contact->phone, $body)) {
+                                            if ($value->is_repeat && $value->end_type == "never")
+                                                $this->objtrigger->addNextEvent($value->event_id);
+                                            $this->objtrigger->updateStatus($value->event_id);
+                                        } else {
+                                            echo "<br>-------------Event ID : {$value->event_id} Failed...! ----------------<br>";
+                                        }
+                                    } else if ($value->event_type == "email") {
+                                        $subject = $this->parser->parse_string($value->subject, $tag, TRUE);
+                                        $body = $this->parser->parse_string($value->body, $tag, TRUE);
+
+                                        if ($this->common->sendMail($contact->email, $subject, $body)) {
+                                            if ($value->is_repeat && $value->end_type == "never")
+                                                $this->objtrigger->addNextEvent($value->event_id);
+                                            $this->objtrigger->updateStatus($value->event_id);
+                                        } else {
+                                            echo "<br>-------------Event ID : {$value->event_id} Failed...! ----------------<br>";
+                                        }
+                                    }
+                                }
+                            }
+                            break;
+                    }
+                } else {
+                    $userInfo = $this->common->getAdminInfo($value->user_id);
+                    $tag = $this->common->setToken($userInfo);
+                    print_r($tag);
+                    if ($value->event_type == "sms") {
+                        $body = $this->parser->parse_string($value->body, $tag, TRUE);
+
+                        if ($this->common->sendSMS($userInfo->phone, $body)) {
+                            if ($value->is_repeat && $value->end_type == "never")
+                                $this->objtrigger->addNextEvent($value->event_id);
+                            $this->objtrigger->updateStatus($value->event_id);
+                        } else {
+                            echo "<br>-------------Event ID : {$value->event_id} Failed...! ----------------<br>";
                         }
-                        break;
-                    default:
-                        break;
+                    } else if ($value->event_type == "email") {
+                        $subject = $this->parser->parse_string($value->subject, $tag, TRUE);
+                        $body = $this->parser->parse_string($value->body, $tag, TRUE);
+
+                        if ($this->common->sendMail($userInfo->email, $subject, $body)) {
+                            if ($value->is_repeat && $value->end_type == "never")
+                                $this->objtrigger->addNextEvent($value->event_id);
+                            $this->objtrigger->updateStatus($value->event_id);
+                        } else {
+                            echo "<br>-------------Event ID : {$value->event_id} Failed...! ----------------<br>";
+                        }
+                    }
                 }
             }
-        }
-    }
-
-    function sendSMS($to, $body, $notify) {
-        if ($notify == "me") {
-            echo "NOTIFY ME<br>";
-            $adminInfo = $this->common->getAdminInfo(2);
-            $to = $adminInfo->phone;
-            echo "SESSION : " . $to . '<br>';
-        } else {
-            echo "NOTIFY THEM<br>";
-        }
-        if ($to != "") {
-            echo "TO : " . $to . '<br>';
-            echo "BODY : " . $body . '<br>';
-            echo "<br>-------------Event Sucssfully Sent...! ----------------<br>";
-            return $this->common->sendSMS($to, $body);
-        } else {
-            return FALSE;
-        }
-    }
-
-    function sendMail($contact, $tag, $post, $notify) {
-        if ($notify == "me") {
-            $adminInfo = $this->common->getAdminInfo(2);
-            $email = $adminInfo->email;
-        } else {
-            $email = $contact->email;
-        }
-        if ($email != "") {
-            $subject = $this->parser->parse_string($post->subject, $tag, TRUE);
-            $body = $this->parser->parse_string($post->body, $tag, TRUE);
-            return $this->common->sendMail($email, $subject, $body);
-        } else {
-            return FALSE;
         }
     }
 
