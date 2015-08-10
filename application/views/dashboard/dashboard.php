@@ -51,7 +51,7 @@
 <aside class="right-side" style="min-height: 542px;">
     <a href="#" style="display: none" class="feedback"  data-toggle="modal" data-target="#feedback-model">Review</a>
     <div class="modal fade" id="feedback-model" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" style="max-width: 550px;position: absolute;right: 0;bottom: 0">
+        <div class="modal-dialog" style="max-width: 400px;position: absolute;right: 17px;bottom: 0">
             <div class="modal-content">
                 <div class="modal-header" style="text-align: center">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -63,7 +63,7 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-12" style="text-align: center">
-                                        <textarea id="review" rows="10" style="border: 1px solid #3c8dbc;" class="form-control"></textarea>
+                                        <textarea id="review" rows="5" style="border: 1px solid #3c8dbc;" class="form-control"></textarea>
                                     </div>
                                 </div>
                             </div>
