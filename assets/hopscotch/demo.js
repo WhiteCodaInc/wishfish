@@ -11,7 +11,7 @@ var start = {
             target: 'center',
             title: 'Welcome to Wish-Fish!',
             content: "If this is your first time here, click 'next' and we will show you around!",
-            placement: 'left',
+//            placement: 'left',
 //            arrowOffset: 60,
 //            xOffset: 165,            
         }
