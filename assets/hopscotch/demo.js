@@ -209,7 +209,7 @@ var tour = {
 hopscotch.startTour(start);
 if (hopscotch.getState() == "center:0") {
     setTimeout(function () {
-        $('.hopscotch-arrow').hide();
+        $('.hopscotch-bubble-arrow-container').hide();
     });
 }
 console.log(hopscotch.getState());
