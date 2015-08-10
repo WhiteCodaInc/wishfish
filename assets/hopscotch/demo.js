@@ -96,7 +96,7 @@ var tour = {
             target: 'select-timezone',
             showPrevButton: false,
             placement: 'left',
-            yOffset: -30,
+            yOffset: 30,
             title: 'Select Your Time Zone',
             arrowOffset: 30,
         },
