@@ -11,12 +11,9 @@ var start = {
             target: 'center',
             title: 'Add a Contact',
             placement: 'top',
-            arrowOffset: 0
-//            xOffset: 165,            
+            xOffset: 165,
         }
     ],
-    showPrevButton: false,
-    //scrollTopMargin: 100
 };
 
 var tour = {
