@@ -210,8 +210,11 @@ var tour = {
 //hopscotch.startTour(tour);
 hopscotch.startTour(start);
 if (hopscotch.getState() == "center:0") {
-    console.log("CALLED");
-    $('.hopscotch-arrow').hide();
+    setTimeout(function () {
+        console.log("CALLED");
+        $('.hopscotch-arrow').hide();
+    });
+
 }
 console.log(hopscotch.getState());
 
