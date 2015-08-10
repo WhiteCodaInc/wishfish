@@ -201,17 +201,7 @@ class M_contacts extends CI_Model {
 //        print_r($data);
 //        die();
 
-        if ($set['importUrl'] != "") {
-            $img_url = FCPATH . "import/user.jpg";
-            copy($set['importUrl'], $img_url);
-            $fname = 'wish-fish/contacts/contact_avatar_' . $cid . '.jpg';
-            $this->s3->setAuth($this->accessKey, $this->secretKey);
-            if ($this->s3->putObjectFile($img_url, $this->bucket, $fname, "public-read")) {
-                $set['contact_avatar'] = $fname;
-            }
-            unlink($img_url);
-            unset($set['importUrl']);
-        } else if (isset($_FILES['contact_avatar']) && $_FILES['contact_avatar']['error'] == 0) {
+        if (isset($_FILES['contact_avatar']) && $_FILES['contact_avatar']['error'] == 0) {
             $msg = $this->uploadImage($_FILES, $cid);
             if ($msg) {
                 $set['contact_avatar'] = $msg;
@@ -233,7 +223,6 @@ class M_contacts extends CI_Model {
             );
             $this->db->insert('wi_schedule', $event_data);
         }
-        $m = "U";
         $this->db->update('wi_contact_detail', $set, array('contact_id' => $cid));
         //--------------Delete Existing Group---------------------------------//
         $this->db->select('M.id');
@@ -255,7 +244,7 @@ class M_contacts extends CI_Model {
         //-------------------------Insert New Assign Group--------------------//
         (count($data) > 0) ? $this->db->insert_batch('wi_multiple_contact_group', $data) : '';
         $this->db->trans_complete();
-        return $m;
+        return TRUE;
     }
 
     function uploadImage($file, $cid) {

@@ -121,8 +121,8 @@ class Contacts extends CI_Controller {
 
     function updateContact() {
         $post = $this->input->post();
-        $msg = $this->objcontact->updateContact($post);
-        header('location:' . site_url() . 'app/contacts?msg=' . $msg);
+        $this->objcontact->updateContact($post);
+        header('location:' . site_url() . 'app/contacts?msg=U');
     }
 
     function action() {
