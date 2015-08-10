@@ -273,7 +273,7 @@ $('#profile_submit').click(function () {
     }
 });
 $('#create-contact a').click(function () {
-    if (hopscotch.getState() == "welcome:9:10") {
+    if (hopscotch.getState() == "welcome:12:10") {
         hopscotch.nextStep();
     }
 });
