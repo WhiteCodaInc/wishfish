@@ -246,14 +246,14 @@ var tour = {
 //    ]
 //};
 
-//hopscotch.startTour(tour);
-hopscotch.startTour(start);
-if (hopscotch.getState() == "center:0") {
+hopscotch.startTour(tour);
+console.log(hopscotch.getState());
+if (hopscotch.getState() == "welcome:0") {
     setTimeout(function () {
         $('.hopscotch-bubble-arrow-container').hide();
-    }, 500);
+    }, 1000);
 }
-console.log(hopscotch.getState());
+
 
 function check() {
     $('#supportForm .msg').text('');
