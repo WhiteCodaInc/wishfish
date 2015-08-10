@@ -121,6 +121,9 @@ class M_contacts extends CI_Model {
                 $this->wi_common->getMySqlDate($set['birthday'], $this->session->userdata('u_date_format')) :
                 NULL;
         $set['user_id'] = $this->userid;
+
+        $importUrl = $set['importUrl'];
+
         unset($set['code']);
         unset($set['importUrl']);
         $this->db->insert('wi_contact_detail', $set);
@@ -140,7 +143,18 @@ class M_contacts extends CI_Model {
             );
             $this->db->insert('wi_schedule', $event_data);
         }
-        if (isset($_FILES['contact_avatar']) && $_FILES['contact_avatar']['error'] == 0) {
+
+        if ($importUrl != "") {
+            $img_url = FCPATH . "import/user.jpg";
+            copy($importUrl, $img_url);
+            $fname = 'wish-fish/contacts/contact_avatar_' . $insertid . '.jpg';
+            $this->s3->setAuth($this->accessKey, $this->secretKey);
+            if ($this->s3->putObjectFile($img_url, $this->bucket, $fname, "public-read")) {
+                $set['contact_avatar'] = $fname;
+                $this->db->update('wi_contact_detail', $set, array('contact_id' => $insertid));
+            }
+            unlink($img_url);
+        } else if (isset($_FILES['profile_pic']) && $_FILES['profile_pic']['error'] == 0) {
             $msg = $this->uploadImage($_FILES, $insertid);
             if ($msg) {
                 $set['contact_avatar'] = $msg;
