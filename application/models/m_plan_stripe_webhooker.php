@@ -64,14 +64,14 @@ class M_plan_stripe_webhooker extends CI_Model {
                 );
                 $this->db->update('wi_plan_detail', $set, $where);
 
-                if ($this->isFreePlan($res)) {
+                /*if ($this->isFreePlan($res)) {
                     if ($userInfo->is_bill) {
                         $customer->subscriptions->create(array(
                             "plan" => "wishfish-personal",
                             "metadata" => array("userid" => $userid)
                         ));
                     }
-                }
+                }*/
                 break;
             case "customer.subscription.trial_will_end":
                 /*

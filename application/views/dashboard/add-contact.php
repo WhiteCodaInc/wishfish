@@ -121,7 +121,7 @@
     });
     $(document).ready(function () {
         console.log(hopscotch.getState());
-        $('div.save-contact').click(function () {
+        $('.save-contact').click(function () {
             var tourStep = hopscotch.getState();
             var href = "";
             if (tourStep == "welcome:14:7") {
