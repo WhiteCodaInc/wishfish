@@ -39,7 +39,6 @@ class M_profile extends CI_Model {
     }
 
     function updateProfile($set) {
-        $m = "";
         $userInfo = $this->wi_common->getUserInfo($this->userid);
         if ($userInfo->customer_id != NULL) {
             if (isset($set['stripeToken'])) {
@@ -71,25 +70,14 @@ class M_profile extends CI_Model {
             $fname = 'wish-fish/users/profile_' . $this->userid . '.jpg';
             $this->s3->setAuth($this->accessKey, $this->secretKey);
             if ($this->s3->putObjectFile($img_url, $this->bucket, $fname, "public-read")) {
-                $this->db->update('wi_user_mst', array('profile_pic' => $fname), array('user_id' => $this->userid));
+                $set['profile_pic'] = $fname;
             }
             unlink($img_url);
-        } else if (isset($_FILES['profile_pic'])) {
-            if ($_FILES['profile_pic']['error'] == 0) {
-                $msg = $this->uploadImage($_FILES);
-                switch ($msg) {
-                    case "UF":
-                        $m = "UF";
-                        break;
-                    case "IF":
-                        $m = "IF";
-                        break;
-                    default:
-                        $set['profile_pic'] = $msg;
-                        $this->session->set_userdata('profile_pic', $msg);
-                        $m = "U";
-                        break;
-                }
+        } else if (isset($_FILES['profile_pic']) && $_FILES['profile_pic']['error'] == 0) {
+            $msg = $this->uploadImage($_FILES);
+            if ($msg) {
+                $set['profile_pic'] = $msg;
+                $this->session->set_userdata('profile_pic', $msg);
             }
         }
         unset($set['importUrl']);
@@ -100,10 +88,9 @@ class M_profile extends CI_Model {
         );
         $this->session->set_userdata($sess_array);
         $this->db->trans_start();
-        $m = "U";
         $this->db->update('wi_user_mst', $set, array('user_id' => $this->userid));
         $this->db->trans_complete();
-        return $m;
+        return TRUE;
     }
 
     function isEmailChange($email) {
@@ -128,21 +115,13 @@ class M_profile extends CI_Model {
 
     function upload() {
         $flag = false;
-        if (isset($_FILES['profile_pic'])) {
-            if ($_FILES['profile_pic']['error'] == 0) {
-                $msg = $this->uploadImage($_FILES);
-                switch ($msg) {
-                    case "UF":
-                    case "IF":
-                        $flag = false;
-                        break;
-                    default:
-                        $set['profile_pic'] = $msg;
-                        $this->session->set_userdata('profile_pic', $msg);
-                        $this->db->update('wi_user_mst', $set, array('user_id' => $this->userid));
-                        $flag = true;
-                        break;
-                }
+        if (isset($_FILES['profile_pic']) && $_FILES['profile_pic']['error'] == 0) {
+            $msg = $this->uploadImage($_FILES);
+            if ($msg) {
+                $set['profile_pic'] = $msg;
+                $this->session->set_userdata('profile_pic', $msg);
+                $this->db->update('wi_user_mst', $set, array('user_id' => $this->userid));
+                $flag = true;
             } else {
                 $flag = false;
             }
@@ -161,10 +140,10 @@ class M_profile extends CI_Model {
             if ($this->s3->putObjectFile($file['profile_pic']['tmp_name'], $this->bucket, $fname, "public-read")) {
                 return $fname;
             } else {
-                return "UF";
+                return FALSE;
             }
         } else {
-            return "IF";
+            return FALSE;
         }
     }
 

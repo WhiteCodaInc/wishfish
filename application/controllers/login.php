@@ -73,7 +73,6 @@ class Login extends CI_Controller {
             if ($is_login === -1) {
                 header('location:' . site_url() . 'login?msg=DA');
             } else if ($is_login) {
-                $this->objregister->linkWithProfile($post['email']);
                 if (isset($remember) && $remember == "on")
                     $this->storeCookie($post);
                 if ($this->wi_authex->isActivePlan()) {
@@ -110,7 +109,6 @@ class Login extends CI_Controller {
                             header('location: ' . site_url() . 'login?&msg=LN');
                             break;
                         case "LG":
-                            $this->objregister->linkWithProfile($data['email']);
                             $is_login = array(
                                 'name' => 'isLogin',
                                 'value' => $data['id'],
@@ -174,7 +172,6 @@ class Login extends CI_Controller {
                             header('location: ' . site_url() . 'login?&msg=LG');
                             break;
                         case "LF":
-                            $this->objregister->linkWithProfile($user_profile['email']);
                             $is_login = array(
                                 'name' => 'isLogin',
                                 'value' => $user_profile['id'],

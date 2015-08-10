@@ -239,7 +239,7 @@ class M_register extends CI_Model {
                                             <a href='{$url}' style='padding-top: 0;padding-bottom: 0;padding-left: 0;padding-right: 0;display: inline-block;text-decoration: none;-webkit-text-size-adjust: none;font-family: Arial, Helvetica, sans-serif;color: #ffffff;font-weight: bold;'>
                                                 <span style='text-decoration: none;color: #ffffff;'>
                                                     Activate Your Account
-                                                </span>
+                    `                            </span>
                                             </a>
                                         </td>";
         $link .= "</tr></table>";
@@ -278,80 +278,6 @@ class M_register extends CI_Model {
         } else {
             $this->db->update('wi_user_mst', array('customer_id' => $customer->id), array('user_id' => $insertid));
             return TRUE;
-        }
-    }
-
-    function linkWithProfile($post) {
-        $email = (is_array($post)) ? $post['email'] : $post;
-        $query = $this->db->get_where('wi_user_mst', array('email' => $email));
-        $res = $query->row();
-        $profile_type = (is_array($post)) ? $post['profile_type'] : $res->profile_type;
-        $profile_link = (is_array($post)) ? $post['profile_link'] : $res->profile_link;
-        if ($profile_type != "" && $profile_link != "") {
-            switch ($profile_type) {
-                case "facebook":
-                    $src = "";
-                    $base_url = "https://www.facebook.com/";
-                    $html = $this->curl_file_get_contents($base_url . $profile_link);
-
-                    $page = str_replace(array('<!--', '-->'), '', $html);
-                    $dom = new DOMDocument();
-                    @$dom->loadHTML($page, 0);
-
-                    $images = $dom->getElementsByTagName('img');
-                    foreach ($images as $image) {
-                        if ($image->getAttribute('class') == "profilePic img") {
-                            $src = $image->getAttribute('src');
-                        }
-                    }
-                    $nodes = $dom->getElementsByTagName('title');
-                    $name = explode('|', $nodes->item(0)->nodeValue);
-                    if (isset($name[0]) && (trim($name[0]) != "Page Not Found" || trim($name[0]) != "Facebook")) {
-                        copy($src, FCPATH . "user.jpg");
-                        $this->updateProfile($res, $name[0]);
-                        return true;
-                    } else {
-                        return false;
-                    }
-                    break;
-                case "linkedin":
-                    $html = @file_get_html($profile_link);
-                    if ($html) {
-                        foreach ($html->find('span.full-name') as $e)
-                            $name = $e->plaintext;
-                        foreach ($html->find('.profile-picture img') as $e)
-                            $src = $e->src;
-                        if (isset($name) && isset($src)) {
-                            copy($src, FCPATH . "user.jpg");
-                            $this->updateProfile($res, $name);
-                            return TRUE;
-                        } else {
-                            return FALSE;
-                        }
-                    } else {
-                        return FALSE;
-                    }
-                    break;
-                case "twitter":
-                    $base_url = "https://twitter.com/" . $profile_link;
-                    $html = @file_get_html($base_url);
-                    if ($html) {
-                        foreach ($html->find('h1.ProfileHeaderCard-name a') as $e)
-                            $name = $e->plaintext;
-                        foreach ($html->find('.ProfileAvatar img') as $e)
-                            $src = $e->src;
-                        copy($src, FCPATH . "user.jpg");
-                        $this->updateProfile($res, $name);
-                        return TRUE;
-                    } else {
-                        return FALSE;
-                    }
-                    break;
-                default:
-                    return FALSE;
-            }
-        } else {
-            return FALSE;
         }
     }
 
