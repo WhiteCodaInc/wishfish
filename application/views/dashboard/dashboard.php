@@ -55,6 +55,7 @@
     // data-backdrop="static" data-keyboard="false"
 
 </style>
+<div style="position: absolute;top:50px;left: 50px"><h1>START</h1></div>
 <aside class="right-side" style="min-height: 542px;">
     <!--<a href="#" style="display: none" class="feedback" data-backdrop="false"  data-toggle="modal" data-target="#feedback-model">Review</a>-->
     <!--<div class="modal fade" id="feedback-model" tabindex="-1" role="dialog" aria-hidden="true">-->
