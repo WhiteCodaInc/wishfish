@@ -64,14 +64,14 @@ class M_plan_stripe_webhooker extends CI_Model {
                 );
                 $this->db->update('wi_plan_detail', $set, $where);
 
-                /*if ($this->isFreePlan($res)) {
-                    if ($userInfo->is_bill) {
-                        $customer->subscriptions->create(array(
-                            "plan" => "wishfish-personal",
-                            "metadata" => array("userid" => $userid)
-                        ));
-                    }
-                }*/
+                /* if ($this->isFreePlan($res)) {
+                  if ($userInfo->is_bill) {
+                  $customer->subscriptions->create(array(
+                  "plan" => "wishfish-personal",
+                  "metadata" => array("userid" => $userid)
+                  ));
+                  }
+                  } */
                 break;
             case "customer.subscription.trial_will_end":
                 /*
@@ -100,6 +100,8 @@ class M_plan_stripe_webhooker extends CI_Model {
     }
 
     function insertPaymentDetail($pid, $charge, $customer) {
+        $this->timezone = "UM8";
+        $datetime = date('Y-m-d H:i:s', gmt_to_local(time(), $this->timezone, TRUE));
 
         $amount = $customer->subscriptions->data[0]->plan->amount / 100;
 
@@ -118,7 +120,8 @@ class M_plan_stripe_webhooker extends CI_Model {
             'mc_gross' => $amount,
             'mc_fee' => ($amount != 0) ? ($amount * 0.029) + 0.30 : 0,
             'gateway' => "STRIPE",
-            'payment_date' => date('Y-m-d H:i:s', $customer->subscriptions->data[0]->current_period_start)
+            'payment_date' => $datetime
+//            'payment_date' => date('Y-m-d H:i:s', $customer->subscriptions->data[0]->current_period_start)
         );
         $this->db->insert('wi_payment_mst', $insert_set);
     }
