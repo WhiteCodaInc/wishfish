@@ -116,12 +116,11 @@
                     <div class="box-body">
                         <form id="importForm" method="post">
                             <div class="row">
-                                <div class="col-md-2"></div>
                                 <div class="col-md-8">
                                     <label id="title">Facebook Username</label>
                                     <input id="url"  type="text" class="form-control" required=""/>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-2" style="margin-top: 5%;">
                                     <button class="btn btn-success" type="submit" id="parse">Get Contact</button>
                                 </div>
                             </div>
