@@ -8,19 +8,16 @@ var tour = {
     id: 'start',
     steps: [
         {
-            target: 'wishfish-title',
+            target: 'center',
             title: 'Welcome to Wish-Fish!',
             content: "If this is your first time here, click 'next' and we will show you around!",
             placement: 'left',
 //            arrowOffset: 60,
-//            xOffset: 165,
-            onNext: function () {
-                $('ul.navbar-right li.user-menu').addClass('open');
-            }
+//            xOffset: 165,            
         }
     ],
-    showPrevButton: true,
-    scrollTopMargin: 100
+    showPrevButton: false,
+    //scrollTopMargin: 100
 };
 
 var tour = {
@@ -211,7 +208,8 @@ var tour = {
     showPrevButton: true,
     scrollTopMargin: 100
 };
-hopscotch.startTour(tour);
+//hopscotch.startTour(tour);
+hopscotch.startTour(start);
 console.log(hopscotch.getState());
 
 function check() {
