@@ -115,7 +115,7 @@ var tour = {
                 $('#wishfish-contact ul.dropdown-menu').css('display', 'block');
             },
             onPrev: function () {
-                window.location = "https://wish-fish.com/app/profile";
+//                window.location = "https://wish-fish.com/app/profile";
             }
         },
         {
