@@ -61,6 +61,7 @@ var tour = {
             placement: 'left',
             yOffset: 'center',
             title: 'Add Profile Picture',
+            arrowOffset: 20
         },
         {
             target: 'full-name',
