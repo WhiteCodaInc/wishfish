@@ -126,7 +126,7 @@ var tour = {
             showPrevButton: false,
             showNextButton: false,
             onNext: function () {
-                window.location = "https://wish-fish.com/app/contacts/addContact";
+                //window.location = "https://wish-fish.com/app/contacts/addContact";
             },
             onPrev: function () {
                 window.location = "https://wish-fish.com/app/dashboard";
