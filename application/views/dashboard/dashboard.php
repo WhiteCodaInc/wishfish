@@ -44,14 +44,21 @@
         right: 0;
         top: 10px;
     }
-    .modal-backdrop {background: none;}
+    .feedback {
+        max-width: 400px;
+        position: absolute;
+        right: 15px;
+        bottom: 0;
+        z-index: 1;
+        margin: 0
+    }
     // data-backdrop="static" data-keyboard="false"
 
 </style>
 <aside class="right-side" style="min-height: 542px;">
-    <a href="#" style="display: none" class="feedback" data-backdrop="false"  data-toggle="modal" data-target="#feedback-model">Review</a>
+    <!--<a href="#" style="display: none" class="feedback" data-backdrop="false"  data-toggle="modal" data-target="#feedback-model">Review</a>-->
     <!--<div class="modal fade" id="feedback-model" tabindex="-1" role="dialog" aria-hidden="true">-->
-    <div class="modal-dialog" style="max-width: 400px;position: absolute;right: 15px;bottom: 0;z-index: 1">
+    <div class="modal-dialog feedback">
         <div class="modal-content" style="border: 2px solid #3c8dbc;">
             <div class="modal-header" style="text-align: center">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -404,10 +411,12 @@
     });
 
     $(document).ready(function () {
-        if (hopscotch.getState() != "welcome:7") {
+        if (hopscotch.getState() == "welcome:7") {
             setTimeout(function () {
-                $('a.feedback').trigger('click');
+                $('div.feedback').hide();
             }, 500);
+        } else {
+            $('div.feedback').show();
         }
         $('#review_submit').click(function () {
             var msg = $('#review').val();
