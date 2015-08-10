@@ -87,9 +87,6 @@
                                 <button  type="button" class="btn btn-primary save-contact">Create This Contact</button>
                             </div>
                         </div><!-- /.box-body -->
-                        <!--                        <div class="box-footer" id="save-contact">
-                                                    <button type="button" id="contact_submit" class="btn btn-primary">Create New Contact</button>
-                                                </div>-->
                         <input value="" name="zodiac" type="hidden" class="form-control" >
                         <input value="" name="age" type="hidden" class="form-control" >
                         <input type="submit" style="display: none" class="submit"/>
