@@ -4,19 +4,6 @@
 /* EXAMPLE TOUR */
 /* ============ */
 
-var start = {
-    id: 'center',
-    steps: [
-        {
-            target: 'center',
-            title: 'Add a Contact',
-            placement: 'top',
-            xOffset: 'center',
-            arrowOffset: 'center'
-        }
-    ],
-};
-
 var tour = {
     id: 'welcome',
     steps: [
@@ -205,6 +192,38 @@ var tour = {
     showPrevButton: true,
     scrollTopMargin: 100
 };
+
+var start = {
+    id: 'center',
+    steps: [
+        {
+            target: 'center',
+            title: 'Add a Contact',
+            placement: 'top',
+            xOffset: 'center',
+            arrowOffset: 'center'
+        },
+        {
+            target: 'center',
+            title: 'Setup a birthday reminder',
+            placement: 'top',
+            xOffset: 'center',
+            arrowOffset: 'center'
+        },
+        {
+            target: 'center',
+            title: 'Explore & Enjoy',
+            placement: 'top',
+            xOffset: 'center',
+            arrowOffset: 'center',
+            onClose: function () {
+                hopscotch.endTour();
+                hopscotch.startTour(tour);
+            }
+        }
+    ]
+};
+
 //hopscotch.startTour(tour);
 hopscotch.startTour(start);
 if (hopscotch.getState() == "center:0") {
