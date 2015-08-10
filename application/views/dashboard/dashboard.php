@@ -50,37 +50,37 @@
 </style>
 <aside class="right-side" style="min-height: 542px;">
     <a href="#" style="display: none" class="feedback" data-backdrop="false"  data-toggle="modal" data-target="#feedback-model">Review</a>
-    <div class="modal fade" id="feedback-model" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" style="max-width: 400px;position: absolute;right: 17px;bottom: 0">
-            <div class="modal-content">
-                <div class="modal-header" style="text-align: center">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Have feedback? Let us know!</h4>
-                </div>
-                <div class="modal-body" style="padding: 0">
-                    <div class="box box-primary review" style="border-radius: 0">
-                        <div class="box-body">
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-md-12" style="text-align: center">
-                                        <textarea id="review" rows="5" style="border: 1px solid #3c8dbc;" class="form-control"></textarea>
-                                    </div>
+    <!--<div class="modal fade" id="feedback-model" tabindex="-1" role="dialog" aria-hidden="true">-->
+    <div class="modal-dialog" style="max-width: 400px;position: absolute;right: 17px;bottom: 0">
+        <div class="modal-content">
+            <div class="modal-header" style="text-align: center">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Have feedback? Let us know!</h4>
+            </div>
+            <div class="modal-body" style="padding: 0">
+                <div class="box box-primary review" style="border-radius: 0">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-12" style="text-align: center">
+                                    <textarea id="review" rows="5" style="border: 1px solid #3c8dbc;" class="form-control"></textarea>
                                 </div>
                             </div>
-                            <div id="review_error" class="form-group" style="text-align: center;display: none">
-                                <span></span>
-                            </div>
-                            <div class="form-group" style="text-align: center">
-                                <button type="submit" id="review_submit" class="btn btn-primary btn-lg">Submit</button>
-                            </div>
                         </div>
-                        <div class="overlay" style="display: none"></div>
-                        <div class="loading-img" style="display: none"></div>
+                        <div id="review_error" class="form-group" style="text-align: center;display: none">
+                            <span></span>
+                        </div>
+                        <div class="form-group" style="text-align: center">
+                            <button type="submit" id="review_submit" class="btn btn-primary btn-lg">Submit</button>
+                        </div>
                     </div>
+                    <div class="overlay" style="display: none"></div>
+                    <div class="loading-img" style="display: none"></div>
                 </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+    <!--</div>-->
     <section class="content-header">
         <h1 style="float: left">
             Dashboard
