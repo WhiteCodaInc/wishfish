@@ -11,7 +11,7 @@ var start = {
             target: 'center',
             title: 'Add a Contact',
             placement: 'top',
-            xOffset: 165,
+            xOffset: 0,
         }
     ],
 };
