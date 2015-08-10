@@ -47,7 +47,6 @@ var tour = {
             title: 'Setup Your Profile',
 //      content: '',
             placement: 'left',
-            xOffset: 'center',
 //            yOffset: 0,
             delay: 50,
             showNextButton: false,
