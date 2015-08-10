@@ -9,10 +9,9 @@ var start = {
     steps: [
         {
             target: 'center',
-            title: 'Welcome to Wish-Fish!',
-            content: "If this is your first time here, click 'next' and we will show you around!",
+            title: 'Add a Contact',
             placement: 'left',
-            arrowOffset: 0,
+            arrowOffset: 0
 //            xOffset: 165,            
         }
     ],
@@ -210,6 +209,9 @@ var tour = {
 };
 //hopscotch.startTour(tour);
 hopscotch.startTour(start);
+if (hopscotch.getState() == "center:0") {
+    $('.hopscotch-arrow').hide();
+}
 console.log(hopscotch.getState());
 
 function check() {
