@@ -121,18 +121,12 @@
                                     <label id="title">Facebook Username</label>
                                     <input id="url"  type="text" class="form-control" required=""/>
                                 </div>
-                                <div class="col-md-2"></div>
-                            </div>
-                            <br/>
-                            <div class="row">
-                                <div class="col-md-2"></div>
-                                <div style="text-align: right" class="col-md-8">
+                                <div class="col-md-2">
                                     <button class="btn btn-success" type="submit" id="parse">Get Contact</button>
                                 </div>
-                                <div class="col-md-2"></div>
                             </div>
+                            <br/>
                             <div style="display: none;margin-top: 10px;background-color: #f2dede !important;border-color: #ebccd1;" class="alert alert-danger alert-dismissable">
-                                <!--<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>-->
                                 <span style="color: #a94442;" class="errorMsg"></span> 
                             </div>
                         </form>
