@@ -70,8 +70,8 @@ var tour = {
             showPrevButton: false,
             //content: '',
             placement: 'left',
-            yOffset: 'top',
-//            arrowOffset: 20,
+            yOffset: 'center',
+            arrowOffset: 30,
             onPrev: function () {
                 window.location = "https://wish-fish.com/app/dashboard";
             }
@@ -82,7 +82,7 @@ var tour = {
             placement: 'left',
             yOffset: 'center',
             title: 'Add Your Phone Number',
-//            arrowOffset: 20
+            arrowOffset: 30
         },
         {
             target: 'birthday',
@@ -90,15 +90,15 @@ var tour = {
             placement: 'left',
             yOffset: 'center',
             title: 'Enter Your Birthday',
-//            arrowOffset: 20
+            arrowOffset: 30
         },
         {
             target: 'select-timezone',
             showPrevButton: false,
             placement: 'left',
-            yOffset: 'center',
+            yOffset: -30,
             title: 'Select Your Time Zone',
-//            arrowOffset: 20,
+            arrowOffset: 30,
         },
         {
             target: 'save-profile',
