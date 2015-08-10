@@ -139,26 +139,14 @@ class M_contacts extends CI_Model {
             );
             $this->db->insert('wi_schedule', $event_data);
         }
-        $m = "I";
-        if (isset($_FILES['contact_avatar'])) {
-            if ($_FILES['contact_avatar']['error'] == 0) {
-                $msg = $this->uploadImage($_FILES, $insertid);
-                switch ($msg) {
-                    case "UF":
-                        $m = "UF";
-                        break;
-                    case "IF":
-                        $m = "IF";
-                        break;
-                    default:
-                        $set['contact_avatar'] = $msg;
-                        $this->db->update('wi_contact_detail', $set, array('contact_id' => $insertid));
-                        $m = "I";
-                        break;
-                }
+        if (isset($_FILES['contact_avatar']) && $_FILES['contact_avatar']['error'] == 0) {
+            $msg = $this->uploadImage($_FILES, $insertid);
+            if ($msg) {
+                $set['contact_avatar'] = $msg;
+                $this->db->update('wi_contact_detail', $set, array('contact_id' => $insertid));
             }
         }
-        return $m;
+        return TRUE;
     }
 
     function updateContact($set) {
@@ -167,7 +155,6 @@ class M_contacts extends CI_Model {
 //        print_r($set);
 //        die();
 
-        $m = "";
         $cid = $set['contactid'];
 //        $set['phone'] = str_replace(array('(', ')', ' ', '-'), '', $set['code'] . $set['phone']);
 //        $set['birthday'] = ($set['birthday'] != "") ? date('Y-m-d', strtotime($set['birthday'])) : NULL;
@@ -197,24 +184,22 @@ class M_contacts extends CI_Model {
         }
 //        print_r($data);
 //        die();
-        if (isset($_FILES['contact_avatar'])) {
-            if ($_FILES['contact_avatar']['error'] == 0) {
-                $msg = $this->uploadImage($_FILES, $cid);
-                switch ($msg) {
-                    case "UF":
-                        $m = "UF";
-                        break;
-                    case "IF":
-                        $m = "IF";
-                        break;
-                    default:
-                        $set['contact_avatar'] = $msg;
-                        $m = "U";
-                        break;
-                }
+
+        if ($set['importUrl'] != "") {
+            $img_url = FCPATH . "import/user.jpg";
+            copy($set['importUrl'], $img_url);
+            $fname = 'wish-fish/contacts/contact_avatar_' . $cid . '.jpg';
+            $this->s3->setAuth($this->accessKey, $this->secretKey);
+            if ($this->s3->putObjectFile($img_url, $this->bucket, $fname, "public-read")) {
+                $set['contact_avatar'] = $fname;
+            }
+            unlink($img_url);
+        } else if (isset($_FILES['contact_avatar']) && $_FILES['contact_avatar']['error'] == 0) {
+            $msg = $this->uploadImage($_FILES, $cid);
+            if ($msg) {
+                $set['contact_avatar'] = $msg;
             }
         }
-
         $this->db->trans_start();
         if (!$this->isBirthdaySchedule($cid, $set)) {
             $event_data = array(
@@ -265,10 +250,10 @@ class M_contacts extends CI_Model {
             if ($this->s3->putObjectFile($file['contact_avatar']['tmp_name'], $this->bucket, $fname, "public-read")) {
                 return $fname;
             } else {
-                return "UF";
+                return FALSE;
             }
         } else {
-            return "IF";
+            return FALSE;
         }
     }
 

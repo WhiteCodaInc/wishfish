@@ -308,6 +308,7 @@
         function imageIsLoaded(e) {
             $("#profilePic").css("color", "green");
             $("#profile_previewing").attr('src', e.target.result);
+            $('input[name="importUrl"]').val("");
         }
     });
 </script>
