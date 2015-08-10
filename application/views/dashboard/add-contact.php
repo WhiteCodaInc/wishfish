@@ -226,6 +226,8 @@
                         $('#import-modal span.errorMsg').text("Your Profile Is Not Visible Publically..!");
                         $('input[name="importUrl"]').val("");
                     } else {
+                        $('#import-modal #url').val("");
+                        $('#import-modal .alert').hide();
                         var json = JSON.parse(data);
                         var name = json.name.split(' ');
                         $('#contactForm input[name="fname"]').val(name[0]);
