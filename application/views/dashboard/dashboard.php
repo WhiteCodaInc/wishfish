@@ -394,8 +394,8 @@
     $(function () {
         var x = $(window).width() / 2;
         var y = $(window).height() / 2;
-        $('#center').css('top', y);
-        $('#center').css('left', x);
+        $('#center').css('top', y - 40);
+        $('#center').css('left', +x + 40);
 
         $('select[name="timezones"]').addClass('form-control m-bot15');
         //$('select[name="timezones"]').val('UTC');
