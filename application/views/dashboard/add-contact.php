@@ -84,7 +84,7 @@
                                 <input name="email" type="email" class="form-control"  placeholder="Enter Their Email">
                             </div>
                             <div class="form-group">
-                                <button type="button" class="btn btn-primary save-contact">Create This Contact</button>
+                                <button id="save-contact" type="button" class="btn btn-primary save-contact">Create This Contact</button>
                             </div>
                         </div><!-- /.box-body -->
                         <!--                        <div class="box-footer" id="save-contact">
