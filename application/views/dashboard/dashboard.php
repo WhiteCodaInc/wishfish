@@ -61,7 +61,7 @@
     <div class="modal-dialog feedback">
         <div class="modal-content" style="border: 2px solid #3c8dbc;">
             <div class="modal-header" style="text-align: center">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <button type="button" class="close">&times;</button>
                 <h4 class="modal-title">Have feedback? Let us know!</h4>
             </div>
             <div class="modal-body" style="padding: 0">
@@ -412,12 +412,15 @@
 
     $(document).ready(function () {
         if (hopscotch.getState() == "welcome:7") {
-            setTimeout(function () {
-                $('div.feedback').hide();
-            }, 500);
+            $('div.feedback').hide();
         } else {
             $('div.feedback').show();
         }
+
+        $('button.close').click(function () {
+            $('div.feedback').hide();
+        });
+
         $('#review_submit').click(function () {
             var msg = $('#review').val();
             var id = $(this).prop('id');
