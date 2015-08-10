@@ -35,9 +35,8 @@ var tour = {
             title: 'Welcome to Wish-Fish!',
             content: "If this is your first time here, click 'next' and we will show you around!",
             placement: 'left',
+            xOffset: 'center',
             showPrevButton: false,
-//            arrowOffset: 60,
-//            xOffset: 165,
             onNext: function () {
                 $('ul.navbar-right li.user-menu').addClass('open');
             }
