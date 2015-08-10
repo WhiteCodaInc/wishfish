@@ -104,7 +104,7 @@ var tour = {
             target: 'save-profile',
             showPrevButton: false,
             showNextButton: false,
-            placement: 'left',
+            placement: 'bottom',
             yOffset: 'center',
             title: 'Save Your Profile',
 //            arrowOffset: 10,
