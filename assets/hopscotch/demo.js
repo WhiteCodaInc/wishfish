@@ -216,7 +216,8 @@ var start = {
             placement: 'top',
             xOffset: 'center',
             arrowOffset: 'center',
-            onClose: function () {
+            onEnd: function () {
+                alert();
                 hopscotch.endTour();
                 hopscotch.startTour(tour);
             }
