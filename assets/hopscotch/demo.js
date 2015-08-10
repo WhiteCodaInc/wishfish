@@ -8,6 +8,27 @@ var tour = {
     id: 'welcome',
     steps: [
         {
+            target: 'center',
+            title: 'Add a Contact',
+            placement: 'top',
+            xOffset: 'center',
+            arrowOffset: 'center'
+        },
+        {
+            target: 'center',
+            title: 'Setup a birthday reminder',
+            placement: 'top',
+            xOffset: 'center',
+            arrowOffset: 'center'
+        },
+        {
+            target: 'center',
+            title: 'Explore & Enjoy',
+            placement: 'top',
+            xOffset: 'center',
+            arrowOffset: 'center',
+        },
+        {
             target: 'wishfish-title',
             title: 'Welcome to Wish-Fish!',
             content: "If this is your first time here, click 'next' and we will show you around!",
@@ -193,37 +214,37 @@ var tour = {
     scrollTopMargin: 100
 };
 
-var start = {
-    id: 'center',
-    steps: [
-        {
-            target: 'center',
-            title: 'Add a Contact',
-            placement: 'top',
-            xOffset: 'center',
-            arrowOffset: 'center'
-        },
-        {
-            target: 'center',
-            title: 'Setup a birthday reminder',
-            placement: 'top',
-            xOffset: 'center',
-            arrowOffset: 'center'
-        },
-        {
-            target: 'center',
-            title: 'Explore & Enjoy',
-            placement: 'top',
-            xOffset: 'center',
-            arrowOffset: 'center',
-            onEnd: function () {
-                alert();
-                hopscotch.endTour();
-                hopscotch.startTour(tour);
-            }
-        }
-    ]
-};
+//var start = {
+//    id: 'center',
+//    steps: [
+//        {
+//            target: 'center',
+//            title: 'Add a Contact',
+//            placement: 'top',
+//            xOffset: 'center',
+//            arrowOffset: 'center'
+//        },
+//        {
+//            target: 'center',
+//            title: 'Setup a birthday reminder',
+//            placement: 'top',
+//            xOffset: 'center',
+//            arrowOffset: 'center'
+//        },
+//        {
+//            target: 'center',
+//            title: 'Explore & Enjoy',
+//            placement: 'top',
+//            xOffset: 'center',
+//            arrowOffset: 'center',
+//            onEnd: function () {
+//                alert();
+//                hopscotch.endTour();
+//                hopscotch.startTour(tour);
+//            }
+//        }
+//    ]
+//};
 
 //hopscotch.startTour(tour);
 hopscotch.startTour(start);
