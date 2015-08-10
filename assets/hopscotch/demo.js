@@ -210,7 +210,7 @@ hopscotch.startTour(start);
 if (hopscotch.getState() == "center:0") {
     setTimeout(function () {
         $('.hopscotch-bubble-arrow-container').hide();
-    });
+    }, 500);
 }
 console.log(hopscotch.getState());
 
