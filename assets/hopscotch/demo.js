@@ -10,7 +10,7 @@ var start = {
         {
             target: 'center',
             title: 'Add a Contact',
-            placement: 'left',
+            placement: 'top',
             arrowOffset: 0
 //            xOffset: 165,            
         }
