@@ -102,6 +102,112 @@
     </section><!-- /.content -->
 </aside><!-- /.right-side -->
 
+<!-------------------------------Import Model------------------------------------>
+<div class="modal fade" id="import-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" style="max-width: 490px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Import Contact</h4>
+            </div>
+            <div class="modal-body">
+                <div class="box box-primary parse">
+                    <div class="box-body">
+                        <form id="parseForm" method="post">
+                            <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label>Import From</label>
+                                        <select name="type" id="type"  class="form-control" required="">
+                                            <option value="facebook" selected="">Facebook</option>
+                                            <option value="linkedin">LinkedIn</option>
+                                            <option value="twitter">Twitter</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-2"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-8">
+                                    <label id="title">Facebook Username</label>
+                                    <input name="url" id="url"  type="text" class="form-control" required=""/>
+                                </div>
+                                <div class="col-md-2"></div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-md-2"></div>
+                                <div style="text-align: right" class="col-md-8">
+                                    <button class="btn btn-success" type="submit" id="parse">Get Contact</button>
+                                </div>
+                                <div class="col-md-2"></div>
+                            </div>
+                            <div style="display: none;margin-top: 10px;background-color: #f2dede !important;border-color: #ebccd1;" class="alert alert-danger alert-dismissable">
+                                <!--<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>-->
+                                <span style="color: #a94442;" class="errorMsg"></span> 
+                            </div>
+                        </form>
+                    </div>
+                    <div class="overlay" style="display: none"></div>
+                    <div class="loading-img" style="display: none"></div>
+                </div>
+                <div class="box box-solid box-primary contactInfo" style="display: none">
+                    <div class="box-header">
+                        <h3 class="box-title">Contact Information</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <img style="width: 100px" class="picture" src="#" alt="profile picture" />
+                            </div>
+                            <div class="col-md-9">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <h4><label>First Name</label></h4>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <h4 class="fname"></h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <h4><label>Last Name</label></h4>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <h4 class="lname"></h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <button class="btn btn-success btn-sm save" type="button">
+                                            Add in Contact List
+                                        </button> 
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button class="btn btn-danger btn-sm cancel" type="button">
+                                            Go Back
+                                        </button> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="display: none;margin-top: 10px" class="alert alert-success alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <span class="successMsg"></span> 
+                        </div>
+                    </div><!-- /.box-body -->
+                    <div class="overlay" style="display: none"></div>
+                    <div class="loading-img" style="display: none"></div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<!------------------------------------------------------------------------>
+
+
 <!-- InputMask -->
 <!--<script src="<?= base_url() ?>assets/dashboard/js/plugins/input-mask/jquery.inputmask.js" type="text/javascript"></script>
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/input-mask/jquery.inputmask.date.extensions.js" type="text/javascript"></script>
