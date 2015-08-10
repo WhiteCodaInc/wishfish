@@ -262,8 +262,8 @@ function check() {
 }
 
 $('#wishfish-profile a').click(function () {
-    console.log("CKICK :" + hopscotch.getState());
-    if (hopscotch.getState() == "welcome:1") {
+    if (hopscotch.getState() == "welcome:4") {
+        console.log("CKICK :" + hopscotch.getState());
         hopscotch.nextStep();
     }
 });
