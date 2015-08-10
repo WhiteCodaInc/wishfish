@@ -394,6 +394,12 @@
     $(function () {
         var x = $(window).width() / 2;
         var y = $(window).height() / 2;
+        console.log("X:" + x);
+        console.log("Y:" + y);
+
+        console.log("X+40:" + (x + 40));
+        console.log("Y-40:" + (y - 40));
+
         $('#center').css('top', y - 40);
         $('#center').css('left', +x + 40);
 
