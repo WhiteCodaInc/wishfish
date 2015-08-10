@@ -7,29 +7,29 @@
 var tour = {
     id: 'welcome',
     steps: [
-//        {
-//            target: 'center',
-//            title: 'Add a Contact',
-//            placement: 'top',
-//            xOffset: 'center',
-//            arrowOffset: 'center'
-//        },
-//        {
-//            target: 'center',
-//            title: 'Setup a birthday reminder',
-//            placement: 'top',
-//            xOffset: 'center',
-//            arrowOffset: 'center',
-//            showPrevButton: false
-//        },
-//        {
-//            target: 'center',
-//            title: 'Explore & Enjoy',
-//            placement: 'top',
-//            xOffset: 'center',
-//            arrowOffset: 'center',
-//            showPrevButton: false
-//        },
+        {
+            target: 'center',
+            title: 'Add a Contact',
+            placement: 'top',
+            xOffset: 'center',
+            arrowOffset: 'center'
+        },
+        {
+            target: 'center',
+            title: 'Setup a birthday reminder',
+            placement: 'top',
+            xOffset: 'center',
+            arrowOffset: 'center',
+            showPrevButton: false
+        },
+        {
+            target: 'center',
+            title: 'Explore & Enjoy',
+            placement: 'top',
+            xOffset: 'center',
+            arrowOffset: 'center',
+            showPrevButton: false
+        },
         {
             target: 'wishfish-title',
             title: 'Welcome to Wish-Fish!',
@@ -54,7 +54,7 @@ var tour = {
             showPrevButton: false,
             multipage: true,
             onNext: function () {
-               // window.location = "https://wish-fish.com/app/profile";
+                // window.location = "https://wish-fish.com/app/profile";
             }
         },
         {
