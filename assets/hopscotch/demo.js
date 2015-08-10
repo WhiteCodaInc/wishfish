@@ -54,7 +54,7 @@ var tour = {
             showPrevButton: false,
             multipage: true,
             onNext: function () {
-                window.location = "https://wish-fish.com/app/profile";
+               // window.location = "https://wish-fish.com/app/profile";
             }
         },
         {
