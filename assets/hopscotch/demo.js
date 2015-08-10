@@ -167,7 +167,7 @@ var tour = {
             target: 'save-contact',
             placement: 'left',
             title: "Awesome! Now Click 'Create New Contact!'",
-            arrowOffset: 10,
+            arrowOffset: "center",
             multipage: true,
             showPrevButton: false,
             showNextButton: false,
