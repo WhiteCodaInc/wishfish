@@ -7,29 +7,29 @@
 var tour = {
     id: 'welcome',
     steps: [
-        {
-            target: 'center',
-            title: 'Add a Contact',
-            placement: 'top',
-            xOffset: 'center',
-            arrowOffset: 'center'
-        },
-        {
-            target: 'center',
-            title: 'Setup a birthday reminder',
-            placement: 'top',
-            xOffset: 'center',
-            arrowOffset: 'center',
-            showPrevButton: false
-        },
-        {
-            target: 'center',
-            title: 'Explore & Enjoy',
-            placement: 'top',
-            xOffset: 'center',
-            arrowOffset: 'center',
-            showPrevButton: false
-        },
+//        {
+//            target: 'center',
+//            title: 'Add a Contact',
+//            placement: 'top',
+//            xOffset: 'center',
+//            arrowOffset: 'center'
+//        },
+//        {
+//            target: 'center',
+//            title: 'Setup a birthday reminder',
+//            placement: 'top',
+//            xOffset: 'center',
+//            arrowOffset: 'center',
+//            showPrevButton: false
+//        },
+//        {
+//            target: 'center',
+//            title: 'Explore & Enjoy',
+//            placement: 'top',
+//            xOffset: 'center',
+//            arrowOffset: 'center',
+//            showPrevButton: false
+//        },
         {
             target: 'wishfish-title',
             title: 'Welcome to Wish-Fish!',
@@ -263,7 +263,7 @@ function check() {
 
 $('#wishfish-profile a').click(function () {
     console.log("CKICK :" + hopscotch.getState());
-    if (hopscotch.getState() == "welcome:4") {
+    if (hopscotch.getState() == "welcome:1") {
         hopscotch.nextStep();
     }
 });
