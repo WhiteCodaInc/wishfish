@@ -19,7 +19,8 @@ var tour = {
             title: 'Setup a birthday reminder',
             placement: 'top',
             xOffset: 'center',
-            arrowOffset: 'center'
+            arrowOffset: 'center',
+            showPrevButton: false
         },
         {
             target: 'center',
@@ -27,6 +28,7 @@ var tour = {
             placement: 'top',
             xOffset: 'center',
             arrowOffset: 'center',
+            showPrevButton: false
         },
         {
             target: 'wishfish-title',
