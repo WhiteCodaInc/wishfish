@@ -113,7 +113,7 @@ var tour = {
         {
             target: 'wishfish-contact',
             placement: 'bottom',
-            yOffset: 'center',
+            xOffset: 'center',
             title: 'Great! Now Let`s Add Some Friends!',
             showPrevButton: false,
             onNext: function () {
