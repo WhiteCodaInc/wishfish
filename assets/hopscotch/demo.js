@@ -105,7 +105,7 @@ var tour = {
             showPrevButton: false,
             showNextButton: false,
             placement: 'bottom',
-            yOffset: 'center',
+//            yOffset: 'center',
             title: 'Save Your Profile',
 //            arrowOffset: 10,
             multipage: true
