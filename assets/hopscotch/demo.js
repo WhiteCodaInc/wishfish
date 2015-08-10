@@ -60,8 +60,9 @@ var tour = {
             showPrevButton: false,
             placement: 'left',
             yOffset: 'center',
-            title: 'Add Profile Picture',
-            arrowOffset: 20
+            arrowOffset: 20,
+            title: 'Add Profile Picture'
+
         },
         {
             target: 'full-name',
@@ -69,6 +70,7 @@ var tour = {
             showPrevButton: false,
             //content: '',
             placement: 'left',
+            yOffset: 'center',
             onPrev: function () {
                 window.location = "https://wish-fish.com/app/dashboard";
             }
@@ -77,6 +79,7 @@ var tour = {
             target: 'phone-number',
             showPrevButton: false,
             placement: 'left',
+            yOffset: 'center',
             title: 'Add Your Phone Number',
             arrowOffset: 20
         },
@@ -84,6 +87,7 @@ var tour = {
             target: 'birthday',
             showPrevButton: false,
             placement: 'left',
+            yOffset: 'center',
             title: 'Enter Your Birthday',
             arrowOffset: 20
         },
@@ -91,15 +95,16 @@ var tour = {
             target: 'select-timezone',
             showPrevButton: false,
             placement: 'left',
+            yOffset: 'center',
             title: 'Select Your Time Zone',
             arrowOffset: 20,
-            yOffset: -33,
         },
         {
             target: 'save-profile',
             showPrevButton: false,
             showNextButton: false,
-            placement: 'bottom',
+            placement: 'left',
+            yOffset: 'center',
             title: 'Save Your Profile',
             arrowOffset: 10,
             multipage: true
@@ -107,8 +112,8 @@ var tour = {
         {
             target: 'wishfish-contact',
             placement: 'bottom',
+            yOffset: 'center',
             title: 'Great! Now Let`s Add Some Friends!',
-            yOffset: -20,
             showPrevButton: false,
             onNext: function () {
                 $('#wishfish-contact ul.dropdown-menu').css('display', 'block');
@@ -120,6 +125,7 @@ var tour = {
         {
             target: 'create-contact',
             placement: 'right',
+            yOffset: 'center',
             title: 'Create New Contact',
             multipage: true,
             showPrevButton: false,
@@ -131,7 +137,7 @@ var tour = {
                 window.location = "https://wish-fish.com/app/dashboard";
                 $('#wishfish-contact ul.dropdown-menu').css('display', 'block');
             },
-            yOffset: -10,
+            //yOffset: -10,
             xOffset: -20
         },
         {
