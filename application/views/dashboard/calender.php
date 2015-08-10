@@ -1214,7 +1214,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                     }
                 }
             }
-            if (hopscotch.getState() == "welcome:15:7") {
+            if (hopscotch.getState() == "welcome:18:10") {
                 console.log(hopscotch.getState());
                 hopscotch.nextStep();
             }
