@@ -1215,7 +1215,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                 }
             }
             if (hopscotch.getState() == "welcome:18:10") {
-                console.log(hopscotch.getState());
+//                console.log(hopscotch.getState());
                 hopscotch.nextStep();
             }
             var data = CKEDITOR.instances['e_emailbody'].getData();
@@ -1708,6 +1708,6 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
 //        hopscotch.showStep(15);
 //        console.log(hopscotch.getState());
 //        hopscotch.showStep(16);
-        console.log(hopscotch.getState());
+//        console.log(hopscotch.getState());
     }, 2000);
 </script>

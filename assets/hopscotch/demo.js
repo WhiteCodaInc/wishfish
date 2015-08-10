@@ -218,40 +218,8 @@ var tour = {
     scrollTopMargin: 100
 };
 
-//var start = {
-//    id: 'center',
-//    steps: [
-//        {
-//            target: 'center',
-//            title: 'Add a Contact',
-//            placement: 'top',
-//            xOffset: 'center',
-//            arrowOffset: 'center'
-//        },
-//        {
-//            target: 'center',
-//            title: 'Setup a birthday reminder',
-//            placement: 'top',
-//            xOffset: 'center',
-//            arrowOffset: 'center'
-//        },
-//        {
-//            target: 'center',
-//            title: 'Explore & Enjoy',
-//            placement: 'top',
-//            xOffset: 'center',
-//            arrowOffset: 'center',
-//            onEnd: function () {
-//                alert();
-//                hopscotch.endTour();
-//                hopscotch.startTour(tour);
-//            }
-//        }
-//    ]
-//};
-
 hopscotch.startTour(tour);
-console.log(hopscotch.getState());
+//console.log(hopscotch.getState());
 
 
 
@@ -264,19 +232,19 @@ function check() {
 
 $('#wishfish-profile a').click(function () {
     if (hopscotch.getState() == "welcome:4") {
-        console.log("CKICK :" + hopscotch.getState());
+//        console.log("CKICK :" + hopscotch.getState());
         hopscotch.nextStep();
     }
 });
 $('#profile_submit').click(function () {
     if (hopscotch.getState() == "welcome:10") {
-        console.log("PROFILE :" + hopscotch.getState());
+//        console.log("PROFILE :" + hopscotch.getState());
         hopscotch.nextStep();
     }
 });
 $('#create-contact a').click(function () {
     if (hopscotch.getState() == "welcome:12:10") {
-        console.log("CREATE C :" + hopscotch.getState());
+//        console.log("CREATE C :" + hopscotch.getState());
         hopscotch.nextStep();
     }
 });

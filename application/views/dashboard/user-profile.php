@@ -295,7 +295,7 @@
 
         Stripe.setPublishableKey('<?= $gatewayInfo->publish_key ?>');
 
-        console.log(hopscotch.getState());
+//        console.log(hopscotch.getState());
 
         $('.default-date-picker').datepicker({
             format: "<?= $this->session->userdata('u_date_format') ?>",

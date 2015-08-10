@@ -423,12 +423,6 @@
     });
 
     $(document).ready(function () {
-        if (hopscotch.getState() == "welcome:10") {
-            $('div.feedback').hide();
-        } else {
-            $('div.feedback').show();
-        }
-
         $('button.close').click(function () {
             $('div.feedback').hide();
         });
