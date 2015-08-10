@@ -49,9 +49,8 @@ class M_plan_stripe_webhooker extends CI_Model {
             case "customer.subscription.deleted":
                 $customer = Stripe_Customer::retrieve($event_json->data->object->customer);
                 $subsid = $event_json->data->object->id;
-                $userid = $customer->metadata->userid;
-
-                $userInfo = $this->wi_common->getUserInfo($userid);
+//                $userid = $customer->metadata->userid;
+//                $userInfo = $this->wi_common->getUserInfo($userid);
                 $this->db->select('*');
                 $query = $this->db->get_where('wi_payment_mst', array('transaction_id' => $subsid));
                 $res = $query->row();
