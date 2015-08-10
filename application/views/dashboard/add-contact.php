@@ -92,6 +92,7 @@
                         </div><!-- /.box-body -->
                         <input value="" name="zodiac" type="hidden" class="form-control" >
                         <input value="" name="age" type="hidden" class="form-control" >
+                        <input type="hidden" name="importUrl" value="" />
                         <input type="submit" style="display: none" class="submit"/>
                     </form>
                 </div><!-- /.box -->
@@ -226,15 +227,18 @@
                     if (data == "0") {
                         $('#import-modal .parse .alert').show();
                         $('#import-modal span.errorMsg').text("Please Enter Valid Username..!");
+                        $('input[name="importUrl"]').val("");
                     } else if (data == "1") {
                         $('#import-modal .parse .alert').show();
                         $('#import-modal span.errorMsg').text("Your Profile Is Not Visible Publically..!");
+                        $('input[name="importUrl"]').val("");
                     } else {
                         var json = JSON.parse(data);
                         var name = json.name.split(' ');
                         $('#contactForm input[name="fname"]').val(name[0]);
                         $('#contactForm input[name="lname"]').val(name[1]);
                         $('#contactForm #profile_previewing').prop('src', json.profile);
+                        $('input[name="importUrl"]').val(json.profile);
                     }
                 }
             });
