@@ -4,7 +4,7 @@
         <h1 style="margin-left: 11%;float: left">
             Add New Contact
         </h1>
-        <button type="button" class="btn btn-primary save-contact">Create New Contact</button>
+        <button id="save-contact" type="button" class="btn btn-primary save-contact">Create New Contact</button>
     </section>
     <!-- Main content -->
     <section class="content">
@@ -83,7 +83,7 @@
                                 <label for="password">Email</label>
                                 <input name="email" type="email" class="form-control"  placeholder="Enter Their Email">
                             </div>
-                            <div class="form-group" id="save-contact">
+                            <div class="form-group">
                                 <button  type="button" class="btn btn-primary save-contact">Create This Contact</button>
                             </div>
                         </div><!-- /.box-body -->
