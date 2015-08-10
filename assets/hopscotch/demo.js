@@ -170,7 +170,7 @@ var tour = {
             arrowOffset: 10,
             multipage: true,
             showPrevButton: false,
-//            showNextButton: false,
+            showNextButton: false,
 //            onNext: function () {
 //                var form = $('#contactForm')[0]; // You need to use standart javascript object here
 //                var formData = new FormData(form);
