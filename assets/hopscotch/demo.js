@@ -263,6 +263,7 @@ function check() {
 
 $('#wishfish-profile a').click(function () {
     console.log("PROFILE CLICK : " + hopscotch.getState());
+    return false;
     if (hopscotch.getState() == "welcome:3") {
         hopscotch.nextStep();
     }
