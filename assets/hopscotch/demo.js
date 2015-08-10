@@ -81,8 +81,8 @@ var tour = {
             showPrevButton: false,
             placement: 'left',
             yOffset: 'center',
-            title: 'Add Your Phone Number',
-            arrowOffset: 30
+            arrowOffset: 30,
+            title: 'Add Your Phone Number'    
         },
         {
             target: 'birthday',
@@ -173,7 +173,7 @@ var tour = {
             target: 'save-contact',
             placement: 'left',
             title: "Awesome! Now Click 'Create New Contact!'",
-            arrowOffset: "center",
+//            arrowOffset: "center",
             multipage: true,
             showPrevButton: false,
             showNextButton: false,
