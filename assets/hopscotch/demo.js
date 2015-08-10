@@ -10,8 +10,9 @@ var start = {
         {
             target: 'center',
             title: 'Add a Contact',
-            placement: 'center top',
-            xOffset: 0,
+            placement: 'top',
+            xOffset: 'center',
+            arrowOffset: 'center'
         }
     ],
 };
