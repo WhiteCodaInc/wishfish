@@ -304,12 +304,6 @@
         });
         $('select[name="timezones"]').addClass('form-control m-bot15');
 
-        $('#type option').each(function () {
-            if ($(this).val() == "<?= $user->profile_type ?>") {
-                $(this).prop('selected', true);
-            }
-        });
-
         $('select[name="timezones"] option').each(function () {
             if ($(this).val() == "<?= $user->timezones ?>") {
                 $(this).prop('selected', true);
