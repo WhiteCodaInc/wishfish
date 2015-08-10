@@ -269,11 +269,13 @@ $('#wishfish-profile a').click(function () {
 });
 $('#profile_submit').click(function () {
     if (hopscotch.getState() == "welcome:10") {
+        console.log("PROFILE :" + hopscotch.getState());
         hopscotch.nextStep();
     }
 });
 $('#create-contact a').click(function () {
     if (hopscotch.getState() == "welcome:12:10") {
+        console.log("CREATE C :" + hopscotch.getState());
         hopscotch.nextStep();
     }
 });
