@@ -49,7 +49,7 @@
 
 </style>
 <aside class="right-side" style="min-height: 542px;">
-    <a href="#" style="display: none" class="feedback"  data-toggle="modal" data-target="#feedback-model">Review</a>
+    <a href="#" style="display: none" class="feedback" data-backdrop="false"  data-toggle="modal" data-target="#feedback-model">Review</a>
     <div class="modal fade" id="feedback-model" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" style="max-width: 400px;position: absolute;right: 17px;bottom: 0">
             <div class="modal-content">
