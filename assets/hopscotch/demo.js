@@ -262,12 +262,12 @@ function check() {
 }
 
 $('#wishfish-profile a').click(function () {
-    if (hopscotch.getState() == "welcome:1") {
+    if (hopscotch.getState() == "welcome:4") {
         hopscotch.nextStep();
     }
 });
 $('#profile_submit').click(function () {
-    if (hopscotch.getState() == "welcome:7") {
+    if (hopscotch.getState() == "welcome:10") {
         hopscotch.nextStep();
     }
 });
