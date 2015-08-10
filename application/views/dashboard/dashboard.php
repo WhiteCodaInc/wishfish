@@ -397,7 +397,7 @@
         console.log("X:" + x);
         console.log("Y:" + y);
 
-        console.log("X+40:" + (x + 40));
+        console.log("X+40:" + (x - 40));
         console.log("Y-40:" + (y - 40));
 
         $('#center').css('top', y - 40);
