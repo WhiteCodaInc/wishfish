@@ -4,8 +4,8 @@
 /* EXAMPLE TOUR */
 /* ============ */
 
-var tour = {
-    id: 'start',
+var start = {
+    id: 'center',
     steps: [
         {
             target: 'center',
