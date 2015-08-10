@@ -58,7 +58,7 @@
                 <h4 class="modal-title">Have feedback? Let us know!</h4>
             </div>
             <div class="modal-body" style="padding: 0">
-                <div class="box box-primary review" style="border-radius: 0">
+                <div class="box box-primary review" style="border-radius: 0;border: 2px solid #3c8dbc;">
                     <div class="box-body">
                         <div class="form-group">
                             <div class="row">
