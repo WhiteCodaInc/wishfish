@@ -124,7 +124,7 @@
         $('.save-contact').click(function () {
             var tourStep = hopscotch.getState();
             var href = "";
-            if (tourStep == "welcome:14:7") {
+            if (tourStep == "welcome:14:10") {
                 href = "<?= site_url() ?>app/contacts/createContact?type=ajax";
                 hopscotch.nextStep();
             } else {
