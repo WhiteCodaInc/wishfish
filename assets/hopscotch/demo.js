@@ -71,6 +71,7 @@ var tour = {
             //content: '',
             placement: 'left',
             yOffset: 'center',
+            arrowOffset: 20,
             onPrev: function () {
                 window.location = "https://wish-fish.com/app/dashboard";
             }
