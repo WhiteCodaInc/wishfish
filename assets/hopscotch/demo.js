@@ -211,6 +211,7 @@ var tour = {
             title: 'That`s it! Its that easy!',
             content: 'Enjoy if you have any question or feedback for us we`re always happy to here from you,Just <a id="query_popup" href="#" onclick="return check()" data-toggle="modal" data-target="#query-modal">click Here</a>',
             zindex: 1,
+            showPrevButton: false,
         }
     ],
     showPrevButton: true,
