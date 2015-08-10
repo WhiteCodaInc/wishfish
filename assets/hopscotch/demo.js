@@ -41,19 +41,14 @@ var tour = {
             }
         },
         {
-//      target: document.querySelectorAll('#general-use-desc code')[1],
             target: 'wishfish-profile',
             title: 'Setup Your Profile',
-//      content: '',
             placement: 'left',
             yOffset: 'center',
             delay: 50,
             showNextButton: false,
             showPrevButton: false,
-            multipage: true,
-            onNext: function () {
-//                window.location = "https://wish-fish.com/app/profile";
-            }
+            multipage: true
         },
         {
             target: 'profile-pic',
@@ -68,7 +63,6 @@ var tour = {
             target: 'full-name',
             title: 'Enter Your Name',
             showPrevButton: false,
-            //content: '',
             placement: 'left',
             yOffset: 'center',
             arrowOffset: 30,
@@ -105,22 +99,16 @@ var tour = {
             showPrevButton: false,
             showNextButton: false,
             placement: 'bottom',
-//            yOffset: 'center',
             title: 'Save Your Profile',
-//            arrowOffset: 10,
             multipage: true
         },
         {
             target: 'wishfish-contact',
             placement: 'bottom',
-//            xOffset: 'center',
             title: 'Great! Now Let`s Add Some Friends!',
             showPrevButton: false,
             onNext: function () {
                 $('#wishfish-contact ul.dropdown-menu').css('display', 'block');
-            },
-            onPrev: function () {
-//                window.location = "https://wish-fish.com/app/profile";
             }
         },
         {
@@ -131,14 +119,6 @@ var tour = {
             multipage: true,
             showPrevButton: false,
             showNextButton: false,
-            onNext: function () {
-                //window.location = "https://wish-fish.com/app/contacts/addContact";
-            },
-            onPrev: function () {
-                window.location = "https://wish-fish.com/app/dashboard";
-                $('#wishfish-contact ul.dropdown-menu').css('display', 'block');
-            },
-            //yOffset: -10,
             xOffset: -20
         },
         {
@@ -175,21 +155,7 @@ var tour = {
             title: "Awesome! Now Click 'Create New Contact!'",
             multipage: true,
             showPrevButton: false,
-            showNextButton: false,
-//            onNext: function () {
-//                var form = $('#contactForm')[0]; // You need to use standart javascript object here
-//                var formData = new FormData(form);
-//                $.ajax({
-//                    type: 'POST',
-//                    processData: false,
-//                    contentType: false,
-//                    data: formData,
-//                    url: "https://wish-fish.com/app/contacts/createContact?type=ajax",
-//                    success: function (data, textStatus, jqXHR) {
-//                        window.location = "https://wish-fish.com/app/calender?date=" + data;
-//                    }
-//                });
-//            }
+            showNextButton: false
         },
         {
             target: 'birth_day',
@@ -237,19 +203,16 @@ function check() {
 
 $('#wishfish-profile a').click(function () {
     if (hopscotch.getState() == "welcome:4") {
-//        console.log("CKICK :" + hopscotch.getState());
         hopscotch.nextStep();
     }
 });
 $('#profile_submit').click(function () {
     if (hopscotch.getState() == "welcome:10") {
-//        console.log("PROFILE :" + hopscotch.getState());
         hopscotch.nextStep();
     }
 });
 $('#create-contact a').click(function () {
     if (hopscotch.getState() == "welcome:12:10") {
-//        console.log("CREATE C :" + hopscotch.getState());
         hopscotch.nextStep();
     }
 });
