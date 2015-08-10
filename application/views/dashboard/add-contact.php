@@ -113,26 +113,12 @@
             <div class="modal-body">
                 <div class="box box-primary parse">
                     <div class="box-body">
-                        <form id="parseForm" method="post">
-                            <div class="row">
-                                <div class="col-md-2"></div>
-                                <div class="col-md-8">
-                                    <div class="form-group">
-                                        <label>Import From</label>
-                                        <select name="type" id="type"  class="form-control" required="">
-                                            <option value="facebook" selected="">Facebook</option>
-                                            <option value="linkedin">LinkedIn</option>
-                                            <option value="twitter">Twitter</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-2"></div>
-                            </div>
+                        <form id="importForm" method="post">
                             <div class="row">
                                 <div class="col-md-2"></div>
                                 <div class="col-md-8">
                                     <label id="title">Facebook Username</label>
-                                    <input name="url" id="url"  type="text" class="form-control" required=""/>
+                                    <input id="url"  type="text" class="form-control" required=""/>
                                 </div>
                                 <div class="col-md-2"></div>
                             </div>
@@ -226,7 +212,35 @@
         });
     });
     $(document).ready(function () {
-        console.log(hopscotch.getState());
+
+        $('#importForm').submit(function () {
+            $('#import-modal .parse .overlay').show();
+            $('#import-modal .parse .loading-img').show();
+            $.ajax({
+                type: 'POST',
+                data: {userid: $('#import-modal #url').val()},
+                url: "<?= site_url() ?>app/scrape/facebook",
+                success: function (data, textStatus, jqXHR) {
+                    $('.parse .overlay').hide();
+                    $('.parse .loading-img').hide();
+                    if (data == "0") {
+                        $('#import-modal .parse .alert').show();
+                        $('#import-modal span.errorMsg').text("Please Enter Valid Username..!");
+                    } else if (data == "1") {
+                        $('#import-modal .parse .alert').show();
+                        $('#import-modal span.errorMsg').text("Your Profile Is Not Visible Publically..!");
+                    } else {
+                        var json = JSON.parse(data);
+                        var name = json.name.split(' ');
+                        $('#contactForm input[name="fname"]').text(name[0]);
+                        $('#contactForm input[name="lname"]').text(name[1]);
+                        $('#contactForm #profile_previewing').prop('src', json.profile);
+                    }
+                }
+            });
+            return false;
+        });
+
         $('.save-contact').click(function () {
             var tourStep = hopscotch.getState();
             var href = "";
