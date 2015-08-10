@@ -232,8 +232,8 @@
                     } else {
                         var json = JSON.parse(data);
                         var name = json.name.split(' ');
-                        $('#contactForm input[name="fname"]').text(name[0]);
-                        $('#contactForm input[name="lname"]').text(name[1]);
+                        $('#contactForm input[name="fname"]').val(name[0]);
+                        $('#contactForm input[name="lname"]').val(name[1]);
                         $('#contactForm #profile_previewing').prop('src', json.profile);
                     }
                 }
