@@ -44,9 +44,12 @@
         right: 0;
         top: 10px;
     }
+    .modal-backdrop {background: none;}
+    // data-backdrop="static" data-keyboard="false"
+
 </style>
 <aside class="right-side" style="min-height: 542px;">
-    <a href="#" style="display: none" class="feedback" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#feedback-model">Review</a>
+    <a href="#" style="display: none" class="feedback"  data-toggle="modal" data-target="#feedback-model">Review</a>
     <div class="modal fade" id="feedback-model" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" style="max-width: 550px;position: absolute;right: 0;bottom: 0">
             <div class="modal-content">
