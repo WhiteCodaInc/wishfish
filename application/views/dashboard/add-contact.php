@@ -5,7 +5,7 @@
             Add New Contact
         </h1>
         <button id="save-contact" type="button" class="btn btn-primary save-contact">Create New Contact</button>
-        <button class="btn btn-info import"  data-toggle="modal" data-target="#import-modal">
+        <button style="color:white" class="btn btn-info"  data-toggle="modal" data-target="#import-modal">
             Import From Facebook
         </button>
     </section>
