@@ -268,12 +268,12 @@ $('#wishfish-profile a').click(function () {
     }
 });
 $('#profile_submit').click(function () {
-    if (hopscotch.getState() == "welcome:7") {
+    if (hopscotch.getState() == "welcome:10") {
         hopscotch.nextStep();
     }
 });
 $('#create-contact a').click(function () {
-    if (hopscotch.getState() == "welcome:9:7") {
+    if (hopscotch.getState() == "welcome:9:10") {
         hopscotch.nextStep();
     }
 });

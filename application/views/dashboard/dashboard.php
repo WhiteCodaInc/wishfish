@@ -423,15 +423,7 @@
     });
 
     $(document).ready(function () {
-
-        if (hopscotch.getState() == "welcome:0") {
-            setTimeout(function () {
-                console.log("CALLED");
-                $('.hopscotch-bubble-arrow-container').hide();
-            }, 1000);
-        }
-
-        if (hopscotch.getState() == "welcome:7") {
+        if (hopscotch.getState() == "welcome:10") {
             $('div.feedback').hide();
         } else {
             $('div.feedback').show();
