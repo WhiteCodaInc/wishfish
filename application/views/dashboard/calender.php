@@ -1560,7 +1560,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                             $('#e_user_img').css('display', 'none');
                         }
                     } else {
-                        $('.e_user_name').text(data.fname + " " + data.lname + " ");
+                        $('.e_user_name').text(data.name + " ");
                         $url = (data.profile_pic != null) ?
                                 "http://mikhailkuznetsov.s3.amazonaws.com/" + data.profile_pic :
                                 "<?= base_url() . 'assets/dashboard/img/default-avatar.png' ?>";
