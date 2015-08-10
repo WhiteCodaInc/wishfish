@@ -170,6 +170,8 @@ class Plan_ipn_listener extends CI_Controller {
     }
 
     function insertPaymentDetail($pid, $data) {
+        $this->timezone = "UM8";
+        $datetime = date('Y-m-d H:i:s', gmt_to_local(time(), $this->timezone, TRUE));
         $insert_set = array(
             'id' => $pid,
             'transaction_id' => $data['recurring_payment_id'],
@@ -179,7 +181,8 @@ class Plan_ipn_listener extends CI_Controller {
             'mc_gross' => $data['mc_gross'],
             'mc_fee' => $data['mc_fee'],
             'gateway' => "PAYPAL",
-            'payment_date' => date('Y-m-d H:i:s', strtotime($data['payment_date']))
+            'payment_date' => $datetime
+//            'payment_date' => date('Y-m-d H:i:s', strtotime($data['payment_date']))
         );
 //        $myfile = fopen(FCPATH . 'paypal.txt', "a");
 //        fwrite($myfile, "-----------INSERT ARRAY-------------- \n");
