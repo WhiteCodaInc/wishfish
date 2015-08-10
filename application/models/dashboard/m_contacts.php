@@ -122,6 +122,7 @@ class M_contacts extends CI_Model {
                 NULL;
         $set['user_id'] = $this->userid;
         unset($set['code']);
+        unset($set['importUrl']);
         $this->db->insert('wi_contact_detail', $set);
         $insertid = $this->db->insert_id();
         if ($set['birthday'] != NULL) {
@@ -173,6 +174,7 @@ class M_contacts extends CI_Model {
         unset($set['contactid']);
         unset($set['code']);
 
+
         $data = array();
         if (isset($group)) {
             foreach ($group as $value) {
@@ -194,6 +196,7 @@ class M_contacts extends CI_Model {
                 $set['contact_avatar'] = $fname;
             }
             unlink($img_url);
+            unset($set['importUrl']);
         } else if (isset($_FILES['contact_avatar']) && $_FILES['contact_avatar']['error'] == 0) {
             $msg = $this->uploadImage($_FILES, $cid);
             if ($msg) {
