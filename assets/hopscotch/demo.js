@@ -70,7 +70,7 @@ var tour = {
             showPrevButton: false,
             //content: '',
             placement: 'left',
-            yOffset: 'center',
+            yOffset: 'top',
 //            arrowOffset: 20,
             onPrev: function () {
                 window.location = "https://wish-fish.com/app/dashboard";
