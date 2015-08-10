@@ -250,6 +250,7 @@ hopscotch.startTour(tour);
 console.log(hopscotch.getState());
 if (hopscotch.getState() == "welcome:0") {
     setTimeout(function () {
+        console.log("CALLED");
         $('.hopscotch-bubble-arrow-container').hide();
     }, 1000);
 }
