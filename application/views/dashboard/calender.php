@@ -77,7 +77,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
             <?php
             if (isset($contactInfo)) {
                 $url = ($contactInfo->contact_avatar != null) ?
-                        "http://mikhailkuznetsov.s3.amazonaws.com/" + $contactInfo->contact_avatar :
+                        "https://mikhailkuznetsov.s3.amazonaws.com/" + $contactInfo->contact_avatar :
                         base_url() . 'assets/dashboard/img/default-avatar.png';
                 $href = site_url() . "admin/contacts/profile/" . $contactInfo->contact_id;
             } else {
@@ -997,7 +997,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
             if ($(this).val() == "me") {
                 $('#n_user_name').text("<?= $userInfo->name ?>");
                 $url = ("<?= $userInfo->profile_pic ?>" != null) ?
-                        "http://mikhailkuznetsov.s3.amazonaws.com/<?= $userInfo->profile_pic ?>" :
+                        "https://mikhailkuznetsov.s3.amazonaws.com/<?= $userInfo->profile_pic ?>" :
                         "<?= base_url() . 'assets/dashboard/img/default-avatar.png' ?>";
                 $href = "<?= site_url() ?>app/profile/" + "<?= $userInfo->user_id ?>";
                 $('#n_user_img').prop('href', $href);
@@ -1005,7 +1005,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
             } else {
                 $('#n_user_name').text("<?= $contactInfo->fname . ' ' . $contactInfo->lname ?>");
                 $url = ("<?= $contactInfo->contact_avatar ?>" != null) ?
-                        "http://mikhailkuznetsov.s3.amazonaws.com/<?= $contactInfo->contact_avatar ?>" :
+                        "https://mikhailkuznetsov.s3.amazonaws.com/<?= $contactInfo->contact_avatar ?>" :
                         "<?= base_url() . 'assets/dashboard/img/default-avatar.png' ?>";
                 $href = "<?= site_url() ?>" + "app/contacts/profile/" + "<?= $contactInfo->contact_id ?>";
                 $('#n_user_img').prop('href', $href);
@@ -1546,7 +1546,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                         if (data.group_type == "individual") {
                             $('.e_user_name').text(data.fname + " " + data.lname + " ");
                             $url = (data.contact_avatar != null) ?
-                                    "http://mikhailkuznetsov.s3.amazonaws.com/" + data.contact_avatar :
+                                    "https://mikhailkuznetsov.s3.amazonaws.com/" + data.contact_avatar :
                                     "<?= base_url() . 'assets/dashboard/img/default-avatar.png' ?>";
                             $href = "<?= site_url() ?>app/contacts/profile/" + data.contact_id;
                             $('#e_user_img').prop('href', $href);
@@ -1564,7 +1564,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                     } else {
                         $('.e_user_name').text(data.name + " ");
                         $url = (data.profile_pic != null) ?
-                                "http://mikhailkuznetsov.s3.amazonaws.com/" + data.profile_pic :
+                                "https://mikhailkuznetsov.s3.amazonaws.com/" + data.profile_pic :
                                 "<?= base_url() . 'assets/dashboard/img/default-avatar.png' ?>";
                         $href = "<?= site_url() ?>app/profile/" + data.contact_id;
                         $('#e_user_img').prop('href', $href);
