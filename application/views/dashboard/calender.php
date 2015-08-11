@@ -999,7 +999,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                 $url = ("<?= $userInfo->profile_pic ?>" != null) ?
                         "http://mikhailkuznetsov.s3.amazonaws.com/<?= $userInfo->profile_pic ?>" :
                         "<?= base_url() . 'assets/dashboard/img/default-avatar.png' ?>";
-                $href = "<?= site_url() ?>app/profile/" + "<?= $userInfo->profile_id ?>";
+                $href = "<?= site_url() ?>app/profile/" + "<?= $userInfo->user_id ?>";
                 $('#n_user_img').prop('href', $href);
                 $('#n_user_img img').prop('src', $url);
             } else {
