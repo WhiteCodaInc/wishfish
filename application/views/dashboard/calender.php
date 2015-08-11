@@ -94,7 +94,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                         <img  src="<?= $url ?>" class="img-circle" alt="User Image" style="width: 45px;height: 45px" />
                     </a>
                     <div id="n_event_status" style="margin-left: 60px;padding-left: 10px;display: none" class="alert alert-info alert-dismissable">
-                        This event will send <b><?= (isset($contactInfo)) ? $contactInfo->fname . ' ' . $contactInfo->lname : '' ?></b> a <span id="n_event_type"></span><span id="n_event_dt"></span><span id="n_event_time"></span>
+                        This event will send <b><span id="n_user_name"><?= (isset($contactInfo)) ? $contactInfo->fname . ' ' . $contactInfo->lname : '' ?></span></b> a <span id="n_event_type"></span><span id="n_event_dt"></span><span id="n_event_time"></span>
                     </div>
                     <div id="n_event_empty" style="margin-left: 60px;padding-left: 10px;" class="alert alert-info alert-dismissable">
                         This event is turned off, to turn on please select a notification type.
@@ -994,20 +994,10 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                 $('#' + form + ' div.choose').show();
             }
         } else if (form == "neweventForm") {
-            switch (event_type) {
-                case "notification":
-                    $('#n_event_empty').show();
-                    $('#n_event_status').hide();
-                    break;
-                case "sms":
-                case "email":
-                    if (event_type == "sms" || event_type == "email") {
-                        $('#n_event_empty').hide();
-                        $('#n_event_status').show();
-                        $lbl = (etype == "sms") ? "SMS" : "EMAIL";
-                        $('#n_event_type').text($lbl);
-                    }
-                    break;
+            if ($(this).val() == "me") {
+                $('#n_user_name').text("<?= $userInfo->name ?>");
+            } else {
+                $('#n_user_name').text("<?= $contactInfo->fname . ' ' . $contactInfo->lname ?>");
             }
         }
     });
