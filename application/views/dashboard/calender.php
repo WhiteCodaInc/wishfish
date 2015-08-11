@@ -1396,10 +1396,13 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
             if (form == "neweventForm") {
                 $('#' + form + ' input[name="notify"]').removeAttr('disabled');
                 $('#' + form + ' input[name="notify"]').removeAttr('checked');
+            } else {
+                $('#' + form + ' input[name="notify"]').removeAttr('disabled');
+                $('#' + form + ' input[name="notify"]:nth(0)').trigger('click');
             }
 
-            $('#' + form + ' input[name="notify"]').removeAttr('disabled');
-            $('#' + form + ' input[name="notify"]:nth(0)').trigger('click');
+
+
 
 
 
