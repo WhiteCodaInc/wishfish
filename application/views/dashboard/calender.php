@@ -1388,7 +1388,6 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                     var uphone = "<?= $userInfo->phone ?>";
                     var uemail = "<?= $userInfo->email ?>";
                     if (etype == "notification" || etype == "sms") {
-
                         if (uphone == "") {
                             $('#' + form + ' input[name="notify"]:nth(1)').prop('disabled', true);
                             $notify = "This user does not have a valid phone number!";
@@ -1405,11 +1404,17 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                     var cphone = "<?= isset($contactInfo) ? $contactInfo->phone : "" ?>";
                     var cemail = "<?= isset($contactInfo) ? $contactInfo->email : "" ?>";
                     if (etype == "notification" || etype == "sms") {
-                        (cphone == "") ?
-                                $('#' + form + ' input[name="notify"]:nth(0)').prop('disabled', true) : "";
+                        if (cphone == "") {
+                            $('#' + form + ' input[name="notify"]:nth(0)').prop('disabled', true);
+                            $notify = "This user does not have a valid phone number!";
+                            $('#' + form + ' input[name="notify"]:nth(0)').parent().prop('title', $notify);
+                        }
                     } else {
-                        (cemail == "") ?
-                                $('#' + form + ' input[name="notify"]:nth(0)').prop('disabled', true) : "";
+                        if (cemail == "") {
+                            $('#' + form + ' input[name="notify"]:nth(0)').prop('disabled', true);
+                            $notify = "This user does not have a valid email address!";
+                            $('#' + form + ' input[name="notify"]:nth(0)').parent().prop('title', $notify);
+                        }
                     }
                 }
             }
