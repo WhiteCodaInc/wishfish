@@ -330,30 +330,10 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                         </div>
                     </div>
                 </div>
-                <?php
-//                if (isset($contactInfo->profile_id)) {
-//                    $userid = $contactInfo->profile_id;
-//                    $user = 1;
-//                }
-//                if (isset($contactInfo->contact_id)) {
-//                    $userid = $contactInfo->contact_id;
-//                    $user = 2;
-//                }
-//                if (isset($contactInfo->affiliate_id)) {
-//                    $userid = $contactInfo->affiliate_id;
-//                    $user = 3;
-//                }
-//                if (isset($contactInfo->customer_id)) {
-//                    $userid = $contactInfo->customer_id;
-//                    $user = 4;
-//                }
-                ?>
                 <div class="modal-footer clearfix">
                     <button type="button" id="n_discard" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
                     <button type="button" id="n_insert" class="btn btn-primary pull-left"><i class="fa fa-envelope"></i> Schedule Now</button>
-<!--                    <input type="hidden" name="color" value="#f4543c" />-->
                     <input type="hidden" name="assign" value="all_c" />
-                    <input type="hidden" name="notify" value="them" />
                     <input type="hidden" name="contact_id" value="<?= isset($contactInfo) ? $contactInfo->contact_id : '' ?>" />
                 </div>
             </form>
@@ -986,7 +966,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
     $('input[name="notify"]').change(function () {
         var form = $(this).parents('form').prop('id');
         var event_type = $('#' + form + ' input[name="event_type"]:checked').val();
-        console.log(event_type);
+        console.log(form);
         if ($(this).val() == "me") {
             if (event_type != "email" && "<?= $userInfo->phone ?>" == "") {
                 $(this).prop('checked', false);
