@@ -231,6 +231,20 @@ class Wi_common {
             return date($date, gmt_to_local(time(), $timezone, TRUE));
         }
     }
+    function getCustomDate($mysqldate = NULL, $timezone = NULL, $format = NULL) {
+        $format = ($format != NULL) ? $format : $this->_CI->session->userdata('u_date_format');
+        $timezone = ($timezone != NULL) ? $timezone : $this->_CI->session->userdata('u_timezone');
+        
+        $customF = substr($format, 0, 5);
+        
+        $date = str_replace('mm', 'm', $customF);
+        $date = str_replace('dd', 'd', $date);
+        if ($mysqldate != NULL) {
+            return date($date, strtotime($mysqldate));
+        } else {
+            return date($date, gmt_to_local(time(), $timezone, TRUE));
+        }
+    }
 
     function getDateDiff($planInfo = NULL) {
         $format = $this->_CI->session->userdata('u_date_format');
