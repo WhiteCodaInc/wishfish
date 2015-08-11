@@ -1370,8 +1370,9 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
             $('#n_event_time').text(" at " + e.time.value);
         });
 
-        $('#neweventForm input[name="event_type"],#eventForm input[name="event_type"],#editForm input[name="event_type"]').change(function ()
+        $('input[name="event_type"]').change(function ()
         {
+            var form = $(this).parents('form').prop('id');
             var etype = $(this).val();
             if (etype == "notification") {
                 $('#n_event_empty').show();
@@ -1382,7 +1383,8 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                 $lbl = (etype == "sms") ? "SMS" : "EMAIL";
                 $('#n_event_type').text($lbl);
             }
-            $('#eventForm input[name="notify"]:nth(0)').trigger('click');
+            $('#' + form + ' input[name="notify"]').removeAttr('checked');
+            $('#' + form + ' input[name="notify"]:nth(0)').trigger('click');
             if (etype == "sms" || etype == "notification") {
                 $type = "sms";
                 $('#smsbody').val('');
