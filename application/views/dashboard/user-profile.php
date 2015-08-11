@@ -102,6 +102,7 @@
                             </div><!-- /.form group -->
                             <?php
                             if ($user->birthday != NULL) {
+                                echo $user->birthday.'<br>';
                                 $bdate = substr($user->birthday, 6, strlen($user->birthday));
                                 $sortDt = ($bdate == "1001") ? 1 : 0;
                                 echo $sortDt;
