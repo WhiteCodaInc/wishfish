@@ -40,6 +40,10 @@ class M_profile extends CI_Model {
 
     function updateProfile($set) {
 
+        if (strlen($set['birthday']) <= 5) {
+            
+        }
+
         $userInfo = $this->wi_common->getUserInfo($this->userid);
         if ($userInfo->customer_id != NULL) {
             if (isset($set['stripeToken'])) {
@@ -54,16 +58,15 @@ class M_profile extends CI_Model {
                 NULL;
 
         if (strlen($set['birthday']) <= 5) {
-            $set['birthday'] = ($set['birthday'] != "") ?
+            $dt = ($set['birthday'] != "") ?
                     $this->wi_common->getCustomMySqlDate($set['birthday'], $this->session->userdata('u_date_format')) :
                     NULL;
+            $set['birthday'] = ($dt != NULL) ? $dt . '-0000' : NULL;
         } else {
             $set['birthday'] = ($set['birthday'] != "") ?
                     $this->wi_common->getMySqlDate($set['birthday'], $this->session->userdata('u_date_format')) :
                     NULL;
         }
-
-
         $set['is_bill'] = (isset($set['is_bill'])) ? 1 : 0;
 
         if ($this->isEmailChange($set['email'])) {
