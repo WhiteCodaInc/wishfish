@@ -40,9 +40,11 @@ class M_profile extends CI_Model {
 
     function updateProfile($set) {
 
-        if (strlen($set['birthday']) <= 5) {
-            
-        }
+        echo '<pre>';
+        print_r($set);
+        $dt = $this->wi_common->getCustomMySqlDate($set['birthday'], $this->session->userdata('u_date_format'));
+        echo '1001-' . $dt;
+        die();
 
         $userInfo = $this->wi_common->getUserInfo($this->userid);
         if ($userInfo->customer_id != NULL) {
