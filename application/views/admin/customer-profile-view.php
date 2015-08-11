@@ -144,22 +144,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-md-4"><label>Profile Type</label></div>
-                                <div class="col-md-8">
-                                    <span class="title"><?= ($customer->profile_type != "-1") ? $customer->profile_type : 'N/A' ?></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-md-4"><label>Profile Link</label></div>
-                                <div class="col-md-8">
-                                    <span class="title"><?= ($customer->profile_link != NULL) ? $customer->profile_link : 'N/A' ?></span>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
