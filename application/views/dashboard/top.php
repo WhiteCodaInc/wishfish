@@ -1099,7 +1099,7 @@ $userid = $this->session->userdata('u_userid');
                     <h4 class="modal-title">
                         Phone Verification
                         <i title="Why do i need to verify my phone number? 
-                           We use your phone number to allow you to setup SMS notification for yourself." class="fa fa-question-circle"></i>
+We use your phone number to allow you to setup SMS notification for yourself." class="fa fa-question-circle"></i>
                     </h4>
                     
                 </div>
