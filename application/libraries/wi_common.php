@@ -204,7 +204,7 @@ class Wi_common {
     }
 
     function getCustomMySqlDate($dt, $format) {
-        $customF = substr($dt, 0, 5);
+        $customF = substr($format, 0, 5);
         if ($this->validateDate($dt, 'm-d')) {
             return $dt;
         } else {
