@@ -1383,7 +1383,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                 $lbl = (etype == "sms") ? "SMS" : "EMAIL";
                 $('#n_event_type').text($lbl);
             }
-            $('#' + form + ' input[name="notify"]').removeAttr('checked');
+            $('#' + form + ' input[name="notify"]').removeAttr('disabled');
             $('#' + form + ' input[name="notify"]:nth(0)').trigger('click');
             if (etype == "sms" || etype == "notification") {
                 $type = "sms";
