@@ -980,11 +980,15 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                 $('#' + form + ' input[name="notify"]:nth(0)').prop('checked', true);
                 alertify.alert("It's look like you have not enter email address..!");
             } else {
-                $('#' + form + ' div.selectRow').hide();
-                $('#' + form + ' div.choose').hide();
-                $('#' + form + ' input[name="assign"]').prop('checked', false);
-                $('#' + form + ' input[name="assign"]').prop('disabled', true);
-                $('#' + form + ' #users').prop('disabled', true);
+                if (form == "eventForm") {
+                    $('#' + form + ' div.selectRow').hide();
+                    $('#' + form + ' div.choose').hide();
+                    $('#' + form + ' input[name="assign"]').prop('checked', false);
+                    $('#' + form + ' input[name="assign"]').prop('disabled', true);
+                    $('#' + form + ' #users').prop('disabled', true);
+                } else {
+
+                }
             }
         } else {
             if (form == "neweventForm") {
@@ -992,11 +996,11 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                 var cemail = "<?= isset($contactInfo) ? $contactInfo->email : "" ?>";
                 if (event_type != "email" && cphone == "") {
                     $(this).prop('checked', false);
-                    $('#' + form + ' input[name="notify"]:nth(0)').prop('checked', true);
+                    $('#' + form + ' input[name="notify"]:nth(1)').prop('checked', true);
                     alertify.alert("It's look like you have not enter phone number..!");
                 } else if (event_type == "email" && cemail == "") {
                     $(this).prop('checked', false);
-                    $('#' + form + ' input[name="notify"]:nth(0)').prop('checked', true);
+                    $('#' + form + ' input[name="notify"]:nth(1)').prop('checked', true);
                     alertify.alert("It's look like you have not enter email address..!");
                 }
             } else {
