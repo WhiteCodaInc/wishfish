@@ -1392,34 +1392,15 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
             console.log(etype);
             console.log(notify);
 
-            var cphone = "<?= isset($contactInfo) ? $contactInfo->phone : "" ?>";
-            var cemail = "<?= isset($contactInfo) ? $contactInfo->email : "" ?>";
-
-            var uphone = "<?= $userInfo->phone ?>";
-            var uemail = "<?= $userInfo->email ?>";
+//            var cphone = "<?= isset($contactInfo) ? $contactInfo->phone : "" ?>";
+//            var cemail = "<?= isset($contactInfo) ? $contactInfo->email : "" ?>";
+//            
+//            var uphone = "<?= $userInfo->phone ?>";
+//            var uemail = "<?= $userInfo->email ?>";
 
             if (form == "neweventForm") {
-                if (notify == "me") {
-                    if (etype != "email") {
-                        if (uphone == "") {
-                            $(this).prop('disabled', true);
-                            $notify = "This user does not have a valid phone number!";
-                            $(this).parent().prop('title', $notify);
-                        } else {
-                            $(this).prop('disabled', false);
-                            $(this).parent().removeAttr('title');
-                        }
-                    } else {
-                        if (uemail == "") {
-                            $(this).prop('disabled', true);
-                            $notify = "This user does not have a valid email address!";
-                            $(this).parent().prop('title', $notify);
-                        } else {
-                            $(this).prop('disabled', false);
-                            $(this).parent().removeAttr('title');
-                        }
-                    }
-                }
+                $('#' + form + ' input[name="notify"]').removeAttr('disabled');
+                $('#' + form + ' input[name="notify"]').removeAttr('checked');
             } else {
                 $('#' + form + ' input[name="notify"]').removeAttr('disabled');
                 $('#' + form + ' input[name="notify"]:nth(0)').trigger('click');
