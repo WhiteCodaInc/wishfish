@@ -346,12 +346,13 @@
 </script>
 <script type="text/javascript">
     $(document).ready(function (e) {
-        
-        $('a#calendar').click(function(){
+
+        $('a#calendar').click(function () {
+            alert();
             $('#full-calendar').hide();
             $('#custom-calendar').show();
         });
-        
+
         $('#profile-pic img').click(function () {
             $('#profile-pic #profilePic').trigger('click');
         });
