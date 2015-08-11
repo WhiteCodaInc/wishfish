@@ -113,7 +113,7 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
-                                    <input style="z-index: 0;" name="birthday" value="<?= isset($user->birthday) ? $this->wi_common->getUTCDate($user->birthday) : NULL ?>"  class="form-control form-control-inline input-medium default-date-picker" size="16" type="text">
+                                    <input style="z-index: 0;" name="birthday" value="<?= isset($user->birthday) ? $this->wi_common->getUTCDate($user->birthday) : NULL ?>"  class="form-control form-control-inline input-medium default-date-picker1" size="16" type="text">
                                 </div><!-- /.input group -->
                             </div><!-- /.form group -->
                             <div class="form-group">
@@ -305,7 +305,12 @@
 //        console.log(hopscotch.getState());
 
         $('.default-date-picker').datepicker({
-//            format: "<?= $this->session->userdata('u_date_format') ?>",
+            format: "<?= $this->session->userdata('u_date_format') ?>",
+            todayBtn: "linked",
+            autoclose: true,
+            todayHighlight: true
+        });
+        $('.default-date-picker1').datepicker({
             format: "mm-dd",
             todayBtn: "linked",
             autoclose: true,
