@@ -305,7 +305,8 @@
 //        console.log(hopscotch.getState());
 
         $('.default-date-picker').datepicker({
-            format: "<?= $this->session->userdata('u_date_format') ?>",
+//            format: "<?= $this->session->userdata('u_date_format') ?>",
+            format: "mm-dd",
             todayBtn: "linked",
             autoclose: true,
             todayHighlight: true
