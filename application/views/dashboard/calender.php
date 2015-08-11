@@ -1370,10 +1370,38 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
             $('#n_event_time').text(" at " + e.time.value);
         });
 
-        $('input[name="event_type"]').change(function ()
-        {
+        $('input[name="event_type"]').change(function () {
             var form = $(this).parents('form').prop('id');
             var etype = $(this).val();
+
+            $('#' + form + ' input[name="notify"]').removeAttr('disabled');
+            $('#' + form + ' input[name="notify"]:nth(0)').trigger('click');
+
+            if (form == "neweventForm") {
+
+                if ($(this).val() == "me") {
+                    var uphone = "<?= $userInfo->phone ?>";
+                    var uemail = "<?= $userInfo->email ?>";
+                    if (etype == "notification" || etype == "sms") {
+                        (uphone == "") ?
+                                $('#' + form + ' input[name="notify"]:nth(1)').prop('disabled', true) : "";
+                    } else {
+                        (uemail == "") ?
+                                $('#' + form + ' input[name="notify"]:nth(1)').prop('disabled', true) : "";
+                    }
+                } else {
+                    var cphone = "<?= isset($contactInfo) ? $contactInfo->phone : "" ?>";
+                    var cemail = "<?= isset($contactInfo) ? $contactInfo->email : "" ?>";
+                    if (etype == "notification" || etype == "sms") {
+                        (uphone == "") ?
+                                $('#' + form + ' input[name="notify"]:nth(0)').prop('disabled', true) : "";
+                    } else {
+                        (uemail == "") ?
+                                $('#' + form + ' input[name="notify"]:nth(0)').prop('disabled', true) : "";
+                    }
+                }
+            }
+
             if (etype == "notification") {
                 $('#n_event_empty').show();
                 $('#n_event_status').hide();
@@ -1383,8 +1411,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                 $lbl = (etype == "sms") ? "SMS" : "EMAIL";
                 $('#n_event_type').text($lbl);
             }
-            $('#' + form + ' input[name="notify"]').removeAttr('disabled');
-            $('#' + form + ' input[name="notify"]:nth(0)').trigger('click');
+
             if (etype == "sms" || etype == "notification") {
                 $type = "sms";
                 $('#smsbody').val('');
