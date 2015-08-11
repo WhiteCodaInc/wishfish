@@ -970,23 +970,34 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
         console.log(event_type);
 
 
-
-        if (form == "eventForm") {
-            if ($(this).val() == "me") {
-                if (event_type != "email" && "<?= $userInfo->phone ?>" == "") {
+        if ($(this).val() == "me") {
+            if (event_type != "email" && "<?= $userInfo->phone ?>" == "") {
+                $(this).prop('checked', false);
+                $('#' + form + ' input[name="notify"]:nth(0)').prop('checked', true);
+                alertify.alert("It's look like you have not enter phone number..!");
+            } else if (event_type == "email" && "<?= $userInfo->email ?>" == "") {
+                $(this).prop('checked', false);
+                $('#' + form + ' input[name="notify"]:nth(0)').prop('checked', true);
+                alertify.alert("It's look like you have not enter email address..!");
+            } else {
+                $('#' + form + ' div.selectRow').hide();
+                $('#' + form + ' div.choose').hide();
+                $('#' + form + ' input[name="assign"]').prop('checked', false);
+                $('#' + form + ' input[name="assign"]').prop('disabled', true);
+                $('#' + form + ' #users').prop('disabled', true);
+            }
+        } else {
+            if (form == "neweventForm") {
+                var cphone = "<?= isset($contactInfo) ? $contactInfo->phone : "" ?>";
+                var cemail = "<?= isset($contactInfo) ? $contactInfo->email : "" ?>";
+                if (event_type != "email" && cphone == "") {
                     $(this).prop('checked', false);
                     $('#' + form + ' input[name="notify"]:nth(0)').prop('checked', true);
                     alertify.alert("It's look like you have not enter phone number..!");
-                } else if (event_type == "email" && "<?= $userInfo->email ?>" == "") {
+                } else if (event_type == "email" && cemail == "") {
                     $(this).prop('checked', false);
                     $('#' + form + ' input[name="notify"]:nth(0)').prop('checked', true);
                     alertify.alert("It's look like you have not enter email address..!");
-                } else {
-                    $('#' + form + ' div.selectRow').hide();
-                    $('#' + form + ' div.choose').hide();
-                    $('#' + form + ' input[name="assign"]').prop('checked', false);
-                    $('#' + form + ' input[name="assign"]').prop('disabled', true);
-                    $('#' + form + ' #users').prop('disabled', true);
                 }
             } else {
                 $('#' + form + ' input[name="assign"]:nth(0)').prop('checked', true);
@@ -995,30 +1006,11 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                 $('#' + form + ' div.selectRow').show();
                 $('#' + form + ' div.choose').show();
             }
-        } else if (form == "neweventForm") {
-            if ($(this).val() == "me") {
-                var uphone = "<?= $userInfo->phone ?>";
-                var uemail = "<?= $userInfo->email ?>";
-                if (event_type == "notification" || event_type == "sms") {
-                    if (uphone == "") {
-                        $('#' + form + ' input[name="notify"]:nth(1)').prop('disabled', true);
-                        $notify = "This user does not have a valid phone number!";
-                        $('#' + form + ' input[name="notify"]:nth(1)').parent().prop('title', $notify);
-//                        $('#' + form + ' input[name="notify"]:nth(1)').removeAttr('checked');
-                    } else {
-                        $('#' + form + ' input[name="notify"]:nth(1)').parent().removeAttr('title');
-                    }
-                } else {
-                    if (uemail == "") {
-                        $('#' + form + ' input[name="notify"]:nth(1)').prop('disabled', true);
-                        $notify = "This user does not have a valid email address!";
-                        $('#' + form + ' input[name="notify"]:nth(1)').parent().prop('title', $notify);
-//                        $('#' + form + ' input[name="notify"]:nth(1)').removeAttr('checked');
-                    } else {
-                        $('#' + form + ' input[name="notify"]:nth(1)').parent().removeAttr('title');
-                    }
-                }
+        }
 
+
+        if (form == "neweventForm") {
+            if ($(this).val() == "me") {
                 $('#n_user_name').text("<?= $userInfo->name ?>");
                 $url = ("<?= $userInfo->profile_pic ?>" != "") ?
                         "https://mikhailkuznetsov.s3.amazonaws.com/<?= $userInfo->profile_pic ?>" :
@@ -1030,27 +1022,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                 var cid = "<?= isset($contactInfo) ? $contactInfo->contact_id : "" ?>";
                 var cname = "<?= isset($contactInfo) ? $contactInfo->fname . ' ' . $contactInfo->lname : "" ?>";
                 var cavatar = "<?= isset($contactInfo) ? $contactInfo->contact_avatar : "" ?>";
-                var cphone = "<?= isset($contactInfo) ? $contactInfo->phone : "" ?>";
-                var cemail = "<?= isset($contactInfo) ? $contactInfo->email : "" ?>";
-                if (event_type == "notification" || event_type == "sms") {
-                    if (cphone == "") {
-                        $('#' + form + ' input[name="notify"]:nth(0)').prop('disabled', true);
-                        $notify = "This user does not have a valid phone number!";
-                        $('#' + form + ' input[name="notify"]:nth(0)').parent().prop('title', $notify);
-//                        $('#' + form + ' input[name="notify"]:nth(0)').removeAttr('checked');
-                    } else {
-                        $('#' + form + ' input[name="notify"]:nth(0)').parent().removeAttr('title');
-                    }
-                } else {
-                    if (cemail == "") {
-                        $('#' + form + ' input[name="notify"]:nth(0)').prop('disabled', true);
-                        $notify = "This user does not have a valid email address!";
-                        $('#' + form + ' input[name="notify"]:nth(0)').parent().prop('title', $notify);
-//                        $('#' + form + ' input[name="notify"]:nth(0)').removeAttr('checked');
-                    } else {
-                        $('#' + form + ' input[name="notify"]:nth(0)').parent().removeAttr('title');
-                    }
-                }
+
                 $('#n_user_name').text(cname);
                 $url = (cavatar != "") ?
                         "https://mikhailkuznetsov.s3.amazonaws.com/" + cavatar :
