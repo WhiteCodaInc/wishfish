@@ -1030,7 +1030,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                 var cavatar = "<?= isset($contactInfo) ? $contactInfo->contact_avatar : "" ?>";
                 var cphone = "<?= isset($contactInfo) ? $contactInfo->phone : "" ?>";
                 var cemail = "<?= isset($contactInfo) ? $contactInfo->email : "" ?>";
-                if (etype == "notification" || etype == "sms") {
+                if (event_type == "notification" || event_type == "sms") {
                     if (cphone == "") {
                         $('#' + form + ' input[name="notify"]:nth(0)').prop('disabled', true);
                         $notify = "This user does not have a valid phone number!";
