@@ -42,7 +42,11 @@ class M_profile extends CI_Model {
 
         echo '<pre>';
         print_r($set);
-        echo $this->wi_common->getCustomMySqlDate($set['birthday'], $this->session->userdata('u_date_format'));
+        if (strlen($set['birthday']) > 5) {
+            echo $this->wi_common->getSqlDate($set['birthday'], $this->session->userdata('u_date_format'));
+        } else {
+            echo $this->wi_common->getCustomMySqlDate($set['birthday'], $this->session->userdata('u_date_format'));
+        }
         die();
 
         $userInfo = $this->wi_common->getUserInfo($this->userid);
