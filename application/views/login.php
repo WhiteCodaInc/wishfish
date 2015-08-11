@@ -92,7 +92,7 @@ and open the template in the editor.
     </head>
     <body>
         <!--Contact form-->
-        <section id="contact" class="sections" style="height: 578px">
+        <section id="contact" class="sections">
             <div class="container">
                 <div class="row contact-2">
                     <!--  Heading-->
@@ -262,16 +262,13 @@ and open the template in the editor.
                 $m = "This Email Has Been Link up With Facebook! Please Try to signin with Facebook!:)";
                 $t = "error";
                 break;
-//            case "RS":
-//                $m = "Please Check Your Email To Get Started..!";
-//                $t = "success";
-                break;
             default:
                 $m = 0;
                 break;
         }
         ?>
         <script type="text/javascript">
+            $('#contact').css('height', $(window).height() - $('footer').height() - 40);
 <?php if ($m): ?>
                 alertify.<?= $t ?>("<?= $m ?>");
 <?php endif; ?>
