@@ -105,7 +105,7 @@
                                 echo $user->birthday . '<br>';
                                 $bdate = substr($user->birthday, 0, 3);
                                 $sortDt = ($bdate == "1001") ? 1 : 0;
-                                echo $sortDt;
+                                echo $bdate;
                             }
                             ?>
                             <div class="form-group" id="birthday">
