@@ -40,11 +40,6 @@ class M_profile extends CI_Model {
 
     function updateProfile($set) {
 
-        echo '<pre>';
-        print_r($set);
-
-        die();
-
         $userInfo = $this->wi_common->getUserInfo($this->userid);
         if ($userInfo->customer_id != NULL) {
             if (isset($set['stripeToken'])) {
