@@ -1398,10 +1398,10 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                     var cphone = "<?= isset($contactInfo) ? $contactInfo->phone : "" ?>";
                     var cemail = "<?= isset($contactInfo) ? $contactInfo->email : "" ?>";
                     if (etype == "notification" || etype == "sms") {
-                        (uphone == "") ?
+                        (cphone == "") ?
                                 $('#' + form + ' input[name="notify"]:nth(0)').prop('disabled', true) : "";
                     } else {
-                        (uemail == "") ?
+                        (cemail == "") ?
                                 $('#' + form + ' input[name="notify"]:nth(0)').prop('disabled', true) : "";
                     }
                 }
