@@ -1374,6 +1374,11 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
             var form = $(this).parents('form').prop('id');
             var etype = $(this).val();
             var notify = $('#' + form + ' input[name="notify"]:checked').val();
+
+            console.log(form);
+            console.log(etype);
+            console.log(notify);
+
             $('#' + form + ' input[name="notify"]').removeAttr('disabled');
             $('#' + form + ' input[name="notify"]:nth(0)').trigger('click');
 
