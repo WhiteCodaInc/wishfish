@@ -1002,11 +1002,11 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                 var cemail = "<?= isset($contactInfo) ? $contactInfo->email : "" ?>";
                 if (event_type != "email" && cphone == "") {
                     $(this).prop('checked', false);
-//                    $('#' + form + ' input[name="notify"]:nth(1)').prop('checked', true);
+                    $('#' + form + ' input[name="notify"]:nth(1)').prop('checked', true);
                     alertify.alert("It's look like you have not enter phone number..!");
                 } else if (event_type == "email" && cemail == "") {
                     $(this).prop('checked', false);
-//                    $('#' + form + ' input[name="notify"]:nth(1)').prop('checked', true);
+                    $('#' + form + ' input[name="notify"]:nth(1)').prop('checked', true);
                     alertify.alert("It's look like you have not enter email address..!");
                 } else {
                     var cid = "<?= isset($contactInfo) ? $contactInfo->contact_id : "" ?>";
