@@ -30,160 +30,160 @@ var tour = {
             arrowOffset: 'center',
             showPrevButton: false
         },
-        {
-            target: 'wishfish-title',
-            title: 'Welcome to Wish-Fish!',
-            content: "If this is your first time here, click 'next' and we will show you around!",
-            placement: 'left',
-            showPrevButton: false,
-            onNext: function () {
-                $('ul.navbar-right li.user-menu').addClass('open');
-            }
-        },
-        {
-            target: 'wishfish-profile',
-            title: 'Setup Your Profile',
-            placement: 'left',
-            yOffset: 'center',
-            delay: 50,
-            showNextButton: false,
-            showPrevButton: false,
-            multipage: true
-        },
-        {
-            target: 'profile-pic',
-            showPrevButton: false,
-            placement: 'left',
-            yOffset: 'center',
-            arrowOffset: 20,
-            title: 'Add Profile Picture'
-
-        },
-        {
-            target: 'full-name',
-            title: 'Enter Your Name',
-            showPrevButton: false,
-            placement: 'left',
-            yOffset: 'center',
-            arrowOffset: 30,
-            onPrev: function () {
-                window.location = "https://wish-fish.com/app/dashboard";
-            }
-        },
-        {
-            target: 'phone-number',
-            showPrevButton: false,
-            placement: 'left',
-            yOffset: 'center',
-            arrowOffset: 30,
-            title: 'Add Your Phone Number'
-        },
-        {
-            target: 'birthday',
-            showPrevButton: false,
-            placement: 'left',
-            yOffset: 'center',
-            title: 'Enter Your Birthday',
-            arrowOffset: 30
-        },
-        {
-            target: 'select-timezone',
-            showPrevButton: false,
-            placement: 'left',
-            yOffset: -60,
-            title: 'Select Your Time Zone',
-            arrowOffset: 30,
-        },
-        {
-            target: 'save-profile',
-            showPrevButton: false,
-            showNextButton: false,
-            placement: 'bottom',
-            title: 'Save Your Profile',
-            multipage: true
-        },
-        {
-            target: 'wishfish-contact',
-            placement: 'bottom',
-            title: 'Great! Now Let`s Add Some Friends!',
-            showPrevButton: false,
-            onNext: function () {
-                $('#wishfish-contact ul.dropdown-menu').css('display', 'block');
-            }
-        },
-        {
-            target: 'create-contact',
-            placement: 'right',
-            yOffset: 'center',
-            title: 'Create New Contact',
-            multipage: true,
-            showPrevButton: false,
-            showNextButton: false,
-            xOffset: -20
-        },
-        {
-            target: 'add-profile-pic',
-            placement: 'left',
-            title: 'Add Profile Picture',
-            arrowOffset: 20,
-            showPrevButton: false
-        },
-        {
-            target: 'add-name',
-            placement: 'left',
-            title: 'Add First Name and Last Name',
-            arrowOffset: 20,
-            showPrevButton: false
-        },
-        {
-            target: 'add-birthday',
-            placement: 'left',
-            title: 'Add Birthdate',
-            arrowOffset: 20,
-            showPrevButton: false
-        },
-        {
-            target: 'add-phone',
-            placement: 'left',
-            title: 'Add Phone Number',
-            arrowOffset: 20,
-            showPrevButton: false
-        },
-        {
-            target: 'save-contact',
-            placement: 'bottom',
-            title: "Awesome! Now Click 'Create New Contact!'",
-            multipage: true,
-            showPrevButton: false,
-            showNextButton: false
-        },
-        {
-            target: 'birth_day',
-            placement: 'left',
-            delay: 0,
-            zindex: 1,
-            showNextButton: false,
-            showPrevButton: false,
-            title: 'This is your event for your friend click on it'
-        },
-        {
-            target: 'birth_day',
-            placement: 'left',
-            delay: 200,
-            zindex: 1,
-            title: 'Awesome! You Just Scheduled Birthday Event!',
-            content: 'Wish-Fish will message you(or him,if they selected that option).',
-            showPrevButton: false,
-            //yOffset: 120,
-        },
-        {
-            target: 'birth_day',
-            placement: 'left',
-            title: 'That`s it! Its that easy!',
-            content: 'Enjoy if you have any question or feedback for us we`re always happy to here from you,Just <a id="query_popup" href="#" onclick="return check()" data-toggle="modal" data-target="#query-modal">click Here</a>',
-            zindex: 1,
-            showPrevButton: false,
-        }
+//        {
+//            target: 'wishfish-title',
+//            title: 'Welcome to Wish-Fish!',
+//            content: "If this is your first time here, click 'next' and we will show you around!",
+//            placement: 'left',
+//            showPrevButton: false,
+//            onNext: function () {
+//                $('ul.navbar-right li.user-menu').addClass('open');
+//            }
+//        },
+//        {
+//            target: 'wishfish-profile',
+//            title: 'Setup Your Profile',
+//            placement: 'left',
+//            yOffset: 'center',
+//            delay: 50,
+//            showNextButton: false,
+//            showPrevButton: false,
+//            multipage: true
+//        },
+//        {
+//            target: 'profile-pic',
+//            showPrevButton: false,
+//            placement: 'left',
+//            yOffset: 'center',
+//            arrowOffset: 20,
+//            title: 'Add Profile Picture'
+//
+//        },
+//        {
+//            target: 'full-name',
+//            title: 'Enter Your Name',
+//            showPrevButton: false,
+//            placement: 'left',
+//            yOffset: 'center',
+//            arrowOffset: 30,
+//            onPrev: function () {
+//                window.location = "https://wish-fish.com/app/dashboard";
+//            }
+//        },
+//        {
+//            target: 'phone-number',
+//            showPrevButton: false,
+//            placement: 'left',
+//            yOffset: 'center',
+//            arrowOffset: 30,
+//            title: 'Add Your Phone Number'
+//        },
+//        {
+//            target: 'birthday',
+//            showPrevButton: false,
+//            placement: 'left',
+//            yOffset: 'center',
+//            title: 'Enter Your Birthday',
+//            arrowOffset: 30
+//        },
+//        {
+//            target: 'select-timezone',
+//            showPrevButton: false,
+//            placement: 'left',
+//            yOffset: -60,
+//            title: 'Select Your Time Zone',
+//            arrowOffset: 30,
+//        },
+//        {
+//            target: 'save-profile',
+//            showPrevButton: false,
+//            showNextButton: false,
+//            placement: 'bottom',
+//            title: 'Save Your Profile',
+//            multipage: true
+//        },
+//        {
+//            target: 'wishfish-contact',
+//            placement: 'bottom',
+//            title: 'Great! Now Let`s Add Some Friends!',
+//            showPrevButton: false,
+//            onNext: function () {
+//                $('#wishfish-contact ul.dropdown-menu').css('display', 'block');
+//            }
+//        },
+//        {
+//            target: 'create-contact',
+//            placement: 'right',
+//            yOffset: 'center',
+//            title: 'Create New Contact',
+//            multipage: true,
+//            showPrevButton: false,
+//            showNextButton: false,
+//            xOffset: -20
+//        },
+//        {
+//            target: 'add-profile-pic',
+//            placement: 'left',
+//            title: 'Add Profile Picture',
+//            arrowOffset: 20,
+//            showPrevButton: false
+//        },
+//        {
+//            target: 'add-name',
+//            placement: 'left',
+//            title: 'Add First Name and Last Name',
+//            arrowOffset: 20,
+//            showPrevButton: false
+//        },
+//        {
+//            target: 'add-birthday',
+//            placement: 'left',
+//            title: 'Add Birthdate',
+//            arrowOffset: 20,
+//            showPrevButton: false
+//        },
+//        {
+//            target: 'add-phone',
+//            placement: 'left',
+//            title: 'Add Phone Number',
+//            arrowOffset: 20,
+//            showPrevButton: false
+//        },
+//        {
+//            target: 'save-contact',
+//            placement: 'bottom',
+//            title: "Awesome! Now Click 'Create New Contact!'",
+//            multipage: true,
+//            showPrevButton: false,
+//            showNextButton: false
+//        },
+//        {
+//            target: 'birth_day',
+//            placement: 'left',
+//            delay: 0,
+//            zindex: 1,
+//            showNextButton: false,
+//            showPrevButton: false,
+//            title: 'This is your event for your friend click on it'
+//        },
+//        {
+//            target: 'birth_day',
+//            placement: 'left',
+//            delay: 200,
+//            zindex: 1,
+//            title: 'Awesome! You Just Scheduled Birthday Event!',
+//            content: 'Wish-Fish will message you(or him,if they selected that option).',
+//            showPrevButton: false,
+//            //yOffset: 120,
+//        },
+//        {
+//            target: 'birth_day',
+//            placement: 'left',
+//            title: 'That`s it! Its that easy!',
+//            content: 'Enjoy if you have any question or feedback for us we`re always happy to here from you,Just <a id="query_popup" href="#" onclick="return check()" data-toggle="modal" data-target="#query-modal">click Here</a>',
+//            zindex: 1,
+//            showPrevButton: false,
+//        }
     ],
     showPrevButton: true,
     scrollTopMargin: 100
