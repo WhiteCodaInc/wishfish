@@ -125,8 +125,8 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                     <div class="row m-bot15">                        
                         <div class="col-md-12">	
                             <div class="form-group">
-                                <div  style="float: left;padding:0 5px;cursor: pointer">
-                                    <input type="radio" value="them"  name="notify" checked="" class="simple" <?= isset($contactInfo) && $contactInfo->phone == NULL ? "disabled" : "" ?>>
+                                <div  style="float: left;padding:0 5px;cursor: pointer" title="<?= isset($contactInfo) && $contactInfo->phone == NULL ? "This user does not have a valid phone number!" : "" ?>">
+                                    <input type="radio" value="them"  name="notify" checked=""  class="simple" <?= isset($contactInfo) && $contactInfo->phone == NULL ? "disabled" : "" ?>>
                                     <span class="lbl padding-8">Notify Them&nbsp;</span>
                                 </div>
                                 <div  style="float: left;padding-right: 5px;cursor: pointer">
@@ -1392,7 +1392,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                             $('#' + form + ' input[name="notify"]:nth(1)').prop('disabled', true);
                             $notify = "This user does not have a valid phone number!";
                             $('#' + form + ' input[name="notify"]:nth(1)').parent().prop('title', $notify);
-                        }else{
+                        } else {
                             $('#' + form + ' input[name="notify"]:nth(1)').parent().removeAttr('title');
                         }
                     } else {
@@ -1400,7 +1400,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                             $('#' + form + ' input[name="notify"]:nth(1)').prop('disabled', true);
                             $notify = "This user does not have a valid email address!";
                             $('#' + form + ' input[name="notify"]:nth(1)').parent().prop('title', $notify);
-                        }else{
+                        } else {
                             $('#' + form + ' input[name="notify"]:nth(1)').parent().removeAttr('title');
                         }
                     }
@@ -1412,7 +1412,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                             $('#' + form + ' input[name="notify"]:nth(0)').prop('disabled', true);
                             $notify = "This user does not have a valid phone number!";
                             $('#' + form + ' input[name="notify"]:nth(0)').parent().prop('title', $notify);
-                        }else{
+                        } else {
                             $('#' + form + ' input[name="notify"]:nth(0)').parent().removeAttr('title');
                         }
                     } else {
@@ -1420,7 +1420,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                             $('#' + form + ' input[name="notify"]:nth(0)').prop('disabled', true);
                             $notify = "This user does not have a valid email address!";
                             $('#' + form + ' input[name="notify"]:nth(0)').parent().prop('title', $notify);
-                        }else{
+                        } else {
                             $('#' + form + ' input[name="notify"]:nth(0)').parent().removeAttr('title');
                         }
                     }
