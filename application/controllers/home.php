@@ -20,11 +20,10 @@ class Home extends CI_Controller {
         if ($this->uri->segment(1) == "" || $this->uri->segment(1) == "home") {
             if ($this->wi_authex->logged_in()) {
                 header('location:' . site_url() . 'app/dashboard');
-            } else {
-                $this->config->load('facebook');
-                $this->load->model('m_register', 'objregister');
             }
         }
+        $this->config->load('facebook');
+        $this->load->model('m_register', 'objregister');
     }
 
     function index($term = NULL) {
