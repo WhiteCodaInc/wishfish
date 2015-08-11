@@ -91,7 +91,7 @@ and open the template in the editor.
     </head>
     <body>
         <!--Contact form-->
-        <section id="contact" class="sections" style="height: 578px">
+        <section  class="sections" style="height: 578px">
             <div class="container">
                 <div class="row contact-2">
                     <!--  Heading-->
