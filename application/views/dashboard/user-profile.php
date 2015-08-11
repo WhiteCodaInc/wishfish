@@ -295,7 +295,7 @@
     </div><!-- /.modal-dialog -->
 </div>
 <!------------------------------------------------------------------------>
-
+<?php $sortDt = substr($this->session->userdata('u_date_format'), 0, 5); ?>
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script type="text/javascript">
     $(function () {
@@ -311,7 +311,7 @@
             todayHighlight: true
         });
         $('.default-date-picker1').datepicker({
-            format: "mm-dd",
+            format: "<?= $sortDt ?>",
             todayBtn: "linked",
             autoclose: true,
             todayHighlight: true
