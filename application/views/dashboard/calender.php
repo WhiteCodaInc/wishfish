@@ -1312,6 +1312,16 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                     }
                 }
             } else {
+                if (!len) {
+                    alertify.error("Please Select Notify Option..!");
+                    return false;
+                }
+                if ($('#' + formid + ' input[name="notify"]:checked').val() == "them") {
+                    $('#' + formid + ' input[name="contact_id"]').val("<?= isset($contactInfo) ? $contactInfo->contact_id : '' ?>");
+                } else {
+                    $('#' + formid + ' input[name="contact_id"]').val("<?= $this->session->userdata('u_userid'); ?>");
+                }
+
                 if ($('#neweventForm input[name="date"]').val().trim() == "") {
                     alertify.error("Please Select Event Date..!");
                     return false;
