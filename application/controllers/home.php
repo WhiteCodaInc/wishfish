@@ -15,6 +15,11 @@ class Home extends CI_Controller {
 
     function __construct() {
         parent::__construct();
+        
+        echo '<pre>';
+        print_r($this->session->all_userdata());
+        die();
+        
         if ($this->wi_authex->logged_in()) {
             header('location:' . site_url() . 'app/dashboard');
         } else {
@@ -24,6 +29,9 @@ class Home extends CI_Controller {
     }
 
     function index($term = NULL) {
+        
+        
+        
         $flag = TRUE;
         if ($term != NULL) {
             $data['page'] = $this->objregister->getPageContent($term);
