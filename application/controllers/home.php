@@ -18,6 +18,7 @@ class Home extends CI_Controller {
         
         echo '<pre>';
         print_r($this->session->all_userdata());
+        echo $this->uri->segment(0);
         echo $this->uri->segment(1);
         die();
         
