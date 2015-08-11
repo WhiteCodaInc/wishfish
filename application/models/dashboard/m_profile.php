@@ -42,11 +42,7 @@ class M_profile extends CI_Model {
 
         echo '<pre>';
         print_r($set);
-        if (strlen($set['birthday']) > 5) {
-            echo $this->wi_common->getMySqlDate($set['birthday'], $this->session->userdata('u_date_format'));
-        } else {
-            echo $this->wi_common->getCustomMySqlDate($set['birthday'], $this->session->userdata('u_date_format'));
-        }
+
         die();
 
         $userInfo = $this->wi_common->getUserInfo($this->userid);
@@ -61,9 +57,18 @@ class M_profile extends CI_Model {
         $set['phone'] = (preg_match('/^\(?\d{3}\)?[- ]?\d{3}[- ]?\d{4}$/', $set['phone'])) ?
                 str_replace(array('(', ')', ' ', '-'), '', $set['code'] . $set['phone']) :
                 NULL;
-        $set['birthday'] = ($set['birthday'] != "") ?
-                $this->wi_common->getMySqlDate($set['birthday'], $this->session->userdata('u_date_format')) :
-                NULL;
+
+        if (strlen($set['birthday']) <= 5) {
+            $set['birthday'] = ($set['birthday'] != "") ?
+                    $this->wi_common->getCustomMySqlDate($set['birthday'], $this->session->userdata('u_date_format')) :
+                    NULL;
+        } else {
+            $set['birthday'] = ($set['birthday'] != "") ?
+                    $this->wi_common->getMySqlDate($set['birthday'], $this->session->userdata('u_date_format')) :
+                    NULL;
+        }
+
+
         $set['is_bill'] = (isset($set['is_bill'])) ? 1 : 0;
 
         if ($this->isEmailChange($set['email'])) {
