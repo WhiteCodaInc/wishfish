@@ -1096,8 +1096,11 @@ $userid = $this->session->userdata('u_userid');
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Phone Verification</h4>
-                    <i title="Why do i need to verify my phone number?<br/>We use your phone number to allow you to setup SMS notification for yourself." class="fa fa-question-circle"></i>
+                    <h4 class="modal-title">
+                        Phone Verification
+                        <i title="Why do i need to verify my phone number?\nWe use your phone number to allow you to setup SMS notification for yourself." class="fa fa-question-circle"></i>
+                    </h4>
+                    
                 </div>
                 <div class="modal-body">
                     <div class="row" style="margin-bottom: 15px">
