@@ -18,6 +18,7 @@ class Home extends CI_Controller {
         
         echo '<pre>';
         print_r($this->session->all_userdata());
+        echo $this->uri->uri_string(1);
         die();
         
         if ($this->wi_authex->logged_in()) {
@@ -29,9 +30,6 @@ class Home extends CI_Controller {
     }
 
     function index($term = NULL) {
-        
-        
-        
         $flag = TRUE;
         if ($term != NULL) {
             $data['page'] = $this->objregister->getPageContent($term);
