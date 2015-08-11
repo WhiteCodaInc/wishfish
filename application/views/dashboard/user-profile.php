@@ -100,16 +100,22 @@
                                     </div>
                                 </div>
                             </div><!-- /.form group -->
+                            <?php
+                            if ($user->birthday != NULL) {
+                                $bdate = substr($user->birthday, 6, 4);
+                                $sortDt = ($bdate == "1001") ? 1 : 0;
+                            }
+                            ?>
                             <div class="form-group" id="birthday">
                                 <label>Birthday</label>
                                 <span>Don't know the year? <a id="calendar" href="javascript:void(0)" style="cursor: pointer">Hide it!</a></span>
-                                <div class="input-group" id="full-calender">
+                                <div class="input-group" id="full-calender" <?= (isset($sortDt) && $sortDt) ? "style='display:none'" : '' ?>>
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
                                     <input style="z-index: 0;" name="birthday" value="<?= isset($user->birthday) ? $this->wi_common->getUTCDate($user->birthday) : NULL ?>"  class="form-control form-control-inline input-medium default-date-picker" size="16" type="text">
                                 </div><!-- /.input group -->
-                                <div class="input-group" id="custom-calender" style="display: none">
+                                <div class="input-group" id="custom-calender" <?= (isset($sortDt) && !$sortDt) ? "style='display:none'" : '' ?>>
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
