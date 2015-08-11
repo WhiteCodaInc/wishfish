@@ -102,7 +102,7 @@
                             </div><!-- /.form group -->
                             <?php
                             if ($user->birthday != NULL) {
-                                $bdate = substr($user->birthday, 6, 4);
+                                $bdate = substr($user->birthday, 6, strlen($user->birthday));
                                 $sortDt = ($bdate == "1001") ? 1 : 0;
                                 echo $sortDt;
                             }
@@ -306,11 +306,11 @@
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script type="text/javascript">
     $(function () {
-
+        
         Stripe.setPublishableKey('<?= $gatewayInfo->publish_key ?>');
-
+        
 //        console.log(hopscotch.getState());
-
+        
         $('.default-date-picker').datepicker({
             format: "<?= $this->session->userdata('u_date_format') ?>",
             todayBtn: "linked",
@@ -324,7 +324,7 @@
             todayHighlight: true
         });
         $('select[name="timezones"]').addClass('form-control m-bot15');
-
+        
         $('select[name="timezones"] option').each(function () {
             if ($(this).val() == "<?= $user->timezones ?>") {
                 $(this).prop('selected', true);
@@ -359,18 +359,18 @@
 </script>
 <script type="text/javascript">
     $(document).ready(function (e) {
-
+        
         $('a#calendar').click(function () {
             $('#full-calender').hide();
             $('#full-calender input[name="birthday"]').prop('disabled', true);
             $('#custom-calender input:text').attr('name', 'birthday');
             $('#custom-calender').show();
         });
-
+        
         $('#profile-pic img').click(function () {
             $('#profile-pic #profilePic').trigger('click');
         });
-
+        
         $('#import').click(function () {
             var fid = $('#fbid').val();
             var url = "";
@@ -387,8 +387,8 @@
                 $('.importMsg').text("Enter Valid Facebook Id..!");
             }
         });
-
-
+        
+        
         var cardForm;
         var cardFlag;
         if ($('#userForm .card_number').prop('readonly')) {
@@ -405,11 +405,11 @@
                 cardFlag = false;
             }
         }
-
+        
 <?php if ($user->phone): ?>
             $('select[name="code"]').val("<?= substr($user->phone, -strlen($user->phone), 2) ?>");
 <?php endif; ?>
-
+        
         $('#pay').click(function () {
             $(this).prop('disabled', true);
             $.ajax({
@@ -421,12 +421,12 @@
                 }
             });
         });
-
+        
         $('#save-profile').click(function () {
             $(this).prop("disabled", true);
             $('#userForm').submit();
         });
-
+        
         $('#userForm,#cardForm').on('submit', function () {
             cardForm = $(this).attr('id');
             $('#save').prop('disabled', true);
@@ -436,7 +436,7 @@
                         cvcNum = $(this).find('.cvc').val(),
                         expMonth = $(this).find('.month').val(),
                         expYear = $(this).find('.year').val();
-
+                
                 if (ccNum.trim() != "" || cvcNum.trim() != "" ||
                         expMonth.trim() != "" || expYear.trim() != "") {
                     // Validate the number:
@@ -498,19 +498,19 @@
                 reportError(response.error.message);
             } else { // No errors, submit the form:
                 var f = $("#" + cardForm);
-
+                
                 // Token contains id, last4, and card type:
                 var token = response['id'];
-
+                
                 // Insert the token into the form so it gets submitted to the server
                 f.append("<input type='hidden' name='stripeToken' value='" + token + "' />");
                 // Submit the form:
                 f.get(0).submit();
             }
-
+            
         }
         // End of stripeResponseHandler() function.
-
+        
         $("input:file").change(function () {
             var file = this.files[0];
             var imagefile = file.type;
@@ -529,12 +529,12 @@
                 reader.readAsDataURL(this.files[0]);
             }
         });
-
+        
         function imageIsLoaded(e) {
             $("#profile-pic #profilePic").css("color", "green");
             $("#profile-pic #profile_previewing").attr('src', e.target.result);
         }
-
+        
         $('#cancel-account').on('click', function () {
             alertify.confirm("Are you sure want to cancel your current plan?", function (e) {
                 if (e) {
