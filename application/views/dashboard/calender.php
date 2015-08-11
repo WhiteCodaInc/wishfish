@@ -122,7 +122,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                         </div>
                     </div>
                     <br/>
-                    <!--<div class="row m-bot15">                        
+                    <div class="row m-bot15">                        
                         <div class="col-md-12">	
                             <div class="form-group">
                                 <div  style="float: left;padding:0 5px;cursor: pointer">
@@ -136,7 +136,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                             </div>
                         </div>
                     </div>
-                    <br/>-->
+                    <br/>
                     <div class="row">
                         <div class="col-md-5">
                             <div class="form-group">
