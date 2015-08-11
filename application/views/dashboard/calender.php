@@ -1004,10 +1004,12 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                 $('#n_user_img img').prop('src', $url);
             } else {
                 $('#n_user_name').text("<?= $contactInfo->fname . ' ' . $contactInfo->lname ?>");
-                $url = ("<?= $contactInfo->contact_avatar ?>" != "") ?
-                        "https://mikhailkuznetsov.s3.amazonaws.com/<?= $contactInfo->contact_avatar ?>" :
+                var cavatar = "<?= isset($contactInfo) ? $contactInfo->contact_avatar : "" ?>";
+                var cid = "<?= isset($contactInfo) ? $contactInfo->contact_id : "" ?>";
+                $url = (cavatar != "") ?
+                        "https://mikhailkuznetsov.s3.amazonaws.com/" + cavatar :
                         "<?= base_url() . 'assets/dashboard/img/default-avatar.png' ?>";
-                $href = "<?= site_url() ?>" + "app/contacts/profile/" + "<?= $contactInfo->contact_id ?>";
+                $href = "<?= site_url() ?>" + "app/contacts/profile/" + cid;
                 $('#n_user_img').prop('href', $href);
                 $('#n_user_img img').prop('src', $url);
             }
