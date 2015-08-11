@@ -1090,7 +1090,7 @@ $userid = $this->session->userdata('u_userid');
             </div>
         </div>
     </div>
-
+    <?php $title = "Why do i need to verify my phone number?<br/>We use your phone number to allow you to setup SMS notification for yourself."; ?>
     <div class="modal fade" id="varify-modal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" style="max-width: 440px">
             <div class="modal-content">
@@ -1098,9 +1098,7 @@ $userid = $this->session->userdata('u_userid');
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title">
                         Phone Verification
-                        <i 
-                            title="Why do i need to verify my phone number?
-                            We use your phone number to allow you to setup SMS notification for yourself." class="fa fa-question-circle"></i>
+                        <i title="<?= $title ?>" class="fa fa-question-circle"></i>
                     </h4>
 
                 </div>
