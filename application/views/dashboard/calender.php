@@ -1373,7 +1373,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
         $('input[name="event_type"]').change(function () {
             var form = $(this).parents('form').prop('id');
             var etype = $(this).val();
-
+            var notify = $('#' + form + ' input[name="notify"]:checked').val();
             $('#' + form + ' input[name="notify"]').removeAttr('disabled');
             $('#' + form + ' input[name="notify"]:nth(0)').trigger('click');
 
