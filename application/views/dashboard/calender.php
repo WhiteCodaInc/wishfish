@@ -973,7 +973,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
         if ($(this).val() == "me") {
             if (event_type != "email" && "<?= $userInfo->phone ?>" == "") {
                 $(this).prop('checked', false);
-               $('#' + form + ' input[name="notify"]:nth(0)').prop('checked', true);
+                $('#' + form + ' input[name="notify"]:nth(0)').prop('checked', true);
                 alertify.alert("It's look like you have not enter phone number..!");
             } else if (event_type == "email" && "<?= $userInfo->email ?>" == "") {
                 $(this).prop('checked', false);
@@ -1392,9 +1392,50 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
             console.log(etype);
             console.log(notify);
 
+            var cphone = "<?= isset($contactInfo) ? $contactInfo->phone : "" ?>";
+            var cemail = "<?= isset($contactInfo) ? $contactInfo->email : "" ?>";
+
+            var uphone = "<?= $userInfo->phone ?>";
+            var uemail = "<?= $userInfo->email ?>";
+
             if (form == "neweventForm") {
-                $('#' + form + ' input[name="notify"]').removeAttr('disabled');
-                $('#' + form + ' input[name="notify"]').removeAttr('checked');
+                if (etype != "email") {
+
+                    if (cphone == "") {
+                        $('#' + form + ' input[name="notify"]:nth(0)').prop('disabled', true);
+                        $notify = "This user does not have a valid phone number!";
+                        $('#' + form + ' input[name="notify"]:nth(0)').parent().prop('title', $notify);
+                    } else {
+                        $('#' + form + ' input[name="notify"]:nth(0)').parent().removeAttr('title');
+                        $('#' + form + ' input[name="notify"]:nth(0)').prop('disabled', true);
+                    }
+                    if (uphone == "") {
+                        $('#' + form + ' input[name="notify"]:nth(0)').prop('disabled', true);
+                        $notify = "This user does not have a valid phone number!";
+                        $('#' + form + ' input[name="notify"]:nth(0)').parent().prop('title', $notify);
+                    } else {
+                        $('#' + form + ' input[name="notify"]:nth(0)').parent().removeAttr('title');
+                        $('#' + form + ' input[name="notify"]:nth(0)').prop('disabled', true);
+                    }
+
+                } else {
+                    if (cemail == "") {
+                        $('#' + form + ' input[name="notify"]:nth(0)').prop('disabled', true);
+                        $notify = "This user does not have a valid phone number!";
+                        $('#' + form + ' input[name="notify"]:nth(0)').parent().prop('title', $notify);
+                    } else {
+                        $('#' + form + ' input[name="notify"]:nth(0)').parent().removeAttr('title');
+                        $('#' + form + ' input[name="notify"]:nth(0)').prop('disabled', true);
+                    }
+                    if (uemail == "") {
+                        $('#' + form + ' input[name="notify"]:nth(0)').prop('disabled', true);
+                        $notify = "This user does not have a valid phone number!";
+                        $('#' + form + ' input[name="notify"]:nth(0)').parent().prop('title', $notify);
+                    } else {
+                        $('#' + form + ' input[name="notify"]:nth(0)').parent().removeAttr('title');
+                        $('#' + form + ' input[name="notify"]:nth(0)').prop('disabled', true);
+                    }
+                }
             } else {
                 $('#' + form + ' input[name="notify"]').removeAttr('disabled');
                 $('#' + form + ' input[name="notify"]:nth(0)').trigger('click');
