@@ -90,7 +90,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                     <img src="<?= base_url() ?>assets/dashboard/img/close.png" width="20px" alt="close" style="" />
                 </button>
                 <h4 class="modal-title">
-                    <a href="<?= $href ?>" style="float: left">
+                    <a href="<?= $href ?>" id="n_user_img"  style="float: left">
                         <img  src="<?= $url ?>" class="img-circle" alt="User Image" style="width: 45px;height: 45px" />
                     </a>
                     <div id="n_event_status" style="margin-left: 60px;padding-left: 10px;display: none" class="alert alert-info alert-dismissable">
@@ -996,8 +996,20 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
         } else if (form == "neweventForm") {
             if ($(this).val() == "me") {
                 $('#n_user_name').text("<?= $userInfo->name ?>");
+                $url = ("<?= $userInfo->profile_pic ?>" != null) ?
+                        "http://mikhailkuznetsov.s3.amazonaws.com/<?= $userInfo->profile_pic ?>" :
+                        "<?= base_url() . 'assets/dashboard/img/default-avatar.png' ?>";
+                $href = "<?= site_url() ?>app/profile/" + "<?= $userInfo->profile_id ?>";
+                $('#n_user_img').prop('href', $href);
+                $('#n_user_img img').prop('src', $url);
             } else {
                 $('#n_user_name').text("<?= $contactInfo->fname . ' ' . $contactInfo->lname ?>");
+                $url = ("<?= $contactInfo->contact_avatar ?>" != null) ?
+                        "http://mikhailkuznetsov.s3.amazonaws.com/<?= $contactInfo->contact_avatar ?>" :
+                        "<?= base_url() . 'assets/dashboard/img/default-avatar.png' ?>";
+                $href = "<?= site_url() ?>" + "app/contacts/profile/" + "<?= $contactInfo->contact_id ?>";
+                $('#n_user_img').prop('href', $href);
+                $('#n_user_img img').prop('src', $url);
             }
         }
     });
