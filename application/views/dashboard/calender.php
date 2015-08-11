@@ -1003,9 +1003,10 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                 $('#n_user_img').prop('href', $href);
                 $('#n_user_img img').prop('src', $url);
             } else {
-                $('#n_user_name').text("<?= $contactInfo->fname . ' ' . $contactInfo->lname ?>");
+                var cname = "<?= isset($contactInfo) ? $contactInfo->fname . ' ' . $contactInfo->lname : "" ?>";
                 var cavatar = "<?= isset($contactInfo) ? $contactInfo->contact_avatar : "" ?>";
                 var cid = "<?= isset($contactInfo) ? $contactInfo->contact_id : "" ?>";
+                $('#n_user_name').text(cname);
                 $url = (cavatar != "") ?
                         "https://mikhailkuznetsov.s3.amazonaws.com/" + cavatar :
                         "<?= base_url() . 'assets/dashboard/img/default-avatar.png' ?>";
