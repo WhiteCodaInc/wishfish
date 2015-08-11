@@ -1379,7 +1379,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
 
             if (form == "neweventForm") {
 
-                if ($(this).val() == "me") {
+                if (notify == "me") {
                     var uphone = "<?= $userInfo->phone ?>";
                     var uemail = "<?= $userInfo->email ?>";
                     if (etype == "notification" || etype == "sms") {
