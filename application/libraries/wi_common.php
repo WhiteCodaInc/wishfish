@@ -203,6 +203,16 @@ class Wi_common {
         }
     }
 
+    function getCustomMySqlDate($dt, $format) {
+        if ($this->validateDate($dt, 'm-d')) {
+            return $dt;
+        } else {
+            $date = str_replace('mm', 'm', $format);
+            $date = str_replace('dd', 'd', $date);
+            return DateTime::createFromFormat($date, $dt)->format('m-d');
+        }
+    }
+
     function validateDate($dt, $format) {
         $d = DateTime::createFromFormat($format, $dt);
         return $d && $d->format($format) == $dt;
@@ -231,12 +241,13 @@ class Wi_common {
             return date($date, gmt_to_local(time(), $timezone, TRUE));
         }
     }
+
     function getCustomDate($mysqldate = NULL, $timezone = NULL, $format = NULL) {
         $format = ($format != NULL) ? $format : $this->_CI->session->userdata('u_date_format');
         $timezone = ($timezone != NULL) ? $timezone : $this->_CI->session->userdata('u_timezone');
-        
+
         $customF = substr($format, 0, 5);
-        
+
         $date = str_replace('mm', 'm', $customF);
         $date = str_replace('dd', 'd', $date);
         if ($mysqldate != NULL) {

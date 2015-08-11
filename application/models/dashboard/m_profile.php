@@ -42,6 +42,7 @@ class M_profile extends CI_Model {
 
         echo '<pre>';
         print_r($set);
+        
         die();
 
         $userInfo = $this->wi_common->getUserInfo($this->userid);
