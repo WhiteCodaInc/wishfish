@@ -102,7 +102,7 @@
                             </div><!-- /.form group -->
                             <div class="form-group" id="birthday">
                                 <label>Birthday</label>
-                                <span>Don't know the year? <a id="calendar" href="#" style="cursor: pointer">Hide it!</a></span>
+                                <span>Don't know the year? <a id="calendar" href="javascript:void(0)" style="cursor: pointer">Hide it!</a></span>
                                 <div class="input-group" id="full-calender">
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
