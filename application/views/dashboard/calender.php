@@ -987,7 +987,13 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                     $('#' + form + ' input[name="assign"]').prop('disabled', true);
                     $('#' + form + ' #users').prop('disabled', true);
                 } else {
-
+                    $('#n_user_name').text("<?= $userInfo->name ?>");
+                    $url = ("<?= $userInfo->profile_pic ?>" != "") ?
+                            "https://mikhailkuznetsov.s3.amazonaws.com/<?= $userInfo->profile_pic ?>" :
+                            "<?= base_url() . 'assets/dashboard/img/default-avatar.png' ?>";
+                    $href = "<?= site_url() ?>app/profile/" + "<?= $userInfo->user_id ?>";
+                    $('#n_user_img').prop('href', $href);
+                    $('#n_user_img img').prop('src', $url);
                 }
             }
         } else {
@@ -1015,13 +1021,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
 
         if (form == "neweventForm") {
             if ($(this).val() == "me") {
-                $('#n_user_name').text("<?= $userInfo->name ?>");
-                $url = ("<?= $userInfo->profile_pic ?>" != "") ?
-                        "https://mikhailkuznetsov.s3.amazonaws.com/<?= $userInfo->profile_pic ?>" :
-                        "<?= base_url() . 'assets/dashboard/img/default-avatar.png' ?>";
-                $href = "<?= site_url() ?>app/profile/" + "<?= $userInfo->user_id ?>";
-                $('#n_user_img').prop('href', $href);
-                $('#n_user_img img').prop('src', $url);
+
             } else {
                 var cid = "<?= isset($contactInfo) ? $contactInfo->contact_id : "" ?>";
                 var cname = "<?= isset($contactInfo) ? $contactInfo->fname . ' ' . $contactInfo->lname : "" ?>";
