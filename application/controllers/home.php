@@ -15,18 +15,15 @@ class Home extends CI_Controller {
 
     function __construct() {
         parent::__construct();
-        
-        echo '<pre>';
-        print_r($this->session->all_userdata());
-        echo $this->uri->segment(0);
-        echo $this->uri->segment(1);
-        die();
-        
-        if ($this->wi_authex->logged_in()) {
-            header('location:' . site_url() . 'app/dashboard');
-        } else {
-            $this->config->load('facebook');
-            $this->load->model('m_register', 'objregister');
+
+
+        if ($this->uri->segment(1) == "" || $this->uri->segment(1) == "home") {
+            if ($this->wi_authex->logged_in()) {
+                header('location:' . site_url() . 'app/dashboard');
+            } else {
+                $this->config->load('facebook');
+                $this->load->model('m_register', 'objregister');
+            }
         }
     }
 
