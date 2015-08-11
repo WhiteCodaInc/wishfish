@@ -1004,7 +1004,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                         $('#' + form + ' input[name="notify"]:nth(1)').prop('disabled', true);
                         $notify = "This user does not have a valid phone number!";
                         $('#' + form + ' input[name="notify"]:nth(1)').parent().prop('title', $notify);
-                        $('#' + form + ' input[name="notify"]:nth(1)').removeAttr('checked');
+//                        $('#' + form + ' input[name="notify"]:nth(1)').removeAttr('checked');
                     } else {
                         $('#' + form + ' input[name="notify"]:nth(1)').parent().removeAttr('title');
                     }
@@ -1013,7 +1013,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                         $('#' + form + ' input[name="notify"]:nth(1)').prop('disabled', true);
                         $notify = "This user does not have a valid email address!";
                         $('#' + form + ' input[name="notify"]:nth(1)').parent().prop('title', $notify);
-                        $('#' + form + ' input[name="notify"]:nth(1)').removeAttr('checked');
+//                        $('#' + form + ' input[name="notify"]:nth(1)').removeAttr('checked');
                     } else {
                         $('#' + form + ' input[name="notify"]:nth(1)').parent().removeAttr('title');
                     }
@@ -1037,7 +1037,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                         $('#' + form + ' input[name="notify"]:nth(0)').prop('disabled', true);
                         $notify = "This user does not have a valid phone number!";
                         $('#' + form + ' input[name="notify"]:nth(0)').parent().prop('title', $notify);
-                        $('#' + form + ' input[name="notify"]:nth(0)').removeAttr('checked');
+//                        $('#' + form + ' input[name="notify"]:nth(0)').removeAttr('checked');
                     } else {
                         $('#' + form + ' input[name="notify"]:nth(0)').parent().removeAttr('title');
                     }
@@ -1046,13 +1046,11 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                         $('#' + form + ' input[name="notify"]:nth(0)').prop('disabled', true);
                         $notify = "This user does not have a valid email address!";
                         $('#' + form + ' input[name="notify"]:nth(0)').parent().prop('title', $notify);
-                        $('#' + form + ' input[name="notify"]:nth(0)').removeAttr('checked');
+//                        $('#' + form + ' input[name="notify"]:nth(0)').removeAttr('checked');
                     } else {
                         $('#' + form + ' input[name="notify"]:nth(0)').parent().removeAttr('title');
                     }
                 }
-
-
                 $('#n_user_name').text(cname);
                 $url = (cavatar != "") ?
                         "https://mikhailkuznetsov.s3.amazonaws.com/" + cavatar :
@@ -1430,6 +1428,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
             $('#' + form + ' input[name="notify"]:nth(0)').trigger('click');
 
             if (form == "neweventForm") {
+
                 if (notify == "me") {
                     var uphone = "<?= $userInfo->phone ?>";
                     var uemail = "<?= $userInfo->email ?>";
