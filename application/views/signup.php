@@ -209,6 +209,9 @@ if ($signup != "" && $signup == "fb"):
             });
         </script>
         <script type="text/javascript">
+
+            $('#contact').css('height', $(window).height() - $('footer').height() - 40);
+
             window.fbAsyncInit = function () {
                 //Initiallize the facebook using the facebook javascript sdk
                 FB.init({
