@@ -348,9 +348,8 @@
     $(document).ready(function (e) {
 
         $('a#calendar').click(function () {
-            alert();
-            $('#full-calendar').hide();
-            $('#custom-calendar').show();
+            $('#full-calender').hide();
+            $('#custom-calender').show();
         });
 
         $('#profile-pic img').click(function () {
