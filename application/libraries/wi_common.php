@@ -204,10 +204,11 @@ class Wi_common {
     }
 
     function getCustomMySqlDate($dt, $format) {
+        $customF = substr($dt, 0, 5);
         if ($this->validateDate($dt, 'm-d')) {
             return $dt;
         } else {
-            $date = str_replace('mm', 'm', $format);
+            $date = str_replace('mm', 'm', $customF);
             $date = str_replace('dd', 'd', $date);
             return DateTime::createFromFormat($date, $dt)->format('m-d');
         }
