@@ -999,7 +999,7 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
             if ($(this).val() == "me") {
                 var uphone = "<?= $userInfo->phone ?>";
                 var uemail = "<?= $userInfo->email ?>";
-                if (etype == "notification" || etype == "sms") {
+                if (event_type == "notification" || event_type == "sms") {
                     if (uphone == "") {
                         $('#' + form + ' input[name="notify"]:nth(1)').prop('disabled', true);
                         $notify = "This user does not have a valid phone number!";
