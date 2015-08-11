@@ -102,7 +102,14 @@
                             </div><!-- /.form group -->
                             <div class="form-group" id="birthday">
                                 <label>Birthday</label>
-                                <div class="input-group">
+                                <span>Don't know the year? <a id="calendar" style="cursor: pointer">Hide it!</a></span>
+                                <div class="input-group" id="full-calender">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input style="z-index: 0;" name="birthday" value="<?= isset($user->birthday) ? $this->wi_common->getUTCDate($user->birthday) : NULL ?>"  class="form-control form-control-inline input-medium default-date-picker" size="16" type="text">
+                                </div><!-- /.input group -->
+                                <div class="input-group" id="custom-calender" style="display: none">
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
@@ -339,7 +346,12 @@
 </script>
 <script type="text/javascript">
     $(document).ready(function (e) {
-
+        
+        $('a#calendar').click(function(){
+            $('#full-calendar').hide();
+            $('#custom-calendar').show();
+        });
+        
         $('#profile-pic img').click(function () {
             $('#profile-pic #profilePic').trigger('click');
         });
