@@ -1008,6 +1008,18 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                     $(this).prop('checked', false);
                     $('#' + form + ' input[name="notify"]:nth(1)').prop('checked', true);
                     alertify.alert("It's look like you have not enter email address..!");
+                } else {
+                    var cid = "<?= isset($contactInfo) ? $contactInfo->contact_id : "" ?>";
+                    var cname = "<?= isset($contactInfo) ? $contactInfo->fname . ' ' . $contactInfo->lname : "" ?>";
+                    var cavatar = "<?= isset($contactInfo) ? $contactInfo->contact_avatar : "" ?>";
+
+                    $('#n_user_name').text(cname);
+                    $url = (cavatar != "") ?
+                            "https://mikhailkuznetsov.s3.amazonaws.com/" + cavatar :
+                            "<?= base_url() . 'assets/dashboard/img/default-avatar.png' ?>";
+                    $href = "<?= site_url() ?>" + "app/contacts/profile/" + cid;
+                    $('#n_user_img').prop('href', $href);
+                    $('#n_user_img img').prop('src', $url);
                 }
             } else {
                 $('#' + form + ' input[name="assign"]:nth(0)').prop('checked', true);
@@ -1015,25 +1027,6 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                 $('#' + form + ' #users').prop('disabled', false);
                 $('#' + form + ' div.selectRow').show();
                 $('#' + form + ' div.choose').show();
-            }
-        }
-
-
-        if (form == "neweventForm") {
-            if ($(this).val() == "me") {
-
-            } else {
-                var cid = "<?= isset($contactInfo) ? $contactInfo->contact_id : "" ?>";
-                var cname = "<?= isset($contactInfo) ? $contactInfo->fname . ' ' . $contactInfo->lname : "" ?>";
-                var cavatar = "<?= isset($contactInfo) ? $contactInfo->contact_avatar : "" ?>";
-
-                $('#n_user_name').text(cname);
-                $url = (cavatar != "") ?
-                        "https://mikhailkuznetsov.s3.amazonaws.com/" + cavatar :
-                        "<?= base_url() . 'assets/dashboard/img/default-avatar.png' ?>";
-                $href = "<?= site_url() ?>" + "app/contacts/profile/" + cid;
-                $('#n_user_img').prop('href', $href);
-                $('#n_user_img img').prop('src', $url);
             }
         }
     });
