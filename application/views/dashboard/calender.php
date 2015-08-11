@@ -1392,12 +1392,16 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                             $('#' + form + ' input[name="notify"]:nth(1)').prop('disabled', true);
                             $notify = "This user does not have a valid phone number!";
                             $('#' + form + ' input[name="notify"]:nth(1)').parent().prop('title', $notify);
+                        }else{
+                            $('#' + form + ' input[name="notify"]:nth(1)').parent().removeAttr('title');
                         }
                     } else {
                         if (uemail == "") {
                             $('#' + form + ' input[name="notify"]:nth(1)').prop('disabled', true);
                             $notify = "This user does not have a valid email address!";
                             $('#' + form + ' input[name="notify"]:nth(1)').parent().prop('title', $notify);
+                        }else{
+                            $('#' + form + ' input[name="notify"]:nth(1)').parent().removeAttr('title');
                         }
                     }
                 } else {
@@ -1408,12 +1412,16 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                             $('#' + form + ' input[name="notify"]:nth(0)').prop('disabled', true);
                             $notify = "This user does not have a valid phone number!";
                             $('#' + form + ' input[name="notify"]:nth(0)').parent().prop('title', $notify);
+                        }else{
+                            $('#' + form + ' input[name="notify"]:nth(0)').parent().removeAttr('title');
                         }
                     } else {
                         if (cemail == "") {
                             $('#' + form + ' input[name="notify"]:nth(0)').prop('disabled', true);
                             $notify = "This user does not have a valid email address!";
                             $('#' + form + ' input[name="notify"]:nth(0)').parent().prop('title', $notify);
+                        }else{
+                            $('#' + form + ' input[name="notify"]:nth(0)').parent().removeAttr('title');
                         }
                     }
                 }
