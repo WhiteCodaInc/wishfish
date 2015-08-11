@@ -994,10 +994,22 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
                 $('#' + form + ' div.choose').show();
             }
         } else if (form == "neweventForm") {
-
+            switch (event_type) {
+                case "notification":
+                    $('#n_event_empty').show();
+                    $('#n_event_status').hide();
+                    break;
+                case "sms":
+                case "email":
+                    if (event_type == "sms" || event_type == "email") {
+                        $('#n_event_empty').hide();
+                        $('#n_event_status').show();
+                        $lbl = (etype == "sms") ? "SMS" : "EMAIL";
+                        $('#n_event_type').text($lbl);
+                    }
+                    break;
+            }
         }
-
-
     });
 
     $('#eventForm input[name="assign"]').change(function () {
