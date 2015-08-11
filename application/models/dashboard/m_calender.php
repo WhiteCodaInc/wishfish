@@ -189,7 +189,7 @@ class M_calender extends CI_Model {
             $this->db->join('wi_contact_detail as C', 'S.contact_id = C.contact_id', 'left outer');
             $this->db->join('wi_contact_groups as G', 'S.group_id = G.group_id', 'left outer');
         } else {
-            $this->db->join('wi_user_mst as U', 'S.contact_id = U.user_id', 'left outer');
+            $this->db->join('wi_user_mst as U', 'S.user_id = U.user_id', 'left outer');
         }
         $this->db->where('event_id', $eid);
         $query = $this->db->get();
