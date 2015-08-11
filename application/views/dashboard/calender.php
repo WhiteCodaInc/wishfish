@@ -967,29 +967,37 @@ $userInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
         var form = $(this).parents('form').prop('id');
         var event_type = $('#' + form + ' input[name="event_type"]:checked').val();
         console.log(form);
-        if ($(this).val() == "me") {
-            if (event_type != "email" && "<?= $userInfo->phone ?>" == "") {
-                $(this).prop('checked', false);
-                $('#' + form + ' input[name="notify"]:nth(0)').prop('checked', true);
-                alertify.alert("It's look like you have not enter phone number..!");
-            } else if (event_type == "email" && "<?= $userInfo->email ?>" == "") {
-                $(this).prop('checked', false);
-                $('#' + form + ' input[name="notify"]:nth(0)').prop('checked', true);
-                alertify.alert("It's look like you have not enter email address..!");
+        console.log(event_type);
+
+        if (form == "eventForm") {
+            if ($(this).val() == "me") {
+                if (event_type != "email" && "<?= $userInfo->phone ?>" == "") {
+                    $(this).prop('checked', false);
+                    $('#' + form + ' input[name="notify"]:nth(0)').prop('checked', true);
+                    alertify.alert("It's look like you have not enter phone number..!");
+                } else if (event_type == "email" && "<?= $userInfo->email ?>" == "") {
+                    $(this).prop('checked', false);
+                    $('#' + form + ' input[name="notify"]:nth(0)').prop('checked', true);
+                    alertify.alert("It's look like you have not enter email address..!");
+                } else {
+                    $('#' + form + ' div.selectRow').hide();
+                    $('#' + form + ' div.choose').hide();
+                    $('#' + form + ' input[name="assign"]').prop('checked', false);
+                    $('#' + form + ' input[name="assign"]').prop('disabled', true);
+                    $('#' + form + ' #users').prop('disabled', true);
+                }
             } else {
-                $('#' + form + ' div.selectRow').hide();
-                $('#' + form + ' div.choose').hide();
-                $('#' + form + ' input[name="assign"]').prop('checked', false);
-                $('#' + form + ' input[name="assign"]').prop('disabled', true);
-                $('#' + form + ' #users').prop('disabled', true);
+                $('#' + form + ' input[name="assign"]:nth(0)').prop('checked', true);
+                $('#' + form + ' input[name="assign"]').prop('disabled', false);
+                $('#' + form + ' #users').prop('disabled', false);
+                $('#' + form + ' div.selectRow').show();
+                $('#' + form + ' div.choose').show();
             }
-        } else {
-            $('#' + form + ' input[name="assign"]:nth(0)').prop('checked', true);
-            $('#' + form + ' input[name="assign"]').prop('disabled', false);
-            $('#' + form + ' #users').prop('disabled', false);
-            $('#' + form + ' div.selectRow').show();
-            $('#' + form + ' div.choose').show();
+        } else if (form == "neweventForm") {
+
         }
+
+
     });
 
     $('#eventForm input[name="assign"]').change(function () {
