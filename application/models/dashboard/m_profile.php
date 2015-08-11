@@ -61,7 +61,7 @@ class M_profile extends CI_Model {
             $dt = ($set['birthday'] != "") ?
                     $this->wi_common->getCustomMySqlDate($set['birthday'], $this->session->userdata('u_date_format')) :
                     NULL;
-            $set['birthday'] = ($dt != NULL) ? $dt . '-0000' : NULL;
+            $set['birthday'] = ($dt != NULL) ? $dt . '-1001' : NULL;
         } else {
             $set['birthday'] = ($set['birthday'] != "") ?
                     $this->wi_common->getMySqlDate($set['birthday'], $this->session->userdata('u_date_format')) :
