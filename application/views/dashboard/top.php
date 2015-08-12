@@ -85,7 +85,7 @@ $userid = $this->session->userdata('u_userid');
                             </li>
                             <li class="dropdown-submenu">
                                 <a tabindex="-1" href="#">Imports....</a>
-                                <ul class="dropdown-menu1">
+                                <ul class="dropdown-menu">
                                     <li>
                                         <a class="scrape-contact" href="javascript:void(0)" data-toggle="modal" data-target="#scrapeContact">
                                             <i class="fa fa-users"></i>
