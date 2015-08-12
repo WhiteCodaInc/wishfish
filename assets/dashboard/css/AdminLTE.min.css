@@ -319,7 +319,7 @@ body{
     position: relative;
 }
 
-/*.dropdown-submenu > .dropdown-menu {
+.dropdown-submenu > .dropdown-menu1 {
     display: none;
     top: 0;
     left: 100%;
@@ -328,9 +328,9 @@ body{
     -webkit-border-radius: 0 6px 6px 6px;
     -moz-border-radius: 0 6px 6px;
     border-radius: 0 6px 6px 6px;
-}*/
+}
 
-.dropdown-submenu:hover>.dropdown-menu {
+.dropdown-submenu:hover>.dropdown-menu1 {
     display: block;
 }
 
