@@ -423,7 +423,7 @@ class Customers extends CI_Controller {
             $tag = $this->common->setToken($uInfo);
             $subject = $this->parser->parse_string($post['subject'], $tag, TRUE);
             $body = $this->parser->parse_string($post['body'], $tag, TRUE);
-            if ($this->common->sendMail($uInfo->email, $subject, $body)) {
+            if ($this->common->sendMail($uInfo->email, $subject, $body, NULL, "mikhail@wish-fish.com")) {
                 header('location:' . site_url() . 'admin/customers/profile/' . $post['uid'] . '?msg=ES');
             } else {
                 header('location:' . site_url() . 'admin/customers/profile/' . $post['uid'] . '?msg=EF');
