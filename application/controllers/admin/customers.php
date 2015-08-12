@@ -419,9 +419,6 @@ class Customers extends CI_Controller {
     function send_email() {
         $post = $this->input->post();
         $uInfo = $this->wi_common->getUserInfo($post['uid']);
-        echo '<pre>';
-        print_r($uInfo);
-        die();
         if ($uInfo->email != NULL) {
             $tag = $this->common->setToken($uInfo);
             $subject = $this->parser->parse_string($post['subject'], $tag, TRUE);

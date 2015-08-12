@@ -197,8 +197,8 @@ class Common {
         }
     }
 
-    function setToken($user, $userType = NULL) {
-        if ($userType != NULL) {
+    function setToken($user) {
+        if (isset($user->name)) {
             $name = explode(' ', $user->name);
             $user->fname = (isset($name[0])) ? $name[0] : "";
             $user->lname = (isset($name[1])) ? $name[1] : "";
