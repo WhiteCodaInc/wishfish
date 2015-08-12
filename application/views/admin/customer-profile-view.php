@@ -354,7 +354,7 @@
                                         <button type="submit" class="btn btn-primary">SEND</button>
                                     </div>
                                 </div>
-                                <input type="hidden" name="aid" value="<?= $customer->user_id ?>" />
+                                <input type="hidden" name="uid" value="<?= $customer->user_id ?>" />
                             </form>
                         </div><!-- /.tab-pane -->
                         <div class="tab-pane" id="tab_2">
