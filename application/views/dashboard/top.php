@@ -86,19 +86,19 @@ $userid = $this->session->userdata('u_userid');
                             <li class="dropdown-submenu">
                                 <a tabindex="-1" href="#">Imports....</a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a tabindex="-1" href="#">Second level</a></li>
-                                    <li class="dropdown-submenu">
-                                        <a href="#">More..</a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="#">3rd level</a></li>
-                                            <li><a href="#">3rd level</a></li>
-                                        </ul>
+                                    <li>
+                                        <a class="scrape-contact" href="javascript:void(0)" data-toggle="modal" data-target="#scrapeContact">
+                                            <i class="fa fa-users"></i>
+                                            <span>Import Contacts</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="import" href="<?= site_url() ?>app/import">
+                                            <i class="fa fa-google"></i>
+                                            <span>Import Google Contacts</span>
+                                        </a>
                                     </li>
                                 </ul>
-                                <!--                                <a class="scrape-contact" href="javascript:void(0)" data-toggle="modal" data-target="#scrapeContact">
-                                                                    <i class="fa fa-users"></i>
-                                                                    <span>Import Contacts</span>
-                                                                </a>-->
                             </li>
                             <li>
                                 <a href="<?= site_url() ?>app/contact_groups">
@@ -110,12 +110,6 @@ $userid = $this->session->userdata('u_userid');
                                 <a href="<?= site_url() ?>app/contacts/block_list">
                                     <i class="fa fa-lock"></i>
                                     <span>Contact Block List</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="import" href="<?= site_url() ?>app/import">
-                                    <i class="fa fa-google"></i>
-                                    <span>Import Google Contacts</span>
                                 </a>
                             </li>
                         </ul>
