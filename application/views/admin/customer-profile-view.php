@@ -738,6 +738,10 @@
 </aside>
 </div>
 
+<script src="//cdn.ckeditor.com/4.4.3/standard/ckeditor.js"></script>
+<!-- Bootstrap WYSIHTML5 -->
+<script src="<?= base_url() ?>assets/dashboard/js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
+
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 
 <!-- DATA TABES SCRIPT -->
@@ -747,6 +751,10 @@
 <script type="text/javascript">
 
     $(function () {
+
+        CKEDITOR.replace('emailbody');
+        $(".textarea").wysihtml5();
+
         Stripe.setPublishableKey('<?= $gatewayInfo->publish_key ?>');
 
         $("#payment-data-table").dataTable({
@@ -782,6 +790,39 @@ if ($msg == "T"):
 
 <script type="text/javascript">
     $(document).ready(function () {
+
+        $('select[name="sms_template_id"]').change(function () {
+            var tempid = $(this).val();
+            if (tempid == "-1") {
+                return false;
+            } else {
+                $.ajax({
+                    type: 'POST',
+                    url: "<?= site_url() ?>admin/sms/getTemplate/" + tempid,
+                    success: function (json, textStatus, jqXHR) {
+                        var data = JSON.parse(json);
+                        $('#smsbody').val(data.body);
+                    }
+                });
+            }
+        });
+        $('select[name="email_template_id"]').change(function () {
+            var tempid = $(this).val();
+            if (tempid == "-1") {
+                return false;
+            } else {
+                $.ajax({
+                    type: 'POST',
+                    url: "<?= site_url() ?>admin/email/getTemplate/" + tempid,
+                    success: function (json, textStatus, jqXHR) {
+                        var data = JSON.parse(json);
+//                        $('#body').val(data.body);
+                        $('input[name="subject"]').val(data.subject);
+                        CKEDITOR.instances['emailbody'].setData(data.body);
+                    }
+                });
+            }
+        });
 
         $('span.lbl').click(function () {
             $name = $(this).prev().prop('name');
