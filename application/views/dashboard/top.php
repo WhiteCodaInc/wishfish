@@ -265,14 +265,7 @@ $userid = $this->session->userdata('u_userid');
 //                        $('li.dropdown-submenu > a').hover(function () {
 //                            $(this).next('ul').css('display', 'block');
 //                        });
-                        $('li.dropdown > ul.dropdown-menu > li').hover(function () {
-                            if ($(this).hasClass('dropdown-submenu')) {
-                                $(this).find('ul.dropdown-menu').css('display', 'block');
-                            } else {
-                                $(this).find('ul.dropdown-menu').css('display', 'none');
-                            }
-                            
-                        });
+                     
                         $('#scrapeContact .contactInfo .cancel').click(function () {
                             $('#scrapeContact .contactInfo').hide();
                             $('#scrapeContact span.successMsg').hide();
