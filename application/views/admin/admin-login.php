@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <title>Wish-Fish Admin | Log in</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-        <link href="<?= base_url() ?>assets/dashboard/favicon.ico" rel="Shortcut Icon" type="image/x-icon" />
+        <link href="<?= base_url() ?>favicon.ico" rel="Shortcut Icon" type="image/x-icon" />
 
 
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css" />

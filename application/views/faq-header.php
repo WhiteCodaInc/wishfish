@@ -9,7 +9,7 @@ and open the template in the editor.
         <title></title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-        <link href="<?= base_url() ?>assets/dashboard/favicon.ico" rel="Shortcut Icon" type="image/x-icon" />
+        <link href="<?= base_url() ?>favicon.ico" rel="Shortcut Icon" type="image/x-icon" />
 
         <link href="<?= base_url() ?>assets/faq/css/bootstrap.min.css" rel="stylesheet">
         <link href="<?= base_url() ?>assets/faq/css/font-awesome.min.css" rel="stylesheet">
