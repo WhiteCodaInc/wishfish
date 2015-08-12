@@ -323,7 +323,7 @@ class Customers extends CI_Controller {
                     $data = array("userid" => $post['userid'], "planid" => $pid);
                     $customer->metadata = $data;
                     $customer->save();
-                    header('location:' . site_url() . 'admin/customers/profile/' . $post['userid'] . '?msg=T');
+                    header('location:' . site_url() . 'admin/customers/profile/' . $post['userid'] . '?msg=C');
                 } catch (Exception $e) {
                     $flag = FALSE;
                     $error = $e->getMessage();
@@ -407,12 +407,12 @@ class Customers extends CI_Controller {
             $tag = $this->common->setToken($uInfo);
             $body = $this->parser->parse_string($post['body'], $tag, TRUE);
             if ($this->common->sendSMS($uInfo->phone, $body)) {
-                header('location:' . site_url() . 'admin/customers/profile/' . $post['uid'] . '?msg=T');
+                header('location:' . site_url() . 'admin/customers/profile/' . $post['uid'] . '?msg=MS');
             } else {
-                header('location:' . site_url() . 'admin/customers/profile/' . $post['uid'] . '?msg=F');
+                header('location:' . site_url() . 'admin/customers/profile/' . $post['uid'] . '?msg=MF');
             }
         } else {
-            header('location:' . site_url() . 'admin/customers/profile/' . $post['uid'] . '?msg=F');
+            header('location:' . site_url() . 'admin/customers/profile/' . $post['uid'] . '?msg=MF');
         }
     }
 
@@ -424,12 +424,12 @@ class Customers extends CI_Controller {
             $subject = $this->parser->parse_string($post['subject'], $tag, TRUE);
             $body = $this->parser->parse_string($post['body'], $tag, TRUE);
             if ($this->common->sendMail($uInfo->email, $subject, $body)) {
-                header('location:' . site_url() . 'admin/customers/profile/' . $post['uid'] . '?msg=T');
+                header('location:' . site_url() . 'admin/customers/profile/' . $post['uid'] . '?msg=ES');
             } else {
-                header('location:' . site_url() . 'admin/customers/profile/' . $post['uid'] . '?msg=F');
+                header('location:' . site_url() . 'admin/customers/profile/' . $post['uid'] . '?msg=EF');
             }
         } else {
-            header('location:' . site_url() . 'admin/customers/profile/' . $post['uid'] . '?msg=F');
+            header('location:' . site_url() . 'admin/customers/profile/' . $post['uid'] . '?msg=EF');
         }
     }
 

@@ -748,6 +748,41 @@
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
 
+<?php $msg = $this->input->get('msg'); ?>
+<?php
+switch ($msg) {
+    case "C":
+        $m = "Manually charge to this user successfully ..!";
+        $t = "success";
+        break;
+    case "MS":
+        $m = "Message Successfully Delivered..!";
+        $t = "success";
+        break;
+    case "MF":
+        $m = "Message has not been delivered..!";
+        $t = "error";
+        break;
+    case "ES":
+        $m = "Email Successfully Delivered..!";
+        $t = "success";
+        break;
+    case "EF":
+        $m = "Email has not been delivered..!";
+        $t = "error";
+        break;
+    default:
+        $m = 0;
+        break;
+}
+?>
+<script type="text/javascript">
+<?php if ($msg): ?>
+        alertify.<?= $t ?>("<?= $m ?>");
+<?php endif; ?>
+</script>
+
+
 <script type="text/javascript">
 
     $(function () {
@@ -779,17 +814,13 @@
         });
     });
 
-<?php
-$msg = $this->input->get('msg');
-if ($msg == "T"):
-    ?>
-        alertify.success("Manually charge to this user successfully ..!");
-<?php endif; ?>
 
-</script>       
 
-<script type="text/javascript">
-    $(document).ready(function () {
+
+
+
+    < script type = "text/javascript" >
+            $(document).ready(function () {
 
         $('select[name="sms_template_id"]').change(function () {
             var tempid = $(this).val();
