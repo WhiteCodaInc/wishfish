@@ -138,7 +138,7 @@ class Admin_profile extends CI_Controller {
     function sendMail($profile, $tag, $post) {
         $subject = $this->parser->parse_string($post['subject'], $tag, TRUE);
         $body = $this->parser->parse_string($post['body'], $tag, TRUE);
-        return $this->common->sendMail($profile->email, $subject, $body);
+        return $this->common->sendMail($profile->email, $subject, $body,NULL,"mikhail@wish-fish.com");
     }
 
 }

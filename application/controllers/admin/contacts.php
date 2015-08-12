@@ -158,7 +158,7 @@ class Contacts extends CI_Controller {
     function sendMail($contact, $tag, $post) {
         $subject = $this->parser->parse_string($post['subject'], $tag, TRUE);
         $body = $this->parser->parse_string($post['body'], $tag, TRUE);
-        return $this->common->sendMail($contact->email, $subject, $body);
+        return $this->common->sendMail($contact->email, $subject, $body, NULL, "mikhail@wish-fish.com");
     }
 
     //---------------Block Contacts------------------------------------------//
