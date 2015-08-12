@@ -262,11 +262,16 @@ $userid = $this->session->userdata('u_userid');
                 </div>
                 <script type="text/javascript">
                     $(document).ready(function () {
-                        $('li.dropdown-submenu > a').focusin(function () {
-                            $(this).next('ul').css('display', 'block');
-                        });
-                        $('li.dropdown-submenu > a').focusout(function () {
-                            $(this).next('ul').css('display', 'none');
+//                        $('li.dropdown-submenu > a').hover(function () {
+//                            $(this).next('ul').css('display', 'block');
+//                        });
+                        $('li.dropdown > ul.dropdown-menu > li').hover(function () {
+                            if ($(this).hasClass('dropdown-submenu')) {
+                                $(this).find('ul.dropdown-menu').css('display', 'block');
+                            } else {
+                                $(this).find('ul.dropdown-menu').css('display', 'none');
+                            }
+                            
                         });
                         $('#scrapeContact .contactInfo .cancel').click(function () {
                             $('#scrapeContact .contactInfo').hide();
