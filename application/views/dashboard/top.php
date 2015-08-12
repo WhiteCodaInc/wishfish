@@ -85,7 +85,7 @@ $userid = $this->session->userdata('u_userid');
                             </li>
                             <li class="dropdown-submenu">
                                 <a href="#">Imports....</a>
-                                <ul class="dropdown-menu" role="menu">
+                                <ul class="dropdown-menu" role="menu" style="display: none">
                                     <li>
                                         <a class="scrape-contact" href="javascript:void(0)" data-toggle="modal" data-target="#scrapeContact">
                                             <i class="fa fa-users"></i>
@@ -262,7 +262,12 @@ $userid = $this->session->userdata('u_userid');
                 </div>
                 <script type="text/javascript">
                     $(document).ready(function () {
-
+                        $('li.dropdown-submenu > a').focusin(function () {
+                            $(this).next('ul').css('display', 'block');
+                        });
+                        $('li.dropdown-submenu > a').focusout(function () {
+                            $(this).next('ul').css('display', 'none');
+                        });
                         $('#scrapeContact .contactInfo .cancel').click(function () {
                             $('#scrapeContact .contactInfo').hide();
                             $('#scrapeContact span.successMsg').hide();

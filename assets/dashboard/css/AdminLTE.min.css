@@ -461,7 +461,7 @@ body{
 }
 
 .dropdown-submenu > .dropdown-menu {
-    display: none !important;
+    display: none;
     top: 0;
     left: 100%;
     margin-top: -6px;
@@ -471,8 +471,8 @@ body{
     border-radius: 0 6px 6px 6px;
 }
 
-.dropdown-submenu >a:hover >.dropdown-menu {
-    display: block !important ;
+.dropdown-submenu a:hover >.dropdown-menu {
+    display: block;
 }
 
 .dropdown-submenu>a:after {
