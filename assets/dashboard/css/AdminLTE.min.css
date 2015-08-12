@@ -320,6 +320,7 @@ body{
 }
 
 .dropdown-submenu > .dropdown-menu {
+    display: none;
     top: 0;
     left: 100%;
     margin-top: -6px;
