@@ -29,6 +29,8 @@ class Customers extends CI_Controller {
             $this->api_signature = $paypalGatewayInfo->api_signature;
 
             $this->load->model('admin/m_customers', 'objcustomer');
+            $this->load->model('admin/m_admin_sms_template', 'objsmstmplt');
+            $this->load->model('admin/m_admin_email_template', 'objemailtmplt');
             $this->load->library('paypal_lib');
 
             $gatewayInfo = $this->wi_common->getPaymentGatewayInfo("STRIPE");
@@ -66,6 +68,8 @@ class Customers extends CI_Controller {
         $data['card'] = $this->getCardDetail($cid);
         $data['gatewayInfo'] = $this->wi_common->getPaymentGatewayInfo("STRIPE");
         $data['plans'] = $this->wi_common->getPlans();
+        $data['sms_template'] = $this->objsmstmplt->getTemplates();
+        $data['email_template'] = $this->objemailtmplt->getTemplates();
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');
@@ -392,6 +396,41 @@ class Customers extends CI_Controller {
             $this->session->set_flashdata('error', $e->getMessage());
         }
         header('location:' . site_url() . 'admin/customers/profile/' . $userid);
+    }
+
+    //----------------Contact Profile Functionality--------------------------//
+
+    function send_message() {
+        $post = $this->input->post();
+        $uInfo = $this->wi_common->getUserInfo($post['uid']);
+        if ($uInfo->phone != NULL) {
+            $tag = $this->common->setToken($uInfo);
+            $body = $this->parser->parse_string($post['body'], $tag, TRUE);
+            if ($this->common->sendSMS($uInfo->phone, $body)) {
+                header('location:' . site_url() . 'admin/customers/profile/' . $post['uid'] . '?msg=T');
+            } else {
+                header('location:' . site_url() . 'admin/customers/profile/' . $post['uid'] . '?msg=F');
+            }
+        } else {
+            header('location:' . site_url() . 'admin/customers/profile/' . $post['uid'] . '?msg=F');
+        }
+    }
+
+    function send_email() {
+        $post = $this->input->post();
+        $uInfo = $this->wi_common->getUserInfo($post['uid']);
+        if ($uInfo->email != NULL) {
+            $tag = $this->common->setToken($uInfo);
+            $subject = $this->parser->parse_string($post['subject'], $tag, TRUE);
+            $body = $this->parser->parse_string($post['body'], $tag, TRUE);
+            if ($this->common->sendMail($uInfo->email, $subject, $body)) {
+                header('location:' . site_url() . 'admin/customers/profile/' . $post['uid'] . '?msg=T');
+            } else {
+                header('location:' . site_url() . 'admin/customers/profile/' . $post['uid'] . '?msg=F');
+            }
+        } else {
+            header('location:' . site_url() . 'admin/customers/profile/' . $post['uid'] . '?msg=F');
+        }
     }
 
 }

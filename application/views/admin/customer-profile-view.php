@@ -268,6 +268,188 @@
                 </div>
             </div>
         </div>
+        <!-- START CUSTOM TABS -->
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Custom Tabs -->
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#tab_1" data-toggle="tab">SMS</a></li>
+                        <li><a href="#tab_2" data-toggle="tab">Email</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab_1">
+                            <form id="smsForm" role="form" action="<?= site_url() ?>admin/customers/send_message" method="post" >
+                                <div class="row">
+                                    <?php $adminInfo = $this->common->getAdminInfo(); ?>
+                                    <div class="col-md-3">
+                                        <div class="pull-left" style="padding: 10px"><label>From</label></div>
+                                        <div class="pull-left" style="padding: 10px"><span class="title"><?= ($adminInfo->twilio_number) ? $adminInfo->twilio_number : "N/A" ?></span></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="pull-left" style="padding: 10px"><label>To</label></div>
+                                        <div class="pull-left" style="padding: 10px">
+                                            <span class="title">
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <?= $customer->phone ?>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label>Choose SMS Template</label>
+                                            <select name="sms_template_id" class="form-control" required="">
+                                                <option value="-1">--Select--</option>
+                                                <?php foreach ($sms_template as $value) { ?>
+                                                    <option value="<?= $value->template_id ?>"><?= $value->title ?></option>
+                                                <?php } ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <div class="form-group">
+                                            <div class='row'>
+                                                <div class='col-md-12'>
+                                                    <div class='box box-info'>
+                                                        <div class='box-header'>
+                                                            <h3 class='box-title'>Editor</h3>
+                                                        </div><!-- /.box-header -->
+                                                        <div class='box-body pad'>
+                                                            <textarea id="smsbody"  name="body" rows="10" cols="80" required=""></textarea>
+                                                        </div>
+                                                    </div><!-- /.box -->
+                                                </div>
+                                            </div><!-- /.box-body -->
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <!-- Default box -->
+                                        <div class="box collapsed-box">
+                                            <div class="box-header">
+                                                <h3 class="box-title">Token List</h3>
+                                                <div class="box-tools pull-right">
+                                                    <button type="button" class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+                                                        <i class="fa fa-plus"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="box-body" style="display: none">
+                                                <strong>{FIRST_NAME}</strong><br/>
+                                                <strong>{LAST_NAME}</strong><br/>
+                                                <strong>{EMAIL}</strong><br/>
+                                                <strong>{PHONE}</strong><br/>
+                                                <strong>{BIRTHDAY}</strong><br/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-1">
+                                        <button type="submit" class="btn btn-primary">SEND</button>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="aid" value="<?= $customer->user_id ?>" />
+                            </form>
+                        </div><!-- /.tab-pane -->
+                        <div class="tab-pane" id="tab_2">
+                            <form id="emailForm" role="form" action="<?= site_url() ?>admin/customers/send_email" method="post" >
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="pull-left" style="padding: 10px"><label>From</label></div>
+                                        <div class="pull-left" style="padding: 10px"><span class="title">info@mikhailkuznetsov.com</span></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="pull-left" style="padding: 10px"><label>To</label></div>
+                                        <div class="pull-left" style="padding: 10px">
+                                            <span class="title">
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <?= $customer->email ?>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label>Choose Email Template</label>
+                                            <select name="email_template_id" class="form-control" required="">
+                                                <option value="-1">--Select--</option>
+                                                <?php foreach ($email_template as $value) { ?>
+                                                    <option value="<?= $value->template_id ?>"><?= $value->name ?></option>
+                                                <?php } ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <div class="form-group">
+                                            <label for="title">Email Subject</label>
+                                            <input  type="text" name="subject" class="form-control" placeholder="Email Subject" required="" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <div class="form-group">
+                                            <div class='row'>
+                                                <div class='col-md-12'>
+                                                    <div class='box box-info'>
+                                                        <div class='box-header'>
+                                                            <h3 class='box-title'>Editor</h3>
+                                                        </div><!-- /.box-header -->
+                                                        <div class='box-body pad'>
+                                                            <textarea id="emailbody"  name="body" rows="10" cols="80" required=""></textarea>
+                                                        </div>
+                                                    </div><!-- /.box -->
+                                                </div>
+                                            </div><!-- /.box-body -->
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <!-- Default box -->
+                                        <div class="box collapsed-box">
+                                            <div class="box-header">
+                                                <h3 class="box-title">Token List</h3>
+                                                <div class="box-tools pull-right">
+                                                    <button type="button" class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+                                                        <i class="fa fa-plus"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="box-body" style="display: none">
+                                                <strong>{FIRST_NAME}</strong><br/>
+                                                <strong>{LAST_NAME}</strong><br/>
+                                                <strong>{EMAIL}</strong><br/>
+                                                <strong>{PHONE}</strong><br/>
+                                                <strong>{BIRTHDAY}</strong><br/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="box-footer">
+                                    <div class="row">
+                                        <div class="col-md-1">
+                                            <button type="submit" class="btn btn-primary">SEND</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="uid" value="<?= $customer->user_id ?>" />
+                            </form>
+                        </div><!-- /.tab-pane -->
+                    </div><!-- /.tab-content -->
+                </div><!-- nav-tabs-custom -->
+            </div><!-- /.col -->
+        </div> <!-- /.row -->
+        <!-- END CUSTOM TABS -->
     </section>
     <!-- NEW ADMIN ACCESS CLASS MODAL -->
     <div class="modal fade" id="trial-modal" tabindex="-1" role="dialog" aria-hidden="true">
