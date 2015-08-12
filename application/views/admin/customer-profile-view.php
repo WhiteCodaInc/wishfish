@@ -300,7 +300,7 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="pull-left" style="padding: 10px"><label>From</label></div>
-                                        <div class="pull-left" style="padding: 10px"><span class="title">info@mikhailkuznetsov.com</span></div>
+                                        <div class="pull-left" style="padding: 10px"><span class="title">mikhail@wish-fish.com</span></div>
                                     </div>
                                 </div>
                                 <div class="row">
