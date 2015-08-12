@@ -269,7 +269,7 @@ $config['sess_time_to_update'] = 0;
   |
  */
 $config['cookie_prefix'] = "";
-$config['cookie_domain'] = "";
+$config['cookie_domain'] = ".wish-fish.com";
 $config['cookie_path'] = "/";
 $config['cookie_secure'] = FALSE;
 
