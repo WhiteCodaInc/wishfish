@@ -813,14 +813,9 @@ switch ($msg) {
             todayHighlight: true
         });
     });
-
-
-
-
-
-
-    < script type = "text/javascript" >
-            $(document).ready(function () {
+</script>
+<script type="text/javascript" >
+    $(document).ready(function () {
 
         $('select[name="sms_template_id"]').change(function () {
             var tempid = $(this).val();
