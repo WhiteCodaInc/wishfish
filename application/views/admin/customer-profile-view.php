@@ -205,69 +205,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="box" >
-                    <div class="box-header">
-                        <h3 class="box-title">Payment History</h3>
-                    </div> 
-                    <form name="checkForm" id="checkForm" action="" method="post">
-                        <div class="box-body table-responsive">
-                            <table id="payment-data-table" class="table table-bordered table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Date & Time</th>
-                                        <th>Amount</th>
-                                        <th>Installment Number</th>
-                                        <th>Payment Method</th>
-                                        <th>Plan</th>
-                                        <th>Status</th>
-                                        <th>Refund</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php foreach ($phistory as $value) { ?>
-                                        <tr>
-                                            <td><?= date('m-d-Y H:i:s', strtotime($value->payment_date)) ?></td>
-                                            <td>$ <?= $value->mc_gross ?></td>
-                                            <td><?= ($value->invoice_id) ? $value->invoice_id : "N/A" ?></td>
-                                            <td><?= $value->gateway ?></td>
-                                            <td><?= $value->plan_name ?></td>
-                                            <td>
-                                                <?php if ($value->status): ?>
-                                                    <span class="btn btn-success btn-xs">Approved</span>
-                                                <?php else : ?>
-                                                    <span class="btn btn-warning btn-xs">Refunded</span>
-                                                <?php endif; ?>
-                                            </td>
-                                            <td>
-                                                <?php $method = ($value->gateway == "STRIPE") ? "refundStripe" : "refundPaypal"; ?>
-                                                <?php if ($value->status && $value->mc_gross > 0 && $value->invoice_id): ?>
-                                                    <a class="btn btn-primary btn-xs refund" href="<?= site_url() ?>admin/customers/<?= $method ?>/<?= $customer->user_id ?>/<?= $value->invoice_id ?>">
-                                                        Refund
-                                                    </a>
-                                                <?php endif; ?>
-                                            </td>
-                                        </tr>
-                                    <?php } ?>
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th>Date & Time</th>
-                                        <th>Amount</th>
-                                        <th>Installment Number</th>
-                                        <th>Payment Method</th>
-                                        <th>Plan</th>
-                                        <th>Status</th>
-                                        <th>Refund</th>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                        </div> 
-                    </form>
-                </div>
-            </div>
-        </div>
+
         <!-- START CUSTOM TABS -->
         <div class="row">
             <div class="col-md-12">
@@ -450,6 +388,71 @@
             </div><!-- /.col -->
         </div> <!-- /.row -->
         <!-- END CUSTOM TABS -->
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box" >
+                    <div class="box-header">
+                        <h3 class="box-title">Payment History</h3>
+                    </div> 
+                    <form name="checkForm" id="checkForm" action="" method="post">
+                        <div class="box-body table-responsive">
+                            <table id="payment-data-table" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Date & Time</th>
+                                        <th>Amount</th>
+                                        <th>Installment Number</th>
+                                        <th>Payment Method</th>
+                                        <th>Plan</th>
+                                        <th>Status</th>
+                                        <th>Refund</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($phistory as $value) { ?>
+                                        <tr>
+                                            <td><?= date('m-d-Y H:i:s', strtotime($value->payment_date)) ?></td>
+                                            <td>$ <?= $value->mc_gross ?></td>
+                                            <td><?= ($value->invoice_id) ? $value->invoice_id : "N/A" ?></td>
+                                            <td><?= $value->gateway ?></td>
+                                            <td><?= $value->plan_name ?></td>
+                                            <td>
+                                                <?php if ($value->status): ?>
+                                                    <span class="btn btn-success btn-xs">Approved</span>
+                                                <?php else : ?>
+                                                    <span class="btn btn-warning btn-xs">Refunded</span>
+                                                <?php endif; ?>
+                                            </td>
+                                            <td>
+                                                <?php $method = ($value->gateway == "STRIPE") ? "refundStripe" : "refundPaypal"; ?>
+                                                <?php if ($value->status && $value->mc_gross > 0 && $value->invoice_id): ?>
+                                                    <a class="btn btn-primary btn-xs refund" href="<?= site_url() ?>admin/customers/<?= $method ?>/<?= $customer->user_id ?>/<?= $value->invoice_id ?>">
+                                                        Refund
+                                                    </a>
+                                                <?php endif; ?>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>Date & Time</th>
+                                        <th>Amount</th>
+                                        <th>Installment Number</th>
+                                        <th>Payment Method</th>
+                                        <th>Plan</th>
+                                        <th>Status</th>
+                                        <th>Refund</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div> 
+                    </form>
+                </div>
+            </div>
+        </div>
+
     </section>
     <!-- NEW ADMIN ACCESS CLASS MODAL -->
     <div class="modal fade" id="trial-modal" tabindex="-1" role="dialog" aria-hidden="true">
