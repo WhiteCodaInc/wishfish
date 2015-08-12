@@ -320,7 +320,7 @@ body{
 }
 
 .dropdown-submenu > .dropdown-menu {
-    display: none !important;
+    display: none ;
     top: 0;
     left: 100%;
     margin-top: -6px;
@@ -331,11 +331,11 @@ body{
 }
 
 .dropdown-submenu:hover>.dropdown-menu {
-    display: block !important;
+    display: block ;
 }
 
 .dropdown-submenu>a:after {
-    display: block !important;
+    display: block ;
     content: " ";
     float: right;
     width: 0;
