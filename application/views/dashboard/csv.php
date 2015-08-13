@@ -47,7 +47,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-2" style="text-align: right">
-                                            <a href="<?= FCPATH ?>example.csv" target="_blank">Download Sample File</a> 
+                                            <a href="<?= site_url() ?>example.csv" target="_blank">Download Sample File</a> 
                                         </div>
                                     </div>
                                 </form>
