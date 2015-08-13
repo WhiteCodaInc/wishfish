@@ -267,7 +267,7 @@ $userid = $this->session->userdata('u_userid');
                     </div><!-- /.modal-dialog -->
                 </div>
 
-                <!-------------------------------Import Model------------------------------------>
+                <!-------------------------------CSV Model------------------------------------>
                 <div class="modal fade" id="csv-modal" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog" style="max-width: 400px">
                         <div class="modal-content">
@@ -1066,7 +1066,7 @@ $userid = $this->session->userdata('u_userid');
                 </script>
                 <script type="text/javascript">
                     $(document).ready(function (e) {
-                        $('.scrape-contact,.query_popup').click(function () {
+                        $('.csv-contact,.scrape-contact,.query_popup').click(function () {
                             $('#supportForm .msg').text('');
                             setTimeout(function () {
                                 $('.modal-backdrop').css('z-index', '999');
