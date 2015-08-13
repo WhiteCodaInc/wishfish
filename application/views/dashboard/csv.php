@@ -33,7 +33,24 @@
                     <div class="box-header">
                         <h3 class="box-title">CSV Contact Detail</h3>
                     </div><!-- /.box-header -->
-                    
+                    <div class="row">
+                        <div class="col-xs-12" style="margin-left: 1%">
+                            <form id="csvForm" enctype="multipart/form-data" method="post">
+                                <div class="row" style="margin-top: 5%;">
+                                    <div class="col-md-8">
+                                        <input name="upload"  type="file" class="form-control" />
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button class="btn btn-success" type="submit" id="csv">Upload</button>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div style="display: none;margin-top: 10px;" class="calert">
+                                    <span class="errorMsg"></span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                     <form name="checkForm" id="checkForm" action="" method="post">
                         <div class="box-body table-responsive" id="data-panel">
                             <table id="csv-data-table" class="table table-bordered table-striped">
