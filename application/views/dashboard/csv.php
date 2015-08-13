@@ -46,7 +46,7 @@
                                                 <span style="color: red" class="errorMsg"></span>
                                             </div>
                                         </div>
-                                        <div class="col-md-2" style="text-align: right">
+                                        <div class="col-md-3" style="text-align: right">
                                             <a href="<?= site_url() ?>example.csv" target="_blank">Download Sample File</a> 
                                         </div>
                                     </div>
