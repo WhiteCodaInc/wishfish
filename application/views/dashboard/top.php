@@ -359,7 +359,7 @@ $userid = $this->session->userdata('u_userid');
                                         $('#csv').prop('disabled', false);
                                         $('#csv-modal span.errorMsg').css('color', 'red');
                                         $('#csv-modal .parse .alert').show();
-                                        $('#csv-modal span.errorMsg').text("CSV File can not Imported..!Try Again..!");
+                                        $('#csv-modal span.errorMsg').text(data);
                                     }
                                 }
                             });

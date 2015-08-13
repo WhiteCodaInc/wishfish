@@ -134,8 +134,8 @@ class Scrape extends CI_Controller {
     }
 
     function importcsv() {
-        echo '<pre>';
-        print_r($_FILES);
+        //echo '<pre>';
+        //print_r($_FILES);
 //        die();
         $config['upload_path'] = FCPATH . 'uploads/';
         $config['allowed_types'] = '*';
@@ -143,17 +143,17 @@ class Scrape extends CI_Controller {
 
         $this->load->library('upload', $config);
 
-        print_r($config);
+        //print_r($config);
         // If upload failed, display error
         if (!$this->upload->do_upload('upload')) {
-            echo 'ERROR..!<br>';
+            //echo 'ERROR..!<br>';
             print_r($this->upload->display_errors());
         } else {
-            echo 'SUCCESS..!<br>';
+            //echo 'SUCCESS..!<br>';
             $file_data = $this->upload->data();
-            print_r($file_data);
+            //print_r($file_data);
             $file_path = FCPATH . 'uploads/' . $file_data['file_name'];
-            echo $file_path . '<br>';
+            //echo $file_path . '<br>';
             if ($this->csvimport->get_array($file_path)) {
                 $csv_array = $this->csvimport->get_array($file_path);
                 foreach ($csv_array as $row) {
@@ -163,12 +163,12 @@ class Scrape extends CI_Controller {
                         'phone' => $row['phone'],
                         'email' => $row['email'],
                     );
-                    print_r($insert_data);
+                    //print_r($insert_data);
                 }
                 unlink($file_path);
-                echo '<br>Csv Data Imported Succesfully<br>';
+                echo '1';
             } else
-                echo "Error occured";
+                echo "Error occured during read csv file..!Try Again..!";
         }
     }
 
