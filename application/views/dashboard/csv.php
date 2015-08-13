@@ -170,7 +170,7 @@
                         $('#csv_form span.errorMsg').html("Faild to upload CSV File..!Try Again..!");
                         $('#csv_form .calert').show();
                     } else {
-                        $('#csv-data-table tbody').test(data);
+                        $('#csv-data-table tbody').html(data);
                     }
                 }
             });
