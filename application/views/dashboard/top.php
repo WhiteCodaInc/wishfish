@@ -93,15 +93,15 @@ $userid = $this->session->userdata('u_userid');
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="import" href="<?= site_url() ?>app/import">
-                                            <i class="fa fa-google"></i>
-                                            <span>Import Google Contacts</span>
+                                        <a class="csv-contact" href="javascript:void(0)" data-toggle="modal" data-target="#csv-modal">
+                                            <i class="fa fa-users"></i>
+                                            <span>Import From CSV</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="csv-contact" href="javascript:void(0)" data-toggle="modal" data-target="#csv-modal">
-                                            <i class="fa fa-users"></i>
-                                            <span>Import Contacts</span>
+                                        <a class="import" href="<?= site_url() ?>app/import">
+                                            <i class="fa fa-google"></i>
+                                            <span>Import Google Contacts</span>
                                         </a>
                                     </li>
                                 </ul>
