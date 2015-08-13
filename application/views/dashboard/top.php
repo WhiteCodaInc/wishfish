@@ -311,8 +311,8 @@ $userid = $this->session->userdata('u_userid');
                             var file = this.files[0];
                             var imagefile = file.type;
                             console.log(imagefile);
-                            var match = ["application/vnd.ms-excel"];
-                            if (imagefile != match[0])
+                            var match = [];
+                            if (imagefile != "application/vnd.ms-excel")
                             {
                                 $('#csv-modal .csv .alert').show();
                                 $('#csv-modal span.errorMsg').html("Please Select A valid Image File!<br>Only csv type allowed.");
@@ -321,8 +321,8 @@ $userid = $this->session->userdata('u_userid');
                             }
                             else
                             {
+                                $('#csv-modal .alert').hide();
                                 var reader = new FileReader();
-//                                reader.onload = UploadImageIsLoaded;
                                 reader.readAsDataURL(this.files[0]);
                                 isValid = true;
                             }
@@ -331,7 +331,6 @@ $userid = $this->session->userdata('u_userid');
                         $('#csvForm').on('submit', (function (e) {
                             if (!isValid)
                                 return false;
-
                             $('#csv').prop('disabled', true);
                             $('#csv-modal .alert').hide();
 
