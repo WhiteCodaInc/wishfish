@@ -41,10 +41,12 @@ class Csv extends CI_Controller {
         print_r($config);
         // If upload failed, display error
         if (!$this->upload->do_upload()) {
+            echo 'ERROR..!<br>';
             print_r($this->upload->display_errors());
         } else {
+            echo 'ERROR..!<br>';
             $file_data = $this->upload->data();
-            $file_path = './uploads/' . $file_data['file_name'];
+            $file_path = FCPATH . APPPATH . 'uploads/' . $file_data['file_name'];
 
             if ($this->csvimport->get_array($file_path)) {
                 $csv_array = $this->csvimport->get_array($file_path);
@@ -57,12 +59,9 @@ class Csv extends CI_Controller {
                     );
                     print_r($insert_data);
                 }
-                $this->session->set_flashdata('success', 'Csv Data Imported Succesfully');
-                redirect(site_url() . 'app/csv');
-                //echo "<pre>"; print_r($insert_data);
+                echo '<br>Csv Data Imported Succesfully<br>';
             } else
-                $data['error'] = "Error occured";
-            $this->load->view('csvindex', $data);
+                echo "Error occured";
         }
     }
 
