@@ -73,4 +73,27 @@ class Csv extends CI_Controller {
         $this->load->view('dashboard/footer');
     }
 
+    function addContacts() {
+        $post = $this->input->post();
+        echo '<pre>';
+        print_r($post);
+        die();
+        if (isset($post['contact']) && count($post['contact']) > 0) {
+            foreach ($post['contact'] as $value) {
+                $name = explode(' ', $post['name'][$value]);
+                $set = array(
+                    'user_id' => $this->userid,
+                    'fname' => (isset($name[0])) ? $name[0] : '',
+                    'lname' => (isset($name[1])) ? $name[1] : ''
+                );
+                ($post['email'][$value]) ? $set['email'] = $post['email'][$value] : '';
+                ($post['phone'][$value]) ? $set['phone'] = $post['phone'][$value] : '';
+                $this->db->insert('wi_contact_detail', $set);
+            }
+            header('location:' . site_url() . 'app/contacts');
+        } else {
+            header('location:' . site_url() . 'app/import');
+        }
+    }
+
 }
