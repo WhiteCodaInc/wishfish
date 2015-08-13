@@ -30,7 +30,7 @@ class Csv extends CI_Controller {
     }
 
     function importcsv() {
-        echo FCPATH;
+        echo APPPATH;
         die();
         $data['error'] = '';    //initialize image upload error array to empty
 
