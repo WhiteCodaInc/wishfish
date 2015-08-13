@@ -26,7 +26,7 @@ class Csv extends CI_Controller {
     }
 
     function index() {
-        $this->load->view('csvindex');
+        $this->load->view('dashboard/csvindex');
     }
 
     function importcsv() {
