@@ -79,6 +79,9 @@ class Csv extends CI_Controller {
                     }
                     $data['contacts'] = $set;
                     unlink($file_path);
+                    echo '<pre>';
+                    print_r($data);
+                    die();
                 } else {
                     $error = "Error occur during importing contact..! Try Again..!";
                     $data['contacts'] = $set;
