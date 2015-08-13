@@ -93,8 +93,12 @@ $userid = $this->session->userdata('u_userid');
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="csv-contact" href="javascript:void(0)" data-toggle="modal" data-target="#csv-modal">
-                                            <i class="fa fa-users"></i>
+                                        <!--                                        <a class="csv-contact" href="javascript:void(0)" data-toggle="modal" data-target="#csv-modal">
+                                                                                    <i class="fa fa-users"></i>
+                                                                                    <span>Import From CSV</span>
+                                                                                </a>-->
+                                        <a class="import" href="<?= site_url() ?>app/csv">
+                                            <i class="fa fa-upload"></i>
                                             <span>Import From CSV</span>
                                         </a>
                                     </li>

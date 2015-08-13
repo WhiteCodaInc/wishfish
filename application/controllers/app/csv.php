@@ -21,12 +21,15 @@ class Csv extends CI_Controller {
         } elseif (!$this->wi_authex->isActivePlan()) {
             header('location:' . site_url() . 'app/upgrade');
         } else {
-//            $this->load->model('dashboard/m_csv', 'csv');
+            $this->load->model('dashboard/m_csv', 'csv');
         }
     }
 
     function index() {
-        $this->load->view('dashboard/csvindex');
+        $data['contacts'] = array();
+        $this->load->view('dashboard/header');
+        $this->load->view('dashboard/csv', $data);
+        $this->load->view('dashboard/footer');
     }
 
     function importcsv() {
