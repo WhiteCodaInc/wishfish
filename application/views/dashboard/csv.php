@@ -37,11 +37,10 @@
                         <div class="col-xs-12" style="margin-left: 1%">
                             <form id="csv_form" enctype="multipart/form-data" method="post">
                                 <div class="row">
-                                    <div class="col-md-2"></div>
                                     <div class="col-md-3">
                                         <input name="upload"  type="file" class="form-control" />
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-1">
                                         <button class="btn btn-success" type="submit" id="csv">Upload</button>
                                     </div>
                                     <div class="col-md-5">
