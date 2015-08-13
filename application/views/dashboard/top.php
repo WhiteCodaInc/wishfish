@@ -309,10 +309,8 @@ $userid = $this->session->userdata('u_userid');
                         $("#csvForm input:file").change(function () {
                             $("#csvForm #error_message").empty(); // To remove the previous error message
                             var file = this.files[0];
-                            var imagefile = file.type;
-                            console.log(imagefile);
-                            var match = [];
-                            if (imagefile != "application/vnd.ms-excel")
+                            console.log(file.type);
+                            if (file.type != "application/vnd.ms-excel")
                             {
                                 $('#csv-modal .csv .alert').show();
                                 $('#csv-modal span.errorMsg').html("Please Select A valid Image File!<br>Only csv type allowed.");
