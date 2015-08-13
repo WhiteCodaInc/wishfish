@@ -57,9 +57,12 @@
                                         <th style="padding: 10px;">
                                             <input type="checkbox"/>
                                         </th>
-                                        <th>Contact Name</th>
-                                        <th>Contact Email</th>
-                                        <th>Contact Phone Number</th>
+                                        <th>Profile</th>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
+                                        <th>Birth Date</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -105,14 +108,6 @@
                                         </tr>
                                     <?php } ?>
                                 </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th></th>
-                                        <th>Contact Name</th>
-                                        <th>Contact Email</th>
-                                        <th>Contact Phone Number</th>
-                                    </tr>
-                                </tfoot>
                             </table>
                             <input type="hidden" id="actionType" name="actionType" value="" />
                         </form>
