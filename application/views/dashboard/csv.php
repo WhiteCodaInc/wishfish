@@ -29,31 +29,28 @@
     <section class="content">
         <div class="row">
             <div class="col-xs-12">
-                <div class="box" >
-                    <div class="box-header">
-                        <h3 class="box-title">CSV Contact Detail</h3>
-                    </div><!-- /.box-header -->
-                    <div class="row">
-                        <div class="col-xs-12" style="margin-left: 1%">
-                            <form id="csv_form" enctype="multipart/form-data" method="post">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <input name="upload"  type="file" class="form-control" />
-                                    </div>
-                                    <div class="col-md-1">
-                                        <button class="btn btn-success" type="submit" id="csv">Upload</button>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <div style="display: none;margin-top: 10px;" class="calert">
-                                            <span style="color: red" class="errorMsg"></span>
+                <div class="box box-primary" >
+                    <div class="box-body table-responsive" id="data-panel">
+                        <div class="row">
+                            <div class="col-xs-12" style="margin-left: 1%">
+                                <form id="csv_form" enctype="multipart/form-data" method="post">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <input name="upload"  type="file" class="form-control" />
+                                        </div>
+                                        <div class="col-md-1">
+                                            <button class="btn btn-success" type="submit" id="csv">Upload</button>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div style="display: none;margin-top: 10px;" class="calert">
+                                                <span style="color: red" class="errorMsg"></span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </form>
+                                </form>
+                            </div>
                         </div>
-                    </div>
-                    <form name="checkForm" id="checkForm" action="" method="post">
-                        <div class="box-body table-responsive" id="data-panel">
+                        <form name="checkForm" id="checkForm" action="" method="post">
                             <table id="csv-data-table" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
@@ -77,10 +74,10 @@
                                 </tfoot>
                             </table>
                             <input type="hidden" id="actionType" name="actionType" value="" />
-                        </div><!-- /.box-body -->
-                        <div class="overlay" style="display: none"></div>
-                        <div class="loading-img" style="display: none"></div>
-                    </form>
+                        </form>
+                    </div><!-- /.box-body -->
+                    <div class="overlay" style="display: none"></div>
+                    <div class="loading-img" style="display: none"></div>
                 </div><!-- /.box -->
             </div>
         </div>
