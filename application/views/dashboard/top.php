@@ -315,7 +315,7 @@ $userid = $this->session->userdata('u_userid');
                             if (imagefile != match[0])
                             {
                                 $('#csv-modal .csv .alert').show();
-                                $('#csv-modal span.errorMsg').text("Please Select A valid Image File!<br>Only csv type allowed.");
+                                $('#csv-modal span.errorMsg').html("Please Select A valid Image File!<br>Only csv type allowed.");
                                 isValid = false;
                                 return false;
                             }
