@@ -60,6 +60,7 @@ class Csv extends CI_Controller {
                     );
                     print_r($insert_data);
                 }
+                unlink($file_path);
                 echo '<br>Csv Data Imported Succesfully<br>';
             } else
                 echo "Error occured";
