@@ -32,14 +32,13 @@ class Csv extends CI_Controller {
     function importcsv() {
         $data['error'] = '';    //initialize image upload error array to empty
 
-        $config['upload_path'] = FCPATH .APPPATH. 'uploads/';
+        $config['upload_path'] = FCPATH . APPPATH . 'uploads/';
         $config['allowed_types'] = 'csv';
         $config['max_size'] = '1000';
 
         $this->load->library('upload', $config);
-
+        echo '<pre>';
         print_r($config);
-        die();
         // If upload failed, display error
         if (!$this->upload->do_upload()) {
             print_r($this->upload->display_errors());
