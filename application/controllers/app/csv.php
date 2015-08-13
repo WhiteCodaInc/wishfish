@@ -40,7 +40,7 @@ class Csv extends CI_Controller {
 
         $this->load->library('upload', $config);
 
-        if (!$this->upload->do_upload()) {
+        if (!$this->upload->do_upload('upload')) {
             echo '0';
         } else {
             $file_data = $this->upload->data();
