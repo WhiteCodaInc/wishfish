@@ -34,6 +34,7 @@ class Csv extends CI_Controller {
     }
 
     function importcsv() {
+        $error = "";
         $config['upload_path'] = FCPATH . 'uploads/';
         $config['allowed_types'] = '*';
         $config['max_size'] = '1000';
@@ -41,7 +42,7 @@ class Csv extends CI_Controller {
         $this->load->library('upload', $config);
 
         if (!$this->upload->do_upload('upload')) {
-            echo '0';
+            $error = $this->upload->display_errors();
         } else {
             $file_data = $this->upload->data();
             $file_path = FCPATH . 'uploads/' . $file_data['file_name'];
@@ -60,10 +61,16 @@ class Csv extends CI_Controller {
                 }
                 $data['contacts'] = $contacts;
                 unlink($file_path);
-                $this->load->view('dashboard/csv-contacts', $data);
-            } else
-                echo "0";
+            } else {
+                $error = "Error occur during importing contact..! Try Again..!";
+                $data['contacts'] = $contacts;
+            }
         }
+        $this->session->set_flashdata('error', $error);
+        $this->load->view('dashboard/header');
+        $this->load->view('dashboard/top');
+        $this->load->view('dashboard/csv', $data);
+        $this->load->view('dashboard/footer');
     }
 
 }

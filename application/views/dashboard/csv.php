@@ -33,7 +33,7 @@
                     <div class="box-body table-responsive" id="data-panel">
                         <div class="row">
                             <div class="col-xs-12"  style="margin: 2% 0;">
-                                <form id="csv_form" enctype="multipart/form-data" method="post">
+                                <form id="csv_form" action="<?= site_url() ?>app/csv/importcsv" enctype="multipart/form-data" method="post">
                                     <div class="row">
                                         <div class="col-md-3">
                                             <input name="upload"  type="file" class="form-control" />
@@ -63,6 +63,29 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php foreach ($contacts as $key => $value) { ?>
+                                        <tr>
+                                            <td>
+                                                <div>
+                                                    <label>
+                                                        <input type="checkbox" name="contact[<?= $key ?>]" value="<?= $key ?>"/>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <?= ($value['name'] != "") ? $value['name'] : 'N/A' ?>
+                                                <input type="hidden" name="name[<?= $key ?>]" value="<?= $value['name'] ?>" />
+                                            </td>
+                                            <td>
+                                                <?= ($value['email'] != "") ? $value['email'] : 'N/A' ?>
+                                                <input type="hidden" name="email[<?= $key ?>]" value="<?= $value['email'] ?>" />
+                                            </td>
+                                            <td>
+                                                <?= ($value['phone'] != "") ? $value['phone'] : 'N/A' ?>
+                                                <input type="hidden" name="phone[<?= $key ?>]" value="<?= $value['phone'] ?>" />
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
                                 </tbody>
                                 <tfoot>
                                     <tr>
@@ -76,8 +99,6 @@
                             <input type="hidden" id="actionType" name="actionType" value="" />
                         </form>
                     </div><!-- /.box-body -->
-                    <div class="overlay" style="display: none"></div>
-                    <div class="loading-img" style="display: none"></div>
                 </div><!-- /.box -->
             </div>
         </div>
@@ -148,33 +169,9 @@
         $('#csv_form').on('submit', (function (e) {
             if (!isValid)
                 return false;
-            e.preventDefault();
             $('#csv_form #csv').prop('disabled', true);
             $("#csv_form span.errorMsg").empty();
             $('#csv_form .calert').hide();
-
-            $('.csv-contact .overlay').show();
-            $('.csv-contact .loading-img').show();
-            $.ajax({
-                url: "<?= site_url() ?>app/csv/importcsv",
-                type: "POST",
-                data: new FormData(this), // Data sent to server, a set of key/value pairs representing form fields and values 
-                contentType: false, // The content type used when sending data to the server. Default is: "application/x-www-form-urlencoded"
-                cache: false, // To unable request pages to be cached
-                processData: false, // To send DOMDocument or non processed data file it is set to false (i.e. data should not be in the form of string)
-                success: function (data) {
-                    $('.csv-contact .overlay').hide();
-                    $('.csv-contact .loading-img').hide();
-                    $('#csv_form #csv').prop('disabled', false);
-                    if (data == "0") {
-                        $('#csv_form span.errorMsg').html("Faild to upload CSV File..!Try Again..!");
-                        $('#csv_form .calert').show();
-                    } else {
-                        $('#csv-data-table tbody').html(data);
-                    }
-                }
-            });
-            return false;
         }));
 
 
