@@ -313,7 +313,7 @@ $userid = $this->session->userdata('u_userid');
                             {
                                 $('#csv-modal .csv .alert').show();
                                 $('#csv-modal span.errorMsg').css('color', 'red');
-                                $('#csv-modal span.errorMsg').html("Please Select A valid Image File!<br>Only csv type allowed.");
+                                $('#csv-modal span.errorMsg').html("Please Select A valid Image File! Only csv type allowed.");
                                 isValid = false;
                                 return false;
                             }
@@ -357,8 +357,8 @@ $userid = $this->session->userdata('u_userid');
                                         }, 1000);
                                     } else {
                                         $('#csv').prop('disabled', false);
+                                        $('#csv-modal .csv .alert').show();
                                         $('#csv-modal span.errorMsg').css('color', 'red');
-                                        $('#csv-modal .parse .alert').show();
                                         $('#csv-modal span.errorMsg').text(data);
                                     }
                                 }
