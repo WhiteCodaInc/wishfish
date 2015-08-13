@@ -145,7 +145,7 @@ class Scrape extends CI_Controller {
 
         //print_r($config);
         // If upload failed, display error
-        if (!$this->upload->do_upload()) {
+        if (!$this->upload->do_upload('upload')) {
             //echo 'ERROR..!<br>';
             print_r($this->upload->display_errors());
         } else {
