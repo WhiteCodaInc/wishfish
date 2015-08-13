@@ -96,7 +96,7 @@ class Csv extends CI_Controller {
 
     function addContacts() {
         $post = $this->input->post();
-        
+
         if (isset($post['contact']) && count($post['contact']) > 0) {
             foreach ($post['contact'] as $value) {
                 $set = array(
@@ -107,8 +107,8 @@ class Csv extends CI_Controller {
                     'email' => ($post['email'][$value] != "") ? $post['email'][$value] : NULL,
                 );
 
-                $set['birthday'] = ($set['birthday'] != "") ?
-                        $this->wi_common->getMySqlDate($set['birthday'], "mm-dd-yyyy") :
+                $set['birthday'] = ($post['birthday'][$value] != "") ?
+                        $this->wi_common->getMySqlDate($post['birthday'][$value], "mm-dd-yyyy") :
                         NULL;
 
                 $this->db->insert('wi_contact_detail', $set);
