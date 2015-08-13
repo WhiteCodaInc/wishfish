@@ -155,8 +155,10 @@
         $("#csvForm input:file").change(function () {
             $("#csvForm span.errorMsg").empty(); // To remove the previous error message
             var file = this.files[0];
+            console.log(file.type);
             if (file.type != "application/vnd.ms-excel")
             {
+                console.log("Faild");
                 $('#csvForm .calert').show();
                 $('#csvForm span.errorMsg').css('color', 'red');
                 $('#csvForm span.errorMsg').html("Please Select A valid Image File! Only csv type allowed.");
@@ -165,6 +167,7 @@
             }
             else
             {
+                console.log("SUCCESS");
                 $("#csvForm span.errorMsg").empty();
                 $('#csvForm .calert').hide();
                 var reader = new FileReader();
