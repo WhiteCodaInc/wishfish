@@ -38,7 +38,8 @@ class Csv extends CI_Controller {
 
         $this->load->library('upload', $config);
 
-
+        print_r($config);
+        
         // If upload failed, display error
         if (!$this->upload->do_upload()) {
             print_r($this->upload->display_errors());
