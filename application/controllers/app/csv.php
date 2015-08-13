@@ -34,7 +34,7 @@ class Csv extends CI_Controller {
         print_r($_FILES);
 
         $config['upload_path'] = FCPATH . 'uploads/';
-//        $config['allowed_types'] = 'csv';
+        $config['allowed_types'] = '*';
         $config['max_size'] = '1000';
 
         $this->load->library('upload', $config);
