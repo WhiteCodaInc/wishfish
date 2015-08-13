@@ -288,7 +288,7 @@ $userid = $this->session->userdata('u_userid');
                                                 </div>
                                             </div>
                                             <br/>
-                                            <div style="display: none;margin-top: 10px;" class="alert">
+                                            <div style="display: none;margin-top: 10px;" class="calert">
                                                 <span class="errorMsg"></span>
                                             </div>
                                         </form>
@@ -311,7 +311,7 @@ $userid = $this->session->userdata('u_userid');
                             console.log(file.type);
                             if (file.type != "application/vnd.ms-excel")
                             {
-                                $('#csv-modal .csv .alert').show();
+                                $('#csv-modal .csv .calert').show();
                                 $('#csv-modal span.errorMsg').css('color', 'red');
                                 $('#csv-modal span.errorMsg').html("Please Select A valid Image File! Only csv type allowed.");
                                 isValid = false;
@@ -320,7 +320,7 @@ $userid = $this->session->userdata('u_userid');
                             else
                             {
                                 $("#csv-modal span.errorMsg").empty();
-                                $('#csv-modal .alert').hide();
+                                $('#csv-modal .calert').hide();
                                 var reader = new FileReader();
                                 reader.readAsDataURL(this.files[0]);
                                 isValid = true;
@@ -333,7 +333,7 @@ $userid = $this->session->userdata('u_userid');
                             e.preventDefault();
                             $('#csv').prop('disabled', true);
                             $("#csv-modal span.errorMsg").empty();
-                            $('#csv-modal .alert').hide();
+                            $('#csv-modal .calert').hide();
 
                             $('.csv .overlay').show();
                             $('.csv .loading-img').show();
@@ -349,7 +349,7 @@ $userid = $this->session->userdata('u_userid');
                                     $('.csv .overlay').hide();
                                     $('.csv .loading-img').hide();
                                     if (data == "1") {
-                                        $('#csv-modal .csv .alert').show();
+                                        $('#csv-modal .csv .calert').show();
                                         $('#csv-modal span.errorMsg').css('color', 'green');
                                         $('#csv-modal span.errorMsg').html("CSV File Successfully Imported..!");
                                         setTimeout(function () {
@@ -357,7 +357,7 @@ $userid = $this->session->userdata('u_userid');
                                         }, 1000);
                                     } else {
                                         $('#csv').prop('disabled', false);
-                                        $('#csv-modal .csv .alert').show();
+                                        $('#csv-modal .csv .calert').show();
                                         $('#csv-modal span.errorMsg').css('color', 'red');
                                         $('#csv-modal span.errorMsg').html(data);
                                     }
