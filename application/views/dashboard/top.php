@@ -332,8 +332,8 @@ $userid = $this->session->userdata('u_userid');
                             $('#csv').prop('disabled', true);
                             $('#csv-modal .alert').hide();
 
-                            $('#import-modal .parse .overlay').show();
-                            $('#import-modal .parse .loading-img').show();
+                            $('#csv-modal .csv .overlay').show();
+                            $('#csv-modal .csv .loading-img').show();
 
                             $.ajax({
                                 url: "<?= site_url() ?>app/scrape/importcsv",
