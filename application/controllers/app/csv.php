@@ -34,7 +34,6 @@ class Csv extends CI_Controller {
     }
 
     function importcsv() {
-
         if (!empty($_FILES)) {
             $error = "";
             $config['upload_path'] = FCPATH . 'uploads/';
