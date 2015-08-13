@@ -75,17 +75,13 @@ class Csv extends CI_Controller {
                             'birthday' => ($row['birthdate'] != "") ? $row['birthdate'] : "",
                             'contact_avatar' => ($row['profile_pic_url'] != "") ? $row['profile_pic_url'] : "",
                         );
-                        print_r($set);
                         $contacts[] = $set;
                     }
-                    $data['contacts'] = $set;
+                    $data['contacts'] = $contacts;
                     unlink($file_path);
-                    echo '<pre>';
-//                    print_r($data);
-                    die();
                 } else {
                     $error = "Error occur during importing contact..! Try Again..!";
-                    $data['contacts'] = $set;
+                    $data['contacts'] = $contacts;
                 }
             }
             $this->session->set_flashdata('error', $error);
