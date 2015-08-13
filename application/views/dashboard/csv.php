@@ -37,18 +37,18 @@
                         <div class="col-xs-12" style="margin-left: 1%">
                             <form id="csvForm" enctype="multipart/form-data" method="post">
                                 <div class="row">
-                                    <div class="col-md-3"></div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-3">
                                         <input name="upload"  type="file" class="form-control" />
                                     </div>
                                     <div class="col-md-2">
                                         <button class="btn btn-success" type="submit" id="csv">Upload</button>
                                     </div>
-                                    <div class="col-md-3"></div>
-                                </div>
-                                <br/>
-                                <div style="display: none;margin-top: 10px;" class="calert">
-                                    <span class="errorMsg"></span>
+                                    <div class="col-md-5">
+                                        <div style="display: none;margin-top: 10px;" class="calert">
+                                            <span class="errorMsg"></span>
+                                        </div>
+                                    </div>
                                 </div>
                             </form>
                         </div>
