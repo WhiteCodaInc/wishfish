@@ -28,6 +28,7 @@ class Csv extends CI_Controller {
     function index() {
         $data['contacts'] = array();
         $this->load->view('dashboard/header');
+        $this->load->view('dashboard/header');
         $this->load->view('dashboard/csv', $data);
         $this->load->view('dashboard/footer');
     }
