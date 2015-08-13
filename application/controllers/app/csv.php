@@ -147,4 +147,18 @@ class Csv extends CI_Controller {
         }
     }
 
+    function getFutureDate($bdt) {
+        $curr = date('Y');
+        $bdate = date('Y', strtotime($bdt));
+        $diff = $curr - $bdate;
+        $date = new DateTime($bdt);
+        if (date('m-d', strtotime($bdt)) >= date('m-d')) {
+            date_add($date, date_interval_create_from_date_string("{$diff} years"));
+        } else {
+            $diff++;
+            date_add($date, date_interval_create_from_date_string("{$diff} years"));
+        }
+        return date_format($date, 'Y-m-d');
+    }
+
 }
