@@ -44,7 +44,7 @@ class Csv extends CI_Controller {
             echo 'ERROR..!<br>';
             print_r($this->upload->display_errors());
         } else {
-            echo 'ERROR..!<br>';
+            echo 'SUCCESS..!<br>';
             $file_data = $this->upload->data();
             $file_path = FCPATH . APPPATH . 'uploads/' . $file_data['file_name'];
 
