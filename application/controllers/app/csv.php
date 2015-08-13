@@ -80,9 +80,6 @@ class Csv extends CI_Controller {
 
     function addContacts() {
         $post = $this->input->post();
-        echo '<pre>';
-        print_r($post);
-        die();
         if (isset($post['contact']) && count($post['contact']) > 0) {
             foreach ($post['contact'] as $value) {
                 $name = explode(' ', $post['name'][$value]);
@@ -97,7 +94,7 @@ class Csv extends CI_Controller {
             }
             header('location:' . site_url() . 'app/contacts');
         } else {
-            header('location:' . site_url() . 'app/import');
+            header('location:' . site_url() . 'app/csv');
         }
     }
 
