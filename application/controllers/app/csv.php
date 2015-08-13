@@ -33,8 +33,8 @@ class Csv extends CI_Controller {
         echo '<pre>';
         print_r($_FILES);
 
-        $config['upload_path'] = FCPATH . APPPATH . 'uploads/';
-        $config['allowed_types'] = 'jpg';
+        $config['upload_path'] = FCPATH . 'uploads/';
+//        $config['allowed_types'] = 'csv';
         $config['max_size'] = '1000';
 
         $this->load->library('upload', $config);
@@ -47,7 +47,7 @@ class Csv extends CI_Controller {
         } else {
             echo 'SUCCESS..!<br>';
             $file_data = $this->upload->data();
-            $file_path = FCPATH . APPPATH . 'uploads/' . $file_data['file_name'];
+            $file_path = FCPATH . 'uploads/' . $file_data['file_name'];
 
             if ($this->csvimport->get_array($file_path)) {
                 $csv_array = $this->csvimport->get_array($file_path);
