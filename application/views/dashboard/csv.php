@@ -182,7 +182,7 @@
 
         function action(actiontype) {
             $('#actionType').val(actiontype);
-            $('#checkForm').attr('action', "<?= site_url() ?>app/import/addContacts");
+            $('#checkForm').attr('action', "<?= site_url() ?>app/csv/addContacts");
             $('#checkForm').submit();
         }
     });
