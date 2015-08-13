@@ -35,7 +35,7 @@
                     </div><!-- /.box-header -->
                     <div class="row">
                         <div class="col-xs-12" style="margin-left: 1%">
-                            <form id="csvForm" enctype="multipart/form-data" method="post">
+                            <form id="csv_form" enctype="multipart/form-data" method="post">
                                 <div class="row">
                                     <div class="col-md-2"></div>
                                     <div class="col-md-3">
@@ -152,37 +152,37 @@
 <script type="text/javascript">
     $(document).ready(function () {
         var isValid = true;
-        $("#csvForm input:file").change(function () {
-            $("#csvForm span.errorMsg").empty(); // To remove the previous error message
+        $("#csv_form input:file").change(function () {
+            $("#csv_form span.errorMsg").empty(); // To remove the previous error message
             var file = this.files[0];
             console.log(file.type);
             if (file.type != "application/vnd.ms-excel")
             {
                 console.log("Faild");
-                $('#csvForm .calert').show();
-                $('#csvForm span.errorMsg').css('color', 'red');
-                $('#csvForm span.errorMsg').html("Please Select A valid Image File! Only csv type allowed.");
+                $('#csv_form .calert').show();
+                $('#csv_form span.errorMsg').css('color', 'red');
+                $('#csv_form span.errorMsg').html("Please Select A valid Image File! Only csv type allowed.");
                 isValid = false;
                 return false;
             }
             else
             {
                 console.log("SUCCESS");
-                $("#csvForm span.errorMsg").empty();
-                $('#csvForm .calert').hide();
+                $("#csv_form span.errorMsg").empty();
+                $('#csv_form .calert').hide();
                 var reader = new FileReader();
                 reader.readAsDataURL(this.files[0]);
                 isValid = true;
             }
         });
 
-        $('#csvForm').on('submit', (function (e) {
+        $('#csv_form').on('submit', (function (e) {
             if (!isValid)
                 return false;
             e.preventDefault();
             $('#csv').prop('disabled', true);
-            $("#csvForm span.errorMsg").empty();
-            $('#csvForm .calert').hide();
+            $("#csv_form span.errorMsg").empty();
+            $('#csv_form .calert').hide();
 
             $('#checkForm .overlay').show();
             $('#checkForm .loading-img').show();
@@ -198,17 +198,17 @@
                     $('#checkForm .overlay').hide();
                     $('#checkForm .loading-img').hide();
                     if (data == "1") {
-                        $('#csvForm .calert').show();
-                        $('#csvForm span.errorMsg').css('color', 'green');
-                        $('#csvForm span.errorMsg').html("CSV File Successfully Imported..!");
+                        $('#csv_form .calert').show();
+                        $('#csv_form span.errorMsg').css('color', 'green');
+                        $('#csv_form span.errorMsg').html("CSV File Successfully Imported..!");
                         setTimeout(function () {
-                            $('#csvForm .close').trigger('click');
+                            $('#csv_form .close').trigger('click');
                         }, 1000);
                     } else {
                         $('#csv').prop('disabled', false);
-                        $('#csvForm .calert').show();
-                        $('#csvForm span.errorMsg').css('color', 'red');
-                        $('#csvForm span.errorMsg').html(data);
+                        $('#csv_form .calert').show();
+                        $('#csv_form span.errorMsg').css('color', 'red');
+                        $('#csv_form span.errorMsg').html(data);
                     }
                 }
             });
