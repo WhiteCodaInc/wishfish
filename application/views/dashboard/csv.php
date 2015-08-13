@@ -37,76 +37,77 @@
                         <div class="col-xs-12" style="margin-left: 1%">
                             <form id="csvForm" enctype="multipart/form-data" method="post">
                                 <div class="row" style="margin-top: 5%;">
-                                    <div class="col-md-8">
-                                        <div class="col-md-8">
-                                            <input name="upload"  type="file" class="form-control" />
-                                        </div>
-                                        <div class="col-md-2">
-                                            <button class="btn btn-success" type="submit" id="csv">Upload</button>
-                                        </div>
+                                    <div class="col-md-3"></div>
+                                    <div class="col-md-4">
+                                        <input name="upload"  type="file" class="form-control" />
                                     </div>
-                                    <br/>
-                                    <div style="display: none;margin-top: 10px;" class="calert">
-                                        <span class="errorMsg"></span>
+                                    <div class="col-md-2">
+                                        <button class="btn btn-success" type="submit" id="csv">Upload</button>
                                     </div>
+                                    <div class="col-md-3"></div>
                                 </div>
-                            </form>
+                                <br/>
+                                <div style="display: none;margin-top: 10px;" class="calert">
+                                    <span class="errorMsg"></span>
+                                </div>
                         </div>
+                        </form>
                     </div>
-                    <form name="checkForm" id="checkForm" action="" method="post">
-                        <div class="box-body table-responsive" id="data-panel">
-                            <table id="csv-data-table" class="table table-bordered table-striped">
-                                <thead>
+                </div>
+                <form name="checkForm" id="checkForm" action="" method="post">
+                    <div class="box-body table-responsive" id="data-panel">
+                        <table id="csv-data-table" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th style="padding: 10px;">
+                                        <input type="checkbox"/>
+                                    </th>
+                                    <th>Contact Name</th>
+                                    <th>Contact Email</th>
+                                    <th>Contact Phone Number</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($contacts as $key => $value) { ?>
                                     <tr>
-                                        <th style="padding: 10px;">
-                                            <input type="checkbox"/>
-                                        </th>
-                                        <th>Contact Name</th>
-                                        <th>Contact Email</th>
-                                        <th>Contact Phone Number</th>
+                                        <td>
+                                            <div>
+                                                <label>
+                                                    <input type="checkbox" name="contact[<?= $key ?>]" value="<?= $key ?>"/>
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <?= ($value['name'] != "") ? $value['name'] : 'N/A' ?>
+                                            <input type="hidden" name="name[<?= $key ?>]" value="<?= $value['name'] ?>" />
+                                        </td>
+                                        <td>
+                                            <?= ($value['email'] != "") ? $value['email'] : 'N/A' ?>
+                                            <input type="hidden" name="email[<?= $key ?>]" value="<?= $value['email'] ?>" />
+                                        </td>
+                                        <td>
+                                            <?= ($value['phone'] != "") ? $value['phone'] : 'N/A' ?>
+                                            <input type="hidden" name="phone[<?= $key ?>]" value="<?= $value['phone'] ?>" />
+                                        </td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    <?php foreach ($contacts as $key => $value) { ?>
-                                        <tr>
-                                            <td>
-                                                <div>
-                                                    <label>
-                                                        <input type="checkbox" name="contact[<?= $key ?>]" value="<?= $key ?>"/>
-                                                    </label>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <?= ($value['name'] != "") ? $value['name'] : 'N/A' ?>
-                                                <input type="hidden" name="name[<?= $key ?>]" value="<?= $value['name'] ?>" />
-                                            </td>
-                                            <td>
-                                                <?= ($value['email'] != "") ? $value['email'] : 'N/A' ?>
-                                                <input type="hidden" name="email[<?= $key ?>]" value="<?= $value['email'] ?>" />
-                                            </td>
-                                            <td>
-                                                <?= ($value['phone'] != "") ? $value['phone'] : 'N/A' ?>
-                                                <input type="hidden" name="phone[<?= $key ?>]" value="<?= $value['phone'] ?>" />
-                                            </td>
-                                        </tr>
-                                    <?php } ?>
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th></th>
-                                        <th>Contact Name</th>
-                                        <th>Contact Email</th>
-                                        <th>Contact Phone Number</th>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                            <input type="hidden" id="actionType" name="actionType" value="" />
-                        </div><!-- /.box-body -->
-                        <div class="overlay" style="display: none"></div>
-                        <div class="loading-img" style="display: none"></div>
-                    </form>
-                </div><!-- /.box -->
-            </div>
+                                <?php } ?>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th></th>
+                                    <th>Contact Name</th>
+                                    <th>Contact Email</th>
+                                    <th>Contact Phone Number</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <input type="hidden" id="actionType" name="actionType" value="" />
+                    </div><!-- /.box-body -->
+                    <div class="overlay" style="display: none"></div>
+                    <div class="loading-img" style="display: none"></div>
+                </form>
+            </div><!-- /.box -->
+        </div>
         </div>
     </section><!-- /.content -->
 </aside><!-- /.right-side -->
