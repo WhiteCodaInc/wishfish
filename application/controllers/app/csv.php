@@ -54,18 +54,23 @@ class Csv extends CI_Controller {
             print_r($file_data);
             $file_path = FCPATH . 'uploads/' . $file_data['file_name'];
             echo $file_path . '<br>';
+
+            $contacts = array();
+
             if ($this->csvimport->get_array($file_path)) {
                 $csv_array = $this->csvimport->get_array($file_path);
-                foreach ($csv_array as $row) {
+                foreach ($csv_array as $key => $row) {
                     $insert_data = array(
-                        'firstname' => $row['firstname'],
-                        'lastname' => $row['lastname'],
+                        'name' => $row['firstname'],
                         'phone' => $row['phone'],
                         'email' => $row['email'],
                     );
-                    print_r($insert_data);
+                    $contacts[] = $insert_data;
+//                    print_r($insert_data);
                 }
+                $data['contacts'] = $contacts;
                 unlink($file_path);
+                $this->load->view('dashboard/csv-contacts', $data);
                 echo '<br>Csv Data Imported Succesfully<br>';
             } else
                 echo "Error occured";

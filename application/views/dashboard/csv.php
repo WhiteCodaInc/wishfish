@@ -45,7 +45,7 @@
                                     </div>
                                     <div class="col-md-5">
                                         <div style="display: none;margin-top: 10px;" class="calert">
-                                            <span class="errorMsg"></span>
+                                            <span style="color: red" class="errorMsg"></span>
                                         </div>
                                     </div>
                                 </div>
@@ -66,29 +66,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($contacts as $key => $value) { ?>
-                                        <tr>
-                                            <td>
-                                                <div>
-                                                    <label>
-                                                        <input type="checkbox" name="contact[<?= $key ?>]" value="<?= $key ?>"/>
-                                                    </label>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <?= ($value['name'] != "") ? $value['name'] : 'N/A' ?>
-                                                <input type="hidden" name="name[<?= $key ?>]" value="<?= $value['name'] ?>" />
-                                            </td>
-                                            <td>
-                                                <?= ($value['email'] != "") ? $value['email'] : 'N/A' ?>
-                                                <input type="hidden" name="email[<?= $key ?>]" value="<?= $value['email'] ?>" />
-                                            </td>
-                                            <td>
-                                                <?= ($value['phone'] != "") ? $value['phone'] : 'N/A' ?>
-                                                <input type="hidden" name="phone[<?= $key ?>]" value="<?= $value['phone'] ?>" />
-                                            </td>
-                                        </tr>
-                                    <?php } ?>
                                 </tbody>
                                 <tfoot>
                                     <tr>
@@ -154,19 +131,15 @@
         $("#csv_form input:file").change(function () {
             $("#csv_form span.errorMsg").empty(); // To remove the previous error message
             var file = this.files[0];
-            console.log(file.type);
             if (file.type != "application/vnd.ms-excel")
             {
-                console.log("Faild");
                 $('#csv_form .calert').show();
-                $('#csv_form span.errorMsg').css('color', 'red');
-                $('#csv_form span.errorMsg').html("Please Select A valid Image File! Only csv type allowed.");
+                $('#csv_form span.errorMsg').html("Please Select a valid Image File! Only csv type allowed.");
                 isValid = false;
                 return false;
             }
             else
             {
-                console.log("SUCCESS");
                 $("#csv_form span.errorMsg").empty();
                 $('#csv_form .calert').hide();
                 var reader = new FileReader();
@@ -187,7 +160,7 @@
             $('#checkForm .loading-img').show();
 
             $.ajax({
-                url: "<?= site_url() ?>app/scrape/importcsv",
+                url: "<?= site_url() ?>app/csv/importcsv",
                 type: "POST",
                 data: new FormData(this), // Data sent to server, a set of key/value pairs representing form fields and values 
                 contentType: false, // The content type used when sending data to the server. Default is: "application/x-www-form-urlencoded"
@@ -196,18 +169,12 @@
                 success: function (data) {
                     $('#checkForm .overlay').hide();
                     $('#checkForm .loading-img').hide();
-                    if (data == "1") {
+                    $('#csv').prop('disabled', false);
+                    if (data == "0") {
                         $('#csv_form .calert').show();
-                        $('#csv_form span.errorMsg').css('color', 'green');
-                        $('#csv_form span.errorMsg').html("CSV File Successfully Imported..!");
-                        setTimeout(function () {
-                            $('#csv_form .close').trigger('click');
-                        }, 1000);
-                    } else {
-                        $('#csv').prop('disabled', false);
-                        $('#csv_form .calert').show();
-                        $('#csv_form span.errorMsg').css('color', 'red');
                         $('#csv_form span.errorMsg').html(data);
+                    } else {
+                        $('##csv-data-table table tbody').html(data);
                     }
                 }
             });
