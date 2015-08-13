@@ -332,8 +332,8 @@ $userid = $this->session->userdata('u_userid');
                             $('#csv').prop('disabled', true);
                             $('#csv-modal .alert').hide();
 
-                            $('#csv-modal .csv .overlay').show();
-                            $('#csv-modal .csv .loading-img').show();
+                            $('.csv .overlay').show();
+                            $('.csv .loading-img').show();
 
                             $.ajax({
                                 url: "<?= site_url() ?>app/scrape/importcsv",
@@ -343,8 +343,8 @@ $userid = $this->session->userdata('u_userid');
                                 cache: false, // To unable request pages to be cached
                                 processData: false, // To send DOMDocument or non processed data file it is set to false (i.e. data should not be in the form of string)
                                 success: function (data) {
-                                    $('.parse .overlay').hide();
-                                    $('.parse .loading-img').hide();
+                                    $('.csv .overlay').hide();
+                                    $('.csv .loading-img').hide();
                                     if (data == "1") {
                                         $('#csv-modal .parse .alert').show();
                                         $('#csv-modal span.errorMsg').text("CSV File Successfully Imported..!");
