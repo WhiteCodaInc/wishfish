@@ -1,3 +1,9 @@
+<!-- iCheck for checkboxes and radio inputs -->
+<link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/dashboard/css/iCheck/all.css"/>
+
+<!-- iCheck for checkboxes and radio inputs -->
+<link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/dashboard/css/iCheck/minimal/blue.css"  />
+<script src="<?= base_url() ?>assets/dashboard/js/plugins/iCheck/icheck.js" type="text/javascript"></script>
 <?php if (count($contacts)): ?>
     <?php foreach ($contacts as $key => $value) { ?>
         <tr>
