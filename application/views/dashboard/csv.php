@@ -32,7 +32,7 @@
                 <div class="box box-primary" >
                     <div class="box-body table-responsive" id="data-panel">
                         <div class="row">
-                            <div class="col-xs-12" style="margin-left: 1%">
+                            <div class="col-xs-12"  style="margin: 2% 0;">
                                 <form id="csv_form" enctype="multipart/form-data" method="post">
                                     <div class="row">
                                         <div class="col-md-3">
