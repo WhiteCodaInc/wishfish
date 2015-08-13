@@ -73,7 +73,7 @@ class Csv extends CI_Controller {
                             'phone' => ($row['phone'] != "") ? $row['phone'] : "",
                             'email' => ($row['email'] != "") ? $row['email'] : "",
                             'birthday' => ($row['birthdate'] != "") ? $row['birthdate'] : "",
-                            'contact_avatar' => ($row['contact_avatar'] != "") ? $row['profile_pic_url'] : "",
+                            'contact_avatar' => ($row['profile_pic_url'] != "") ? $row['profile_pic_url'] : "",
                         );
                         $contacts[] = $set;
                     }
