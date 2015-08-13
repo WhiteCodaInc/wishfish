@@ -358,6 +358,7 @@ $userid = $this->session->userdata('u_userid');
                                     }
                                 }
                             });
+                            return false;
                         }));
 
                         $('ul.dropdown-menu > li').hover(function () {
