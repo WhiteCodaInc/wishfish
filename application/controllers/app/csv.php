@@ -13,9 +13,21 @@
  */
 class Csv extends CI_Controller {
 
+    private $userid;
+    private $bucket;
+    private $accessKey;
+    private $secretKey;
+
     function __construct() {
         parent::__construct();
         $this->load->library('csvimport');
+        $this->load->library('amazons3');
+        $this->userid = $this->session->userdata('u_userid');
+        $this->config->load('aws');
+        $this->bucket = $this->encryption->decode($this->config->item('bucket', 'aws'));
+        $this->accessKey = $this->encryption->decode($this->config->item('accessKey', 'aws'));
+        $this->secretKey = $this->encryption->decode($this->config->item('secretKey', 'aws'));
+
         if (!$this->wi_authex->logged_in()) {
             header('location:' . site_url() . 'home');
         } elseif (!$this->wi_authex->isActivePlan()) {
@@ -52,13 +64,18 @@ class Csv extends CI_Controller {
 
                 if ($this->csvimport->get_array($file_path)) {
                     $csv_array = $this->csvimport->get_array($file_path);
+
                     foreach ($csv_array as $row) {
-                        $insert_data = array(
-                            'name' => $row['firstname'],
-                            'phone' => $row['phone'],
-                            'email' => $row['email']
+
+                        $set = array(
+                            'fname' => ($row['first_name'] != "") ? $row['first_name'] : "",
+                            'lname' => ($row['last_name'] != "") ? $row['last_name'] : "",
+                            'phone' => ($row['phone'] != "") ? $row['phone'] : "",
+                            'email' => ($row['email'] != "") ? $row['email'] : "",
+                            'birthday' => ($row['birthdate'] != "") ? $row['birthdate'] : "",
+                            'contact_avatar' => ($row['contact_avatar'] != "") ? $row['profile_pic_url'] : "",
                         );
-                        $contacts[] = $insert_data;
+                        $contacts[] = $set;
                     }
                     $data['contacts'] = $contacts;
                     unlink($file_path);
@@ -81,15 +98,47 @@ class Csv extends CI_Controller {
         $post = $this->input->post();
         if (isset($post['contact']) && count($post['contact']) > 0) {
             foreach ($post['contact'] as $value) {
-                $name = explode(' ', $post['name'][$value]);
                 $set = array(
                     'user_id' => $this->userid,
-                    'fname' => (isset($name[0])) ? $name[0] : '',
-                    'lname' => (isset($name[1])) ? $name[1] : ''
+                    'fname' => ($post['fname'][$value] != "") ? $post['fname'][$value] : NULL,
+                    'lname' => ($post['lname'][$value] != "") ? $post['lname'][$value] : NULL,
+                    'phone' => ($post['phone'][$value] != "") ? $post['phone'][$value] : NULL,
+                    'email' => ($post['email'][$value] != "") ? $post['email'][$value] : NULL,
                 );
-                ($post['email'][$value]) ? $set['email'] = $post['email'][$value] : '';
-                ($post['phone'][$value]) ? $set['phone'] = $post['phone'][$value] : '';
+
+                $set['birthday'] = ($set['birthday'] != "") ?
+                        $this->wi_common->getMySqlDate($set['birthday'], "mm-dd-yyyy") :
+                        NULL;
+
                 $this->db->insert('wi_contact_detail', $set);
+                $insertid = $this->db->insert_id();
+
+                if ($post['contact_avatar'][$value] != "") {
+                    $img_url = FCPATH . "import/user.jpg";
+                    copy($post['contact_avatar'][$value], $img_url);
+                    $fname = 'wish-fish/contacts/contact_avatar_' . $insertid . '.jpg';
+                    $this->s3->setAuth($this->accessKey, $this->secretKey);
+                    if ($this->s3->putObjectFile($img_url, $this->bucket, $fname, "public-read")) {
+                        $this->db->update('wi_contact_detail', array('contact_avatar' => $fname), array('contact_id' => $insertid));
+                    }
+                    unlink($img_url);
+                }
+
+                if ($set['birthday'] != NULL) {
+                    $event_data = array(
+                        'user_id' => $this->userid,
+                        'is_birthday' => 1,
+                        'event' => 'Birthday : ' . $set['fname'],
+                        'event_type' => "notification",
+                        'group_type' => "individual",
+                        'contact_id' => $insertid,
+                        'color' => "#BDBDBD",
+                        'notification' => "0",
+                        'notify' => "them",
+                        'date' => $this->getFutureDate($set['birthday'])
+                    );
+                    $this->db->insert('wi_schedule', $event_data);
+                }
             }
             header('location:' . site_url() . 'app/contacts');
         } else {

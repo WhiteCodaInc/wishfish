@@ -64,6 +64,12 @@
                                 </thead>
                                 <tbody>
                                     <?php foreach ($contacts as $key => $value) { ?>
+                                        <?php
+                                        $img_src = ($value['contact_avatar'] != "") ?
+                                                $value['contact_avatar'] :
+                                                base_url() . 'assets/dashboard/img/default-avatar.png';
+                                        $image = ($value['contact_avatar'] != "") ? $value['contact_avatar'] : "";
+                                        ?>
                                         <tr>
                                             <td>
                                                 <div>
@@ -72,9 +78,17 @@
                                                     </label>
                                                 </div>
                                             </td>
+                                            <td >
+                                                <img style="width:60px;height:60px" src="<?= $img_src ?>" class="img-circle" alt="User Image" />
+                                                <input type="hidden" name="contact_avatar[<?= $key ?>]" value="<?= $image ?>" />
+                                            </td>
                                             <td>
-                                                <?= ($value['name'] != "") ? $value['name'] : 'N/A' ?>
-                                                <input type="hidden" name="name[<?= $key ?>]" value="<?= $value['name'] ?>" />
+                                                <?= ($value['fname'] != "") ? $value['fname'] : 'N/A' ?>
+                                                <input type="hidden" name="fname[<?= $key ?>]" value="<?= $value['fname'] ?>" />
+                                            </td>
+                                            <td>
+                                                <?= ($value['lname'] != "") ? $value['lname'] : 'N/A' ?>
+                                                <input type="hidden" name="lname[<?= $key ?>]" value="<?= $value['lname'] ?>" />
                                             </td>
                                             <td>
                                                 <?= ($value['email'] != "") ? $value['email'] : 'N/A' ?>
@@ -83,6 +97,10 @@
                                             <td>
                                                 <?= ($value['phone'] != "") ? $value['phone'] : 'N/A' ?>
                                                 <input type="hidden" name="phone[<?= $key ?>]" value="<?= $value['phone'] ?>" />
+                                            </td>
+                                            <td>
+                                                <?= ($value['birthday'] != "") ? $value['birthday'] : 'N/A' ?>
+                                                <input type="hidden" name="birthday[<?= $key ?>]" value="<?= $value['birthday'] ?>" />
                                             </td>
                                         </tr>
                                     <?php } ?>
