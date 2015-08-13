@@ -77,11 +77,11 @@ class Csv extends CI_Controller {
                         );
                         $contacts[] = $set;
                     }
-                    $data['contacts'] = $contacts;
+                    $data['contacts'] = $set;
                     unlink($file_path);
                 } else {
                     $error = "Error occur during importing contact..! Try Again..!";
-                    $data['contacts'] = $contacts;
+                    $data['contacts'] = $set;
                 }
             }
             $this->session->set_flashdata('error', $error);
