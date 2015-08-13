@@ -47,7 +47,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-3" style="text-align: right">
-                                            <a href="<?= site_url() ?>example.csv" target="_blank">Download Sample File</a> 
+                                            <a class="btn btn-primary" href="<?= site_url() ?>example.csv" target="_blank">Download Sample File</a> 
                                         </div>
                                     </div>
                                 </form>
