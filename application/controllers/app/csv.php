@@ -41,9 +41,7 @@ class Csv extends CI_Controller {
 
         // If upload failed, display error
         if (!$this->upload->do_upload()) {
-            $data['error'] = $this->upload->display_errors();
-
-            $this->load->view('csvindex', $data);
+            print_r($this->upload->display_errors());
         } else {
             $file_data = $this->upload->data();
             $file_path = './uploads/' . $file_data['file_name'];
