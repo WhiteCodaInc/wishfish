@@ -47,6 +47,7 @@ class Csv extends CI_Controller {
         } else {
             echo 'SUCCESS..!<br>';
             $file_data = $this->upload->data();
+            print_r($file_data);
             $file_path = FCPATH . 'uploads/' . $file_data['file_name'];
             echo $file_path . '<br>';
             if ($this->csvimport->get_array($file_path)) {
