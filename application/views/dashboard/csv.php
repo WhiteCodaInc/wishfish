@@ -35,12 +35,24 @@
                     </div><!-- /.box-header -->
                     <div class="row">
                         <div class="col-xs-12" style="margin-left: 1%">
-
+                            <form id="csvForm" enctype="multipart/form-data" method="post">
+                                <div class="row" style="margin-top: 5%;">
+                                    <div class="col-md-8">
+                                        <input name="upload"  type="file" class="form-control" />
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button class="btn btn-success" type="submit" id="csv">Upload</button>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div style="display: none;margin-top: 10px;" class="calert">
+                                    <span class="errorMsg"></span>
+                                </div>
+                            </form>
                         </div>
                     </div>
                     <form name="checkForm" id="checkForm" action="" method="post">
                         <div class="box-body table-responsive" id="data-panel">
-
                             <table id="csv-data-table" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
@@ -88,6 +100,8 @@
                             </table>
                             <input type="hidden" id="actionType" name="actionType" value="" />
                         </div><!-- /.box-body -->
+                        <div class="overlay" style="display: none"></div>
+                        <div class="loading-img" style="display: none"></div>
                     </form>
                 </div><!-- /.box -->
             </div>
@@ -135,6 +149,68 @@
 </script>
 <script type="text/javascript">
     $(document).ready(function () {
+        var isValid = true;
+        $("#csvForm input:file").change(function () {
+            $("#csvForm span.errorMsg").empty(); // To remove the previous error message
+            var file = this.files[0];
+            if (file.type != "application/vnd.ms-excel")
+            {
+                $('#csvForm .calert').show();
+                $('#csvForm span.errorMsg').css('color', 'red');
+                $('#csvForm span.errorMsg').html("Please Select A valid Image File! Only csv type allowed.");
+                isValid = false;
+                return false;
+            }
+            else
+            {
+                $("#csvForm span.errorMsg").empty();
+                $('#csvForm .calert').hide();
+                var reader = new FileReader();
+                reader.readAsDataURL(this.files[0]);
+                isValid = true;
+            }
+        });
+
+        $('#csvForm').on('submit', (function (e) {
+            if (!isValid)
+                return false;
+            e.preventDefault();
+            $('#csv').prop('disabled', true);
+            $("#csvForm span.errorMsg").empty();
+            $('#csvForm .calert').hide();
+
+            $('#checkForm .overlay').show();
+            $('#checkForm .loading-img').show();
+
+            $.ajax({
+                url: "<?= site_url() ?>app/scrape/importcsv",
+                type: "POST",
+                data: new FormData(this), // Data sent to server, a set of key/value pairs representing form fields and values 
+                contentType: false, // The content type used when sending data to the server. Default is: "application/x-www-form-urlencoded"
+                cache: false, // To unable request pages to be cached
+                processData: false, // To send DOMDocument or non processed data file it is set to false (i.e. data should not be in the form of string)
+                success: function (data) {
+                    $('#checkForm .overlay').hide();
+                    $('#checkForm .loading-img').hide();
+                    if (data == "1") {
+                        $('#csvForm .calert').show();
+                        $('#csvForm span.errorMsg').css('color', 'green');
+                        $('#csvForm span.errorMsg').html("CSV File Successfully Imported..!");
+                        setTimeout(function () {
+                            $('#csvForm .close').trigger('click');
+                        }, 1000);
+                    } else {
+                        $('#csv').prop('disabled', false);
+                        $('#csvForm .calert').show();
+                        $('#csvForm span.errorMsg').css('color', 'red');
+                        $('#csvForm span.errorMsg').html(data);
+                    }
+                }
+            });
+            return false;
+        }));
+
+
         $('#Add').click(function (e) {
             var act = $(this).val();
             action(act);
