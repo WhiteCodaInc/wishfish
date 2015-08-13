@@ -19,6 +19,7 @@ class Scrape extends CI_Controller {
             header('location:' . site_url() . 'home');
         } else {
             $this->load->library('amazons3');
+            $this->load->library('csvimport');
             $this->config->load('aws');
             $this->userid = $this->session->userdata('u_userid');
             $this->bucket = $this->encryption->decode($this->config->item('bucket', 'aws'));
@@ -132,65 +133,43 @@ class Scrape extends CI_Controller {
         return $contents;
     }
 
-    function fb() {
-        /* Email to Search By */
-        $eml = 'sanjayvekariya18@gmail.com';
+    function importcsv() {
+        echo '<pre>';
+        print_r($_FILES);
 
-        /* This is where we are going to search.. */
-        $url = 'http://www.facebook.com/search.php?q=' . urlencode($eml);
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $url); //The URL to fetch. This can also be set when initializing a session with curl_init().
-        curl_setopt($curl, CURLOPT_HEADER, 0);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE); //TRUE to return the transfer as a string of the return value of curl_exec() instead of outputting it out directly.
-        curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 5); //The number of seconds to wait while trying to connect.	
-        curl_setopt($curl, CURLOPT_FOLLOWLOCATION, TRUE); //To follow any "Location: " header that the server sends as part of the HTTP header.
-        curl_setopt($curl, CURLOPT_AUTOREFERER, TRUE); //To automatically set the Referer: field in requests where it follows a Location: redirect.
-        curl_setopt($curl, CURLOPT_TIMEOUT, 10); //The maximum number of seconds to allow cURL functions to execute.
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE); //To stop cURL from verifying the peer's certificate.
-        curl_setopt($curl, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.2.13) Gecko/20101203 Firefox/3.6.13');
-        $response = curl_exec($curl);
-        echo $response . '<br>';
-        $response_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-        echo $response_code . '<br>';
-        curl_close($curl);
-        if ($response_code == 200) {
+        $config['upload_path'] = FCPATH . 'uploads/';
+        $config['allowed_types'] = '*';
+        $config['max_size'] = '1000';
 
-            /* Parse HTML Response */
-            $dom = new DOMDocument();
-            @$dom->loadHTML($response);
+        $this->load->library('upload', $config);
 
-            /* What we are looking for */
-            $match = 'http://www.facebook.com/profile.php?id=';
-
-            /* Facebook UIDs */
-            $uids = array();
-
-            /* Find all Anchors */
-            $anchors = $dom->getElementsByTagName('a');
-
-            foreach ($anchors as $anchor) {
-                echo $anchor . '<br>';
-                $href = $anchor->getAttribute('href');
-                if (stristr($href, $match) !== false) {
-                    $uids[] = str_replace($match, '', $href);
+        print_r($config);
+        // If upload failed, display error
+        if (!$this->upload->do_upload()) {
+            echo 'ERROR..!<br>';
+            print_r($this->upload->display_errors());
+        } else {
+            echo 'SUCCESS..!<br>';
+            $file_data = $this->upload->data();
+            print_r($file_data);
+            $file_path = FCPATH . 'uploads/' . $file_data['file_name'];
+            echo $file_path . '<br>';
+            if ($this->csvimport->get_array($file_path)) {
+                $csv_array = $this->csvimport->get_array($file_path);
+                foreach ($csv_array as $row) {
+                    $insert_data = array(
+                        'firstname' => $row['firstname'],
+                        'lastname' => $row['lastname'],
+                        'phone' => $row['phone'],
+                        'email' => $row['email'],
+                    );
+                    print_r($insert_data);
                 }
-            }
-
-            /* Found Facebook Users */
-            if (!empty($uids)) {
-
-                /* Return Unique UIDs */
-                $uids = array_unique($uids);
-
-                /* Show Results */
-                foreach ($uids as $uid) {
-
-                    /* Profile Picture */
-                    echo '<img src="http://graph.facebook.com/' . $uid . '/picture" alt="' . $uid . '" />';
-                }
-            }
+                unlink($file_path);
+                echo '<br>Csv Data Imported Succesfully<br>';
+            } else
+                echo "Error occured";
         }
-        //return $contents;
     }
 
 }

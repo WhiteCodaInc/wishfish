@@ -117,7 +117,7 @@
                         <form id="importForm" method="post">
                             <div class="row">
                                 <div class="col-md-8">
-                                    <label id="title">Facebook Username</label>
+                                    <label>Facebook Username</label>
                                     <input id="url"  type="text" class="form-control" required=""/>
                                 </div>
                                 <div class="col-md-2" style="margin-top: 5%;">
@@ -130,54 +130,6 @@
                             </div>
                         </form>
                     </div>
-                    <div class="overlay" style="display: none"></div>
-                    <div class="loading-img" style="display: none"></div>
-                </div>
-                <div class="box box-solid box-primary contactInfo" style="display: none">
-                    <div class="box-header">
-                        <h3 class="box-title">Contact Information</h3>
-                    </div>
-                    <div class="box-body">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <img style="width: 100px" class="picture" src="#" alt="profile picture" />
-                            </div>
-                            <div class="col-md-9">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <h4><label>First Name</label></h4>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <h4 class="fname"></h4>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <h4><label>Last Name</label></h4>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <h4 class="lname"></h4>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <button class="btn btn-success btn-sm save" type="button">
-                                            Add in Contact List
-                                        </button> 
-                                    </div>
-                                    <div class="col-md-4">
-                                        <button class="btn btn-danger btn-sm cancel" type="button">
-                                            Go Back
-                                        </button> 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div style="display: none;margin-top: 10px" class="alert alert-success alert-dismissable">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                            <span class="successMsg"></span> 
-                        </div>
-                    </div><!-- /.box-body -->
                     <div class="overlay" style="display: none"></div>
                     <div class="loading-img" style="display: none"></div>
                 </div>

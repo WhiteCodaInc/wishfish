@@ -98,6 +98,12 @@ $userid = $this->session->userdata('u_userid');
                                             <span>Import Google Contacts</span>
                                         </a>
                                     </li>
+                                    <li>
+                                        <a class="csv-contact" href="javascript:void(0)" data-toggle="modal" data-target="#csv-modal">
+                                            <i class="fa fa-users"></i>
+                                            <span>Import Contacts</span>
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                             <li>
@@ -260,8 +266,103 @@ $userid = $this->session->userdata('u_userid');
                         </div><!-- /.modal-content -->
                     </div><!-- /.modal-dialog -->
                 </div>
+
+                <!-------------------------------Import Model------------------------------------>
+                <div class="modal fade" id="csv-modal" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog" style="max-width: 400px">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title">Import From CSV File</h4>
+                            </div>
+                            <div class="modal-body">
+
+                                <div class="box box-primary csv">
+                                    <div class="box-body">
+                                        <form id="csvForm" enctype="multipart/form-data" method="post">
+                                            <div class="row">
+                                                <div class="col-md-8">
+                                                    <input name="upload"  type="file" class="form-control" />
+                                                </div>
+                                                <div class="col-md-2" style="margin-top: 5%;">
+                                                    <button class="btn btn-success" type="submit" id="csv">Upload</button>
+                                                </div>
+                                            </div>
+                                            <br/>
+                                            <div style="display: none;margin-top: 10px;background-color: #f2dede !important;border-color: #ebccd1;" class="alert alert-danger alert-dismissable">
+                                                <span style="color: #a94442;" class="errorMsg"></span> 
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="overlay" style="display: none"></div>
+                                    <div class="loading-img" style="display: none"></div>
+                                </div>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div>
+                <!------------------------------------------------------------------------>
+
                 <script type="text/javascript">
                     $(document).ready(function () {
+                        var isValid = true;
+                        $("#csvForm input:file").change(function () {
+                            $("#csvForm #error_message").empty(); // To remove the previous error message
+                            var file = this.files[0];
+                            var imagefile = file.type;
+                            console.log(imagefile);
+                            var match = ["application/vnd.ms-excel"];
+                            if (imagefile != match[0])
+                            {
+                                $('#csv-modal .csv .alert').show();
+                                $('#csv-modal span.errorMsg').text("Please Select A valid Image File!<br>Only csv type allowed.");
+                                isValid = false;
+                                return false;
+                            }
+                            else
+                            {
+                                var reader = new FileReader();
+//                                reader.onload = UploadImageIsLoaded;
+                                reader.readAsDataURL(this.files[0]);
+                                isValid = true;
+                            }
+                        });
+
+                        $('#csvForm').on('submit', (function (e) {
+                            if (!isValid)
+                                return false;
+
+                            $('#csv').prop('disabled', true);
+                            $('#csv-modal .alert').hide();
+
+                            $('#import-modal .parse .overlay').show();
+                            $('#import-modal .parse .loading-img').show();
+
+                            $.ajax({
+                                url: "<?= site_url() ?>app/scrape/importcsv",
+                                type: "POST",
+                                data: new FormData(this), // Data sent to server, a set of key/value pairs representing form fields and values 
+                                contentType: false, // The content type used when sending data to the server. Default is: "application/x-www-form-urlencoded"
+                                cache: false, // To unable request pages to be cached
+                                processData: false, // To send DOMDocument or non processed data file it is set to false (i.e. data should not be in the form of string)
+                                success: function (data) {
+                                    $('.parse .overlay').hide();
+                                    $('.parse .loading-img').hide();
+                                    if (data == "1") {
+                                        $('#csv-modal .parse .alert').show();
+                                        $('#csv-modal span.errorMsg').text("CSV File Successfully Imported..!");
+                                        setTimeout(function () {
+                                            $('#csv-modal .close').trigger('click');
+                                        }, 1000);
+                                    } else {
+                                        $('#csv').prop('disabled', false);
+                                        $('#csv-modal .parse .alert').show();
+                                        $('#csv-modal span.errorMsg').text("CSV File can not Imported..!Try Again..!");
+                                    }
+                                }
+                            });
+                        }));
+
                         $('ul.dropdown-menu > li').hover(function () {
                             if (!$(this).hasClass('dropdown-submenu')) {
                                 var cls = $(this).parent().parent().attr('class');
