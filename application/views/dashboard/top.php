@@ -280,11 +280,11 @@ $userid = $this->session->userdata('u_userid');
                                 <div class="box box-primary csv">
                                     <div class="box-body">
                                         <form id="csvForm" enctype="multipart/form-data" method="post">
-                                            <div class="row">
+                                            <div class="row" style="margin-top: 5%;">
                                                 <div class="col-md-8">
                                                     <input name="upload"  type="file" class="form-control" />
                                                 </div>
-                                                <div class="col-md-2" style="margin-top: 5%;">
+                                                <div class="col-md-2">
                                                     <button class="btn btn-success" type="submit" id="csv">Upload</button>
                                                 </div>
                                             </div>
