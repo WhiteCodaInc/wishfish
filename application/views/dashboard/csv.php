@@ -172,7 +172,6 @@
                     $('#csv').prop('disabled', false);
                     if (data == "0") {
                         $('#csv_form .calert').show();
-                        $('#csv_form span.errorMsg').html(data);
                     } else {
                         $('##csv-data-table table tbody').html(data);
                     }

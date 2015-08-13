@@ -34,46 +34,35 @@ class Csv extends CI_Controller {
     }
 
     function importcsv() {
-        echo '<pre>';
-        print_r($_FILES);
-
         $config['upload_path'] = FCPATH . 'uploads/';
         $config['allowed_types'] = '*';
         $config['max_size'] = '1000';
 
         $this->load->library('upload', $config);
 
-        print_r($config);
-        // If upload failed, display error
         if (!$this->upload->do_upload()) {
-            echo 'ERROR..!<br>';
-            print_r($this->upload->display_errors());
+            echo '0';
         } else {
-            echo 'SUCCESS..!<br>';
             $file_data = $this->upload->data();
-            print_r($file_data);
             $file_path = FCPATH . 'uploads/' . $file_data['file_name'];
-            echo $file_path . '<br>';
 
             $contacts = array();
 
             if ($this->csvimport->get_array($file_path)) {
                 $csv_array = $this->csvimport->get_array($file_path);
-                foreach ($csv_array as $key => $row) {
+                foreach ($csv_array as $row) {
                     $insert_data = array(
                         'name' => $row['firstname'],
                         'phone' => $row['phone'],
-                        'email' => $row['email'],
+                        'email' => $row['email']
                     );
                     $contacts[] = $insert_data;
-//                    print_r($insert_data);
                 }
                 $data['contacts'] = $contacts;
                 unlink($file_path);
                 $this->load->view('dashboard/csv-contacts', $data);
-                echo '<br>Csv Data Imported Succesfully<br>';
             } else
-                echo "Error occured";
+                echo "0";
         }
     }
 
