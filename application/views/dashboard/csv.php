@@ -171,6 +171,7 @@
                     $('#checkForm .loading-img').hide();
                     $('#csv').prop('disabled', false);
                     if (data == "0") {
+                        $('#csv_form span.errorMsg').html("Faild to upload CSV File..!Try Again..!");
                         $('#csv_form .calert').show();
                     } else {
                         $('##csv-data-table table tbody').html(data);
