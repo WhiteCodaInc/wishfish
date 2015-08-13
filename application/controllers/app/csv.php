@@ -65,7 +65,7 @@ class Csv extends CI_Controller {
                 if ($this->csvimport->get_array($file_path)) {
                     $csv_array = $this->csvimport->get_array($file_path);
 
-                    foreach ($csv_array as $key => $row) {
+                    foreach ($csv_array as $row) {
 
                         $set = array(
                             'fname' => ($row['first_name'] != "") ? $row['first_name'] : "",
@@ -75,12 +75,13 @@ class Csv extends CI_Controller {
                             'birthday' => ($row['birthdate'] != "") ? $row['birthdate'] : "",
                             'contact_avatar' => ($row['profile_pic_url'] != "") ? $row['profile_pic_url'] : "",
                         );
-                        $contacts[$key] = $set;
+                        print_r($set);
+                        $contacts[] = $set;
                     }
                     $data['contacts'] = $set;
                     unlink($file_path);
                     echo '<pre>';
-                    print_r($data);
+//                    print_r($data);
                     die();
                 } else {
                     $error = "Error occur during importing contact..! Try Again..!";
