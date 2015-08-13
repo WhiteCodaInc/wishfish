@@ -152,13 +152,12 @@
             if (!isValid)
                 return false;
             e.preventDefault();
-            $('#csv').prop('disabled', true);
+            $('#csv_form #csv').prop('disabled', true);
             $("#csv_form span.errorMsg").empty();
             $('#csv_form .calert').hide();
 
             $('#checkForm .overlay').show();
             $('#checkForm .loading-img').show();
-
             $.ajax({
                 url: "<?= site_url() ?>app/csv/importcsv",
                 type: "POST",
@@ -169,12 +168,12 @@
                 success: function (data) {
                     $('#checkForm .overlay').hide();
                     $('#checkForm .loading-img').hide();
-                    $('#csv').prop('disabled', false);
+                    $('#csv_form #csv').prop('disabled', false);
                     if (data == "0") {
                         $('#csv_form span.errorMsg').html("Faild to upload CSV File..!Try Again..!");
                         $('#csv_form .calert').show();
                     } else {
-                        $('##csv-data-table table tbody').html(data);
+                        $('#csv-data-table table tbody').html(data);
                     }
                 }
             });
