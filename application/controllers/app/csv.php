@@ -21,7 +21,7 @@ class Csv extends CI_Controller {
         } elseif (!$this->wi_authex->isActivePlan()) {
             header('location:' . site_url() . 'app/upgrade');
         } else {
-            $this->load->model('dashboard/m_csv', 'csv');
+//            $this->load->model('dashboard/m_csv', 'csv');
         }
     }
 
