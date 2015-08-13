@@ -46,6 +46,9 @@
                                                 <span style="color: red" class="errorMsg"></span>
                                             </div>
                                         </div>
+                                        <div class="col-md-2">
+                                            <a href="<?= FCPATH ?>/example.csv" target="_blank">Download Sample File</a> 
+                                        </div>
                                     </div>
                                 </form>
                             </div>
