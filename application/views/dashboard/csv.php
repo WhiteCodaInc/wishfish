@@ -2,6 +2,9 @@
     #csv-data-table tr td,#csv-data-table tr th{
         text-align: center;
     }
+    .dataTables_wrapper > div.row:first-child{
+        display: none
+    }
 </style>
 <!-- Right side column. Contains the navbar and content of the page -->
 <aside class="right-side">
@@ -11,12 +14,16 @@
             CSV Contacts
         </h1>
         <button style="margin-left: 10px" value="Add" class="btn btn-success" id="Add" type="button" >Add Selected Contacts</button>
-        <div style="float:right;width: 25%;">
-            <div style="float: left;padding: 8px;width: 20%;"><label>Search:</label></div>
-            <div style="float: left;width: 78%;">
-                <input class="form-control" type="text" id="searchbox" style="float: left;">
-            </div>
-        </div>    
+        <div class="search" style="float:right;width: 25%">
+            <select id="page_length" class="form-control" style="float: left;width: 30%">
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+                <option value="200">200</option>
+                <option value="-1" selected="">All</option>
+            </select>
+            <input class="form-control" type="text" id="searchbox" placeholder="Search" style="float: left;width: 70%">
+        </div>   
     </section>
     <!-- Main content -->
     <section class="content">
@@ -116,6 +123,13 @@
         });
         $("#searchbox").on("keyup search input paste cut", function () {
             oTable.fnFilter(this.value);
+        });
+        $('#page_length').change(function () {
+            var length = parseInt($(this).val());
+            console.log(length);
+            var oSettings = oTable.fnSettings();
+            oSettings._iDisplayLength = length;
+            oTable.fnPageChange("first");
         });
     });
 </script>
