@@ -29,7 +29,7 @@
     <section class="content">
         <div class="row">
             <div class="col-xs-12">
-                <div class="box box-primary" >
+                <div class="box box-primary csv-contact" >
                     <div class="box-body table-responsive" id="data-panel">
                         <div class="row">
                             <div class="col-xs-12"  style="margin: 2% 0;">
@@ -153,8 +153,8 @@
             $("#csv_form span.errorMsg").empty();
             $('#csv_form .calert').hide();
 
-            $('#checkForm .overlay').show();
-            $('#checkForm .loading-img').show();
+            $('.csv-contact .overlay').show();
+            $('.csv-contact .loading-img').show();
             $.ajax({
                 url: "<?= site_url() ?>app/csv/importcsv",
                 type: "POST",
@@ -163,8 +163,8 @@
                 cache: false, // To unable request pages to be cached
                 processData: false, // To send DOMDocument or non processed data file it is set to false (i.e. data should not be in the form of string)
                 success: function (data) {
-                    $('#checkForm .overlay').hide();
-                    $('#checkForm .loading-img').hide();
+                    $('.csv-contact .overlay').hide();
+                    $('.csv-contact .loading-img').hide();
                     $('#csv_form #csv').prop('disabled', false);
                     if (data == "0") {
                         $('#csv_form span.errorMsg').html("Faild to upload CSV File..!Try Again..!");
