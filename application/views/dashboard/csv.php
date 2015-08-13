@@ -98,7 +98,7 @@
                                                 <input type="hidden" name="email[<?= $key ?>]" value="<?= $value['email'] ?>" />
                                             </td>
                                             <td>
-                                                <?= ($value['phone'] != "") ? $value['phone'] : 'N/A' ?>
+                                                <?= ($value['phone'] != "") ? "+1" . $value['phone'] : 'N/A' ?>
                                                 <input type="hidden" name="phone[<?= $key ?>]" value="<?= $value['phone'] ?>" />
                                             </td>
                                             <td>

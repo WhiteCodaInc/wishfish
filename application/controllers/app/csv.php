@@ -103,7 +103,7 @@ class Csv extends CI_Controller {
                     'user_id' => $this->userid,
                     'fname' => ($post['fname'][$value] != "") ? $post['fname'][$value] : NULL,
                     'lname' => ($post['lname'][$value] != "") ? $post['lname'][$value] : NULL,
-                    'phone' => ($post['phone'][$value] != "") ? $post['phone'][$value] : NULL,
+                    'phone' => ($post['phone'][$value] != "") ? "+1" . $post['phone'][$value] : NULL,
                     'email' => ($post['email'][$value] != "") ? $post['email'][$value] : NULL,
                 );
 
