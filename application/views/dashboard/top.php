@@ -276,7 +276,6 @@ $userid = $this->session->userdata('u_userid');
                                 <h4 class="modal-title">Import From CSV File</h4>
                             </div>
                             <div class="modal-body">
-
                                 <div class="box box-primary csv">
                                     <div class="box-body">
                                         <form id="csvForm" enctype="multipart/form-data" method="post">
@@ -329,6 +328,7 @@ $userid = $this->session->userdata('u_userid');
                         $('#csvForm').on('submit', (function (e) {
                             if (!isValid)
                                 return false;
+                            e.preventDefault();
                             $('#csv').prop('disabled', true);
                             $('#csv-modal .alert').hide();
 
