@@ -351,7 +351,7 @@ $userid = $this->session->userdata('u_userid');
                                     if (data == "1") {
                                         $('#csv-modal .csv .alert').show();
                                         $('#csv-modal span.errorMsg').css('color', 'green');
-                                        $('#csv-modal span.errorMsg').text("CSV File Successfully Imported..!");
+                                        $('#csv-modal span.errorMsg').html("CSV File Successfully Imported..!");
                                         setTimeout(function () {
                                             $('#csv-modal .close').trigger('click');
                                         }, 1000);
@@ -359,7 +359,7 @@ $userid = $this->session->userdata('u_userid');
                                         $('#csv').prop('disabled', false);
                                         $('#csv-modal .csv .alert').show();
                                         $('#csv-modal span.errorMsg').css('color', 'red');
-                                        $('#csv-modal span.errorMsg').text(data);
+                                        $('#csv-modal span.errorMsg').html(data);
                                     }
                                 }
                             });
