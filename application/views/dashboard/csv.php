@@ -38,15 +38,17 @@
                             <form id="csvForm" enctype="multipart/form-data" method="post">
                                 <div class="row" style="margin-top: 5%;">
                                     <div class="col-md-8">
-                                        <input name="upload"  type="file" class="form-control" />
+                                        <div class="col-md-8">
+                                            <input name="upload"  type="file" class="form-control" />
+                                        </div>
+                                        <div class="col-md-2">
+                                            <button class="btn btn-success" type="submit" id="csv">Upload</button>
+                                        </div>
                                     </div>
-                                    <div class="col-md-2">
-                                        <button class="btn btn-success" type="submit" id="csv">Upload</button>
+                                    <br/>
+                                    <div style="display: none;margin-top: 10px;" class="calert">
+                                        <span class="errorMsg"></span>
                                     </div>
-                                </div>
-                                <br/>
-                                <div style="display: none;margin-top: 10px;" class="calert">
-                                    <span class="errorMsg"></span>
                                 </div>
                             </form>
                         </div>
