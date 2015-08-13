@@ -136,7 +136,7 @@ class Scrape extends CI_Controller {
     function importcsv() {
         echo '<pre>';
         print_r($_FILES);
-        die();
+//        die();
         $config['upload_path'] = FCPATH . 'uploads/';
         $config['allowed_types'] = '*';
         $config['max_size'] = '1000';
