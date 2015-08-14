@@ -90,10 +90,8 @@
                                 <?php } ?>
                             <?php endif; ?>
                             <div class="row">
-                                <div class="col-md-1">
+                                <div class="col-md-12">
                                     <button id="save" type="submit" class="btn btn-primary">Save</button>
-                                </div>
-                                <div class="col-md-2">
                                     <button id="preview" type="button" data-toggle="modal" data-target="#video-preview"  class="btn btn-info">
                                         <i class="fa fa-eye"></i>
                                         Preview
