@@ -214,7 +214,7 @@ switch ($msg) {
             $('#checkForm').submit();
         }
 
-        $('.video-preview').click(function () {
+        $('.preview').click(function () {
             var mediaid = $(this).val();
             $.ajax({
                 type: 'POST',
