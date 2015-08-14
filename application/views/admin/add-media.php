@@ -89,20 +89,21 @@
                                     </div>
                                 <?php } ?>
                             <?php endif; ?>
-                            <div class="box-footer" style="display: none">
-                                <div class="row">
-                                    <div class="col-md-1">
-                                        <button id="publish" type="submit" class="btn btn-primary">Publish</button>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <button id="preview" type="button" data-toggle="modal" data-target="#video-preview"  class="btn btn-info">
-                                            <i class="fa fa-eye"></i>
-                                            Preview
-                                        </button>
-                                    </div>
+                        </div>
+                        <div class="box-footer" style="display: none">
+                            <div class="row">
+                                <div class="col-md-1">
+                                    <button id="publish" type="submit" class="btn btn-primary">Publish</button>
+                                </div>
+                                <div class="col-md-2">
+                                    <button id="preview" type="button" data-toggle="modal" data-target="#video-preview"  class="btn btn-info">
+                                        <i class="fa fa-eye"></i>
+                                        Preview
+                                    </button>
                                 </div>
                             </div>
                         </div>
+
                         <?php if (isset($media)): ?>
                             <input type="hidden" name="mediaid" value="<?= $media->media_id ?>" />
                         <?php endif; ?>
