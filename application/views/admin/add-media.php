@@ -90,7 +90,7 @@
                                 <?php } ?>
                             <?php endif; ?>
                         </div>
-                        <div class="box-footer" style="display: none">
+                        <div class="box-footer">
                             <div class="row">
                                 <div class="col-md-1">
                                     <button id="publish" type="submit" class="btn btn-primary">Publish</button>
