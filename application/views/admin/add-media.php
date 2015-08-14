@@ -116,6 +116,7 @@
         });
 
         $('#mediaForm').submit(function () {
+            $('button.save').prop('disabled', true);
             $('.media .overlay').show();
             $('.media .loading-img').show();
         });
