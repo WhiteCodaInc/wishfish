@@ -56,7 +56,7 @@
                             <?php if (isset($media) && ($media->path != NULL)): ?>
                                 <?php if ($media->type == "picture") { ?>
                                     <?php
-                                    $img_src = "http://mikhailkuznetsov.s3.amazonaws.com/wish-fish/media/" . $media->path;
+                                    $img_src = "http://mikhailkuznetsov.s3.amazonaws.com/" . $media->path;
                                     ?>
                                     <div class="row">
                                         <div class="col-md-4">
@@ -72,7 +72,7 @@
                                             <script type='text/javascript' src='https://d2f058tgxz31a7.cloudfront.net/video_setting/jwplayer.js'></script>
                                             <script type="text/javascript">
                                                 jwplayer('mediaplayer').setup({
-                                                    file: 'rtmp://s12e6wqr7fb3zu.cloudfront.net/cfx/st/wish-fish/media/<?= $media->path ?>',
+                                                    file: 'rtmp://s12e6wqr7fb3zu.cloudfront.net/cfx/st/<?= $media->path ?>',
                                                     width: "340",
                                                     height: "238"
                                                 });

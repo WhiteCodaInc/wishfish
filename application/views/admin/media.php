@@ -62,7 +62,7 @@
                                                         </button>
                                                         <input type="hidden" name="path" value="<?= $value->path ?>" />
                                                     <?php } elseif ($value->type == "picture") { ?>
-                                                        <img alt="<?= $value->name ?>" src="https://s3-us-west-2.amazonaws.com/mikhailkuznetsov/wish-fish/media/<?= $value->path ?>" style="width:100px" />
+                                                        <img alt="<?= $value->name ?>" src="https://s3-us-west-2.amazonaws.com/mikhailkuznetsov/<?= $value->path ?>" style="width:100px" />
                                                     <?php } else if ($value->type == "audio") { ?>
                                                         <button type="button"  value="<?= $value->media_id ?>" class="btn btn-success btn-xs">
                                                             <i class="fa fa-eye"></i>
@@ -149,7 +149,7 @@
     </div>
 </div>
 
-<!--https://s3-us-west-2.amazonaws.com/mikhailkuznetsov/wish-fish/media/{picture/audio/video}/crossingthechasm.jpg-->
+<!--https://s3-us-west-2.amazonaws.com/mikhailkuznetsov/crossingthechasm.jpg-->
 
 <!-- /.modal -->
 <?php $msg = $this->input->get('msg'); ?>

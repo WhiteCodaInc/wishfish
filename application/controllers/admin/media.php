@@ -60,7 +60,7 @@ class Media extends CI_Controller {
     function updateMedia() {
         $post = $this->input->post();
         $msg = $this->objmedia->updateMedia($post);
-        header('location:' . site_url() . 'admin/media?msg=' . $msg);
+        header('location:' . site_url() . 'admin/media?msg=U');
     }
 
     function action() {
@@ -68,7 +68,7 @@ class Media extends CI_Controller {
         if ($type == "Delete") {
             $msg = $this->objmedia->setAction($type);
             if ($msg) {
-                header('location:' . site_url() . 'admin/media?msg=' . $msg);
+                header('location:' . site_url() . 'admin/media?msg=D');
             } else {
                 header('location:' . site_url() . 'admin/media');
             }
@@ -79,38 +79,6 @@ class Media extends CI_Controller {
         $mid = $this->input->post('mediaid');
         $data['media'] = $this->objmedia->getMedia($mid);
         $this->load->view('admin/media-preview', $data);
-    }
-
-    //--------------------------Upload Video----------------------------------//
-    function video() {
-        $data['video'] = $this->objmedia->getVideos();
-        $this->load->view('admin/admin_header');
-        $this->load->view('admin/admin_top');
-        $this->load->view('admin/admin_navbar');
-        $this->load->view('admin/video', $data);
-        $this->load->view('admin/admin_footer');
-    }
-
-    function upload_video() {
-        $this->load->view('admin/admin_header');
-        $this->load->view('admin/admin_top');
-        $this->load->view('admin/admin_navbar');
-        $this->load->view('admin/upload-video');
-        $this->load->view('admin/admin_footer');
-    }
-
-    function upload() {
-        $post = $this->input->post();
-        $this->objmedia->upload($post);
-        header('location:' . site_url() . 'admin/media/video?msg=I');
-    }
-
-    function deleteVideo() {
-        $type = $this->input->post('actionType');
-        if ($type == "Delete") {
-            $this->objmedia->deleteVideo();
-        }
-        header('location:' . site_url() . 'admin/media/video?msg=D');
     }
 
 }
