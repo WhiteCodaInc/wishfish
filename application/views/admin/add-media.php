@@ -108,6 +108,9 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+<?php if (isset($media)): ?>
+            $('select[name="type"]').val("<?= $media->type ?>");
+<?php endif; ?>
         $('button.save').click(function () {
             $(this).prop('disabled', true);
             $('.media .overlay').show();
