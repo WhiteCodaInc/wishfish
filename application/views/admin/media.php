@@ -141,7 +141,7 @@
             </div>
             <div class="modal-body">
                 <div class="row m-bot15">                        
-                    <div id="view" class="col-md-12"></div>
+                    <div id="view" class="col-md-12" style="text-align: center"></div>
                 </div>
                 <div class="modal-footer clearfix">
                     <button type="button" id="n_discard" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
