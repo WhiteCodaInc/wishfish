@@ -19,9 +19,8 @@
                     </div><!-- /.box-header -->
                     <?php $method = (isset($media)) ? "updateMedia" : "createMedia" ?>
                     <!-- form start -->
-
                     <div class="box-body">
-                        <form role="form" action="<?= site_url() ?>admin/media/<?= $method ?>" method="post" enctype="multipart/form-data">
+                        <form id="mediaForm" role="form" action="<?= site_url() ?>admin/media/<?= $method ?>" method="post" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
@@ -113,9 +112,12 @@
 <?php endif; ?>
         $('button.save').click(function () {
             $(this).prop('disabled', true);
+            $('#save').trigger('click');
+        });
+
+        $('#mediaForm').submit(function () {
             $('.media .overlay').show();
             $('.media .loading-img').show();
-            $('#save').trigger('click');
         });
     });
 </script>
