@@ -19,8 +19,9 @@
                     </div><!-- /.box-header -->
                     <?php $method = (isset($media)) ? "updateMedia" : "createMedia" ?>
                     <!-- form start -->
-                    <form role="form" action="<?= site_url() ?>admin/media/<?= $method ?>" method="post" enctype="multipart/form-data">
-                        <div class="box-body">
+
+                    <div class="box-body">
+                        <form role="form" action="<?= site_url() ?>admin/media/<?= $method ?>" method="post" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
@@ -90,13 +91,13 @@
                                     <button id="save" type="submit" class="btn btn-primary">Save</button>
                                 </div>
                             </div>
-                        </div>
-                        <div class="overlay" style="display: none"></div>
-                        <div class="loading-img" style="display: none"></div>
-                        <?php if (isset($media)): ?>
-                            <input type="hidden" name="mediaid" value="<?= $media->media_id ?>" />
-                        <?php endif; ?>
-                    </form>
+                            <?php if (isset($media)): ?>
+                                <input type="hidden" name="mediaid" value="<?= $media->media_id ?>" />
+                            <?php endif; ?>
+                        </form>
+                    </div>
+                    <div class="overlay" style="display: none"></div>
+                    <div class="loading-img" style="display: none"></div>
                 </div><!-- /.box -->
             </div><!--/.col (left) -->
             <!-- right column -->
