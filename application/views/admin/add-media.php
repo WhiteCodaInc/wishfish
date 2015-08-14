@@ -108,6 +108,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $('button.save').click(function () {
+            $(this).prop('disabled', true);
             $('.media .overlay').show();
             $('.media .loading-img').show();
             $('#save').trigger('click');
