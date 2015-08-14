@@ -45,7 +45,7 @@ class Media extends CI_Controller {
     function createMedia() {
         $post = $this->input->post();
         $msg = $this->objmedia->createMedia($post);
-        header('location:' . site_url() . 'admin/media?msg=' . $msg);
+        header('location:' . site_url() . 'admin/media?msg=I');
     }
 
     function editMedia($mid) {
