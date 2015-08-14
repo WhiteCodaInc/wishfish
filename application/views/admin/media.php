@@ -68,7 +68,7 @@
                                                     <?php } else if ($value->type == "audio") { ?>
                                                         <button type="button"  value="<?= $value->media_id ?>" class="btn btn-success btn-xs">
                                                             <i class="fa fa-eye"></i>
-                                                            Watch Video
+                                                            Play
                                                         </button>
                                                         <input type="hidden" name="path" value="<?= $value->path ?>" />
                                                     <?php } ?>
@@ -224,11 +224,11 @@ switch ($msg) {
             $('.modal-title').text(name);
             $('#video').trigger('click');
         });
-        $('.preview').click(function () {
+        $('.view-video').click(function () {
             var mediaid = $(this).val();
             $.ajax({
                 type: 'POST',
-                data: {blogid: mediaid},
+                data: {mediaid: mediaid},
                 url: "<?= site_url() ?>admin/media/getMedia",
                 success: function (data, textStatus, jqXHR) {
                     $('#view').html(data);
