@@ -218,7 +218,7 @@ switch ($msg) {
         $('a#img').click(function () {
             $img = $(this).children('img').clone();
             $img.removeAttr('style');
-            $('#video-view').html($img);
+            $('#view').html($img);
             $('#video').trigger('click');
         });
         $('.preview').click(function () {
@@ -228,7 +228,7 @@ switch ($msg) {
                 data: {blogid: mediaid},
                 url: "<?= site_url() ?>admin/media/getMedia",
                 success: function (data, textStatus, jqXHR) {
-                    $('#video-view').html(data);
+                    $('#view').html(data);
                     $('#video').trigger('click');
                 }
             });
