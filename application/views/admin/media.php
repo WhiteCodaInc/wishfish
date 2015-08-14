@@ -101,7 +101,7 @@
                                                     <i class="fa fa-eye"></i>
                                                     Link
                                                 </button>
-                                                <a href="<?= site_url() ?>admin/cms/editMedia/<?= $value->media_id ?>" class="btn bg-navy btn-xs">
+                                                <a href="<?= site_url() ?>admin/media/editMedia/<?= $value->media_id ?>" class="btn bg-navy btn-xs">
                                                     <i class="fa fa-edit"></i>
                                                     Edit
                                                 </a>
