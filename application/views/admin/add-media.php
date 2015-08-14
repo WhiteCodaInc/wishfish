@@ -4,7 +4,7 @@
         <h1 style="display: none">
             <?= (isset($media)) ? "Edit Existing Media" : "Add New Midea" ?>
         </h1>
-        <button class="save btn btn-primary">Publish</button>
+        <button class="save btn btn-primary">Save</button>
         <button id="preview" type="button" data-toggle="modal" data-target="#video-preview"  class="default btn btn-info">
             <i class="fa fa-eye"></i>
             Preview
