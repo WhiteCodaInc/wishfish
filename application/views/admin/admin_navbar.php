@@ -254,16 +254,16 @@ $img_src = ($avatar != "") ?
                         <span>Web Pages</span>
                     </a>
                     <ul class="treeview-menu">
-<!--                        <li>
-                            <a href="<?= site_url() ?>admin/pages/getTerm">
-                                <i class="fa fa-angle-double-right"></i> <span>Terms Of Services</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?= site_url() ?>admin/pages/getCommercialTerm">
-                                <i class="fa fa-angle-double-right"></i> <span>Commercial Terms</span>
-                            </a>
-                        </li>-->
+                        <!--                        <li>
+                                                    <a href="<?= site_url() ?>admin/pages/getTerm">
+                                                        <i class="fa fa-angle-double-right"></i> <span>Terms Of Services</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="<?= site_url() ?>admin/pages/getCommercialTerm">
+                                                        <i class="fa fa-angle-double-right"></i> <span>Commercial Terms</span>
+                                                    </a>
+                                                </li>-->
                         <li>
                             <a href="<?= site_url() ?>admin/sections/">
                                 <i class="fa fa-angle-double-right"></i> <span>Homepage Section</span>
@@ -325,9 +325,14 @@ $img_src = ($avatar != "") ?
                         <i class="fa fa-angle-double-right"></i> <span>Offer Builder</span>
                     </a>
                 </li>
-				<li class="" id="19">
+                <li class="" id="19">
                     <a href="<?= site_url() ?>page-builder/" target="_blank">
                         <i class="fa fa-angle-double-right"></i> <span>Page Builder</span>
+                    </a>
+                </li>
+                <li class="" id="20">
+                    <a href="<?= site_url() ?>admin/media/">
+                        <i class="fa fa-angle-double-right"></i> <span>Media Library</span>
                     </a>
                 </li>
             </ul>
