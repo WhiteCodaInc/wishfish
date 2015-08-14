@@ -91,7 +91,7 @@
                                                 }
                                                 ?>
                                             </td>
-                                            <td><?= $value->name ?></td>
+                                            <td class="name"><?= $value->name ?></td>
                                             <td>
                                                 <button type="button"  value="<?= $value->media_id ?>" class="btn btn-info btn-xs html">
                                                     <i class="fa fa-eye"></i>
@@ -137,7 +137,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title"><i class="fa fa-envelope-o"></i></h4>
+                <h4 class="modal-title"></h4>
             </div>
             <div class="modal-body">
                 <div class="row m-bot15">                        
@@ -216,9 +216,12 @@ switch ($msg) {
             $('#checkForm').submit();
         }
         $('a#img').click(function () {
+            var mediaid = $(this).parents('tr').attr('id');
+            var name = $('tr#' + mediaid).find('td.name').text();
             $img = $(this).children('img').clone();
             $img.removeAttr('style');
             $('#view').html($img);
+            $('.modal-title').text(name);
             $('#video').trigger('click');
         });
         $('.preview').click(function () {
