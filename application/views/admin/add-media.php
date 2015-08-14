@@ -91,7 +91,7 @@
                             <?php endif; ?>
                             <div class="row">
                                 <div class="col-md-1">
-                                    <button id="publish" type="submit" class="btn btn-primary">Publish</button>
+                                    <button id="save" type="submit" class="btn btn-primary">Save</button>
                                 </div>
                                 <div class="col-md-2">
                                     <button id="preview" type="button" data-toggle="modal" data-target="#video-preview"  class="btn btn-info">
