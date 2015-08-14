@@ -56,9 +56,9 @@
                                     $img_src = "http://mikhailkuznetsov.s3.amazonaws.com/" . $media->path;
                                     ?>
                                     <div class="row">
-                                        <div class="col-md-4">
+                                        <div class="col-md-12">
                                             <div class="form-group">
-                                                <img style="width: 340px;height: 238px" src="<?= $img_src ?>" alt="<?= $media->name ?>" />
+                                                <img src="<?= $img_src ?>" alt="<?= $media->name ?>" />
                                             </div>
                                         </div>
                                     </div>
