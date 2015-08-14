@@ -80,7 +80,7 @@ class M_media extends CI_Model {
         return $msg;
     }
 
-    function uploadImage($file, $set, $mediaid) {
+    function uploadMedia($file, $set, $mediaid) {
 
         $flag = TRUE;
 
