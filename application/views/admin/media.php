@@ -62,7 +62,9 @@
                                                         </button>
                                                         <input type="hidden" name="path" value="<?= $value->path ?>" />
                                                     <?php } elseif ($value->type == "picture") { ?>
-                                                        <img alt="<?= $value->name ?>" src="https://s3-us-west-2.amazonaws.com/mikhailkuznetsov/<?= $value->path ?>" style="width:100px" />
+                                                        <a id="img" href="javascript:void(0)" >
+                                                            <img alt="<?= $value->name ?>" src="https://s3-us-west-2.amazonaws.com/mikhailkuznetsov/<?= $value->path ?>" style="width:100px" />
+                                                        </a>
                                                     <?php } else if ($value->type == "audio") { ?>
                                                         <button type="button"  value="<?= $value->media_id ?>" class="btn btn-success btn-xs">
                                                             <i class="fa fa-eye"></i>
@@ -139,7 +141,7 @@
             </div>
             <div class="modal-body">
                 <div class="row m-bot15">                        
-                    <div id="video-view" class="col-md-12"></div>
+                    <div id="view" class="col-md-12"></div>
                 </div>
                 <div class="modal-footer clearfix">
                     <button type="button" id="n_discard" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
@@ -213,7 +215,12 @@ switch ($msg) {
             $('#checkForm').attr('action', "<?= site_url() ?>admin/media/action");
             $('#checkForm').submit();
         }
-
+        $('a#img').click(function () {
+            $img = $(this).children('img').clone();
+            $img.removeAttr('style');
+            $('#video-view').html($img);
+            $('#video').trigger('click');
+        });
         $('.preview').click(function () {
             var mediaid = $(this).val();
             $.ajax({
