@@ -13,7 +13,7 @@
             <!-- left column -->
             <div class="col-md-12">
                 <!-- general form elements -->
-                <div class="box box-primary">
+                <div class="box box-primary media">
                     <div class="box-header">
                         <h3 class="box-title"><?= (isset($media)) ? $media->name : "New Media" ?></h3>
                     </div><!-- /.box-header -->
@@ -91,6 +91,8 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="overlay" style="display: none"></div>
+                        <div class="loading-img" style="display: none"></div>
                         <?php if (isset($media)): ?>
                             <input type="hidden" name="mediaid" value="<?= $media->media_id ?>" />
                         <?php endif; ?>
@@ -106,6 +108,8 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $('button.save').click(function () {
+            $('.media .overlay').show();
+            $('.media .loading-img').show();
             $('#save').trigger('click');
         });
     });
