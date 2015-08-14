@@ -42,7 +42,8 @@ class M_media extends CI_Model {
         if (!empty($_FILES) && $_FILES['upload']['error'] == 0) {
             $msg = $this->uploadMedia($_FILES, $set, $insertid);
             if ($msg) {
-                $data['path'] = $msg;
+                $data['path'] = $msg['path'];
+                $data['extension'] = $msg['ext'];
                 $this->db->update('media_library', $data, array('media_id' => $insertid));
             }
         }
@@ -56,7 +57,8 @@ class M_media extends CI_Model {
         if (!empty($_FILES) && $_FILES['upload']['error'] == 0) {
             $msg = $this->uploadMedia($_FILES, $set, $mediaid);
             if ($msg) {
-                $set['path'] = $msg;
+                $set['path'] = $msg['path'];
+                $set['extension'] = $msg['ext'];
             }
         }
         $this->db->update('media_library', $set, array('media_id' => $mediaid));
@@ -83,7 +85,7 @@ class M_media extends CI_Model {
     function uploadMedia($file, $set, $mediaid) {
 
         $flag = TRUE;
-
+        $data = array();
         $valid_image = array("jpg", "png", "gif", "bmp", "jpeg", "PNG", "JPG", "JPEG", "GIF", "BMP");
         $valid_video = array("3gp", "ivf", "swf", "mkv", "avi", "3gp2", "mpeg", "vob", "wmv", "mp4", "mpg", "flv", "mpeg4");
         $valid_audio = array("mp3");
@@ -108,7 +110,9 @@ class M_media extends CI_Model {
         if ($flag) {
             $this->s3->setAuth($this->accessKey, $this->secretKey);
             if ($this->s3->putObjectFile($file['upload']['tmp_name'], $this->bucket, $fname, "public-read")) {
-                return $fname;
+                $data['path'] = $fname;
+                $data['ext'] = $ext[1];
+                return $data;
             } else {
                 return TRUE;
             }
