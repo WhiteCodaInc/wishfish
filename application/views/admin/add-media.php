@@ -79,7 +79,9 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <img style="width: 340px;height: 238px" src="<?= $img_src ?>" alt="<?= $media->name ?>" />
+                                                <audio controls>
+                                                    <source src="https://d2f058tgxz31a7.cloudfront.net/<?= $media->path ?>" type="audio/mpeg">
+                                                </audio>
                                             </div>
                                         </div>
                                     </div>
