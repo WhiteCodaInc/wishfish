@@ -66,25 +66,10 @@
                                                             <img alt="<?= $value->name ?>" src="https://s3-us-west-2.amazonaws.com/mikhailkuznetsov/<?= $value->path ?>" style="width:100px" />
                                                         </a>
                                                     <?php } else if ($value->type == "audio") { ?>
-            <!--                                                        <button type="button"  value="<?= $value->media_id ?>" class="btn btn-success btn-xs">
+                                                        <button type="button"  value="<?= $value->media_id ?>" class="btn btn-success btn-xs view-audio">
                                                             <i class="fa fa-eye"></i>
                                                             Play
                                                         </button>
-                                                        <input type="hidden" name="path" value="<?= $value->path ?>" />-->
-                                                        <div id="mediaplayer"></div>
-
-                                                        <script type="text/javascript">
-                                                            jwplayer('mediaplayer').setup({
-                                                                file: 'rtmp://s12e6wqr7fb3zu.cloudfront.net/cfx/st/<?= $value->path ?>',
-            //                                                                type: 'html5',
-                                                                'width': '300',
-                                                                'height': '200',
-            //                                                                config: {
-            //                                                                    'file': 'https://s3-us-west-2.amazonaws.com/mikhailkuznetsov/<?= $value->path ?>',
-            //                                                                    'provider': 'sound'
-            //                                                                }
-                                                            });
-                                                        </script>
                                                     <?php } ?>
                                                 <?php else : ?>
                                                     N/A
@@ -281,7 +266,7 @@ switch ($msg) {
 
         });
 
-        $('.view-video').click(function () {
+        $('.view-video,.view-audio').click(function () {
             var mediaid = $(this).val();
             var name = $('tr#' + mediaid).find('td.name').text();
             $.ajax({
