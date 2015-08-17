@@ -141,7 +141,19 @@
             </div>
             <div class="modal-body">
                 <div class="row m-bot15">                        
-                    <div id="view" class="col-md-12" style="text-align: center"></div>
+                    <div id="view" class="col-md-12" style="text-align: center">
+                        <code>
+                            <div id='mediaplayer'></div>
+                            <script type='text/javascript' src='https://d2f058tgxz31a7.cloudfront.net/video_setting/jwplayer.js'></script>
+                            <script type="text/javascript">
+                                jwplayer('mediaplayer').setup({
+                                    file: 'rtmp://s12e6wqr7fb3zu.cloudfront.net/cfx/st/<?= $media->path ?>',
+                                    width: "340",
+                                    height: "238"
+                                });
+                            </script>
+                        </code>
+                    </div>
                 </div>
                 <div class="modal-footer clearfix">
                     <button type="button" id="n_discard" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
