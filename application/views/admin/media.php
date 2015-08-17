@@ -230,8 +230,10 @@ switch ($msg) {
             $img = $('tr#' + mediaid).find('img');
             $img.removeAttr('style');
             $('#view').append("<textarea class='form-control'></textarea>");
-            $('#view textarea').text("<img alt='" + $img.attr('alt') + "' src='" + $img.attr('src') + "'");
+            $('#view textarea').text("<img alt='" + $img.attr('alt') + "' src='" + $img.attr('src') + "' />");
             $('.modal-title').text(name);
+            $('#view textarea').focus();
+            $('#view textarea').select();
             $('#video').trigger('click');
         });
         $('.view-video').click(function () {
