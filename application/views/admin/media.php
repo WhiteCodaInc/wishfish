@@ -229,8 +229,8 @@ switch ($msg) {
             var name = $('tr#' + mediaid).find('td.name').text();
             $img = $('tr#' + mediaid).find('img');
             $img.removeAttr('style');
-            $('#view').append("<textarea></textarea>");
-            $('#view textarea').text("<img alt=" + $img.attr('alt') + " src=" + $img.attr('src') + "");
+            $('#view').append("<textarea class='form-control'></textarea>");
+            $('#view textarea').text("<img alt='" + $img.attr('alt') + "' src='" + $img.attr('src') + "'");
             $('.modal-title').text(name);
             $('#video').trigger('click');
         });
