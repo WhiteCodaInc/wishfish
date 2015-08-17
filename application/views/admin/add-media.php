@@ -69,7 +69,6 @@
                                             <script type="text/javascript">
                                                 jwplayer('mediaplayer').setup({
                                                     file: 'rtmp://s12e6wqr7fb3zu.cloudfront.net/cfx/st/<?= $media->path ?>',
-                                                    type: 'html5',
                                                     width: "340",
                                                     height: "238"
                                                 });
