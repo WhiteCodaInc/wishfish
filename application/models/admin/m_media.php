@@ -30,6 +30,23 @@ class M_media extends CI_Model {
         return $query->result();
     }
 
+    function searchResult() {
+        $post = $this->input->post();
+        $name = $post['name_search'];
+        $from = $post['from_search'];
+        $to = $post['to_search'];
+        $type = $post['type_search'];
+
+        ($name != "") ? $this->db->like('name', $name) : '';
+        ($from != "") ? $where['date >='] = $this->common->getMySqlDate($from, "mm-dd-yyyy") : '';
+        ($to != "") ? $where['date <='] = $this->common->getMySqlDate($to, "mm-dd-yyyy") : '';
+        ($type != "" && $type != "-1") ? $where['type'] = $type : '';
+
+        (isset($where) && is_array($where)) ? $this->db->where($where) : '';
+        $query = $this->db->get('media_library');
+        return $query->result();
+    }
+
     function getMedia($mid) {
         $this->db->where('media_id', $mid);
         $query = $this->db->get('media_library');

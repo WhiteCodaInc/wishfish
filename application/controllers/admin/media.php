@@ -34,6 +34,15 @@ class Media extends CI_Controller {
         $this->load->view('admin/admin_footer');
     }
 
+    function search() {
+        $data['media'] = $this->objmedia->searchResult();
+        $this->load->view('admin/admin_header');
+        $this->load->view('admin/admin_top');
+        $this->load->view('admin/admin_navbar');
+        $this->load->view('admin/media', $data);
+        $this->load->view('admin/admin_footer');
+    }
+
     function addMedia() {
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');

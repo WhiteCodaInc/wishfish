@@ -22,7 +22,50 @@
 
     <!-- Main content -->
     <section class="content">
-
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Primary box -->
+                <div class="box box-solid box-primary collapsed-box">
+                    <div class="box-header" data-widget="collapse"  style="cursor: pointer">
+                        <h3 class="box-title">Filterable Search</h3>
+                    </div>
+                    <div class="box-body" style="display: none">
+                        <form action="<?= site_url() ?>admin/media/search" method="post">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Date</label>
+                                    <div class="input-group input-large input-daterange" >
+                                        <input type="text" na class="form-control" name="from_search">
+                                        <span class="input-group-addon">To</span>
+                                        <input type="text" class="form-control" name="to_search">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Contact Group</label>
+                                    <select name="type_search" class="form-control m-bot15">
+                                        <option value="-1">--Select--</option>
+                                        <option value="audio">Audio</option>
+                                        <option value="picture">Picture</option>
+                                        <option value="Video">Video</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Media Name</label>
+                                    <input name="name_search" class="form-control" placeholder="Media Name" type="text">
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <input type="submit" name="search" id="search" value="Search" class="btn btn-success" />
+                                    <input type="reset" value="Reset"  class="btn btn-danger"/>
+                                </div>
+                            </div>
+                        </form>
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+            </div>
+        </div>
         <div class="row">
             <div class="col-xs-12">
                 <div class="box" >
@@ -181,6 +224,12 @@ switch ($msg) {
 <?php if ($msg): ?>
         alertify.<?= $t ?>("<?= $m ?>");
 <?php endif; ?>
+    $('.input-daterange').datepicker({
+        format: "mm-dd-yyyy",
+        todayBtn: "linked",
+        autoclose: true,
+        todayHighlight: true
+    });
 </script>
 
 <!-- DATA TABES SCRIPT -->
