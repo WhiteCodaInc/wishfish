@@ -93,11 +93,11 @@
                                             </td>
                                             <td class="name"><?= $value->name ?></td>
                                             <td>
-                                                <button type="button"  value="<?= $value->media_id ?>" class="btn btn-info btn-xs html">
+                                                <button type="button"  value="<?= $value->type ?>" class="btn btn-info btn-xs html">
                                                     <i class="fa fa-eye"></i>
                                                     Html Code
                                                 </button>
-                                                <button type="button"  value="<?= $value->media_id ?>" class="btn btn-primary btn-xs link">
+                                                <button type="button"  value="<?= $value->type ?>" class="btn btn-primary btn-xs link">
                                                     <i class="fa fa-eye"></i>
                                                     Link
                                                 </button>
@@ -130,7 +130,7 @@
 </aside><!-- /.right-side -->
 </div><!-- ./wrapper -->
 
-<span style="display: none" id="video" data-toggle="modal" data-target="#video-preview"></span>
+<span style="display: none" id="video_preview" data-toggle="modal" data-target="#video-preview"></span>
 <!-- NEW EVENT MODAL -->
 <div class="modal fade" id="video-preview" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
@@ -224,21 +224,41 @@ switch ($msg) {
             $img.removeAttr('style');
             $('#view').html($img);
             $('.modal-title').text(name);
-            $('#video').trigger('click');
+            $('#video_preview').trigger('click');
         });
-        
-        $('button.video').click(function () {
+
+        $('button.html').click(function () {
+            var type = $(this).val();
             var mediaid = $(this).parents('tr').attr('id');
             var name = $('tr#' + mediaid).find('td.name').text();
-
-            $('#view').html("<textarea class='form-control'></textarea>");
-            $('#view textarea').text();
             $('.modal-title').text(name);
-            $('#video').trigger('click');
-            setTimeout(function () {
-                $('#view textarea').focus();
-                $('#view textarea').select();
-            }, 500);
+            switch (type) {
+                case "audio":
+                    break;
+                case "picture":
+                    $img = $('tr#' + mediaid).find('img');
+                    $img.removeAttr('style');
+                    $('#view').html("<textarea class='form-control'></textarea>");
+                    $('#view textarea').text("<img alt='" + $img.attr('alt') + "' src='" + $img.attr('src') + "' />");
+
+                    setTimeout(function () {
+                        $('#view textarea').focus();
+                        $('#view textarea').select();
+                    }, 500);
+                    break;
+                case "video":
+                    $.ajax({
+                        type: 'POST',
+                        data: {mediaid: mediaid},
+                        url: "<?= site_url() ?>admin/media/getMedia",
+                        success: function (data, textStatus, jqXHR) {
+                            $('.modal-title').text(name);
+                            $('#view').html("<pre>" + data + "<pre>");
+                        }
+                    });
+                    break;
+            }
+            $('#video_preview').trigger('click');
         });
 
         $('.view-video').click(function () {
@@ -251,7 +271,7 @@ switch ($msg) {
                 success: function (data, textStatus, jqXHR) {
                     $('.modal-title').text(name);
                     $('#view').html(data);
-                    $('#video').trigger('click');
+                    $('#video_preview').trigger('click');
                 }
             });
         });
