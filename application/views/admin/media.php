@@ -93,7 +93,7 @@
                                             </td>
                                             <td class="name"><?= $value->name ?></td>
                                             <td>
-                                                <button type="button"  value="<?= $value->media_id ?>" class="btn btn-info btn-xs html">
+                                                <button type="button"  value="<?= $value->media_id ?>" id='<?= $value->type ?>' class="btn btn-info btn-xs html">
                                                     <i class="fa fa-eye"></i>
                                                     Html Code
                                                 </button>
@@ -142,7 +142,7 @@
             <div class="modal-body">
                 <div class="row m-bot15">                        
                     <div id="view" class="col-md-12" style="text-align: center">
-                        
+
                     </div>
                 </div>
                 <div class="modal-footer clearfix">
@@ -227,13 +227,32 @@ switch ($msg) {
             $('#video').trigger('click');
         });
         $('button.html').click(function () {
+            var type = $(this).attr('id');
             var mediaid = $(this).parents('tr').attr('id');
             var name = $('tr#' + mediaid).find('td.name').text();
-            $img = $('tr#' + mediaid).find('img');
-            $img.removeAttr('style');
-            $('#view').html("<textarea class='form-control'></textarea>");
-            $('#view textarea').text("<img alt='" + $img.attr('alt') + "' src='" + $img.attr('src') + "' />");
             $('.modal-title').text(name);
+            switch (type) {
+                case "audio":
+                    break;
+                case "picture":
+                    $img = $('tr#' + mediaid).find('img');
+                    $img.removeAttr('style');
+                    $('#view').html("<textarea class='form-control'></textarea>");
+                    $('#view textarea').text("<img alt='" + $img.attr('alt') + "' src='" + $img.attr('src') + "' />");
+                    break;
+                case "video":
+                    $.ajax({
+                        type: 'POST',
+                        data: {mediaid: mediaid},
+                        url: "<?= site_url() ?>admin/media/getMedia",
+                        success: function (data, textStatus, jqXHR) {
+                            $('.modal-title').text(name);
+                            $('#view').html("<pre>" + data + "<pre>");
+                            $('#video').trigger('click');
+                        }
+                    });
+                    break;
+            }
             $('#video').trigger('click');
             setTimeout(function () {
                 $('#view textarea').focus();
