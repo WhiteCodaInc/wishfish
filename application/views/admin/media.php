@@ -142,17 +142,7 @@
             <div class="modal-body">
                 <div class="row m-bot15">                        
                     <div id="view" class="col-md-12" style="text-align: center">
-                        <code>
-                            <div id='mediaplayer'></div>
-                            <script type='text/javascript' src='https://d2f058tgxz31a7.cloudfront.net/video_setting/jwplayer.js'></script>
-                            <script type="text/javascript">
-                                jwplayer('mediaplayer').setup({
-                                    file: 'rtmp://s12e6wqr7fb3zu.cloudfront.net/cfx/st/',
-                                    width: "340",
-                                    height: "238"
-                                });
-                            </script>
-                        </code>
+                        
                     </div>
                 </div>
                 <div class="modal-footer clearfix">
@@ -250,13 +240,30 @@ switch ($msg) {
                 $('#view textarea').select();
             }, 500);
         });
+
+        $('button.video').click(function () {
+            var mediaid = $(this).parents('tr').attr('id');
+            var name = $('tr#' + mediaid).find('td.name').text();
+
+            $('#view').html("<textarea class='form-control'></textarea>");
+            $('#view textarea').text();
+            $('.modal-title').text(name);
+            $('#video').trigger('click');
+            setTimeout(function () {
+                $('#view textarea').focus();
+                $('#view textarea').select();
+            }, 500);
+        });
+
         $('.view-video').click(function () {
             var mediaid = $(this).val();
+            var name = $('tr#' + mediaid).find('td.name').text();
             $.ajax({
                 type: 'POST',
                 data: {mediaid: mediaid},
                 url: "<?= site_url() ?>admin/media/getMedia",
                 success: function (data, textStatus, jqXHR) {
+                    $('.modal-title').text(name);
                     $('#view').html(data);
                     $('#video').trigger('click');
                 }
