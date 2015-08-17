@@ -226,40 +226,7 @@ switch ($msg) {
             $('.modal-title').text(name);
             $('#video').trigger('click');
         });
-        $('button.html').click(function () {
-            var type = $(this).attr('id');
-            var mediaid = $(this).parents('tr').attr('id');
-            var name = $('tr#' + mediaid).find('td.name').text();
-            $('.modal-title').text(name);
-            switch (type) {
-                case "audio":
-                    break;
-                case "picture":
-                    $img = $('tr#' + mediaid).find('img');
-                    $img.removeAttr('style');
-                    $('#view').html("<textarea class='form-control'></textarea>");
-                    $('#view textarea').text("<img alt='" + $img.attr('alt') + "' src='" + $img.attr('src') + "' />");
-
-                    setTimeout(function () {
-                        $('#view textarea').focus();
-                        $('#view textarea').select();
-                    }, 500);
-                    break;
-                case "video":
-                    $.ajax({
-                        type: 'POST',
-                        data: {mediaid: mediaid},
-                        url: "<?= site_url() ?>admin/media/getMedia",
-                        success: function (data, textStatus, jqXHR) {
-                            $('.modal-title').text(name);
-                            $('#view').html("<pre>" + data + "<pre>");
-                            $('#video').trigger('click');
-                        }
-                    });
-                    break;
-            }
-            $('#video').trigger('click');
-        });
+        
 
         $('button.video').click(function () {
             var mediaid = $(this).parents('tr').attr('id');
