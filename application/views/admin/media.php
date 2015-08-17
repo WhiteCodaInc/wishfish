@@ -239,6 +239,11 @@ switch ($msg) {
                     $img.removeAttr('style');
                     $('#view').html("<textarea class='form-control'></textarea>");
                     $('#view textarea').text("<img alt='" + $img.attr('alt') + "' src='" + $img.attr('src') + "' />");
+
+                    setTimeout(function () {
+                        $('#view textarea').focus();
+                        $('#view textarea').select();
+                    }, 500);
                     break;
                 case "video":
                     $.ajax({
@@ -254,10 +259,6 @@ switch ($msg) {
                     break;
             }
             $('#video').trigger('click');
-            setTimeout(function () {
-                $('#view textarea').focus();
-                $('#view textarea').select();
-            }, 500);
         });
 
         $('button.video').click(function () {
