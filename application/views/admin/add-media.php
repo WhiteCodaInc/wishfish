@@ -68,7 +68,8 @@
                                             <script type='text/javascript' src='https://d2f058tgxz31a7.cloudfront.net/video_setting/jwplayer.js'></script>
                                             <script type="text/javascript">
                                                 jwplayer('mediaplayer').setup({
-                                                    file: 'rtmp://s12e6wqr7fb3zu.cloudfront.net/cfx/st/<?= $media->path ?>',
+        //                                                    file: 'rtmp://s12e6wqr7fb3zu.cloudfront.net/cfx/st/<?= $media->path ?>',
+                                                    file: 'rtmp://s12e6wqr7fb3zu.cloudfront.net/cfx/st/video/video_14.mp4',
                                                     width: "340",
                                                     height: "238"
                                                 });
