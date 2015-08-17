@@ -97,7 +97,7 @@
                                                     <i class="fa fa-eye"></i>
                                                     Html Code
                                                 </button>
-                                                <button type="button"  value="<?= $value->media_id ?>" class="btn btn-primary btn-xs html">
+                                                <button type="button"  value="<?= $value->media_id ?>" class="btn btn-primary btn-xs link">
                                                     <i class="fa fa-eye"></i>
                                                     Link
                                                 </button>
@@ -221,6 +221,16 @@ switch ($msg) {
             $img = $(this).children('img').clone();
             $img.removeAttr('style');
             $('#view').html($img);
+            $('.modal-title').text(name);
+            $('#video').trigger('click');
+        });
+        $('buttin.html').click(function () {
+            var mediaid = $(this).parents('tr').attr('id');
+            var name = $('tr#' + mediaid).find('td.name').text();
+            $img = $('tr#' + mediaid).find('img');
+            $img.removeAttr('style');
+            $('#view').append("<textarea></textarea>");
+            $('#view textarea').text($img);
             $('.modal-title').text(name);
             $('#video').trigger('click');
         });
