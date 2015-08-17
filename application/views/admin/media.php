@@ -238,11 +238,11 @@ switch ($msg) {
                 case "picture":
                     $img = $('tr#' + mediaid).find('img');
                     $img.removeAttr('style');
-                    $('#view').html("<textarea class='form-control' rows='9'></textarea>");
+                    $('#view').html("<textarea class='form-control'></textarea>");
                     $('#view textarea').text("<img alt='" + $img.attr('alt') + "' src='" + $img.attr('src') + "' />");
                     break;
                 case "video":
-                    $('#view').html("<textarea class='form-control'></textarea>");
+                    $('#view').html("<textarea class='form-control'  rows='9'></textarea>");
                     $.ajax({
                         type: 'POST',
                         data: {mediaid: mediaid},
