@@ -255,7 +255,7 @@ switch ($msg) {
             $('input[name="name_search"]').val("<?= $data['name_search'] ?>");
             $('input[name="from_search"]').val("<?= $data['from_search'] ?>");
             $('input[name="to_search"]').val("<?= $data['to_search'] ?>");
-            $('select[name="type_search"]').val("<?= $data['plan_search'] ?>");
+            $('select[name="type_search"]').val("<?= $data['type_search'] ?>");
 <?php } ?>
 
         $('button.delete').click(function (e) {
