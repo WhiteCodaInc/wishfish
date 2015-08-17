@@ -233,8 +233,10 @@ switch ($msg) {
             $('#view textarea').text("<img alt='" + $img.attr('alt') + "' src='" + $img.attr('src') + "' />");
             $('.modal-title').text(name);
             $('#video').trigger('click');
-            $('#view textarea').focus();
-            $('#view textarea').select();
+            setTimeout(function () {
+                $('#view textarea').focus();
+                $('#view textarea').select();
+            }, 500);
         });
         $('.view-video').click(function () {
             var mediaid = $(this).val();
