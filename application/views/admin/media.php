@@ -76,10 +76,10 @@
                                                         <script type="text/javascript">
                                                             jwplayer('mediaplayer_<?= $value->media_id ?>').setup({
                                                                 file: 'rtmp://s12e6wqr7fb3zu.cloudfront.net/cfx/st/<?= $value->path ?>',
-                                                                type: 'html5',
+            //                                                                type: 'html5',
                                                                 'width': '300',
                                                                 'height': '20',
-//                                                                config: {
+            //                                                                config: {
             //                                                                    'file': 'https://s3-us-west-2.amazonaws.com/mikhailkuznetsov/<?= $value->path ?>',
             //                                                                    'provider': 'sound'
             //                                                                }
