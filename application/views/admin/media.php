@@ -1,4 +1,4 @@
-<!-- Right side column. Contains the navbar and content of the page -->
+<script type='text/javascript' src='https://d2f058tgxz31a7.cloudfront.net/video_setting/jwplayer.js'></script>
 <style type="text/css">
     #media-data-table tr td,#media-data-table tr th{
         text-align: center;
@@ -199,7 +199,7 @@ switch ($msg) {
 <!-- DATA TABES SCRIPT -->
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
-<script type='text/javascript' src='https://d2f058tgxz31a7.cloudfront.net/video_setting/jwplayer.js'></script>
+
 <!-- page script -->
 <script type="text/javascript">
     $(function () {
