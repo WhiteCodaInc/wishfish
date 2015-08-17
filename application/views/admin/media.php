@@ -235,9 +235,9 @@ switch ($msg) {
             $('.modal-title').text(name);
             switch (type) {
                 case "audio":
-                    $('#view').html("<textarea class='form-control'></textarea>");
+                    $('#view').html("<textarea class='form-control' rows='9'></textarea>");
                     $audio = $('tr#' + mediaid + ' td:nth-child(3)').html();
-                    $('#view textarea').text($audio.trim());
+                    $('#view textarea').text($audio.replace(/  +/g, ' '));
                     $('#video_preview').trigger('click');
                     break;
                 case "picture":
