@@ -3,6 +3,9 @@
     #media-data-table tr td,#media-data-table tr th{
         text-align: center;
     }
+    audio{
+        width: 45px !important;
+    }
 </style>
 <aside class="right-side">
     <!-- Content Header (Page header) -->
@@ -66,7 +69,7 @@
                                                             <img alt="<?= $value->name ?>" src="https://s3-us-west-2.amazonaws.com/mikhailkuznetsov/<?= $value->path ?>" style="width:100px" />
                                                         </a>
                                                     <?php } else if ($value->type == "audio") { ?>
-                                                        <audio controls style="width: 45px" class="view-audio">
+                                                        <audio controls>
                                                             <source src="https://s3-us-west-2.amazonaws.com/mikhailkuznetsov/<?= $value->path ?>" type="audio/mpeg">
                                                         </audio>
                                                     <?php } ?>
@@ -233,9 +236,8 @@ switch ($msg) {
             switch (type) {
                 case "audio":
                     $('#view').html("<textarea class='form-control'></textarea>");
-                    $audio = $('tr#' + mediaid).find('audio');
-                    $audio.removeAttr('style');
-                    $('#view textarea').text($audio.html());
+                    $audio = $('tr#' + mediaid + ' td:nth-child(3)').html();
+                    $('#view textarea').text($audio);
                     $('#video_preview').trigger('click');
                     break;
                 case "picture":
