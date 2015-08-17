@@ -66,10 +66,13 @@
                                                             <img alt="<?= $value->name ?>" src="https://s3-us-west-2.amazonaws.com/mikhailkuznetsov/<?= $value->path ?>" style="width:100px" />
                                                         </a>
                                                     <?php } else if ($value->type == "audio") { ?>
-                                                        <button type="button"  value="<?= $value->media_id ?>" class="btn btn-success btn-xs view-audio">
+            <!--                                                        <button type="button"  value="<?= $value->media_id ?>" class="btn btn-success btn-xs view-audio">
                                                             <i class="fa fa-eye"></i>
                                                             Play
-                                                        </button>
+                                                        </button>-->
+                                                        <audio controls>
+                                                            <source src="https://s3-us-west-2.amazonaws.com/mikhailkuznetsov/<?= $value->path ?>" type="audio/mpeg">
+                                                        </audio>
                                                     <?php } ?>
                                                 <?php else : ?>
                                                     N/A
@@ -233,6 +236,7 @@ switch ($msg) {
             $('.modal-title').text(name);
             switch (type) {
                 case "audio":
+                    $('#view').html("<textarea class='form-control'></textarea>");
                     break;
                 case "picture":
                     $img = $('tr#' + mediaid).find('img');
