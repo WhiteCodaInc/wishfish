@@ -201,6 +201,7 @@
 
 <!-- /.modal -->
 <?php $msg = $this->input->get('msg'); ?>
+<?php $data = $this->input->post(); ?>
 <?php
 switch ($msg) {
     case "I":
@@ -249,6 +250,14 @@ switch ($msg) {
 </script>
 <script type="text/javascript">
     $(document).ready(function () {
+
+<?php if (is_array($data)) { ?>
+            $('input[name="name_search"]').val("<?= $data['name_search'] ?>");
+            $('input[name="from_search"]').val("<?= $data['from_search'] ?>");
+            $('input[name="to_search"]').val("<?= $data['to_search'] ?>");
+            $('select[name="type_search"]').val("<?= $data['plan_search'] ?>");
+<?php } ?>
+
         $('button.delete').click(function (e) {
             var act = $(this).val();
             alertify.confirm("Are you sure you wish to delete Media(s)", function (e) {
