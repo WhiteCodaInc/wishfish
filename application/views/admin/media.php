@@ -235,10 +235,14 @@ switch ($msg) {
             $('.modal-title').text(name);
             switch (type) {
                 case "audio":
-                    $('#view').html("<textarea class='form-control' rows='9'></textarea>");
+                    $('#view').html("<textarea class='form-control' rows='5'></textarea>");
                     $audio = $('tr#' + mediaid + ' td:nth-child(3)').html();
-                    $('#view textarea').text($audio.replace(/  +/g, ' '));
+                    $('#view textarea').text(($audio.replace(/  +/g, ' ')).trim());
                     $('#video_preview').trigger('click');
+                    setTimeout(function () {
+                        $('#view textarea').focus();
+                        $('#view textarea').select();
+                    }, 500);
                     break;
                 case "picture":
                     $img = $('tr#' + mediaid).find('img');
