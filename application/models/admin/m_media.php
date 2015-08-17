@@ -38,8 +38,8 @@ class M_media extends CI_Model {
         $type = $post['type_search'];
 
         ($name != "") ? $this->db->like('name', $name) : '';
-        ($from != "") ? $where['date >='] = $this->common->getMySqlDate($from, "mm-dd-yyyy") : '';
-        ($to != "") ? $where['date <='] = $this->common->getMySqlDate($to, "mm-dd-yyyy") : '';
+        ($from != "") ? $where['DATE(date) >='] = $this->common->getMySqlDate($from, "mm-dd-yyyy") : '';
+        ($to != "") ? $where['DATE(date) <='] = $this->common->getMySqlDate($to, "mm-dd-yyyy") : '';
         ($type != "" && $type != "-1") ? $where['type'] = $type : '';
 
         (isset($where) && is_array($where)) ? $this->db->where($where) : '';
