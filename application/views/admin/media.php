@@ -71,14 +71,14 @@
                                                             Play
                                                         </button>
                                                         <input type="hidden" name="path" value="<?= $value->path ?>" />-->
-                                                        <div id='mediaplayer_<?= $value->media_id ?>'></div>
+                                                        <div id="<?= $value->media_id ?>_mediaplayer"></div>
 
                                                         <script type="text/javascript">
-                                                            jwplayer('mediaplayer_<?= $value->media_id ?>').setup({
+                                                            jwplayer('<?= $value->media_id ?>_mediaplayer').setup({
                                                                 file: 'rtmp://s12e6wqr7fb3zu.cloudfront.net/cfx/st/<?= $value->path ?>',
             //                                                                type: 'html5',
                                                                 'width': '300',
-                                                                'height': '20',
+                                                                'height': '200',
             //                                                                config: {
             //                                                                    'file': 'https://s3-us-west-2.amazonaws.com/mikhailkuznetsov/<?= $value->path ?>',
             //                                                                    'provider': 'sound'
