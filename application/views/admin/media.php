@@ -237,7 +237,7 @@ switch ($msg) {
                 case "audio":
                     $('#view').html("<textarea class='form-control'></textarea>");
                     $audio = $('tr#' + mediaid + ' td:nth-child(3)').html();
-                    $('#view textarea').text($audio);
+                    $('#view textarea').text($audio.trim());
                     $('#video_preview').trigger('click');
                     break;
                 case "picture":
