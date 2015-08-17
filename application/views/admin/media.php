@@ -227,7 +227,6 @@ switch ($msg) {
             $('#video').trigger('click');
         });
         
-
         $('button.video').click(function () {
             var mediaid = $(this).parents('tr').attr('id');
             var name = $('tr#' + mediaid).find('td.name').text();
