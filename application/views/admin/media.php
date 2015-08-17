@@ -183,7 +183,7 @@ switch ($msg) {
 <!-- DATA TABES SCRIPT -->
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
-<script type='text/javascript' src='https://d2f058tgxz31a7.cloudfront.net/video_setting/jwplayer.js'></script>
+<script type='text/javascript' src='https://d2f058tgxz31a7.cloudfront.net/wish-fish/media/video_setting/jwplayer.js'></script>
 <!-- page script -->
 <script type="text/javascript">
     $(function () {
