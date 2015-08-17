@@ -79,10 +79,10 @@
                                                                 type: 'html5',
                                                                 'width': '300',
                                                                 'height': '20',
-                                                                config: {
-                                                                    'file': 'https://s3-us-west-2.amazonaws.com/mikhailkuznetsov/<?= $value->path ?>',
-                                                                    'provider': 'sound'
-                                                                }
+//                                                                config: {
+            //                                                                    'file': 'https://s3-us-west-2.amazonaws.com/mikhailkuznetsov/<?= $value->path ?>',
+            //                                                                    'provider': 'sound'
+            //                                                                }
                                                             });
                                                         </script>
                                                     <?php } ?>
