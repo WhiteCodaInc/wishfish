@@ -63,14 +63,14 @@
                                                             <i class="fa fa-eye"></i>
                                                             Watch Video
                                                         </button>
-                                                        <input type="hidden" name="path" value="<?= $value->path ?>" />
+                                                        <input type="hidden" name="path" value="https://d2f058tgxz31a7.cloudfront.net/<?= $value->path ?>" />
                                                     <?php } elseif ($value->type == "picture") { ?>
                                                         <a id="img" href="javascript:void(0)" >
-                                                            <img alt="<?= $value->name ?>" src="https://s3-us-west-2.amazonaws.com/mikhailkuznetsov/<?= $value->path ?>" style="width:100px" />
+                                                            <img alt="<?= $value->name ?>" src="https://d2f058tgxz31a7.cloudfront.net/<?= $value->path ?>" style="width:100px" />
                                                         </a>
                                                     <?php } else if ($value->type == "audio") { ?>
                                                         <audio controls>
-                                                            <source src="https://s3-us-west-2.amazonaws.com/mikhailkuznetsov/<?= $value->path ?>" type="audio/mpeg">
+                                                            <source src="https://d2f058tgxz31a7.cloudfront.net/<?= $value->path ?>" type="audio/mpeg">
                                                         </audio>
                                                     <?php } ?>
                                                 <?php else : ?>
@@ -273,6 +273,32 @@ switch ($msg) {
                     break;
             }
 
+
+        });
+
+        $('button.link').click(function () {
+            var type = $(this).val();
+            var mediaid = $(this).parents('tr').attr('id');
+            var name = $('tr#' + mediaid).find('td.name').text();
+            $('.modal-title').text(name);
+            $('#view').html("<textarea class='form-control' rows='2'></textarea>");
+            switch (type) {
+                case "audio":
+                    $src = $('tr#' + mediaid).find('audio > source').attr('src');
+                    break;
+                case "picture":
+                    $src = $('tr#' + mediaid).find('img').attr('src');
+                    break;
+                case "video":
+                    $src = $('tr#' + mediaid).find('input[name="path"]').val();
+                    break;
+            }
+            $('#view textarea').text($src);
+            $('#video_preview').trigger('click');
+            setTimeout(function () {
+                $('#view textarea').focus();
+                $('#view textarea').select();
+            }, 500);
 
         });
 
