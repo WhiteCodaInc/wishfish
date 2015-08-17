@@ -93,7 +93,7 @@
                                             </td>
                                             <td class="name"><?= $value->name ?></td>
                                             <td>
-                                                <button type="button"  value="<?= $value->media_id ?>" id='<?= $value->type ?>' class="btn btn-info btn-xs html">
+                                                <button type="button"  value="<?= $value->media_id ?>" class="btn btn-info btn-xs html">
                                                     <i class="fa fa-eye"></i>
                                                     Html Code
                                                 </button>
