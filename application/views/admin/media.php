@@ -230,7 +230,7 @@ switch ($msg) {
             $img = $('tr#' + mediaid).find('img');
             $img.removeAttr('style');
             $('#view').append("<textarea></textarea>");
-            $('#view textarea').text($img);
+            $('#view textarea').text("<img alt=" + $img.attr('alt') + " src=" + $img.attr('src') + "");
             $('.modal-title').text(name);
             $('#video').trigger('click');
         });
