@@ -71,10 +71,10 @@
                                                             Play
                                                         </button>
                                                         <input type="hidden" name="path" value="<?= $value->path ?>" />-->
-                                                        <div id="<?= $value->media_id ?>_mediaplayer"></div>
+                                                        <div id="mediaplayer"></div>
 
                                                         <script type="text/javascript">
-                                                            jwplayer('<?= $value->media_id ?>_mediaplayer').setup({
+                                                            jwplayer('mediaplayer').setup({
                                                                 file: 'rtmp://s12e6wqr7fb3zu.cloudfront.net/cfx/st/<?= $value->path ?>',
             //                                                                type: 'html5',
                                                                 'width': '300',
