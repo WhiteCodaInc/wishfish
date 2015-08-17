@@ -240,6 +240,7 @@ switch ($msg) {
                     $img.removeAttr('style');
                     $('#view').html("<textarea class='form-control'></textarea>");
                     $('#view textarea').text("<img alt='" + $img.attr('alt') + "' src='" + $img.attr('src') + "' />");
+                    $('#video_preview').trigger('click');
                     break;
                 case "video":
                     $('#view').html("<textarea class='form-control'  rows='9'></textarea>");
@@ -249,6 +250,7 @@ switch ($msg) {
                         url: "<?= site_url() ?>admin/media/getMedia",
                         success: function (data, textStatus, jqXHR) {
                             $('#view textarea').text(data);
+                            $('#video_preview').trigger('click');
                         }
                     });
                     break;
@@ -257,7 +259,7 @@ switch ($msg) {
                 $('#view textarea').focus();
                 $('#view textarea').select();
             }, 500);
-            $('#video_preview').trigger('click');
+
         });
 
         $('.view-video').click(function () {
