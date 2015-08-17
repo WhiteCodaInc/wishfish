@@ -1,4 +1,3 @@
-<script type='text/javascript' src='https://d2f058tgxz31a7.cloudfront.net/video_setting/jwplayer.js'></script>
 <div class="row m-bot15">
     <div class="col-md-12">
         <h3><?= $media->name ?></h3>
