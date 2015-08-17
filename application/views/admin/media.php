@@ -70,7 +70,7 @@
                                                             <i class="fa fa-eye"></i>
                                                             Play
                                                         </button>-->
-                                                        <audio controls>
+                                                        <audio controls style="width: 45px">
                                                             <source src="https://s3-us-west-2.amazonaws.com/mikhailkuznetsov/<?= $value->path ?>" type="audio/mpeg">
                                                         </audio>
                                                     <?php } ?>
