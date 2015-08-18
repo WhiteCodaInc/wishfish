@@ -438,7 +438,7 @@
 <script type="text/javascript">
     $(document).ready(function (e) {
         $('#crop-modal .close').click(function () {
-            $('.imgareaselect-outer,.imgareaselect-border1,.imgareaselect-border2,imgareaselect-selection').hide();
+            $('.imgareaselect-outer,.imgareaselect-border1,.imgareaselect-border2,.imgareaselect-selection').hide();
         });
         $('a#calendar').click(function () {
             $('#full-calender').hide();
