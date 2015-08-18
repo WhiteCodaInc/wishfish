@@ -307,15 +307,15 @@
 
 <!-------------------------------Import Model------------------------------------>
 <div class="modal fade" id="crop-modal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" style="max-width: 400px">
+    <div class="modal-dialog" style="max-width: 800px">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title">Set your profile pic</h4>
             </div>
             <div class="modal-body">
-                <div class="row">
-                    <div class="col-lg-12" id="crop-section" style="display:none">
+                <div class="row" id="crop-section" style="display:none">
+                    <div class="col-lg-12">
                         <img src="" id="thumbnail" alt="Create Thumbnail" />
                         <div id="thumb_preview_holder">					
                             <img src=""  alt="Thumbnail Preview" id="thumb_preview" />
@@ -333,8 +333,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-12" id="uploader-section" style="text-align:center">
+                <div class="row" id="uploader-section">
+                    <div class="col-lg-12">
                         <div class="product_image">	
                             <img src="" class="thumbnails" />
                         </div>
