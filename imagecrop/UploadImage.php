@@ -180,7 +180,7 @@ class qqUploadedFileForm {
         $original_height = $dimension[1];
 
         /// setting the new widths
-        $new_width = 900;
+        $new_width = 400;
         // calculating the new heights and keep the ratio
         $new_height = ($new_width * $original_height) / $original_width;
 
@@ -188,7 +188,7 @@ class qqUploadedFileForm {
         $thumb_width = 156;
         $thumb_height = 156;
 
-        if ($original_width < 900) {
+        if ($original_width < 400) {
             $new_width = $original_width;
             $new_height = $original_height;
         }
