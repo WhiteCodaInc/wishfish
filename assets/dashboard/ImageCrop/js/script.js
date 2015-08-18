@@ -71,22 +71,23 @@ function createUploader() {
 }
 
 function load_original(filename) {
-    $('#thumbnail').attr('src', "https://wish-fish.com/uploads/" + filename);
-    $('#thumb_preview').attr('src', "https://wish-fish.com/uploads/" + filename);
-    $('#filename').attr('value', filename);
+    console.log("THUMBNAIL : " + "https://wish-fish.com/uploads/" + filename);
+    $('#crop-modal #thumbnail').attr('src', "https://wish-fish.com/uploads/" + filename);
+    $('#crop-modal #thumb_preview').attr('src', "https://wish-fish.com/uploads/" + filename);
+    $('#crop-modal #filename').attr('value', filename);
     if ($.browser.msie) {
-        $('#thumb_preview_holder').remove();
+        $('#crop-modal #thumb_preview_holder').remove();
     }
-    $('#crop-section').show();
-    $('#uploader-section').hide();
+    $('#crop-modal #crop-section').show();
+    $('#crop-modal #uploader-section').hide();
 }
 
 function preview(img, selection) {
-    var mythumb = $('#thumbnail');
+    var mythumb = $('#crop-modal #thumbnail');
     var scaleX = 156 / selection.width;
     var scaleY = 156 / selection.height;
 
-    $('#thumbnail + div > img').css({
+    $('#crop-modal #thumbnail + div > img').css({
         width: Math.round(scaleX * mythumb.outerWidth()) + 'px',
         height: Math.round(scaleY * mythumb.outerHeight()) + 'px',
         marginLeft: '-' + Math.round(scaleX * selection.x1) + 'px',
