@@ -437,7 +437,9 @@
 </script>
 <script type="text/javascript">
     $(document).ready(function (e) {
-
+        $('#crop-modal .close').click(function () {
+            $('.imgareaselect-outer,.imgareaselect-border1,.imgareaselect-border2').hide();
+        });
         $('a#calendar').click(function () {
             $('#full-calender').hide();
             $('#full-calender input[name="birthday"]').prop('disabled', true);
