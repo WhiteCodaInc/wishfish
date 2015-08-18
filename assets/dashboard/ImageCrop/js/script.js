@@ -18,7 +18,7 @@ $(document).ready(function () {
         else {
             $.ajax({
                 type: 'POST',
-                url: "https://wish-fish.com/imagecrop/crop_script.php",
+                url: "/home/wishfish/public_html/imagecrop/crop_script.php",
                 data: "filename=" + $('#filename').val() + "&x1=" + x1 + "&x2=" + x2 + "&y1=" + y1 + "&y2=" + y2 + "&w=" + w + "&h=" + h,
                 success: function (data) {
                     thumb.attr('src', 'https://wish-fish.com/uploads/thumb_' + $('#filename').val());
@@ -42,7 +42,7 @@ function createUploader() {
     var button = $('#upload');
     var uploader = new qq.FileUploaderBasic({
         button: document.getElementById('file-uploader'),
-        action: 'https://wish-fish.com/imagecrop/upload.php',
+        action: '/home/wishfish/public_html/imagecrop/upload.php',
         allowedExtensions: ['jpg', 'gif', 'png', 'jpeg'],
         onSubmit: function (id, fileName) {
             // change button text, when user selects file			

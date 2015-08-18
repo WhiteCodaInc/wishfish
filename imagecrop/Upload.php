@@ -358,6 +358,6 @@ $allowedExtensions = array();
 $sizeLimit = 2 * 1024 * 1024;
 
 $uploader = new qqFileUploader($allowedExtensions, $sizeLimit);
-$result = $uploader->handleUpload('https://wish-fish.com/uploads/');
+$result = $uploader->handleUpload('/home/wishfish/public_html/uploads/');
 // to pass data through iframe you will need to encode all html tags
 echo htmlspecialchars(json_encode($result), ENT_NOQUOTES);

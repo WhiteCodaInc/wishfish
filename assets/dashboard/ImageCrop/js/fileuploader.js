@@ -515,7 +515,7 @@ qq.FileUploader = function (o) {
                 '<span class="qq-upload-size"></span>' +
                 '<a class="qq-upload-cancel" href="#">Cancel</a>' +
                 '<span class="qq-upload-failed-text">Failed</span>' +
-        '</li>',
+                '</li>',
         classes: {
             // used to get elements from templates
             button: 'qq-upload-button',
@@ -883,7 +883,7 @@ qq.UploadButton.prototype = {
 qq.UploadHandlerAbstract = function (o) {
     this._options = {
         debug: false,
-        action: 'https://wish-fish.com/imagecrop/upload.php',
+        action: '/home/wishfish/public_html/imagecrop/upload.php',
         // maximum number of concurrent uploads        
         maxConnections: 999,
         onProgress: function (id, fileName, loaded, total) {
