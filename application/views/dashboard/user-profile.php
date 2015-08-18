@@ -63,14 +63,13 @@
                                         <input title="Add a photo so we can recognize you !" name="profile_pic"  type="file" id="profilePic" class="form-control" style="display: none" />
                                     </div>
                                     <div class="col-md-9">
-                                        <!--                                        <label for="profile pic">Profile Picture</label>
-                                        -->
-                                        <span id="error_message"></span><br/>
+                                        <span id="error_message"></span>
+                                        <a class="btn btn-success"  data-toggle="modal" data-target="#crop-modal">
+                                            Upload Profile Pic
+                                        </a>
+                                        <label>OR</label>
                                         <a style="cursor: pointer;" class="fb"  data-toggle="modal" data-target="#import-modal">
                                             Import From Facebook
-                                        </a>
-                                        <a style="cursor: pointer;"  data-toggle="modal" data-target="#crop-modal">
-                                            Upload
                                         </a>
                                     </div>
                                 </div>
