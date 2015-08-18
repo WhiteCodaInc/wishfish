@@ -25,7 +25,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Name</label>
-                                        <input value="<?= isset($media) ? $media->name : '' ?>" type="text" autofocus="autofocus" name="name" class="form-control" placeholder="Media Name" />
+                                        <input value="<?= isset($media) ? $media->name : '' ?>" type="text" autofocus="autofocus" name="name" class="form-control" placeholder="Media Name" required=""/>
                                     </div>
                                 </div>
                             </div>
@@ -45,7 +45,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Upload</label>
-                                        <input name="upload"  type="file" class="form-control" />
+                                        <input name="upload"  type="file" class="form-control"  required=""/>
                                     </div>
                                 </div>
                             </div>
