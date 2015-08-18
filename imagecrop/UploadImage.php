@@ -80,55 +80,59 @@ class qqUploadedFileXhr {
         $original_height = $this->image_height;
 
         $src = $this->image;
-        if ($original_width > 400)
-            return false;
-        // setting the new widths
-        $new_width = 900;
-        // calculating the new heights and keep the ratio
-        $new_height = ($new_width * $original_height) / $original_width;
+        if ($original_width > 400) {
+            return "Image width must be less than or equal to 400px..!";
+        } else {
+            // setting the new widths
+            $new_width = 900;
+            // calculating the new heights and keep the ratio
+            $new_height = ($new_width * $original_height) / $original_width;
 
-        // thumbnail (squared) size
-        $thumb_width = 156;
-        $thumb_height = 156;
+            // thumbnail (squared) size
+            $thumb_width = 156;
+            $thumb_height = 156;
 
-        if ($original_width < 900) {
-            $new_width = $original_width;
-            $new_height = $original_height;
+            if ($original_width < 900) {
+                $new_width = $original_width;
+                $new_height = $original_height;
+            }
+
+            $tmp_1 = imagecreatetruecolor($new_width, $new_height);
+
+            $tmp_square = imagecreatetruecolor($thumb_width, $thumb_height);
+
+            imagecopyresampled($tmp_1, $src, 0, 0, 0, 0, $new_width, $new_height, $original_width, $original_height);
+            imagecopyresampled($tmp_square, $src, 0, 0, 0, 0, $thumb_width, $thumb_height, $original_width, $original_height);
+
+            $filename = $this->image_name;
+            $upload_dir = $this->upload_dir;
+
+            $ext = strtolower(end(explode('.', $filename)));
+
+            switch ($ext) {
+                case 'jpg':
+                case 'jpeg':
+                    imagejpeg($tmp_1, $upload_dir . $filename, 100);
+                    imagejpeg($tmp_square, $upload_dir . 'thumb_' . $filename, 100);
+                    break;
+
+                case 'png':
+                    imagepng($tmp_1, $upload_dir . $filename);
+                    imagepng($tmp_square, $upload_dir . 'thumb_' . $filename);
+                    break;
+
+                case 'gif':
+                    imagegif($tmp_1, $upload_dir . $filename);
+                    imagegif($tmp_square, $upload_dir . 'thumb_' . $filename);
+                    break;
+            }
+
+            // we don't need those anymore
+            imagedestroy($tmp_1);
+            $msg = 'Could not save uploaded file.' .
+                    'The upload was cancelled, or server error encountered';
+            return (imagedestroy($tmp_square)) ? '1' : $msg;
         }
-
-        $tmp_1 = imagecreatetruecolor($new_width, $new_height);
-
-        $tmp_square = imagecreatetruecolor($thumb_width, $thumb_height);
-
-        imagecopyresampled($tmp_1, $src, 0, 0, 0, 0, $new_width, $new_height, $original_width, $original_height);
-        imagecopyresampled($tmp_square, $src, 0, 0, 0, 0, $thumb_width, $thumb_height, $original_width, $original_height);
-
-        $filename = $this->image_name;
-        $upload_dir = $this->upload_dir;
-
-        $ext = strtolower(end(explode('.', $filename)));
-
-        switch ($ext) {
-            case 'jpg':
-            case 'jpeg':
-                imagejpeg($tmp_1, $upload_dir . $filename, 100);
-                imagejpeg($tmp_square, $upload_dir . 'thumb_' . $filename, 100);
-                break;
-
-            case 'png':
-                imagepng($tmp_1, $upload_dir . $filename);
-                imagepng($tmp_square, $upload_dir . 'thumb_' . $filename);
-                break;
-
-            case 'gif':
-                imagegif($tmp_1, $upload_dir . $filename);
-                imagegif($tmp_square, $upload_dir . 'thumb_' . $filename);
-                break;
-        }
-
-        // we don't need those anymore
-        imagedestroy($tmp_1);
-        return imagedestroy($tmp_square);
     }
 
 }
@@ -219,12 +223,11 @@ class qqFileUploader {
                 $filename .= rand(10, 99);
             }
         }
-
-        if ($this->file->save($uploadDirectory . $filename . '.' . $ext)) {
+        $save = $this->file->save($uploadDirectory . $filename . '.' . $ext);
+        if ($save == '1') {
             return array('success' => true, 'filename' => $filename . '.' . $ext);
         } else {
-            return array('error' => 'Could not save uploaded file.' .
-                'The upload was cancelled, or server error encountered');
+            return array('error' => $save);
         }
     }
 
