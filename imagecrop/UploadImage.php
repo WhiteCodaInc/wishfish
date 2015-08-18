@@ -151,6 +151,7 @@ class qqFileUploader {
 
         if (isset($_GET['qqfile'])) {
             $this->file = new qqUploadedFileXhr();
+            
             die("qqfile");
         } elseif (isset($_FILES['qqfile'])) {
             $this->file = new qqUploadedFileForm();

@@ -32,6 +32,7 @@ class Upload extends CI_Controller {
         $sizeLimit = 2 * 1024 * 1024;
 
         $uploader = new qqFileUploader($allowedExtensions, $sizeLimit);
+        die($uploader);
         $result = $uploader->handleUpload(FCPATH . 'uploads/');
 // to pass data through iframe you will need to encode all html tags
         echo htmlspecialchars(json_encode($result), ENT_NOQUOTES);
