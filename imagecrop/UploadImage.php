@@ -17,7 +17,7 @@ class qqUploadedFileXhr {
     var $image_name;
 
     function load($image_path) {
-
+        die("load");
         $image_info = getimagesize($image_path);
         $this->image_type = $image_info[2];
         $this->image_width = $image_info[0];
@@ -39,6 +39,7 @@ class qqUploadedFileXhr {
     }
 
     function save($path) {
+        die("save");
         $input = fopen("php://input", "r");
         $this->temp = tmpfile();
         $realSize = stream_copy_to_stream($input, $this->temp);
@@ -74,6 +75,7 @@ class qqUploadedFileXhr {
     }
 
     function resize($path) {
+        die("resize");
         // first let's load the picture and get some info
         $this->load($path);
 
@@ -148,8 +150,8 @@ class qqFileUploader {
         $this->checkServerSettings();
 
         if (isset($_GET['qqfile'])) {
-            die("qqfile");
             $this->file = new qqUploadedFileXhr();
+            die("qqfile");
         } elseif (isset($_FILES['qqfile'])) {
             $this->file = new qqUploadedFileForm();
         } else {
