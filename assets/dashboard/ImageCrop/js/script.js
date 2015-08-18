@@ -82,9 +82,9 @@ function load_original(filename) {
     $('#crop-modal #thumbnail').attr('src', "https://wish-fish.com/uploads/" + filename);
     $('#crop-modal #thumb_preview').attr('src', "https://wish-fish.com/uploads/" + filename);
     $('#crop-modal #filename').attr('value', filename);
-    if ($.browser.msie) {
-        $('#crop-modal #thumb_preview_holder').remove();
-    }
+//    if ($.browser.msie) {
+//        $('#crop-modal #thumb_preview_holder').remove();
+//    }
     $('#crop-modal #crop-section').show();
     $('#crop-modal #uploader-section').hide();
 }
