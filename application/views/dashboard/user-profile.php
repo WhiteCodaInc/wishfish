@@ -68,6 +68,7 @@
                                         <a style="cursor: pointer;" class="fb"  data-toggle="modal" data-target="#import-modal">
                                             Import From Facebook
                                         </a>
+
                                     </div>
                                 </div>
                             </div>
@@ -301,249 +302,300 @@
     </div><!-- /.modal-dialog -->
 </div>
 <!------------------------------------------------------------------------>
-<?php $sortDt = substr($this->session->userdata('u_date_format'), 0, 5); ?>
-<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-<script type="text/javascript">
-    $(function () {
 
-        Stripe.setPublishableKey('<?= $gatewayInfo->publish_key ?>');
+<!-------------------------------Import Model------------------------------------>
+<div class="modal fade" id="crop-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" style="max-width: 400px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Set your profile pic</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12" id="crop-section" style="display:none">
+                        <img src="" id="thumbnail" alt="Create Thumbnail" />
+                        <div id="thumb_preview_holder">					
+                            <img src=""  alt="Thumbnail Preview" id="thumb_preview" />
+                        </div>
+                        <div>
+                            <input type="hidden" name="filename" value="" id="filename" />
+                            <input type="hidden" name="x1" value="" id="x1" />
+                            <input type="hidden" name="y1" value="" id="y1" />
+                            <input type="hidden" name="x2" value="" id="x2" />
+                            <input type="hidden" name="y2" value="" id="y2" />
+                            <input type="hidden" name="w" value="" id="w" />
+                            <input type="hidden" name="h" value="" id="h" /><br>
 
-//        console.log(hopscotch.getState());
+                            <input type="submit" class="btn btn-primary button" name="upload_thumbnail" value="Save Thumbnail" id="save_thumb" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12" id="uploader-section" style="text-align:center">
+                        <div class="product_image">	
+                            <img src="" class="thumbnails" />
+                        </div>
+                        <div id="file-uploader">
+                            <button id="upload" class="btn btn-success">
+                                <span class="upload">Change profile picture</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+    <!------------------------------------------------------------------------>
 
-        $('.default-date-picker').datepicker({
-            format: "<?= $this->session->userdata('u_date_format') ?>",
-            todayBtn: "linked",
-            autoclose: true,
-            todayHighlight: true
-        });
-        $('.default-date-picker1').datepicker({
-            format: "<?= $sortDt ?>",
-            todayBtn: "linked",
-            autoclose: true,
-            todayHighlight: true
-        });
-        $('select[name="timezones"]').addClass('form-control m-bot15');
-
-        $('select[name="timezones"] option').each(function () {
-            if ($(this).val() == "<?= $user->timezones ?>") {
-                $(this).prop('selected', true);
-            }
-        });
-        $('#date-format option').each(function () {
-            if ($(this).val() == "<?= $user->date_format ?>") {
-                $(this).prop('selected', true);
-            }
-        });
-        $('#type').change(function () {
-            var type = $(this).val();
-            if (type == "facebook") {
-                $('#title').text("Facebook Username");
-            } else if (type == "linkedin") {
-                $('#title').text("LinkedIn Profile Url");
-            } else if (type == "twitter") {
-                $('#title').text("Twitter Username");
-            } else {
-                $('#title').text("Url");
-            }
-        });
-    });
-    function reportError(msg) {
-        // Show the error in the form:
-        $('#error-msg').text(msg);
-        $('#error').show();
-        // re-enable the submit button:
-        $('#save-profile').prop('disabled', false);
-        return false;
-    }
-</script>
-<script type="text/javascript">
-    $(document).ready(function (e) {
-
-        $('a#calendar').click(function () {
-            $('#full-calender').hide();
-            $('#full-calender input[name="birthday"]').prop('disabled', true);
-            $('#custom-calender input:text').attr('name', 'birthday');
-            $('#custom-calender').show();
-        });
-
-        $('#profile-pic img').click(function () {
-            $('#profile-pic #profilePic').trigger('click');
-        });
-
-        $('#import').click(function () {
-            var fid = $('#fbid').val();
-            var url = "";
-            if (fid.trim() == "") {
-                $('.importMsg').text("Enter Facebook Id..!");
-            } else if (fid.trim() != "" && $.isNumeric(fid) && fid != "1") {
-                url = "https://graph.facebook.com/" + fid + "/picture?width=215&height=215";
-                $('#profile-pic img.img-circle').prop("src", url);
-                $('#fbid').val("");
-                $('.discard').trigger('click');
-                $('.importMsg').text("");
-                $('input[name="importUrl"]').val(url);
-            } else {
-                $('.importMsg').text("Enter Valid Facebook Id..!");
-            }
-        });
+    <script src="<?= base_url() ?>assets/dashboard/ImageCrop/js/fileuploader.js" type="text/javascript"></script>
+    <script src="<?= base_url() ?>assets/dashboard/ImageCrop/js/jquery.imgareaselect.min.js" type="text/javascript"></script>
+    <script src="<?= base_url() ?>assets/dashboard/ImageCrop/js/script.js" type="text/javascript"></script>
 
 
-        var cardForm;
-        var cardFlag;
-        if ($('#userForm .card_number').prop('readonly')) {
-            cardFlag = false;
-        } else {
-            var ccNum = $('#userForm').find('.card_number').val(),
-                    cvcNum = $('#userForm').find('.cvc').val(),
-                    expMonth = $('#userForm').find('.month').val(),
-                    expYear = $('#userForm').find('.year').val();
-            if (ccNum.trim() != "" || cvcNum.trim() != "" ||
-                    expMonth.trim() != "" || expYear.trim() != "") {
-                cardFlag = true;
-            } else {
-                cardFlag = false;
-            }
-        }
+    <?php $sortDt = substr($this->session->userdata('u_date_format'), 0, 5); ?>
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <script type="text/javascript">
+        $(function () {
 
-<?php if ($user->phone): ?>
-            $('select[name="code"]').val("<?= substr($user->phone, -strlen($user->phone), 2) ?>");
-<?php endif; ?>
+            Stripe.setPublishableKey('<?= $gatewayInfo->publish_key ?>');
 
-        $('#pay').click(function () {
-            $(this).prop('disabled', true);
-            $.ajax({
-                type: 'POST',
-                data: {item_name: "wishfish-personal", amount: "9.99"},
-                url: "<?= site_url() ?>app/pay",
-                success: function (answer) {
-                    window.location = answer;
+            //        console.log(hopscotch.getState());
+
+            $('.default-date-picker').datepicker({
+                format: "<?= $this->session->userdata('u_date_format') ?>",
+                todayBtn: "linked",
+                autoclose: true,
+                todayHighlight: true
+            });
+            $('.default-date-picker1').datepicker({
+                format: "<?= $sortDt ?>",
+                todayBtn: "linked",
+                autoclose: true,
+                todayHighlight: true
+            });
+            $('select[name="timezones"]').addClass('form-control m-bot15');
+
+            $('select[name="timezones"] option').each(function () {
+                if ($(this).val() == "<?= $user->timezones ?>") {
+                    $(this).prop('selected', true);
+                }
+            });
+            $('#date-format option').each(function () {
+                if ($(this).val() == "<?= $user->date_format ?>") {
+                    $(this).prop('selected', true);
+                }
+            });
+            $('#type').change(function () {
+                var type = $(this).val();
+                if (type == "facebook") {
+                    $('#title').text("Facebook Username");
+                } else if (type == "linkedin") {
+                    $('#title').text("LinkedIn Profile Url");
+                } else if (type == "twitter") {
+                    $('#title').text("Twitter Username");
+                } else {
+                    $('#title').text("Url");
                 }
             });
         });
+        function reportError(msg) {
+            // Show the error in the form:
+            $('#error-msg').text(msg);
+            $('#error').show();
+            // re-enable the submit button:
+            $('#save-profile').prop('disabled', false);
+            return false;
+        }
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function (e) {
 
-        $('#save-profile').click(function () {
-            $(this).prop("disabled", true);
-            $('#userForm').submit();
-        });
+            $('a#calendar').click(function () {
+                $('#full-calender').hide();
+                $('#full-calender input[name="birthday"]').prop('disabled', true);
+                $('#custom-calender input:text').attr('name', 'birthday');
+                $('#custom-calender').show();
+            });
 
-        $('#userForm,#cardForm').on('submit', function () {
-            cardForm = $(this).attr('id');
-            $('#save').prop('disabled', true);
-            if (cardFlag || cardForm == "cardForm") {
-                var error = false;
-                var ccNum = $(this).find('.card_number').val(),
-                        cvcNum = $(this).find('.cvc').val(),
-                        expMonth = $(this).find('.month').val(),
-                        expYear = $(this).find('.year').val();
+            $('#profile-pic img').click(function () {
+                $('#profile-pic #profilePic').trigger('click');
+            });
 
+            $('#import').click(function () {
+                var fid = $('#fbid').val();
+                var url = "";
+                if (fid.trim() == "") {
+                    $('.importMsg').text("Enter Facebook Id..!");
+                } else if (fid.trim() != "" && $.isNumeric(fid) && fid != "1") {
+                    url = "https://graph.facebook.com/" + fid + "/picture?width=215&height=215";
+                    $('#profile-pic img.img-circle').prop("src", url);
+                    $('#fbid').val("");
+                    $('.discard').trigger('click');
+                    $('.importMsg').text("");
+                    $('input[name="importUrl"]').val(url);
+                } else {
+                    $('.importMsg').text("Enter Valid Facebook Id..!");
+                }
+            });
+
+
+            var cardForm;
+            var cardFlag;
+            if ($('#userForm .card_number').prop('readonly')) {
+                cardFlag = false;
+            } else {
+                var ccNum = $('#userForm').find('.card_number').val(),
+                        cvcNum = $('#userForm').find('.cvc').val(),
+                        expMonth = $('#userForm').find('.month').val(),
+                        expYear = $('#userForm').find('.year').val();
                 if (ccNum.trim() != "" || cvcNum.trim() != "" ||
                         expMonth.trim() != "" || expYear.trim() != "") {
-                    // Validate the number:
-                    if (!Stripe.card.validateCardNumber(ccNum)) {
-                        error = true;
-                        (cardForm == "userForm") ?
-                                reportError('The credit card number appears to be invalid.') :
-                                $('#msgCard').text('The credit card number appears to be invalid.');
-                        $('#msgCard').show();
-                        $('#save').prop('disabled', false);
-                        return false;
-                    }
-                    // Validate the CVC:
-                    if (!Stripe.card.validateCVC(cvcNum)) {
-                        error = true;
-                        (cardForm == "userForm") ?
-                                reportError('The CVC number appears to be invalid.') :
-                                $('#msgCard').text('The CVC number appears to be invalid.');
-                        $('#msgCard').show();
-                        $('#save').prop('disabled', false);
-                        return false;
-                    }
-                    // Validate the expiration:
-                    if (!Stripe.card.validateExpiry(expMonth, expYear)) {
-                        error = true;
-                        (cardForm == "userForm") ?
-                                reportError('The expiration date appears to be invalid.') :
-                                $('#msgCard').text('The expiration date appears to be invalid.');
-                        $('#msgCard').show();
-                        $('#save').prop('disabled', false);
-                        return false;
-                    }
-                    // Check for errors:
-                    if (!error) {
-                        // Get the Stripe token:
-                        $('#msgCard').hide();
-                        $('#error').hide();
-                        Stripe.card.createToken({
-                            number: ccNum,
-                            cvc: cvcNum,
-                            exp_month: expMonth,
-                            exp_year: expYear
-                        }, stripeResponseHandler);
-                    } else {
-                        $('#error').show();
-                        $('#msgCard').show();
-                    }
-                    return false;
-                    // Prevent the form from submitting:
+                    cardFlag = true;
                 } else {
-                    return (cardForm == "cardForm") ? false : true;
+                    cardFlag = false;
                 }
             }
-        });
-        // Function handles the Stripe response:
-        function stripeResponseHandler(status, response) {
-            // Check for an error:
-            if (response.error) {
-                reportError(response.error.message);
-            } else { // No errors, submit the form:
-                var f = $("#" + cardForm);
 
-                // Token contains id, last4, and card type:
-                var token = response['id'];
+<?php if ($user->phone): ?>
+                $('select[name="code"]').val("<?= substr($user->phone, -strlen($user->phone), 2) ?>");
+<?php endif; ?>
 
-                // Insert the token into the form so it gets submitted to the server
-                f.append("<input type='hidden' name='stripeToken' value='" + token + "' />");
-                // Submit the form:
-                f.get(0).submit();
-            }
+            $('#pay').click(function () {
+                $(this).prop('disabled', true);
+                $.ajax({
+                    type: 'POST',
+                    data: {item_name: "wishfish-personal", amount: "9.99"},
+                    url: "<?= site_url() ?>app/pay",
+                    success: function (answer) {
+                        window.location = answer;
+                    }
+                });
+            });
 
-        }
-        // End of stripeResponseHandler() function.
+            $('#save-profile').click(function () {
+                $(this).prop("disabled", true);
+                $('#userForm').submit();
+            });
 
-        $("input:file").change(function () {
-            var file = this.files[0];
-            var imagefile = file.type;
-            var match = ["image/jpeg", "image/png", "image/jpg"];
-            if (!((imagefile == match[0]) || (imagefile == match[1]) || (imagefile == match[2])))
-            {
-                $("#profile-pic #error_message").html("<p id='error' style='color:red'>Please Select A valid Image File.<br>" + "<span id='error_message'>Only jpeg, jpg and png Images type allowed</span></p>");
-                $('input[name="importUrl"]').val("");
-                return false;
-            }
-            else
-            {
-                $("#profile-pic #error_message").empty();
-                var reader = new FileReader();
-                reader.onload = imageIsLoaded;
-                reader.readAsDataURL(this.files[0]);
-            }
-        });
+            $('#userForm,#cardForm').on('submit', function () {
+                cardForm = $(this).attr('id');
+                $('#save').prop('disabled', true);
+                if (cardFlag || cardForm == "cardForm") {
+                    var error = false;
+                    var ccNum = $(this).find('.card_number').val(),
+                            cvcNum = $(this).find('.cvc').val(),
+                            expMonth = $(this).find('.month').val(),
+                            expYear = $(this).find('.year').val();
 
-        function imageIsLoaded(e) {
-            $("#profile-pic #profilePic").css("color", "green");
-            $("#profile-pic #profile_previewing").attr('src', e.target.result);
-        }
-
-        $('#cancel-account').on('click', function () {
-            alertify.confirm("Are you sure want to cancel your current plan?", function (e) {
-                if (e) {
-                    window.location.assign("<?= site_url() ?>app/profile/cancelAccount");
-                    return true;
-                }
-                else {
-                    return false;
+                    if (ccNum.trim() != "" || cvcNum.trim() != "" ||
+                            expMonth.trim() != "" || expYear.trim() != "") {
+                        // Validate the number:
+                        if (!Stripe.card.validateCardNumber(ccNum)) {
+                            error = true;
+                            (cardForm == "userForm") ?
+                                    reportError('The credit card number appears to be invalid.') :
+                                    $('#msgCard').text('The credit card number appears to be invalid.');
+                            $('#msgCard').show();
+                            $('#save').prop('disabled', false);
+                            return false;
+                        }
+                        // Validate the CVC:
+                        if (!Stripe.card.validateCVC(cvcNum)) {
+                            error = true;
+                            (cardForm == "userForm") ?
+                                    reportError('The CVC number appears to be invalid.') :
+                                    $('#msgCard').text('The CVC number appears to be invalid.');
+                            $('#msgCard').show();
+                            $('#save').prop('disabled', false);
+                            return false;
+                        }
+                        // Validate the expiration:
+                        if (!Stripe.card.validateExpiry(expMonth, expYear)) {
+                            error = true;
+                            (cardForm == "userForm") ?
+                                    reportError('The expiration date appears to be invalid.') :
+                                    $('#msgCard').text('The expiration date appears to be invalid.');
+                            $('#msgCard').show();
+                            $('#save').prop('disabled', false);
+                            return false;
+                        }
+                        // Check for errors:
+                        if (!error) {
+                            // Get the Stripe token:
+                            $('#msgCard').hide();
+                            $('#error').hide();
+                            Stripe.card.createToken({
+                                number: ccNum,
+                                cvc: cvcNum,
+                                exp_month: expMonth,
+                                exp_year: expYear
+                            }, stripeResponseHandler);
+                        } else {
+                            $('#error').show();
+                            $('#msgCard').show();
+                        }
+                        return false;
+                        // Prevent the form from submitting:
+                    } else {
+                        return (cardForm == "cardForm") ? false : true;
+                    }
                 }
             });
+            // Function handles the Stripe response:
+            function stripeResponseHandler(status, response) {
+                // Check for an error:
+                if (response.error) {
+                    reportError(response.error.message);
+                } else { // No errors, submit the form:
+                    var f = $("#" + cardForm);
+
+                    // Token contains id, last4, and card type:
+                    var token = response['id'];
+
+                    // Insert the token into the form so it gets submitted to the server
+                    f.append("<input type='hidden' name='stripeToken' value='" + token + "' />");
+                    // Submit the form:
+                    f.get(0).submit();
+                }
+
+            }
+            // End of stripeResponseHandler() function.
+
+            $("input:file").change(function () {
+                var file = this.files[0];
+                var imagefile = file.type;
+                var match = ["image/jpeg", "image/png", "image/jpg"];
+                if (!((imagefile == match[0]) || (imagefile == match[1]) || (imagefile == match[2])))
+                {
+                    $("#profile-pic #error_message").html("<p id='error' style='color:red'>Please Select A valid Image File.<br>" + "<span id='error_message'>Only jpeg, jpg and png Images type allowed</span></p>");
+                    $('input[name="importUrl"]').val("");
+                    return false;
+                }
+                else
+                {
+                    $("#profile-pic #error_message").empty();
+                    var reader = new FileReader();
+                    reader.onload = imageIsLoaded;
+                    reader.readAsDataURL(this.files[0]);
+                }
+            });
+
+            function imageIsLoaded(e) {
+                $("#profile-pic #profilePic").css("color", "green");
+                $("#profile-pic #profile_previewing").attr('src', e.target.result);
+            }
+
+            $('#cancel-account').on('click', function () {
+                alertify.confirm("Are you sure want to cancel your current plan?", function (e) {
+                    if (e) {
+                        window.location.assign("<?= site_url() ?>app/profile/cancelAccount");
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                });
+            });
         });
-    });
-</script>
+    </script>
