@@ -269,6 +269,7 @@ qq.FileUploaderBasic = function (o) {
         allowedExtensions: [],
         sizeLimit: 0,
         minSizeLimit: 0,
+        maxWidth: 0,
         // events
         // return false to cancel submit
         onSubmit: function (id, fileName) {
@@ -284,6 +285,7 @@ qq.FileUploaderBasic = function (o) {
             typeError: "{file} has invalid extension. Only {extensions} are allowed.",
             sizeError: "{file} is too large, maximum file size is {sizeLimit}.",
             minSizeError: "{file} is too small, minimum file size is {minSizeLimit}.",
+            maxWidthError: "{file} width is too large, maximum file width is {maxWidth}.",
             emptyError: "{file} is empty, please select files again without it.",
             onLeave: "The files are being uploaded, if you leave now the upload will be cancelled."
         },
@@ -422,6 +424,8 @@ qq.FileUploaderBasic.prototype = {
             // fix missing properties in Safari
             name = file.fileName != null ? file.fileName : file.name;
             size = file.fileSize != null ? file.fileSize : file.size;
+            console.log(file);
+            alert();
         }
 
         if (!this._isAllowedExtension(name)) {
