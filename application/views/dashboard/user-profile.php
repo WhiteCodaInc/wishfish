@@ -68,7 +68,9 @@
                                         <a style="cursor: pointer;" class="fb"  data-toggle="modal" data-target="#import-modal">
                                             Import From Facebook
                                         </a>
-
+                                        <a style="cursor: pointer;"  data-toggle="modal" data-target="#crop-modal">
+                                            Upload
+                                        </a>
                                     </div>
                                 </div>
                             </div>
