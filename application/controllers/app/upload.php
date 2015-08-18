@@ -26,6 +26,10 @@ class Upload extends CI_Controller {
     }
 
     function index() {
+
+        print_r($_FILES);
+        die();
+
         // list of valid extensions, ex. array("jpeg", "xml", "bmp")
         $allowedExtensions = array();
 // max file size in bytes
