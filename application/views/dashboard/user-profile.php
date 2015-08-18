@@ -440,7 +440,7 @@
         $('#crop-modal .close').click(function () {
             $('.imgareaselect-outer,.imgareaselect-border1,.imgareaselect-border2,.imgareaselect-selection').hide();
             $('#crop-section').hide();
-            $('#upload-section').show();
+            $('#uploader-section').show();
         });
         $('a#calendar').click(function () {
             $('#full-calender').hide();
