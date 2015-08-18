@@ -25,7 +25,7 @@
     <section class="content">
         <?php
         $img_src = ($user->profile_pic != "") ?
-                "http://mikhailkuznetsov.s3.amazonaws.com/" . $user->profile_pic :
+                "https://mikhailkuznetsov.s3.amazonaws.com/" . $user->profile_pic :
                 base_url() . 'assets/dashboard/img/default-avatar.png';
         $error = $this->session->flashdata('error');
         ?>
