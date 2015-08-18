@@ -40,6 +40,7 @@ $(document).ready(function () {
 
 function createUploader() {
     var button = $('#upload');
+    alert();
     var uploader = new qq.FileUploaderBasic({
         button: document.getElementById('file-uploader'),
         action: 'https://wish-fish.com/app/upload',
