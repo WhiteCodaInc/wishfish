@@ -424,8 +424,7 @@ qq.FileUploaderBasic.prototype = {
             // fix missing properties in Safari
             name = file.fileName != null ? file.fileName : file.name;
             size = file.fileSize != null ? file.fileSize : file.size;
-            console.log(file);
-            alert();
+
         }
 
         if (!this._isAllowedExtension(name)) {
