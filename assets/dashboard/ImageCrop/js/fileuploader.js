@@ -883,7 +883,7 @@ qq.UploadButton.prototype = {
 qq.UploadHandlerAbstract = function (o) {
     this._options = {
         debug: false,
-        action: '/home/wishfish/public_html/imagecrop/upload.php',
+        action: 'upload.php',
         // maximum number of concurrent uploads        
         maxConnections: 999,
         onProgress: function (id, fileName, loaded, total) {
