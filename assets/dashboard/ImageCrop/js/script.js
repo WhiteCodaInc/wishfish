@@ -63,6 +63,7 @@ function createUploader() {
             button.text('Change profile picture');
             window.clearInterval(interval);
             console.log("COMPLETE");
+            console.log(responseJSON);
             if (responseJSON['success'])
             {
                 console.log("SUCCESS");
