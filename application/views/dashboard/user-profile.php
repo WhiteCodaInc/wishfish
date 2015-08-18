@@ -312,6 +312,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title">Set your profile pic</h4>
+                <h4 class="modal-title"><?= FCPATH ?></h4>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -460,7 +461,7 @@
             }
 
 <?php if ($user->phone): ?>
-                $('select[name="code"]').val("<?= substr($user->phone, -strlen($user->phone), 2) ?>");
+                    $('select[name="code"]').val("<?= substr($user->phone, -strlen($user->phone), 2) ?>");
 <?php endif; ?>
 
             $('#pay').click(function () {
