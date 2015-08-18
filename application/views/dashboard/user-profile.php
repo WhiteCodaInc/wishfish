@@ -60,10 +60,11 @@
                                         <div  class="image" style="text-align: center">
                                             <img id="profile_previewing" style="width: 100px;height: 100px;cursor: pointer"  src="<?= $img_src ?>" class="img-circle" alt="User Image" />
                                         </div>
+                                        <input title="Add a photo so we can recognize you !" name="profile_pic"  type="file" id="profilePic" class="form-control" style="display: none" />
                                     </div>
                                     <div class="col-md-9">
-<!--                                        <label for="profile pic">Profile Picture</label>
-                                        <input title="Add a photo so we can recognize you !" name="profile_pic"  type="file" id="profilePic" class="form-control" />-->
+                                        <!--                                        <label for="profile pic">Profile Picture</label>
+                                        -->
                                         <span id="error_message"></span><br/>
                                         <a style="cursor: pointer;" class="fb"  data-toggle="modal" data-target="#import-modal">
                                             Import From Facebook
