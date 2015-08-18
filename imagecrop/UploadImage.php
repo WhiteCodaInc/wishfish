@@ -179,78 +179,84 @@ class qqUploadedFileForm {
         $original_width = $dimension[0];
         $original_height = $dimension[1];
 
-        /// setting the new widths
-        $new_width = 400;
-        // calculating the new heights and keep the ratio
-        $new_height = ($new_width * $original_height) / $original_width;
 
-        // thumbnail (squared) size
-        $thumb_width = 156;
-        $thumb_height = 156;
+        if ($original_width <= 400) {
+            /// setting the new widths
+            $new_width = 400;
+            // calculating the new heights and keep the ratio
+            $new_height = ($new_width * $original_height) / $original_width;
 
-        if ($original_width < 400) {
-            $new_width = $original_width;
-            $new_height = $original_height;
+            // thumbnail (squared) size
+            $thumb_width = 156;
+            $thumb_height = 156;
+
+            if ($original_width < 400) {
+                $new_width = $original_width;
+                $new_height = $original_height;
+            }
+
+            $tmp_1 = imagecreatetruecolor($new_width, $new_height);
+            $tmp_square = imagecreatetruecolor($thumb_width, $thumb_height);
+
+            imagealphablending($tmp_1, false);
+            imagesavealpha($tmp_1, true);
+
+            imagealphablending($tmp_square, false);
+            imagesavealpha($tmp_square, true);
+
+            switch ($ext) {
+                case 'jpg':
+                case 'jpeg':
+                    $src = imagecreatefromjpeg($this->getTmp_Name());
+                    break;
+
+                case 'png':
+                    $src = imagecreatefrompng($this->getTmp_Name());
+                    imagealphablending($src, true);
+                    break;
+
+                case 'gif':
+                    $src = imagecreatefromgif($this->getTmp_Name());
+                    imagealphablending($src, true);
+                    break;
+
+                default:
+                    return false;
+                    break;
+            }
+
+            imagecopyresampled($tmp_1, $src, 0, 0, 0, 0, $new_width, $new_height, $original_width, $original_height);
+            imagecopyresampled($tmp_square, $src, 0, 0, 0, 0, $thumb_width, $thumb_height, $original_width, $original_height);
+
+            $filename = $this->image_name;
+            $upload_dir = $this->upload_dir;
+
+            switch ($ext) {
+                case 'jpg':
+                case 'jpeg':
+                    imagejpeg($tmp_1, $upload_dir . $filename, 100);
+                    imagejpeg($tmp_square, $upload_dir . 'thumb_' . $filename, 100);
+                    break;
+
+                case 'png':
+                    imagepng($tmp_1, $upload_dir . $filename);
+                    imagepng($tmp_square, $upload_dir . 'thumb_' . $filename);
+
+                    break;
+
+                case 'gif':
+                    imagegif($tmp_1, $upload_dir . $filename);
+                    imagegif($tmp_square, $upload_dir . 'thumb_' . $filename);
+                    break;
+            }
+
+            // we don't need those anymore
+            imagedestroy($tmp_1);
+            return imagedestroy($tmp_square);
+        } else {
+            echo $original_width;
+            die();
         }
-
-        $tmp_1 = imagecreatetruecolor($new_width, $new_height);
-        $tmp_square = imagecreatetruecolor($thumb_width, $thumb_height);
-
-        imagealphablending($tmp_1, false);
-        imagesavealpha($tmp_1, true);
-
-        imagealphablending($tmp_square, false);
-        imagesavealpha($tmp_square, true);
-
-        switch ($ext) {
-            case 'jpg':
-            case 'jpeg':
-                $src = imagecreatefromjpeg($this->getTmp_Name());
-                break;
-
-            case 'png':
-                $src = imagecreatefrompng($this->getTmp_Name());
-                imagealphablending($src, true);
-                break;
-
-            case 'gif':
-                $src = imagecreatefromgif($this->getTmp_Name());
-                imagealphablending($src, true);
-                break;
-
-            default:
-                return false;
-                break;
-        }
-
-        imagecopyresampled($tmp_1, $src, 0, 0, 0, 0, $new_width, $new_height, $original_width, $original_height);
-        imagecopyresampled($tmp_square, $src, 0, 0, 0, 0, $thumb_width, $thumb_height, $original_width, $original_height);
-
-        $filename = $this->image_name;
-        $upload_dir = $this->upload_dir;
-
-        switch ($ext) {
-            case 'jpg':
-            case 'jpeg':
-                imagejpeg($tmp_1, $upload_dir . $filename, 100);
-                imagejpeg($tmp_square, $upload_dir . 'thumb_' . $filename, 100);
-                break;
-
-            case 'png':
-                imagepng($tmp_1, $upload_dir . $filename);
-                imagepng($tmp_square, $upload_dir . 'thumb_' . $filename);
-
-                break;
-
-            case 'gif':
-                imagegif($tmp_1, $upload_dir . $filename);
-                imagegif($tmp_square, $upload_dir . 'thumb_' . $filename);
-                break;
-        }
-
-        // we don't need those anymore
-        imagedestroy($tmp_1);
-        return imagedestroy($tmp_square);
     }
 
 }
