@@ -304,6 +304,25 @@
     </div><!-- /.modal-dialog -->
 </div>
 <!------------------------------------------------------------------------>
+<style type="text/css">
+    #upload .upload{
+        font-family:verdana;
+    }
+    #thumbnail{
+        float:left;
+    }
+    #thumb_preview_holder{
+        float:left;
+        width:156px;
+        height:156px;
+        overflow:hidden;
+        margin-left:10px;
+        margin-top:20px;
+    }
+    #save_thumb{
+        margin-top:30px;
+    }
+</style>
 
 <!-------------------------------Import Model------------------------------------>
 <div class="modal fade" id="crop-modal" tabindex="-1" role="dialog" aria-hidden="true">
