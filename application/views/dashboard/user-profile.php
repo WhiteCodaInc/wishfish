@@ -62,8 +62,8 @@
                                         </div>
                                         <input title="Add a photo so we can recognize you !" name="profile_pic"  type="file" id="profilePic" class="form-control" style="display: none" />
                                     </div>
-                                    <div class="col-md-9">
-                                        <span id="error_message"></span>
+                                    <!--<span id="error_message"></span>-->
+                                    <div class="col-md-9" style="margin-top: 35px;">                                        
                                         <a class="btn btn-success"  data-toggle="modal" data-target="#crop-modal">
                                             Upload Profile Pic
                                         </a>
