@@ -40,13 +40,14 @@ $(document).ready(function () {
 
 function createUploader() {
     var button = $('#upload');
-    alert();
+    console.log("FIRST CALL");
     var uploader = new qq.FileUploaderBasic({
         button: document.getElementById('file-uploader'),
         action: 'https://wish-fish.com/app/upload',
         allowedExtensions: ['jpg', 'gif', 'png', 'jpeg'],
         onSubmit: function (id, fileName) {
             // change button text, when user selects file			
+            console.log("SUBMIT CALLED");
             button.text('Uploading');
             // Uploding -> Uploading. -> Uploading...
             interval = window.setInterval(function () {
@@ -61,10 +62,13 @@ function createUploader() {
         onComplete: function (id, fileName, responseJSON) {
             button.text('Change profile picture');
             window.clearInterval(interval);
-
+            console.log("COMPLETE");
             if (responseJSON['success'])
             {
+                console.log("SUCCESS");
                 load_original(responseJSON['filename']);
+            } else {
+                console.log("FAILD");
             }
         },
         debug: true
@@ -72,6 +76,7 @@ function createUploader() {
 }
 
 function load_original(filename) {
+    console.log("PREVIEW");
     console.log("THUMBNAIL : " + "https://wish-fish.com/uploads/" + filename);
     $('#crop-modal #thumbnail').attr('src', "https://wish-fish.com/uploads/" + filename);
     $('#crop-modal #thumb_preview').attr('src', "https://wish-fish.com/uploads/" + filename);
