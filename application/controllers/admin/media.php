@@ -53,8 +53,12 @@ class Media extends CI_Controller {
 
     function createMedia() {
         $post = $this->input->post();
-        $msg = $this->objmedia->createMedia($post);
-        header('location:' . site_url() . 'admin/media?msg=I');
+        if (is_array($post) && count($post)) {
+            $this->objmedia->createMedia($post);
+            header('location:' . site_url() . 'admin/media?msg=I');
+        } else {
+            header('location:' . site_url() . 'admin/media');
+        }
     }
 
     function editMedia($mid) {
