@@ -312,7 +312,6 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title">Set your profile pic</h4>
-                <h4 class="modal-title"><?= FCPATH ?></h4>
             </div>
             <div class="modal-body">
                 <div class="row">
