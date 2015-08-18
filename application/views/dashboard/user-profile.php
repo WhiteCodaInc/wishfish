@@ -322,6 +322,12 @@
     #save_thumb{
         margin-top:30px;
     }
+    div.imgareaselect-outer{
+        z-index: 9999 !important;
+    }
+    div.imgareaselect-selection{
+        
+    }
 </style>
 
 <!-------------------------------Import Model------------------------------------>
