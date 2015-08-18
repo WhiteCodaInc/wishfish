@@ -80,7 +80,8 @@ class qqUploadedFileXhr {
         $original_height = $this->image_height;
 
         $src = $this->image;
-
+        if ($original_width > 400)
+            return false;
         // setting the new widths
         $new_width = 900;
         // calculating the new heights and keep the ratio
