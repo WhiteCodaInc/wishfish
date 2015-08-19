@@ -31,7 +31,7 @@ $(document).ready(function () {
                     $('#uploader-section').show();
                     $('#thumb_preview').attr('src', '');
                     $('#filename').attr('value', '');
-                    $('#input[name="importUrl"]').val(url);
+                    $('#userForm input[name="importUrl"]').val(url);
                     $('#profile-pic img.img-circle').prop("src", url);
                     $('#crop-modal .close').trigger('click');
                 }
