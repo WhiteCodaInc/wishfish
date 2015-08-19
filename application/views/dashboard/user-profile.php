@@ -316,7 +316,7 @@
         overflow:hidden;
         /*margin-left:10px;*/
         /*margin-top:20px;*/
-        margin: 5% 30%;
+        margin: 2%;
     }
     #save_thumb{
         /*margin-top:30px;*/
