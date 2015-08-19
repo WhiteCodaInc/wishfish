@@ -80,11 +80,6 @@ class qqUploadedFileXhr {
         $original_height = $this->image_height;
 
         $src = $this->image;
-//        if ($original_width > 400) {
-////            if (file_exists($this->upload_dir . $this->image_name))
-////                unlink($this->upload_dir . $this->image_name);
-//            return "Image width must be less than or equal to 400px..!";
-//        } else {
         // setting the new widths
         $new_width = 400;
         // calculating the new heights and keep the ratio
@@ -131,12 +126,7 @@ class qqUploadedFileXhr {
 
         // we don't need those anymore
         imagedestroy($tmp_1);
-//            if (file_exists($this->upload_dir . $this->image_name))
-//                unlink($this->upload_dir . $this->image_name);
-        $msg = 'Could not save uploaded file.' .
-                'The upload was cancelled, or server error encountered';
-        return (imagedestroy($tmp_square)) ? '1' : $msg;
-//        }
+        return imagedestroy($tmp_square);
     }
 
 }
@@ -227,11 +217,11 @@ class qqFileUploader {
                 $filename .= rand(10, 99);
             }
         }
-        $save = $this->file->save($uploadDirectory . $filename . '.' . $ext);
-        if ($save == '1') {
+        if ($this->file->save($uploadDirectory . $filename . '.' . $ext)) {
             return array('success' => true, 'filename' => $filename . '.' . $ext);
         } else {
-            return array('error' => $save);
+            return array('error' => 'Could not save uploaded file.' .
+                'The upload was cancelled, or server error encountered');
         }
     }
 
