@@ -338,7 +338,7 @@
             </div>
             <div class="modal-body">
                 <div class="row" id="crop-section" style="display:none">
-                    <div class="col-lg-12">
+                    <div class="col-lg-12" align="center">
                         <img src="" id="thumbnail" alt="Create Thumbnail" />
                         <div id="thumb_preview_holder">					
                             <img src=""  alt="Thumbnail Preview" id="thumb_preview" />
