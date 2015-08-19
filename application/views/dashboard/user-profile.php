@@ -362,7 +362,7 @@
                         <div class="product_image">	
                             <img src="" class="thumbnails" />
                         </div>
-                        <div id="file-uploader">
+                        <div id="file-uploader" align="center">
                             <button id="upload" class="btn btn-success">
                                 <i class="fa fa-upload"></i>
                                 <span class="upload">Upload</span>
