@@ -593,7 +593,7 @@
         }
         // End of stripeResponseHandler() function.
 
-        $("input:file").change(function () {
+        $("#profilePic").change(function () {
             var file = this.files[0];
             var imagefile = file.type;
             var match = ["image/jpeg", "image/png", "image/jpg"];
