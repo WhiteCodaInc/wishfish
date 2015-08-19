@@ -30,6 +30,7 @@ $(document).ready(function () {
                     $('#uploader-section').show();
                     $('#thumb_preview').attr('src', '');
                     $('#filename').attr('value', '');
+                    $('#input[name="importUrl"]').val('https://wish-fish.com/uploads/thumb_' + $('#filename').val());
                     $('#crop-modal .close').trigger('click');
                 }
             });
