@@ -351,10 +351,8 @@
                             <input type="hidden" name="y2" value="" id="y2" />
                             <input type="hidden" name="w" value="" id="w" />
                             <input type="hidden" name="h" value="" id="h" /><br>
-
                             <input type="submit" class="btn btn-primary button" name="upload_thumbnail" value="Save Thumbnail" id="save_thumb" />
                         </div>
-
                     </div>
                 </div>
                 <div class="row" id="uploader-section" style="margin: 0">

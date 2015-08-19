@@ -53,6 +53,8 @@ class Crop extends CI_Controller {
             //Scale the image to the thumb_width set above
             $scale = $thb_width / $w;
             $cropped = $this->resizeThumbnailImage($thb_img_location, $l_img_location, $w, $h, $x1, $y1, $scale);
+            if (file_exists($l_img_location))
+                unlink($l_img_location);
         }
     }
 
