@@ -305,10 +305,7 @@
 </div>
 <!------------------------------------------------------------------------>
 <style type="text/css">
-    #uploader-section .col-md-12{
-        padding: 20% 25%;
-        margin: 0px 25px;
-    }
+
     #thumbnail{
         float:left;
     }
@@ -360,8 +357,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="row" id="uploader-section">
-                    <div class="col-lg-12 well">
+                <div class="row" id="uploader-section" style="margin: 0">
+                    <div class="col-lg-12 well" style="padding: 20% 25%;">
                         <div class="product_image">	
                             <img src="" class="thumbnails" />
                         </div>
