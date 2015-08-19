@@ -339,11 +339,11 @@
             <div class="modal-body">
                 <div class="row" id="crop-section" style="display:none">
                     <div class="col-lg-12">
-                        <div class="form-group" align="center">
-                            <img src="" id="thumbnail" alt="Create Thumbnail" />
-                        </div>
-                        <div class="form-group" id="thumb_preview_holder">					
+                        <img src="" id="thumbnail" alt="Create Thumbnail" />
+                        <div id="thumb_preview_holder">					
                             <img src=""  alt="Thumbnail Preview" id="thumb_preview" />
+                        </div>
+                        <div>
                             <input type="hidden" name="filename" value="" id="filename" />
                             <input type="hidden" name="x1" value="" id="x1" />
                             <input type="hidden" name="y1" value="" id="y1" />
@@ -351,6 +351,7 @@
                             <input type="hidden" name="y2" value="" id="y2" />
                             <input type="hidden" name="w" value="" id="w" />
                             <input type="hidden" name="h" value="" id="h" /><br>
+
                             <input type="submit" class="btn btn-primary button" name="upload_thumbnail" value="Save Thumbnail" id="save_thumb" />
                         </div>
                     </div>
