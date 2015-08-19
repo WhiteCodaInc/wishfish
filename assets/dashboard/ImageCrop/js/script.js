@@ -30,6 +30,7 @@ $(document).ready(function () {
                     $('#uploader-section').show();
                     $('#thumb_preview').attr('src', '');
                     $('#filename').attr('value', '');
+                    $('#crop-modal .close').trigger('click');
                 }
             });
 
