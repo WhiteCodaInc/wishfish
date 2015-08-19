@@ -344,6 +344,8 @@
                         </div>
                         <div class="form-group" id="thumb_preview_holder">					
                             <img src=""  alt="Thumbnail Preview" id="thumb_preview" />
+                        </div>
+                        <div class="form-group">					
                             <input type="hidden" name="filename" value="" id="filename" />
                             <input type="hidden" name="x1" value="" id="x1" />
                             <input type="hidden" name="y1" value="" id="y1" />
