@@ -363,7 +363,7 @@
                             <img src="" class="thumbnails" />
                         </div>
                         <div id="file-uploader" align="center">
-                            <button id="upload" class="btn btn-success">
+                            <button id="upload" class="btn btn-primary">
                                 <i class="fa fa-upload"></i>
                                 <span class="upload">Upload</span>
                             </button>
