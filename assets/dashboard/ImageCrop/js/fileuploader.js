@@ -829,24 +829,24 @@ qq.UploadButton.prototype = {
 //        if (this._options.multiple) {
 //            input.setAttribute("multiple", "multiple");
 //        }
-        input.css('display','none');
         input.setAttribute("type", "file");
         input.setAttribute("name", this._options.name);
 
         qq.css(input, {
-            position: 'absolute',
+//            position: 'absolute',
             // in Opera only 'browse' button
             // is clickable and it is located at
             // the right side of the input
-            right: 0,
-            top: 0,
+//            right: 0,
+//            top: 0,
             //fontFamily: 'Arial',
             // 4 persons reported this, the max values that worked for them were 243, 236, 236, 118
             //fontSize: '118px',
-            margin: 0,
-            padding: 0,
-            cursor: 'pointer',
-            opacity: 0
+//            margin: 0,
+//            padding: 0,
+//            cursor: 'pointer',
+//            opacity: 0,
+            display:none
         });
 
         this._element.appendChild(input);
