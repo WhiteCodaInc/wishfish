@@ -67,7 +67,7 @@
                                         <a class="btn btn-success" data-backdrop="static" data-keyboard="false"  data-toggle="modal" data-target="#crop-modal">
                                             Upload Profile Pic
                                         </a>
-                                        <label> OR </label>
+                                        <label style="margin: 0 5px">OR</label>
                                         <a style="cursor: pointer;" class="fb"  data-toggle="modal" data-target="#import-modal">
                                             Import From Facebook
                                         </a>
