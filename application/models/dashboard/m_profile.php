@@ -81,7 +81,8 @@ class M_profile extends CI_Model {
         if ($set['importUrl'] != "") {
             $img_url = FCPATH . "import/user.jpg";
             copy($set['importUrl'], $img_url);
-
+            if (file_exists($set['importUrl']))
+                unlink($set['importUrl']);
             $fname = 'wish-fish/users/profile_' . $this->userid . '.jpg';
             $this->s3->setAuth($this->accessKey, $this->secretKey);
             if ($this->s3->putObjectFile($img_url, $this->bucket, $fname, "public-read")) {
