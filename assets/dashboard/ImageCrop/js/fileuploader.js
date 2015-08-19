@@ -786,7 +786,7 @@ qq.UploadButton = function (o) {
         // if set to true adds multiple attribute to file input      
         multiple: false,
         // name attribute of file input
-        name: 'file',
+        name: 'uploadImg',
         onChange: function (input) {
         },
         hoverClass: 'qq-upload-button-hover',
@@ -829,7 +829,7 @@ qq.UploadButton.prototype = {
 //        if (this._options.multiple) {
 //            input.setAttribute("multiple", "multiple");
 //        }
-
+        input.css('display','none');
         input.setAttribute("type", "file");
         input.setAttribute("name", this._options.name);
 
