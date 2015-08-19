@@ -21,7 +21,8 @@ $(document).ready(function () {
                 url: "https://wish-fish.com/app/crop",
                 data: "filename=" + $('#filename').val() + "&x1=" + x1 + "&x2=" + x2 + "&y1=" + y1 + "&y2=" + y2 + "&w=" + w + "&h=" + h,
                 success: function (data) {
-                    thumb.attr('src', 'https://wish-fish.com/uploads/thumb_' + $('#filename').val());
+                    var url = 'https://wish-fish.com/uploads/thumb_' + $('#filename').val();
+                    thumb.attr('src', url);
                     thumb.addClass('thumbnail');
                     $('#thumbnail').imgAreaSelect({hide: true, x1: 0, y1: 0, x2: 0, y2: 0});
                     // let's clear the modal
@@ -30,7 +31,8 @@ $(document).ready(function () {
                     $('#uploader-section').show();
                     $('#thumb_preview').attr('src', '');
                     $('#filename').attr('value', '');
-                    $('#input[name="importUrl"]').val('https://wish-fish.com/uploads/thumb_' + $('#filename').val());
+                    $('#input[name="importUrl"]').val(url);
+                    $('#profile-pic img.img-circle').prop("src", url);
                     $('#crop-modal .close').trigger('click');
                 }
             });
