@@ -306,19 +306,20 @@
 <!------------------------------------------------------------------------>
 <style type="text/css">
 
-    #thumbnail{
-        float:left;
-    }
+    /*    #thumbnail{
+            float:left;
+        }*/
     #thumb_preview_holder{
-        float:left;
+        /*float:left;*/
         width:156px;
         height:156px;
         overflow:hidden;
-        margin-left:10px;
-        margin-top:20px;
+        /*margin-left:10px;*/
+        /*margin-top:20px;*/
+        margin: 5% 30%;
     }
     #save_thumb{
-        margin-top:30px;
+        /*margin-top:30px;*/
     }
     .imgareaselect-outer,
     .imgareaselect-border1,
@@ -338,13 +339,11 @@
             <div class="modal-body">
                 <div class="row" id="crop-section" style="display:none">
                     <div class="col-lg-12">
-                        <div class="form-group">
+                        <div class="form-group" align="center">
                             <img src="" id="thumbnail" alt="Create Thumbnail" />
                         </div>
                         <div class="form-group" id="thumb_preview_holder">					
                             <img src=""  alt="Thumbnail Preview" id="thumb_preview" />
-                        </div>
-                        <div class="form-group">
                             <input type="hidden" name="filename" value="" id="filename" />
                             <input type="hidden" name="x1" value="" id="x1" />
                             <input type="hidden" name="y1" value="" id="y1" />
@@ -355,6 +354,7 @@
 
                             <input type="submit" class="btn btn-primary button" name="upload_thumbnail" value="Save Thumbnail" id="save_thumb" />
                         </div>
+
                     </div>
                 </div>
                 <div class="row" id="uploader-section" style="margin: 0">
