@@ -340,11 +340,13 @@
             <div class="modal-body">
                 <div class="row" id="crop-section" style="display:none">
                     <div class="col-lg-12">
-                        <img src="" id="thumbnail" alt="Create Thumbnail" />
-                        <div id="thumb_preview_holder">					
+                        <div class="form-group">
+                            <img src="" id="thumbnail" alt="Create Thumbnail" />
+                        </div>
+                        <div class="form-group" id="thumb_preview_holder">					
                             <img src=""  alt="Thumbnail Preview" id="thumb_preview" />
                         </div>
-                        <div>
+                        <div class="form-group">
                             <input type="hidden" name="filename" value="" id="filename" />
                             <input type="hidden" name="x1" value="" id="x1" />
                             <input type="hidden" name="y1" value="" id="y1" />
