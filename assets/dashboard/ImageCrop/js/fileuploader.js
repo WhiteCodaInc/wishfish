@@ -846,7 +846,7 @@ qq.UploadButton.prototype = {
 //            padding: 0,
 //            cursor: 'pointer',
 //            opacity: 0,
-            display:none
+            display: 'none'
         });
 
         this._element.appendChild(input);
