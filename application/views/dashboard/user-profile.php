@@ -437,6 +437,11 @@
 </script>
 <script type="text/javascript">
     $(document).ready(function (e) {
+
+        $('#crop-modal #upload').click(function () {
+            $('#uploader-section input[name="uploadImg"]').trigger('click');
+        });
+
         $('#crop-modal .close').click(function () {
             $('.imgareaselect-outer,.imgareaselect-border1,.imgareaselect-border2,.imgareaselect-selection').hide();
             $('#crop-section').hide();
