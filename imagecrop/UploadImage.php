@@ -81,6 +81,8 @@ class qqUploadedFileXhr {
 
         $src = $this->image;
         if ($original_width > 400) {
+            if (file_exists($this->upload_dir . $this->image_name))
+                unlink($this->upload_dir . $this->image_name);
             return "Image width must be less than or equal to 400px..!";
         } else {
             // setting the new widths
@@ -129,6 +131,8 @@ class qqUploadedFileXhr {
 
             // we don't need those anymore
             imagedestroy($tmp_1);
+            if (file_exists($this->upload_dir . $this->image_name))
+                unlink($this->upload_dir . $this->image_name);
             $msg = 'Could not save uploaded file.' .
                     'The upload was cancelled, or server error encountered';
             return (imagedestroy($tmp_square)) ? '1' : $msg;
