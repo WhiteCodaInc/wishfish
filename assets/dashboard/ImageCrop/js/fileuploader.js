@@ -826,9 +826,9 @@ qq.UploadButton.prototype = {
     _createInput: function () {
         var input = document.createElement("input");
 
-        if (this._options.multiple) {
-            input.setAttribute("multiple", "multiple");
-        }
+//        if (this._options.multiple) {
+//            input.setAttribute("multiple", "multiple");
+//        }
 
         input.setAttribute("type", "file");
         input.setAttribute("name", this._options.name);
@@ -840,9 +840,9 @@ qq.UploadButton.prototype = {
             // the right side of the input
             right: 0,
             top: 0,
-            fontFamily: 'Arial',
+            //fontFamily: 'Arial',
             // 4 persons reported this, the max values that worked for them were 243, 236, 236, 118
-            fontSize: '118px',
+            //fontSize: '118px',
             margin: 0,
             padding: 0,
             cursor: 'pointer',
