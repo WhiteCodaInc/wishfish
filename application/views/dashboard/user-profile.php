@@ -305,8 +305,9 @@
 </div>
 <!------------------------------------------------------------------------>
 <style type="text/css">
-    #upload .upload{
-        font-family:verdana;
+    #uploader-section .col-md-12{
+        padding: 20% 25%;
+        margin: 0px 25px;
     }
     #thumbnail{
         float:left;
@@ -360,13 +361,14 @@
                     </div>
                 </div>
                 <div class="row" id="uploader-section">
-                    <div class="col-lg-12">
+                    <div class="col-lg-12 well">
                         <div class="product_image">	
                             <img src="" class="thumbnails" />
                         </div>
                         <div id="file-uploader">
                             <button id="upload" class="btn btn-success">
-                                <span class="upload">Change profile picture</span>
+                                <i class="fa fa-upload"></i>
+                                <span class="upload">Upload</span>
                             </button>
                         </div>
                     </div>
