@@ -29,6 +29,7 @@ class Customers extends CI_Controller {
             $this->api_signature = $paypalGatewayInfo->api_signature;
 
             $this->load->model('admin/m_customers', 'objcustomer');
+            $this->load->model('admin/m_customer_groups', 'objgroup');
             $this->load->model('admin/m_admin_sms_template', 'objsmstmplt');
             $this->load->model('admin/m_admin_email_template', 'objemailtmplt');
             $this->load->library('paypal_lib');
