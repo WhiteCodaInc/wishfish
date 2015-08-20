@@ -510,11 +510,11 @@
         });
 
         $('#userForm').submit(function () {
-            if ($('input[name="name"]').val().trim() == "") {
+            if ($('#userForm input[name="name"]').val().trim() == "") {
                 alertify.error("Name is Required...!");
                 return false;
             }
-            if ($('input[name="email"]').val().trim() == "") {
+            if ($('#userForm input[name="email"]').val().trim() == "") {
                 alertify.error("Email is Required...!");
                 return false;
             }
