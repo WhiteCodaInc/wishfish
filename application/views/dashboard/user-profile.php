@@ -514,11 +514,16 @@
                 alertify.error("Name is Required...!");
                 return false;
             }
-            if ($('#userForm input[name="email"]').val().trim() == "") {
+            var email = $('#userForm input[name="email"]').val();
+            var filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+            if (email.trim() == "") {
                 alertify.error("Email is Required...!");
                 return false;
+            } else if (!filter.test(email)) {
+                alertify.error("Invalid Email...!");
+                return false;
             }
-            $(this).prop("disabled", true);
+            $('#save-profile').prop("disabled", true);
         });
 
         $('#save-profile').click(function () {
