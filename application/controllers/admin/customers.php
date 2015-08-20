@@ -42,6 +42,7 @@ class Customers extends CI_Controller {
     function index() {
         $data['customers'] = $this->objcustomer->getCustomerDetail();
         $data['plans'] = $this->wi_common->getPlans();
+        $data['groups'] = $this->objgroup->getCustomerGroups();
 //        echo '<pre>';
 //        print_r($data);
 //        die();
@@ -54,6 +55,7 @@ class Customers extends CI_Controller {
 
     function search() {
         $data['searchResult'] = $this->objcustomer->searchResult();
+        $data['groups'] = $this->objgroup->getCustomerGroups();
         $data['plans'] = $this->wi_common->getPlans();
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
@@ -63,13 +65,22 @@ class Customers extends CI_Controller {
     }
 
     function profile($cid) {
-        $data['customer'] = $this->objcustomer->getCustomerInfo($cid);
+
+        $res = $this->objcustomer->getCustomer($cid);
+        $data['customer'] = $res[0];
+        $data['cgroup'] = $res[1];
+
+        $data['groups'] = $this->objgroup->getCustomerGroups();
+
+//        $data['customer'] = $this->objcustomer->getCustomerInfo($cid);
+        
         $data['phistory'] = $this->objcustomer->getPaymentHistory($cid);
         $data['card'] = $this->getCardDetail($cid);
         $data['gatewayInfo'] = $this->wi_common->getPaymentGatewayInfo("STRIPE");
         $data['plans'] = $this->wi_common->getPlans();
         $data['sms_template'] = $this->objsmstmplt->getTemplates();
         $data['email_template'] = $this->objemailtmplt->getTemplates();
+        
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');
@@ -78,7 +89,13 @@ class Customers extends CI_Controller {
     }
 
     function editCustomer($cid) {
-        $data['customers'] = $this->objcustomer->getCustomerInfo($cid);
+
+        $res = $this->objcustomer->getCustomer($cid);
+        $data['customers'] = $res[0];
+        $data['cgroup'] = $res[1];
+        $data['groups'] = $this->objgroup->getCustomerGroups();
+
+//        $data['customers'] = $this->objcustomer->getCustomerInfo($cid);
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');

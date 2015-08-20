@@ -86,6 +86,18 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Customer Group</label>
+                                    <select name="group_search" class="form-control m-bot15">
+                                        <option value="-1">--Select--</option>
+                                        <?php foreach ($groups as $value) { ?>
+                                            <option value="<?= $value->group_id ?>">
+                                                <?= $value->group_name ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                            </div>
                             <br/>
                             <div class="row">
                                 <div class="col-md-12">
@@ -279,6 +291,7 @@ switch ($msg) {
             $('select[name="plan_search"]').val("<?= $data['plan_search'] ?>");
             $('select[name="join_search"]').val("<?= $data['join_search'] ?>");
             $('select[name="status_search"]').val("<?= $data['status_search'] ?>");
+            $('select[name="group_search"]').val("<?= $data['group_search'] ?>");
 <?php } ?>
         $('#customer-data-table tbody tr').each(function () {
             $(this).children('td.sorting_1').find('div.checked');

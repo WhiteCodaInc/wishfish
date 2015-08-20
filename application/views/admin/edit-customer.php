@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/dashboard/js/plugins/multi-select/css/multi-select.css" />
 <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/password/strength.css"/>
 <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/dashboard/css/checkbox.css"/>
 <style type="text/css">
@@ -92,6 +93,18 @@
                                 <input value="<?= isset($customers) ? $customers->email : '' ?>" type="email" name="email" class="form-control" placeholder="Email" required="" />
                             </div>
                             <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <label>Customer Groups</label><a style="margin-left: 10px" href="<?= site_url() . 'admin/customer_groups/addCustomerGroup' ?>" >Create New Customer Group</a>
+                                        <select multiple="" name="group_id[]" class="form-control searchable">
+                                            <?php foreach ($groups as $value) { ?>
+                                                <option value="<?= $value->group_id ?>" <?= (in_array($value->group_id, $cgroup)) ? "selected" : '' ?>><?= $value->group_name ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label>Date Format</label>
                                 <select name="date_format" id="date-format" class="form-control m-bot15">
                                     <option value="mm-dd-yyyy">mm-dd-yyyy</option>
@@ -124,6 +137,10 @@
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/input-mask/jquery.inputmask.js" type="text/javascript"></script>
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/input-mask/jquery.inputmask.date.extensions.js" type="text/javascript"></script>
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/input-mask/jquery.inputmask.extensions.js" type="text/javascript"></script>
+
+<!-- Multi Select -->
+<script src="<?= base_url() ?>assets/admin/js/plugins/multi-select/js/jquery.multi-select.js" type="text/javascript"></script>
+<script src="<?= base_url() ?>assets/admin/js/plugins/multi-select/js/jquery.quicksearch.js" type="text/javascript"></script>
 
 <script type="text/javascript" src="<?= base_url() ?>assets/password/strength.js"></script>
 
@@ -218,4 +235,41 @@
         }
     }
     );
+</script>
+<script type="text/javascript">
+    $('.searchable').multiSelect({
+        selectableHeader: "<input style='margin-bottom: 5%;' type='text' class='search-input form-control' autocomplete='off' placeholder='Search By Contact'>",
+        selectionHeader: "<input style='margin-bottom: 5%;' type='text' class='search-input form-control' autocomplete='off' placeholder='Search By Contact'>",
+        afterInit: function (ms) {
+            var that = this,
+                    $selectableSearch = that.$selectableUl.prev(),
+                    $selectionSearch = that.$selectionUl.prev(),
+                    selectableSearchString = '#' + that.$container.attr('id') + ' .ms-elem-selectable:not(.ms-selected)',
+                    selectionSearchString = '#' + that.$container.attr('id') + ' .ms-elem-selection.ms-selected';
+
+            that.qs1 = $selectableSearch.quicksearch(selectableSearchString)
+                    .on('keydown', function (e) {
+                        if (e.which === 40) {
+                            that.$selectableUl.focus();
+                            return false;
+                        }
+                    });
+
+            that.qs2 = $selectionSearch.quicksearch(selectionSearchString)
+                    .on('keydown', function (e) {
+                        if (e.which == 40) {
+                            that.$selectionUl.focus();
+                            return false;
+                        }
+                    });
+        },
+        afterSelect: function () {
+            this.qs1.cache();
+            this.qs2.cache();
+        },
+        afterDeselect: function () {
+            this.qs1.cache();
+            this.qs2.cache();
+        }
+    });
 </script>

@@ -42,6 +42,7 @@ class M_customers extends CI_Model {
         $email = $post['email_search'];
         $from = $post['from_search'];
         $to = $post['to_search'];
+        $group = $post['group_search'];
         $plan = $post['plan_search'];
         $join = $post['join_search'];
         $status = $post['status_search'];
@@ -53,10 +54,13 @@ class M_customers extends CI_Model {
         ($join != "" && $join != "-1") ? $where['join_via'] = $join : '';
         ($status != "" && $status != "-1") ? $where['U.status'] = $status : '';
         ($plan != "" && $plan != "-1") ? $where['P.plan_id'] = $plan : '';
+        ($group != "" && $group != "-1") ? $where['group_id'] = $group : '';
 
         $this->db->select('U.user_id,profile_pic,U.register_date,name,email,phone,phone_verification,P.plan_name,PD.plan_id,status,is_lifetime');
         $this->db->from('wi_user_mst as U');
         $this->db->join('wi_plan_detail as PD', 'U.user_id = PD.user_id', 'left outer');
+        $this->db->join('multiple_customer_group as M', 'U.user_Id = M.user_id', 'left outer');
+        $this->db->group_by('C.user_id');
         $this->db->join('wi_plans as P', 'PD.plan_id = P.plan_id');
         $this->db->where('PD.plan_status', 1);
         (isset($where) && is_array($where)) ? $this->db->where($where) : '';
@@ -73,6 +77,23 @@ class M_customers extends CI_Model {
         $this->db->where('U.user_id', $cid);
         $query = $this->db->get();
         return $query->row();
+    }
+
+    function getCustomer($cid) {
+        $res = array();
+        $res[] = $this->getCustomerInfo($cid);
+
+        $this->db->select('C.group_id');
+        $this->db->from('customer_groups as C');
+        $this->db->join('multiple_customer_group as MC', 'C.group_id = MC.group_id');
+        $this->db->where('user_id', $cid);
+        $query = $this->db->get();
+        $cgroup = array();
+        foreach ($query->result() as $value) {
+            $cgroup[] = $value->group_id;
+        }
+        $res[] = $cgroup;
+        return $res;
     }
 
     function getPaymentHistory($cid) {
@@ -118,8 +139,22 @@ class M_customers extends CI_Model {
                 $this->wi_common->getMySqlDate($set['birthday'], $customerInfo->date_format) :
                 NULL;
 
+        if (isset($set['group_id'])) {
+            $group = $set['group_id'];
+            unset($set['group_id']);
+        }
         unset($set['customerid']);
         unset($set['code']);
+
+        $data = array();
+        if (isset($group)) {
+            foreach ($group as $value) {
+                $data[] = array(
+                    'user_id' => $cid,
+                    'group_id' => $value
+                );
+            }
+        }
 
         if (isset($_FILES['profile_pic'])) {
             if ($_FILES['profile_pic']['error'] == 0) {
@@ -144,7 +179,30 @@ class M_customers extends CI_Model {
         }
         (isset($set['password'])) ?
                         $set['password'] = sha1($set['password']) : "";
+
+        $this->db->trans_start();
         $this->db->update('wi_user_mst', $set, array('user_id' => $cid));
+
+//--------------Delete Existing Group---------------------------------//
+        $this->db->select('M.id');
+        $this->db->from('multiple_customer_group as M');
+        $this->db->join('customer_groups as CG', 'M.group_id = CG.group_id');
+        $this->db->join('wi_user_mst as U', 'M.user_id = U.user_id');
+        $this->db->where('M.user_id', $cid);
+        $query = $this->db->get();
+        $res = $query->result();
+        $ids = array();
+        foreach ($res as $value) {
+            $ids[] = $value->id;
+        }
+        if (count($ids) > 0) {
+            $this->db->where_in('id', $ids, TRUE);
+            $this->db->delete('multiple_customer_group');
+        }
+        //-------------------------Insert New Assign Group--------------------//
+        (count($data) > 0) ? $this->db->insert_batch('multiple_customer_group', $data) : '';
+        $this->db->trans_complete();
+
         return $m;
     }
 
