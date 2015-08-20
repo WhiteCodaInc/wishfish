@@ -109,6 +109,7 @@
                             </div>
                         </div><!-- /.box-body -->
                         <input type="hidden" name="customerid" value="<?= $customers->user_id ?>" />
+                        <button type="submit" style="display: none"></button>
                     </form>
                 </div><!-- /.box -->
             </div><!--/.col (left) -->
@@ -176,7 +177,7 @@
 
         $('#addCustomer').click(function () {
             if ($('input[name="password"]').prop('disabled')) {
-                $('#customerForm').submit();
+                $('button:submit').trigger('click');
             } else {
                 var passwd = $('input[name="password"]').val();
                 if (passwd.trim() == "") {
