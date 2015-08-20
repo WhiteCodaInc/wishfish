@@ -509,6 +509,17 @@
             });
         });
 
+        $('#userForm').submit(function () {
+            if ($('input[name="name"]').val().trim() == "") {
+                alertify.error("Name is Required...!");
+                return false;
+            }
+            if ($('input[name="email"]').val().trim() == "") {
+                alertify.error("Email is Required...!");
+                return false;
+            }
+        });
+
         $('#save-profile').click(function () {
             $(this).prop("disabled", true);
             $('#userForm').submit();
