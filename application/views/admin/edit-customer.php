@@ -164,14 +164,14 @@
 
         $('#addCustomer').click(function () {
             if ($('input[name="password"]').prop('disabled')) {
-                $('button:submit').trigger('click');
+                $('#customerForm button:submit').trigger('click');
             } else {
                 var passwd = $('input[name="password"]').val();
                 if (passwd.trim() == "") {
                     alertify.error("Password can not be blank..!");
                     return false;
                 } else {
-                    $('#customerForm').submit();
+                    $('#customerForm button:submit').submit();
                 }
 
             }
