@@ -162,20 +162,30 @@
             $('select[name="code"]').val("<?= substr($customers->phone, -strlen($customers->phone), 2) ?>");
 <?php endif; ?>
 
-        $('#addCustomer').click(function () {
+        $('#customerForm').submit(function () {
+            if ($('input[name="name"]').trim() == "") {
+                alertify.error("Name is Required...!");
+                return false;
+            }
+            if ($('input[name="email"]').trim() == "") {
+                alertify.error("Email is Required...!");
+                return false;
+            }
             if ($('input[name="password"]').prop('disabled')) {
-                $('#customerForm button:submit').trigger('click');
+                return true;
             } else {
                 var passwd = $('input[name="password"]').val();
                 if (passwd.trim() == "") {
                     alertify.error("Password can not be blank..!");
                     return false;
                 } else {
-                    $('#customerForm button:submit').submit();
+                    return true;
                 }
-
             }
+        });
 
+        $('#addCustomer').click(function () {
+            $('#customerForm').submit();
         });
 
         $('#change_password').click(function () {
