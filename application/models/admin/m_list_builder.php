@@ -65,11 +65,11 @@ class M_list_builder extends CI_Model {
         $query = $this->db->get_where('customer_groups', array('group_id' => $gid));
         $res[] = $query->row();
 
-        $this->db->select('customer_id');
+        $this->db->select('user_id');
         $query = $this->db->get_where('multiple_customer_group', array('group_id' => $gid));
         $customer = array();
         foreach ($query->result() as $value) {
-            $customer[] = $value->customer_id;
+            $customer[] = $value->user_id;
         }
         $res[] = $customer;
         return $res;
