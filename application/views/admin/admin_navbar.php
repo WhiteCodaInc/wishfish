@@ -144,8 +144,8 @@ $img_src = ($avatar != "") ?
                                 </a>
                             </li>
                             <li>
-                                <!--<a href="<?= site_url() ?>admin/customer_groups">-->
-                                <a href="#">
+                                <a href="<?= site_url() ?>admin/customer_groups">
+                                    <!--<a href="#">-->
                                     <i class="fa fa-angle-double-right"></i> <span>Customer Groups</span>
                                 </a>
                             </li>
