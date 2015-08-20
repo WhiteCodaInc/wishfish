@@ -518,10 +518,10 @@
                 alertify.error("Email is Required...!");
                 return false;
             }
+            $(this).prop("disabled", true);
         });
 
         $('#save-profile').click(function () {
-            $(this).prop("disabled", true);
             $('#userForm').submit();
         });
 
