@@ -89,7 +89,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Email</label>
-                                <input value="<?= isset($customers) ? $customers->email : '' ?>" type="email" name="email" class="form-control" placeholder="Email" />
+                                <input value="<?= isset($customers) ? $customers->email : '' ?>" type="email" name="email" class="form-control" placeholder="Email" required="" />
                             </div>
                             <div class="form-group">
                                 <label>Date Format</label>
@@ -101,19 +101,6 @@
                             <div class="form-group" id="select-timezone">
                                 <label >Timezone </label>
                                 <?= timezone_menu('UTC') ?>
-                            </div>
-                            <div class="form-group">
-                                <label>Profile Type</label>
-                                <select name="profile_type" id="type" class="form-control m-bot15">
-                                    <option value="-1">--Select--</option>
-                                    <option value="facebook">Facebook</option>
-                                    <option value="linkedin">LinkedIn</option>
-                                    <option value="twitter">Twitter</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label id="title">Profile Url</label>
-                                <input value="<?= isset($customers) ? $customers->profile_link : '' ?>" type="text" name="profile_link" class="form-control" />
                             </div>
                             <div class="form-group" id="strengthForm">
                                 <label>Password</label>

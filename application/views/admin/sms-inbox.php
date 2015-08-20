@@ -53,7 +53,7 @@
                                     <?php
                                     $img_src = "";
                                     $img_src = ($sms->contact_avatar != "") ?
-                                            "http://mikhailkuznetsov.s3.amazonaws.com/" . $sms->contact_avatar :
+                                            "https://mikhailkuznetsov.s3.amazonaws.com/" . $sms->contact_avatar :
                                             base_url() . 'assets/dashboard/img/default-avatar.png';
                                     ?>
                                     <tr id="<?= $sms->from ?>">
