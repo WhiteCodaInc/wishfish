@@ -139,8 +139,8 @@
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/input-mask/jquery.inputmask.extensions.js" type="text/javascript"></script>
 
 <!-- Multi Select -->
-<script src="<?= base_url() ?>assets/admin/js/plugins/multi-select/js/jquery.multi-select.js" type="text/javascript"></script>
-<script src="<?= base_url() ?>assets/admin/js/plugins/multi-select/js/jquery.quicksearch.js" type="text/javascript"></script>
+<script src="<?= base_url() ?>assets/dashboard/js/plugins/multi-select/js/jquery.multi-select.js" type="text/javascript"></script>
+<script src="<?= base_url() ?>assets/dashboard/js/plugins/multi-select/js/jquery.quicksearch.js" type="text/javascript"></script>
 
 <script type="text/javascript" src="<?= base_url() ?>assets/password/strength.js"></script>
 
