@@ -137,7 +137,6 @@
             todayHighlight: true
         });
         $('select[name="timezones"]').addClass('form-control m-bot15');
-        $('#type').val("<?= $customers->profile_type ?>");
         $('select[name="timezones"] option').each(function () {
             if ($(this).val() == "<?= $customers->timezones ?>") {
                 $(this).prop('selected', true);
@@ -146,18 +145,6 @@
         $('#date-format option').each(function () {
             if ($(this).val() == "<?= $customers->date_format ?>") {
                 $(this).prop('selected', true);
-            }
-        });
-        $('#type').change(function () {
-            var type = $(this).val();
-            if (type == "facebook") {
-                $('#title').text("Facebook Username");
-            } else if (type == "linkedin") {
-                $('#title').text("LinkedIn Profile Url");
-            } else if (type == "twitter") {
-                $('#title').text("Twitter Username");
-            } else {
-                $('#title').text("Url");
             }
         });
     });
