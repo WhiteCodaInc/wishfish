@@ -18,8 +18,7 @@ label{
     z-index: 3;
 }
 .wizard-card{
-    height: 420px;
-    background-color: #FFFFFF;
+    height: 400px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.15), 0 0 1px 1px rgba(0, 0, 0, 0.1);
     transition: all 0.2s;
     -webkit-transition: all 0.2s;
@@ -72,12 +71,12 @@ label{
 
 }
 .wizard-card .tab-content{
-    min-height: 330px;
+    height: 225px;
     padding: 20px 10px;
 }
 
 .wizard-card .wizard-footer{
-    padding: 0 10px;
+    padding: 40px 57px;
 }
 
 .wizard-card .disabled{
