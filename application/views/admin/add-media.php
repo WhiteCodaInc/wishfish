@@ -119,11 +119,12 @@
                                 <div id="progressbar"></div>
                                 <div id="statustxt">0%</div>
                             </div>
+                            <div id="output"></div>
                             <!--</div>-->
                             <!--</div>-->
                             <div class="row">
                                 <div class="col-md-12">
-                                    <button id="save" type="submit" class="btn btn-primary save">Save</button>
+                                    <button id="save" type="submit" class="btn btn-primary">Save</button>
                                 </div>
                             </div>
                             <?php if (isset($media)): ?>
@@ -168,6 +169,7 @@
 
         $('#mediaForm').submit(function () {
             $('button.save').prop('disabled', true);
+            $(this).prop('disabled', true);
 //            $('.media .overlay').show();
 //            $('.media .loading-img').show();
 //            $('.progress_bar').show();
@@ -194,34 +196,34 @@
             if (window.File && window.FileReader && window.FileList && window.Blob)
             {
 
-//                if (!$('#imageInput').val()) //check empty input filed
-//                {
-//                    $("#output").html("Are you kidding me?");
-//                    return false
-//                }
+                if (!$('#imageInput').val()) //check empty input filed
+                {
+                    $("#output").html("Are you kidding me?");
+                    return false
+                }
 
                 var fsize = $('#imageInput')[0].files[0].size; //get file size
                 var ftype = $('#imageInput')[0].files[0].type; // get file type
 
                 //allow only valid image file types 
-//                switch (ftype)
-//                {
-//                    case 'image/png':
-//                    case 'image/gif':
-//                    case 'image/jpeg':
-//                    case 'image/pjpeg':
-//                        break;
-//                    default:
-//                        $("#output").html("<b>" + ftype + "</b> Unsupported file type!");
-//                        return false
-//                }
+                switch (ftype)
+                {
+                    case 'image/png':
+                    case 'image/gif':
+                    case 'image/jpeg':
+                    case 'image/pjpeg':
+                        break;
+                    default:
+                        $("#output").html("<b>" + ftype + "</b> Unsupported file type!");
+                        return false
+                }
 
                 //Allowed file size is less than 1 MB (1048576)
-//                if (fsize > 1048576)
-//                {
-//                    $("#output").html("<b>" + bytesToSize(fsize) + "</b> Too big Image file! <br />Please reduce the size of your photo using an image editor.");
-//                    return false
-//                }
+                if (fsize > 1048576)
+                {
+                    $("#output").html("<b>" + bytesToSize(fsize) + "</b> Too big Image file! <br />Please reduce the size of your photo using an image editor.");
+                    return false
+                }
 
                 //Progress bar
                 progressbox.show(); //show progressbar
@@ -237,8 +239,8 @@
             else
             {
                 //Output error to older unsupported browsers that doesn't support HTML5 File API
-//                $("#output").html("Please upgrade your browser, because your current browser lacks some new features we need!");
-//                return false;
+                $("#output").html("Please upgrade your browser, because your current browser lacks some new features we need!");
+                return false;
             }
             //function to format bites bit.ly/19yoIPO
             function bytesToSize(bytes) {
