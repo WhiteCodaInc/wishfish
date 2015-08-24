@@ -8,7 +8,6 @@
         border-radius: 3px;
         margin: 10px 0;
         display:none;
-
     }
     #progressbar {
         height:20px;
