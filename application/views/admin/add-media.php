@@ -124,7 +124,7 @@
                             <!--</div>-->
                             <div class="row">
                                 <div class="col-md-12">
-                                    <button id="save" type="submit" class="btn btn-primary">Save</button>
+                                    <button id="save" type="submit" class="btn btn-primary save">Save</button>
                                 </div>
                             </div>
                             <?php if (isset($media)): ?>
