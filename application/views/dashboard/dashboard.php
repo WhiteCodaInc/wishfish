@@ -124,9 +124,9 @@
                                                                 </a>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-4" style="padding-top: 60px;">
+<!--                                                        <div class="col-md-4" style="padding-top: 60px;">
                                                             <input style="width: 160px;height: 60px;" type='button' class='btn btn-next btn-info btn-lg' name='next' value='Next' />
-                                                        </div>
+                                                        </div>-->
                                                         <div class="col-md-1"></div>
                                                     </div>
                                                     <input value="" name="zodiac" type="hidden" class="form-control" >
@@ -145,13 +145,13 @@
                                             <br/>
                                             <div class="wizard-footer">
                                                 <div class="pull-right">
-<!--                                                    <input type='button' class='btn btn-next btn-info' name='next' value='Next' />-->
-                                                    <input type='button' class='btn btn-finish btn-info' name='finish' value='Finish' />
+                                                    <input style="width: 160px;height: 60px;" type='button' class='btn btn-next btn-info btn-lg' name='next' value='Next' />
+                                                    <input style="width: 160px;height: 60px;" type='button' class='btn btn-finish btn-info' name='finish' value='Finish' />
                                                 </div>
-                                                <div class="pull-left">
-                                                    <input type='button' class='btn btn-previous btn-default' name='previous' value='Previous' />
-                                                </div>
-                                                <div class="clearfix"></div>
+                                                <!--                                                <div class="pull-left">
+                                                                                                    <input type='button' class='btn btn-previous btn-default' name='previous' value='Previous' />
+                                                                                                </div>-->
+                                                <!--<div class="clearfix"></div>-->
                                             </div>	
                                         </div>
                                     </form>
