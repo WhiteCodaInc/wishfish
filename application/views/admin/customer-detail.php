@@ -65,6 +65,7 @@
                                             <option value="<?= $value->plan_id ?>">
                                                 <?= $value->plan_name ?></option>
                                         <?php } ?>
+                                        <option value="0">Free Lifetime Access</option>
                                     </select>
                                 </div>
                                 <div class="col-md-4">

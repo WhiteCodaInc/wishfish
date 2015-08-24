@@ -54,7 +54,8 @@ class M_customers extends CI_Model {
         ($join != "" && $join != "-1") ?
                         (($join == "Email") ? $where['join_type'] = NULL : $where['join_type'] = $join) : '';
         ($status != "" && $status != "-1") ? $where['U.status'] = $status : '';
-        ($plan != "" && $plan != "-1") ? $where['P.plan_id'] = $plan : '';
+        ($plan != "" && $plan != "-1") ?
+                        (($plan == '0') ? $where['P.is_lifetime'] = 1 : $where['P.plan_id'] = $plan) : '';
         ($group != "" && $group != "-1") ? $where['group_id'] = $group : '';
 
         $this->db->select('U.user_id,profile_pic,U.register_date,name,email,phone,phone_verification,P.plan_name,PD.plan_id,status,is_lifetime');
