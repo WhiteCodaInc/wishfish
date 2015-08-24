@@ -28,7 +28,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1 style="display: none">
-            <?= (isset($media)) ? "Edit Existing Media" : "Add New Midea" ?>
+            <?= (isset($media)) ? "Edit Existing Media" : "Add New Media" ?>
         </h1>
         <button class="save btn btn-primary">Save</button>
     </section>
