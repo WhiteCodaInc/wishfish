@@ -61,7 +61,7 @@
 <aside class="right-side" style="min-height: 542px;">
     <!-------------------------------Welcome Tour Model------------------------------------>
     <div class="modal fade" id="tour-modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" style="max-width: 700px">
+        <div class="modal-dialog" style="max-width: 1000px">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -71,43 +71,41 @@
                     <div class="box box-primary tour">
                         <div class="box-body">
                             <div class="row">
-                                <div class="col-sm-12 col-sm-offset-2">
+                                <div class="col-sm-12">
                                     <!--      Wizard container        -->   
-                                    <div class="wizard-container"> 
-                                        <form action="" method="">
-                                            <div class="card wizard-card ct-wizard-green" id="wizard">
-                                                <ul>
-                                                    <li><a href="#location" data-toggle="tab">STEP 1</a></li>
-                                                    <li><a href="#type" data-toggle="tab">STEP 2</a></li>
-                                                    <li><a href="#facilities" data-toggle="tab">STEP 3</a></li>
-                                                </ul>
-                                                <div class="tab-content">
-                                                    <div class="tab-pane" id="location">
-                                                        <h1 class="info-text">STEP - 1</h1>
-                                                    </div>
-                                                    <div class="tab-pane" id="type">
-                                                        <h1 class="info-text">STEP - 2</h1>
-                                                    </div>
-                                                    <div class="tab-pane" id="facilities">
-                                                        <h1 class="info-text">STEP - 3</h1>
-                                                    </div>
-                                                    <div class="tab-pane" id="description">
-                                                        <h1 class="info-text">STEP - 4</h1>
-                                                    </div>
+                                    <form action="" method="">
+                                        <div class="card wizard-card ct-wizard-green" id="wizard">
+                                            <ul>
+                                                <li><a href="#location" data-toggle="tab">STEP 1</a></li>
+                                                <li><a href="#type" data-toggle="tab">STEP 2</a></li>
+                                                <li><a href="#facilities" data-toggle="tab">STEP 3</a></li>
+                                            </ul>
+                                            <div class="tab-content">
+                                                <div class="tab-pane" id="location">
+                                                    <h1 class="info-text">STEP - 1</h1>
                                                 </div>
-                                                <div class="wizard-footer">
-                                                    <div class="pull-right">
-                                                        <input type='button' class='btn btn-next btn-fill btn-success btn-wd btn-sm' name='next' value='Next' />
-                                                        <input type='button' class='btn btn-finish btn-fill btn-success btn-wd btn-sm' name='finish' value='Finish' />
-                                                    </div>
-                                                    <div class="pull-left">
-                                                        <input type='button' class='btn btn-previous btn-fill btn-default btn-wd btn-sm' name='previous' value='Previous' />
-                                                    </div>
-                                                    <div class="clearfix"></div>
-                                                </div>	
+                                                <div class="tab-pane" id="type">
+                                                    <h1 class="info-text">STEP - 2</h1>
+                                                </div>
+                                                <div class="tab-pane" id="facilities">
+                                                    <h1 class="info-text">STEP - 3</h1>
+                                                </div>
+                                                <div class="tab-pane" id="description">
+                                                    <h1 class="info-text">STEP - 4</h1>
+                                                </div>
                                             </div>
-                                        </form>
-                                    </div> <!-- wizard container -->
+                                            <div class="wizard-footer">
+                                                <div class="pull-right">
+                                                    <input type='button' class='btn btn-next btn-fill btn-success btn-wd btn-sm' name='next' value='Next' />
+                                                    <input type='button' class='btn btn-finish btn-fill btn-success btn-wd btn-sm' name='finish' value='Finish' />
+                                                </div>
+                                                <div class="pull-left">
+                                                    <input type='button' class='btn btn-previous btn-fill btn-default btn-wd btn-sm' name='previous' value='Previous' />
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>	
+                                        </div>
+                                    </form>
                                 </div>
                             </div> <!-- row -->
                         </div>
