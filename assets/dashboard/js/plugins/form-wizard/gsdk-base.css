@@ -94,7 +94,7 @@ label{
 .wizard-card > ul > li a {
     border: 0 !important;
     text-transform: uppercase;
-    background-color: #2CA8FF;
+    background-color: #999999;
     color: #FFFFFF !important;
     font-size: 12px;
     padding: 15px;
@@ -103,7 +103,7 @@ label{
     background-color: #05ae0e;
 }
 .wizard-card.ct-wizard-blue > ul > li.active a{
-    background-color: #3472f7;
+    background-color: #2CA8FF;
 }
 .wizard-card.ct-wizard-orange > ul > li.active a{
     background-color: #ff9500;
