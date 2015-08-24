@@ -44,7 +44,11 @@
                                                     </label>
                                                 </div>
                                             </td>
-                                            <td><?= $value->name ?></td>
+                                            <td>
+                                                <a href="<?= site_url() . 'admin/customers/profile/' . $value->user_id ?>" class="name">
+                                                    <?= $value->name ?>
+                                                </a>
+                                            </td>
                                             <td class="hidden-xs hidden-sm"><?= $value->email ?></td>
                                             <td><?= ($value->country != NULL) ? $value->country : "N/A" ?></td>
                                             <td><?= $value->query ?></td>
