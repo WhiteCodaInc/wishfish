@@ -618,7 +618,7 @@
             $('div.feedback').hide();
         });
 
-        $('#myModal').modal('#tour-modal');
+        $('#tour-modal').modal('show');
 
         $('#review_submit').click(function () {
             var msg = $('#review').val();
