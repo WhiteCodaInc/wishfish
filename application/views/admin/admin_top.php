@@ -71,7 +71,7 @@
                                 <?php } ?>
                             </ul>
                         </li>
-                        <li class="footer"><a href="#">See All Payments</a></li>
+                        <li class="footer"><a href="<?= site_url() ?>admin/analytics">See All Payments</a></li>
                     </ul>
                 </li>
                 <!-- ENd Payment Notification -->
