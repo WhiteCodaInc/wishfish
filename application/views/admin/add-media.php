@@ -189,8 +189,7 @@
         }
         function afterSuccess()
         {
-//            $('#submit-btn').show(); //hide submit button
-//            $('#loading-img').hide(); //hide submit button
+            windows.location.href = "<?= site_url() . 'admin/media?msg=I' ?>";
         }
         function beforeSubmit() {
             //check whether browser fully supports all File API
