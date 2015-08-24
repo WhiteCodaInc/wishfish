@@ -74,7 +74,7 @@
                                 <div class="col-sm-12">
                                     <!--      Wizard container        -->   
                                     <form action="" method="">
-                                        <div class="card wizard-card ct-wizard-green" id="wizard">
+                                        <div class="card wizard-card ct-wizard-blue" id="wizard">
                                             <ul>
                                                 <li style="margin: 0"><a href="#location" data-toggle="tab">STEP 1</a></li>
                                                 <li style="margin: 0"><a href="#type" data-toggle="tab">STEP 2</a></li>
@@ -96,11 +96,11 @@
                                             </div>
                                             <div class="wizard-footer">
                                                 <div class="pull-right">
-                                                    <input type='button' class='btn btn-next btn-fill btn-success btn-wd btn-sm' name='next' value='Next' />
-                                                    <input type='button' class='btn btn-finish btn-fill btn-success btn-wd btn-sm' name='finish' value='Finish' />
+                                                    <input type='button' class='btn btn-next btn-info' name='next' value='Next' />
+                                                    <input type='button' class='btn btn-finish btn-info' name='finish' value='Finish' />
                                                 </div>
                                                 <div class="pull-left">
-                                                    <input type='button' class='btn btn-previous btn-fill btn-default btn-wd btn-sm' name='previous' value='Previous' />
+                                                    <input type='button' class='btn btn-previous btn-default' name='previous' value='Previous' />
                                                 </div>
                                                 <div class="clearfix"></div>
                                             </div>	
