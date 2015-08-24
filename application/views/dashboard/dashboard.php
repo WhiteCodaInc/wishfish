@@ -76,9 +76,9 @@
                                     <form action="" method="">
                                         <div class="card wizard-card ct-wizard-green" id="wizard">
                                             <ul>
-                                                <li><a href="#location" data-toggle="tab">STEP 1</a></li>
-                                                <li><a href="#type" data-toggle="tab">STEP 2</a></li>
-                                                <li><a href="#facilities" data-toggle="tab">STEP 3</a></li>
+                                                <li style="margin: 0"><a href="#location" data-toggle="tab">STEP 1</a></li>
+                                                <li style="margin: 0"><a href="#type" data-toggle="tab">STEP 2</a></li>
+                                                <li style="margin: 0"><a href="#facilities" data-toggle="tab">STEP 3</a></li>
                                             </ul>
                                             <div class="tab-content">
                                                 <div class="tab-pane" id="location">
