@@ -175,7 +175,7 @@
         function OnProgress(event, position, total, percentComplete)
         {
             //Progress bar
-            progressbar.width(percentComplete + '%') //update progressbar percent complete
+            progressbar.width(percentComplete + '%'); //update progressbar percent complete
             statustxt.html(percentComplete + '%'); //update status text
             if (percentComplete > 50)
             {
