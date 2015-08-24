@@ -169,12 +169,13 @@
 
         $('#mediaForm').submit(function () {
             $('button.save').prop('disabled', true);
-            $(this).prop('disabled', true);
+            $('#save').prop('disabled', true);
 //            $('.media .overlay').show();
 //            $('.media .loading-img').show();
 //            $('.progress_bar').show();
             $(this).ajaxSubmit(options);
             // return false to prevent standard browser submit and page navigation 
+            return false;
         });
         function OnProgress(event, position, total, percentComplete)
         {
