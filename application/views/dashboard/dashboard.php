@@ -82,7 +82,29 @@
                                             </ul>
                                             <div class="tab-content">
                                                 <div class="tab-pane" id="location">
-                                                    <h1 class="info-text">STEP - 1</h1>
+                                                    <h1 class="info-text">Add a Friend / Family Member :</h1>
+                                                    <div class="row">
+                                                        <div class="col-md-1"></div>
+                                                        <div class="col-md-10">
+                                                            <div class="form-group">
+                                                                <input type="text" name="fname" autofocus="autofocus" class="form-control" placeholder="First Name" required=""/>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="text" name="lname" class="form-control" placeholder="Last Name" required=""/>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="input-group">
+                                                                    <div class="input-group-addon">
+                                                                        <i class="fa fa-calendar"></i>
+                                                                    </div>
+                                                                    <input name="birthday" placeholder="Enter Birthdate" value=""  class="form-control form-control-inline input-medium default-date-picker" size="16" type="text" required="">
+                                                                </div><!-- /.input group -->
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-1"></div>
+                                                    </div>
+                                                    <input value="" name="zodiac" type="hidden" class="form-control" >
+                                                    <input value="" name="age" type="hidden" class="form-control" >
                                                 </div>
                                                 <div class="tab-pane" id="type">
                                                     <h1 class="info-text">STEP - 2</h1>
