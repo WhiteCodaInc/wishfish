@@ -448,7 +448,47 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        
+        $('button.close').click(function () {
+            $('div.feedback').hide();
+        });
 
+//        $('#tour-modal').modal('show');
+
+        $('#review_submit').click(function () {
+            var msg = $('#review').val();
+            var id = $(this).prop('id');
+            if (msg.trim() == "") {
+                alertify.error('Please Write Your Feedback In Box..!');
+                return false;
+            }
+            $(this).prop('disabled', true);
+            $('div.review .overlay').show();
+            $('div.review .loading-img').show();
+            $.ajax({
+                type: 'POST',
+                url: "<?= site_url() ?>app/dashboard/sendQuery",
+                data: {query: msg},
+                success: function (data, textStatus, jqXHR) {
+                    $('#' + id).prop('disabled', false);
+                    $('div.review .overlay').hide();
+                    $('div.review .loading-img').hide();
+                    $('#review_error').show();
+                    if (data == "1") {
+                        $('#review_error span').css('color', 'green');
+                        $('#review_error span').text("Thank You..!");
+                    } else {
+                        $('#review_error span').css('color', 'red');
+                        $('#review_error span').text("We can't receive your feedback..! Try Again..!");
+                    }
+                    $('#review').val("");
+//                    setTimeout(function () {
+//                        $('#feedback-model .close').trigger('click');
+//                    }, 500);
+                }
+            });
+        });
+        
         //---------------------------------- STEP 1 --------------------------//
 
         $('#step1Form input[name="fname"]').focusout(function () {
@@ -502,6 +542,7 @@
                 }
             });
         });
+        
         //--------------------------------------------------------------------//
 
         //---------------------------------- STEP 2 --------------------------//
@@ -791,44 +832,6 @@
     });
 
     $(document).ready(function () {
-        $('button.close').click(function () {
-            $('div.feedback').hide();
-        });
-
-        $('#tour-modal').modal('show');
-
-        $('#review_submit').click(function () {
-            var msg = $('#review').val();
-            var id = $(this).prop('id');
-            if (msg.trim() == "") {
-                alertify.error('Please Write Your Feedback In Box..!');
-                return false;
-            }
-            $(this).prop('disabled', true);
-            $('div.review .overlay').show();
-            $('div.review .loading-img').show();
-            $.ajax({
-                type: 'POST',
-                url: "<?= site_url() ?>app/dashboard/sendQuery",
-                data: {query: msg},
-                success: function (data, textStatus, jqXHR) {
-                    $('#' + id).prop('disabled', false);
-                    $('div.review .overlay').hide();
-                    $('div.review .loading-img').hide();
-                    $('#review_error').show();
-                    if (data == "1") {
-                        $('#review_error span').css('color', 'green');
-                        $('#review_error span').text("Thank You..!");
-                    } else {
-                        $('#review_error span').css('color', 'red');
-                        $('#review_error span').text("We can't receive your feedback..! Try Again..!");
-                    }
-                    $('#review').val("");
-//                    setTimeout(function () {
-//                        $('#feedback-model .close').trigger('click');
-//                    }, 500);
-                }
-            });
-        });
+        
     });
 </script>
