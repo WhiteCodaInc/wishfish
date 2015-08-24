@@ -59,7 +59,7 @@ class M_customers extends CI_Model {
                 $where['is_lifetime'] = 1;
             } else {
                 $where['P.plan_id'] = $plan;
-                $where['is_lifetime <>'] = 1;
+                
             }
         }
 
