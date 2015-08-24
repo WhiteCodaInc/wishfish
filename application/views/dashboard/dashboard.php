@@ -103,6 +103,24 @@
                                                         </div>
                                                         <div class="col-md-1"></div>
                                                     </div>
+                                                    <div class="row">
+                                                        <div class="col-md-1"></div>
+                                                        <div class="col-md-5">
+                                                            <div class="form-group">
+                                                                <strong>Don't want to add manually?</strong>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <a href="#" class="btn btn-danger">Add from Google</a>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <a href="#" class="btn btn-danger">Add from Facebook</a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-5">
+                                                            <input type='button' class='btn btn-next btn-info' name='next' value='Next' />
+                                                        </div>
+                                                        <div class="col-md-1"></div>
+                                                    </div>
                                                     <input value="" name="zodiac" type="hidden" class="form-control" >
                                                     <input value="" name="age" type="hidden" class="form-control" >
                                                 </div>
@@ -119,7 +137,7 @@
                                             <br/>
                                             <div class="wizard-footer">
                                                 <div class="pull-right">
-                                                    <input type='button' class='btn btn-next btn-info' name='next' value='Next' />
+<!--                                                    <input type='button' class='btn btn-next btn-info' name='next' value='Next' />-->
                                                     <input type='button' class='btn btn-finish btn-info' name='finish' value='Finish' />
                                                 </div>
                                                 <div class="pull-left">
