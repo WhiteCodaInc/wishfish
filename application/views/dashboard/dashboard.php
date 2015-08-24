@@ -112,14 +112,14 @@
                                                             <div class="form-group">
 
                                                                 <a href="#" class="btn btn-danger">
-                                                                    <i class="fa fa-google"></i>
+                                                                    <i class="fa fa-google-plus-square"></i>
                                                                     Add from Google
                                                                 </a>
                                                             </div>
                                                             <div class="form-group">
 
                                                                 <a href="#" class="btn btn-primary">
-                                                                    <i class="fa fa-facebook"></i>
+                                                                    <i class="fa fa-facebook-square"></i>
                                                                     Add from Facebook
                                                                 </a>
                                                             </div>
