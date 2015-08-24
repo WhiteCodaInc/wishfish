@@ -62,9 +62,9 @@ class M_customers extends CI_Model {
                 $where['is_lifetime !='] = '1';
             }
         }
-        echo '<pre>';
-        print_r($where);
-        die();
+//        echo '<pre>';
+//        print_r($where);
+//        die();
 
         ($group != "" && $group != "-1") ? $where['group_id'] = $group : '';
 
@@ -72,7 +72,7 @@ class M_customers extends CI_Model {
         $this->db->from('wi_user_mst as U');
         $this->db->join('wi_plan_detail as PD', 'U.user_id = PD.user_id', 'left outer');
         $this->db->join('multiple_customer_group as M', 'U.user_Id = M.user_id', 'left outer');
-        $this->db->group_by('U.user_id');
+        $this->db->group_by('C.user_id');
         $this->db->join('wi_plans as P', 'PD.plan_id = P.plan_id');
         $this->db->where('PD.plan_status', 1);
         (isset($where) && is_array($where)) ? $this->db->where($where) : '';
