@@ -295,6 +295,16 @@
     </section>
 </aside>
 
+<script type="text/javascript">
+    $(function () {
+        $('.default-date-picker').datepicker({
+            format: "<?= $this->session->userdata('u_date_format') ?>",
+            todayBtn: "linked",
+            autoclose: true,
+            todayHighlight: true
+        });
+    });
+</script>
 
 <!--   plugins 	 -->
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/form-wizard/jquery.bootstrap.wizard.js" type="text/javascript"></script>

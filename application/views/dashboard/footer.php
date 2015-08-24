@@ -11,7 +11,7 @@
 //        
 ?>
         <!--<script type="text/javascript" src="//<?= base_url() ?>assets/hopscotch/demo.js"></script>-->
-//<?php
+<?php
 //    }
 //}
 ?>
