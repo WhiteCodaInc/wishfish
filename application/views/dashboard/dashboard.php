@@ -1,7 +1,9 @@
 <link rel="stylesheet" href="<?= base_url() ?>assets/dashboard/timeline/timeglider/Timeglider.css" type="text/css" media="screen" title="no title" charset="utf-8">
 <link rel="stylesheet" href="<?= base_url() ?>assets/dashboard/timeline/timeglider/timeglider.datepicker.css" type="text/css" media="screen" charset="utf-8">
 <link rel="stylesheet" href="<?= base_url() ?>assets/dashboard/timeline/css/docs.css" type="text/css" media="screen" title="no title" charset="utf-8">
-<!--<link rel="stylesheet" href="<?= base_url() ?>assets/dashboard/timeline/css/jquery-ui-1.10.3.custom.css" type="text/css" media="screen" title="no title" charset="utf-8">-->
+
+<link href="<?= base_url() ?>assets/dashboard/js/plugins/form-wizard/gsdk-base.css" rel="stylesheet" type="text/css"/>
+
 <style type='text/css'>
     .header {
         margin:32px;
@@ -57,6 +59,201 @@
 </style>
 <div id="center" style="position: absolute;"></div>
 <aside class="right-side" style="min-height: 542px;">
+    <!-------------------------------Welcome Tour Model------------------------------------>
+    <div class="modal fade" id="tour-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" style="max-width: 400px">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="box box-primary tour">
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-sm-8 col-sm-offset-2">
+                                    <!--      Wizard container        -->   
+                                    <div class="wizard-container"> 
+                                        <form action="" method="">
+                                            <div class="card wizard-card ct-wizard-green" id="wizard">
+                                                <ul>
+                                                    <li><a href="#location" data-toggle="tab">Location</a></li>
+                                                    <li><a href="#type" data-toggle="tab">Type</a></li>
+                                                    <li><a href="#facilities" data-toggle="tab">Facilities</a></li>
+                                                    <li><a href="#description" data-toggle="tab">Description</a></li>
+                                                </ul>
+                                                <div class="tab-content">
+                                                    <div class="tab-pane" id="location">
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <h4 class="info-text"> Let's start with the basic details</h4>
+                                                            </div>
+                                                            <div class="col-sm-5 col-sm-offset-1">
+                                                                <div class="form-group">
+                                                                    <label>City</label>
+                                                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Where is your place located?">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-5">
+                                                                <div class="form-group">
+                                                                    <label>Country</label><br>
+                                                                    <select name="country" class="form-control">
+                                                                        <option disabled="" selected="">- country -</option>
+                                                                        <option value="Afghanistan"> Afghanistan </option>
+                                                                        <option value="Albania"> Albania </option>
+                                                                        <option value="Algeria"> Algeria </option>
+                                                                        <option value="American Samoa"> American Samoa </option>
+                                                                        <option value="Andorra"> Andorra </option>
+                                                                        <option value="Angola"> Angola </option>
+                                                                        <option value="Anguilla"> Anguilla </option>
+                                                                        <option value="Antarctica"> Antarctica </option>
+                                                                        <option value="...">...</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-5 col-sm-offset-1">
+                                                                <div class="form-group">
+                                                                    <label>Accommodates</label>
+                                                                    <select class="form-control">
+                                                                        <option disabled="" selected="">- persons -</option>
+                                                                        <option>1 Person</option>
+                                                                        <option>2 Persons </option>
+                                                                        <option>3 Persons</option>
+                                                                        <option>4 Persons</option>
+                                                                        <option>5 Persons</option>
+                                                                        <option>6+ Persons</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-5">
+                                                                <div class="form-group">
+                                                                    <label>Rent price</label>
+                                                                    <div class="input-group">
+                                                                        <input type="text" class="form-control" placeholder="Rent price per day">
+                                                                        <span class="input-group-addon">$</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane" id="type">
+                                                        <h4 class="info-text">What type of location do you have? </h4>
+                                                        <div class="row">
+                                                            <div class="col-sm-10 col-sm-offset-1">
+                                                                <div class="col-sm-4 col-sm-offset-2">
+                                                                    <div class="choice" data-toggle="wizard-radio" rel="tooltip" title="Select this option if you have a house.">
+                                                                        <input type="radio" name="type" value="House">
+                                                                        <div class="icon">
+                                                                            <i class="fa fa-home"></i>
+                                                                        </div>
+                                                                        <h6>House</h6>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <div class="choice" data-toggle="wizard-radio" rel="tooltip" title="Select this option if you have an appartment">
+                                                                        <input type="radio" name="type" value="Appartment">
+                                                                        <div class="icon">
+                                                                            <i class="fa fa-building"></i>
+                                                                        </div>
+                                                                        <h6>Appartment</h6>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane" id="facilities">
+                                                        <h4 class="info-text">Tell us more about facilities. </h4>
+                                                        <div class="row">
+                                                            <div class="col-sm-5 col-sm-offset-1">
+                                                                <div class="form-group">
+                                                                    <label>Your place is good for</label>
+                                                                    <select class="form-control">
+                                                                        <option disabled="" selected="">- type -</option>
+                                                                        <option>Business</option>
+                                                                        <option>Vacation </option>
+                                                                        <option>Work</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-5">
+                                                                <div class="form-group">
+                                                                    <label>Is air conditioning included ?</label>
+                                                                    <select class="form-control">
+                                                                        <option disabled="" selected="">- response -</option>
+                                                                        <option>Yes</option>
+                                                                        <option>No </option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-5 col-sm-offset-1">
+                                                                <div class="form-group">
+                                                                    <label>Does your place have wi-fi?</label>
+                                                                    <select class="form-control">
+                                                                        <option disabled="" selected="">- response -</option>
+                                                                        <option>Yes</option>
+                                                                        <option>No </option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-5">
+                                                                <div class="form-group">
+                                                                    <label>Is breakfast included?</label>
+                                                                    <select class="form-control">
+                                                                        <option disabled="" selected="">- response -</option>
+                                                                        <option>Yes</option>
+                                                                        <option>No </option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane" id="description">
+                                                        <div class="row">
+                                                            <h4 class="info-text"> Drop us a small description. </h4>
+                                                            <div class="col-sm-6 col-sm-offset-1">
+                                                                <div class="form-group">
+                                                                    <label>Place description</label>
+                                                                    <textarea class="form-control" placeholder="" rows="9">
+                                                
+                                                                    </textarea>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <div class="form-group">
+                                                                    <label>Example</label>
+                                                                    <p class="description">"The place is really nice. We use it every sunday when we go fishing. It is so awesome."</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="wizard-footer">
+                                                    <div class="pull-right">
+                                                        <input type='button' class='btn btn-next btn-fill btn-success btn-wd btn-sm' name='next' value='Next' />
+                                                        <input type='button' class='btn btn-finish btn-fill btn-success btn-wd btn-sm' name='finish' value='Finish' />
+
+                                                    </div>
+                                                    <div class="pull-left">
+                                                        <input type='button' class='btn btn-previous btn-fill btn-default btn-wd btn-sm' name='previous' value='Previous' />
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>	
+                                            </div>
+                                        </form>
+                                    </div> <!-- wizard container -->
+                                </div>
+                            </div> <!-- row -->
+                        </div>
+                        <div class="overlay" style="display: none"></div>
+                        <div class="loading-img" style="display: none"></div>
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+    <!------------------------------------------------------------------------>
+
     <!--<a href="#" style="display: none" class="feedback" data-backdrop="false"  data-toggle="modal" data-target="#feedback-model">Review</a>-->
     <!--<div class="modal fade" id="feedback-model" tabindex="-1" role="dialog" aria-hidden="true">-->
     <div class="modal-dialog feedback">
@@ -88,7 +285,7 @@
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
-    <!--</div>-->
+
     <section class="content-header">
         <h1 style="float: left">
             Dashboard
@@ -101,18 +298,6 @@
             <i class="fa fa-plus"></i>
             Create New Event
         </a>
-<!--        <a href="<?= site_url() ?>app/sms_template/addTemplate" class="btn btn-warning btn-sm create">
-        <i class="fa fa-plus"></i>
-        Create SMS Template
-    </a>
-    <a href="<?= site_url() ?>app/email_template/addTemplate" class="btn btn-danger btn-sm create">
-        <i class="fa fa-plus"></i>
-        Create Email Template
-    </a>-->
-
-
-
-
         <div class="box box-solid box-primary collapsed-box event">
             <div class="box-header" data-widget="collapse"  style="cursor: pointer;padding: 7px">
                 <h4 class="box-title" style="font-size: 15px">Events</h4>
@@ -222,6 +407,12 @@
         <div id='p1'></div>
     </section>
 </aside>
+
+
+<!--   plugins 	 -->
+<script src="<?= base_url() ?>assets/dashboard/js/plugins/form-wizard/jquery.bootstrap.wizard.js" type="text/javascript"></script>
+<script src="<?= base_url() ?>assets/dashboard/js/plugins/form-wizard/wizard.js" type="text/javascript"></script>
+
 
 <script src="<?= base_url() ?>assets/dashboard/timeline/js/underscore-min.js" type="text/javascript" charset="utf-8"></script>
 <script src="<?= base_url() ?>assets/dashboard/timeline/js/backbone-min.js" type="text/javascript" charset="utf-8"></script>
@@ -427,6 +618,8 @@
             $('div.feedback').hide();
         });
 
+        $('#myModal').modal('#tour-modal');
+
         $('#review_submit').click(function () {
             var msg = $('#review').val();
             var id = $(this).prop('id');
@@ -457,6 +650,59 @@
 //                    setTimeout(function () {
 //                        $('#feedback-model .close').trigger('click');
 //                    }, 500);
+                }
+            });
+        });
+
+        /*************************Add New Contact************************/
+        $('#step1Form input[name="fname"]').focusout(function () {
+            var str = $(this).val() + "'s";
+            $('#step1Form  input[name="birthday"]').attr('placeholder', 'Enter ' + str + ' Birthdate');
+            $('#step1Form input[name="phone"]').attr('placeholder', 'Enter ' + str + ' Phone Number');
+        });
+        $('#step1Form input[name="birthday"]').focusout(function () {
+            var dt = $(this).val();
+            var pastYear = dt.split('-');
+            var now = new Date();
+            var nowYear = now.getFullYear();
+            var age = nowYear - pastYear[2];
+            if (dt != "") {
+                $.ajax({
+                    type: 'POST',
+                    data: {birthdate: dt},
+                    url: "<?= site_url() ?>app/contacts/getZodiac/" + dt,
+                    success: function (data, textStatus, jqXHR) {
+                        $('#step1Form  input[name="zodiac"]').val(data);
+                        $('#step1Form  input[name="age"]').val(age);
+                    }
+                });
+            } else {
+                $('#step1Form  input[name="zodiac"]').val('');
+                $('#step1Form  input[name="age"]').val('');
+            }
+        });
+        $('#step1Form #contactBtn').on('click', function () {
+            var id = $(this).prop('id');
+            $('#' + id).prop('disabled', true);
+            $('#loadContact').show();
+            $.ajax({
+                type: 'POST',
+                data: $('#step1Form #conForm').serialize(),
+                url: "<?= site_url() ?>app/contacts/add_contact",
+                success: function (data, textStatus, jqXHR) {
+                    $('#loadContact').hide();
+                    if (data == "1") {
+                        $("#step1Form #msgContact").css('color', 'green');
+                        $("#step1Form #msgContact").html("Contact Successfully Added..!");
+                        setTimeout(function () {
+                            $('.discard').trigger('click');
+                            location.reload(true);
+                        }, 1000);
+                    } else {
+                        $("#step1Form #msgContact").css('color', 'red');
+                        $("#step1Form #msgContact").html("Contact has not been Added..!");
+                        $('#' + id).prop('disabled', false);
+                    }
                 }
             });
         });
