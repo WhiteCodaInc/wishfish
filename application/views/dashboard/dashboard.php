@@ -94,16 +94,17 @@
                                                     <h1 class="info-text">STEP - 4</h1>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="wizard-footer">
-                                            <div class="pull-right">
-                                                <input type='button' class='btn btn-next btn-info' name='next' value='Next' />
-                                                <input type='button' class='btn btn-finish btn-info' name='finish' value='Finish' />
-                                            </div>
-                                            <div class="pull-left">
-                                                <input type='button' class='btn btn-previous btn-default' name='previous' value='Previous' />
-                                            </div>
-                                            <div class="clearfix"></div>
+                                            <br/>
+                                            <div class="wizard-footer">
+                                                <div class="pull-right">
+                                                    <input type='button' class='btn btn-next btn-info' name='next' value='Next' />
+                                                    <input type='button' class='btn btn-finish btn-info' name='finish' value='Finish' />
+                                                </div>
+                                                <div class="pull-left">
+                                                    <input type='button' class='btn btn-previous btn-default' name='previous' value='Previous' />
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>	
                                         </div>
                                     </form>
                                 </div>
