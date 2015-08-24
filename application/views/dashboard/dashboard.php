@@ -110,12 +110,18 @@
                                                                 <strong>Don't want to add manually?</strong>
                                                             </div>
                                                             <div class="form-group">
-                                                                <i class="fa fa-google"></i>
-                                                                <a href="#" class="btn btn-danger">Add from Google</a>
+
+                                                                <a href="#" class="btn btn-danger">
+                                                                    <i class="fa fa-google"></i>
+                                                                    Add from Google
+                                                                </a>
                                                             </div>
                                                             <div class="form-group">
-                                                                <i class="fa fa-facebook"></i>
-                                                                <a href="#" class="btn btn-primary">Add from Facebook</a>
+
+                                                                <a href="#" class="btn btn-primary">
+                                                                    <i class="fa fa-facebook"></i>
+                                                                    Add from Facebook
+                                                                </a>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-5">
