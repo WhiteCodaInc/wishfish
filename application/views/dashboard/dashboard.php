@@ -61,7 +61,7 @@
 <aside class="right-side" style="min-height: 542px;">
     <!-------------------------------Welcome Tour Model------------------------------------>
     <div class="modal fade" id="tour-modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" style="max-width: 400px">
+        <div class="modal-dialog" style="max-width: 700px">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -71,16 +71,15 @@
                     <div class="box box-primary tour">
                         <div class="box-body">
                             <div class="row">
-                                <div class="col-sm-8 col-sm-offset-2">
+                                <div class="col-sm-12 col-sm-offset-2">
                                     <!--      Wizard container        -->   
                                     <div class="wizard-container"> 
                                         <form action="" method="">
                                             <div class="card wizard-card ct-wizard-green" id="wizard">
                                                 <ul>
-                                                    <li><a href="#location" data-toggle="tab">Location</a></li>
-                                                    <li><a href="#type" data-toggle="tab">Type</a></li>
-                                                    <li><a href="#facilities" data-toggle="tab">Facilities</a></li>
-                                                    <li><a href="#description" data-toggle="tab">Description</a></li>
+                                                    <li><a href="#location" data-toggle="tab">STEP 1</a></li>
+                                                    <li><a href="#type" data-toggle="tab">STEP 2</a></li>
+                                                    <li><a href="#facilities" data-toggle="tab">STEP 3</a></li>
                                                 </ul>
                                                 <div class="tab-content">
                                                     <div class="tab-pane" id="location">
