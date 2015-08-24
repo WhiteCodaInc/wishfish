@@ -4,16 +4,17 @@
         border: 1px solid #0099CC;
         padding: 1px; 
         position:relative;
-        width:400px;
+        width:340px;
         border-radius: 3px;
-        margin: 10px;
+        margin: 10px 0;
         display:none;
-        text-align:left;
+
     }
     #progressbar {
         height:20px;
         border-radius: 3px;
-        background-color: #003333;
+        background-color: #5cb85c;
+        border-color: #4cae4c;
         width:1%;
     }
     #statustxt {
