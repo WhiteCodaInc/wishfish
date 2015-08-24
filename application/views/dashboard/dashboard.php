@@ -105,7 +105,7 @@
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-md-1"></div>
-                                                        <div class="col-md-5">
+                                                        <div class="col-md-7">
                                                             <div class="form-group">
                                                                 <strong>Don't want to add manually?</strong>
                                                             </div>
@@ -124,8 +124,8 @@
                                                                 </a>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-5">
-                                                            <input type='button' class='btn btn-next btn-info' name='next' value='Next' />
+                                                        <div class="col-md-3">
+                                                            <input type='button' class='btn btn-next btn-info btn-lg' name='next' value='Next' />
                                                         </div>
                                                         <div class="col-md-1"></div>
                                                     </div>
