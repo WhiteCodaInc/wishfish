@@ -140,7 +140,7 @@ class Dashboard extends CI_Controller {
 
                 $this->email->from($email, $name);
                 $this->email->to("support@wish-fish.com");
-                $this->email->subject("Support / Feddback From {$name}");
+                $this->email->subject("Feedback From {$name}");
                 $this->email->message($body);
                 if ($this->email->send()) {
                     echo 1;
