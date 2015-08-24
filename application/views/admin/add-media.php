@@ -189,7 +189,8 @@
         }
         function afterSuccess()
         {
-            window.location.replace("<?= site_url() . 'admin/media?msg=I' ?>");
+            $url = "<?= (isset($media)) ? site_url() . 'admin/media?msg=U' : site_url() . 'admin/media?msg=I' ?>";
+            window.location.replace($url);
         }
         function beforeSubmit() {
             //check whether browser fully supports all File API
