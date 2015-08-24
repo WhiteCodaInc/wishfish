@@ -155,6 +155,8 @@
 
         var progressbox = $('#progressbox');
         var progressbar = $('#progressbar');
+        var statustxt = $('#statustxt');
+        var completed = '0%';
 
         var options = {
             target: '#output', // target element(s) to be updated with server response 
