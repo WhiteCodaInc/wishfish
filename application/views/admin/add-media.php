@@ -1,3 +1,9 @@
+<script type="text/javascript" src="http://malsup.github.com/jquery.form.js"></script>
+<style>
+    .progress { position:relative; width:400px; border: 1px solid #ddd; padding: 1px; border-radius: 3px; }
+    .bar { background-color: #B4F5B4; width:0%; height:20px; border-radius: 3px; }
+    .percent { position:absolute; display:inline-block; top:3px; left:48%; }
+</style>
 <aside class="right-side">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -87,6 +93,14 @@
                                     </div>
                                 <?php } ?>
                             <?php endif; ?>
+                            <div class="row progress_bar" style="display:  none">
+                                <div class="col-md-12">
+                                    <div class="progress">
+                                        <div class="bar"></div >
+                                        <div class="percent">0%</div >
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <button id="save" type="submit" class="btn btn-primary">Save</button>
@@ -97,8 +111,8 @@
                             <?php endif; ?>
                         </form>
                     </div>
-                    <div class="overlay" style="display: none"></div>
-                    <div class="loading-img" style="display: none"></div>
+                    <!--                    <div class="overlay" style="display: none"></div>
+                                        <div class="loading-img" style="display: none"></div>-->
                 </div><!-- /.box -->
             </div><!--/.col (left) -->
             <!-- right column -->
@@ -106,6 +120,8 @@
     </section><!-- /.content -->
 </aside><!-- /.right-side -->
 </div><!-- ./wrapper -->
+
+
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -119,8 +135,33 @@
 
         $('#mediaForm').submit(function () {
             $('button.save').prop('disabled', true);
-            $('.media .overlay').show();
-            $('.media .loading-img').show();
+//            $('.media .overlay').show();
+//            $('.media .loading-img').show();
+            var bar = $('.bar');
+            var percent = $('.percent');
+
+            $('form#mediaForm').ajaxForm({
+                beforeSend: function () {
+                    status.empty();
+                    var percentVal = '0%';
+                    bar.width(percentVal);
+                    percent.html(percentVal);
+                },
+                uploadProgress: function (event, position, total, percentComplete) {
+                    var percentVal = percentComplete + '%';
+                    bar.width(percentVal);
+                    percent.html(percentVal);
+                    //console.log(percentVal, position, total);
+                },
+                success: function () {
+                    var percentVal = '100%';
+                    bar.width(percentVal);
+                    percent.html(percentVal);
+                },
+                complete: function (xhr) {
+                    status.html(xhr.responseText);
+                }
+            });
         });
     });
 </script>
