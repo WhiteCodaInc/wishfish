@@ -71,7 +71,7 @@
                                     <label>Join Via</label>
                                     <select name="join_search" class="form-control m-bot15">
                                         <option value="-1">--Select--</option>
-                                        <option value="NULL">Email</option>
+                                        <option value="Email">Email</option>
                                         <option value="google">Google</option>
                                         <option value="facebook">Facebook</option>
                                     </select>
