@@ -4,15 +4,16 @@
     </div><!-- /.container -->
 </footer>
 <?php
-$userid = $this->session->userdata('u_userid');
-if ($userid != "") {
-    $userInfo = $this->wi_common->getUserInfo($userid);
-    if ($userInfo->phone_verification) {
-        ?>
-        <script type="text/javascript" src="<?= base_url() ?>assets/hopscotch/demo.js"></script>
-        <?php
-    }
-}
+//$userid = $this->session->userdata('u_userid');
+//if ($userid != "") {
+//    $userInfo = $this->wi_common->getUserInfo($userid);
+//    if ($userInfo->phone_verification) {
+//        
+?>
+        <!--<script type="text/javascript" src="//<?= base_url() ?>assets/hopscotch/demo.js"></script>-->
+//<?php
+//    }
+//}
 ?>
 <script type="text/javascript">
     $(function () {
