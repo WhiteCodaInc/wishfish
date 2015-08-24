@@ -18,7 +18,7 @@ label{
     z-index: 3;
 }
 .wizard-card{
-    min-height: 410px;
+    height: 420px;
     background-color: #FFFFFF;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.15), 0 0 1px 1px rgba(0, 0, 0, 0.1);
     transition: all 0.2s;
@@ -72,7 +72,7 @@ label{
 
 }
 .wizard-card .tab-content{
-    min-height: 340px;
+    min-height: 330px;
     padding: 20px 10px;
 }
 
