@@ -71,7 +71,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Upload</label>
-                                        <input name="upload"  type="file" id="imageInput" class="form-control"  required=""/>
+                                        <input name="upload"  type="file" class="form-control"  required=""/>
                                     </div>
                                 </div>
                             </div>
