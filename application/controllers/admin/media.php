@@ -55,7 +55,7 @@ class Media extends CI_Controller {
         $post = $this->input->post();
         if (is_array($post) && count($post)) {
             $this->objmedia->createMedia($post);
-            echo '1';
+            echo 'File Uploaded Successfully...!';
 //            header('location:' . site_url() . 'admin/media?msg=I');
         } else {
             header('location:' . site_url() . 'admin/media');
