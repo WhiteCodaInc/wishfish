@@ -71,10 +71,9 @@
                                     <label>Join Via</label>
                                     <select name="join_search" class="form-control m-bot15">
                                         <option value="-1">--Select--</option>
-                                        <option value="Join Now">Join Now</option>
-                                        <option value="Register">Register</option>
-                                        <option value="Google">Google</option>
-                                        <option value="Facebook">Facebook</option>
+                                        <option value="NULL">Email</option>
+                                        <option value="google">Google</option>
+                                        <option value="facebook">Facebook</option>
                                     </select>
                                 </div>
                                 <div class="col-md-4">
