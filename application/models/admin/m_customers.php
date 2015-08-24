@@ -60,7 +60,7 @@ class M_customers extends CI_Model {
             } else {
                 $where['P.plan_id'] = $plan;
 //                $where['is_lifetime <>'] = 1;
-                $this->db->where('is_lifetime <> 1 and (is_lifetime = 0 OR is_lifetime IS NULL)');                
+                $this->db->where('(is_lifetime = 0 OR is_lifetime IS NULL)');                
             }
         }
 //        echo '<pre>';
