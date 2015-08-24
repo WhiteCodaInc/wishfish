@@ -137,6 +137,8 @@
             $('button.save').prop('disabled', true);
 //            $('.media .overlay').show();
 //            $('.media .loading-img').show();
+
+            $('.progress_bar').show();
             var bar = $('.bar');
             var percent = $('.percent');
 
