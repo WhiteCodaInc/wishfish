@@ -1,4 +1,4 @@
-<script type="text/javascript" src="http://malsup.github.com/jquery.form.js"></script>
+<script type="text/javascript" src="https://malsup.github.com/jquery.form.js"></script>
 <style>
     .progress { position:relative; width:400px; border: 1px solid #ddd; padding: 1px; border-radius: 3px; }
     .bar { background-color: #B4F5B4; width:0%; height:20px; border-radius: 3px; }
