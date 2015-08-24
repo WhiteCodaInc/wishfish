@@ -55,7 +55,8 @@ class Media extends CI_Controller {
         $post = $this->input->post();
         if (is_array($post) && count($post)) {
             $this->objmedia->createMedia($post);
-            header('location:' . site_url() . 'admin/media?msg=I');
+            echo '1';
+//            header('location:' . site_url() . 'admin/media?msg=I');
         } else {
             header('location:' . site_url() . 'admin/media');
         }
