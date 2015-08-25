@@ -108,6 +108,24 @@ class M_dashboard extends CI_Model {
         return $setup;
     }
 
+    function scheduleSMS($post) {
+        $event_data = array(
+            'user_id' => $this->userid,
+            'event' => 'Reminder',
+            'event_type' => "sms",
+            'group_type' => "individual",
+            'contact_id' => $this->userid,
+            'color' => "#00a65a",
+            'notification' => "1",
+            'notify' => "me",
+            'body' => $post['text'],
+            'time' => $post['time'],
+            'date' => $this->wi_common->getMySqlDate($this->wi_common->getUTCDate(), $this->session->userdata('date_format'))
+        );
+        $this->db->insert('wi_schedule', $event_data);
+        return TRUE;
+    }
+
     function sendMail($userid, $type) {
         $userInfo = $this->wi_common->getUserInfo($userid);
         $templateInfo = $this->wi_common->getAutomailTemplate($type);

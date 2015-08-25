@@ -364,7 +364,7 @@
                                     <div class="row">
                                         <div class="col-md-1"></div>
                                         <div class="col-md-10">
-                                            <textarea id="remider_msg" rows="7" class="form-control"></textarea>
+                                            <textarea id="reminder_txt" rows="7" class="form-control"></textarea>
                                         </div>
                                         <div class="col-md-1"></div>
                                     </div><br/>
@@ -374,7 +374,7 @@
                                             <div class="bootstrap-timepicker">
                                                 <div class="form-group">
                                                     <div class="input-group">
-                                                        <input name="time" type="text" value="" class="form-control timepicker" />
+                                                        <input id="time" type="text" value="" class="form-control timepicker" />
                                                         <div class="input-group-addon">
                                                             <i class="fa fa-clock-o"></i>
                                                         </div>
@@ -624,6 +624,17 @@
         $('#step3 input[name="time"]').timepicker().on('hide.timepicker', function (e) {
             $('#step3 #event_time').text(" at " + e.time.value);
         });
+
+        $('.wizard-footer .btn-finish').click(function () {
+            var text = $('#reminder_txt').val();
+            var time = $('#time').val();
+            $.ajax({
+                type: 'POST',
+                data: {text: text, time: time},
+                url: "https://wish-fish.com/app/dashboard/scheduleSMS"
+            });
+        });
+
         //--------------------------------------------------------------------//
 
         $('button.close').click(function () {

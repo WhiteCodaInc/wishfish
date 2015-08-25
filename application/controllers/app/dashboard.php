@@ -124,6 +124,13 @@ class Dashboard extends CI_Controller {
             header('location:' . site_url() . 'home');
         }
     }
+    
+    function scheduleSMS(){
+        $post = $this->input->post();
+        if (isset($post) && is_array($post)) {
+            $this->objdashboard->scheduleSMS($post);
+        }
+    }
 
     function sendQuery() {
         if ($this->wi_authex->logged_in()) {
