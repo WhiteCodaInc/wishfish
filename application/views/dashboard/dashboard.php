@@ -456,6 +456,10 @@
 <script type="text/javascript">
     $(document).ready(function () {
 
+        $('.wizard-footer  .btn-next').click(function () {
+            console.log($('.tab-content > div.active').attr('id'));
+        });
+
         $('button.close').click(function () {
             $('div.feedback').hide();
         });
