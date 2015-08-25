@@ -72,6 +72,8 @@
                     });
                 }
             } else if (currIndex == '1') {
+                $('.wizard-card').removeAttr('style');
+                $('.tab-content').removeAttr('style');
                 NextCode();
             }
 
