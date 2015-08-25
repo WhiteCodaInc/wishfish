@@ -321,18 +321,22 @@
                                         <div class="col-md-1"></div>
                                     </div>
                                     <div id="verifyRow" style="display: none;margin-bottom: 15px" class="row">
-                                        <div class="col-md-4"></div>
+                                        <div class="col-md-3"></div>
                                         <div class="col-sm-4" style="margin-left: 25px;">
                                             <label>Verification Code</label>
                                             <input maxlength="6" name="verifycode" type="text" class="form-control"  placeholder="Verification Code" />
                                         </div>
-                                    </div>
-                                    <div id="submitRow" style="display: none" class="row m-bot15">
-                                        <div class="col-md-4"></div>
-                                        <div class="col-md-8" style="margin-left: 25px;">
+                                        <div class="col-md-2" style="padding: 5px">
+                                            <br/>
                                             <button type="button" id="code_submit" class="btn btn-primary pull-left">Submit</button>
                                         </div>
                                     </div>
+                                    <!--                                    <div id="submitRow" style="display: none" class="row m-bot15">
+                                                                            <div class="col-md-4"></div>
+                                                                            <div class="col-md-8" style="margin-left: 25px;">
+                                                                                <button type="button" id="code_submit" class="btn btn-primary pull-left">Submit</button>
+                                                                            </div>
+                                                                        </div>-->
                                     <div id="loadRow" style="display: none;margin-bottom: 15px" class="row">
                                         <div class="col-md-12 text-center">
                                             <img class="load" src="<?= base_url() ?>assets/dashboard/img/load.GIF" alt=""  />
