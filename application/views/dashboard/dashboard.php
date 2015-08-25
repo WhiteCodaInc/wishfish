@@ -563,8 +563,11 @@
                 data: {code: code},
                 url: "<?= site_url() ?>app/dashboard/checkVerificationCode",
                 success: function (data, textStatus, jqXHR) {
-                    if (data == '1') {                        
-                        alertify.success("Congratulations! You have verified your phone number successfully!");                       
+                    if (data == '1') {
+                        $('.load').css('display', 'none');
+                        $('.msg').css('display', 'block');
+                        $('.msg').css('color', 'red');
+                        $('.msg').text("Congratulations! You have verified your phone number successfully!");
                     } else {
                         $('.load').css('display', 'none');
                         $('.msg').css('display', 'block');
