@@ -53,7 +53,7 @@
 
         this.next = function (e) {
             
-            
+           
 
             // If we clicked the last then dont activate this
             if (element.hasClass('last')) {
@@ -66,7 +66,7 @@
 
             // Did we click the last button
             $index = obj.nextIndex();
-            
+             console.log($index);
             
             if ($index > obj.navigationLength()) {
             } else {
