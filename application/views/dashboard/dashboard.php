@@ -437,7 +437,7 @@
             }
         </style>
         <div id='p1'></div>
-        <input name="birthday" placeholder="Enter Birthdate" value=""  class="form-control form-control-inline input-medium default-date-picker" size="16" type="text" required="">
+        <input name="birthday" value=""  class="form-control form-control-inline input-medium default-date-picker" size="16" type="text">
     </section>
 </aside>
 
@@ -456,7 +456,12 @@
 <script type="text/javascript">
     $(document).ready(function () {
 
-        
+        $('.default-date-picker').datepicker({
+            format: "<?= $this->session->userdata('u_date_format') ?>",
+            todayBtn: "linked",
+            autoclose: true,
+            todayHighlight: true
+        });
 
         $('button.close').click(function () {
             $('div.feedback').hide();
