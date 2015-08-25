@@ -437,18 +437,19 @@
             }
         </style>
         <div id='p1'></div>
+        <input name="birthday" placeholder="Enter Birthdate" value=""  class="form-control form-control-inline input-medium default-date-picker" size="16" type="text" required="">
     </section>
 </aside>
 
 <script type="text/javascript">
     $(function () {
-//        $('#step1Form .default-date-picker').datepicker({
-//            format: "<?= $this->session->userdata('u_date_format') ?>",
-//            todayBtn: "linked",
-//            autoclose: true,
-//            todayHighlight: true
-//        });
-//        $("[data-mask]").inputmask();
+        $('.default-date-picker').datepicker({
+            format: "<?= $this->session->userdata('u_date_format') ?>",
+            todayBtn: "linked",
+            autoclose: true,
+            todayHighlight: true
+        });
+        $("[data-mask]").inputmask();
     });
 </script>
 
