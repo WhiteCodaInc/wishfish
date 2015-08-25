@@ -572,16 +572,16 @@
         });
 
         $('#step2 #sendcode').click(function () {
-            var phone = $('#varify_phone').val();
-            var code = $('select[name="code"]').val();
-            $('#loadRow').css('display', 'block');
+            var phone = $('#step2 #varify_phone').val();
+            var code = $('#step2 select[name="code"]').val();
+            $('#step2 #loadRow').css('display', 'block');
             $.ajax({
                 type: 'POST',
                 data: {phone: phone, code: code},
                 url: "<?= site_url() ?>app/dashboard/sendVerificationCode",
                 success: function (data, textStatus, jqXHR) {
-                    $('.load').css('display', 'none');
-                    $('.msg').css('display', 'block');
+                    $('#step2 .load').css('display', 'none');
+                    $('#step2 .msg').css('display', 'block');
                     if (data == 1) {
                         $('.msg').css('color', 'green');
                         $('.msg').text("Verification Code Successfully Sent To +1" + phone);
