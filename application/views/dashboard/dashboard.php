@@ -442,13 +442,13 @@
 
 <script type="text/javascript">
     $(function () {
-        $('#step1Form .default-date-picker').datepicker({
-            format: "<?= $this->session->userdata('u_date_format') ?>",
-            todayBtn: "linked",
-            autoclose: true,
-            todayHighlight: true
-        });
-        $("[data-mask]").inputmask();
+//        $('#step1Form .default-date-picker').datepicker({
+//            format: "<?= $this->session->userdata('u_date_format') ?>",
+//            todayBtn: "linked",
+//            autoclose: true,
+//            todayHighlight: true
+//        });
+//        $("[data-mask]").inputmask();
     });
 </script>
 
