@@ -157,7 +157,7 @@
                                                                         </div>
                                                                         <input autofocus="" id="varify_phone" name="phone" type="text" class="form-control"  placeholder="Phone Number" data-inputmask='"mask": "(999) 999-9999"' data-mask/>
                                                                     </div><!-- /.input group -->
-                                                                    <a href="javascript:void(0);" id="non-us" data-toggle="modal" data-target="#nonus-modal">
+                                                                    <a href="javascript:void(0);" id="non-us" data-toggle="modal" data-target="#step2-nonus-modal">
                                                                         Have a Non-US Number?
                                                                     </a> 
                                                                 </div>
