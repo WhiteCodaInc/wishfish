@@ -212,41 +212,41 @@
                                                                     <h4 class="modal-title">Feedback / Support</h4>
                                                                 </div>
                                                                 <!--<form id="feedbackForm"  method="post">-->
-                                                                    <div class="modal-body">
-                                                                        <div class="row">
-                                                                            <div class="col-md-12">
-                                                                                <div class="form-group" >
-                                                                                    <label>Select Country</label>
-                                                                                    <select id="country" class="form-control">
-                                                                                        <option value="-1">--Select Country--</option>
-                                                                                        <option value="India">India</option>
-                                                                                        <option value="Pakistan">Pakistan</option>
-                                                                                        <option value="Canada">Canada</option>
-                                                                                        <option value="Australia">Australia</option>
-                                                                                    </select>
-                                                                                </div>
-                                                                                <div class="form-group" >
-                                                                                    <textarea id="query" class="form-control"></textarea>
-                                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <div class="form-group" >
+                                                                                <label>Select Country</label>
+                                                                                <select id="country" class="form-control">
+                                                                                    <option value="-1">--Select Country--</option>
+                                                                                    <option value="India">India</option>
+                                                                                    <option value="Pakistan">Pakistan</option>
+                                                                                    <option value="Canada">Canada</option>
+                                                                                    <option value="Australia">Australia</option>
+                                                                                </select>
                                                                             </div>
-                                                                        </div>
-                                                                        <div class="row">
-                                                                            <div class="col-md-12">
-                                                                                <img  src="<?= base_url() ?>assets/dashboard/img/load.GIF" alt="" class="load" style="display: none" />
-                                                                                <span style="display: none" class="msg"></span>
+                                                                            <div class="form-group" >
+                                                                                <textarea id="query" class="form-control"></textarea>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="modal-footer clearfix">
-                                                                        <div class="row">
-                                                                            <div class="col-md-4">
-                                                                                <button type="button" value="feedback" class="btn btn-primary pull-left send-query">Send</button>
-                                                                            </div>
-                                                                            <div class="col-md-3">
-                                                                                <button type="button" class="btn btn-danger discard" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
-                                                                            </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <img  src="<?= base_url() ?>assets/dashboard/img/load.GIF" alt="" class="load" style="display: none" />
+                                                                            <span style="display: none" class="msg"></span>
                                                                         </div>
                                                                     </div>
+                                                                </div>
+                                                                <div class="modal-footer clearfix">
+                                                                    <div class="row">
+                                                                        <div class="col-md-4">
+                                                                            <button type="button" value="feedback" class="btn btn-primary pull-left send-query">Send</button>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <button type="button" class="btn btn-danger discard" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                                 <!--</form>-->
                                                             </div><!-- /.modal-content -->
                                                         </div><!-- /.modal-dialog -->
@@ -448,12 +448,12 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        
+
         $('button.close').click(function () {
             $('div.feedback').hide();
         });
 
-//        $('#tour-modal').modal('show');
+        $('#tour-modal').modal('show');
 
         $('#review_submit').click(function () {
             var msg = $('#review').val();
@@ -488,7 +488,7 @@
                 }
             });
         });
-        
+
         //---------------------------------- STEP 1 --------------------------//
 
         $('#step1Form input[name="fname"]').focusout(function () {
@@ -542,7 +542,7 @@
                 }
             });
         });
-        
+
         //--------------------------------------------------------------------//
 
         //---------------------------------- STEP 2 --------------------------//
@@ -832,6 +832,6 @@
     });
 
     $(document).ready(function () {
-        
+
     });
 </script>
