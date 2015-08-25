@@ -3,7 +3,7 @@ transparent = true;
 
 $(document).ready(function () {
     /*  Activate the tooltips      */
-    $('[rel="tooltip"]').tooltip();
+    
 
 
     $('#wizard').bootstrapWizard({
@@ -44,42 +44,7 @@ $(document).ready(function () {
         }
     });
 
-    // Prepare the preview for profile picture
-    $("#wizard-picture").change(function () {
-        readURL(this);
-    });
-
-
-    $('[data-toggle="wizard-radio"]').click(function (event) {
-        wizard = $(this).closest('.wizard-card');
-        wizard.find('[data-toggle="wizard-radio"]').removeClass('active');
-        $(this).addClass('active');
-        $(wizard).find('[type="radio"]').removeAttr('checked');
-        $(this).find('[type="radio"]').attr('checked', 'true');
-    });
-
-    $height = $(document).height();
-    $('.set-full-height').css('height', $height);
-
-    //functions for demo purpose
-
-
 });
-
-
-//Function to show image before upload
-
-function readURL(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-
-        reader.onload = function (e) {
-            $('#wizardPicturePreview').attr('src', e.target.result).fadeIn('slow');
-        }
-        reader.readAsDataURL(input.files[0]);
-    }
-}
-
 
 
 

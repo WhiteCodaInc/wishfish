@@ -75,9 +75,9 @@
                                     <form name="" method="post">
                                         <div class="card wizard-card ct-wizard-blue" id="wizard">
                                             <ul>
-                                                <li style="margin: 0"><a href="#location" data-toggle="tab">STEP 1</a></li>
-                                                <li style="margin: 0"><a href="#type" data-toggle="tab">STEP 2</a></li>
-                                                <li style="margin: 0"><a href="#facilities" data-toggle="tab">STEP 3</a></li>
+                                                <li style="margin: 0"><a href="#step1" data-toggle="tab">STEP 1</a></li>
+                                                <li style="margin: 0"><a href="#step2" data-toggle="tab">STEP 2</a></li>
+                                                <li style="margin: 0"><a href="#step3" data-toggle="tab">STEP 3</a></li>
                                             </ul>
                                             <div class="tab-content">
                                                 <div class="tab-pane" id="step1">
