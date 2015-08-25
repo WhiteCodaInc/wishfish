@@ -331,20 +331,29 @@
                                             <button type="button" id="code_submit" class="btn btn-primary pull-left">Submit</button>
                                         </div>
                                     </div>
-                                    <!--                                    <div id="submitRow" style="display: none" class="row m-bot15">
-                                                                            <div class="col-md-4"></div>
-                                                                            <div class="col-md-8" style="margin-left: 25px;">
-                                                                                <button type="button" id="code_submit" class="btn btn-primary pull-left">Submit</button>
-                                                                            </div>
-                                                                        </div>-->
                                     <div id="loadRow" style="display: none;margin-bottom: 15px" class="row">
                                         <div class="col-md-12 text-center">
                                             <img class="load" src="<?= base_url() ?>assets/dashboard/img/load.GIF" alt=""  />
                                             <span style="display: none;" class="msg"></span>
                                         </div>
                                     </div>
-
-
+                                    <div class="row">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <strong>Don't want to cerify phone number?</strong>
+                                            </div>
+                                            <div class="form-group">
+                                                <strong>No Problem...</strong>
+                                            </div>
+                                            <div class="form-group">
+                                                <a href="#" class="btn btn-next btn-danger">
+                                                    continue without verifying...
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-1"></div>
+                                    </div>
                                 </div>
                                 <div class="tab-pane" id="step3">
                                     <h1 class="info-text">STEP - 3</h1>
