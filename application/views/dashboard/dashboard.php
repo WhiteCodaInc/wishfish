@@ -72,7 +72,6 @@
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-sm-12">
-
                                     <div class="card wizard-card ct-wizard-blue" id="wizard">
                                         <ul>
                                             <li style="margin: 0"><a href="#step1" data-toggle="tab">STEP 1</a></li>
@@ -528,7 +527,7 @@
         $('#step1Form #contactBtn').on('click', function () {
             var id = $(this).prop('id');
             $('#step1Form #' + id).prop('disabled', true);
-            $('#step1Form #loadContact').show();
+            $('#tour-modal #loadContact').show();
             $.ajax({
                 type: 'POST',
                 data: $('#step1Form #conForm').serialize(),
