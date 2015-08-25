@@ -87,6 +87,10 @@ class Contacts extends CI_Controller {
         $post = $this->input->post();
         echo ($this->objcontact->createContact($post) == "I") ? 1 : 0;
     }
+    function addFriend() {
+        $post = $this->input->post();
+        echo ($this->objcontact->addFriend($post)) ? 1 : 0;
+    }
 
     function createContact() {
         $type = $this->input->get('type');

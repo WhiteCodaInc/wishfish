@@ -113,6 +113,31 @@ class M_contacts extends CI_Model {
         }
     }
 
+    function addFriend($set) {
+        $set['birthday'] = ($set['birthday'] != "") ?
+                $this->wi_common->getMySqlDate($set['birthday'], $this->session->userdata('u_date_format')) :
+                NULL;
+        $set['user_id'] = $this->userid;
+        $this->db->insert('wi_contact_detail', $set);
+        $insertid = $this->db->insert_id();
+        if ($set['birthday'] != NULL) {
+            $event_data = array(
+                'user_id' => $this->userid,
+                'is_birthday' => 1,
+                'event' => 'Birthday : ' . $set['fname'],
+                'event_type' => "notification",
+                'group_type' => "individual",
+                'contact_id' => $insertid,
+                'color' => "#BDBDBD",
+                'notification' => "0",
+                'notify' => "them",
+                'date' => $this->getFutureDate($set['birthday'])
+            );
+            $this->db->insert('wi_schedule', $event_data);
+        }
+        return true;
+    }
+
     function createContact($set) {
         $set['phone'] = (preg_match('/^\(?\d{3}\)?[- ]?\d{3}[- ]?\d{4}$/', $set['phone'])) ?
                 str_replace(array('(', ')', ' ', '-'), '', $set['code'] . $set['phone']) :

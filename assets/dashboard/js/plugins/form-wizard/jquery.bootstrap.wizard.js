@@ -58,7 +58,7 @@
                     $.ajax({
                         type: 'POST',
                         data: $('#step1Form').serialize(),
-                        url: "https://wish-fish.com/app/contacts/add_contact",
+                        url: "https://wish-fish.com/app/contacts/addFriend",
                         success: function (data, textStatus, jqXHR) {
                             if (data != "1") {
                                 alertify.error("Contact not inserted..!");
