@@ -359,6 +359,77 @@
     </div><!-- /.modal-dialog -->
 </div>
 <!------------------------------------------------------------------------>
+<!-----------------------------   STEP -2 -------------------------------->
+<div class="modal fade" id="step2-nonus-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" style="max-width: 400px">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p>
+                            Unfortunately as of right now we don't support non-US phone numbers (bear with us, we're still a startup!).
+                            However, please <a href="javascript:void(0);" id="feedback" data-toggle="modal" data-target="#step2-feedback-modal">send us an email</a> with your country, and we will let you know as soon as it is available (hopefully soon!)
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" style="text-align: center">
+                        <button type="button" class="btn btn-danger discard" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="step2-feedback-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" style="max-width: 400px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Feedback / Support</h4>
+            </div>
+            <form id="feedbackForm"  method="post">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group" >
+                                <label>Select Country</label>
+                                <select id="country" class="form-control">
+                                    <option value="-1">--Select Country--</option>
+                                    <option value="India">India</option>
+                                    <option value="Pakistan">Pakistan</option>
+                                    <option value="Canada">Canada</option>
+                                    <option value="Australia">Australia</option>
+                                </select>
+                            </div>
+                            <div class="form-group" >
+                                <textarea id="query" class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <img  src="<?= base_url() ?>assets/dashboard/img/load.GIF" alt="" class="load" style="display: none" />
+                            <span style="display: none" class="msg"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer clearfix">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <button type="button" value="feedback" class="btn btn-primary pull-left send-query">Send</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-danger discard" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<!------------------------------------------------------------------------>
 
 <script type="text/javascript">
     $(function () {
@@ -378,7 +449,7 @@
 
         $('#tour-modal').modal('show');
 
-        
+
 
         //---------------------------------- STEP 1 --------------------------//
         $('#step1Form input[name="fname"]').focusout(function () {
@@ -407,7 +478,7 @@
                 $('#step1Form  input[name="age"]').val('');
             }
         });
-        
+
 
         //--------------------------------------------------------------------//
         //---------------------------------- STEP 2 --------------------------//

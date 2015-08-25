@@ -69,6 +69,8 @@
                         }
                     });
                 }
+            } else if (currIndex == '1') {
+                
             }
 
             function NextCode() {
