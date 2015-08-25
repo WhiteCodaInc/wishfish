@@ -288,53 +288,57 @@
                                         Please verify your phone number so that when it is First Name's  birthday,<br/>
                                         Wish-Fish can send you a reminder.
                                     </p>
-                                    <div class="row">
-                                        <div class="col-md-2"></div>
-                                        <div class="col-md-10">
-                                            <div class="form-group">
-                                                <div class="row">
-                                                    <div class="col-sm-3">
-                                                        <label>Country Code</label>
-                                                        <select name="code" class="form-control">
-                                                            <option value="+1">+1</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-sm-5">
-                                                        <label>Phone Number</label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-addon">
-                                                                <i class="fa fa-phone"></i>
+                                    <div class="box box-primary">
+                                        <div class="box-body">
+                                            <div class="row">
+                                                <div class="col-md-2"></div>
+                                                <div class="col-md-10">
+                                                    <div class="form-group">
+                                                        <div class="row">
+                                                            <div class="col-sm-3">
+                                                                <label>Country Code</label>
+                                                                <select name="code" class="form-control">
+                                                                    <option value="+1">+1</option>
+                                                                </select>
                                                             </div>
-                                                            <input autofocus="" id="varify_phone" name="phone" type="text" class="form-control"  placeholder="Phone Number" data-inputmask='"mask": "(999) 999-9999"' data-mask/>
-                                                        </div><!-- /.input group -->
-                                                        <a href="javascript:void(0);" id="non-us" data-toggle="modal" data-target="#step2-nonus-modal">
-                                                            Have a Non-US Number?
-                                                        </a> 
-                                                    </div>
-                                                    <div style="padding: 5px" class="col-sm-2">
-                                                        <br/>
-                                                        <button id="sendcode" class="btn btn-success">Verify</button>
-                                                    </div>
+                                                            <div class="col-sm-5">
+                                                                <label>Phone Number</label>
+                                                                <div class="input-group">
+                                                                    <div class="input-group-addon">
+                                                                        <i class="fa fa-phone"></i>
+                                                                    </div>
+                                                                    <input autofocus="" id="varify_phone" name="phone" type="text" class="form-control"  placeholder="Phone Number" data-inputmask='"mask": "(999) 999-9999"' data-mask/>
+                                                                </div><!-- /.input group -->
+                                                                <a href="javascript:void(0);" id="non-us" data-toggle="modal" data-target="#step2-nonus-modal">
+                                                                    Have a Non-US Number?
+                                                                </a> 
+                                                            </div>
+                                                            <div style="padding: 5px" class="col-sm-2">
+                                                                <br/>
+                                                                <button id="sendcode" class="btn btn-success">Verify</button>
+                                                            </div>
+                                                        </div>
+                                                    </div><!-- /.form group -->
                                                 </div>
-                                            </div><!-- /.form group -->
-                                        </div>
-                                        <div class="col-md-1"></div>
-                                    </div>
-                                    <div id="verifyRow" style="display: none;margin-bottom: 15px" class="row">
-                                        <div class="col-md-4"></div>
-                                        <div class="col-sm-4" style="margin-left: 25px;">
-                                            <label>Verification Code</label>
-                                            <input maxlength="6" name="verifycode" type="text" class="form-control"  placeholder="Verification Code" />
-                                        </div>
-                                        <div class="col-md-2" style="padding: 5px">
-                                            <br/>
-                                            <button type="button" id="code_submit" class="btn btn-primary pull-left">Submit</button>
-                                        </div>
-                                    </div>
-                                    <div id="loadRow" style="display: none;margin-bottom: 15px" class="row">
-                                        <div class="col-md-12 text-center">
-                                            <img class="load" src="<?= base_url() ?>assets/dashboard/img/load.GIF" alt=""  />
-                                            <span style="display: none;" class="msg"></span>
+                                                <div class="col-md-1"></div>
+                                            </div>
+                                            <div id="verifyRow" style="display: none;margin-bottom: 15px" class="row">
+                                                <div class="col-md-4"></div>
+                                                <div class="col-sm-4" style="margin-left: 25px;">
+                                                    <label>Verification Code</label>
+                                                    <input maxlength="6" name="verifycode" type="text" class="form-control"  placeholder="Verification Code" />
+                                                </div>
+                                                <div class="col-md-2" style="padding: 5px">
+                                                    <br/>
+                                                    <button type="button" id="code_submit" class="btn btn-primary pull-left">Submit</button>
+                                                </div>
+                                            </div>
+                                            <div id="loadRow" style="display: none;margin-bottom: 15px" class="row">
+                                                <div class="col-md-12 text-center">
+                                                    <img class="load" src="<?= base_url() ?>assets/dashboard/img/load.GIF" alt=""  />
+                                                    <span style="display: none;" class="msg"></span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row">
