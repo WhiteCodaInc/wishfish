@@ -70,6 +70,25 @@
                     });
                 }
             }
+
+            function NextCode() {
+                // If we clicked the last then dont activate this
+                if (element.hasClass('last')) {
+                    return false;
+                }
+
+                if ($settings.onNext && typeof $settings.onNext === 'function' && $settings.onNext($activeTab, $navigation, obj.nextIndex()) === false) {
+                    return false;
+                }
+
+                // Did we click the last button
+                $index = obj.nextIndex();
+                console.log($index);
+                if ($index > obj.navigationLength()) {
+                } else {
+                    $navigation.find(baseItemSelector + ':eq(' + $index + ') a').tab('show');
+                }
+            }
         };
         this.previous = function (e) {
 
@@ -270,24 +289,7 @@
         onTabClick: null,
         onTabShow: null
     };
-    function NextCode() {
-        // If we clicked the last then dont activate this
-        if (element.hasClass('last')) {
-            return false;
-        }
 
-        if ($settings.onNext && typeof $settings.onNext === 'function' && $settings.onNext($activeTab, $navigation, obj.nextIndex()) === false) {
-            return false;
-        }
-
-        // Did we click the last button
-        $index = obj.nextIndex();
-        console.log($index);
-        if ($index > obj.navigationLength()) {
-        } else {
-            $navigation.find(baseItemSelector + ':eq(' + $index + ') a').tab('show');
-        }
-    }
 
 
 })(jQuery);
