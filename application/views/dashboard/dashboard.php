@@ -360,7 +360,38 @@
                                     </div>
                                 </div>
                                 <div class="tab-pane" id="step3">
-                                    <h1 class="info-text">STEP - 3</h1>
+                                    <h1 class="info-text">Setup a Reminder :</h1>
+                                    <div class="row">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-md-10">
+                                            <textarea id="remider_msg" rows="10"></textarea>
+                                        </div>
+                                        <div class="col-md-1"></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-md-6">
+                                            <div class="bootstrap-timepicker">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <input name="time" type="text" value="" class="form-control timepicker" />
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-clock-o"></i>
+                                                        </div>
+                                                    </div><!-- /.input group -->
+                                                </div><!-- /.form group -->
+                                            </div>
+                                            <?= $currDate = $this->wi_common->getUTCDate(); ?>
+                                            <div class="form-group">
+                                                <div id="n_event_status" style="margin-left: 60px;padding-left: 10px;display: none" class="alert alert-info alert-dismissable">
+                                                    This event will send <b><span id="n_user_name"><?= (isset($contactInfo)) ? $contactInfo->fname . ' ' . $contactInfo->lname : '' ?></span></b> a SMS on <?= $currDate ?><span id="n_event_time"></span>
+                                                    <!--This event will send <b><span id="n_user_name"><?= (isset($contactInfo)) ? $contactInfo->fname . ' ' . $contactInfo->lname : '' ?></span></b> a <span id="n_event_type"></span><span id="n_event_dt"></span><span id="n_event_time"></span>-->
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-1"></div>
+                                    </div>
                                 </div>
                             </div>
                             <br/>
@@ -468,9 +499,6 @@
     $(document).ready(function () {
 
         $('#tour-modal').modal('show');
-
-
-
         //---------------------------------- STEP 1 --------------------------//
         $('#step1Form input[name="fname"]').focusout(function () {
             var str = $(this).val() + "'s";
