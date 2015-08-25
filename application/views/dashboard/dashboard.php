@@ -535,8 +535,8 @@
                         $('.msg').text("Verification Code Successfully Sent To +1" + phone);
                         $('#verifyRow').css('display', 'block');
                         $('#submitRow').css('display', 'block');
-                        $('.wizard-card').css('height', '500px');
-                        $('.tab-content').css('height', '300px');
+                        $('.wizard-card').css('height', '545px');
+                        $('.tab-content').css('height', '340px');
                     } else {
                         $('.msg').css('color', 'red');
                         $('.msg').text("Invalid Phone Number..!");
