@@ -72,16 +72,15 @@
                     });
                 }
             } else if (currIndex == '1') {
-                $('.wizard-card').removeAttr('style');
+                $('.wizard-card').css('height', '450px');
                 $('.tab-content').removeAttr('style');
                 NextCode();
-            }else if(currIndex == '2'){
-                $('.wizard-card').css('height', '450px');
             }
 
             function NextCode() {
                 // If we clicked the last then dont activate this
                 if (element.hasClass('last')) {
+                    $('#tour-modal .close').trigger('click');
                     return false;
                 }
 
