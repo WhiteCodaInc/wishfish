@@ -220,146 +220,140 @@
                 <h4 class="modal-title"></h4>
             </div>
             <div class="modal-body">
-                <div class="box box-primary tour">
-                    <div class="box-body">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="card wizard-card ct-wizard-blue" id="wizard">
-                                    <ul>
-                                        <li style="margin: 0"><a href="#step1" data-toggle="tab">STEP 1</a></li>
-                                        <li style="margin: 0"><a href="#step2" data-toggle="tab">STEP 2</a></li>
-                                        <li style="margin: 0"><a href="#step3" data-toggle="tab">STEP 3</a></li>
-                                    </ul>
-                                    <div class="tab-content">
-                                        <div class="tab-pane" id="step1">
-                                            <h1 class="info-text">Add a Friend / Family Member :</h1>
-                                            <form id="step1Form" method="post">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card wizard-card ct-wizard-blue" id="wizard">
+                            <ul>
+                                <li style="margin: 0"><a href="#step1" data-toggle="tab">STEP 1</a></li>
+                                <li style="margin: 0"><a href="#step2" data-toggle="tab">STEP 2</a></li>
+                                <li style="margin: 0"><a href="#step3" data-toggle="tab">STEP 3</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane" id="step1">
+                                    <h1 class="info-text">Add a Friend / Family Member :</h1>
+                                    <form id="step1Form" method="post">
+                                        <div class="row">
+                                            <div class="col-md-1"></div>
+                                            <div class="col-md-10">
+
+                                                <div class="form-group">
+                                                    <input type="text" name="fname" autofocus="autofocus" class="form-control" placeholder="First Name" required=""/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" name="lname" class="form-control" placeholder="Last Name" required=""/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-calendar"></i>
+                                                        </div>
+                                                        <input name="birthday" placeholder="Enter Birthdate" value=""  class="form-control form-control-inline input-medium default-date-picker" size="16" type="text" required="">
+                                                    </div><!-- /.input group -->
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-1"></div>
+                                        </div>
+                                        <input value="" name="zodiac" type="hidden" class="form-control" >
+                                        <input value="" name="age" type="hidden" class="form-control" >
+                                    </form>
+
+                                    <div class="row">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <strong>Don't want to add manually?</strong>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <a href="#" class="btn btn-danger">
+                                                    <i class="fa fa-google-plus-square"></i>
+                                                    Add from Google
+                                                </a>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <a href="#" class="btn btn-primary">
+                                                    <i class="fa fa-facebook-square"></i>
+                                                    Add from Facebook
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-1"></div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="step2">
+                                    <h1 class="info-text">Verify Your Phone Number:</h1>
+                                    <p style="text-align: center">
+                                        Please verify your phone number so that when it is First Name's  birthday,<br/>
+                                        Wish-Fish can send you a reminder.
+                                    </p>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
                                                 <div class="row">
-                                                    <div class="col-md-1"></div>
-                                                    <div class="col-md-10">
-
-                                                        <div class="form-group">
-                                                            <input type="text" name="fname" autofocus="autofocus" class="form-control" placeholder="First Name" required=""/>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <input type="text" name="lname" class="form-control" placeholder="Last Name" required=""/>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <div class="input-group">
-                                                                <div class="input-group-addon">
-                                                                    <i class="fa fa-calendar"></i>
-                                                                </div>
-                                                                <input name="birthday" placeholder="Enter Birthdate" value=""  class="form-control form-control-inline input-medium default-date-picker" size="16" type="text" required="">
-                                                            </div><!-- /.input group -->
-                                                        </div>
-
+                                                    <div class="col-sm-4">
+                                                        <label>Country Code</label>
+                                                        <select name="code" class="form-control">
+                                                            <option value="+1">+1</option>
+                                                        </select>
                                                     </div>
-                                                    <div class="col-md-1"></div>
-                                                </div>
-                                                <input value="" name="zodiac" type="hidden" class="form-control" >
-                                                <input value="" name="age" type="hidden" class="form-control" >
-                                            </form>
-
-                                            <div class="row">
-                                                <div class="col-md-1"></div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <strong>Don't want to add manually?</strong>
-                                                    </div>
-                                                    <div class="form-group">
-
-                                                        <a href="#" class="btn btn-danger">
-                                                            <i class="fa fa-google-plus-square"></i>
-                                                            Add from Google
-                                                        </a>
-                                                    </div>
-                                                    <div class="form-group">
-
-                                                        <a href="#" class="btn btn-primary">
-                                                            <i class="fa fa-facebook-square"></i>
-                                                            Add from Facebook
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-1"></div>
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane" id="step2">
-                                            <h1 class="info-text">Verify Your Phone Number:</h1>
-                                            <p style="text-align: center">
-                                                Please verify your phone number so that when it is First Name's  birthday,<br/>
-                                                Wish-Fish can send you a reminder.
-                                            </p>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <div class="row">
-                                                            <div class="col-sm-4">
-                                                                <label>Country Code</label>
-                                                                <select name="code" class="form-control">
-                                                                    <option value="+1">+1</option>
-                                                                </select>
+                                                    <div class="col-sm-5">
+                                                        <label>Phone Number</label>
+                                                        <div class="input-group">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-phone"></i>
                                                             </div>
-                                                            <div class="col-sm-5">
-                                                                <label>Phone Number</label>
-                                                                <div class="input-group">
-                                                                    <div class="input-group-addon">
-                                                                        <i class="fa fa-phone"></i>
-                                                                    </div>
-                                                                    <input autofocus="" id="varify_phone" name="phone" type="text" class="form-control"  placeholder="Phone Number" data-inputmask='"mask": "(999) 999-9999"' data-mask/>
-                                                                </div><!-- /.input group -->
-                                                                <a href="javascript:void(0);" id="non-us" data-toggle="modal" data-target="#step2-nonus-modal">
-                                                                    Have a Non-US Number?
-                                                                </a> 
-                                                            </div>
-                                                            <div style="padding: 5px" class="col-sm-3">
-                                                                <br/>
-                                                                <button id="sendcode" class="btn btn-success">Verify</button>
-                                                            </div>
-                                                        </div>
-                                                    </div><!-- /.form group -->
+                                                            <input autofocus="" id="varify_phone" name="phone" type="text" class="form-control"  placeholder="Phone Number" data-inputmask='"mask": "(999) 999-9999"' data-mask/>
+                                                        </div><!-- /.input group -->
+                                                        <a href="javascript:void(0);" id="non-us" data-toggle="modal" data-target="#step2-nonus-modal">
+                                                            Have a Non-US Number?
+                                                        </a> 
+                                                    </div>
+                                                    <div style="padding: 5px" class="col-sm-3">
+                                                        <br/>
+                                                        <button id="sendcode" class="btn btn-success">Verify</button>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div id="verifyRow" style="display: none;margin-bottom: 15px" class="row">
-                                                <div class="col-sm-4" style="  margin-top: 6px;">
-                                                    <label>Verification Code</label>
-                                                </div>
-                                                <div class="col-sm-5">
-                                                    <input maxlength="6" name="verifycode" type="text" class="form-control"  placeholder="Verification Code" />
-                                                </div>
-                                            </div>
-                                            <div id="loadRow" style="display: none;margin-bottom: 15px" class="row">
-                                                <div class="col-md-12">
-                                                    <img class="load" src="<?= base_url() ?>assets/dashboard/img/load.GIF" alt=""  />
-                                                    <span style="display: none;" class="msg"></span>
-                                                </div>
-                                            </div>
-                                            <div id="submitRow" style="display: none" class="row m-bot15">
-                                                <div class="col-md-3">
-                                                    <button type="button" id="code_submit" class="btn btn-primary pull-left">Submit</button>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="tab-pane" id="step3">
-                                            <h1 class="info-text">STEP - 3</h1>
+                                            </div><!-- /.form group -->
                                         </div>
                                     </div>
-                                    <br/>
-                                    <div class="wizard-footer">
-                                        <div class="pull-right">
-                                            <input style="width: 160px;height: 60px;" type='button' class='btn btn-next btn-info btn-lg' name='next' value='Next' />
-                                            <input style="width: 160px;height: 60px;" type='button' class='btn btn-finish btn-info' name='finish' value='Finish' />
+                                    <div id="verifyRow" style="display: none;margin-bottom: 15px" class="row">
+                                        <div class="col-sm-4" style="  margin-top: 6px;">
+                                            <label>Verification Code</label>
                                         </div>
-                                    </div>	
+                                        <div class="col-sm-5">
+                                            <input maxlength="6" name="verifycode" type="text" class="form-control"  placeholder="Verification Code" />
+                                        </div>
+                                    </div>
+                                    <div id="loadRow" style="display: none;margin-bottom: 15px" class="row">
+                                        <div class="col-md-12">
+                                            <img class="load" src="<?= base_url() ?>assets/dashboard/img/load.GIF" alt=""  />
+                                            <span style="display: none;" class="msg"></span>
+                                        </div>
+                                    </div>
+                                    <div id="submitRow" style="display: none" class="row m-bot15">
+                                        <div class="col-md-3">
+                                            <button type="button" id="code_submit" class="btn btn-primary pull-left">Submit</button>
+                                        </div>
+                                    </div>
+
                                 </div>
-                                <!--</form>-->
+                                <div class="tab-pane" id="step3">
+                                    <h1 class="info-text">STEP - 3</h1>
+                                </div>
                             </div>
-                        </div> <!-- row -->
+                            <br/>
+                            <div class="wizard-footer">
+                                <div class="pull-right">
+                                    <input style="width: 160px;height: 60px;" type='button' class='btn btn-next btn-info btn-lg' name='next' value='Next' />
+                                    <input style="width: 160px;height: 60px;" type='button' class='btn btn-finish btn-info' name='finish' value='Finish' />
+                                </div>
+                            </div>	
+                        </div>
+                        <!--</form>-->
                     </div>
-                    <div class="overlay" style="display: none"></div>
-                    <div class="loading-img" style="display: none"></div>
-                </div>
+                </div> <!-- row -->
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
