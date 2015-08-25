@@ -439,7 +439,83 @@
         }
 
         //--------------------------------------------------------------------//
+        //---------------------------------- STEP 2 --------------------------//
+        $('#step2-nonus-modal #feedback').click(function () {
+            $('#step2-feedback-modal #feedbackForm span.msg').text('');
+            $('#step2 .discard').trigger('click');
+        });
 
+        $('#step2 #varify_phone').on("keypress", function (e) {
+            if (e.keyCode == 13) {
+                $('#sendcode').trigger('click');
+            }
+        });
+
+        $('#step2 input[name="verifycode"]').on("keypress", function (e) {
+            if (e.keyCode == 13) {
+                $('#code_submit').trigger('click');
+            }
+        });
+
+        $('#step2 #sendcode').click(function () {
+            var phone = $('#step2 #varify_phone').val();
+            var code = $('#step2 select[name="code"]').val();
+            $('#step2 #loadRow').css('display', 'block');
+            $.ajax({
+                type: 'POST',
+                data: {phone: phone, code: code},
+                url: "<?= site_url() ?>app/dashboard/sendVerificationCode",
+                success: function (data, textStatus, jqXHR) {
+                    $('#step2 .load').css('display', 'none');
+                    $('#step2 .msg').css('display', 'block');
+                    if (data == 1) {
+                        $('.msg').css('color', 'green');
+                        $('.msg').text("Verification Code Successfully Sent To +1" + phone);
+                        $('#verifyRow').css('display', 'block');
+                        $('#submitRow').css('display', 'block');
+                    } else {
+                        $('.msg').css('color', 'red');
+                        $('.msg').text("Invalid Phone Number..!");
+                        $('#verifyRow').css('display', 'none');
+                        $('#submitRow').css('display', 'none');
+                    }
+                }
+            });
+        });
+
+        $('#step2 #code_submit').click(function () {
+            $('.msg').css('display', 'none');
+            $('.load').css('display', 'block');
+            var code = $('input[name="verifycode"]').val();
+            if (!(code.length == 6) || !$.isNumeric(code)) {
+                $('.load').css('display', 'none');
+                $('.msg').css('display', 'block');
+                $('.msg').css('color', 'red');
+                $('.msg').text("Invalid Verification Code..!");
+                return false;
+            }
+            $.ajax({
+                type: 'POST',
+                data: {code: code},
+                url: "<?= site_url() ?>app/dashboard/checkVerificationCode",
+                success: function (data, textStatus, jqXHR) {
+                    if (data == 1) {
+                        $('.close').trigger('click');
+                        alertify.success("Congratulations! You have verified your phone number successfully!");
+                        setTimeout(function () {
+                            location.reload(true);
+                        }, 1000);
+                    } else {
+                        $('.load').css('display', 'none');
+                        $('.msg').css('display', 'block');
+                        $('.msg').css('color', 'red');
+                        $('.msg').text("Invalid Verification Code..!");
+                    }
+                }
+            });
+        });
+        //--------------------------------------------------------------------//
+        
         $('button.close').click(function () {
             $('div.feedback').hide();
         });
