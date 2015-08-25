@@ -484,7 +484,7 @@
         //---------------------------------- STEP 2 --------------------------//
         $('#step2-nonus-modal #feedback').click(function () {
             $('#step2-feedback-modal #feedbackForm span.msg').text('');
-            $('#step2 .discard').trigger('click');
+            $('#step2-nonus-modal .discard').trigger('click');
         });
 
         $('#step2 #varify_phone').on("keypress", function (e) {
