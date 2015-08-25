@@ -382,6 +382,7 @@ $userid = $this->session->userdata('u_userid');
                                 }
                             }
                         });
+                        
                         $('li.dropdown-submenu > a').hover(function () {
                             console.log("Display");
                             $(this).next('ul').css('display', 'block');
@@ -603,11 +604,7 @@ $userid = $this->session->userdata('u_userid');
                             <li class="user-footer">
                                 <div class="pull-left" id="wishfish-profile">
                                     <a href="<?= site_url() ?>app/profile" class="btn btn-default btn-xs">Profile</a>
-                                    <!--<a href="#" class="btn btn-default btn-xs">Profile</a>-->
                                 </div>
-                                <!--                                <div class="pull-left" style="margin-left: 7px;">
-                                                                    
-                                                                </div>-->
                                 <div class="pull-right">
                                     <a href="<?= site_url() ?>app/logout" class="btn btn-default btn-xs">Sign out</a>
                                 </div>
