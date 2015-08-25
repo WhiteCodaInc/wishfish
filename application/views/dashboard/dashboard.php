@@ -57,7 +57,6 @@
     // data-backdrop="static" data-keyboard="false"
 
 </style>
-<div id="center" style="position: absolute;"></div>
 <aside class="right-side" style="min-height: 542px;">
 
     <section class="content-header">
@@ -540,36 +539,7 @@
     }); // end document-ready
 </script>
 <script type="text/javascript" >
-    $(function () {
-        var x = $(window).width() / 2;
-        var y = $(window).height() / 2;
-//        console.log("X:" + x);
-//        console.log("Y:" + y);
-//
-//        console.log("X+40:" + x - 40);
-//        console.log("Y-40:" + y - 40);
-
-        $('#center').css('top', +y + 40);
-        $('#center').css('left', x);
-
-        $('select[name="timezones"]').addClass('form-control m-bot15');
-        //$('select[name="timezones"]').val('UTC');
-        $('#conForm .default-date-picker').datepicker({
-            format: "<?= $this->session->userdata('u_date_format') ?>",
-            todayBtn: "linked",
-            autoclose: true,
-            todayHighlight: true
-        }).on('changeDate', function (ev) {
-            $('#conForm input[name="birthday"]').focusout();
-        });
-
-        $('#cprofileForm .default-date-picker').datepicker({
-            format: "<?= $this->session->userdata('u_date_format') ?>",
-            todayBtn: "linked",
-            autoclose: true,
-            todayHighlight: true
-        });
-    });
+    
 
     $(document).ready(function () {
         $('button.close').click(function () {

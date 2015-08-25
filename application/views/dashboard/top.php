@@ -382,7 +382,7 @@ $userid = $this->session->userdata('u_userid');
                                 }
                             }
                         });
-                        
+
                         $('li.dropdown-submenu > a').hover(function () {
                             console.log("Display");
                             $(this).next('ul').css('display', 'block');
@@ -822,6 +822,24 @@ $userid = $this->session->userdata('u_userid');
                         </div>
                         <!-------------------------End Add Contact------------------------------>
                         <script type="text/javascript">
+                            $(function () {
+                                $('select[name="timezones"]').addClass('form-control m-bot15');
+                                $('#conForm .default-date-picker').datepicker({
+                                    format: "<?= $this->session->userdata('u_date_format') ?>",
+                                    todayBtn: "linked",
+                                    autoclose: true,
+                                    todayHighlight: true
+                                }).on('changeDate', function (ev) {
+                                    $('#conForm input[name="birthday"]').focusout();
+                                });
+
+                                $('#cprofileForm .default-date-picker').datepicker({
+                                    format: "<?= $this->session->userdata('u_date_format') ?>",
+                                    todayBtn: "linked",
+                                    autoclose: true,
+                                    todayHighlight: true
+                                });
+                            });
                             $(document).ready(function () {
                                 var isValid = true;
                                 $('.setup a').on('click', function () {
