@@ -52,8 +52,8 @@
         };
 
         this.next = function (e) {
-            
-           
+
+            console.log("CURRENT: " + obj.currentIndex());
 
             // If we clicked the last then dont activate this
             if (element.hasClass('last')) {
@@ -66,8 +66,8 @@
 
             // Did we click the last button
             $index = obj.nextIndex();
-             console.log($index);
-            
+            console.log($index);
+
             if ($index > obj.navigationLength()) {
             } else {
                 $navigation.find(baseItemSelector + ':eq(' + $index + ') a').tab('show');
