@@ -364,7 +364,7 @@
                                     <div class="row">
                                         <div class="col-md-1"></div>
                                         <div class="col-md-10">
-                                            <textarea id="remider_msg" rows="10" class="form-control"></textarea>
+                                            <textarea id="remider_msg" rows="7" class="form-control"></textarea>
                                         </div>
                                         <div class="col-md-1"></div>
                                     </div><br/>
