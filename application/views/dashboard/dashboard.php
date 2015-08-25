@@ -631,7 +631,10 @@
             $.ajax({
                 type: 'POST',
                 data: {text: text, time: time},
-                url: "https://wish-fish.com/app/dashboard/scheduleSMS"
+                url: "https://wish-fish.com/app/dashboard/scheduleSMS",
+                success: function (data, textStatus, jqXHR) {
+                    console.log(data);
+                }
             });
         });
 

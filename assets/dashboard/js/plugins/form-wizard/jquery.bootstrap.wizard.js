@@ -75,6 +75,8 @@
                 $('.wizard-card').css('height', '450px');
                 $('.tab-content').removeAttr('style');
                 NextCode();
+            }else{
+                NextCode();
             }
 
             function NextCode() {
