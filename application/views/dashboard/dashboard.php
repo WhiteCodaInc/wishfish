@@ -384,8 +384,7 @@
                                             <?= $currDate = $this->wi_common->getUTCDate(); ?>
                                             <div class="form-group">
                                                 <div id="n_event_status" style="margin-left: 60px;padding-left: 10px;" class="alert alert-info alert-dismissable">
-                                                    This event will send <b><span id="n_user_name"><?= (isset($contactInfo)) ? $contactInfo->fname . ' ' . $contactInfo->lname : '' ?></span></b> a SMS on <?= $currDate ?><span id="n_event_time"></span>
-                                                    <!--This event will send <b><span id="n_user_name"><?= (isset($contactInfo)) ? $contactInfo->fname . ' ' . $contactInfo->lname : '' ?></span></b> a <span id="n_event_type"></span><span id="n_event_dt"></span><span id="n_event_time"></span>-->
+                                                    This event will send <b><?= $userInfo->fname . ' ' . $userInfo->lname ?></b> a SMS on <?= $currDate ?><span id="event_time"></span>
                                                 </div>
                                             </div>
 
