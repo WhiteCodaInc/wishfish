@@ -563,12 +563,8 @@
                 data: {code: code},
                 url: "<?= site_url() ?>app/dashboard/checkVerificationCode",
                 success: function (data, textStatus, jqXHR) {
-                    if (data == 1) {
-                        $('.close').trigger('click');
-                        alertify.success("Congratulations! You have verified your phone number successfully!");
-                        setTimeout(function () {
-                            location.reload(true);
-                        }, 1000);
+                    if (data == '1') {                        
+                        alertify.success("Congratulations! You have verified your phone number successfully!");                       
                     } else {
                         $('.load').css('display', 'none');
                         $('.msg').css('display', 'block');
