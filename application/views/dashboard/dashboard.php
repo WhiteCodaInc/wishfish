@@ -380,11 +380,13 @@
 
         $('.wizard-footer .btn-next').on('click', function () {
             $step = $('.tab-content > div.active').attr('id');
+            console.log($step);
             if ($step == "step1") {
                 var fname = $('#step1Form input[name="fname"]').val().trim();
                 var lname = $('#step1Form input[name="lname"]').val().trim();
                 var bday = $('#step1Form input[name="birthday"]').val().trim();
                 if (fname == "" || lname == "" || bday == "") {
+                    alertify.error("Fill Required Field..!");
                     $('.tab-content > div.active').removeClass('active');
                     $('.tab-content div:first').addClass('active');
                 } else {
@@ -515,7 +517,7 @@
             });
         });
         //--------------------------------------------------------------------//
-        
+
         $('button.close').click(function () {
             $('div.feedback').hide();
         });
