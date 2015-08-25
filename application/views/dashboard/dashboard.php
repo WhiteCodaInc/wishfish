@@ -289,8 +289,8 @@
                                         Wish-Fish can send you a reminder.
                                     </p>
                                     <div class="row">
-                                        <div class="col-md-1"></div>
-                                        <div class="col-md-1">
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-10">
                                             <div class="form-group">
                                                 <div class="row">
                                                     <div class="col-sm-3">
@@ -299,7 +299,7 @@
                                                             <option value="+1">+1</option>
                                                         </select>
                                                     </div>
-                                                    <div class="col-sm-4">
+                                                    <div class="col-sm-5">
                                                         <label>Phone Number</label>
                                                         <div class="input-group">
                                                             <div class="input-group-addon">
@@ -311,7 +311,7 @@
                                                             Have a Non-US Number?
                                                         </a> 
                                                     </div>
-                                                    <div style="padding: 5px" class="col-sm-3">
+                                                    <div style="padding: 5px" class="col-sm-2">
                                                         <br/>
                                                         <button id="sendcode" class="btn btn-success">Verify</button>
                                                     </div>
