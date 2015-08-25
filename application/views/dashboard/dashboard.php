@@ -503,7 +503,7 @@
         //--------------------------------------------------------------------//
         //---------------------------------- STEP 2 --------------------------//
         $('a.continue').click(function () {
-            $('.wizard-footer btn-next').trigger('click');
+            $('.wizard-footer .btn-next').trigger('click');
         });
 
         $('#step2-nonus-modal #feedback').click(function () {
