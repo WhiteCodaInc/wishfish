@@ -364,10 +364,10 @@
                                     <div class="row">
                                         <div class="col-md-1"></div>
                                         <div class="col-md-10">
-                                            <textarea id="remider_msg" rows="10"></textarea>
+                                            <textarea id="remider_msg" rows="10" class="form-control"></textarea>
                                         </div>
                                         <div class="col-md-1"></div>
-                                    </div>
+                                    </div><br/>
                                     <div class="row">
                                         <div class="col-md-1"></div>
                                         <div class="col-md-6">
@@ -480,10 +480,19 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div>
+
+<!-- bootstrap time picker -->
+<script src="<?= base_url() ?>assets/dashboard/js/plugins/timepicker/bootstrap-timepicker.min.js" type="text/javascript"></script>
 <!------------------------------------------------------------------------>
 
 <script type="text/javascript">
     $(function () {
+
+        $(".timepicker").timepicker({
+            showInputs: false,
+            showMeridian: false
+        });
+
         $('#step1Form .default-date-picker').datepicker({
             format: "<?= $this->session->userdata('u_date_format') ?>",
             todayBtn: "linked",
