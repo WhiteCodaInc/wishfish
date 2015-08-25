@@ -387,7 +387,15 @@
         $('.wizard-footer .btn-next').on('click', function () {
             $step = $('.tab-content > div.active').attr('id');
             if ($step == "step1") {
-                addFriend();
+                var fname = $('#step1Form input[name="fname"]').val().trim();
+                var lname = $('#step1Form input[name="lname"]').val().trim();
+                var bday = $('#step1Form input[name="birthday"]').val().trim();
+                if (fname == "" || lname == "" || bday == "") {
+                    $('.tab-content > div.active').removeClass('active');
+                    $('.tab-content div:first').addClass('active');
+                } else {
+                    addFriend();
+                }
             } else {
 
             }
