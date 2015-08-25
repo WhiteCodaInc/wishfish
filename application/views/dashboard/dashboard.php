@@ -366,6 +366,115 @@
 </div>
 <!------------------------------------------------------------------------>
 
+<script type="text/javascript">
+    $(function () {
+        $('#step1Form .default-date-picker').datepicker({
+            format: "<?= $this->session->userdata('u_date_format') ?>",
+            todayBtn: "linked",
+            autoclose: true,
+            todayHighlight: true
+        }).on('changeDate', function (ev) {
+            $('#step1Form input[name="birthday"]').focusout();
+        });
+    });
+</script>
+<script type="text/javascript" >
+
+    $(document).ready(function () {
+
+        $('.wizard-footer .btn-next').on('click', function () {
+            $step = $('.tab-content > div.active').attr('id');
+            if ($step == "step1") {
+                addFriend();
+            } else {
+
+            }
+
+        });
+
+        //---------------------------------- STEP 1 --------------------------//
+        $('#step1Form input[name="fname"]').focusout(function () {
+            var str = $(this).val() + "'s";
+            $('#step1Form  input[name="birthday"]').attr('placeholder', 'Enter ' + str + ' Birthdate');
+            $('#step1Form input[name="phone"]').attr('placeholder', 'Enter ' + str + ' Phone Number');
+        });
+        $('#step1Form input[name="birthday"]').focusout(function () {
+            var dt = $(this).val();
+            var pastYear = dt.split('-');
+            var now = new Date();
+            var nowYear = now.getFullYear();
+            var age = nowYear - pastYear[2];
+            if (dt != "") {
+                $.ajax({
+                    type: 'POST',
+                    data: {birthdate: dt},
+                    url: "<?= site_url() ?>app/contacts/getZodiac/" + dt,
+                    success: function (data, textStatus, jqXHR) {
+                        $('#step1Form  input[name="zodiac"]').val(data);
+                        $('#step1Form  input[name="age"]').val(age);
+                    }
+                });
+            } else {
+                $('#step1Form  input[name="zodiac"]').val('');
+                $('#step1Form  input[name="age"]').val('');
+            }
+        });
+        function addFriend() {
+            $.ajax({
+                type: 'POST',
+                data: $('#step1Form').serialize(),
+                url: "<?= site_url() ?>app/contacts/add_contact",
+                success: function (data, textStatus, jqXHR) {
+                    if (data != "1") {
+                        $('step1Form').trigger('reset');
+                        $('.tab-content > div.active').removeClass('active');
+                        $('.tab-content div:first').addClass('active');
+                    }
+                }
+            });
+        }
+
+        //--------------------------------------------------------------------//
+
+        $('button.close').click(function () {
+            $('div.feedback').hide();
+        });
+
+        $('#review_submit').click(function () {
+            var msg = $('#review').val();
+            var id = $(this).prop('id');
+            if (msg.trim() == "") {
+                alertify.error('Please Write Your Feedback In Box..!');
+                return false;
+            }
+            $(this).prop('disabled', true);
+            $('div.review .overlay').show();
+            $('div.review .loading-img').show();
+            $.ajax({
+                type: 'POST',
+                url: "<?= site_url() ?>app/dashboard/sendQuery",
+                data: {query: msg},
+                success: function (data, textStatus, jqXHR) {
+                    $('#' + id).prop('disabled', false);
+                    $('div.review .overlay').hide();
+                    $('div.review .loading-img').hide();
+                    $('#review_error').show();
+                    if (data == "1") {
+                        $('#review_error span').css('color', 'green');
+                        $('#review_error span').text("Thank You..!");
+                    } else {
+                        $('#review_error span').css('color', 'red');
+                        $('#review_error span').text("We can't receive your feedback..! Try Again..!");
+                    }
+                    $('#review').val("");
+//                    setTimeout(function () {
+//                        $('#feedback-model .close').trigger('click');
+//                    }, 500);
+                }
+            });
+        });
+    });
+</script>
 
 <!--   plugins 	 -->
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/form-wizard/jquery.bootstrap.wizard.js" type="text/javascript"></script>
@@ -538,46 +647,4 @@
 
     }); // end document-ready
 </script>
-<script type="text/javascript" >
-    
 
-    $(document).ready(function () {
-        $('button.close').click(function () {
-            $('div.feedback').hide();
-        });
-
-        $('#review_submit').click(function () {
-            var msg = $('#review').val();
-            var id = $(this).prop('id');
-            if (msg.trim() == "") {
-                alertify.error('Please Write Your Feedback In Box..!');
-                return false;
-            }
-            $(this).prop('disabled', true);
-            $('div.review .overlay').show();
-            $('div.review .loading-img').show();
-            $.ajax({
-                type: 'POST',
-                url: "<?= site_url() ?>app/dashboard/sendQuery",
-                data: {query: msg},
-                success: function (data, textStatus, jqXHR) {
-                    $('#' + id).prop('disabled', false);
-                    $('div.review .overlay').hide();
-                    $('div.review .loading-img').hide();
-                    $('#review_error').show();
-                    if (data == "1") {
-                        $('#review_error span').css('color', 'green');
-                        $('#review_error span').text("Thank You..!");
-                    } else {
-                        $('#review_error span').css('color', 'red');
-                        $('#review_error span').text("We can't receive your feedback..! Try Again..!");
-                    }
-                    $('#review').val("");
-//                    setTimeout(function () {
-//                        $('#feedback-model .close').trigger('click');
-//                    }, 500);
-                }
-            });
-        });
-    });
-</script>
