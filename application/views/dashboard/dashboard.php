@@ -328,7 +328,8 @@
                                         </div>
                                     </div>
                                     <div id="submitRow" style="display: none" class="row m-bot15">
-                                        <div class="col-md-3">
+                                        <div class="col-md-4"></div>
+                                        <div class="col-md-8" style="margin-left: 25px;">
                                             <button type="button" id="code_submit" class="btn btn-primary pull-left">Submit</button>
                                         </div>
                                     </div>
