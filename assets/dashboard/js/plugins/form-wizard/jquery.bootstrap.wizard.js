@@ -64,13 +64,14 @@
                                 alertify.error("Contact not inserted..!");
                                 return false;
                             } else {
+                                $('.wizard-card').css('height', '435px');
                                 NextCode();
                             }
                         }
                     });
                 }
             } else if (currIndex == '1') {
-                
+
             }
 
             function NextCode() {
