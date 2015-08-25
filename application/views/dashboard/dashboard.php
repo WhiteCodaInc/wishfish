@@ -524,6 +524,8 @@
         });
 
         $('#step2 #sendcode').click(function () {
+            $('.wizard-card').css('height', '500px');
+            $('.tab-content').css('height', '280px');
             var phone = $('#step2 #varify_phone').val();
             var code = $('#step2 select[name="code"]').val();
             $('#step2 #loadRow').css('display', 'block');
