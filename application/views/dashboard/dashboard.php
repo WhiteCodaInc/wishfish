@@ -1,9 +1,7 @@
 <link rel="stylesheet" href="<?= base_url() ?>assets/dashboard/timeline/timeglider/Timeglider.css" type="text/css" media="screen" title="no title" charset="utf-8">
 <link rel="stylesheet" href="<?= base_url() ?>assets/dashboard/timeline/timeglider/timeglider.datepicker.css" type="text/css" media="screen" charset="utf-8">
 <link rel="stylesheet" href="<?= base_url() ?>assets/dashboard/timeline/css/docs.css" type="text/css" media="screen" title="no title" charset="utf-8">
-
-<!--<link href="<?= base_url() ?>assets/dashboard/js/plugins/form-wizard/gsdk-base.css" rel="stylesheet" type="text/css"/>-->
-
+<!--<link rel="stylesheet" href="<?= base_url() ?>assets/dashboard/timeline/css/jquery-ui-1.10.3.custom.css" type="text/css" media="screen" title="no title" charset="utf-8">-->
 <style type='text/css'>
     .header {
         margin:32px;
@@ -59,233 +57,6 @@
 </style>
 <div id="center" style="position: absolute;"></div>
 <aside class="right-side" style="min-height: 542px;">
-    <!-------------------------------Welcome Tour Model------------------------------------>
-    <div class="modal fade" id="tour-modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" style="max-width: 1000px">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title"></h4>
-                </div>
-                <div class="modal-body">
-                    <div class="box box-primary tour">
-                        <div class="box-body">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="card wizard-card ct-wizard-blue" id="wizard">
-                                        <ul>
-                                            <li style="margin: 0"><a href="#step1" data-toggle="tab">STEP 1</a></li>
-                                            <li style="margin: 0"><a href="#step2" data-toggle="tab">STEP 2</a></li>
-                                            <li style="margin: 0"><a href="#step3" data-toggle="tab">STEP 3</a></li>
-                                        </ul>
-                                        <div class="tab-content">
-                                            <div class="tab-pane" id="step1">
-                                                <h1 class="info-text">Add a Friend / Family Member :</h1>
-                                                <form id="step1Form" method="post">
-                                                    <div class="row">
-                                                        <div class="col-md-1"></div>
-                                                        <div class="col-md-10">
-
-                                                            <div class="form-group">
-                                                                <input type="text" name="fname" autofocus="autofocus" class="form-control" placeholder="First Name" required=""/>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <input type="text" name="lname" class="form-control" placeholder="Last Name" required=""/>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <div class="input-group">
-                                                                    <div class="input-group-addon">
-                                                                        <i class="fa fa-calendar"></i>
-                                                                    </div>
-                                                                    <input name="birthday" placeholder="Enter Birthdate" value=""  class="form-control form-control-inline input-medium default-date-picker" size="16" type="text" required="">
-                                                                </div><!-- /.input group -->
-                                                            </div>
-
-                                                        </div>
-                                                        <div class="col-md-1"></div>
-                                                    </div>
-                                                    <input value="" name="zodiac" type="hidden" class="form-control" >
-                                                    <input value="" name="age" type="hidden" class="form-control" >
-                                                </form>
-
-                                                <div class="row">
-                                                    <div class="col-md-1"></div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <strong>Don't want to add manually?</strong>
-                                                        </div>
-                                                        <div class="form-group">
-
-                                                            <a href="#" class="btn btn-danger">
-                                                                <i class="fa fa-google-plus-square"></i>
-                                                                Add from Google
-                                                            </a>
-                                                        </div>
-                                                        <div class="form-group">
-
-                                                            <a href="#" class="btn btn-primary">
-                                                                <i class="fa fa-facebook-square"></i>
-                                                                Add from Facebook
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-1"></div>
-                                                </div>
-                                            </div>
-                                            <div class="tab-pane" id="step2">
-                                                <h1 class="info-text">Verify Your Phone Number:</h1>
-                                                <p style="text-align: center">
-                                                    Please verify your phone number so that when it is First Name's  birthday,<br/>
-                                                    Wish-Fish can send you a reminder.
-                                                </p>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <div class="row">
-                                                                <div class="col-sm-4">
-                                                                    <label>Country Code</label>
-                                                                    <select name="code" class="form-control">
-                                                                        <option value="+1">+1</option>
-                                                                    </select>
-                                                                </div>
-                                                                <div class="col-sm-5">
-                                                                    <label>Phone Number</label>
-                                                                    <div class="input-group">
-                                                                        <div class="input-group-addon">
-                                                                            <i class="fa fa-phone"></i>
-                                                                        </div>
-                                                                        <input autofocus="" id="varify_phone" name="phone" type="text" class="form-control"  placeholder="Phone Number" data-inputmask='"mask": "(999) 999-9999"' data-mask/>
-                                                                    </div><!-- /.input group -->
-                                                                    <a href="javascript:void(0);" id="non-us" data-toggle="modal" data-target="#step2-nonus-modal">
-                                                                        Have a Non-US Number?
-                                                                    </a> 
-                                                                </div>
-                                                                <div style="padding: 5px" class="col-sm-3">
-                                                                    <br/>
-                                                                    <button id="sendcode" class="btn btn-success">Verify</button>
-                                                                </div>
-                                                            </div>
-                                                        </div><!-- /.form group -->
-                                                    </div>
-                                                </div>
-                                                <div id="verifyRow" style="display: none;margin-bottom: 15px" class="row">
-                                                    <div class="col-sm-4" style="  margin-top: 6px;">
-                                                        <label>Verification Code</label>
-                                                    </div>
-                                                    <div class="col-sm-5">
-                                                        <input maxlength="6" name="verifycode" type="text" class="form-control"  placeholder="Verification Code" />
-                                                    </div>
-                                                </div>
-                                                <div id="loadRow" style="display: none;margin-bottom: 15px" class="row">
-                                                    <div class="col-md-12">
-                                                        <img class="load" src="<?= base_url() ?>assets/dashboard/img/load.GIF" alt=""  />
-                                                        <span style="display: none;" class="msg"></span>
-                                                    </div>
-                                                </div>
-                                                <div id="submitRow" style="display: none" class="row m-bot15">
-                                                    <div class="col-md-3">
-                                                        <button type="button" id="code_submit" class="btn btn-primary pull-left">Submit</button>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <div class="tab-pane" id="step3">
-                                                <h1 class="info-text">STEP - 3</h1>
-                                            </div>
-                                        </div>
-                                        <br/>
-                                        <div class="wizard-footer">
-                                            <div class="pull-right">
-                                                <input style="width: 160px;height: 60px;" type='button' class='btn btn-next btn-info btn-lg' name='next' value='Next' />
-                                                <input style="width: 160px;height: 60px;" type='button' class='btn btn-finish btn-info' name='finish' value='Finish' />
-                                            </div>
-                                        </div>	
-                                    </div>
-                                    <!--</form>-->
-                                </div>
-                            </div> <!-- row -->
-                        </div>
-                        <div class="overlay" style="display: none"></div>
-                        <div class="loading-img" style="display: none"></div>
-                    </div>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div>
-    <!------------------------------------------------------------------------>
-
-    <!-----------------------------   STEP -2 -------------------------------->
-    <div class="modal fade" id="step2-nonus-modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" style="max-width: 400px">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <p>
-                                Unfortunately as of right now we don't support non-US phone numbers (bear with us, we're still a startup!).
-                                However, please <a href="javascript:void(0);" id="feedback" data-toggle="modal" data-target="#step2-feedback-modal">send us an email</a> with your country, and we will let you know as soon as it is available (hopefully soon!)
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12" style="text-align: center">
-                            <button type="button" class="btn btn-danger discard" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
-                        </div>
-                    </div>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div>
-
-    <div class="modal fade" id="step2-feedback-modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" style="max-width: 400px">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Feedback / Support</h4>
-                </div>
-                <form id="feedbackForm"  method="post">
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group" >
-                                    <label>Select Country</label>
-                                    <select id="country" class="form-control">
-                                        <option value="-1">--Select Country--</option>
-                                        <option value="India">India</option>
-                                        <option value="Pakistan">Pakistan</option>
-                                        <option value="Canada">Canada</option>
-                                        <option value="Australia">Australia</option>
-                                    </select>
-                                </div>
-                                <div class="form-group" >
-                                    <textarea id="query" class="form-control"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <img  src="<?= base_url() ?>assets/dashboard/img/load.GIF" alt="" class="load" style="display: none" />
-                                <span style="display: none" class="msg"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer clearfix">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <button type="button" value="feedback" class="btn btn-primary pull-left send-query">Send</button>
-                            </div>
-                            <div class="col-md-3">
-                                <button type="button" class="btn btn-danger discard" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div>
-    <!------------------------------------------------------------------------>
-
     <!--<a href="#" style="display: none" class="feedback" data-backdrop="false"  data-toggle="modal" data-target="#feedback-model">Review</a>-->
     <!--<div class="modal fade" id="feedback-model" tabindex="-1" role="dialog" aria-hidden="true">-->
     <div class="modal-dialog feedback">
@@ -317,7 +88,7 @@
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
-
+    <!--</div>-->
     <section class="content-header">
         <h1 style="float: left">
             Dashboard
@@ -330,6 +101,18 @@
             <i class="fa fa-plus"></i>
             Create New Event
         </a>
+<!--        <a href="<?= site_url() ?>app/sms_template/addTemplate" class="btn btn-warning btn-sm create">
+        <i class="fa fa-plus"></i>
+        Create SMS Template
+    </a>
+    <a href="<?= site_url() ?>app/email_template/addTemplate" class="btn btn-danger btn-sm create">
+        <i class="fa fa-plus"></i>
+        Create Email Template
+    </a>-->
+
+
+
+
         <div class="box box-solid box-primary collapsed-box event">
             <div class="box-header" data-widget="collapse"  style="cursor: pointer;padding: 7px">
                 <h4 class="box-title" style="font-size: 15px">Events</h4>
@@ -437,216 +220,8 @@
             }
         </style>
         <div id='p1'></div>
-        <input name="birthday" value=""  class="form-control form-control-inline input-medium default-date-picker" size="16" type="text">
     </section>
 </aside>
-
-<script type="text/javascript">
-    $(function () {
-        $('.default-date-picker').datepicker({
-            format: "<?= $this->session->userdata('u_date_format') ?>",
-            todayBtn: "linked",
-            autoclose: true,
-            todayHighlight: true
-        });
-        $("[data-mask]").inputmask();
-    });
-</script>
-
-<script type="text/javascript">
-    $(document).ready(function () {
-
-        $('button.close').click(function () {
-            $('div.feedback').hide();
-        });
-
-        $('#tour-modal').modal('show');
-
-        $('#review_submit').click(function () {
-            var msg = $('#review').val();
-            var id = $(this).prop('id');
-            if (msg.trim() == "") {
-                alertify.error('Please Write Your Feedback In Box..!');
-                return false;
-            }
-            $(this).prop('disabled', true);
-            $('div.review .overlay').show();
-            $('div.review .loading-img').show();
-            $.ajax({
-                type: 'POST',
-                url: "<?= site_url() ?>app/dashboard/sendQuery",
-                data: {query: msg},
-                success: function (data, textStatus, jqXHR) {
-                    $('#' + id).prop('disabled', false);
-                    $('div.review .overlay').hide();
-                    $('div.review .loading-img').hide();
-                    $('#review_error').show();
-                    if (data == "1") {
-                        $('#review_error span').css('color', 'green');
-                        $('#review_error span').text("Thank You..!");
-                    } else {
-                        $('#review_error span').css('color', 'red');
-                        $('#review_error span').text("We can't receive your feedback..! Try Again..!");
-                    }
-                    $('#review').val("");
-//                    setTimeout(function () {
-//                        $('#feedback-model .close').trigger('click');
-//                    }, 500);
-                }
-            });
-        });
-        
-        $('.wizard-footer  .btn-next').click(function () {
-            $step = $('.tab-content > div.active').attr('id');
-            if($step == "step1"){
-                
-            }else{
-                
-            };
-        });
-
-        //---------------------------------- STEP 1 --------------------------//
-
-        $('#step1Form input[name="fname"]').focusout(function () {
-            var str = $(this).val() + "'s";
-            $('#step1Form  input[name="birthday"]').attr('placeholder', 'Enter ' + str + ' Birthdate');
-            $('#step1Form input[name="phone"]').attr('placeholder', 'Enter ' + str + ' Phone Number');
-        });
-        $('#step1Form input[name="birthday"]').focusout(function () {
-            var dt = $(this).val();
-            var pastYear = dt.split('-');
-            var now = new Date();
-            var nowYear = now.getFullYear();
-            var age = nowYear - pastYear[2];
-            if (dt != "") {
-                $.ajax({
-                    type: 'POST',
-                    data: {birthdate: dt},
-                    url: "<?= site_url() ?>app/contacts/getZodiac/" + dt,
-                    success: function (data, textStatus, jqXHR) {
-                        $('#step1Form  input[name="zodiac"]').val(data);
-                        $('#step1Form  input[name="age"]').val(age);
-                    }
-                });
-            } else {
-                $('#step1Form  input[name="zodiac"]').val('');
-                $('#step1Form  input[name="age"]').val('');
-            }
-        });
-        $('#step1Form #contactBtn').on('click', function () {
-            var id = $(this).prop('id');
-            $('#step1Form #' + id).prop('disabled', true);
-            $('#tour-modal #loadContact').show();
-            $.ajax({
-                type: 'POST',
-                data: $('#step1Form #conForm').serialize(),
-                url: "<?= site_url() ?>app/contacts/add_contact",
-                success: function (data, textStatus, jqXHR) {
-                    $('#step1Form #loadContact').hide();
-                    if (data == "1") {
-                        $("#step1Form #msgContact").css('color', 'green');
-                        $("#step1Form #msgContact").html("Contact Successfully Added..!");
-                        setTimeout(function () {
-                            $('.discard').trigger('click');
-                            location.reload(true);
-                        }, 1000);
-                    } else {
-                        $("#step1Form #msgContact").css('color', 'red');
-                        $("#step1Form #msgContact").html("Contact has not been Added..!");
-                        $('#step1Form #' + id).prop('disabled', false);
-                    }
-                }
-            });
-        });
-
-        //--------------------------------------------------------------------//
-
-        //---------------------------------- STEP 2 --------------------------//
-        $('#step2-nonus-modal #feedback').click(function () {
-            $('#step2-feedback-modal #feedbackForm span.msg').text('');
-            $('#step2.discard').trigger('click');
-        });
-
-        $('#step2 #varify_phone').on("keypress", function (e) {
-            if (e.keyCode == 13) {
-                $('#sendcode').trigger('click');
-            }
-        });
-
-        $('#step2 input[name="verifycode"]').on("keypress", function (e) {
-            if (e.keyCode == 13) {
-                $('#code_submit').trigger('click');
-            }
-        });
-
-        $('#step2 #sendcode').click(function () {
-            var phone = $('#step2 #varify_phone').val();
-            var code = $('#step2 select[name="code"]').val();
-            $('#step2 #loadRow').css('display', 'block');
-            $.ajax({
-                type: 'POST',
-                data: {phone: phone, code: code},
-                url: "<?= site_url() ?>app/dashboard/sendVerificationCode",
-                success: function (data, textStatus, jqXHR) {
-                    $('#step2 .load').css('display', 'none');
-                    $('#step2 .msg').css('display', 'block');
-                    if (data == 1) {
-                        $('.msg').css('color', 'green');
-                        $('.msg').text("Verification Code Successfully Sent To +1" + phone);
-                        $('#verifyRow').css('display', 'block');
-                        $('#submitRow').css('display', 'block');
-                    } else {
-                        $('.msg').css('color', 'red');
-                        $('.msg').text("Invalid Phone Number..!");
-                        $('#verifyRow').css('display', 'none');
-                        $('#submitRow').css('display', 'none');
-                    }
-                }
-            });
-        });
-
-        $('#step2 #code_submit').click(function () {
-            $('.msg').css('display', 'none');
-            $('.load').css('display', 'block');
-            var code = $('input[name="verifycode"]').val();
-            if (!(code.length == 6) || !$.isNumeric(code)) {
-                $('.load').css('display', 'none');
-                $('.msg').css('display', 'block');
-                $('.msg').css('color', 'red');
-                $('.msg').text("Invalid Verification Code..!");
-                return false;
-            }
-            $.ajax({
-                type: 'POST',
-                data: {code: code},
-                url: "<?= site_url() ?>app/dashboard/checkVerificationCode",
-                success: function (data, textStatus, jqXHR) {
-                    if (data == 1) {
-                        $('.close').trigger('click');
-                        alertify.success("Congratulations! You have verified your phone number successfully!");
-                        setTimeout(function () {
-                            location.reload(true);
-                        }, 1000);
-                    } else {
-                        $('.load').css('display', 'none');
-                        $('.msg').css('display', 'block');
-                        $('.msg').css('color', 'red');
-                        $('.msg').text("Invalid Verification Code..!");
-                    }
-                }
-            });
-        });
-        //--------------------------------------------------------------------//
-    });
-</script>
-
-
-
-
-<!--   plugins 	 -->
-<!--<script src="<?= base_url() ?>assets/dashboard/js/plugins/form-wizard/jquery.bootstrap.wizard.js" type="text/javascript"></script>
-<script src="<?= base_url() ?>assets/dashboard/js/plugins/form-wizard/wizard.js" type="text/javascript"></script>-->
-
 
 <script src="<?= base_url() ?>assets/dashboard/timeline/js/underscore-min.js" type="text/javascript" charset="utf-8"></script>
 <script src="<?= base_url() ?>assets/dashboard/timeline/js/backbone-min.js" type="text/javascript" charset="utf-8"></script>
@@ -848,6 +423,42 @@
     });
 
     $(document).ready(function () {
+        $('button.close').click(function () {
+            $('div.feedback').hide();
+        });
 
+        $('#review_submit').click(function () {
+            var msg = $('#review').val();
+            var id = $(this).prop('id');
+            if (msg.trim() == "") {
+                alertify.error('Please Write Your Feedback In Box..!');
+                return false;
+            }
+            $(this).prop('disabled', true);
+            $('div.review .overlay').show();
+            $('div.review .loading-img').show();
+            $.ajax({
+                type: 'POST',
+                url: "<?= site_url() ?>app/dashboard/sendQuery",
+                data: {query: msg},
+                success: function (data, textStatus, jqXHR) {
+                    $('#' + id).prop('disabled', false);
+                    $('div.review .overlay').hide();
+                    $('div.review .loading-img').hide();
+                    $('#review_error').show();
+                    if (data == "1") {
+                        $('#review_error span').css('color', 'green');
+                        $('#review_error span').text("Thank You..!");
+                    } else {
+                        $('#review_error span').css('color', 'red');
+                        $('#review_error span').text("We can't receive your feedback..! Try Again..!");
+                    }
+                    $('#review').val("");
+//                    setTimeout(function () {
+//                        $('#feedback-model .close').trigger('click');
+//                    }, 500);
+                }
+            });
+        });
     });
 </script>
