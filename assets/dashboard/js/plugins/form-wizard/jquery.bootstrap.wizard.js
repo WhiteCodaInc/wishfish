@@ -75,6 +75,8 @@
                 $('.wizard-card').removeAttr('style');
                 $('.tab-content').removeAttr('style');
                 NextCode();
+            }else if(currIndex == '2'){
+                $('.wizard-card').css('height', '450px');
             }
 
             function NextCode() {
