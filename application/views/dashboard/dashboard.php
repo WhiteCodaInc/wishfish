@@ -321,10 +321,9 @@
                                         <div class="col-md-1"></div>
                                     </div>
                                     <div id="verifyRow" style="display: none;margin-bottom: 15px" class="row">
-                                        <div class="col-sm-4" style="  margin-top: 6px;">
+
+                                        <div class="col-sm-5" style="  margin-top: 6px;">
                                             <label>Verification Code</label>
-                                        </div>
-                                        <div class="col-sm-5">
                                             <input maxlength="6" name="verifycode" type="text" class="form-control"  placeholder="Verification Code" />
                                         </div>
                                     </div>
