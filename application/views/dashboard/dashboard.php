@@ -321,16 +321,10 @@
                                         <div class="col-md-1"></div>
                                     </div>
                                     <div id="verifyRow" style="display: none;margin-bottom: 15px" class="row">
-                                        <div class="col-md-5"></div>
-                                        <div class="col-sm-4" style="  margin-top: 6px;">
+                                        <div class="col-md-4"></div>
+                                        <div class="col-sm-4" style="margin-left: 25px;">
                                             <label>Verification Code</label>
                                             <input maxlength="6" name="verifycode" type="text" class="form-control"  placeholder="Verification Code" />
-                                        </div>
-                                    </div>
-                                    <div id="loadRow" style="display: none;margin-bottom: 15px" class="row">
-                                        <div class="col-md-12">
-                                            <img class="load" src="<?= base_url() ?>assets/dashboard/img/load.GIF" alt=""  />
-                                            <span style="display: none;" class="msg"></span>
                                         </div>
                                     </div>
                                     <div id="submitRow" style="display: none" class="row m-bot15">
@@ -338,6 +332,13 @@
                                             <button type="button" id="code_submit" class="btn btn-primary pull-left">Submit</button>
                                         </div>
                                     </div>
+                                    <div id="loadRow" style="display: none;margin-bottom: 15px" class="row">
+                                        <div class="col-md-12 text-center">
+                                            <img class="load" src="<?= base_url() ?>assets/dashboard/img/load.GIF" alt=""  />
+                                            <span style="display: none;" class="msg"></span>
+                                        </div>
+                                    </div>
+
 
                                 </div>
                                 <div class="tab-pane" id="step3">
