@@ -351,7 +351,7 @@
                                                 <strong>No Problem...</strong>
                                             </div>
                                             <div class="form-group">
-                                                <a href="#" class="btn btn-next btn-danger">
+                                                <a href="#" class="btn btn-danger continue">
                                                     continue without verifying...
                                                 </a>
                                             </div>
@@ -502,6 +502,10 @@
 
         //--------------------------------------------------------------------//
         //---------------------------------- STEP 2 --------------------------//
+        $('a.continue').click(function () {
+            $('.wizard-footer btn-next').trigger('click');
+        });
+
         $('#step2-nonus-modal #feedback').click(function () {
             $('#step2-feedback-modal #feedbackForm span.msg').text('');
             $('#step2-nonus-modal .discard').trigger('click');
@@ -566,7 +570,7 @@
                     if (data == '1') {
                         $('.load').css('display', 'none');
                         $('.msg').css('display', 'block');
-                        $('.msg').css('color', 'red');
+                        $('.msg').css('color', 'green');
                         $('.msg').text("Congratulations! You have verified your phone number successfully!");
                     } else {
                         $('.load').css('display', 'none');
