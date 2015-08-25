@@ -378,29 +378,7 @@
 
         $('#tour-modal').modal('show');
 
-        $('.wizard-footer .btn-next').on('click', function () {
-            $step = $('.tab-content > div.active').attr('id');
-            console.log($step);
-            if ($step == "step1") {
-                var fname = $('#step1Form input[name="fname"]').val().trim();
-                var lname = $('#step1Form input[name="lname"]').val().trim();
-                var bday = $('#step1Form input[name="birthday"]').val().trim();
-                if (fname == "" || lname == "" || bday == "") {
-                    alertify.error("Fill Required Field..!");
-                    setTimeout(function () {
-                        $('ul.nav-pills > li.active').removeClass('active');
-                        $('ul.nav-pills > lifirst').addClass('active');
-                        $('.tab-content > div.active').removeClass('active');
-                        $('.tab-content div:first').addClass('active');
-                    }, 500);
-                } else {
-                    addFriend();
-                }
-            } else {
-
-            }
-
-        });
+        
 
         //---------------------------------- STEP 1 --------------------------//
         $('#step1Form input[name="fname"]').focusout(function () {
@@ -429,20 +407,7 @@
                 $('#step1Form  input[name="age"]').val('');
             }
         });
-        function addFriend() {
-            $.ajax({
-                type: 'POST',
-                data: $('#step1Form').serialize(),
-                url: "<?= site_url() ?>app/contacts/add_contact",
-                success: function (data, textStatus, jqXHR) {
-                    if (data != "1") {
-                        $('step1Form').trigger('reset');
-                        $('.tab-content > div.active').removeClass('active');
-                        $('.tab-content div:first').addClass('active');
-                    }
-                }
-            });
-        }
+        
 
         //--------------------------------------------------------------------//
         //---------------------------------- STEP 2 --------------------------//
