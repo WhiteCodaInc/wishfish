@@ -289,16 +289,17 @@
                                         Wish-Fish can send you a reminder.
                                     </p>
                                     <div class="row">
-                                        <div class="col-md-12">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-md-1">
                                             <div class="form-group">
                                                 <div class="row">
-                                                    <div class="col-sm-4">
+                                                    <div class="col-sm-3">
                                                         <label>Country Code</label>
                                                         <select name="code" class="form-control">
                                                             <option value="+1">+1</option>
                                                         </select>
                                                     </div>
-                                                    <div class="col-sm-5">
+                                                    <div class="col-sm-4">
                                                         <label>Phone Number</label>
                                                         <div class="input-group">
                                                             <div class="input-group-addon">
@@ -317,6 +318,7 @@
                                                 </div>
                                             </div><!-- /.form group -->
                                         </div>
+                                        <div class="col-md-1"></div>
                                     </div>
                                     <div id="verifyRow" style="display: none;margin-bottom: 15px" class="row">
                                         <div class="col-sm-4" style="  margin-top: 6px;">
