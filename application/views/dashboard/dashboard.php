@@ -387,8 +387,12 @@
                 var bday = $('#step1Form input[name="birthday"]').val().trim();
                 if (fname == "" || lname == "" || bday == "") {
                     alertify.error("Fill Required Field..!");
-                    $('.tab-content > div.active').removeClass('active');
-                    $('.tab-content div:first').addClass('active');
+                    setTimeout(function () {
+                        $('ul.nav-pills > li.active').removeClass('active');
+                        $('ul.nav-pills > lifirst').addClass('active');
+                        $('.tab-content > div.active').removeClass('active');
+                        $('.tab-content div:first').addClass('active');
+                    }, 500);
                 } else {
                     addFriend();
                 }
