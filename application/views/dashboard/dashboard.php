@@ -626,6 +626,7 @@
         });
 
         $('.wizard-footer .btn-finish').click(function () {
+            $('#tour-modal .close').trigger('click');
             var text = $('#reminder_txt').val();
             var time = $('#time').val();
             $.ajax({
