@@ -625,18 +625,18 @@
             $('#step3 #event_time').text(" at " + e.time.value);
         });
 
-        $('.wizard-footer .btn-finish').click(function () {
-            var text = $('#reminder_txt').val();
-            var time = $('#time').val();
-            $.ajax({
-                type: 'POST',
-                data: {text: text, time: time},
-                url: "https://wish-fish.com/app/dashboard/scheduleSMS",
-                success: function (data, textStatus, jqXHR) {
-                    console.log(data);
-                }
-            });
-        });
+//        $('.wizard-footer .btn-finish').click(function () {
+//            var text = $('#reminder_txt').val();
+//            var time = $('#time').val();
+//            $.ajax({
+//                type: 'POST',
+//                data: {text: text, time: time},
+//                url: "https://wish-fish.com/app/dashboard/scheduleSMS",
+//                success: function (data, textStatus, jqXHR) {
+//                    console.log(data);
+//                }
+//            });
+//        });
 
         //--------------------------------------------------------------------//
 
