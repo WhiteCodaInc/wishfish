@@ -382,6 +382,8 @@
 
     $(document).ready(function () {
 
+        $('#tour-modal').modal('show');
+
         $('.wizard-footer .btn-next').on('click', function () {
             $step = $('.tab-content > div.active').attr('id');
             if ($step == "step1") {
