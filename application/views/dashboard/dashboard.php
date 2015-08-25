@@ -82,51 +82,7 @@
                                             <div class="tab-content">
                                                 <div class="tab-pane" id="step1">
                                                     <h1 class="info-text">Add a Friend / Family Member :</h1>
-                                                    <div class="row">
-                                                        <div class="col-md-1"></div>
-                                                        <div class="col-md-10">
-                                                            <div class="form-group">
-                                                                <input type="text" name="fname" autofocus="autofocus" class="form-control" placeholder="First Name" required=""/>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <input type="text" name="lname" class="form-control" placeholder="Last Name" required=""/>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <div class="input-group">
-                                                                    <div class="input-group-addon">
-                                                                        <i class="fa fa-calendar"></i>
-                                                                    </div>
-                                                                    <input name="birthday" placeholder="Enter Birthdate" value=""  class="form-control form-control-inline input-medium default-date-picker" size="16" type="text" required="">
-                                                                </div><!-- /.input group -->
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-1"></div>
-                                                    </div>
-                                                    <input value="" name="zodiac" type="hidden" class="form-control" >
-                                                    <input value="" name="age" type="hidden" class="form-control" >
-                                                    <div class="row">
-                                                        <div class="col-md-1"></div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <strong>Don't want to add manually?</strong>
-                                                            </div>
-                                                            <div class="form-group">
-
-                                                                <a href="#" class="btn btn-danger">
-                                                                    <i class="fa fa-google-plus-square"></i>
-                                                                    Add from Google
-                                                                </a>
-                                                            </div>
-                                                            <div class="form-group">
-
-                                                                <a href="#" class="btn btn-primary">
-                                                                    <i class="fa fa-facebook-square"></i>
-                                                                    Add from Facebook
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-1"></div>
-                                                    </div>
+                                                    
                                                 </div>
                                                 <div class="tab-pane" id="step2">
                                                     <h1 class="info-text">Verify Your Phone Number:</h1>
@@ -134,129 +90,10 @@
                                                         Please verify your phone number so that when it is First Name's  birthday,<br/>
                                                         Wish-Fish can send you a reminder.
                                                     </p>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group">
-                                                                <div class="row">
-                                                                    <div class="col-sm-4">
-                                                                        <label>Country Code</label>
-                                                                        <select name="code" class="form-control">
-                                                                            <option value="+1">+1</option>
-                                                                        </select>
-                                                                    </div>
-                                                                    <div class="col-sm-5">
-                                                                        <label>Phone Number</label>
-                                                                        <div class="input-group">
-                                                                            <div class="input-group-addon">
-                                                                                <i class="fa fa-phone"></i>
-                                                                            </div>
-                                                                            <input autofocus="" id="varify_phone" name="phone" type="text" class="form-control"  placeholder="Phone Number" data-inputmask='"mask": "(999) 999-9999"' data-mask/>
-                                                                        </div><!-- /.input group -->
-
-                                                                    </div>
-                                                                    <div style="padding: 5px" class="col-sm-3">
-                                                                        <br/>
-                                                                        <button id="sendcode" class="btn btn-success">Verify</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div><!-- /.form group -->
-                                                        </div>
-                                                    </div>
-                                                    <div id="verifyRow" style="display: none;margin-bottom: 15px" class="row">
-                                                        <div class="col-sm-4" style="  margin-top: 6px;">
-                                                            <label>Verification Code</label>
-                                                        </div>
-                                                        <div class="col-sm-5">
-                                                            <input maxlength="6" name="verifycode" type="text" class="form-control"  placeholder="Verification Code" />
-                                                        </div>
-                                                    </div>
-                                                    <div id="loadRow" style="display: none;margin-bottom: 15px" class="row">
-                                                        <div class="col-md-12">
-                                                            <img class="load" src="<?= base_url() ?>assets/dashboard/img/load.GIF" alt=""  />
-                                                            <span style="display: none;" class="msg"></span>
-                                                        </div>
-                                                    </div>
-                                                    <div id="submitRow" style="display: none" class="row m-bot15">
-                                                        <div class="col-md-3">
-                                                            <button type="button" id="code_submit" class="btn btn-primary pull-left">Submit</button>
-                                                        </div>
-                                                    </div>
-                                                    <!-----------------------------   STEP -2 -------------------------------->
-                                                    <div class="modal fade" id="nonus-modal" tabindex="-1" role="dialog" aria-hidden="true">
-                                                        <div class="modal-dialog" style="max-width: 400px">
-                                                            <div class="modal-content">
-                                                                <div class="modal-body">
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <p>
-                                                                                Unfortunately as of right now we don't support non-US phone numbers (bear with us, we're still a startup!).
-                                                                                However, please <a href="javascript:void(0);" id="feedback" data-toggle="modal" data-target="#feedback-modal">send us an email</a> with your country, and we will let you know as soon as it is available (hopefully soon!)
-                                                                            </p>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col-md-12" style="text-align: center">
-                                                                            <button type="button" class="btn btn-danger discard" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div><!-- /.modal-content -->
-                                                        </div><!-- /.modal-dialog -->
-                                                    </div>
-
-                                                    <div class="modal fade" id="feedback-modal" tabindex="-1" role="dialog" aria-hidden="true">
-                                                        <div class="modal-dialog" style="max-width: 400px">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                                    <h4 class="modal-title">Feedback / Support</h4>
-                                                                </div>
-                                                                <!--<form id="feedbackForm"  method="post">-->
-                                                                <div class="modal-body">
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <div class="form-group" >
-                                                                                <label>Select Country</label>
-                                                                                <select id="country" class="form-control">
-                                                                                    <option value="-1">--Select Country--</option>
-                                                                                    <option value="India">India</option>
-                                                                                    <option value="Pakistan">Pakistan</option>
-                                                                                    <option value="Canada">Canada</option>
-                                                                                    <option value="Australia">Australia</option>
-                                                                                </select>
-                                                                            </div>
-                                                                            <div class="form-group" >
-                                                                                <textarea id="query" class="form-control"></textarea>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <img  src="<?= base_url() ?>assets/dashboard/img/load.GIF" alt="" class="load" style="display: none" />
-                                                                            <span style="display: none" class="msg"></span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="modal-footer clearfix">
-                                                                    <div class="row">
-                                                                        <div class="col-md-4">
-                                                                            <button type="button" value="feedback" class="btn btn-primary pull-left send-query">Send</button>
-                                                                        </div>
-                                                                        <div class="col-md-3">
-                                                                            <button type="button" class="btn btn-danger discard" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <!--</form>-->
-                                                            </div><!-- /.modal-content -->
-                                                        </div><!-- /.modal-dialog -->
-                                                    </div>
-                                                    <!------------------------------------------------------------------------>
                                                 </div>
                                                 <div class="tab-pane" id="step3">
                                                     <h1 class="info-text">STEP - 3</h1>
                                                 </div>
-
                                             </div>
                                             <br/>
                                             <div class="wizard-footer">
