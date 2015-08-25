@@ -72,7 +72,7 @@
                     });
                 }
             } else if (currIndex == '1') {
-
+                NextCode();
             }
 
             function NextCode() {
