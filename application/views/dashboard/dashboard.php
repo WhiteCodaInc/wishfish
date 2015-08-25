@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="<?= base_url() ?>assets/dashboard/timeline/timeglider/timeglider.datepicker.css" type="text/css" media="screen" charset="utf-8">
 <link rel="stylesheet" href="<?= base_url() ?>assets/dashboard/timeline/css/docs.css" type="text/css" media="screen" title="no title" charset="utf-8">
 
-<link href="<?= base_url() ?>assets/dashboard/js/plugins/form-wizard/gsdk-base.css" rel="stylesheet" type="text/css"/>
+<!--<link href="<?= base_url() ?>assets/dashboard/js/plugins/form-wizard/gsdk-base.css" rel="stylesheet" type="text/css"/>-->
 
 <style type='text/css'>
     .header {
@@ -644,8 +644,8 @@
 
 
 <!--   plugins 	 -->
-<script src="<?= base_url() ?>assets/dashboard/js/plugins/form-wizard/jquery.bootstrap.wizard.js" type="text/javascript"></script>
-<script src="<?= base_url() ?>assets/dashboard/js/plugins/form-wizard/wizard.js" type="text/javascript"></script>
+<!--<script src="<?= base_url() ?>assets/dashboard/js/plugins/form-wizard/jquery.bootstrap.wizard.js" type="text/javascript"></script>
+<script src="<?= base_url() ?>assets/dashboard/js/plugins/form-wizard/wizard.js" type="text/javascript"></script>-->
 
 
 <script src="<?= base_url() ?>assets/dashboard/timeline/js/underscore-min.js" type="text/javascript" charset="utf-8"></script>
@@ -666,7 +666,7 @@
 <script src="<?= base_url() ?>assets/dashboard/timeline/timeglider/TG_Mediator.js" type="text/javascript" charset="utf-8"></script> 
 <script src="<?= base_url() ?>assets/dashboard/timeline/timeglider/timeglider.timeline.widget.js" type="text/javascript"></script>
 
-<!--<script src="<?= base_url() ?>assets/dashboard/timeline/timeglider/timeglider.datepicker.js" type="text/javascript"></script>-->
+<script src="<?= base_url() ?>assets/dashboard/timeline/timeglider/timeglider.datepicker.js" type="text/javascript"></script>
 
 
 <script src="<?= base_url() ?>assets/dashboard/timeline/js/jquery.jscrollpane.min.js" type="text/javascript"></script>
