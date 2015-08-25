@@ -381,7 +381,7 @@
                                                     </div><!-- /.input group -->
                                                 </div><!-- /.form group -->
                                             </div>
-                                            <?= $currDate = $this->wi_common->getUTCDate(); ?>
+                                            <?php $currDate = $this->wi_common->getUTCDate(); ?>
                                             <div class="form-group">
                                                 <div id="n_event_status" style="margin-left: 60px;padding-left: 10px;" class="alert alert-info alert-dismissable">
                                                     This event will send <b><?= $userInfo->name ?></b> a SMS on <?= $currDate ?><span id="event_time"></span>
@@ -534,9 +534,8 @@
                 $('#step1Form  input[name="age"]').val('');
             }
         });
-
-
         //--------------------------------------------------------------------//
+
         //---------------------------------- STEP 2 --------------------------//
         $('a.continue').click(function () {
             $('.wizard-footer .btn-next').trigger('click');
@@ -618,6 +617,12 @@
                     }
                 }
             });
+        });
+        //--------------------------------------------------------------------//
+
+        //---------------------------------- STEP 3 --------------------------//
+        $('#step3 input[name="time"]').timepicker().on('hide.timepicker', function (e) {
+            $('#step3 #event_time').text(" at " + e.time.value);
         });
         //--------------------------------------------------------------------//
 
