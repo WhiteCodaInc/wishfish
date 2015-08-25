@@ -67,7 +67,6 @@
             // Did we click the last button
             $index = obj.nextIndex();
             
-            console.log($index);
             
             if ($index > obj.navigationLength()) {
             } else {

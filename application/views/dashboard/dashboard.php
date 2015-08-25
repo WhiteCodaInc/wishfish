@@ -192,7 +192,6 @@
                                             <div class="tab-pane" id="step3">
                                                 <h1 class="info-text">STEP - 3</h1>
                                             </div>
-
                                         </div>
                                         <br/>
                                         <div class="wizard-footer">
@@ -443,7 +442,7 @@
 
 <script type="text/javascript">
     $(function () {
-        $('.default-date-picker').datepicker({
+        $('#step1Form .default-date-picker').datepicker({
             format: "<?= $this->session->userdata('u_date_format') ?>",
             todayBtn: "linked",
             autoclose: true,
@@ -456,9 +455,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
 
-        $('.wizard-footer  .btn-next').click(function () {
-            console.log($('.tab-content > div.active').attr('id'));
-        });
+        
 
         $('button.close').click(function () {
             $('div.feedback').hide();
@@ -498,6 +495,15 @@
 //                    }, 500);
                 }
             });
+        });
+        
+        $('.wizard-footer  .btn-next').click(function () {
+            $step = $('.tab-content > div.active').attr('id');
+            if($step == "step1"){
+                
+            }else{
+                
+            };
         });
 
         //---------------------------------- STEP 1 --------------------------//
