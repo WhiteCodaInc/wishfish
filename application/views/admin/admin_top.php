@@ -7,6 +7,9 @@
         font-size: 28px;
         color: white
     }
+    .newCustomer,.slimScrollDiv{
+        height: 550px !important;
+    }
 </style>
 
 <!-- header logo: style can be found in header.less -->
