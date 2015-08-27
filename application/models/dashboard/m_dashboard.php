@@ -109,13 +109,11 @@ class M_dashboard extends CI_Model {
     }
 
     function setReminder($post) {
-        echo '<pre>';
-        print_r($post);
-        die();
+        
         $event_data = array(
             'user_id' => $this->userid,
             'event' => 'Reminder',
-            'event_type' => "sms",
+            'event_type' => $post['type'],
             'group_type' => "individual",
             'contact_id' => $this->userid,
             'color' => "#00a65a",
