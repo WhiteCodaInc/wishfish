@@ -260,14 +260,15 @@ class Dashboard extends CI_Controller {
 
             if ($value->group_type == "individual") {
                 $ev[$key]['icon'] = "square_blue.png";
-
                 if ($value->notify == "them") {
                     $cInfo = $this->wi_common->getContactInfo($value->contact_id);
+                    print_r($cInfo);
                     $img_src = ($cInfo->contact_avatar != "") ?
                             "http://mikhailkuznetsov.s3.amazonaws.com/" . $value->contact_avatar :
                             base_url() . 'assets/dashboard/img/default-avatar.png';
                 } else {
                     $uInfo = $this->wi_common->getUserInfo($value->user_id);
+                    print_r($uInfo);
                     $img_src = ($uInfo->profile_pic != "") ?
                             "http://mikhailkuznetsov.s3.amazonaws.com/" . $value->profile_pic :
                             base_url() . 'assets/dashboard/img/default-avatar.png';
@@ -276,6 +277,7 @@ class Dashboard extends CI_Controller {
             } else {
                 $ev[$key]['icon'] = "circle_purple.png";
             }
+            die();
         }
 
         $legend = array(
