@@ -752,7 +752,7 @@
                         });
                     }
                 } else if (currIndex == '1') {
-                    alert();
+                    
                     $('.wizard-card').css('height', '450px');
                     $('.tab-content').removeAttr('style');
                     $.ajax({
@@ -760,6 +760,7 @@
                         url: "<?= site_url() ?>app/dashboard/checkPhoneVerification",
                         success: function (data, textStatus, jqXHR) {
                             if (data != "1") {
+                                alert();
                                 $('#step3 #event_type').text("Email");
                                 $('#step3 sub').show();
                                 $('.wizard-card').css('height', '485px');
