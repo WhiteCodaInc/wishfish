@@ -761,6 +761,8 @@
                         success: function (data, textStatus, jqXHR) {
                             if (data != "1") {
                                 $('#step3 sub').show();
+                                $('.wizard-card').css('height', '485px');
+                                $('.tab-content').css('height', '270px');
                             } else {
                                 $('#step3 sub').hide();
                                 $('.wizard-card').css('height', '440px');
