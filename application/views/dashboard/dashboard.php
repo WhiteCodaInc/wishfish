@@ -571,18 +571,18 @@
                 success: function (data, textStatus, jqXHR) {
                     $('#step2 .load').css('display', 'none');
                     $('#step2 .msg').css('display', 'block');
-                    if (data == 1) {
-                        $('.msg').css('color', 'green');
-                        $('.msg').text("Verification Code Successfully Sent To +1" + phone);
-                        $('#verifyRow').css('display', 'block');
-                        $('#submitRow').css('display', 'block');
+                    if (data == '1') {
+                        $('#step2 .msg').css('color', 'green');
+                        $('#step2 .msg').text("Verification Code Successfully Sent To +1" + phone);
+                        $('#step2 #verifyRow').css('display', 'block');
+                        $('#step2 #submitRow').css('display', 'block');
                         $('.wizard-card').css('height', '545px');
                         $('.tab-content').css('height', '340px');
                     } else {
-                        $('.msg').css('color', 'red');
-                        $('.msg').text("Invalid Phone Number..!");
-                        $('#verifyRow').css('display', 'none');
-                        $('#submitRow').css('display', 'none');
+                        $('#step2 .msg').css('color', 'red');
+                        $('#step2 .msg').text("Invalid Phone Number..!");
+                        $('#step2 #verifyRow').css('display', 'none');
+                        $('#step2 #submitRow').css('display', 'none');
                     }
                 }
             });
