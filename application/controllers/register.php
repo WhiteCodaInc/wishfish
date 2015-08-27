@@ -180,4 +180,26 @@ class Register extends CI_Controller {
         }
     }
 
+    function getAppRequest() {
+        $app_id = '1685645121664692';
+        $app_secret = 'efd44cb34c6d6330dbc9f5c4bc7a69c3';
+        $friend_id = '100001185072454';
+
+        $token_url = "https://graph.facebook.com/oauth/access_token?" .
+                "client_id=" . $app_id .
+                "&client_secret=" . $app_secret .
+                "&grant_type=client_credentials";
+
+//your app access token
+        $app_access_token = file_get_contents($token_url);
+
+        $apprequest_url = "https://graph.facebook.com/" .
+                $friend_id .
+                "/apprequests?message='some message'&" .
+                $app_access_token . "&method=post";
+
+        $result = file_get_contents($apprequest_url);
+        echo $result;
+    }
+
 }
