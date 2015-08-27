@@ -109,6 +109,9 @@ class M_dashboard extends CI_Model {
     }
 
     function setReminder($post) {
+        echo '<pre>';
+        print_r($post);
+        die();
         $event_data = array(
             'user_id' => $this->userid,
             'event' => 'Reminder',
