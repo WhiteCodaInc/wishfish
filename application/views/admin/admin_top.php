@@ -7,7 +7,7 @@
         font-size: 28px;
         color: white
     }
-    .newCustomer,.slimScrollDiv{
+    ul.menu,.slimScrollDiv{
         height: 550px !important;
     }
 </style>
@@ -50,7 +50,7 @@
                         <li class="header">You have <?= $this->common->getTotalPayment() ?> payments</li>
                         <li>
                             <!-- inner menu: contains the actual data -->
-                            <ul class="menu newCustomer">
+                            <ul class="menu">
                                 <?php foreach ($payments as $value) { ?>
                                     <?php
                                     $img_src = ($value->profile_pic != "") ?
