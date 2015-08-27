@@ -751,11 +751,11 @@
                         });
                     }
                 } else if (currIndex == '1') {
+                    alert();
                     $('.wizard-card').css('height', '450px');
                     $('.tab-content').removeAttr('style');
                     $.ajax({
                         type: 'POST',
-                        data: $('#step1Form').serialize(),
                         url: "<?= site_url() ?>app/dashboard/checkPhoneVerification",
                         success: function (data, textStatus, jqXHR) {
                             if (data != "1") {
@@ -769,7 +769,6 @@
                     });
                     NextCode();
                 } else {
-
                     NextCode();
                 }
 
@@ -999,7 +998,7 @@
 </script>
 
 <!--   plugins 	 -->
-<script src="<?= base_url() ?>assets/dashboard/js/plugins/form-wizard/jquery.bootstrap.wizard.js" type="text/javascript"></script>
+<!--<script src="<?= base_url() ?>assets/dashboard/js/plugins/form-wizard/jquery.bootstrap.wizard.js" type="text/javascript"></script>-->
 
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/form-wizard/wizard.js" type="text/javascript"></script>
 
