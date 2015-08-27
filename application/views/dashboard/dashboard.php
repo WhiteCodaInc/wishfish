@@ -391,7 +391,7 @@
                                             <?php $currDate = $this->wi_common->getUTCDate(); ?>
                                             <div class="form-group">
                                                 <div id="n_event_status" class="alert alert-success alert-dismissable">
-                                                    This event will send <b><?= $userInfo->name ?></b> a SMS on <?= $currDate ?><span id="event_time"></span>
+                                                    This event will send <b><?= $userInfo->name ?></b> a <span id="event_type"></span> on <?= $currDate ?><span id="event_time"></span>
                                                 </div>
                                             </div>
 
@@ -760,10 +760,12 @@
                         url: "<?= site_url() ?>app/dashboard/checkPhoneVerification",
                         success: function (data, textStatus, jqXHR) {
                             if (data != "1") {
+                                $('#step3 #event_type').text("Email");
                                 $('#step3 sub').show();
                                 $('.wizard-card').css('height', '485px');
                                 $('.tab-content').css('height', '270px');
                             } else {
+                                $('#step3 #event_type').text("SMS");
                                 $('#step3 sub').hide();
                                 $('.wizard-card').css('height', '440px');
                                 $('.tab-content').css('height', '230px');
