@@ -124,8 +124,8 @@ class Dashboard extends CI_Controller {
             header('location:' . site_url() . 'home');
         }
     }
-    
-    function scheduleSMS(){
+
+    function scheduleSMS() {
         $post = $this->input->post();
         if (isset($post) && is_array($post)) {
             $this->objdashboard->scheduleSMS($post);
@@ -260,10 +260,19 @@ class Dashboard extends CI_Controller {
 
             if ($value->group_type == "individual") {
                 $ev[$key]['icon'] = "square_blue.png";
-                $contactInfo = $this->wi_common->getContactInfo($value->contact_id);
-                $img_src = ($contactInfo->contact_avatar != "") ?
-                        "http://mikhailkuznetsov.s3.amazonaws.com/" . $value->contact_avatar :
-                        base_url() . 'assets/dashboard/img/default-avatar.png';
+
+                if ($value->notify == "them") {
+                    $cInfo = $this->wi_common->getContactInfo($value->contact_id);
+                    $img_src = ($cInfo->contact_avatar != "") ?
+                            "http://mikhailkuznetsov.s3.amazonaws.com/" . $value->contact_avatar :
+                            base_url() . 'assets/dashboard/img/default-avatar.png';
+                } else {
+                    $uInfo = $this->wi_common->getUserInfo($value->user_id);
+                    $img_src = ($uInfo->profile_pic != "") ?
+                            "http://mikhailkuznetsov.s3.amazonaws.com/" . $value->profile_pic :
+                            base_url() . 'assets/dashboard/img/default-avatar.png';
+                }
+
                 $ev[$key]['image'] = $img_src;
             } else {
                 $ev[$key]['icon'] = "circle_purple.png";
