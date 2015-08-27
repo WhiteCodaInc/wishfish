@@ -7,7 +7,7 @@
         font-size: 28px;
         color: white
     }
-    ul.menu,.slimScrollDiv{
+    .navbar ul.menu,.navbar .slimScrollDiv{
         height: 550px !important;
     }
 </style>
