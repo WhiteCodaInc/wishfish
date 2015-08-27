@@ -116,7 +116,7 @@ class M_dashboard extends CI_Model {
             'event_type' => $post['type'],
             'group_type' => "individual",
             'contact_id' => $this->userid,
-            'color' => "#00a65a",
+            'color' => "#0073b7",
             'notification' => "1",
             'notify' => "me",
             'body' => $post['text'],
