@@ -628,7 +628,7 @@
         //--------------------------------------------------------------------//
 
         //---------------------------------- STEP 3 --------------------------//
-        $('#step3 input[name="time"]').timepicker().on('hide.timepicker', function (e) {
+        $('#step3 #time').timepicker().on('hide.timepicker', function (e) {
             $('#step3 #event_time').text(" at " + e.time.value);
         });
 
