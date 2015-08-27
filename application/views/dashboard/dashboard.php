@@ -753,9 +753,6 @@
                         });
                     }
                 } else if (currIndex == '1') {
-
-                    $('.wizard-card').css('height', '450px');
-                    $('.tab-content').removeAttr('style');
                     $.ajax({
                         type: 'POST',
                         url: "<?= site_url() ?>app/dashboard/checkPhoneVerification",
