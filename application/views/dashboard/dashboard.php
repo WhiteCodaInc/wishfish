@@ -548,7 +548,7 @@
 
         $('#step2 #varify_phone').on("keypress", function (e) {
             if (e.keyCode == 13) {
-                $('#sendcode').trigger('click');
+                $('#step2 #sendcode').trigger('click');
             }
         });
 
@@ -682,7 +682,7 @@
 </script>
 
 <script type="text/javascript">
-    
+
 </script>
 
 <!--   plugins 	 -->
