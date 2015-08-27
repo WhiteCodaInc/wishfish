@@ -246,9 +246,6 @@ class Dashboard extends CI_Controller {
 
     function getTimelineEvent() {
         $events = $this->objcalender->getTimelineEvent();
-        echo '<pre>';
-        print_r($events);
-        die();
         $dt = $this->wi_common->getUTCDate();
         $currDate = $this->wi_common->getMySqlDate($dt, $this->session->userdata('u_date_format'));
         $ev = array();
@@ -280,7 +277,6 @@ class Dashboard extends CI_Controller {
             } else {
                 $ev[$key]['icon'] = "circle_purple.png";
             }
-            die();
         }
 
         $legend = array(
@@ -295,9 +291,6 @@ class Dashboard extends CI_Controller {
             "events" => $ev,
             "legend" => $legend
         );
-        echo '<pre>';
-        print_r($initialize);
-        die();
         echo "[" . json_encode($initialize) . "]";
     }
 
