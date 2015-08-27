@@ -510,7 +510,7 @@
     });
 </script>
 <script type="text/javascript" >
-
+    var phone = false;
     $(document).ready(function () {
 
         $('#tour-modal').modal('show');
@@ -637,12 +637,13 @@
             var text = $('#reminder_txt').val();
             var time = $('#time').val();
             var subject = $('#subject').val();
+            var type = (phone) ? 'sms' : 'email';
             $.ajax({
                 type: 'POST',
-                data: {text: text, time: time, subject: subject},
-                url: "https://wish-fish.com/app/dashboard/scheduleSMS",
+                data: {text: text, time: time, subject: subject, type: type},
+                url: "https://wish-fish.com/app/dashboard/setReminder",
                 success: function (data, textStatus, jqXHR) {
-                    console.log(data);
+
                 }
             });
         });
@@ -752,7 +753,7 @@
                         });
                     }
                 } else if (currIndex == '1') {
-                    
+
                     $('.wizard-card').css('height', '450px');
                     $('.tab-content').removeAttr('style');
                     $.ajax({
@@ -760,11 +761,13 @@
                         url: "<?= site_url() ?>app/dashboard/checkPhoneVerification",
                         success: function (data, textStatus, jqXHR) {
                             if (data != "1") {
+                                phone = false;
                                 $('#step3 #event_type').text("Email");
                                 $('#step3 sub').show();
                                 $('.wizard-card').css('height', '485px');
                                 $('.tab-content').css('height', '270px');
                             } else {
+                                phone = true;
                                 $('#step3 #event_type').text("SMS");
                                 $('#step3 sub').hide();
                                 $('.wizard-card').css('height', '440px');

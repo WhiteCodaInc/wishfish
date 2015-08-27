@@ -125,10 +125,10 @@ class Dashboard extends CI_Controller {
         }
     }
 
-    function scheduleSMS() {
+    function setReminder() {
         $post = $this->input->post();
         if (isset($post) && is_array($post)) {
-            $this->objdashboard->scheduleSMS($post);
+            $this->objdashboard->setReminder($post);
         }
     }
 

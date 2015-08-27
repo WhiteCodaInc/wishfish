@@ -108,7 +108,7 @@ class M_dashboard extends CI_Model {
         return $setup;
     }
 
-    function scheduleSMS($post) {
+    function setReminder($post) {
         $event_data = array(
             'user_id' => $this->userid,
             'event' => 'Reminder',
