@@ -759,8 +759,9 @@
                         url: "<?= site_url() ?>app/dashboard/checkPhoneVerification",
                         success: function (data, textStatus, jqXHR) {
                             if (data != "1") {
-
+                                $('#step3 sub').show();
                             } else {
+                                $('#step3 sub').hide();
                                 $('.wizard-card').css('height', '440px');
                                 $('.tab-content').css('height', '230px');
                                 NextCode();
