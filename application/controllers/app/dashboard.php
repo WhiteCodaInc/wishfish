@@ -244,6 +244,11 @@ class Dashboard extends CI_Controller {
         }
     }
 
+    function checkPhoneVerification() {
+        $uInfo = $this->wi_common->getUserInfo();
+        echo ($uInfo->phone_verification) ? 1 : 0;
+    }
+
     function getTimelineEvent() {
         $events = $this->objcalender->getTimelineEvent();
         $dt = $this->wi_common->getUTCDate();
