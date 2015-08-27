@@ -272,7 +272,6 @@ class Dashboard extends CI_Controller {
                             "http://mikhailkuznetsov.s3.amazonaws.com/" . $value->profile_pic :
                             base_url() . 'assets/dashboard/img/default-avatar.png';
                 }
-
                 $ev[$key]['image'] = $img_src;
             } else {
                 $ev[$key]['icon'] = "circle_purple.png";
