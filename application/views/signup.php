@@ -227,8 +227,8 @@ if ($signup != "" && $signup == "fb"):
             window.fbAsyncInit = function () {
                 //Initiallize the facebook using the facebook javascript sdk
                 FB.init({
-//                    appId: '<?= $this->config->item('appID'); ?>', // App ID 
-                    appId: '1685645121664692', // App ID 
+                    appId: '<?= $this->config->item('appID'); ?>', // App ID 
+//                    appId: '1685645121664692', // App ID 
                     cookie: true, // enable cookies to allow the server to access the session
                     status: true, // check login status
                     xfbml: true, // parse XFBML
