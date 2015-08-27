@@ -591,12 +591,12 @@
         $('#step2 #code_submit').click(function () {
             $('.msg').css('display', 'none');
             $('.load').css('display', 'block');
-            var code = $('input[name="verifycode"]').val();
+            var code = $('#step2 input[name="verifycode"]').val();
             if (!(code.length == 6) || !$.isNumeric(code)) {
-                $('.load').css('display', 'none');
-                $('.msg').css('display', 'block');
-                $('.msg').css('color', 'red');
-                $('.msg').text("Invalid Verification Code..!");
+                $('#step2 .load').css('display', 'none');
+                $('#step2 .msg').css('display', 'block');
+                $('#step2 .msg').css('color', 'red');
+                $('#step2 .msg').text("Invalid Verification Code..!");
                 return false;
             }
             $.ajax({
@@ -605,15 +605,15 @@
                 url: "<?= site_url() ?>app/dashboard/checkVerificationCode",
                 success: function (data, textStatus, jqXHR) {
                     if (data == '1') {
-                        $('.load').css('display', 'none');
-                        $('.msg').css('display', 'block');
-                        $('.msg').css('color', 'green');
-                        $('.msg').text("Congratulations! You have verified your phone number successfully!");
+                        $('#step2 .load').css('display', 'none');
+                        $('#step2 .msg').css('display', 'block');
+                        $('#step2 .msg').css('color', 'green');
+                        $('#step2 .msg').text("Congratulations! You have verified your phone number successfully!");
                     } else {
-                        $('.load').css('display', 'none');
-                        $('.msg').css('display', 'block');
-                        $('.msg').css('color', 'red');
-                        $('.msg').text("Invalid Verification Code..!");
+                        $('#step2 .load').css('display', 'none');
+                        $('#step2 .msg').css('display', 'block');
+                        $('#step2 .msg').css('color', 'red');
+                        $('#step2 .msg').text("Invalid Verification Code..!");
                     }
                 }
             });
