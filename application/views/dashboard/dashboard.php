@@ -361,13 +361,13 @@
                                 </div>
                                 <div class="tab-pane" id="step3">
                                     <h1 class="info-text">Setup a Reminder :</h1>
-                                    <div class="row sub">
+                                    <div class="row sub" style="margin-bottom: 15px;">
                                         <div class="col-md-1"></div>
                                         <div class="col-md-10">
                                             <input id="subject" type="text" class="form-control" placeholder="Subject" value=""/>
                                         </div>
                                         <div class="col-md-1"></div>
-                                    </div><br/>
+                                    </div>
                                     <div class="row">
                                         <div class="col-md-1"></div>
                                         <div class="col-md-10">
