@@ -766,6 +766,7 @@
                                 $('#step3 .sub').show();
                                 $('.wizard-card').css('height', '485px');
                                 $('.tab-content').css('height', '270px');
+                                NextCode();
                             } else {
                                 phone = true;
                                 $('#step3 #event_type').text("SMS");
@@ -776,7 +777,7 @@
                             }
                         }
                     });
-                    NextCode();
+
                 } else {
                     NextCode();
                 }
