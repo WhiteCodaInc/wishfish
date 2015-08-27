@@ -364,7 +364,7 @@
                                     <div class="row sub">
                                         <div class="col-md-1"></div>
                                         <div class="col-md-10">
-                                            <input type="text" class="form-control" placeholder="Subject" value=""/>
+                                            <input id="subject" type="text" class="form-control" placeholder="Subject" value=""/>
                                         </div>
                                         <div class="col-md-1"></div>
                                     </div>
@@ -636,9 +636,10 @@
             $('#tour-modal .close').trigger('click');
             var text = $('#reminder_txt').val();
             var time = $('#time').val();
+            var subject = $('#subject').val();
             $.ajax({
                 type: 'POST',
-                data: {text: text, time: time},
+                data: {text: text, time: time, subject: subject},
                 url: "https://wish-fish.com/app/dashboard/scheduleSMS",
                 success: function (data, textStatus, jqXHR) {
                     console.log(data);
