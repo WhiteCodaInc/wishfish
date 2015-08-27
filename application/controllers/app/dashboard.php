@@ -267,6 +267,7 @@ class Dashboard extends CI_Controller {
                             base_url() . 'assets/dashboard/img/default-avatar.png';
                 } else {
                     $uInfo = $this->wi_common->getUserInfo($value->user_id);
+                    print_r($uInfo);
                     $img_src = ($uInfo->profile_pic != "") ?
                             "http://mikhailkuznetsov.s3.amazonaws.com/" . $value->profile_pic :
                             base_url() . 'assets/dashboard/img/default-avatar.png';
