@@ -763,13 +763,13 @@
                             if (data != "1") {
                                 phone = false;
                                 $('#step3 #event_type').text("Email");
-                                $('#step3 sub').show();
+                                $('#step3 .sub').show();
                                 $('.wizard-card').css('height', '485px');
                                 $('.tab-content').css('height', '270px');
                             } else {
                                 phone = true;
                                 $('#step3 #event_type').text("SMS");
-                                $('#step3 sub').hide();
+                                $('#step3 .sub').hide();
                                 $('.wizard-card').css('height', '440px');
                                 $('.tab-content').css('height', '230px');
                                 NextCode();
