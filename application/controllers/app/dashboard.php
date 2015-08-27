@@ -245,7 +245,8 @@ class Dashboard extends CI_Controller {
     }
 
     function checkPhoneVerification() {
-        $uInfo = $this->wi_common->getUserInfo();
+        $userid = $this->session->userdata('u_userid');
+        $uInfo = $this->wi_common->getUserInfo($userid);
         echo ($uInfo->phone_verification) ? 1 : 0;
     }
 
