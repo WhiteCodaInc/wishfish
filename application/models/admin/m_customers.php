@@ -27,12 +27,12 @@ class M_customers extends CI_Model {
 
     function getCustomerDetail() {
         $this->db->select('U.user_id,profile_pic,name,email,phone,phone_verification,P.plan_name,PD.amount,PD.plan_id,PD.register_date,status,plan_status,cancel_by,is_lifetime');
-//        $this->db->select_max('PD.register_date', 'r_date');
+        $this->db->select_max('PD.id', 'id');
         $this->db->from('wi_user_mst as U');
         $this->db->join('wi_plan_detail as PD', 'U.user_id = PD.user_id', 'left outer');
         $this->db->join('wi_plans as P', 'PD.plan_id = P.plan_id');
-        $this->db->order_by('PD.id', 'desc');
-        $this->db->group_by('PD.user_id');
+//        $this->db->order_by('PD.id', 'desc');
+//        $this->db->group_by('PD.user_id');
 //        $this->db->order_by('name', 'asc');
         $query = $this->db->get();
 //        echo '<pre>';
