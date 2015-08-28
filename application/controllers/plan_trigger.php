@@ -23,13 +23,15 @@ class Plan_trigger extends CI_Controller {
 
     function index() {
         $res = $this->objtrigger->getPlanDetail();
+        echo '<pre>';
         foreach ($res as $value) {
             $uInfo = $this->wi_common->getUserInfo($value->user_id);
-            $customer = Stripe_Customer::retrieve($uInfo->customer_id);
-            if (isset($customer->subscriptions->data[0]->id)) {
-                $subs = $customer->subscriptions->data[0]->id;
-                $customer->subscriptions->retrieve($subs)->cancel();
-            }
+            print_r($uInfo);
+//            $customer = Stripe_Customer::retrieve($uInfo->customer_id);
+//            if (isset($customer->subscriptions->data[0]->id)) {
+//                $subs = $customer->subscriptions->data[0]->id;
+//                $customer->subscriptions->retrieve($subs)->cancel();
+//            }
         }
     }
 
