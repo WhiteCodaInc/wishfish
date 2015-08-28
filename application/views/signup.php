@@ -165,11 +165,11 @@ and open the template in the editor.
                     </div>
                     <div class="col-md-3"></div>
                 </div>
-                <div class="row">
+<!--                <div class="row">
                     <div class="col-md-12">
                         <button id="sendrequest" type="button" class="btn btn-success" >SEND APP REQUEST</button>
                     </div>
-                </div>
+                </div>-->
             </div>
         </section>
         <!-- FOOTER Section-->
@@ -227,10 +227,10 @@ if ($signup != "" && $signup == "fb"):
 //                    message: 'Your Message diaolog',
 //                    data:
 //                });
-                FB.ui({
-                    method: 'send',
-                    link: 'https://www.wish-fish.com'
-                });
+//                FB.ui({
+//                    method: 'send',
+//                    link: 'https://www.wish-fish.com'
+//                });
             });
 
             $('#contact').css('height', $(window).height() - $('footer').height() - 40);
