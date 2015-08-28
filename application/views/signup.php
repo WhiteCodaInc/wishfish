@@ -213,12 +213,12 @@ if ($signup != "" && $signup == "fb"):
 <?php endif; ?>
             });
         </script>
-        <script type='text/javascript'>
+<!--        <script type='text/javascript'>
             if (top.location != self.location)
             {
                 top.location = self.location
             }
-        </script>
+        </script>-->
         <script type="text/javascript">
 
             $('#sendrequest').click(function () {
