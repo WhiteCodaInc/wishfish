@@ -23,7 +23,6 @@ class Plan_trigger extends CI_Controller {
 
     function index() {
         $res = $this->objtrigger->getPlanDetail();
-        echo '<pre>';
         foreach ($res as $value) {
             $uInfo = $this->wi_common->getUserInfo($value->user_id);
             $this->db->update('wi_plan_detail', array('cancel_by' => 0), array('id' => $value->id));
