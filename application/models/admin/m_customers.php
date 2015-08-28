@@ -33,6 +33,7 @@ class M_customers extends CI_Model {
 //        $this->db->where('PD.plan_status', 1);
         $this->db->order_by('PD.register_date', 'desc');
         $this->db->order_by('name', 'asc');
+        $this->db->group_by('PD.user_id');
         $query = $this->db->get();
         return $query->result();
     }
