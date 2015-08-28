@@ -46,6 +46,7 @@ class M_customers extends CI_Model {
         $plan = $post['plan_search'];
         $join = $post['join_search'];
         $status = $post['status_search'];
+        $pstatus = $post['pstatus_search'];
 
         ($name != "") ? $this->db->like('name', $name) : '';
         ($email != "") ? $this->db->like('email', $email) : '';
@@ -54,6 +55,12 @@ class M_customers extends CI_Model {
         ($join != "" && $join != "-1") ?
                         (($join == "Email") ? $where['join_type'] = NULL : $where['join_type'] = $join) : '';
         ($status != "" && $status != "-1") ? $where['U.status'] = $status : '';
+        if ($pstatus == '1') {
+            $where['plan_status'] = 1;
+        } else {
+            $where['plan_status'] = 0;
+            $where['cancel_by'] = ($pstatus == '2') ? 1 : 0;
+        }
         if ($plan != "" && $plan != "-1") {
             if ($plan == '0') {
                 $where['is_lifetime'] = 1;
@@ -62,8 +69,6 @@ class M_customers extends CI_Model {
                 $this->db->where('(is_lifetime = 0 OR is_lifetime IS NULL)');
             }
         }
-
-
         ($group != "" && $group != "-1") ? $where['group_id'] = $group : '';
 
         $this->db->select('U.user_id,profile_pic,U.register_date,name,email,phone,phone_verification,P.plan_name,PD.plan_id,status,is_lifetime');

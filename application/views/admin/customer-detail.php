@@ -78,16 +78,6 @@
                                     </select>
                                 </div>
                                 <div class="col-md-4">
-                                    <label>Status</label>
-                                    <select name="status_search" class="form-control m-bot15">
-                                        <option value="-1">--Select--</option>
-                                        <option value="1">Active</option>
-                                        <option value="0">Deactivated</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
                                     <label>Customer Group</label>
                                     <select name="group_search" class="form-control m-bot15">
                                         <option value="-1">--Select--</option>
@@ -95,6 +85,26 @@
                                             <option value="<?= $value->group_id ?>">
                                                 <?= $value->group_name ?></option>
                                         <?php } ?>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Customer Status</label>
+                                    <select name="status_search" class="form-control m-bot15">
+                                        <option value="-1">--Select--</option>
+                                        <option value="1">Active</option>
+                                        <option value="0">Deactivated</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Plan Status</label>
+                                    <select name="pstatus_search" class="form-control m-bot15">
+                                        <option value="-1">--Select--</option>
+                                        <option value="1">Active</option>
+                                        <option value="2">Canceled</option>
+                                        <option value="3">Trial Expired</option>
                                     </select>
                                 </div>
                             </div>
