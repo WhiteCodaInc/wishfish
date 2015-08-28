@@ -35,9 +35,9 @@ class M_customers extends CI_Model {
         $this->db->group_by('PD.user_id');
 //        $this->db->order_by('name', 'asc');
         $query = $this->db->get();
-        echo '<pre>';
-        print_r($query->result());
-        die();
+//        echo '<pre>';
+//        print_r($query->result());
+//        die();
         return $query->result();
     }
 
