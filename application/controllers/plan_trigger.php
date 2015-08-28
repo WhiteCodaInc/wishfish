@@ -27,6 +27,7 @@ class Plan_trigger extends CI_Controller {
         foreach ($res as $value) {
             $uInfo = $this->wi_common->getUserInfo($value->user_id);
             print_r($uInfo);
+            $this->db->update('wi_plan_detail', array('cancel_by' => 0), array('id' => $value->id));
 //            $customer = Stripe_Customer::retrieve($uInfo->customer_id);
 //            if (isset($customer->subscriptions->data[0]->id)) {
 //                $subs = $customer->subscriptions->data[0]->id;

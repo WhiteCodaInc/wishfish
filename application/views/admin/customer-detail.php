@@ -127,7 +127,8 @@
                                         <th>Phone</th>
                                         <th>Plan</th>
                                         <th>Join Date & Time</th>
-                                        <th>Status</th>
+                                        <th>Customer Status</th>
+                                        <th>Plan Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -177,7 +178,14 @@
                                                 <?php if ($value->status): ?>
                                                     <span class="btn btn-success btn-xs">Active</span>
                                                 <?php else : ?>
-                                                    <span class="btn btn-danger btn-xs"><?= ($value->cancel_by) ? "Canceled" : "Deactivate" ?></span>
+                                                    <span class="btn btn-danger btn-xs">Deactivate</span>
+                                                <?php endif; ?>
+                                            </td>
+                                            <td>
+                                                <?php if ($value->plan_status): ?>
+                                                    <span class="btn btn-success btn-xs">Active</span>
+                                                <?php else : ?>
+                                                    <span class="btn btn-danger btn-xs"><?= ($value->cancel_by) ? "Canceled" : "Trial Expired" ?></span>
                                                 <?php endif; ?>
                                             </td>
                                         </tr>
@@ -192,7 +200,8 @@
                                         <th>Phone</th>
                                         <th>Plan</th>
                                         <th>Join Date & Time</th>
-                                        <th>Status</th>
+                                        <th>Customer Status</th>
+                                        <th>Plan Status</th>
                                     </tr>
                                 </tfoot>
                             </table>
