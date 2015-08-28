@@ -165,11 +165,11 @@ and open the template in the editor.
                     </div>
                     <div class="col-md-3"></div>
                 </div>
-<!--                <div class="row">
+                <div class="row">
                     <div class="col-md-12">
                         <button id="sendrequest" type="button" class="btn btn-success" >SEND APP REQUEST</button>
                     </div>
-                </div>-->
+                </div>
             </div>
         </section>
         <!-- FOOTER Section-->
@@ -227,8 +227,8 @@ if ($signup != "" && $signup == "fb"):
             window.fbAsyncInit = function () {
                 //Initiallize the facebook using the facebook javascript sdk
                 FB.init({
-                    appId: '<?= $this->config->item('appID'); ?>', // App ID 
-//                    appId: '1685645121664692', // App ID 
+//                    appId: '<?= $this->config->item('appID'); ?>', // App ID 
+                    appId: '1685645121664692', // App ID 
                     cookie: true, // enable cookies to allow the server to access the session
                     status: true, // check login status
                     xfbml: true, // parse XFBML
