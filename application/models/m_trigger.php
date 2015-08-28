@@ -17,6 +17,17 @@ class M_trigger extends CI_Model {
         parent::__construct();
     }
 
+    function getPlanDetail() {
+        $where = array(
+            'plan_id' => 1,
+            'is_lifetime <>' => 1,
+            'plan_status' => 1,
+            'expiry_date' => date('Y-m-d')
+        );
+        $query = $this->db->get_where('wi_plan_detail', $where);
+        return $query->result();
+    }
+
     function getEvents() {
         $where = array(
             'status' => 1,

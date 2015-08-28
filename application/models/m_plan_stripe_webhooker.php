@@ -39,13 +39,10 @@ class M_plan_stripe_webhooker extends CI_Model {
                 $customer = Stripe_Customer::retrieve($inv->customer);
                 $uid = $customer->metadata->userid;
                 $pid = $customer->metadata->planid;
-                $planid = $customer->subscriptions->data[0]->id;
+                $curPlan = $this->wi_common->getCurrentPlan($uid);
 
-                $uInfo = $this->wi_common->getUserInfo($uid);
-
-                if ($uInfo->is_lifetime != 1) {
+                if ($curPlan->is_lifetime != 1) {
                     $this->insertPaymentDetail($pid, $inv->charge, $customer);
-
                     if (isset($customer->metadata->coupon)) {
                         $data = array('planid' => $pid, 'userid' => $uid);
                         $this->updateCardDetail($customer, $data);
