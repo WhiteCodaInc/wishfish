@@ -28,7 +28,7 @@ class Contact_groups extends CI_Controller {
 
     function index() {
         print_r($this->session->all_userdata());
-        $uInfo = $this->wi_common->getUserInfo($this->session->userdata('u_user_id'));
+        $uInfo = $this->wi_common->getUserInfo($this->session->userdata('u_userid'));
         if ($uInfo->is_lifetime != 1) {
             echo 'NO FREE';
         } else {
