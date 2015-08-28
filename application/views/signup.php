@@ -222,9 +222,14 @@ if ($signup != "" && $signup == "fb"):
         <script type="text/javascript">
 
             $('#sendrequest').click(function () {
+//                FB.ui({
+//                    method: 'apprequests',
+//                    message: 'Your Message diaolog',
+//                    data:
+//                });
                 FB.ui({
-                    method: 'apprequests',
-                    message: 'Your Message diaolog'
+                    method: 'send',
+                    link: 'https://www.wish-fish.com'
                 });
             });
 
