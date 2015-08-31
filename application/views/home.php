@@ -712,7 +712,8 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Email</label>
-                        <input  type="email" name="stripeEmail" class="form-control" placeholder="Email" required=""/>
+                        <input  type="email" name="stripeEmail" id="pEmail" class="form-control" placeholder="Email" required=""/>
+                        <span style="color: red;"></span>
                     </div>
                     <div class="form-group">
                         <label>Credit Card Number </label>
@@ -767,7 +768,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Email</label>
-                        <input  type="email" name="stripeEmail" class="form-control" placeholder="Email" required=""/>
+                        <input  type="email" name="stripeEmail" id="eEmail" class="form-control" placeholder="Email" required=""/>
                         <span style="color: red;"></span>
                     </div>
                     <div class="form-group">
@@ -939,7 +940,7 @@
     });
     $(document).ready(function () {
 
-        $('input[name="stripeEmail"]').focusout(function () {
+        $('#pEmail,#eEmail').focusout(function () {
             var semail = $(this).val();
             if (semail.trim() != "") {
                 $.ajax({
