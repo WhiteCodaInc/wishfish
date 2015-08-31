@@ -102,7 +102,8 @@
             });
 
         });
-        $('#stripeForm').submit(function () {
+        $('#stripeForm').submit(function (e) {
+            e.preventDefault();
             $('.stripe .overlay').show();
             $('.stripe .loading-img').show();
             $.ajax({
