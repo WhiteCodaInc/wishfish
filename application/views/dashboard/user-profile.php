@@ -106,7 +106,7 @@
                             <?php
                             if ($user->birthday != NULL) {
                                 $bdate = substr($user->birthday, 0, 4);
-                                $sortDt = ($bdate == "1001") ? 1 : 0;
+                                $sortDt = ($user->birthday != NULL && $bdate == "1001") ? 1 : 0;
                             }
                             ?>
                             <div class="form-group" id="birthday">
@@ -118,7 +118,7 @@
                                     </div>
                                     <input style="z-index: 0;" name="birthday" value="<?= isset($user->birthday) ? $this->wi_common->getUTCDate($user->birthday) : NULL ?>"  class="form-control form-control-inline input-medium default-date-picker" size="16" type="text">
                                 </div><!-- /.input group -->
-                                <div class="input-group" id="custom-calender" <?= (isset($sortDt) && !$sortDt) ? "style='display:none'" : '' ?>>
+                                <div class="input-group" id="custom-calender" <?= (!$sortDt) ? "style='display:none'" : '' ?>>
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
