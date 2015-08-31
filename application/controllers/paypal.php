@@ -49,7 +49,14 @@ class Paypal extends CI_Controller {
             $checkoutDetails = $this->paypal_lib->request('GetExpressCheckoutDetails', array('TOKEN' => $this->input->get('token')));
 
             $can_register = $this->wi_authex->email_exists($checkoutDetails['EMAIL']);
-
+            echo '<pre>';
+            print_r($checkoutDetails);
+            if (!$can_register) {
+                echo 'REGISTER';
+            } else {
+                echo 'NOT ALLOW';
+            }
+            die();
             if (!$can_register) {
                 $this->db->trans_start();
                 $uid = $this->insertUser($checkoutDetails);
