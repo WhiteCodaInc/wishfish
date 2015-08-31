@@ -67,83 +67,79 @@ class Pay extends CI_Controller {
             );
             $checkoutDetails = $this->paypal_lib->request('GetExpressCheckoutDetails', array('TOKEN' => $this->input->get('token')));
 
-            $can_register = $this->wi_authex->can_register($checkoutDetails['EMAIL']);
-            if ($can_register != "1") {
-                $planid = ($this->session->flashdata('item_name') == "wishfish-personal") ? 2 : 3;
-                $planAmt = $this->session->flashdata('amount');
-                $code = $this->session->flashdata('code');
 
-                // Complete the checkout transaction
-                $requestParams = array(
-                    'TOKEN' => $this->input->get('token'),
-                    'PROFILESTARTDATE' => $checkoutDetails['TIMESTAMP'],
-                    'DESC' => $this->session->flashdata('item_name'),
-                    'BILLINGPERIOD' => 'Month',
-                    'PROFILEREFERENCE' => $this->userid,
-                    'BILLINGFREQUENCY' => 1,
-                    'TOTALBILLINGCYCLES' => 0,
-                    'AMT' => $planAmt,
-                    'CURRENCYCODE' => 'USD',
-                    'MAXFAILEDPAYMENTS' => 3,
-                    'FAILEDINITAMTACTION' => 'CancelOnFailure'
-                );
+            $planid = ($this->session->flashdata('item_name') == "wishfish-personal") ? 2 : 3;
+            $planAmt = $this->session->flashdata('amount');
+            $code = $this->session->flashdata('code');
 
-                $coupon = $this->objregister->checkCoupon($code);
-                if (!empty($coupon)) {
-                    if ($coupon->coupon_validity != '3') {
-                        $requestParams['TRIALBILLINGPERIOD'] = 'Month';
-                        $requestParams['TRIALBILLINGFREQUENCY'] = 1;
-                        $amt = ($coupon->disc_type == "F") ?
-                                $planAmt - $coupon->disc_amount :
-                                $planAmt - ($planAmt * ($coupon->disc_amount / 100));
-                        $requestParams['TRIALAMT'] = number_format($amt, 2);
-                        $requestParams['TRIALTOTALBILLINGCYCLES'] = ($coupon->coupon_validity == '1') ?
-                                1 : $coupon->month_duration;
-                    } else {
-                        $amt = ($coupon->disc_type == "F") ?
-                                $planAmt - $coupon->disc_amount :
-                                $planAmt - ($planAmt * ($coupon->disc_amount / 100));
-                        $requestParams['AMT'] = number_format($amt, 2);
-                    }
-                }
+            // Complete the checkout transaction
+            $requestParams = array(
+                'TOKEN' => $this->input->get('token'),
+                'PROFILESTARTDATE' => $checkoutDetails['TIMESTAMP'],
+                'DESC' => $this->session->flashdata('item_name'),
+                'BILLINGPERIOD' => 'Month',
+                'PROFILEREFERENCE' => $this->userid,
+                'BILLINGFREQUENCY' => 1,
+                'TOTALBILLINGCYCLES' => 0,
+                'AMT' => $planAmt,
+                'CURRENCYCODE' => 'USD',
+                'MAXFAILEDPAYMENTS' => 3,
+                'FAILEDINITAMTACTION' => 'CancelOnFailure'
+            );
 
-                $response = $this->paypal_lib->request('CreateRecurringPaymentsProfile', $requestParams);
-
-                if (is_array($response) && $response['ACK'] == 'Success') {
-                    if ($code != "")
-                        $this->objregister->updateCoupon($code);
-
-                    if (!empty($coupon) && $coupon->coupon_validity != '3') {
-                        $response['AMT'] = $requestParams['TRIALAMT'];
-                    } else {
-                        $response['AMT'] = $requestParams['AMT'];
-                    }
-
-                    $currPlan = $this->wi_common->getLatestPlan($this->userid);
-                    $userInfo = $this->wi_common->getUserInfo($this->userid);
-                    if ($currPlan->plan_status == 1) {
-                        if (!$userInfo->is_set) {
-                            $uInfo = $this->wi_common->getUserInfo($this->userid);
-                            $customer = Stripe_Customer::retrieve($uInfo->customer_id);
-                            if (isset($customer->subscriptions->data[0]->id)) {
-                                $subs = $customer->subscriptions->data[0]->id;
-                                $customer->subscriptions->retrieve($subs)->cancel();
-                            }
-                            $this->updateUser($checkoutDetails);
-                        } else {
-                            $profileid = $this->isExistProfileId($currPlan);
-                            if ($profileid)
-                                $this->cancelRecurringProfile($profileid->transaction_id);
-                        }
-                    }
-                    $this->insertPlanDetail($planid, $response);
-                    header('Location:' . site_url() . 'app/dashboard');
+            $coupon = $this->objregister->checkCoupon($code);
+            if (!empty($coupon)) {
+                if ($coupon->coupon_validity != '3') {
+                    $requestParams['TRIALBILLINGPERIOD'] = 'Month';
+                    $requestParams['TRIALBILLINGFREQUENCY'] = 1;
+                    $amt = ($coupon->disc_type == "F") ?
+                            $planAmt - $coupon->disc_amount :
+                            $planAmt - ($planAmt * ($coupon->disc_amount / 100));
+                    $requestParams['TRIALAMT'] = number_format($amt, 2);
+                    $requestParams['TRIALTOTALBILLINGCYCLES'] = ($coupon->coupon_validity == '1') ?
+                            1 : $coupon->month_duration;
                 } else {
-                    $this->session->set_flashdata('error', "Transaction Failed..!Try Again..!");
-                    header('Location:' . site_url() . 'app/profile');
+                    $amt = ($coupon->disc_type == "F") ?
+                            $planAmt - $coupon->disc_amount :
+                            $planAmt - ($planAmt * ($coupon->disc_amount / 100));
+                    $requestParams['AMT'] = number_format($amt, 2);
                 }
+            }
+
+            $response = $this->paypal_lib->request('CreateRecurringPaymentsProfile', $requestParams);
+
+            if (is_array($response) && $response['ACK'] == 'Success') {
+                if ($code != "")
+                    $this->objregister->updateCoupon($code);
+
+                if (!empty($coupon) && $coupon->coupon_validity != '3') {
+                    $response['AMT'] = $requestParams['TRIALAMT'];
+                } else {
+                    $response['AMT'] = $requestParams['AMT'];
+                }
+
+                $currPlan = $this->wi_common->getLatestPlan($this->userid);
+                $userInfo = $this->wi_common->getUserInfo($this->userid);
+                if ($currPlan->plan_status == 1) {
+                    if (!$userInfo->is_set) {
+                        $uInfo = $this->wi_common->getUserInfo($this->userid);
+                        $customer = Stripe_Customer::retrieve($uInfo->customer_id);
+                        if (isset($customer->subscriptions->data[0]->id)) {
+                            $subs = $customer->subscriptions->data[0]->id;
+                            $customer->subscriptions->retrieve($subs)->cancel();
+                        }
+                        $this->updateUser($checkoutDetails);
+                    } else {
+                        $profileid = $this->isExistProfileId($currPlan);
+                        if ($profileid)
+                            $this->cancelRecurringProfile($profileid->transaction_id);
+                    }
+                }
+                $this->insertPlanDetail($planid, $response);
+                header('Location:' . site_url() . 'app/dashboard');
             } else {
-                $this->load->view('stripe_error');
+                $this->session->set_flashdata('error', "Transaction Failed..!Try Again..!");
+                header('Location:' . site_url() . 'app/profile');
             }
         }
     }

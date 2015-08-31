@@ -83,8 +83,8 @@ class Home extends CI_Controller {
 
     function checkEmail() {
         $email = $this->input->post('email');
-        $res = $this->wi_authex->can_register($email);
-        echo ($res) ? 0 : 1;
+        $res = $this->wi_authex->email_exists($email);
+        echo ($res) ? 1 : 0;
     }
 
     function sendMail() {

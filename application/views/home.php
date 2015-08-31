@@ -949,7 +949,7 @@
                     data: {email: semail},
                     url: "<?= base_url() ?>home/checkEmail",
                     success: function (res) {
-                        if (res == '0') {
+                        if (res == '1') {
                             stripeEmail = 0;
                             $input.next('span').text('Your Email is already register!');
                         }

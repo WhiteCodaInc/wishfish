@@ -96,6 +96,11 @@ class Wi_authex {
 //        return ($query->num_rows() > 0) ? FALSE : TRUE;
     }
 
+    function email_exists($email) {
+        $query = $this->_CI->db->get_where("wi_user_mst", array("email" => $email));
+        return ($query->num_rows() === 1) ? true : false;
+    }
+
     function isTrue($password) {
         $this->_CI->db->select('password');
         $query = $this->_CI->db->get_where("login", array("login_id" => $this->_CI->session->userdata("loginid")));
