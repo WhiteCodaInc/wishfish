@@ -24,12 +24,12 @@ class M_plan_stripe_webhooker extends CI_Model {
     function stripe($event_json) {
         $event = $event_json->type;
 
-//        $customer_id = $event_json->data->object->customer;
-//        $customer = Stripe_Customer::retrieve($customer_id);
-//        
-//        $myfile = fopen(FCPATH . 'events.txt', "a");
-//        fwrite($myfile, "\n-----------------$event------------------- \n");
-//        fwrite($myfile, "Event :" . json_encode($event_json) . "\n");
+        $customer_id = $event_json->data->object->customer;
+        $customer = Stripe_Customer::retrieve($customer_id);
+        
+        $myfile = fopen(FCPATH . 'events.txt', "a");
+        fwrite($myfile, "\n-----------------$event------------------- \n");
+        fwrite($myfile, "Event :" . json_encode($event_json) . "\n");
 
 
         switch ($event) {
@@ -41,13 +41,13 @@ class M_plan_stripe_webhooker extends CI_Model {
                 $pid = $customer->metadata->planid;
 //                $curPlan = $this->wi_common->getCurrentPlan($uid);
 
-                if ($inv->lines->data[0]->amount != '0') {
+//                if ($inv->lines->data[0]->amount != '0') {
                     $this->insertPaymentDetail($pid, $inv->charge, $customer);
                     if (isset($customer->metadata->coupon)) {
                         $data = array('planid' => $pid, 'userid' => $uid);
                         $this->updateCardDetail($customer, $data);
                     }
-                }
+//                }
                 break;
             case "customer.subscription.deleted":
                 $customer = Stripe_Customer::retrieve($event_json->data->object->customer);
