@@ -53,7 +53,7 @@ class M_profile extends CI_Model {
             }
         }
         if ($this->session->userdata('u_name') == "") {
-            $this->session->set_userdata('name', $set['name']);
+            $this->session->set_userdata('u_name', $set['name']);
         }
         $set['phone'] = (preg_match('/^\(?\d{3}\)?[- ]?\d{3}[- ]?\d{4}$/', $set['phone'])) ?
                 str_replace(array('(', ')', ' ', '-'), '', $set['code'] . $set['phone']) :
