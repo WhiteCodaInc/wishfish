@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-md-3"></div>
         <div  style="text-align: center;font-size: 20px;color: black" class="col-md-6">
-            <p>ERROR : <?= $error ?></p>
+            <p>ERROR : Email already Registered...!</p>
             <p>Your Transaction is Fail..! Try Again..!</p>
             <br/>
             <a href="<?= $path ?>" class="btn btn-info">Back to Home</a>
