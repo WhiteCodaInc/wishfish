@@ -88,4 +88,14 @@ class Setting extends CI_Controller {
         }
     }
 
+    function payment() {
+        $data['paypal'] = $this->wi_common->getPaymentGatewayInfo("PAYPAL");
+        $data['stripe'] = $this->wi_common->getPaymentGatewayInfo("STRIPE");
+        $this->load->view('admin/admin_header');
+        $this->load->view('admin/admin_top');
+        $this->load->view('admin/admin_navbar');
+        $this->load->view('admin/payment-setting', $data);
+        $this->load->view('admin/admin_footer');
+    }
+
 }
