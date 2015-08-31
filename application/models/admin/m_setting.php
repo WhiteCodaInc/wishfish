@@ -65,10 +65,12 @@ class M_setting extends CI_Model {
 
     function updatePaypal($set) {
         $this->db->update('wi_general_setting', $set, array('method_name' => "PAYPAL"));
+        return ($this->db->affected_rows() == '1') ? TRUE : FALSE;
     }
 
     function updateStripe($set) {
         $this->db->update('wi_general_setting', $set, array('method_name' => "STRIPE"));
+        return ($this->db->affected_rows() == '1') ? TRUE : FALSE;
     }
 
 }
