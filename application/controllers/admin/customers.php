@@ -343,7 +343,8 @@ class Customers extends CI_Controller {
                         "source" => $post['stripeToken']
                     );
                     $subscription = $customer->subscriptions->create($stripe);
-                    $pid = $this->objcustomer->insertPlanDetail($post['userid'], $post['plan'], $subscription);
+//                    $pid = $this->objcustomer->insertPlanDetail($post['userid'], $post['plan'], $subscription);
+                    $pid = $this->objcustomer->insertPlanDetail($post, $subscription);
                     $data = array("userid" => $post['userid'], "planid" => $pid);
                     $customer->metadata = $data;
                     $customer->save();
