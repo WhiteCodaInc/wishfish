@@ -82,7 +82,8 @@
 <!-- /.modal -->
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#paypalForm').submit(function () {
+        $('#paypalForm').submit(function (e) {
+            e.preventDefault();
             $('.paypal .overlay').show();
             $('.paypal .loading-img').show();
             $.ajax({
@@ -99,6 +100,7 @@
                     }
                 }
             });
+
         });
         $('#stripeForm').submit(function () {
             $('.stripe .overlay').show();
