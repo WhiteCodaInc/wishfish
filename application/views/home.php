@@ -960,6 +960,7 @@
                     }
                 });
             } else {
+                $input.next('span').empty();
                 stripeEmail = 0;
             }
         });
