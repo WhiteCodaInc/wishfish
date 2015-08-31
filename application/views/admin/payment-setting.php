@@ -23,11 +23,11 @@
                                         <input name="api_username" value="<?= $paypal->api_username ?>" type="text" class="form-control" required=""/>
                                     </div>
                                     <div class="form-group">
-                                        <label>API Username</label>
+                                        <label>API Password</label>
                                         <input name="api_password" value="<?= $paypal->api_password ?>" type="text" class="form-control" required=""/>
                                     </div>
                                     <div class="form-group">
-                                        <label>API Password</label>
+                                        <label>API Signature</label>
                                         <input name="api_signature" value="<?= $paypal->api_signature ?>" type="text" class="form-control" required=""/>
                                     </div>
                                     <div class="form-group">
