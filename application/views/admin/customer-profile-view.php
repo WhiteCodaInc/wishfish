@@ -734,7 +734,7 @@
                         </div>
                     </div>
                     <input type="hidden" name="userid" value="<?= $customer->user_id ?>" />
-                    <input type="hidden" name="amount" value="9.99" />
+<!--                    <input type="hidden" name="amount" value="9.99" />-->
                 </form>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
