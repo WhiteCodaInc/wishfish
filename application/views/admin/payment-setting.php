@@ -57,7 +57,7 @@
                                         <input name="publish_key" value="<?= $stripe->publish_key ?>" type="text" class="form-control" required=""/>
                                     </div>
                                     <div class="form-group">
-                                        <label>API Username</label>
+                                        <label>Secret Key</label>
                                         <input name="secret_key" value="<?= $stripe->secret_key ?>" type="text" class="form-control" required=""/>
                                     </div>
                                     <div class="form-group">
