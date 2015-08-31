@@ -78,7 +78,7 @@ class Upgrade extends CI_Controller {
                         "source" => $set['stripeToken']
                     );
                     ($set['coupon'] != "") ? $stripe['coupon'] = $set['coupon'] : '';
-                    $customer->subscriptions->create($stripe);
+                    $subscription = $customer->subscriptions->create($stripe);
 
                     if ($set['coupon'] != "")
                         $this->objregister->updateCoupon($set['coupon']);

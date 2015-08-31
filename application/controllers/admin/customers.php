@@ -124,6 +124,12 @@ class Customers extends CI_Controller {
                         if (!$uInfo->is_set || ($uInfo->is_set && $uInfo->gateway == "STRIPE")) {
                             $cu = Stripe_Customer::retrieve($uInfo->customer_id);
                             $cu->delete();
+                        } else if ($uInfo->is_set && $uInfo->gateway == "PAYPAL") {
+                            $currPlan = $this->wi_common->getLatestPlan($value);
+                            $profileId = $this->objcustomer->isExistProfileId($currPlan);
+                            if ($profileId) {
+                                $this->cancelRecurringProfile($profileId->transaction_id);
+                            }
                         }
                     }
                 }
