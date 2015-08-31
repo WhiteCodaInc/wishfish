@@ -31,7 +31,7 @@
                                         <input name="api_signature" value="<?= $paypal->api_signature ?>" type="text" class="form-control" required=""/>
                                     </div>
                                     <div class="form-group">
-                                        <button type="submit">Update</button>
+                                        <button class="btn btn-success" type="submit">Update</button>
                                     </div>
                                 </div>
                                 <div class="col-md-1"></div>
@@ -61,7 +61,7 @@
                                         <input name="secret_key" value="<?= $stripe->secret_key ?>" type="text" class="form-control" required=""/>
                                     </div>
                                     <div class="form-group">
-                                        <button type="submit">Update</button>
+                                        <button class="btn btn-success" type="submit">Update</button>
                                     </div>
                                 </div>
                                 <div class="col-md-1"></div>
