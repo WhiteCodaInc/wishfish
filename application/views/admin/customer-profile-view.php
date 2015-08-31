@@ -37,14 +37,16 @@
                 Change Payment Detail
             </a>
         <?php endif; ?>
-        <?php
-        $life = $customer->is_lifetime;
-        $id = ($life == NULL || !$life) ? "assign" : "remove";
-        $color = ($life == NULL || !$life) ? "bg-purple" : "btn-danger";
-        ?>
-        <a href="#" id="<?= $id ?>" class="create btn <?= $color ?> access">
-            <?= ucfirst($id) ?> Lifetime Access
-        </a>
+        <?php if ($customer->plan_id == 1): ?>
+            <?php
+            $life = $customer->is_lifetime;
+            $id = ($life == NULL || !$life) ? "assign" : "remove";
+            $color = ($life == NULL || !$life) ? "bg-purple" : "btn-danger";
+            ?>
+            <a href="#" id="<?= $id ?>" class="create btn <?= $color ?> access">
+                <?= ucfirst($id) ?> Lifetime Access
+            </a>
+        <?php endif; ?>
         <a href="#" class="create btn bg-green" data-toggle="modal" data-target="#charge-modal">
             Manually Charge User
         </a>
