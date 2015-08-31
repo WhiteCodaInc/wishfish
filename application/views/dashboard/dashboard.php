@@ -650,7 +650,7 @@
 
         //--------------------------------------------------------------------//
 
-        $('button.close').click(function () {
+        $('.feedback button.close').click(function () {
             $('div.feedback').hide();
         });
 
