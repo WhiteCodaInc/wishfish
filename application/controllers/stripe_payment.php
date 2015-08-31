@@ -67,8 +67,8 @@ class Stripe_payment extends CI_Controller {
                     $this->session->set_userdata('d-userid', $uid);
                     $this->session->set_userdata('d-name', "");
 
-                    $pid = $this->insertPlanDetail($set, $customer, $set);
-					
+                    $pid = $this->insertPlanDetail($uid, $set['planid'], $customer, $set);
+
                     $this->insertUserSetting($uid);
 
                     $data = array('planid' => $pid, 'userid' => $uid);
