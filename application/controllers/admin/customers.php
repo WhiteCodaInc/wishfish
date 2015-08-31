@@ -279,10 +279,10 @@ class Customers extends CI_Controller {
             $error = "";
             $flag = TRUE;
             $uInfo = $this->wi_common->getUserInfo($post['userid']);
-            echo '<pre>';
-            print_r($post);
-            print_r($uInfo);
-            die();
+//            echo '<pre>';
+//            print_r($post);
+//            print_r($uInfo);
+//            die();
             if ($uInfo->is_set && $uInfo->gateway == "PAYPAL") {
                 $currPlan = $this->wi_common->getLatestPlan($post['userid']);
                 $profileId = $this->objcustomer->isExistProfileId($currPlan);
