@@ -65,28 +65,31 @@ class Customers extends CI_Controller {
         $this->load->view('admin/admin_footer');
     }
 
-    function profile($cid) {
+    function profile($cid = NULL) {
+        if ($cid != NULL) {
+            $res = $this->objcustomer->getCustomer($cid);
+            $data['customer'] = $res[0];
+            $data['cgroup'] = $res[1];
 
-        $res = $this->objcustomer->getCustomer($cid);
-        $data['customer'] = $res[0];
-        $data['cgroup'] = $res[1];
-
-        $data['groups'] = $this->objgroup->getCustomerGroups();
+            $data['groups'] = $this->objgroup->getCustomerGroups();
 
 //        $data['customer'] = $this->objcustomer->getCustomerInfo($cid);
 
-        $data['phistory'] = $this->objcustomer->getPaymentHistory($cid);
-        $data['card'] = $this->getCardDetail($cid);
-        $data['gatewayInfo'] = $this->wi_common->getPaymentGatewayInfo("STRIPE");
-        $data['plans'] = $this->wi_common->getPlans();
-        $data['sms_template'] = $this->objsmstmplt->getTemplates();
-        $data['email_template'] = $this->objemailtmplt->getTemplates();
+            $data['phistory'] = $this->objcustomer->getPaymentHistory($cid);
+            $data['card'] = $this->getCardDetail($cid);
+            $data['gatewayInfo'] = $this->wi_common->getPaymentGatewayInfo("STRIPE");
+            $data['plans'] = $this->wi_common->getPlans();
+            $data['sms_template'] = $this->objsmstmplt->getTemplates();
+            $data['email_template'] = $this->objemailtmplt->getTemplates();
 
-        $this->load->view('admin/admin_header');
-        $this->load->view('admin/admin_top');
-        $this->load->view('admin/admin_navbar');
-        $this->load->view('admin/customer-profile-view', $data);
-        $this->load->view('admin/admin_footer');
+            $this->load->view('admin/admin_header');
+            $this->load->view('admin/admin_top');
+            $this->load->view('admin/admin_navbar');
+            $this->load->view('admin/customer-profile-view', $data);
+            $this->load->view('admin/admin_footer');
+        } else {
+            header('location:' . site_url() . 'admin/customers');
+        }
     }
 
     function editCustomer($cid) {
