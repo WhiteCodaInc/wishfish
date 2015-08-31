@@ -942,6 +942,7 @@
 
         $('#pEmail,#eEmail').focusout(function () {
             var semail = $(this).val();
+            $input = $(this);
             if (semail.trim() != "") {
                 $.ajax({
                     type: "POST",
@@ -950,10 +951,10 @@
                     success: function (res) {
                         if (res == '0') {
                             stripeEmail = 0;
-                            $(this).next('span').text('Your Email is already register!');
+                            $input.next('span').text('Your Email is already register!');
                         }
                         else {
-                            $(this).next('span').empty();
+                            $input.next('span').empty();
                             stripeEmail = 1;
                         }
                     }
