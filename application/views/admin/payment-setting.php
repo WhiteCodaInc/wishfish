@@ -93,7 +93,7 @@
                 success: function (data, textStatus, jqXHR) {
                     $('.paypal .overlay').hide();
                     $('.paypal .loading-img').hide();
-                    if (data == "1") {
+                    if (data == '1') {
                         alertify.success("Paypal Credential Updated..!");
                     } else {
                         alertify.error("Paypal Credential Not Updated..!");
