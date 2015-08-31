@@ -224,7 +224,6 @@
             $('.f-color').css('color', $('#color').val());
         });
     });
-
 </script>
 <script type="text/javascript">
 <?php if (isset($template)) { ?>

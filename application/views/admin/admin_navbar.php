@@ -226,6 +226,11 @@ $img_src = ($avatar != "") ?
                                     <i class="fa fa-angle-double-right"></i> <span>Calender Setting</span>
                                 </a>
                             </li>
+                            <li>
+                                <a href="<?= site_url() ?>admin/setting/payment">
+                                    <i class="fa fa-angle-double-right"></i> <span>Payment Setting</span>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                 <?php endif; ?>
