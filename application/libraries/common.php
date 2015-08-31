@@ -280,7 +280,7 @@ class Common {
         $this->_CI->db->join('wi_user_mst as U', 'PD.user_id = U.user_id');
         $this->_CI->db->limit(10);
         $this->_CI->db->order_by('P.payment_date', 'desc');
-        $this->_CI->db->where('P.mc_gross', 0);
+        $this->_CI->db->where('P.mc_gross >', 0);
         $query = $this->_CI->db->get();
         return $query->result();
     }
