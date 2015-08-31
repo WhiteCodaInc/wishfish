@@ -98,4 +98,22 @@ class Setting extends CI_Controller {
         $this->load->view('admin/admin_footer');
     }
 
+    function updatePaypal() {
+        $post = $this->input->post();
+        if (is_array($post) && count($post) > 0) {
+            echo ($this->objsetting->updatePaypal($post)) ? 1 : 0;
+        } else {
+            header('location:' . site_url() . 'admin/setting/payment');
+        }
+    }
+
+    function updateStripe() {
+        $post = $this->input->post();
+        if (is_array($post) && count($post) > 0) {
+            echo ($this->objsetting->updateStripe($post)) ? 1 : 0;
+        } else {
+            header('location:' . site_url() . 'admin/setting/payment');
+        }
+    }
+
 }
