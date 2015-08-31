@@ -74,14 +74,14 @@ class Customers extends CI_Controller {
         $data['groups'] = $this->objgroup->getCustomerGroups();
 
 //        $data['customer'] = $this->objcustomer->getCustomerInfo($cid);
-        
+
         $data['phistory'] = $this->objcustomer->getPaymentHistory($cid);
         $data['card'] = $this->getCardDetail($cid);
         $data['gatewayInfo'] = $this->wi_common->getPaymentGatewayInfo("STRIPE");
         $data['plans'] = $this->wi_common->getPlans();
         $data['sms_template'] = $this->objsmstmplt->getTemplates();
         $data['email_template'] = $this->objemailtmplt->getTemplates();
-        
+
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');
@@ -336,8 +336,8 @@ class Customers extends CI_Controller {
                         "plan" => $planid,
                         "source" => $post['stripeToken']
                     );
-                    $customer->subscriptions->create($stripe);
-                    $pid = $this->objcustomer->insertPlanDetail($post['userid'], $post['plan'], $customer);
+                    $subscription = $customer->subscriptions->create($stripe);
+                    $pid = $this->objcustomer->insertPlanDetail($post['userid'], $post['plan'], $subscription);
                     $data = array("userid" => $post['userid'], "planid" => $pid);
                     $customer->metadata = $data;
                     $customer->save();
