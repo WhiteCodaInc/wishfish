@@ -36,9 +36,6 @@
                                 <input type="submit" id="pageSubmit" style="display: none"/>
                             </div>
                         </div><!-- /.box-body -->
-                        <?php if (isset($setting)): ?>
-                            <input type="hidden" name="userid" value="<?= $setting->user_id ?>" />
-                        <?php endif; ?>
                     </form>
                 </div><!-- /.box -->
             </div><!--/.col (left) -->
