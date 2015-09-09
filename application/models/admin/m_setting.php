@@ -73,4 +73,14 @@ class M_setting extends CI_Model {
         return TRUE;
     }
 
+    function getPageBuilderSetting() {
+        $query = $this->db->get('page_builder');
+        return $query->row();
+    }
+
+    function updatePageBuilderSetting($set) {
+        $this->db->update('page_builder', $set);
+        return TRUE;
+    }
+
 }
