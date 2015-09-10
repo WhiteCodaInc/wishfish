@@ -165,11 +165,11 @@ and open the template in the editor.
                     </div>
                     <div class="col-md-3"></div>
                 </div>
-<!--                <div class="row">
-                    <div class="col-md-12">
-                        <button id="sendrequest" type="button" class="btn btn-success" >SEND APP REQUEST</button>
-                    </div>
-                </div>-->
+                <!--                <div class="row">
+                                    <div class="col-md-12">
+                                        <button id="sendrequest" type="button" class="btn btn-success" >SEND APP REQUEST</button>
+                                    </div>
+                                </div>-->
             </div>
         </section>
         <!-- FOOTER Section-->
@@ -189,9 +189,13 @@ and open the template in the editor.
         <?php
         switch ($msg) {
             case "RF":
-                $m = "It`s look like you have a Google App account,But the Login Services are disabled.Please contact your Google App account administrator";
+                $m = "Registration Faild..!Try Again..!";
                 $t = "error";
                 break;
+//            case "RF":
+//                $m = "It`s look like you have a Google App account,But the Login Services are disabled.Please contact your Google App account administrator";
+//                $t = "error";
+//                break;
             default:
                 $m = 0;
                 break;

@@ -1,7 +1,7 @@
 <?php
 
 class Encryption {
-    
+
 //    function Encryption() {
 //        $CI = & get_instance();
 //    }
