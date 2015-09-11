@@ -62,13 +62,19 @@ class Login extends CI_Controller {
         }
     }
 
-    function signin() {
+    function signin($get = NULL) {
         $post = $this->input->post();
-        if (isset($post['remember'])) {
-            $remember = $post['remember'];
-            unset($post['remember']);
+        if ($get != NULL) {
+            $get = $this->input->get();
+            $post['email'] = $this->encryption->decode($get['u']);
+            $post['password'] = $this->encryption->decode($get['p']);
         }
+
         if (is_array($post) && count($post) > 0) {
+            if (isset($post['remember'])) {
+                $remember = $post['remember'];
+                unset($post['remember']);
+            }
             $is_login = $this->wi_authex->login($post);
             if ($is_login === -1) {
                 header('location:' . site_url() . 'login?msg=DA');
