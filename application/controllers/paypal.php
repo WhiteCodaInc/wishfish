@@ -13,6 +13,9 @@ class Paypal extends CI_Controller {
 
     function index() {
         $post = $this->input->post();
+        echo '<pre>';
+        print_r($post);
+        die();
         $this->session->set_flashdata($post);
         $gatewayInfo = $this->wi_common->getPaymentGatewayInfo("PAYPAL");
         $this->paypal_lib->set_acct_info($gatewayInfo->api_username, $gatewayInfo->api_password, $gatewayInfo->api_signature);
