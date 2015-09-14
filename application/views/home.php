@@ -1156,8 +1156,8 @@
                         url: "<?= site_url() ?>paypal",
                         data: {item_name: item_name, amount: amount, code: couponCode},
                         success: function (answer) {
-//                            window.location = answer;
-                            console.log(answer);
+                            window.location = answer;
+//                            console.log(answer);
                         }
                     });
                     break;
