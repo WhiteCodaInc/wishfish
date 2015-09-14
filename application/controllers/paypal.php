@@ -30,8 +30,8 @@ class Paypal extends CI_Controller {
             'L_BILLINGAGREEMENTDESCRIPTION0' => $post['item_name']
         );
         $response = $this->paypal_lib->request('SetExpressCheckout', $requestParams + $recurring);
-//        print_r($response);
-//        die();
+        print_r($response);
+        die();
         if (is_array($response) && $response['ACK'] == 'Success') { //Request successful
             $token = $response['TOKEN'];
 
@@ -40,8 +40,8 @@ class Paypal extends CI_Controller {
             else
                 echo 'https://www.paypal.com/webscr?cmd=_express-checkout&token=' . urlencode($token);
         } else {
-            echo 'Not Called';
-//            return false;
+//            echo 'Not Called';
+            return false;
         }
     }
 
