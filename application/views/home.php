@@ -88,7 +88,7 @@
 <!-- if you like to use surface. change class="home" to class="surface"-->
 <section id="home" class="home">
     <div class="overlay sign" style="display: none;min-height: 0">
-        <a style="padding: 6%"  href="javacript:void(0);" class="cancel">close <i class="fa fa-close"></i></a>
+        <a style="padding: 6%"  href="javascript:void(0);" class="cancel">close <i class="fa fa-close"></i></a>
         <div class="row" style="  margin: 7% 10%;">
             <div class="col-md-4"></div>
             <div class="col-md-4">
@@ -590,7 +590,7 @@
                     </div><!-- /.col-md-4 col -->
                     <?php if ($plan->plan_id == 1): ?>
                         <div class="overlay social-register" style="display: none">
-                            <a  href="javacript:void(0);" class="cancel">close <i class="fa fa-close"></i></a>
+                            <a  href="javascript:void(0);" class="cancel">close <i class="fa fa-close"></i></a>
                             <div class="row" style="  margin: 18% 10%;">
                                 <div class="col-md-4"></div>
                                 <div class="col-md-4">
