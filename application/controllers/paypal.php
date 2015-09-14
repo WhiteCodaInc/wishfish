@@ -13,9 +13,9 @@ class Paypal extends CI_Controller {
 
     function index() {
         $post = $this->input->post();
-        echo '<pre>';
-        print_r($post);
-        die();
+//        echo '<pre>';
+//        print_r($post);
+//        die();
         $this->session->set_flashdata($post);
         $gatewayInfo = $this->wi_common->getPaymentGatewayInfo("PAYPAL");
         $this->paypal_lib->set_acct_info($gatewayInfo->api_username, $gatewayInfo->api_password, $gatewayInfo->api_signature);
@@ -39,7 +39,8 @@ class Paypal extends CI_Controller {
             else
                 echo 'https://www.paypal.com/webscr?cmd=_express-checkout&token=' . urlencode($token);
         } else {
-            return false;
+            echo 'Not Called';
+//            return false;
         }
     }
 
