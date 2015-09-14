@@ -763,7 +763,7 @@
                 <div class="modal-header" style="text-align: center">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title">$49.99</h4><br>
-                    <span class="modal-descritpion">1-month of wish-fish Personal</span>
+                    <span class="modal-descritpion">1-month of wish-fish Enterprise</span>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
