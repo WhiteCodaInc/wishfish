@@ -759,6 +759,7 @@
                     }
                 } else if (currIndex == '1') {
                     $('.btn-next').prop('disabled', true);
+                    $('#step3 #event_time').text(" at " + $('#step3 #time').val());
                     $.ajax({
                         type: 'POST',
                         url: "<?= site_url() ?>app/dashboard/checkPhoneVerification",
