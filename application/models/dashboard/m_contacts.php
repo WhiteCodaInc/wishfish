@@ -115,7 +115,7 @@ class M_contacts extends CI_Model {
 
     function addFriend($set) {
         $set['birthday'] = ($set['birthday'] != "") ?
-                $this->wi_common->getMySqlDate($set['birthday'], $this->session->userdata('u_date_format')) :
+                $this->wi_common->getMySqlDate($set['birthday'], "mm-dd") :
                 NULL;
         $set['user_id'] = $this->userid;
         $this->db->insert('wi_contact_detail', $set);
