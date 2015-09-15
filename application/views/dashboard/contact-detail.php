@@ -531,6 +531,10 @@ switch ($msg) {
             }
         });
 
+        $('#quickForm').submit(function () {
+            $(this).find('button:submit').prop('disabled',true);
+        });
+
         $('#contact-data-table tbody tr').each(function () {
             $(this).children('td.sorting_1').find('div.checked');
         });
