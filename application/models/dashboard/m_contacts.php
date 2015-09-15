@@ -153,7 +153,8 @@ class M_contacts extends CI_Model {
         $set['phone'] = isset($set['phone']) && (preg_match('/^\(?\d{3}\)?[- ]?\d{3}[- ]?\d{4}$/', $set['phone'])) ?
                 str_replace(array('(', ')', ' ', '-'), '', $set['code'] . $set['phone']) :
                 NULL;
-
+        if (isset($set['code']))
+            unset($set['code']);
         $set['user_id'] = $this->userid;
         $this->db->insert('wi_contact_detail', $set);
         $insertid = $this->db->insert_id();
