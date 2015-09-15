@@ -568,8 +568,8 @@
         });
 
         $('#step2 #sendcode').click(function () {
-            $('.wizard-card').css('height', '500px');
-            $('.tab-content').css('height', '280px');
+            $('.wizard-card').css('height', '440px');
+            $('.tab-content').css('height', '270px');
             var phone = $('#step2 #varify_phone').val();
             var code = $('#step2 select[name="code"]').val();
             $('#step2 #loadRow').css('display', 'block');
@@ -585,8 +585,8 @@
                         $('#step2 .msg').text("Verification Code Successfully Sent To +1" + phone);
                         $('#step2 #verifyRow').css('display', 'block');
                         $('#step2 #submitRow').css('display', 'block');
-                        $('.wizard-card').css('height', '545px');
-                        $('.tab-content').css('height', '340px');
+                        $('.wizard-card').css('height', '520px');
+                        $('.tab-content').css('height', '350px');
                     } else {
                         $('#step2 .msg').css('color', 'red');
                         $('#step2 .msg').text("Invalid Phone Number..!");

@@ -63,8 +63,8 @@
                                 alertify.error("Contact not inserted..!");
                                 return false;
                             } else {
-                                $('.wizard-card').css('height', '440px');
-                                $('.tab-content').css('height', '230px');
+                                $('.wizard-card').css('height', '400px');
+                                $('.tab-content').css('height', '235px');
                                 NextCode();
                             }
                         }
@@ -74,8 +74,7 @@
                 $('.wizard-card').css('height', '450px');
                 $('.tab-content').removeAttr('style');
                 NextCode();
-            }else{
-                
+            } else {
                 NextCode();
             }
 
