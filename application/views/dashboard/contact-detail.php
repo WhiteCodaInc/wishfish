@@ -505,6 +505,19 @@ switch ($msg) {
             }
         });
 
+        $('input[name="event_type"]').change(function () {
+            var val = $(this).val();
+            if (val == "sms") {
+                $('#email_block').hide();
+                $('#subject').hide();
+                $('#sms_block').show();
+            } else {
+                $('#sms_block').hide();
+                $('#email_block').show();
+                $('#subject').show();
+            }
+        });
+
         $('#contact-data-table tbody tr').each(function () {
             $(this).children('td.sorting_1').find('div.checked');
         });
