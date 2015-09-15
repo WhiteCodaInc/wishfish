@@ -295,7 +295,7 @@
                             <div class="col-md-12">	
                                 <div class="form-group">
                                     <div class="rd" style="float: left;padding-right: 5px;cursor: pointer">
-                                        <input id="quick_sms" type="radio" value="sms"  name="event_type"  class="simple">                          
+                                        <input id="quick_sms" type="radio" value="sms"  name="event_type" class="simple" checked="">
                                         <span class="lbl padding-8">Schedule SMS&nbsp;</span>
                                     </div>
                                     <div class="rd" style="float: left;padding:0 5px;cursor: pointer">
