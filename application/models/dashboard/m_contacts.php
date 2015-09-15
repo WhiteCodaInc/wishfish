@@ -123,19 +123,22 @@ class M_contacts extends CI_Model {
             'email' => $post['email']
         );
         $contactid = $this->addFriend($set);
-        if ($post['birthday'] != NULL) {
-            $event_data = array(
-                'user_id' => $this->userid,
-                'event' => 'Quick Contact',
-                'event_type' => $post['event_type'],
-                'group_type' => "individual",
-                'contact_id' => $contactid,
-                'color' => "#0073b7",
-                'notify' => "them",
-                'date' => $this->wi_common->getMySqlDate($this->wi_common->getUTCDate(), $this->session->userdata('u_date_format'))
-            );
-            $this->db->insert('wi_schedule', $event_data);
-        }
+
+        $post['body'] = ($post['event_type'] == "sms") ? $post['smsbody'] : $post['emailbody'];
+
+        $event_data = array(
+            'user_id' => $this->userid,
+            'event' => 'Quick Contact',
+            'event_type' => $post['event_type'],
+            'group_type' => "individual",
+            'contact_id' => $contactid,
+            'body' => ($post['event_type'] == "sms") ? $post['smsbody'] : $post['emailbody'],
+            'subject' => $post['subject'],
+            'color' => "#0073b7",
+            'notify' => "them",
+            'date' => $this->wi_common->getMySqlDate($this->wi_common->getUTCDate(), $this->session->userdata('u_date_format'))
+        );
+        $this->db->insert('wi_schedule', $event_data);
     }
 
     function addFriend($set) {
