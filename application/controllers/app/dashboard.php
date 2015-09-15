@@ -250,6 +250,11 @@ class Dashboard extends CI_Controller {
         echo ($uInfo->phone_verification) ? 1 : 0;
     }
 
+    function verifyTour() {
+        $userid = $this->session->userdata('u_userid');
+        $this->objdashboard->verifyTour($userid);
+    }
+
     function getTimelineEvent() {
         $events = $this->objcalender->getTimelineEvent();
         $dt = $this->wi_common->getUTCDate();

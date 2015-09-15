@@ -977,6 +977,9 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+
+        $.post("<?= site_url() ?>app/dashboard/verifyTour");
+
         $('.feedback button.close').click(function () {
             $('div.feedback').hide();
         });

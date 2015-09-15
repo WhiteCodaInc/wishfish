@@ -109,7 +109,7 @@ class M_dashboard extends CI_Model {
     }
 
     function setReminder($post) {
-        
+
         $event_data = array(
             'user_id' => $this->userid,
             'event' => 'Reminder',
@@ -164,6 +164,10 @@ class M_dashboard extends CI_Model {
 
     function verifyEmail($uid) {
         $this->db->update('wi_user_mst', array('email_verification' => 1), array('user_id' => $uid));
+    }
+
+    function verifyTour($uid) {
+        $this->db->update('wi_user_mst', array('tour_verification' => 1), array('user_id' => $uid));
     }
 
 }
