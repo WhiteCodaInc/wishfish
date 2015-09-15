@@ -747,8 +747,8 @@
                                     alertify.error("Contact not inserted..!");
                                     return false;
                                 } else {
-                                    $('.wizard-card').css('height', '440px');
-                                    $('.tab-content').css('height', '230px');
+                                    $('.wizard-card').css('height', '400px');
+                                    $('.tab-content').css('height', '235px');
                                     NextCode();
                                 }
                             }
@@ -763,15 +763,15 @@
                                 phone = false;
                                 $('#step3 #event_type').text("Email");
                                 $('#step3 .sub').show();
-                                $('.wizard-card').css('height', '485px');
-                                $('.tab-content').css('height', '270px');
+                                $('.wizard-card').css('height', '500px');
+                                $('.tab-content').css('height', '330px');
                                 NextCode();
                             } else {
                                 phone = true;
                                 $('#step3 #event_type').text("SMS");
                                 $('#step3 .sub').hide();
-                                $('.wizard-card').css('height', '440px');
-                                $('.tab-content').css('height', '230px');
+                                $('.wizard-card').css('height', '500px');
+                                $('.tab-content').css('height', '330px');
                                 NextCode();
                             }
                         }
