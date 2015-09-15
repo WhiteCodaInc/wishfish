@@ -507,6 +507,14 @@
         }).on('changeDate', function (ev) {
             $('#step1Form input[name="birthday"]').focusout();
         });
+        $('#step1 .default-date-picker').datepicker({
+            format: "mm/dd",
+            todayBtn: "linked",
+            autoclose: true,
+            todayHighlight: true
+        }).on('changeDate', function (ev) {
+            $('#step1 input[name="birthday"]').focusout();
+        });
     });
 </script>
 <script type="text/javascript" >
