@@ -24,7 +24,7 @@ class Paypal_lib extends CI_Controller {
             'PWD' => $this->is_sandbox ? $password : '',
             'SIGNATURE' => $this->is_sandbox ? $sign : '',
         );
-        $this->_endPoint = $this->is_sandbox ? 'https://api-3t.sandbox.paypal.com/nvp' : '';
+        $this->_endPoint = $this->is_sandbox ? 'https://api-3t.sandbox.paypal.com/nvp' : 'https://api-3t.paypal.com/nvp';
     }
 
     /**
