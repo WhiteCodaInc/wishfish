@@ -740,8 +740,8 @@
                                     phone = true;
                                     $('#step3 #event_type').text("SMS");
                                     $('#step3 .sub').hide();
-                                    $('.wizard-card').css('height', '520px');
-                                    $('.tab-content').css('height', '350px');
+                                    $('.wizard-card').css('height', '470px');
+                                    $('.tab-content').css('height', '300px');
                                     NextCode();
                                 }
                             }
@@ -775,6 +775,10 @@
                     console.log(currIndex);
 
                     if (currIndex == '2') {
+                        $('#verifyRow input[name="verifycode"]').val('');
+                        $("#verifyRow").hide();
+                        $('#loadRow span.msg').empty();
+                        $("#loadRow").hide();
                         $('.wizard-card').css('height', '400px');
                         $('.tab-content').css('height', '235px');
                     } else if (currIndex == '1') {
