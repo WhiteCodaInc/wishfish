@@ -763,15 +763,15 @@
                                 phone = false;
                                 $('#step3 #event_type').text("Email");
                                 $('#step3 .sub').show();
-                                $('.wizard-card').css('height', '500px');
-                                $('.tab-content').css('height', '330px');
+                                $('.wizard-card').css('height', '520px');
+                                $('.tab-content').css('height', '350px');
                                 NextCode();
                             } else {
                                 phone = true;
                                 $('#step3 #event_type').text("SMS");
                                 $('#step3 .sub').hide();
-                                $('.wizard-card').css('height', '500px');
-                                $('.tab-content').css('height', '330px');
+                                $('.wizard-card').css('height', '520px');
+                                $('.tab-content').css('height', '350px');
                                 NextCode();
                             }
                         }
@@ -801,7 +801,8 @@
                 }
             };
             this.previous = function (e) {
-
+                var currIndex = obj.currentIndex();
+                console.log(currIndex);
                 // If we clicked the first then dont activate this
                 if (element.hasClass('first')) {
                     return false;
