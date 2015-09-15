@@ -404,7 +404,7 @@
                                     <input style="width: 125px;height: 50px;" type='button' class='btn btn-finish btn-info btn-lg' name='finish' value='Finish' />
                                 </div>
                                 <div class="pull-left">
-                                    <input style="width: 110px;height: 50px;" type='button' class='btn btn-previous bg-gray btn-lg' name='previous' value='Previous' />
+                                    <input style="width: 100px;height: 50px;" type='button' class='btn btn-previous bg-gray btn-lg' name='previous' value='Previous' />
                                 </div>
                                 <div class="clearfix"></div>
                             </div>	
