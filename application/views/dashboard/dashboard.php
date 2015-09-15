@@ -266,15 +266,15 @@
                                             </div>
                                             <div class="form-group">
 
-                                                <a href="#" class="btn btn-danger">
-                                                    <i class="fa fa-google-plus-square"></i>
+                                                <a href="#" class="btn btn-danger" style="padding: 6px 16px;">
+                                                    <i class="fa fa-google-plus"></i>
                                                     Add from Google
                                                 </a>
                                             </div>
                                             <div class="form-group">
 
                                                 <a href="#" class="btn btn-primary">
-                                                    <i class="fa fa-facebook-square"></i>
+                                                    <i class="fa fa-facebook"></i>
                                                     Add from Facebook
                                                 </a>
                                             </div>
@@ -406,6 +406,10 @@
                                     <input style="width: 160px;height: 60px;" type='button' class='btn btn-next btn-info btn-lg' name='next' value='Next' />
                                     <input style="width: 160px;height: 60px;" type='button' class='btn btn-finish btn-info' name='finish' value='Finish' />
                                 </div>
+                                <div class="pull-left">
+                                    <input style="width: 160px;height: 60px;" type='button' class='btn btn-previous bg-gray btn-lg' name='previous' value='Previous' />
+                                </div>
+                                <div class="clearfix"></div>
                             </div>	
                         </div>
                         <!--</form>-->
