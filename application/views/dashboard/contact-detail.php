@@ -312,6 +312,39 @@
                             <input type="text" name="subject" class="form-control"  />
                         </div>
                     </div>
+                    <div id="sms_block" class="form-group">
+                        <div class='box box-info'>
+                            <div class='box-header'>
+                                <h3 class='box-title'>Editor</h3>
+                            </div><!-- /.box-header -->
+                            <div class='box-body pad'>
+                                <textarea id="smsbody" rows="7" class="form-control"  name="smsbody"></textarea>
+                            </div>
+                        </div><!-- /.box -->
+                    </div>
+                    <div id="email_block" class="form-group" style="display: none">
+                        <div class='box box-info'>
+                            <div class='box-header'>
+                                <h3 class='box-title'>Editor</h3>
+                            </div><!-- /.box-header -->
+                            <div class='box-body pad '>
+                                <textarea id="emailbody" rows="10" class="form-control"  name="emailbody" ></textarea>
+                            </div>
+                        </div><!-- /.box -->
+                    </div>
+                    <div class="form-group">
+                        <div class="bootstrap-timepicker">
+                            <div class="form-group">
+                                <label>Time picker:</label>
+                                <div class="input-group">
+                                    <input name="time" type="text" class="form-control timepicker" />
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-clock-o"></i>
+                                    </div>
+                                </div><!-- /.input group -->
+                            </div><!-- /.form group -->
+                        </div>
+                    </div>
                     <input value="" name="zodiac" type="hidden" class="form-control" >
                     <input value="" name="age" type="hidden" class="form-control" >
                 </form>
