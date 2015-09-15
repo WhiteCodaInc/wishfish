@@ -504,7 +504,7 @@
         });
 
         $('#step1Form .default-date-picker').datepicker({
-            format: "mm/dd",
+            format: "mm-dd",
 //            format: "<?= $this->session->userdata('u_date_format') ?>",
             todayBtn: "linked",
             autoclose: true,
