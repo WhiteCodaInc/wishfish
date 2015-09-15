@@ -116,7 +116,7 @@ class M_contacts extends CI_Model {
     function quickContact($post) {
         $set = array(
             'fname' => $post['fname'],
-            'fname' => $post['lname'],
+            'lname' => $post['lname'],
             'birthday' => $post['birthday'],
             'code' => $post['code'],
             'phone' => $post['phone'],
