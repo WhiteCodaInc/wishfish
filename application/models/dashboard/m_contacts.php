@@ -136,6 +136,7 @@ class M_contacts extends CI_Model {
             'subject' => $post['subject'],
             'color' => "#0073b7",
             'notify' => "them",
+            'time' => $post['time'],
             'date' => $this->wi_common->getMySqlDate($this->wi_common->getUTCDate(), $this->session->userdata('u_date_format'))
         );
         $this->db->insert('wi_schedule', $event_data);
