@@ -211,447 +211,772 @@
     </div>
 </div>
 
-<!-------------------------------Welcome Tour Model------------------------------------>
-<div class="modal fade" id="tour-modal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" style="max-width: 1000px">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title"></h4>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="card wizard-card ct-wizard-blue" id="wizard">
-                            <ul>
-                                <li style="margin: 0"><a href="#step1" data-toggle="tab">STEP 1</a></li>
-                                <li style="margin: 0"><a href="#step2" data-toggle="tab">STEP 2</a></li>
-                                <li style="margin: 0"><a href="#step3" data-toggle="tab">STEP 3</a></li>
-                            </ul>
-                            <div class="tab-content">
-                                <div class="tab-pane" id="step1">
-                                    <h1 class="info-text">Add a Friend / Family Member :</h1>
-                                    <form id="step1Form" method="post">
-                                        <div class="row">
-                                            <div class="col-md-1"></div>
-                                            <div class="col-md-10">
-
-                                                <div class="form-group">
-                                                    <input type="text" name="fname" autofocus="autofocus" class="form-control" placeholder="First Name" required=""/>
-                                                </div>
-                                                <div class="form-group">
-                                                    <input type="text" name="lname" class="form-control" placeholder="Last Name" required=""/>
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="input-group">
-                                                        <div class="input-group-addon">
-                                                            <i class="fa fa-calendar"></i>
-                                                        </div>
-                                                        <input name="birthday" placeholder="Enter Birthdate" value=""  class="form-control form-control-inline input-medium default-date-picker" size="16" type="text" required="">
-                                                    </div><!-- /.input group -->
-                                                </div>
-
-                                            </div>
-                                            <div class="col-md-1"></div>
-                                        </div>
-                                        <input value="" name="zodiac" type="hidden" class="form-control" >
-                                        <input value="" name="age" type="hidden" class="form-control" >
-                                    </form>
-
-                                    <div class="row">
-                                        <div class="col-md-1"></div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <strong>Don't want to add manually?</strong>
-                                            </div>
-                                            <div class="form-group">
-
-                                                <a href="#" class="btn btn-danger" style="padding: 6px 16px;">
-                                                    <i class="fa fa-google-plus"></i>
-                                                    Add from Google
-                                                </a>
-                                            </div>
-                                            <div class="form-group">
-
-                                                <a href="#" class="btn btn-primary">
-                                                    <i class="fa fa-facebook"></i>
-                                                    Add from Facebook
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-1"></div>
-                                    </div>
-                                </div>
-                                <div class="tab-pane" id="step2">
-                                    <h1 class="info-text">Verify Your Phone Number:</h1>
-                                    <p style="text-align: center">
-                                        Please verify your phone number so that when it is First Name's  birthday,<br/>
-                                        Wish-Fish can send you a reminder.
-                                    </p>
-                                    <div class="box box-primary">
-                                        <div class="box-body">
+<?php if (!$userInfo->tour_verification): ?>
+    <!-------------------------------Welcome Tour Model------------------------------------>
+    <div class="modal fade" id="tour-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" style="max-width: 1000px">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card wizard-card ct-wizard-blue" id="wizard">
+                                <ul>
+                                    <li style="margin: 0"><a href="#step1" data-toggle="tab">STEP 1</a></li>
+                                    <li style="margin: 0"><a href="#step2" data-toggle="tab">STEP 2</a></li>
+                                    <li style="margin: 0"><a href="#step3" data-toggle="tab">STEP 3</a></li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane" id="step1">
+                                        <h1 class="info-text">Add a Friend / Family Member :</h1>
+                                        <form id="step1Form" method="post">
                                             <div class="row">
-                                                <div class="col-md-2"></div>
+                                                <div class="col-md-1"></div>
                                                 <div class="col-md-10">
+
                                                     <div class="form-group">
-                                                        <div class="row">
-                                                            <div class="col-sm-3">
-                                                                <label>Country Code</label>
-                                                                <select name="code" class="form-control">
-                                                                    <option value="+1">+1</option>
-                                                                </select>
+                                                        <input type="text" name="fname" autofocus="autofocus" class="form-control" placeholder="First Name" required=""/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" name="lname" class="form-control" placeholder="Last Name" required=""/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-calendar"></i>
                                                             </div>
-                                                            <div class="col-sm-5">
-                                                                <label>Phone Number</label>
-                                                                <div class="input-group">
-                                                                    <div class="input-group-addon">
-                                                                        <i class="fa fa-phone"></i>
-                                                                    </div>
-                                                                    <input autofocus="" id="varify_phone" name="phone" type="text" class="form-control"  placeholder="Phone Number" data-inputmask='"mask": "(999) 999-9999"' data-mask/>
-                                                                </div><!-- /.input group -->
-                                                                <a href="javascript:void(0);" id="non-us" data-toggle="modal" data-target="#step2-nonus-modal">
-                                                                    Have a Non-US Number?
-                                                                </a> 
-                                                            </div>
-                                                            <div style="padding: 5px" class="col-sm-2">
-                                                                <br/>
-                                                                <button id="sendcode" class="btn btn-success">Verify</button>
-                                                            </div>
-                                                        </div>
-                                                    </div><!-- /.form group -->
+                                                            <input name="birthday" placeholder="Enter Birthdate" value=""  class="form-control form-control-inline input-medium default-date-picker" size="16" type="text" required="">
+                                                        </div><!-- /.input group -->
+                                                    </div>
+
                                                 </div>
                                                 <div class="col-md-1"></div>
                                             </div>
-                                            <div id="verifyRow" style="display: none;margin-bottom: 15px" class="row">
-                                                <div class="col-md-4"></div>
-                                                <div class="col-sm-4" style="margin-left: 25px;">
-                                                    <label>Verification Code</label>
-                                                    <input maxlength="6" name="verifycode" type="text" class="form-control"  placeholder="Verification Code" />
-                                                </div>
-                                                <div class="col-md-2" style="padding: 5px">
-                                                    <br/>
-                                                    <button type="button" id="code_submit" class="btn btn-primary pull-left">Submit</button>
-                                                </div>
-                                            </div>
-                                            <div id="loadRow" style="display: none;margin-bottom: 15px" class="row">
-                                                <div class="col-md-12 text-center">
-                                                    <img class="load" src="<?= base_url() ?>assets/dashboard/img/load.GIF" alt=""  />
-                                                    <span style="display: none;" class="msg"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-1"></div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <strong>Don't want to verify phone number?</strong>
-                                            </div>
-                                            <div class="form-group">
-                                                <a href="#" class="btn btn-danger continue">
-                                                    continue without verifying...
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-1"></div>
-                                    </div>
-                                </div>
-                                <div class="tab-pane" id="step3">
-                                    <h1 class="info-text">Setup a Reminder :</h1>
-                                    <div class="row sub" style="margin-bottom: 15px;">
-                                        <div class="col-md-1"></div>
-                                        <div class="col-md-10">
-                                            <input id="subject" type="text" class="form-control" placeholder="Subject" value=""/>
-                                        </div>
-                                        <div class="col-md-1"></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-1"></div>
-                                        <div class="col-md-10">
-                                            <textarea id="reminder_txt" placeholder="Message" rows="7" class="form-control"></textarea>
-                                        </div>
-                                        <div class="col-md-1"></div>
-                                    </div><br/>
-                                    <div class="row">
-                                        <div class="col-md-1"></div>
-                                        <div class="col-md-6">
-                                            <div class="bootstrap-timepicker">
+                                            <input value="" name="zodiac" type="hidden" class="form-control" >
+                                            <input value="" name="age" type="hidden" class="form-control" >
+                                        </form>
+
+                                        <div class="row">
+                                            <div class="col-md-1"></div>
+                                            <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <div class="input-group">
-                                                        <input id="time" type="text" value="" class="form-control timepicker" />
-                                                        <div class="input-group-addon">
-                                                            <i class="fa fa-clock-o"></i>
-                                                        </div>
-                                                    </div><!-- /.input group -->
-                                                </div><!-- /.form group -->
-                                            </div>
-                                            <?php $currDate = $this->wi_common->getUTCDate(); ?>
-                                            <div class="form-group">
-                                                <div id="n_event_status" class="alert alert-success alert-dismissable">
-                                                    This event will send <b><?= $userInfo->name ?></b> a <span id="event_type"></span> on <?= $currDate ?><span id="event_time"></span>
+                                                    <strong>Don't want to add manually?</strong>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <a href="#" class="btn btn-danger" style="padding: 6px 16px;">
+                                                        <i class="fa fa-google-plus"></i>
+                                                        Add from Google
+                                                    </a>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <a href="#" class="btn btn-primary">
+                                                        <i class="fa fa-facebook"></i>
+                                                        Add from Facebook
+                                                    </a>
                                                 </div>
                                             </div>
-
+                                            <div class="col-md-1"></div>
                                         </div>
-                                        <div class="col-md-1"></div>
+                                    </div>
+                                    <div class="tab-pane" id="step2">
+                                        <h1 class="info-text">Verify Your Phone Number:</h1>
+                                        <p style="text-align: center">
+                                            Please verify your phone number so that when it is First Name's  birthday,<br/>
+                                            Wish-Fish can send you a reminder.
+                                        </p>
+                                        <div class="box box-primary">
+                                            <div class="box-body">
+                                                <div class="row">
+                                                    <div class="col-md-2"></div>
+                                                    <div class="col-md-10">
+                                                        <div class="form-group">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <label>Country Code</label>
+                                                                    <select name="code" class="form-control">
+                                                                        <option value="+1">+1</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-sm-5">
+                                                                    <label>Phone Number</label>
+                                                                    <div class="input-group">
+                                                                        <div class="input-group-addon">
+                                                                            <i class="fa fa-phone"></i>
+                                                                        </div>
+                                                                        <input autofocus="" id="varify_phone" name="phone" type="text" class="form-control"  placeholder="Phone Number" data-inputmask='"mask": "(999) 999-9999"' data-mask/>
+                                                                    </div><!-- /.input group -->
+                                                                    <a href="javascript:void(0);" id="non-us" data-toggle="modal" data-target="#step2-nonus-modal">
+                                                                        Have a Non-US Number?
+                                                                    </a> 
+                                                                </div>
+                                                                <div style="padding: 5px" class="col-sm-2">
+                                                                    <br/>
+                                                                    <button id="sendcode" class="btn btn-success">Verify</button>
+                                                                </div>
+                                                            </div>
+                                                        </div><!-- /.form group -->
+                                                    </div>
+                                                    <div class="col-md-1"></div>
+                                                </div>
+                                                <div id="verifyRow" style="display: none;margin-bottom: 15px" class="row">
+                                                    <div class="col-md-4"></div>
+                                                    <div class="col-sm-4" style="margin-left: 25px;">
+                                                        <label>Verification Code</label>
+                                                        <input maxlength="6" name="verifycode" type="text" class="form-control"  placeholder="Verification Code" />
+                                                    </div>
+                                                    <div class="col-md-2" style="padding: 5px">
+                                                        <br/>
+                                                        <button type="button" id="code_submit" class="btn btn-primary pull-left">Submit</button>
+                                                    </div>
+                                                </div>
+                                                <div id="loadRow" style="display: none;margin-bottom: 15px" class="row">
+                                                    <div class="col-md-12 text-center">
+                                                        <img class="load" src="<?= base_url() ?>assets/dashboard/img/load.GIF" alt=""  />
+                                                        <span style="display: none;" class="msg"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-1"></div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <strong>Don't want to verify phone number?</strong>
+                                                </div>
+                                                <div class="form-group">
+                                                    <a href="#" class="btn btn-danger continue">
+                                                        continue without verifying...
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-1"></div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="step3">
+                                        <h1 class="info-text">Setup a Reminder :</h1>
+                                        <div class="row sub" style="margin-bottom: 15px;">
+                                            <div class="col-md-1"></div>
+                                            <div class="col-md-10">
+                                                <input id="subject" type="text" class="form-control" placeholder="Subject" value=""/>
+                                            </div>
+                                            <div class="col-md-1"></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-1"></div>
+                                            <div class="col-md-10">
+                                                <textarea id="reminder_txt" placeholder="Message" rows="7" class="form-control"></textarea>
+                                            </div>
+                                            <div class="col-md-1"></div>
+                                        </div><br/>
+                                        <div class="row">
+                                            <div class="col-md-1"></div>
+                                            <div class="col-md-6">
+                                                <div class="bootstrap-timepicker">
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+                                                            <input id="time" type="text" value="" class="form-control timepicker" />
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-clock-o"></i>
+                                                            </div>
+                                                        </div><!-- /.input group -->
+                                                    </div><!-- /.form group -->
+                                                </div>
+                                                <?php $currDate = $this->wi_common->getUTCDate(); ?>
+                                                <div class="form-group">
+                                                    <div id="n_event_status" class="alert alert-success alert-dismissable">
+                                                        This event will send <b><?= $userInfo->name ?></b> a <span id="event_type"></span> on <?= $currDate ?><span id="event_time"></span>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-1"></div>
+                                        </div>
                                     </div>
                                 </div>
+                                <br/>
+                                <div class="wizard-footer">
+                                    <div class="pull-right">
+                                        <input style="width: 100px;height: 50px;" type='button' class='btn btn-next btn-info btn-lg' name='next' value='Next' />
+                                        <input style="width: 110px;height: 50px;" type='button' class='btn btn-finish btn-info btn-lg' name='finish' value='Finish' />
+                                    </div>
+                                    <div class="pull-left">
+                                        <input style="width: 110px;height: 50px;" type='button' class='btn btn-previous btn-info btn-lg' name='previous' value='Previous' />
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>	
                             </div>
-                            <br/>
-                            <div class="wizard-footer">
-                                <div class="pull-right">
-                                    <input style="width: 100px;height: 50px;" type='button' class='btn btn-next btn-info btn-lg' name='next' value='Next' />
-                                    <input style="width: 110px;height: 50px;" type='button' class='btn btn-finish btn-info btn-lg' name='finish' value='Finish' />
-                                </div>
-                                <div class="pull-left">
-                                    <input style="width: 110px;height: 50px;" type='button' class='btn btn-previous btn-info btn-lg' name='previous' value='Previous' />
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>	
+                            <!--</form>-->
                         </div>
-                        <!--</form>-->
-                    </div>
-                </div> <!-- row -->
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div>
-<!------------------------------------------------------------------------>
-<!-----------------------------   STEP -2 -------------------------------->
-<div class="modal fade" id="step2-nonus-modal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" style="max-width: 400px">
-        <div class="modal-content">
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-12">
-                        <p>
-                            Unfortunately as of right now we don't support non-US phone numbers (bear with us, we're still a startup!).
-                            However, please <a href="javascript:void(0);" id="feedback" data-toggle="modal" data-target="#step2-feedback-modal">send us an email</a> with your country, and we will let you know as soon as it is available (hopefully soon!)
-                        </p>
-                    </div>
+                    </div> <!-- row -->
                 </div>
-                <div class="row">
-                    <div class="col-md-12" style="text-align: center">
-                        <button type="button" class="btn btn-danger discard" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
-                    </div>
-                </div>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
 
-<div class="modal fade" id="step2-feedback-modal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" style="max-width: 400px">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Feedback / Support</h4>
-            </div>
-            <form id="feedbackForm"  method="post">
+    <!------------------------------------------------------------------------>
+    <!-----------------------------   STEP -2 -------------------------------->
+    <div class="modal fade" id="step2-nonus-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" style="max-width: 400px">
+            <div class="modal-content">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="form-group" >
-                                <label>Select Country</label>
-                                <select id="country" class="form-control">
-                                    <option value="-1">--Select Country--</option>
-                                    <option value="India">India</option>
-                                    <option value="Pakistan">Pakistan</option>
-                                    <option value="Canada">Canada</option>
-                                    <option value="Australia">Australia</option>
-                                </select>
-                            </div>
-                            <div class="form-group" >
-                                <textarea id="query" class="form-control"></textarea>
-                            </div>
+                            <p>
+                                Unfortunately as of right now we don't support non-US phone numbers (bear with us, we're still a startup!).
+                                However, please <a href="javascript:void(0);" id="feedback" data-toggle="modal" data-target="#step2-feedback-modal">send us an email</a> with your country, and we will let you know as soon as it is available (hopefully soon!)
+                            </p>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12">
-                            <img  src="<?= base_url() ?>assets/dashboard/img/load.GIF" alt="" class="load" style="display: none" />
-                            <span style="display: none" class="msg"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer clearfix">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <button type="button" value="feedback" class="btn btn-primary pull-left send-query">Send</button>
-                        </div>
-                        <div class="col-md-3">
+                        <div class="col-md-12" style="text-align: center">
                             <button type="button" class="btn btn-danger discard" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
                         </div>
                     </div>
                 </div>
-            </form>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
 
-<!-- bootstrap time picker -->
-<script src="<?= base_url() ?>assets/dashboard/js/plugins/timepicker/bootstrap-timepicker.min.js" type="text/javascript"></script>
-<!------------------------------------------------------------------------>
+    <div class="modal fade" id="step2-feedback-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" style="max-width: 400px">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Feedback / Support</h4>
+                </div>
+                <form id="feedbackForm"  method="post">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group" >
+                                    <label>Select Country</label>
+                                    <select id="country" class="form-control">
+                                        <option value="-1">--Select Country--</option>
+                                        <option value="India">India</option>
+                                        <option value="Pakistan">Pakistan</option>
+                                        <option value="Canada">Canada</option>
+                                        <option value="Australia">Australia</option>
+                                    </select>
+                                </div>
+                                <div class="form-group" >
+                                    <textarea id="query" class="form-control"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <img  src="<?= base_url() ?>assets/dashboard/img/load.GIF" alt="" class="load" style="display: none" />
+                                <span style="display: none" class="msg"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer clearfix">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <button type="button" value="feedback" class="btn btn-primary pull-left send-query">Send</button>
+                            </div>
+                            <div class="col-md-3">
+                                <button type="button" class="btn btn-danger discard" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
 
-<script type="text/javascript">
-    $(function () {
+    <!-- bootstrap time picker -->
+    <script src="<?= base_url() ?>assets/dashboard/js/plugins/timepicker/bootstrap-timepicker.min.js" type="text/javascript"></script>
+    <!------------------------------------------------------------------------>
 
-        $(".timepicker").timepicker({
-            showInputs: false,
-            showMeridian: false
+    <script type="text/javascript">
+        $(function () {
+
+            $(".timepicker").timepicker({
+                showInputs: false,
+                showMeridian: false
+            });
+
+            $('#step1Form .default-date-picker').datepicker({
+                format: "mm-dd",
+    //            format: "<?= $this->session->userdata('u_date_format') ?>",
+                todayBtn: "linked",
+                autoclose: true,
+                todayHighlight: true
+            }).on('changeDate', function (ev) {
+                $('#step1Form input[name="birthday"]').focusout();
+            });
         });
+    </script>
 
-        $('#step1Form .default-date-picker').datepicker({
-            format: "mm-dd",
-//            format: "<?= $this->session->userdata('u_date_format') ?>",
-            todayBtn: "linked",
-            autoclose: true,
-            todayHighlight: true
-        }).on('changeDate', function (ev) {
-            $('#step1Form input[name="birthday"]').focusout();
-        });
-    });
-</script>
-<script type="text/javascript" >
-    var phone = false;
-    $(document).ready(function () {
+    <script type="text/javascript" >
+        var phone = false;
+        $(document).ready(function () {
 
-        $('#tour-modal').modal('show');
-        //---------------------------------- STEP 1 --------------------------//
-        $('#step1Form input[name="fname"]').focusout(function () {
-            var str = $(this).val() + "'s";
-            $('#step1Form  input[name="birthday"]').attr('placeholder', 'Enter ' + str + ' Birthdate');
-            $('#step1Form input[name="phone"]').attr('placeholder', 'Enter ' + str + ' Phone Number');
-        });
-        $('#step1Form input[name="birthday"]').focusout(function () {
-            var dt = $(this).val();
-            var pastYear = dt.split('-');
-            var now = new Date();
-            var nowYear = now.getFullYear();
-            var age = nowYear - pastYear[2];
-            if (dt != "") {
+            $('#tour-modal').modal('show');
+            //---------------------------------- STEP 1 --------------------------//
+            $('#step1Form input[name="fname"]').focusout(function () {
+                var str = $(this).val() + "'s";
+                $('#step1Form  input[name="birthday"]').attr('placeholder', 'Enter ' + str + ' Birthdate');
+                $('#step1Form input[name="phone"]').attr('placeholder', 'Enter ' + str + ' Phone Number');
+            });
+            $('#step1Form input[name="birthday"]').focusout(function () {
+                var dt = $(this).val();
+                var pastYear = dt.split('-');
+                var now = new Date();
+                var nowYear = now.getFullYear();
+                var age = nowYear - pastYear[2];
+                if (dt != "") {
+                    $.ajax({
+                        type: 'POST',
+                        data: {birthdate: dt},
+                        url: "<?= site_url() ?>app/contacts/getZodiac/" + dt,
+                        success: function (data, textStatus, jqXHR) {
+                            $('#step1Form  input[name="zodiac"]').val(data);
+                            $('#step1Form  input[name="age"]').val(age);
+                        }
+                    });
+                } else {
+                    $('#step1Form  input[name="zodiac"]').val('');
+                    $('#step1Form  input[name="age"]').val('');
+                }
+            });
+            //--------------------------------------------------------------------//
+
+            //---------------------------------- STEP 2 --------------------------//
+            $('a.continue').click(function () {
+                $('.wizard-footer .btn-next').trigger('click');
+            });
+
+            $('#step2-nonus-modal #feedback').click(function () {
+                $('#step2-feedback-modal #feedbackForm span.msg').text('');
+                $('#step2-nonus-modal .discard').trigger('click');
+            });
+
+            $('#step2 #varify_phone').on("keypress", function (e) {
+                if (e.keyCode == 13) {
+                    $('#step2 #sendcode').trigger('click');
+                }
+            });
+
+            $('#step2 input[name="verifycode"]').on("keypress", function (e) {
+                if (e.keyCode == 13) {
+                    $('#code_submit').trigger('click');
+                }
+            });
+
+            $('#step2 #sendcode').click(function () {
+                $('.wizard-card').css('height', '440px');
+                $('.tab-content').css('height', '270px');
+                var phone = $('#step2 #varify_phone').val();
+                var code = $('#step2 select[name="code"]').val();
+                $('#step2 #loadRow').css('display', 'block');
                 $.ajax({
                     type: 'POST',
-                    data: {birthdate: dt},
-                    url: "<?= site_url() ?>app/contacts/getZodiac/" + dt,
+                    data: {phone: phone, code: code},
+                    url: "<?= site_url() ?>app/dashboard/sendVerificationCode",
                     success: function (data, textStatus, jqXHR) {
-                        $('#step1Form  input[name="zodiac"]').val(data);
-                        $('#step1Form  input[name="age"]').val(age);
+                        $('#step2 .load').css('display', 'none');
+                        $('#step2 .msg').css('display', 'block');
+                        if (data == '1') {
+                            $('#step2 .msg').css('color', 'green');
+                            $('#step2 .msg').text("Verification Code Successfully Sent To +1" + phone);
+                            $('#step2 #verifyRow').css('display', 'block');
+                            $('#step2 #submitRow').css('display', 'block');
+                            $('.wizard-card').css('height', '520px');
+                            $('.tab-content').css('height', '350px');
+                        } else {
+                            $('#step2 .msg').css('color', 'red');
+                            $('#step2 .msg').text("Invalid Phone Number..!");
+                            $('#step2 #verifyRow').css('display', 'none');
+                            $('#step2 #submitRow').css('display', 'none');
+                        }
                     }
                 });
-            } else {
-                $('#step1Form  input[name="zodiac"]').val('');
-                $('#step1Form  input[name="age"]').val('');
-            }
-        });
-        //--------------------------------------------------------------------//
+            });
 
-        //---------------------------------- STEP 2 --------------------------//
-        $('a.continue').click(function () {
-            $('.wizard-footer .btn-next').trigger('click');
-        });
-
-        $('#step2-nonus-modal #feedback').click(function () {
-            $('#step2-feedback-modal #feedbackForm span.msg').text('');
-            $('#step2-nonus-modal .discard').trigger('click');
-        });
-
-        $('#step2 #varify_phone').on("keypress", function (e) {
-            if (e.keyCode == 13) {
-                $('#step2 #sendcode').trigger('click');
-            }
-        });
-
-        $('#step2 input[name="verifycode"]').on("keypress", function (e) {
-            if (e.keyCode == 13) {
-                $('#code_submit').trigger('click');
-            }
-        });
-
-        $('#step2 #sendcode').click(function () {
-            $('.wizard-card').css('height', '440px');
-            $('.tab-content').css('height', '270px');
-            var phone = $('#step2 #varify_phone').val();
-            var code = $('#step2 select[name="code"]').val();
-            $('#step2 #loadRow').css('display', 'block');
-            $.ajax({
-                type: 'POST',
-                data: {phone: phone, code: code},
-                url: "<?= site_url() ?>app/dashboard/sendVerificationCode",
-                success: function (data, textStatus, jqXHR) {
+            $('#step2 #code_submit').click(function () {
+                $('.msg').css('display', 'none');
+                $('.load').css('display', 'block');
+                var code = $('#step2 input[name="verifycode"]').val();
+                if (!(code.length == 6) || !$.isNumeric(code)) {
                     $('#step2 .load').css('display', 'none');
                     $('#step2 .msg').css('display', 'block');
-                    if (data == '1') {
-                        $('#step2 .msg').css('color', 'green');
-                        $('#step2 .msg').text("Verification Code Successfully Sent To +1" + phone);
-                        $('#step2 #verifyRow').css('display', 'block');
-                        $('#step2 #submitRow').css('display', 'block');
-                        $('.wizard-card').css('height', '520px');
-                        $('.tab-content').css('height', '350px');
-                    } else {
-                        $('#step2 .msg').css('color', 'red');
-                        $('#step2 .msg').text("Invalid Phone Number..!");
-                        $('#step2 #verifyRow').css('display', 'none');
-                        $('#step2 #submitRow').css('display', 'none');
+                    $('#step2 .msg').css('color', 'red');
+                    $('#step2 .msg').text("Invalid Verification Code..!");
+                    return false;
+                }
+                $.ajax({
+                    type: 'POST',
+                    data: {code: code},
+                    url: "<?= site_url() ?>app/dashboard/checkVerificationCode",
+                    success: function (data, textStatus, jqXHR) {
+                        if (data == '1') {
+                            $('#step2 .load').css('display', 'none');
+                            $('#step2 .msg').css('display', 'block');
+                            $('#step2 .msg').css('color', 'green');
+                            $('#step2 .msg').text("Congratulations! You have verified your phone number successfully!");
+                        } else {
+                            $('#step2 .load').css('display', 'none');
+                            $('#step2 .msg').css('display', 'block');
+                            $('#step2 .msg').css('color', 'red');
+                            $('#step2 .msg').text("Invalid Verification Code..!");
+                        }
                     }
-                }
+                });
             });
-        });
+            //--------------------------------------------------------------------//
 
-        $('#step2 #code_submit').click(function () {
-            $('.msg').css('display', 'none');
-            $('.load').css('display', 'block');
-            var code = $('#step2 input[name="verifycode"]').val();
-            if (!(code.length == 6) || !$.isNumeric(code)) {
-                $('#step2 .load').css('display', 'none');
-                $('#step2 .msg').css('display', 'block');
-                $('#step2 .msg').css('color', 'red');
-                $('#step2 .msg').text("Invalid Verification Code..!");
-                return false;
-            }
-            $.ajax({
-                type: 'POST',
-                data: {code: code},
-                url: "<?= site_url() ?>app/dashboard/checkVerificationCode",
-                success: function (data, textStatus, jqXHR) {
-                    if (data == '1') {
-                        $('#step2 .load').css('display', 'none');
-                        $('#step2 .msg').css('display', 'block');
-                        $('#step2 .msg').css('color', 'green');
-                        $('#step2 .msg').text("Congratulations! You have verified your phone number successfully!");
-                    } else {
-                        $('#step2 .load').css('display', 'none');
-                        $('#step2 .msg').css('display', 'block');
-                        $('#step2 .msg').css('color', 'red');
-                        $('#step2 .msg').text("Invalid Verification Code..!");
+            //---------------------------------- STEP 3 --------------------------//
+            $('#step3 #time').timepicker().on('hide.timepicker', function (e) {
+                $('#step3 #event_time').text(" at " + e.time.value);
+            });
+
+            $('.wizard-footer .btn-finish').click(function () {
+                $('#tour-modal .close').trigger('click');
+                var text = $('#reminder_txt').val();
+                var time = $('#time').val();
+                var subject = $('#subject').val();
+                var type = (phone) ? 'sms' : 'email';
+                $.ajax({
+                    type: 'POST',
+                    data: {text: text, time: time, subject: subject, type: type},
+                    url: "https://wish-fish.com/app/dashboard/setReminder",
+                    success: function (data, textStatus, jqXHR) {
+
                     }
-                }
+                });
             });
+
         });
-        //--------------------------------------------------------------------//
+    </script>
 
-        //---------------------------------- STEP 3 --------------------------//
-        $('#step3 #time').timepicker().on('hide.timepicker', function (e) {
-            $('#step3 #event_time').text(" at " + e.time.value);
-        });
-
-        $('.wizard-footer .btn-finish').click(function () {
-            $('#tour-modal .close').trigger('click');
-            var text = $('#reminder_txt').val();
-            var time = $('#time').val();
-            var subject = $('#subject').val();
-            var type = (phone) ? 'sms' : 'email';
-            $.ajax({
-                type: 'POST',
-                data: {text: text, time: time, subject: subject, type: type},
-                url: "https://wish-fish.com/app/dashboard/setReminder",
-                success: function (data, textStatus, jqXHR) {
-
+    <script type="text/javascript">
+        (function ($) {
+            var bootstrapWizardCreate = function (element, options) {
+                var element = $(element);
+                var obj = this;
+                // selector skips any 'li' elements that do not contain a child with a tab data-toggle
+                var baseItemSelector = 'li:has([data-toggle="tab"])';
+                // Merge options with defaults
+                var $settings = $.extend({}, $.fn.bootstrapWizard.defaults, options);
+                var $activeTab = null;
+                var $navigation = null;
+                this.rebindClick = function (selector, fn)
+                {
+                    selector.unbind('click', fn).bind('click', fn);
                 }
-            });
-        });
 
-        //--------------------------------------------------------------------//
+                this.fixNavigationButtons = function () {
+    // Get the current active tab
+                    if (!$activeTab.length) {
+    // Select first one
+                        $navigation.find('a:first').tab('show');
+                        $activeTab = $navigation.find(baseItemSelector + ':first');
+                    }
 
+    // See if we're currently in the first/last then disable the previous and last buttons
+                    $($settings.previousSelector, element).toggleClass('disabled', (obj.firstIndex() >= obj.currentIndex()));
+                    $($settings.nextSelector, element).toggleClass('disabled', (obj.currentIndex() >= obj.navigationLength()));
+                    // We are unbinding and rebinding to ensure single firing and no double-click errors
+                    obj.rebindClick($($settings.nextSelector, element), obj.next);
+                    obj.rebindClick($($settings.previousSelector, element), obj.previous);
+                    obj.rebindClick($($settings.lastSelector, element), obj.last);
+                    obj.rebindClick($($settings.firstSelector, element), obj.first);
+                    if ($settings.onTabShow && typeof $settings.onTabShow === 'function' && $settings.onTabShow($activeTab, $navigation, obj.currentIndex()) === false) {
+                        return false;
+                    }
+                };
+                this.next = function (e) {
+                    var currIndex = obj.currentIndex();
+                    if (currIndex == '0') {
+                        $('.btn-next').prop('disabled', true);
+                        var fname = $('#step1Form input[name="fname"]').val().trim();
+                        var lname = $('#step1Form input[name="lname"]').val().trim();
+                        var bday = $('#step1Form input[name="birthday"]').val().trim();
+                        if (fname == "" || lname == "" || bday == "") {
+                            alertify.error("All Field is Required..!");
+                            $('.btn-next').prop('disabled', false);
+                            return false;
+                        } else {
+                            $.ajax({
+                                type: 'POST',
+                                data: $('#step1Form').serialize(),
+                                url: "<?= site_url() ?>app/contacts/addFriend",
+                                success: function (data, textStatus, jqXHR) {
+                                    $('.btn-next').prop('disabled', false);
+                                    if (data != "1") {
+                                        alertify.error("Contact not inserted..!");
+                                        return false;
+                                    } else {
+                                        $('.wizard-card').css('height', '400px');
+                                        $('.tab-content').css('height', '235px');
+                                        NextCode();
+                                    }
+                                }
+                            });
+                        }
+                    } else if (currIndex == '1') {
+                        $('.btn-next').prop('disabled', true);
+                        $('#step3 #event_time').text(" at " + $('#step3 #time').val());
+                        $.ajax({
+                            type: 'POST',
+                            url: "<?= site_url() ?>app/dashboard/checkPhoneVerification",
+                            success: function (data, textStatus, jqXHR) {
+                                $('.btn-next').prop('disabled', false);
+                                if (data != '1') {
+                                    phone = false;
+                                    $('#step3 #event_type').text("Email");
+                                    $('#step3 .sub').show();
+                                    $('.wizard-card').css('height', '520px');
+                                    $('.tab-content').css('height', '350px');
+                                    NextCode();
+                                } else {
+                                    phone = true;
+                                    $('#step3 #event_type').text("SMS");
+                                    $('#step3 .sub').hide();
+                                    $('.wizard-card').css('height', '520px');
+                                    $('.tab-content').css('height', '350px');
+                                    NextCode();
+                                }
+                            }
+                        });
+
+                    } else {
+                        NextCode();
+                    }
+
+                    function NextCode() {
+                        // If we clicked the last then dont activate this
+                        if (element.hasClass('last')) {
+                            $('#tour-modal .close').trigger('click');
+                            return false;
+                        }
+
+                        if ($settings.onNext && typeof $settings.onNext === 'function' && $settings.onNext($activeTab, $navigation, obj.nextIndex()) === false) {
+                            return false;
+                        }
+
+                        // Did we click the last button
+                        $index = obj.nextIndex();
+                        if ($index > obj.navigationLength()) {
+                        } else {
+                            $navigation.find(baseItemSelector + ':eq(' + $index + ') a').tab('show');
+                        }
+                    }
+                };
+                this.previous = function (e) {
+                    var currIndex = obj.currentIndex();
+                    console.log(currIndex);
+                    // If we clicked the first then dont activate this
+                    if (element.hasClass('first')) {
+                        return false;
+                    }
+
+                    if ($settings.onPrevious && typeof $settings.onPrevious === 'function' && $settings.onPrevious($activeTab, $navigation, obj.previousIndex()) === false) {
+                        return false;
+                    }
+
+                    $index = obj.previousIndex();
+                    if ($index < 0) {
+                    } else {
+                        $navigation.find(baseItemSelector + ':eq(' + $index + ') a').tab('show');
+                    }
+                };
+                this.first = function (e) {
+                    if ($settings.onFirst && typeof $settings.onFirst === 'function' && $settings.onFirst($activeTab, $navigation, obj.firstIndex()) === false) {
+                        return false;
+                    }
+
+                    // If the element is disabled then we won't do anything
+                    if (element.hasClass('disabled')) {
+                        return false;
+                    }
+                    $navigation.find(baseItemSelector + ':eq(0) a').tab('show');
+                };
+                this.last = function (e) {
+                    if ($settings.onLast && typeof $settings.onLast === 'function' && $settings.onLast($activeTab, $navigation, obj.lastIndex()) === false) {
+                        return false;
+                    }
+
+                    // If the element is disabled then we won't do anything
+                    if (element.hasClass('disabled')) {
+                        return false;
+                    }
+                    $navigation.find(baseItemSelector + ':eq(' + obj.navigationLength() + ') a').tab('show');
+                };
+                this.currentIndex = function () {
+                    return $navigation.find(baseItemSelector).index($activeTab);
+                };
+                this.firstIndex = function () {
+                    return 0;
+                };
+                this.lastIndex = function () {
+                    return obj.navigationLength();
+                };
+                this.getIndex = function (e) {
+                    return $navigation.find(baseItemSelector).index(e);
+                };
+                this.nextIndex = function () {
+                    return $navigation.find(baseItemSelector).index($activeTab) + 1;
+                };
+                this.previousIndex = function () {
+                    return $navigation.find(baseItemSelector).index($activeTab) - 1;
+                };
+                this.navigationLength = function () {
+                    return $navigation.find(baseItemSelector).length - 1;
+                };
+                this.activeTab = function () {
+                    return $activeTab;
+                };
+                this.nextTab = function () {
+                    return $navigation.find(baseItemSelector + ':eq(' + (obj.currentIndex() + 1) + ')').length ? $navigation.find(baseItemSelector + ':eq(' + (obj.currentIndex() + 1) + ')') : null;
+                };
+                this.previousTab = function () {
+                    if (obj.currentIndex() <= 0) {
+                        return null;
+                    }
+                    return $navigation.find(baseItemSelector + ':eq(' + parseInt(obj.currentIndex() - 1) + ')');
+                };
+                this.show = function (index) {
+                    if (isNaN(index)) {
+                        return element.find(baseItemSelector + ' a[href=#' + index + ']').tab('show');
+                    }
+                    else {
+                        return element.find(baseItemSelector + ':eq(' + index + ') a').tab('show');
+                    }
+                };
+                this.disable = function (index) {
+                    $navigation.find(baseItemSelector + ':eq(' + index + ')').addClass('disabled');
+                };
+                this.enable = function (index) {
+                    $navigation.find(baseItemSelector + ':eq(' + index + ')').removeClass('disabled');
+                };
+                this.hide = function (index) {
+                    $navigation.find(baseItemSelector + ':eq(' + index + ')').hide();
+                };
+                this.display = function (index) {
+                    $navigation.find(baseItemSelector + ':eq(' + index + ')').show();
+                };
+                this.remove = function (args) {
+                    var $index = args[0];
+                    var $removeTabPane = typeof args[1] != 'undefined' ? args[1] : false;
+                    var $item = $navigation.find(baseItemSelector + ':eq(' + $index + ')');
+                    // Remove the tab pane first if needed
+                    if ($removeTabPane) {
+                        var $href = $item.find('a').attr('href');
+                        $($href).remove();
+                    }
+
+                    // Remove menu item
+                    $item.remove();
+                };
+                var innerTabClick = function (e) {
+                    // Get the index of the clicked tab
+                    var clickedIndex = $navigation.find(baseItemSelector).index($(e.currentTarget).parent(baseItemSelector));
+                    if ($settings.onTabClick && typeof $settings.onTabClick === 'function' && $settings.onTabClick($activeTab, $navigation, obj.currentIndex(), clickedIndex) === false) {
+                        return false;
+                    }
+                };
+                var innerTabShown = function (e) {  // use shown instead of show to help prevent double firing
+                    $element = $(e.target).parent();
+                    var nextTab = $navigation.find(baseItemSelector).index($element);
+                    // If it's disabled then do not change
+                    if ($element.hasClass('disabled')) {
+                        return false;
+                    }
+
+                    if ($settings.onTabChange && typeof $settings.onTabChange === 'function' && $settings.onTabChange($activeTab, $navigation, obj.currentIndex(), nextTab) === false) {
+                        return false;
+                    }
+
+                    $activeTab = $element; // activated tab
+                    obj.fixNavigationButtons();
+                };
+                this.resetWizard = function () {
+
+                    // remove the existing handlers
+                    $('a[data-toggle="tab"]', $navigation).off('click', innerTabClick);
+                    $('a[data-toggle="tab"]', $navigation).off('shown shown.bs.tab', innerTabShown);
+                    // reset elements based on current state of the DOM
+                    $navigation = element.find('ul:first', element);
+                    $activeTab = $navigation.find(baseItemSelector + '.active', element);
+                    // re-add handlers
+                    $('a[data-toggle="tab"]', $navigation).on('click', innerTabClick);
+                    $('a[data-toggle="tab"]', $navigation).on('shown shown.bs.tab', innerTabShown);
+                    obj.fixNavigationButtons();
+                };
+                $navigation = element.find('ul:first', element);
+                $activeTab = $navigation.find(baseItemSelector + '.active', element);
+                if (!$navigation.hasClass($settings.tabClass)) {
+                    $navigation.addClass($settings.tabClass);
+                }
+
+    // Load onInit
+                if ($settings.onInit && typeof $settings.onInit === 'function') {
+                    $settings.onInit($activeTab, $navigation, 0);
+                }
+
+    // Load onShow
+                if ($settings.onShow && typeof $settings.onShow === 'function') {
+                    $settings.onShow($activeTab, $navigation, obj.nextIndex());
+                }
+
+                $('a[data-toggle="tab"]', $navigation).on('click', innerTabClick);
+                // attach to both shown and shown.bs.tab to support Bootstrap versions 2.3.2 and 3.0.0
+                $('a[data-toggle="tab"]', $navigation).on('shown shown.bs.tab', innerTabShown);
+            };
+            $.fn.bootstrapWizard = function (options) {
+                //expose methods
+                if (typeof options == 'string') {
+                    var args = Array.prototype.slice.call(arguments, 1)
+                    if (args.length === 1) {
+                        args.toString();
+                    }
+                    return this.data('bootstrapWizard')[options](args);
+                }
+                return this.each(function (index) {
+                    var element = $(this);
+                    // Return early if this element already has a plugin instance
+                    if (element.data('bootstrapWizard'))
+                        return;
+                    // pass options to plugin constructor
+                    var wizard = new bootstrapWizardCreate(element, options);
+                    // Store plugin object in this element's data
+                    element.data('bootstrapWizard', wizard);
+                    // and then trigger initial change
+                    wizard.fixNavigationButtons();
+                });
+            };
+    // expose options
+            $.fn.bootstrapWizard.defaults = {
+                tabClass: 'nav nav-pills',
+                nextSelector: '.wizard li.next',
+                previousSelector: '.wizard li.previous',
+                firstSelector: '.wizard li.first',
+                lastSelector: '.wizard li.last',
+                onShow: null,
+                onInit: null,
+                onNext: null,
+                onPrevious: null,
+                onLast: null,
+                onFirst: null,
+                onTabChange: null,
+                onTabClick: null,
+                onTabShow: null
+            };
+        })(jQuery);
+    </script>
+
+<?php endif; ?>
+
+<script type="text/javascript">
+    $(document).ready(function () {
         $('.feedback button.close').click(function () {
             $('div.feedback').hide();
         });
@@ -690,327 +1015,6 @@
             });
         });
     });
-</script>
-
-<script type="text/javascript">
-    (function ($) {
-        var bootstrapWizardCreate = function (element, options) {
-            var element = $(element);
-            var obj = this;
-            // selector skips any 'li' elements that do not contain a child with a tab data-toggle
-            var baseItemSelector = 'li:has([data-toggle="tab"])';
-            // Merge options with defaults
-            var $settings = $.extend({}, $.fn.bootstrapWizard.defaults, options);
-            var $activeTab = null;
-            var $navigation = null;
-            this.rebindClick = function (selector, fn)
-            {
-                selector.unbind('click', fn).bind('click', fn);
-            }
-
-            this.fixNavigationButtons = function () {
-// Get the current active tab
-                if (!$activeTab.length) {
-// Select first one
-                    $navigation.find('a:first').tab('show');
-                    $activeTab = $navigation.find(baseItemSelector + ':first');
-                }
-
-// See if we're currently in the first/last then disable the previous and last buttons
-                $($settings.previousSelector, element).toggleClass('disabled', (obj.firstIndex() >= obj.currentIndex()));
-                $($settings.nextSelector, element).toggleClass('disabled', (obj.currentIndex() >= obj.navigationLength()));
-                // We are unbinding and rebinding to ensure single firing and no double-click errors
-                obj.rebindClick($($settings.nextSelector, element), obj.next);
-                obj.rebindClick($($settings.previousSelector, element), obj.previous);
-                obj.rebindClick($($settings.lastSelector, element), obj.last);
-                obj.rebindClick($($settings.firstSelector, element), obj.first);
-                if ($settings.onTabShow && typeof $settings.onTabShow === 'function' && $settings.onTabShow($activeTab, $navigation, obj.currentIndex()) === false) {
-                    return false;
-                }
-            };
-            this.next = function (e) {
-                var currIndex = obj.currentIndex();
-                if (currIndex == '0') {
-                    $('.btn-next').prop('disabled', true);
-                    var fname = $('#step1Form input[name="fname"]').val().trim();
-                    var lname = $('#step1Form input[name="lname"]').val().trim();
-                    var bday = $('#step1Form input[name="birthday"]').val().trim();
-                    if (fname == "" || lname == "" || bday == "") {
-                        alertify.error("All Field is Required..!");
-                        $('.btn-next').prop('disabled', false);
-                        return false;
-                    } else {
-                        $.ajax({
-                            type: 'POST',
-                            data: $('#step1Form').serialize(),
-                            url: "<?= site_url() ?>app/contacts/addFriend",
-                            success: function (data, textStatus, jqXHR) {
-                                $('.btn-next').prop('disabled', false);
-                                if (data != "1") {
-                                    alertify.error("Contact not inserted..!");
-                                    return false;
-                                } else {
-                                    $('.wizard-card').css('height', '400px');
-                                    $('.tab-content').css('height', '235px');
-                                    NextCode();
-                                }
-                            }
-                        });
-                    }
-                } else if (currIndex == '1') {
-                    $('.btn-next').prop('disabled', true);
-                    $('#step3 #event_time').text(" at " + $('#step3 #time').val());
-                    $.ajax({
-                        type: 'POST',
-                        url: "<?= site_url() ?>app/dashboard/checkPhoneVerification",
-                        success: function (data, textStatus, jqXHR) {
-                            $('.btn-next').prop('disabled', false);
-                            if (data != '1') {
-                                phone = false;
-                                $('#step3 #event_type').text("Email");
-                                $('#step3 .sub').show();
-                                $('.wizard-card').css('height', '520px');
-                                $('.tab-content').css('height', '350px');
-                                NextCode();
-                            } else {
-                                phone = true;
-                                $('#step3 #event_type').text("SMS");
-                                $('#step3 .sub').hide();
-                                $('.wizard-card').css('height', '520px');
-                                $('.tab-content').css('height', '350px');
-                                NextCode();
-                            }
-                        }
-                    });
-
-                } else {
-                    NextCode();
-                }
-
-                function NextCode() {
-                    // If we clicked the last then dont activate this
-                    if (element.hasClass('last')) {
-                        $('#tour-modal .close').trigger('click');
-                        return false;
-                    }
-
-                    if ($settings.onNext && typeof $settings.onNext === 'function' && $settings.onNext($activeTab, $navigation, obj.nextIndex()) === false) {
-                        return false;
-                    }
-
-                    // Did we click the last button
-                    $index = obj.nextIndex();
-                    if ($index > obj.navigationLength()) {
-                    } else {
-                        $navigation.find(baseItemSelector + ':eq(' + $index + ') a').tab('show');
-                    }
-                }
-            };
-            this.previous = function (e) {
-                var currIndex = obj.currentIndex();
-                console.log(currIndex);
-                // If we clicked the first then dont activate this
-                if (element.hasClass('first')) {
-                    return false;
-                }
-
-                if ($settings.onPrevious && typeof $settings.onPrevious === 'function' && $settings.onPrevious($activeTab, $navigation, obj.previousIndex()) === false) {
-                    return false;
-                }
-
-                $index = obj.previousIndex();
-                if ($index < 0) {
-                } else {
-                    $navigation.find(baseItemSelector + ':eq(' + $index + ') a').tab('show');
-                }
-            };
-            this.first = function (e) {
-                if ($settings.onFirst && typeof $settings.onFirst === 'function' && $settings.onFirst($activeTab, $navigation, obj.firstIndex()) === false) {
-                    return false;
-                }
-
-                // If the element is disabled then we won't do anything
-                if (element.hasClass('disabled')) {
-                    return false;
-                }
-                $navigation.find(baseItemSelector + ':eq(0) a').tab('show');
-            };
-            this.last = function (e) {
-                if ($settings.onLast && typeof $settings.onLast === 'function' && $settings.onLast($activeTab, $navigation, obj.lastIndex()) === false) {
-                    return false;
-                }
-
-                // If the element is disabled then we won't do anything
-                if (element.hasClass('disabled')) {
-                    return false;
-                }
-                $navigation.find(baseItemSelector + ':eq(' + obj.navigationLength() + ') a').tab('show');
-            };
-            this.currentIndex = function () {
-                return $navigation.find(baseItemSelector).index($activeTab);
-            };
-            this.firstIndex = function () {
-                return 0;
-            };
-            this.lastIndex = function () {
-                return obj.navigationLength();
-            };
-            this.getIndex = function (e) {
-                return $navigation.find(baseItemSelector).index(e);
-            };
-            this.nextIndex = function () {
-                return $navigation.find(baseItemSelector).index($activeTab) + 1;
-            };
-            this.previousIndex = function () {
-                return $navigation.find(baseItemSelector).index($activeTab) - 1;
-            };
-            this.navigationLength = function () {
-                return $navigation.find(baseItemSelector).length - 1;
-            };
-            this.activeTab = function () {
-                return $activeTab;
-            };
-            this.nextTab = function () {
-                return $navigation.find(baseItemSelector + ':eq(' + (obj.currentIndex() + 1) + ')').length ? $navigation.find(baseItemSelector + ':eq(' + (obj.currentIndex() + 1) + ')') : null;
-            };
-            this.previousTab = function () {
-                if (obj.currentIndex() <= 0) {
-                    return null;
-                }
-                return $navigation.find(baseItemSelector + ':eq(' + parseInt(obj.currentIndex() - 1) + ')');
-            };
-            this.show = function (index) {
-                if (isNaN(index)) {
-                    return element.find(baseItemSelector + ' a[href=#' + index + ']').tab('show');
-                }
-                else {
-                    return element.find(baseItemSelector + ':eq(' + index + ') a').tab('show');
-                }
-            };
-            this.disable = function (index) {
-                $navigation.find(baseItemSelector + ':eq(' + index + ')').addClass('disabled');
-            };
-            this.enable = function (index) {
-                $navigation.find(baseItemSelector + ':eq(' + index + ')').removeClass('disabled');
-            };
-            this.hide = function (index) {
-                $navigation.find(baseItemSelector + ':eq(' + index + ')').hide();
-            };
-            this.display = function (index) {
-                $navigation.find(baseItemSelector + ':eq(' + index + ')').show();
-            };
-            this.remove = function (args) {
-                var $index = args[0];
-                var $removeTabPane = typeof args[1] != 'undefined' ? args[1] : false;
-                var $item = $navigation.find(baseItemSelector + ':eq(' + $index + ')');
-                // Remove the tab pane first if needed
-                if ($removeTabPane) {
-                    var $href = $item.find('a').attr('href');
-                    $($href).remove();
-                }
-
-                // Remove menu item
-                $item.remove();
-            };
-            var innerTabClick = function (e) {
-                // Get the index of the clicked tab
-                var clickedIndex = $navigation.find(baseItemSelector).index($(e.currentTarget).parent(baseItemSelector));
-                if ($settings.onTabClick && typeof $settings.onTabClick === 'function' && $settings.onTabClick($activeTab, $navigation, obj.currentIndex(), clickedIndex) === false) {
-                    return false;
-                }
-            };
-            var innerTabShown = function (e) {  // use shown instead of show to help prevent double firing
-                $element = $(e.target).parent();
-                var nextTab = $navigation.find(baseItemSelector).index($element);
-                // If it's disabled then do not change
-                if ($element.hasClass('disabled')) {
-                    return false;
-                }
-
-                if ($settings.onTabChange && typeof $settings.onTabChange === 'function' && $settings.onTabChange($activeTab, $navigation, obj.currentIndex(), nextTab) === false) {
-                    return false;
-                }
-
-                $activeTab = $element; // activated tab
-                obj.fixNavigationButtons();
-            };
-            this.resetWizard = function () {
-
-                // remove the existing handlers
-                $('a[data-toggle="tab"]', $navigation).off('click', innerTabClick);
-                $('a[data-toggle="tab"]', $navigation).off('shown shown.bs.tab', innerTabShown);
-                // reset elements based on current state of the DOM
-                $navigation = element.find('ul:first', element);
-                $activeTab = $navigation.find(baseItemSelector + '.active', element);
-                // re-add handlers
-                $('a[data-toggle="tab"]', $navigation).on('click', innerTabClick);
-                $('a[data-toggle="tab"]', $navigation).on('shown shown.bs.tab', innerTabShown);
-                obj.fixNavigationButtons();
-            };
-            $navigation = element.find('ul:first', element);
-            $activeTab = $navigation.find(baseItemSelector + '.active', element);
-            if (!$navigation.hasClass($settings.tabClass)) {
-                $navigation.addClass($settings.tabClass);
-            }
-
-// Load onInit
-            if ($settings.onInit && typeof $settings.onInit === 'function') {
-                $settings.onInit($activeTab, $navigation, 0);
-            }
-
-// Load onShow
-            if ($settings.onShow && typeof $settings.onShow === 'function') {
-                $settings.onShow($activeTab, $navigation, obj.nextIndex());
-            }
-
-            $('a[data-toggle="tab"]', $navigation).on('click', innerTabClick);
-            // attach to both shown and shown.bs.tab to support Bootstrap versions 2.3.2 and 3.0.0
-            $('a[data-toggle="tab"]', $navigation).on('shown shown.bs.tab', innerTabShown);
-        };
-        $.fn.bootstrapWizard = function (options) {
-            //expose methods
-            if (typeof options == 'string') {
-                var args = Array.prototype.slice.call(arguments, 1)
-                if (args.length === 1) {
-                    args.toString();
-                }
-                return this.data('bootstrapWizard')[options](args);
-            }
-            return this.each(function (index) {
-                var element = $(this);
-                // Return early if this element already has a plugin instance
-                if (element.data('bootstrapWizard'))
-                    return;
-                // pass options to plugin constructor
-                var wizard = new bootstrapWizardCreate(element, options);
-                // Store plugin object in this element's data
-                element.data('bootstrapWizard', wizard);
-                // and then trigger initial change
-                wizard.fixNavigationButtons();
-            });
-        };
-// expose options
-        $.fn.bootstrapWizard.defaults = {
-            tabClass: 'nav nav-pills',
-            nextSelector: '.wizard li.next',
-            previousSelector: '.wizard li.previous',
-            firstSelector: '.wizard li.first',
-            lastSelector: '.wizard li.last',
-            onShow: null,
-            onInit: null,
-            onNext: null,
-            onPrevious: null,
-            onLast: null,
-            onFirst: null,
-            onTabChange: null,
-            onTabClick: null,
-            onTabShow: null
-        };
-
-
-
-    })(jQuery);
-
 </script>
 
 <!--   plugins 	 -->
