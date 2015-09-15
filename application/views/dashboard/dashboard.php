@@ -345,10 +345,7 @@
                                         <div class="col-md-1"></div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <strong>Don't want to cerify phone number?</strong>
-                                            </div>
-                                            <div class="form-group">
-                                                <strong>No Problem...</strong>
+                                                <strong>Don't want to verify phone number?</strong>
                                             </div>
                                             <div class="form-group">
                                                 <a href="#" class="btn btn-danger continue">
@@ -403,11 +400,11 @@
                             <br/>
                             <div class="wizard-footer">
                                 <div class="pull-right">
-                                    <input style="width: 160px;height: 60px;" type='button' class='btn btn-next btn-info btn-lg' name='next' value='Next' />
-                                    <input style="width: 160px;height: 60px;" type='button' class='btn btn-finish btn-info' name='finish' value='Finish' />
+                                    <input style="width: 100px;height: 50px;" type='button' class='btn btn-next btn-info btn-lg' name='next' value='Next' />
+                                    <input style="width: 125px;height: 50px;" type='button' class='btn btn-finish btn-info btn-lg' name='finish' value='Finish' />
                                 </div>
                                 <div class="pull-left">
-                                    <input style="width: 160px;height: 60px;" type='button' class='btn btn-previous bg-gray btn-lg' name='previous' value='Previous' />
+                                    <input style="width: 110px;height: 50px;" type='button' class='btn btn-previous bg-gray btn-lg' name='previous' value='Previous' />
                                 </div>
                                 <div class="clearfix"></div>
                             </div>	
