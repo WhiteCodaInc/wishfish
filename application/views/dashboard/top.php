@@ -794,7 +794,7 @@ $userid = $this->session->userdata('u_userid');
                                                 </div>
                                             </div><!-- /.form group -->
                                             <div class="form-group">
-                                                <label for="password">Email</label>
+                                                <label for="email">Email</label>
                                                 <input name="email" type="email" class="form-control"  placeholder="Enter Their Email">
                                             </div>
                                             <span id="msgContact"></span>

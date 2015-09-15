@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/dashboard/css/checkbox.css"/>
 <style type="text/css">
     #contact-data-table tr td,#contact-data-table tr th{
         text-align: center;
@@ -18,6 +19,10 @@
             <i class="fa fa-user"></i> <span> Import Google Contact</span>
         </a>
         <button style="margin-left: 10px" value="Delete" class="btn btn-danger btn-sm" id="Delete" type="button" >Delete</button>
+        <a class="btn btn-info btn-sm" href="javascript:void(0)" data-toggle="modal" data-target="#quick-modal">
+            <i class="fa fa-plus"></i>
+            Quick Add
+        </a>
     </section>
     <!-- Main content -->
     <section class="content">
@@ -132,28 +137,12 @@
                     <div class="box-header">
                         <h3 class="box-title">Contact Detail</h3>
                     </div><!-- /.box-header -->
-                    <div class="row">
-                        <div class="col-md-12" style="margin-left: 10px">
-                            <!--                            <a id="limit" class="btn btn-success btn-sm">
-                                                            <i class="fa fa-plus"></i>
-                                                            Create New Contact
-                                                        </a>-->
-<!--                            <a class="btn btn-primary btn-sm" href="<?= site_url() ?>app/import">
-                                <i class="fa fa-user"></i> <span> Import Google Contact</span>
-                            </a>-->
-                            <!--                            <button style="margin-left: 10px" value="Delete" class="btn btn-danger btn-sm" id="Delete" type="button" >Delete</button>-->
-                        </div>
-                    </div>
-
                     <form name="checkForm" id="checkForm" action="" method="post">
                         <div class="box-body table-responsive" id="data-panel">
 
                             <table id="contact-data-table" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-<!--                                        <th style="font-size: 17px;padding-right: 18px;text-align: center;">
-                                            <i class="fa fa-level-down"></i>
-                                        </th>-->
                                         <th style="padding: 10px;">
                                             <input type="checkbox"/>
                                         </th>
@@ -245,6 +234,108 @@
         </div>
     </section><!-- /.content -->
 </aside><!-- /.right-side -->
+
+<!---------------------------Add New Contact------------------------------->
+<div class="modal fade" id="quick-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" style="max-width: 400px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Add New Contact</h4>
+            </div>
+            <div class="modal-body">
+                <form id="quickForm" method="post">
+                    <div class="form-group">
+                        <div class="row">
+                            <div  class="col-md-6">
+                                <label>First Name</label>
+                                <input type="text" name="fname" autofocus="autofocus" class="form-control" placeholder="First Name" required=""/>
+                            </div>
+                            <div  class="col-md-6">
+                                <label>Last Name</label>
+                                <input type="text" name="lname" class="form-control" placeholder="Last Name" required=""/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" >
+                        <label>Birthday</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                            <input style="z-index: 0" name="birthday" placeholder="Enter Birthdate" value="<?= isset($contacts) ? $this->wi_common->getUTCDate($contacts->birthday) : '' ?>"  class="form-control form-control-inline input-medium default-date-picker" size="16" type="text" required="">
+                        </div><!-- /.input group -->
+                    </div><!-- /.form group -->
+                    <div class="form-group" >
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <label>Country Code</label>
+                                <select name="code" class="form-control">
+                                    <option value="+1">+1</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-8">
+                                <label>Phone Number </label>
+                                <i title="You can send your contact a pre scheduled text message.In case you`r busy or vacation,so you don`t miss an important date ! (its kind of magical!)" class="fa fa-question-circle"></i>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-phone"></i>
+                                    </div>
+                                    <input name="phone" type="text" class="form-control"  placeholder="Enter Phone Number" data-inputmask='"mask": "(999) 999-9999"' data-mask required=""/>
+                                </div><!-- /.input group -->
+                            </div>
+                        </div>
+                    </div><!-- /.form group -->
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input name="email" type="email" class="form-control"  placeholder="Enter Their Email">
+                    </div>
+                    <div class="form-group">
+                        <div class="row m-bot15">                        
+                            <div class="col-md-12">	
+                                <div class="form-group">
+                                    <div class="rd" style="float: left;padding-right: 5px;cursor: pointer">
+                                        <input id="quick_sms" type="radio" value="sms"  name="event_type"  class="simple">                          
+                                        <span class="lbl padding-8">Schedule SMS&nbsp;</span>
+                                    </div>
+                                    <div class="rd" style="float: left;padding:0 5px;cursor: pointer">
+                                        <input id="quick_email" type="radio" value="email"  name="event_type" class="simple">                          
+                                        <span class="lbl padding-8">Schedule Email&nbsp;</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="subject" class="form-group" style="display: none">
+                        <label>Subject</label>
+                        <div class="form-group" >
+                            <input type="text" name="subject" class="form-control"  />
+                        </div>
+                    </div>
+                    <input value="" name="zodiac" type="hidden" class="form-control" >
+                    <input value="" name="age" type="hidden" class="form-control" >
+                </form>
+            </div>
+            <div class="modal-footer clearfix">
+                <div class="row">
+                    <div class="col-md-3">
+                        <button type="button" id="contactBtn" class="btn btn-primary pull-left">Save Profile</button>
+                    </div>
+                    <div class="col-md-2">
+                        <div id="loadContact" style="display: none">
+                            <img src="<?= base_url() ?>assets/dashboard/img/load.GIF" alt="" />
+                        </div>
+                    </div>
+                    <div class="col-md-7" style="text-align: right">
+                        <button type="button" class="btn btn-danger discard" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<!-------------------------End Add Contact------------------------------>
+
 <?php $msg = $this->input->get('msg'); ?>
 <?php $data = $this->input->post(); ?>
 <?php
@@ -278,7 +369,18 @@ switch ($msg) {
         break;
 }
 ?>
+<?php $sortDt = substr($this->session->userdata('u_date_format'), 0, 5); ?>
 <script type="text/javascript">
+
+    $('#quickForm .default-date-picker').datepicker({
+        format: "<?= $sortDt ?>",
+        todayBtn: "linked",
+        autoclose: true,
+        todayHighlight: true
+    }).on('changeDate', function (ev) {
+        $('#conForm input[name="birthday"]').focusout();
+    });
+
 <?php if ($msg): ?>
         alertify.<?= $t ?>("<?= $m ?>");
 <?php endif; ?>
@@ -341,6 +443,35 @@ switch ($msg) {
             $('input[name="address_search"]').val("<?= $data['address_search'] ?>");
             $('select[name="rating_search"]').val("<?= $data['rating_search'] ?>");
 <?php } ?>
+
+        /*************************Add New Contact************************/
+        $('#quick-modal input[name="fname"]').focusout(function () {
+            var str = $(this).val() + "'s";
+            $('#quick-modal  input[name="birthday"]').attr('placeholder', 'Enter ' + str + ' Birthdate');
+            $('#quick-modal input[name="phone"]').attr('placeholder', 'Enter ' + str + ' Phone Number');
+        });
+        $('#quick-modal input[name="birthday"]').focusout(function () {
+            var dt = $(this).val();
+            var pastYear = dt.split('-');
+            var now = new Date();
+            var nowYear = now.getFullYear();
+            var age = nowYear - pastYear[2];
+            if (dt != "") {
+                $.ajax({
+                    type: 'POST',
+                    data: {birthdate: dt},
+                    url: "<?= site_url() ?>app/contacts/getZodiac/" + dt,
+                    success: function (data, textStatus, jqXHR) {
+                        $('#quick-modal  input[name="zodiac"]').val(data);
+                        $('#quick-modal  input[name="age"]').val(age);
+                    }
+                });
+            } else {
+                $('#quick-modal  input[name="zodiac"]').val('');
+                $('#quick-modal  input[name="age"]').val('');
+            }
+        });
+
         $('#contact-data-table tbody tr').each(function () {
             $(this).children('td.sorting_1').find('div.checked');
         });

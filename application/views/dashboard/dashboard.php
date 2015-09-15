@@ -392,7 +392,6 @@
                                                         This event will send <b><?= $userInfo->name ?></b> a <span id="event_type"></span> on <?= $currDate ?><span id="event_time"></span>
                                                     </div>
                                                 </div>
-
                                             </div>
                                             <div class="col-md-1"></div>
                                         </div>
@@ -489,7 +488,7 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div>
-
+    <?php $sortDt = substr($this->session->userdata('u_date_format'), 0, 5); ?>
     <!-- bootstrap time picker -->
     <script src="<?= base_url() ?>assets/dashboard/js/plugins/timepicker/bootstrap-timepicker.min.js" type="text/javascript"></script>
     <!------------------------------------------------------------------------>
@@ -503,8 +502,7 @@
             });
 
             $('#step1Form .default-date-picker').datepicker({
-                format: "mm-dd",
-    //            format: "<?= $this->session->userdata('u_date_format') ?>",
+                format: "<?= $sortDt ?>",
                 todayBtn: "linked",
                 autoclose: true,
                 todayHighlight: true
