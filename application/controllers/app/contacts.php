@@ -87,9 +87,19 @@ class Contacts extends CI_Controller {
         $post = $this->input->post();
         echo ($this->objcontact->createContact($post) == "I") ? 1 : 0;
     }
+
     function addFriend() {
         $post = $this->input->post();
         echo ($this->objcontact->addFriend($post)) ? 1 : 0;
+    }
+
+    function quickContact() {
+
+        $post = $this->input->post();
+        if (is_array($post) && count($post)) {
+            $this->objcontact->quickContact($post);
+        }
+        header('location:' . site_url() . 'app/contacts');
     }
 
     function createContact() {

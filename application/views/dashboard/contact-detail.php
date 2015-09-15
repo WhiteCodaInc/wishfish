@@ -244,7 +244,7 @@
                 <h4 class="modal-title">Add New Contact</h4>
             </div>
             <div class="modal-body">
-                <form id="quickForm" method="post">
+                <form id="quickForm" action="<?= site_url() ?>app/contacts/quickContact" method="post">
                     <div class="form-group">
                         <div class="row">
                             <div  class="col-md-6">
@@ -356,14 +356,9 @@
             <div class="modal-footer clearfix">
                 <div class="row">
                     <div class="col-md-3">
-                        <button type="button" id="contactBtn" class="btn btn-primary pull-left">Save Profile</button>
+                        <button type="submit" class="btn btn-primary pull-left">Add Contact</button>
                     </div>
-                    <div class="col-md-2">
-                        <div id="loadContact" style="display: none">
-                            <img src="<?= base_url() ?>assets/dashboard/img/load.GIF" alt="" />
-                        </div>
-                    </div>
-                    <div class="col-md-7" style="text-align: right">
+                    <div class="col-md-9" style="text-align: right">
                         <button type="button" class="btn btn-danger discard" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
                     </div>
                 </div>

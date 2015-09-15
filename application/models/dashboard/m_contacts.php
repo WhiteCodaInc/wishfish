@@ -113,6 +113,31 @@ class M_contacts extends CI_Model {
         }
     }
 
+    function quickContact($post) {
+        $set = array(
+            'fname' => $post['fname'],
+            'fname' => $post['lname'],
+            'birthday' => $post['birthday'],
+            'code' => $post['code'],
+            'phone' => $post['phone'],
+            'email' => $post['email']
+        );
+        $contactid = $this->addFriend($set);
+        if ($post['birthday'] != NULL) {
+            $event_data = array(
+                'user_id' => $this->userid,
+                'event' => 'Quick Contact',
+                'event_type' => $post['event_type'],
+                'group_type' => "individual",
+                'contact_id' => $contactid,
+                'color' => "#0073b7",
+                'notify' => "them",
+                'date' => $this->wi_common->getMySqlDate($this->wi_common->getUTCDate(), $this->session->userdata('u_date_format'))
+            );
+            $this->db->insert('wi_schedule', $event_data);
+        }
+    }
+
     function addFriend($set) {
 
         if (strlen($set['birthday']) <= 5) {
@@ -125,6 +150,9 @@ class M_contacts extends CI_Model {
                     $this->wi_common->getMySqlDate($set['birthday'], $this->session->userdata('u_date_format')) :
                     NULL;
         }
+        $set['phone'] = isset($set['phone']) && (preg_match('/^\(?\d{3}\)?[- ]?\d{3}[- ]?\d{4}$/', $set['phone'])) ?
+                str_replace(array('(', ')', ' ', '-'), '', $set['code'] . $set['phone']) :
+                NULL;
 
         $set['user_id'] = $this->userid;
         $this->db->insert('wi_contact_detail', $set);
@@ -144,7 +172,7 @@ class M_contacts extends CI_Model {
             );
             $this->db->insert('wi_schedule', $event_data);
         }
-        return true;
+        return $insertid;
     }
 
     function createContact($set) {
