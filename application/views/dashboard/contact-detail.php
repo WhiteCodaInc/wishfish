@@ -404,16 +404,6 @@ switch ($msg) {
 ?>
 <?php $sortDt = substr($this->session->userdata('u_date_format'), 0, 5); ?>
 <script type="text/javascript">
-
-    $('#quickForm .default-date-picker').datepicker({
-        format: "<?= $sortDt ?>",
-        todayBtn: "linked",
-        autoclose: true,
-        todayHighlight: true
-    }).on('changeDate', function (ev) {
-        $('#conForm input[name="birthday"]').focusout();
-    });
-
 <?php if ($msg): ?>
         alertify.<?= $t ?>("<?= $m ?>");
 <?php endif; ?>
@@ -429,7 +419,30 @@ switch ($msg) {
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
 
+<!-- CK Editor -->
+<script src="//cdn.ckeditor.com/4.4.3/standard/ckeditor.js"></script>
+<!-- Bootstrap WYSIHTML5 -->
+<script src="<?= base_url() ?>assets/dashboard/js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
+<!-- bootstrap time picker -->
+<script src="<?= base_url() ?>assets/dashboard/js/plugins/timepicker/bootstrap-timepicker.min.js" type="text/javascript"></script>
+
 <script type="text/javascript">
+
+    $('#quickForm .default-date-picker').datepicker({
+        format: "<?= $sortDt ?>",
+        todayBtn: "linked",
+        autoclose: true,
+        todayHighlight: true
+    }).on('changeDate', function (ev) {
+        $('#conForm input[name="birthday"]').focusout();
+    });
+    $(".textarea").wysihtml5();
+    $(".timepicker").timepicker({
+        showInputs: false,
+        showMeridian: false
+    });
+
+
     $('#limit').click(function () {
 <?php if (isset($limit) && $limit == 0) { ?>
             alertify.confirm("Your Account was exceeded it`s limit & need to be upgrade your plan.\nWould you like to upgrade your plan ?", function (e) {
