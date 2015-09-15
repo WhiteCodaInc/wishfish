@@ -243,8 +243,8 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title">Add New Contact</h4>
             </div>
-            <div class="modal-body">
-                <form id="quickForm" action="<?= site_url() ?>app/contacts/quickContact" method="post">
+            <form id="quickForm" action="<?= site_url() ?>app/contacts/quickContact" method="post">
+                <div class="modal-body">
                     <div class="form-group">
                         <div class="row">
                             <div  class="col-md-6">
@@ -349,20 +349,20 @@
                             </div>
                         </div>
                     </div>
-                    <input value="" name="zodiac" type="hidden" class="form-control" >
-                    <input value="" name="age" type="hidden" class="form-control" >
-                </form>
-            </div>
-            <div class="modal-footer clearfix">
-                <div class="row">
-                    <div class="col-md-3">
-                        <button type="submit" class="btn btn-primary pull-left">Add Contact</button>
-                    </div>
-                    <div class="col-md-9" style="text-align: right">
-                        <button type="button" class="btn btn-danger discard" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
+                </div>
+                <div class="modal-footer clearfix">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <button type="submit" class="btn btn-primary pull-left">Add Contact</button>
+                        </div>
+                        <div class="col-md-9" style="text-align: right">
+                            <button type="button" class="btn btn-danger discard" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
+                        </div>
                     </div>
                 </div>
-            </div>
+                <input value="" name="zodiac" type="hidden" class="form-control" >
+                <input value="" name="age" type="hidden" class="form-control" >
+            </form>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div>
