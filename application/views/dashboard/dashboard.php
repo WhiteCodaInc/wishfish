@@ -986,7 +986,7 @@
             };
         })(jQuery);
     </script>
-
+    <script src="<?= base_url() ?>assets/dashboard/js/plugins/form-wizard/wizard.js" type="text/javascript"></script>
 <?php endif; ?>
 
 <script type="text/javascript">
@@ -1034,10 +1034,6 @@
     });
 </script>
 
-<!--   plugins 	 -->
-<!--<script src="<?= base_url() ?>assets/dashboard/js/plugins/form-wizard/jquery.bootstrap.wizard.js" type="text/javascript"></script>-->
-
-<script src="<?= base_url() ?>assets/dashboard/js/plugins/form-wizard/wizard.js" type="text/javascript"></script>
 
 <script src="<?= base_url() ?>assets/dashboard/timeline/js/underscore-min.js" type="text/javascript" charset="utf-8"></script>
 <script src="<?= base_url() ?>assets/dashboard/timeline/js/backbone-min.js" type="text/javascript" charset="utf-8"></script>
