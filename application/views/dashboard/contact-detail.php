@@ -436,6 +436,7 @@ switch ($msg) {
     }).on('changeDate', function (ev) {
         $('#conForm input[name="birthday"]').focusout();
     });
+    CKEDITOR.replace('emailbody');
     $(".textarea").wysihtml5();
     $(".timepicker").timepicker({
         showInputs: false,
