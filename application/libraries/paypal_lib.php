@@ -8,7 +8,7 @@ if (!defined('BASEPATH'))
  * */
 class Paypal_lib extends CI_Controller {
 
-    var $is_sandbox = TRUE;
+    var $is_sandbox = FALSE;
     var $_errors = array();
     var $_endPoint = '';
     var $_version = '74.0';
