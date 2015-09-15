@@ -237,7 +237,7 @@
 
 <!---------------------------Add New Contact------------------------------->
 <div class="modal fade" id="quick-modal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" style="max-width: 400px">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -333,16 +333,20 @@
                         </div><!-- /.box -->
                     </div>
                     <div class="form-group">
-                        <div class="bootstrap-timepicker">
-                            <div class="form-group">
-                                <label>Time picker:</label>
-                                <div class="input-group">
-                                    <input name="time" type="text" class="form-control timepicker" />
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-clock-o"></i>
-                                    </div>
-                                </div><!-- /.input group -->
-                            </div><!-- /.form group -->
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="bootstrap-timepicker">
+                                    <div class="form-group">
+                                        <label>Time picker:</label>
+                                        <div class="input-group">
+                                            <input name="time" type="text" class="form-control timepicker" />
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-clock-o"></i>
+                                            </div>
+                                        </div><!-- /.input group -->
+                                    </div><!-- /.form group -->
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <input value="" name="zodiac" type="hidden" class="form-control" >
