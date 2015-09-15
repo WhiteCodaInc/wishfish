@@ -500,20 +500,13 @@
         });
 
         $('#step1Form .default-date-picker').datepicker({
-            format: "<?= $this->session->userdata('u_date_format') ?>",
+            format: "mm/dd",
+//            format: "<?= $this->session->userdata('u_date_format') ?>",
             todayBtn: "linked",
             autoclose: true,
             todayHighlight: true
         }).on('changeDate', function (ev) {
             $('#step1Form input[name="birthday"]').focusout();
-        });
-        $('#step1 .default-date-picker').datepicker({
-            format: "mm/dd",
-            todayBtn: "linked",
-            autoclose: true,
-            todayHighlight: true
-        }).on('changeDate', function (ev) {
-            $('#step1 input[name="birthday"]').focusout();
         });
     });
 </script>
