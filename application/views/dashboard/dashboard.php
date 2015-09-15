@@ -404,7 +404,7 @@
                                     <input style="width: 110px;height: 50px;" type='button' class='btn btn-finish btn-info btn-lg' name='finish' value='Finish' />
                                 </div>
                                 <div class="pull-left">
-                                    <input style="width: 110px;height: 50px;" type='button' class='btn btn-previous bg-gray btn-lg' name='previous' value='Previous' />
+                                    <input style="width: 110px;height: 50px;" type='button' class='btn btn-previous btn-info btn-lg' name='previous' value='Previous' />
                                 </div>
                                 <div class="clearfix"></div>
                             </div>	
@@ -764,7 +764,7 @@
                         url: "<?= site_url() ?>app/dashboard/checkPhoneVerification",
                         success: function (data, textStatus, jqXHR) {
                             $('.btn-next').prop('disabled', false);
-                            if (data != "1") {
+                            if (data != '1') {
                                 phone = false;
                                 $('#step3 #event_type').text("Email");
                                 $('#step3 .sub').show();
