@@ -731,11 +731,13 @@
             this.next = function (e) {
                 var currIndex = obj.currentIndex();
                 if (currIndex == '0') {
+                    $('.btn-next').prop('disabled', true);
                     var fname = $('#step1Form input[name="fname"]').val().trim();
                     var lname = $('#step1Form input[name="lname"]').val().trim();
                     var bday = $('#step1Form input[name="birthday"]').val().trim();
                     if (fname == "" || lname == "" || bday == "") {
                         alertify.error("All Field is Required..!");
+                        $('.btn-next').prop('disabled', false);
                         return false;
                     } else {
                         $.ajax({
@@ -743,6 +745,7 @@
                             data: $('#step1Form').serialize(),
                             url: "<?= site_url() ?>app/contacts/addFriend",
                             success: function (data, textStatus, jqXHR) {
+                                $('.btn-next').prop('disabled', false);
                                 if (data != "1") {
                                     alertify.error("Contact not inserted..!");
                                     return false;
@@ -755,10 +758,12 @@
                         });
                     }
                 } else if (currIndex == '1') {
+                    $('.btn-next').prop('disabled', true);
                     $.ajax({
                         type: 'POST',
                         url: "<?= site_url() ?>app/dashboard/checkPhoneVerification",
                         success: function (data, textStatus, jqXHR) {
+                            $('.btn-next').prop('disabled', false);
                             if (data != "1") {
                                 phone = false;
                                 $('#step3 #event_type').text("Email");
