@@ -773,6 +773,16 @@
                 this.previous = function (e) {
                     var currIndex = obj.currentIndex();
                     console.log(currIndex);
+
+                    if (currIndex == '2') {
+                        $('.wizard-card').css('height', '400px');
+                        $('.tab-content').css('height', '235px');
+                    } else if (currIndex == '1') {
+                        $('.wizard-card').removeAttr('style');
+                        $('.tab-content').removeAttr('style');
+                        $('#step1Form').trigger('reset');
+                    }
+
                     // If we clicked the first then dont activate this
                     if (element.hasClass('first')) {
                         return false;
