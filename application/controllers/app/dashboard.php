@@ -262,7 +262,7 @@ class Dashboard extends CI_Controller {
         $ev = array();
         foreach ($events as $key => $value) {
             $ev[$key]['id'] = "event{$value->event_id}";
-            $ev[$key]['title'] = $value->event . '(' . strtoupper($value->event_type) . ')';
+            $ev[$key]['title'] = $value->event;
             $ev[$key]['description'] = $value->body;
             $ev[$key]['startdate'] = $value->date;
             $ev[$key]['high_threshold'] = 50;
