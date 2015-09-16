@@ -24,7 +24,7 @@ class M_email_list extends CI_Model {
         $this->db->select("E.name,count(contact_id) as totalC");
         $this->db->from('email_list as E');
         $this->db->join('email_list_contacts as EC', 'E.list_id = EC.list_id', 'left outer');
-//        $this->db->group_by('EC.list_id');
+        $this->db->group_by('E.list_id');
         $query = $this->db->get();
         echo '<pre>';
         print_r($query->result());
