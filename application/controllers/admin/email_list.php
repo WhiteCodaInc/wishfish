@@ -64,7 +64,8 @@ class Email_list extends CI_Controller {
     }
 
     function view($listid) {
-        $this->objlist->getListContacts($listid);
+        $data['contacts'] = $this->objlist->getListContacts($listid);
+        $this->load->view('admin/email-list-wise-contacts', $data);
     }
 
 }
