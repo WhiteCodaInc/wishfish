@@ -143,12 +143,12 @@ switch ($msg) {
                     aTargets: [0, 1, 2]
                 }]
         });
-        $("#lcontact-data-table").dataTable({
-            aoColumnDefs: [{
-                    bSortable: false,
-                    aTargets: [0, 1]
-                }]
-        });
+//        $("#lcontact-data-table").dataTable({
+//            aoColumnDefs: [{
+//                    bSortable: false,
+//                    aTargets: [0, 1]
+//                }]
+//        });
     });
 </script>
 <script type="text/javascript">
