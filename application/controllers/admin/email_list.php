@@ -76,7 +76,7 @@ class Email_list extends CI_Controller {
     function action() {
         $post = $this->input->post();
         if ($post['actionType'] == "Delete") {
-            $this->objgroup->setAction($post);
+            $this->objlist->setAction($post);
             header('location:' . site_url() . 'admin/email_list/view/' . $post['listid'] . '?msg=D');
         } else {
             header('location:' . site_url() . 'admin/email_list');
