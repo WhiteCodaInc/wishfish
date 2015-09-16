@@ -340,6 +340,11 @@ $img_src = ($avatar != "") ?
                         <i class="fa fa-angle-double-right"></i> <span>Media Library</span>
                     </a>
                 </li>
+                <li class="" id="21">
+                    <a href="<?= site_url() ?>admin/email_list">
+                        <i class="fa fa-angle-double-right"></i> <span>Funnel Email List</span>
+                    </a>
+                </li>
             </ul>
             <script type="text/javascript">
                 $(document).ready(function () {
