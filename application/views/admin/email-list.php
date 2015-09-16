@@ -23,7 +23,7 @@
     <section class="content">
         <div class="row elist">
             <div class="col-xs-12">
-                <div class="box" >
+                <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">Email List Detail</h3>
                     </div><!-- /.box-header -->
@@ -43,10 +43,12 @@
                                         <td><?= $value->name ?></td>
                                         <td><?= $value->total ?></td>
                                         <td>
-                                            <a href="<?= site_url() ?>admin/email_list/view/<?= $value->list_id ?>" class="btn btn-info btn-xs">
-                                                <i class="fa fa-edit"></i>
-                                                View
-                                            </a>
+                                            <?php if ($value->total > 0): ?>
+                                                <a id="<?= $value->list_id ?>" href="javascript:void(0);" class="btn btn-info btn-xs">
+                                                    <i class="fa fa-eye"></i>
+                                                    View
+                                                </a>
+                                            <?php endif; ?>
                                         </td>
                                     </tr>
                                 <?php } ?>
@@ -73,14 +75,9 @@
                     </div><!-- /.box-header -->
                     <div class="row">
                         <div class="col-xs-12" style="margin-left: 1%">
-<!--                            <a href="<?= site_url() ?>admin/email_list/addEmailList" class="create btn btn-success btn-sm">
-                                <i class="fa fa-plus"></i>
-                                Create New Email List
-                            </a>
-                            <button style="margin-left: 10px" value="Delete" class="delete btn btn-danger btn-sm" id="Delete" type="button" >Delete</button>-->
+                            <button class="btn btn-warning" id="goback" type="button" >Go Back</button>
                         </div>
                     </div>
-
                     <div class="box-body table-responsive" id="data-panel">
 
                         <table id="lcontact-data-table" class="table table-bordered table-striped">
@@ -91,25 +88,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($lists as $value) { ?>
-                                    <tr>
-                                        <td>
-                                            <div>
-                                                <label>
-                                                    <input type="checkbox" name="group[]" value="<?= $value->group_id ?>"/>
-                                                </label>
-                                            </div>
-                                        </td>
-                                        <td class="hidden-xs hidden-sm"><?= $value->group_id ?></td>
-                                        <td><?= $value->group_name ?></td>
-                                        <td>
-                                            <a href="<?= site_url() ?>admin/email_list/editEmailList/<?= $value->group_id ?>" class="btn bg-navy btn-xs">
-                                                <i class="fa fa-edit"></i>
-                                                Edit
-                                            </a>
-                                        </td>
-                                    </tr>
-                                <?php } ?>
+
                             </tbody>
                             <tfoot>
                                 <tr>
@@ -174,7 +153,25 @@ switch ($msg) {
 </script>
 <script type="text/javascript">
     $(document).ready(function () {
-
+        $('#list-data-table tbody tr td a').click(function () {
+            var listid = $(this).attr('id');
+            $('.elist .overlay').show();
+            $('.elist .loading-img').show();
+            $.ajax({
+                type: 'POST',
+                url: "<?= site_url() ?>admin/email_list/view/" + listid,
+                success: function (data, textStatus, jqXHR) {
+                    $('.elist .overlay').hide();
+                    $('.elist .loading-img').hide();
+                    $('.elist').hide();
+                    $('#lcontact-data-table tbody').html(data);
+                    $('.lcontacts').show();
+                }
+            });
+        });
+        $('#goback').click(function () {
+            $('.lcontacts').hide();
+            $('.elist').show();
+        });
     });
-    F
 </script>
