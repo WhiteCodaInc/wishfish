@@ -1,6 +1,6 @@
 <?php foreach ($contacts as $value) { ?>
     <tr>
-        <td><?= $value->contact_name ?></td>
-        <td><?= $value->contact_email ?></td>
+        <td><?= $value->name ?></td>
+        <td><?= $value->email ?></td>
     </tr>
 <?php } ?>
