@@ -28,7 +28,7 @@
                     <form name="checkForm" id="checkForm" action="" method="post">
                         <div class="box-body table-responsive" id="data-panel">
 
-                            <table id="customer-data-table" class="table table-bordered table-striped">
+                            <table id="lcontact-data-table" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
                                         <th style="padding: 10px;">
