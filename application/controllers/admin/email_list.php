@@ -48,8 +48,8 @@ class Email_list extends CI_Controller {
         header('location:' . site_url() . 'admin/email_list?msg=I');
     }
 
-    function editEmailList($gid) {
-        $data['lists'] = $this->objlist->getEmailList($gid);
+    function editEmailList($listid) {
+        $data['lists'] = $this->objlist->getEmailList($listid);
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');
@@ -64,8 +64,23 @@ class Email_list extends CI_Controller {
     }
 
     function view($listid) {
+        $data['listInfo'] = $this->objlist->getEmailList($listid);
         $data['contacts'] = $this->objlist->getListContacts($listid);
-        $this->load->view('admin/email-list-wise-contacts', $data);
+        $this->load->view('admin/admin_header');
+        $this->load->view('admin/admin_top');
+        $this->load->view('admin/admin_navbar');
+        $this->load->view('admin/email-list-contacts', $data);
+        $this->load->view('admin/admin_footer');
+    }
+
+    function action() {
+        $type = $this->input->post('actionType');
+        if ($type == "Delete") {
+            $this->objgroup->setAction();
+            header('location:' . site_url() . 'admin/customer_groups?msg=D');
+        } else {
+            header('location:' . site_url() . 'admin/customer_groups');
+        }
     }
 
 }

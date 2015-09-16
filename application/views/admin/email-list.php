@@ -21,7 +21,7 @@
 
     <!-- Main content -->
     <section class="content">
-        <div class="row elist">
+        <div class="row">
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
@@ -44,7 +44,7 @@
                                         <td><?= $value->total ?></td>
                                         <td>
                                             <?php if ($value->total > 0): ?>
-                                                <a id="<?= $value->list_id ?>" href="javascript:void(0);" class="btn btn-info btn-xs">
+                                                <a href="<?= site_url() ?>admin/email_list/view/<?= $value->list_id ?>" class="btn bg-navy btn-xs">
                                                     <i class="fa fa-eye"></i>
                                                     View
                                                 </a>
@@ -64,40 +64,6 @@
                     </div><!-- /.box-body -->
                     <div style="display: none" class="overlay"></div>
                     <div style="display: none" class="loading-img"></div>
-                </div><!-- /.box -->
-            </div>
-        </div>
-        <div class="row lcontacts" style="display: none">
-            <div class="col-xs-12">
-                <div class="box" >
-                    <div class="box-header">
-                        <h3 class="box-title">Email List Detail</h3>
-                    </div><!-- /.box-header -->
-                    <div class="row">
-                        <div class="col-xs-12" style="margin-left: 1%">
-                            <button class="btn btn-warning" id="goback" type="button" >Go Back</button>
-                        </div>
-                    </div>
-                    <div class="box-body table-responsive" id="data-panel">
-
-                        <table id="lcontact-data-table" class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Contact Name</th>
-                                    <th>Contact Email</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>Contact Name</th>
-                                    <th>Contact Email</th>
-                                </tr>
-                            </tfoot>
-                        </table>
-                    </div><!-- /.box-body -->
                 </div><!-- /.box -->
             </div>
         </div>
@@ -143,35 +109,29 @@ switch ($msg) {
                     aTargets: [0, 1, 2]
                 }]
         });
-//        $("#lcontact-data-table").dataTable({
-//            aoColumnDefs: [{
-//                    bSortable: false,
-//                    aTargets: [0, 1]
-//                }]
-//        });
     });
 </script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#list-data-table tbody tr td a').click(function () {
-            var listid = $(this).attr('id');
-            $('.elist .overlay').show();
-            $('.elist .loading-img').show();
-            $.ajax({
-                type: 'POST',
-                url: "<?= site_url() ?>admin/email_list/view/" + listid,
-                success: function (data, textStatus, jqXHR) {
-                    $('.elist .overlay').hide();
-                    $('.elist .loading-img').hide();
-                    $('.elist').hide();
-                    $('#lcontact-data-table tbody').html(data);
-                    $('.lcontacts').show();
-                }
-            });
-        });
-        $('#goback').click(function () {
-            $('.lcontacts').hide();
-            $('.elist').show();
-        });
+//        $('#list-data-table tbody tr td a').click(function () {
+//            var listid = $(this).attr('id');
+//            $('.elist .overlay').show();
+//            $('.elist .loading-img').show();
+//            $.ajax({
+//                type: 'POST',
+//                url: "<?= site_url() ?>admin/email_list/view/" + listid,
+//                success: function (data, textStatus, jqXHR) {
+//                    $('.elist .overlay').hide();
+//                    $('.elist .loading-img').hide();
+//                    $('.elist').hide();
+//                    $('#lcontact-data-table tbody').html(data);
+//                    $('.lcontacts').show();
+//                }
+//            });
+//        });
+//        $('#goback').click(function () {
+//            $('.lcontacts').hide();
+//            $('.elist').show();
+//        });
     });
 </script>

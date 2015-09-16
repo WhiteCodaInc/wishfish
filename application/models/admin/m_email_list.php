@@ -29,8 +29,8 @@ class M_email_list extends CI_Model {
         return $query->result();
     }
 
-    function getEmailList($gid) {
-        $query = $this->db->get_where('email_list', array('list_id' => $gid));
+    function getEmailList($listid) {
+        $query = $this->db->get_where('email_list', array('list_id' => $listid));
         return $query->row();
     }
 
@@ -42,7 +42,6 @@ class M_email_list extends CI_Model {
     function updateEmailList($set) {
         $gid = $set['listid'];
         unset($set['listid']);
-
         $this->db->update('email_list', $set, array('list_id' => $gid));
         return TRUE;
     }
@@ -50,6 +49,13 @@ class M_email_list extends CI_Model {
     function getListContacts($listid) {
         $query = $this->db->get_where('email_list_contacts', array('list_id' => $listid));
         return $query->result();
+    }
+
+    function setAction() {
+        $ids = $this->input->post('contact');
+        foreach ($ids as $value) {
+            $this->db->delete('email_list_contacts', array('contact_id' => $value));
+        }
     }
 
 }
