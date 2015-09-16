@@ -72,15 +72,4 @@ class M_setting extends CI_Model {
         $this->db->update('wi_general_setting', $set, array('method_name' => "STRIPE"));
         return TRUE;
     }
-
-    function getPageBuilderSetting() {
-        $query = $this->db->get('page_builder');
-        return $query->row();
-    }
-
-    function updatePageBuilderSetting($set) {
-        $this->db->update('page_builder', $set);
-        return TRUE;
-    }
-
 }

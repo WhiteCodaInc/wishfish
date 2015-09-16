@@ -116,21 +116,4 @@ class Setting extends CI_Controller {
         }
     }
 
-    function page_builder() {
-        $data['setting'] = $this->objsetting->getPageBuilderSetting();
-        $this->load->view('admin/admin_header');
-        $this->load->view('admin/admin_top');
-        $this->load->view('admin/admin_navbar');
-        $this->load->view('admin/page-builder-setting', $data);
-        $this->load->view('admin/admin_footer');
-    }
-
-    function updatePageBuilderSetting() {
-        $post = $this->input->post();
-        if (is_array($post) && count($post) > 0) {
-            $this->objsetting->updatePageBuilderSetting($post);
-        }
-        header('location:' . site_url() . 'admin/setting/page_builder');
-    }
-
 }
