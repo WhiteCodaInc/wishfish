@@ -74,10 +74,10 @@ class Email_list extends CI_Controller {
     }
 
     function action() {
-        $type = $this->input->post('actionType');
-        if ($type == "Delete") {
-            $this->objgroup->setAction();
-            header('location:' . site_url() . 'admin/customer_groups?msg=D');
+        $post = $this->input->post();
+        if ($post['actionType'] == "Delete") {
+            $this->objgroup->setAction($post);
+            header('location:' . site_url() . 'admin/email_list?msg=D');
         } else {
             header('location:' . site_url() . 'admin/customer_groups');
         }

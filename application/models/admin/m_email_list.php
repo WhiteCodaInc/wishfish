@@ -51,8 +51,8 @@ class M_email_list extends CI_Model {
         return $query->result();
     }
 
-    function setAction() {
-        $ids = $this->input->post('contact');
+    function setAction($post) {
+        $ids = $post['contact'];
         foreach ($ids as $value) {
             $this->db->delete('email_list_contacts', array('contact_id' => $value));
         }

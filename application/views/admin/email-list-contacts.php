@@ -62,6 +62,7 @@
                                 </tfoot>
                             </table>
                             <input type="hidden" id="actionType" name="actionType" value="" />
+                            <input type="hidden" name="listid" value="<?= $listInfo->list_id ?>" />
                         </div><!-- /.box-body -->
                     </form>
                 </div><!-- /.box -->
