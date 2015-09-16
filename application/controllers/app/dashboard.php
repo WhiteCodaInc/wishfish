@@ -269,7 +269,7 @@ class Dashboard extends CI_Controller {
             $ev[$key]['date_display'] = 'da';
             $ev[$key]['importance'] = "35";
 
-            switch ($value->group_type) {
+            switch ($value->event_type) {
                 case "sms":
                     $ev[$key]['icon'] = "sms.png";
                     break;
