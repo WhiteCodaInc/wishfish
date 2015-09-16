@@ -140,13 +140,13 @@ switch ($msg) {
         $("#list-data-table").dataTable({
             aoColumnDefs: [{
                     bSortable: false,
-                    aTargets: [0, 3]
+                    aTargets: [0, 1, 2]
                 }]
         });
         $("#lcontact-data-table").dataTable({
             aoColumnDefs: [{
                     bSortable: false,
-                    aTargets: [0, 3]
+                    aTargets: [0, 1]
                 }]
         });
     });
