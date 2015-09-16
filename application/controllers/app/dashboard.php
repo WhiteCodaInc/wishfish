@@ -269,8 +269,19 @@ class Dashboard extends CI_Controller {
             $ev[$key]['date_display'] = 'da';
             $ev[$key]['importance'] = "35";
 
+            switch ($value->group_type) {
+                case "sms":
+                    $ev[$key]['icon'] = "sms.png";
+                    break;
+                case "email":
+                    $ev[$key]['icon'] = "email.png";
+                    break;
+                case "notification":
+                    $ev[$key]['icon'] = "notification.png";
+                    break;
+            }
+
             if ($value->group_type == "individual") {
-                $ev[$key]['icon'] = "square_blue.png";
                 if ($value->notify == "them") {
                     $cInfo = $this->wi_common->getContactInfo($value->contact_id);
                     $img_src = ($cInfo->contact_avatar != "") ?
@@ -283,8 +294,6 @@ class Dashboard extends CI_Controller {
                             base_url() . 'assets/dashboard/img/default-avatar.png';
                 }
                 $ev[$key]['image'] = $img_src;
-            } else {
-                $ev[$key]['icon'] = "circle_purple.png";
             }
         }
 
