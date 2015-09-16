@@ -231,11 +231,6 @@ $img_src = ($avatar != "") ?
                                     <i class="fa fa-angle-double-right"></i> <span>Payment Setting</span>
                                 </a>
                             </li>
-                            <li>
-                                <a href="<?= site_url() ?>admin/setting/page_builder">
-                                    <i class="fa fa-angle-double-right"></i> <span>Page Builder Setting</span>
-                                </a>
-                            </li>
                         </ul>
                     </li>
                 <?php endif; ?>
