@@ -36,7 +36,7 @@
                                             <h3 class="box-title">Permission</h3>
                                         </div><!-- /.box-header -->
                                         <div class="box-body">
-                                            <div class="row well" style="height: auto !important">
+                                            <div class="row well" style="margin: 10px 5px;">
                                                 <div class="col-md-2"><label>Contacts</label></div>
                                                 <div class="col-md-10">
                                                     <input name="admin" id="admin"  type="checkbox" >
