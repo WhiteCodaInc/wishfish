@@ -42,25 +42,8 @@
                                                     <div class="row well" style="height: auto !important">
                                                         <div class="col-md-2"><label>Contacts</label></div>
                                                         <div class="col-md-10">
-                                                            <label>
-                                                                <input name="admin" id="admin"  type="checkbox" >
-                                                                Admin
-                                                            </label>
-                                                            <br/>
-                                                            <label>
-                                                                <input name="contacts" id="contacts" class="simple"  type="checkbox" >
-                                                                <span class="lbl padding-8">Contacts</span>
-                                                            </label>
-                                                            <br/>
-                                                            <label>
-                                                                <input name="affiliates" id="affiliates" class="simple"  type="checkbox" >
-                                                                <span class="lbl padding-8">Affiliates</span>
-                                                            </label>
-                                                            <br/>
-                                                            <label>
-                                                                <input name="customers" id="customers" class="simple"  type="checkbox" >
-                                                                <span class="lbl padding-8">Customers</span>
-                                                            </label>
+                                                            <input name="admin" id="admin"  type="checkbox" >
+                                                            Admin
                                                         </div>
                                                     </div>
                                                 </div>
