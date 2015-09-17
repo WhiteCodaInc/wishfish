@@ -36,18 +36,12 @@
                                             <h3 class="box-title">Permission</h3>
                                         </div><!-- /.box-header -->
                                         <div class="box-body">
-                                            <div class="row">
-                                                <div class="col-md-1"></div>
+                                            <div class="row well" style="height: auto !important">
+                                                <div class="col-md-2"><label>Contacts</label></div>
                                                 <div class="col-md-10">
-                                                    <div class="row well" style="height: auto !important">
-                                                        <div class="col-md-2"><label>Contacts</label></div>
-                                                        <div class="col-md-10">
-                                                            <input name="admin" id="admin"  type="checkbox" >
-                                                            Admin
-                                                        </div>
-                                                    </div>
+                                                    <input name="admin" id="admin"  type="checkbox" >
+                                                    Admin
                                                 </div>
-                                                <div class="col-md-1"></div>
                                             </div>
                                         </div>
                                     </div>
