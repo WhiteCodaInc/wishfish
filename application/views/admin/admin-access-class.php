@@ -40,10 +40,11 @@
                                                 <div class="col-md-1"></div>
                                                 <div class="col-md-10">
                                                     <div class="row well" style="height: auto !important">
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-2"><label>Contacts</label></div>
+                                                        <div class="col-md-10">
                                                             <label>
-                                                                <input name="admin" id="admin" class="simple"  type="checkbox" >
-                                                                <span class="lbl padding-8">Admin</span>
+                                                                <input name="admin" id="admin"  type="checkbox" >
+                                                                Admin
                                                             </label>
                                                             <br/>
                                                             <label>
@@ -59,27 +60,6 @@
                                                             <label>
                                                                 <input name="customers" id="customers" class="simple"  type="checkbox" >
                                                                 <span class="lbl padding-8">Customers</span>
-                                                            </label>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label>
-                                                                <input name="sms" id="sms" class="simple"  type="checkbox" >
-                                                                <span class="lbl padding-8">SMS</span>
-                                                            </label>
-                                                            <br/>
-                                                            <label>
-                                                                <input name="email" id="email" class="simple"  type="checkbox" >
-                                                                <span class="lbl padding-8">Email</span>
-                                                            </label>
-                                                            <br/>
-                                                            <label>
-                                                                <input name="calender" id="calender" class="simple"  type="checkbox" >
-                                                                <span class="lbl padding-8">Calender</span>
-                                                            </label>
-                                                            <br/>
-                                                            <label>
-                                                                <input name="setting" id="setting" class="simple"  type="checkbox" >
-                                                                <span class="lbl padding-8">Setting</span>
                                                             </label>
                                                         </div>
                                                     </div>
