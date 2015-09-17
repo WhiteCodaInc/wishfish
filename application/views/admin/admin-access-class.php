@@ -39,8 +39,12 @@
                                             <div class="row well" style="margin: 10px 5px;">
                                                 <div class="col-md-2"><label>Contacts</label></div>
                                                 <div class="col-md-10">
-                                                    <input name="admin" id="admin"  type="checkbox" >
-                                                    Admin
+                                                    <div class="form-group form-inline">
+                                                        <input name="admin" id="admin"  type="checkbox" >
+                                                        Admin
+                                                        <input name="admin" id="admin"  type="checkbox" >
+                                                        Admin
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
