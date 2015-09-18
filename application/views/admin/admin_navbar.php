@@ -183,28 +183,86 @@ $img_src = ($avatar != "") ?
                 <?php endif; ?>
                 <?php
                 if (
+                        $rule->smsi ||
                         $rule->smsb ||
                         $rule->smslbi || $rule->smslbu || $rule->smslbd ||
                         $rule->smsti || $rule->smstu || $rule->smstd
                 ):
-                    $url = ($rule->cusu || $rule->cusd) ?
-                            site_url() . "admin/customers" : "#";
+                    $url = ($rule->smsi) ?
+                            site_url() . "admin/sms/inbox" : "#";
                     ?>
                     <li class="treeview" id="7">
 
                         <a style="float: right" href="#">
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
-                        <a class="tab-desktop" href="<?= site_url() ?>admin/sms/inbox">
+                        <a class="tab-desktop" href="<?= $url ?>">
                             <i class="fa fa-wrench"></i> <span>SMS</span>
                         </a>
-                        <a class="tab-mobile" href="<?= site_url() ?>admin/sms/inbox?ver=mobile">
+                        <a class="tab-mobile" href="<?= ($url != "#") ? "?ver=mobile" : $url ?>">
                             <i class="fa fa-wrench"></i> <span>SMS</span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="<?= site_url() ?>admin/sms/send_sms"><i class="fa fa-angle-double-right"></i> SMS Blast</a></li>
-                            <li><a href="<?= site_url() ?>admin/sms_list_builder"><i class="fa fa-angle-double-right"></i> SMS List Builder</a></li>
-                            <li><a href="<?= site_url() ?>admin/sms_template"><i class="fa fa-angle-double-right"></i> SMS Template</a></li>
+                            <?php if ($rule->smsb): ?>
+                                <li>
+                                    <a href="<?= site_url() ?>admin/sms/send_sms">
+                                        <i class="fa fa-angle-double-right"></i> 
+                                        SMS Blast
+                                    </a>
+                                </li>
+                            <?php endif; ?>
+                            <?php if ($rule->smslbi || $rule->smslbu || $rule->smslbd): ?>
+                                <li>
+                                    <a href="<?= site_url() ?>admin/sms_list_builder">
+                                        <i class="fa fa-angle-double-right"></i> 
+                                        SMS List Builder
+                                    </a>
+                                </li>
+                            <?php endif; ?>
+                            <?php if ($rule->smsti || $rule->smstu || $rule->smstd): ?>
+                                <li>
+                                    <a href="<?= site_url() ?>admin/sms_template">
+                                        <i class="fa fa-angle-double-right"></i> 
+                                        SMS Template
+                                    </a>
+                                </li>
+                            <?php endif; ?>
+                        </ul>
+                    </li>
+                <?php endif; ?>
+                <?php
+                if (
+                        $rule->smsi ||
+                        $rule->smsb ||
+                        $rule->smslbi || $rule->smslbu || $rule->smslbd ||
+                        $rule->smsti || $rule->smstu || $rule->smstd
+                ):
+                    $url = ($rule->smsi) ?
+                            site_url() . "admin/sms/inbox" : "#";
+                    ?>
+                    <li class="treeview" id="8">
+                        <a style="float: right" href="#">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <a href="<?= site_url() ?>admin/mailbox">
+                            <i class="fa fa-wrench"></i> <span>Email</span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="<?= site_url() ?>admin/email/send_email"><i class="fa fa-angle-double-right"></i> Email Blast</a></li>
+                            <li><a href="<?= site_url() ?>admin/email_list_builder"><i class="fa fa-angle-double-right"></i> Email List Builder</a></li>
+                            <li><a href="<?= site_url() ?>admin/email_template"><i class="fa fa-angle-double-right"></i> <span>Email Template</span></a></li>
+                            <li>
+                                <a href="<?= site_url() ?>admin/email_notification">
+                                    <i class="fa fa-angle-double-right"></i>
+                                    <span>Email Notification</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?= site_url() ?>admin/cpanel">
+                                    <i class="fa fa-angle-double-right"></i>
+                                    <span>Email Accounts</span>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                 <?php endif; ?>

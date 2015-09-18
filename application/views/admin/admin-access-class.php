@@ -255,6 +255,17 @@
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-md-3 text-right">
+                                                            <label>Email Mailbox</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <div class="col-md-12">
+                                                                <input name="emailm" type="checkbox" >
+                                                                <span class="plabel">Email Mailbox</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-3 text-right">
                                                             <label>Email Blast</label>
                                                         </div>
                                                         <div class="col-md-9">

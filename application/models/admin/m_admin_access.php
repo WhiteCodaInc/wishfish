@@ -66,6 +66,7 @@ class M_admin_access extends CI_Model {
             'smsti' => (isset($post['smsti']) ? 1 : 0),
             'smstu' => (isset($post['smstu']) ? 1 : 0),
             'smstd' => (isset($post['smstd']) ? 1 : 0),
+            'emailm' => (isset($post['emailm']) ? 1 : 0),
             'emailb' => (isset($post['emailb']) ? 1 : 0),
             'emaillbi' => (isset($post['emaillbi']) ? 1 : 0),
             'emaillbu' => (isset($post['emaillbu']) ? 1 : 0),
