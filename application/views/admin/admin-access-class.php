@@ -337,8 +337,8 @@ switch ($msg) {
                 url: "<?= site_url() ?>admin/admin_access/addClass",
                 data: {class_name: cname},
                 success: function (data, textStatus, jqXHR) {
-                    $('#classForm .overlay').show();
-                    $('#classForm .loading-img').show();
+                    $('#classForm .overlay').hide();
+                    $('#classForm .loading-img').hide();
                     $(this).prop('disabled', false);
                     if (data == "0") {
                         $('#msg').css('color', 'red');
