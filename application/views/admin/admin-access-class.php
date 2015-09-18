@@ -261,7 +261,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <span id="#msg"></span>
+                                <span id="msg"></span>
                             </div>
                         </div>
                         <div style="display: none" class="overlay"></div>
@@ -328,9 +328,6 @@ switch ($msg) {
             }
         });
         $('#addClass').click(function () {
-            $button = $(this);
-            $button.prop('disabled', true)
-            var cname = $('#class_name').val();
 
             if (cname.trim() == '') {
                 $('#msg').css('color', 'red');
@@ -340,6 +337,10 @@ switch ($msg) {
                 $('#msg').empty();
                 return false;
             }
+
+            $button = $(this);
+            $button.prop('disabled', true);
+            var cname = $('#class_name').val();
 
             $('#classForm .overlay').show();
             $('#classForm .loading-img').show();
