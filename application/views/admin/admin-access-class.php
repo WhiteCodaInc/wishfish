@@ -262,19 +262,17 @@
                             <div class="form-group">
                                 <span id="msg"></span>
                             </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <button type="button" id="addClass" class="btn btn-primary pull-left">Create Now</button>
+                                </div>
+                                <div class="col-md-3">
+                                    <button type="button" id="discard" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
+                                </div>
+                            </div>
                         </div>
                         <div style="display: none" class="overlay"></div>
                         <div style="display: none" class="loading-img"></div>
-                    </div>
-                </div>
-                <div class="modal-footer clearfix">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <button type="button" id="addClass" class="btn btn-primary pull-left">Create Now</button>
-                        </div>
-                        <div class="col-md-3">
-                            <button type="button" id="discard" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
-                        </div>
                     </div>
                 </div>
             </form>
