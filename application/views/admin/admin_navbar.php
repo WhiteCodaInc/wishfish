@@ -170,18 +170,14 @@ $img_src = ($avatar != "") ?
                             <span>Customers</span>
                         </a>
                         <ul class="treeview-menu">
-                            <li>
-                                <a href="#">
-                                    <i class="fa fa-plus"></i>
-                                    <span>Create New Customer</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="<?= site_url() ?>admin/customer_groups">
-                                    <!--<a href="#">-->
-                                    <i class="fa fa-angle-double-right"></i> <span>Customer Groups</span>
-                                </a>
-                            </li>
+                            <?php if ($rule->cusgi || $rule->cusgu || $rule->cusgd): ?>
+                                <li>
+                                    <a href="<?= site_url() ?>admin/customer_groups">
+                                        <!--<a href="#">-->
+                                        <i class="fa fa-angle-double-right"></i> <span>Customer Groups</span>
+                                    </a>
+                                </li>
+                            <?php endif; ?>
                         </ul>
                     </li>
                 <?php endif; ?>
