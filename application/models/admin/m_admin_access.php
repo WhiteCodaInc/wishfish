@@ -119,5 +119,4 @@ class M_admin_access extends CI_Model {
             return FALSE;
         }
     }
-
 }
