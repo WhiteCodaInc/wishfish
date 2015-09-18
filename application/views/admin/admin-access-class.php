@@ -53,19 +53,30 @@
                                                 <div class="col-md-12">
                                                     <div class="row">
                                                         <div class="col-md-3 text-right">
+                                                            <label>Calendar</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <div class="col-md-12">
+                                                                <input name="cal" type="checkbox" >
+                                                                <span class="plabel">Calendar</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-3 text-right">
                                                             <label>Contacts</label>
                                                         </div>
                                                         <div class="col-md-9">
                                                             <div class="col-md-3">
-                                                                <input name="coni" id="coni"  type="checkbox" >
+                                                                <input name="coni" type="checkbox" >
                                                                 <span class="plabel">Create</span>
                                                             </div>
                                                             <div class="col-md-3">
-                                                                <input name="conu" id="conu"  type="checkbox" >
+                                                                <input name="conu" type="checkbox" >
                                                                 <span class="plabel">Update</span>
                                                             </div>
                                                             <div class="col-md-3">
-                                                                <input name="cond" id="cond"  type="checkbox" >
+                                                                <input name="cond" type="checkbox" >
                                                                 <span class="plabel">Delete</span>
                                                             </div>
                                                         </div>
@@ -76,15 +87,15 @@
                                                         </div>
                                                         <div class="col-md-9">
                                                             <div class="col-md-3">
-                                                                <input name="congi" id="congi"  type="checkbox" >
+                                                                <input name="congi" type="checkbox" >
                                                                 <span class="plabel">Create</span>
                                                             </div>
                                                             <div class="col-md-3">
-                                                                <input name="congu" id="congu"  type="checkbox" >
+                                                                <input name="congu" type="checkbox" >
                                                                 <span class="plabel">Update</span>
                                                             </div>
                                                             <div class="col-md-3">
-                                                                <input name="congd" id="congd"  type="checkbox" >
+                                                                <input name="congd" type="checkbox" >
                                                                 <span class="plabel">Delete</span>
                                                             </div>
                                                         </div>
@@ -95,7 +106,7 @@
                                                         </div>
                                                         <div class="col-md-9">
                                                             <div class="col-md-3">
-                                                                <input name="cbl" id="cbl"  type="checkbox" >
+                                                                <input name="cbl" type="checkbox" >
                                                                 <span class="plabel">Update</span>
                                                             </div>
                                                         </div>
@@ -106,15 +117,15 @@
                                                         </div>
                                                         <div class="col-md-9">
                                                             <div class="col-md-3">
-                                                                <input name="affi" id="affi"  type="checkbox" >
+                                                                <input name="affi" type="checkbox" >
                                                                 <span class="plabel">Create</span>
                                                             </div>
                                                             <div class="col-md-3">
-                                                                <input name="affu" id="affu"  type="checkbox" >
+                                                                <input name="affu" type="checkbox" >
                                                                 <span class="plabel">Update</span>
                                                             </div>
                                                             <div class="col-md-3">
-                                                                <input name="affd" id="affd"  type="checkbox" >
+                                                                <input name="affd" type="checkbox" >
                                                                 <span class="plabel">Delete</span>
                                                             </div>
                                                         </div>
@@ -125,15 +136,15 @@
                                                         </div>
                                                         <div class="col-md-9">
                                                             <div class="col-md-3">
-                                                                <input name="affgi" id="affgi"  type="checkbox" >
+                                                                <input name="affgi" type="checkbox" >
                                                                 <span class="plabel">Create</span>
                                                             </div>
                                                             <div class="col-md-3">
-                                                                <input name="affgu" id="affgu"  type="checkbox" >
+                                                                <input name="affgu" type="checkbox" >
                                                                 <span class="plabel">Update</span>
                                                             </div>
                                                             <div class="col-md-3">
-                                                                <input name="affgd" id="affgd"  type="checkbox" >
+                                                                <input name="affgd" type="checkbox" >
                                                                 <span class="plabel">Delete</span>
                                                             </div>
                                                         </div>
@@ -144,11 +155,11 @@
                                                         </div>
                                                         <div class="col-md-9">
                                                             <div class="col-md-3">
-                                                                <input name="cusu" id="cusu"  type="checkbox" >
+                                                                <input name="cusu" type="checkbox" >
                                                                 <span class="plabel">Update</span>
                                                             </div>
                                                             <div class="col-md-3">
-                                                                <input name="cusd" id="cusd"  type="checkbox" >
+                                                                <input name="cusd" type="checkbox" >
                                                                 <span class="plabel">Delete</span>
                                                             </div>
                                                         </div>
@@ -159,15 +170,15 @@
                                                         </div>
                                                         <div class="col-md-9">
                                                             <div class="col-md-3">
-                                                                <input name="cusgi" id="cusgi"  type="checkbox" >
+                                                                <input name="cusgi" type="checkbox" >
                                                                 <span class="plabel">Create</span>
                                                             </div>
                                                             <div class="col-md-3">
-                                                                <input name="cusgu" id="cusgu"  type="checkbox" >
+                                                                <input name="cusgu" type="checkbox" >
                                                                 <span class="plabel">Update</span>
                                                             </div>
                                                             <div class="col-md-3">
-                                                                <input name="cusgd" id="cusgd"  type="checkbox" >
+                                                                <input name="cusgd" type="checkbox" >
                                                                 <span class="plabel">Delete</span>
                                                             </div>
                                                         </div>
@@ -178,7 +189,7 @@
                                                         </div>
                                                         <div class="col-md-9">
                                                             <div class="col-md-3">
-                                                                <input name="smsb" id="smsb"  type="checkbox" >
+                                                                <input name="smsb" type="checkbox" >
                                                                 <span class="plabel">SMS Blast</span>
                                                             </div>
                                                         </div>
@@ -189,15 +200,15 @@
                                                         </div>
                                                         <div class="col-md-9">
                                                             <div class="col-md-3">
-                                                                <input name="smslbi" id="smslbi"  type="checkbox" >
+                                                                <input name="smslbi" type="checkbox" >
                                                                 <span class="plabel">Create</span>
                                                             </div>
                                                             <div class="col-md-3">
-                                                                <input name="smslbu" id="smslbu"  type="checkbox" >
+                                                                <input name="smslbu" type="checkbox" >
                                                                 <span class="plabel">Update</span>
                                                             </div>
                                                             <div class="col-md-3">
-                                                                <input name="smslbd" id="smslbd"  type="checkbox" >
+                                                                <input name="smslbd" type="checkbox" >
                                                                 <span class="plabel">Delete</span>
                                                             </div>
                                                         </div>
@@ -208,16 +219,27 @@
                                                         </div>
                                                         <div class="col-md-9">
                                                             <div class="col-md-3">
-                                                                <input name="smsti" id="smsti"  type="checkbox" >
+                                                                <input name="smsti" type="checkbox" >
                                                                 <span class="plabel">Create</span>
                                                             </div>
                                                             <div class="col-md-3">
-                                                                <input name="smstu" id="smstu"  type="checkbox" >
+                                                                <input name="smstu" type="checkbox" >
                                                                 <span class="plabel">Update</span>
                                                             </div>
                                                             <div class="col-md-3">
-                                                                <input name="smstd" id="smstd"  type="checkbox" >
+                                                                <input name="smstd" type="checkbox" >
                                                                 <span class="plabel">Delete</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-3 text-right">
+                                                            <label>Email Blast</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <div class="col-md-3">
+                                                                <input name="emailb" type="checkbox" >
+                                                                <span class="plabel">Email Blast</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -227,16 +249,317 @@
                                                         </div>
                                                         <div class="col-md-9">
                                                             <div class="col-md-3">
-                                                                <input name="emaillbi" id="smslbi"  type="checkbox" >
+                                                                <input name="emaillbi" type="checkbox" >
                                                                 <span class="plabel">Create</span>
                                                             </div>
                                                             <div class="col-md-3">
-                                                                <input name="smslbu" id="smslbu"  type="checkbox" >
+                                                                <input name="emaillbu" type="checkbox" >
                                                                 <span class="plabel">Update</span>
                                                             </div>
                                                             <div class="col-md-3">
-                                                                <input name="smslbd" id="smslbd"  type="checkbox" >
+                                                                <input name="emaillbd" type="checkbox" >
                                                                 <span class="plabel">Delete</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-3 text-right">
+                                                            <label>Email Template</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <div class="col-md-3">
+                                                                <input name="emailti" type="checkbox" >
+                                                                <span class="plabel">Create</span>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <input name="emailtu" type="checkbox" >
+                                                                <span class="plabel">Update</span>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <input name="emailtd" type="checkbox" >
+                                                                <span class="plabel">Delete</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-3 text-right">
+                                                            <label>Email Notification</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <div class="col-md-3">
+                                                                <input name="emailn" type="checkbox" >
+                                                                <span class="plabel">Email Notification</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-3 text-right">
+                                                            <label>Email Accounts</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <div class="col-md-3">
+                                                                <input name="emailai" type="checkbox" >
+                                                                <span class="plabel">Create</span>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <input name="emailau" type="checkbox" >
+                                                                <span class="plabel">Update</span>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <input name="emailad" type="checkbox" >
+                                                                <span class="plabel">Delete</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-3 text-right">
+                                                            <label>SMS Setting</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <div class="col-md-3">
+                                                                <input name="smssi" type="checkbox" >
+                                                                <span class="plabel">Create</span>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <input name="smssu" type="checkbox" >
+                                                                <span class="plabel">Update</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-3 text-right">
+                                                            <label>Calendar Setting</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <div class="col-md-3">
+                                                                <input name="cals" type="checkbox" >
+                                                                <span class="plabel">Calendar Setting</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-3 text-right">
+                                                            <label>Payment Setting</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <div class="col-md-3">
+                                                                <input name="pays" type="checkbox" >
+                                                                <span class="plabel">Calendar Setting</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-3 text-right">
+                                                            <label>FAQ's</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <div class="col-md-3">
+                                                                <input name="faqi" type="checkbox" >
+                                                                <span class="plabel">Create</span>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <input name="faqu" type="checkbox" >
+                                                                <span class="plabel">Update</span>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <input name="faqd" type="checkbox" >
+                                                                <span class="plabel">Delete</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-3 text-right">
+                                                            <label>FAQ Category</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <div class="col-md-3">
+                                                                <input name="faqci" type="checkbox" >
+                                                                <span class="plabel">Create</span>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <input name="faqcu" type="checkbox" >
+                                                                <span class="plabel">Update</span>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <input name="faqcd" type="checkbox" >
+                                                                <span class="plabel">Delete</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-3 text-right">
+                                                            <label>Web Pages</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <div class="col-md-12">
+                                                                <input name="webp" type="checkbox" >
+                                                                <span class="plabel">Webpages</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-3 text-right">
+                                                            <label>Homepage Section</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <div class="col-md-12">
+                                                                <input name="webp" type="checkbox" >
+                                                                <span class="plabel">Homepage Section</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-3 text-right">
+                                                            <label>Feedback</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <div class="col-md-12">
+                                                                <input name="webp" type="checkbox" >
+                                                                <span class="plabel">Feedback</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-3 text-right">
+                                                            <label>Coupon</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <div class="col-md-3">
+                                                                <input name="coui" type="checkbox" >
+                                                                <span class="plabel">Create</span>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <input name="couu" type="checkbox" >
+                                                                <span class="plabel">Update</span>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <input name="coud" type="checkbox" >
+                                                                <span class="plabel">Delete</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-3 text-right">
+                                                            <label>Analytics</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <div class="col-md-3">
+                                                                <input name="totalp" type="checkbox" >
+                                                                <span class="plabel">Total Payment</span>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <input name="totalu" type="checkbox" >
+                                                                <span class="plabel">Total Users</span>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <input name="totalnu" type="checkbox" >
+                                                                <span class="plabel">Total New Users</span>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <input name="admr" type="checkbox" >
+                                                                <span class="plabel">Admin Reports</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-3 text-right">
+                                                            <label>Product Builder</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <div class="col-md-3">
+                                                                <input name="probi" type="checkbox" >
+                                                                <span class="plabel">Create</span>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <input name="probu" type="checkbox" >
+                                                                <span class="plabel">Update</span>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <input name="probd" type="checkbox" >
+                                                                <span class="plabel">Delete</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-3 text-right">
+                                                            <label>Payment Plan Builder</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <div class="col-md-3">
+                                                                <input name="paypi" type="checkbox" >
+                                                                <span class="plabel">Create</span>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <input name="paypu" type="checkbox" >
+                                                                <span class="plabel">Update</span>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <input name="paypd" type="checkbox" >
+                                                                <span class="plabel">Delete</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-3 text-right">
+                                                            <label>Offer Builder</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <div class="col-md-3">
+                                                                <input name="offi" type="checkbox" >
+                                                                <span class="plabel">Create</span>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <input name="offu" type="checkbox" >
+                                                                <span class="plabel">Update</span>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <input name="offd" type="checkbox" >
+                                                                <span class="plabel">Delete</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-3 text-right">
+                                                            <label>Page Builder</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <div class="col-md-12">
+                                                                <input name="pageb" type="checkbox" >
+                                                                <span class="plabel">Page Builder</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-3 text-right">
+                                                            <label>Media Libraries</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <div class="col-md-3">
+                                                                <input name="medi" type="checkbox" >
+                                                                <span class="plabel">Create</span>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <input name="medu" type="checkbox" >
+                                                                <span class="plabel">Update</span>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <input name="medd" type="checkbox" >
+                                                                <span class="plabel">Delete</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-3 text-right">
+                                                            <label>Funnel Email List</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <div class="col-md-3">
+                                                                <input name="funi" type="checkbox" >
+                                                                <span class="plabel">Create</span>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <input name="funv" type="checkbox" >
+                                                                <span class="plabel">View</span>
                                                             </div>
                                                         </div>
                                                     </div>
