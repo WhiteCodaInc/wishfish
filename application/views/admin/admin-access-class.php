@@ -46,20 +46,24 @@
                                         </div><!-- /.box-header -->
                                         <div class="box-body">
                                             <div class="row well" style="margin: 10px 5px;">
-                                                <div class="col-md-2"><label>Contacts</label></div>
-                                                <div class="col-md-10">
-                                                    <div class="col-md-3">
-                                                        <input name="admin" id="admin"  type="checkbox" >
-                                                        <span class="plabel">Admin</span>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <input name="admin" id="admin"  type="checkbox" >
-                                                        <span class="plabel">Admin</span>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <input name="admin" id="admin"  type="checkbox" >
-                                                        <span class="plabel">Admin</span>
-                                                    </div>
+                                                <div class="col-md-12">
+                                                    <div class="row">
+                                                        <div class="col-md-2"><label>Contacts</label></div>
+                                                        <div class="col-md-10">
+                                                            <div class="col-md-3">
+                                                                <input name="coni" id="coni"  type="checkbox" >
+                                                                <span class="plabel">Create</span>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <input name="conu" id="conu"  type="checkbox" >
+                                                                <span class="plabel">Update</span>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <input name="cond" id="cond"  type="checkbox" >
+                                                                <span class="plabel">Delete</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>  
                                                 </div>
                                             </div>
                                         </div>
