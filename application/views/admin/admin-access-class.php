@@ -386,19 +386,19 @@ switch ($msg) {
 <?php endif; ?>
 
 
-//        function setPermission(data) {
-//            var cnt = 1;
-//            $.each(data, function (i, item) {
-//                if (item == 1)
-//                {
-//                    //$('.well #' + i).attr('checked', 'checked');
-//                    $('.well #' + i).trigger('click');
-//                }
-//                else
-//                {
-//                    $('.well #' + i).removeAttr('checked');
-//                }
-//            });
-//        }
+        function setPermission(data) {
+            var cnt = 1;
+            $.each(data, function (i, item) {
+                if (item == 1)
+                {
+                    //$('.well #' + i).attr('checked', 'checked');
+                    $('.well #' + i).parent('.icheckbox_minimal').iCheck('check');
+                }
+                else
+                {
+                    $('.well #' + i).parent('.icheckbox_minimal').iCheck('uncheck');
+                }
+            });
+        }
     });
 </script>
