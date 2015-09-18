@@ -11,10 +11,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1 style="display: none">Contacts</h1>
-        <a style="float: left" href="<?= site_url() ?>admin/contacts/addContact" class="btn btn-success btn-sm create">
-            <i class="fa fa-plus"></i>
-            Create New Contact
-        </a>
+        <?php if ($p->coni): ?>
+            <a style="float: left" href="<?= site_url() ?>admin/contacts/addContact" class="btn btn-success btn-sm create">
+                <i class="fa fa-plus"></i>
+                Create New Contact
+            </a>
+        <?php endif; ?>
         <div style="float: left;margin-right: 2% ">
             <select id="group"  class="form-control m-bot15">
                 <option value="-1">Select Group</option>

@@ -39,6 +39,7 @@ class Contacts extends CI_Controller {
             $data['contacts'] = $this->objcon->getContactDetail();
             $data['groups'] = $this->objgrp->getContactGroups("simple");
             $data['zodiac'] = $this->common->getZodiacs();
+            $data['p'] = $this->p;
             $this->load->view('admin/admin_header');
             $this->load->view('admin/admin_top');
             $this->load->view('admin/admin_navbar');
