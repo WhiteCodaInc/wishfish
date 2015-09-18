@@ -68,7 +68,7 @@ $img_src = ($avatar != "") ?
                         </ul>
                     </li>
                 <?php endif; ?>
-                <li class="treeview" id="11">
+<!--                <li class="treeview" id="11">
                     <a style="float: right" href="#">
                         <i class="fa fa-angle-left pull-right"></i>
                     </a>
@@ -168,7 +168,7 @@ $img_src = ($avatar != "") ?
                     <a href="<?= site_url() ?>admin/email_list">
                         <i class="fa fa-angle-double-right"></i> <span>Funnel Email List</span>
                     </a>
-                </li>
+                </li>-->
             </ul>
             <script type="text/javascript">
                 $(document).ready(function () {
