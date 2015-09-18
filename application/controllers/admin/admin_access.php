@@ -71,9 +71,9 @@ class Admin_access extends CI_Controller {
 
     function addPermission() {
         $post = $this->input->post();
-        echo '<pre>';
-        print_r($post);
-        die();
+//        echo '<pre>';
+//        print_r($post);
+//        die();
         $res = $this->objclass->addPermission($post);
         if ($res) {
             $data['msg'] = "U";
