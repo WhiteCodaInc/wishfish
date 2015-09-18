@@ -387,8 +387,8 @@ switch ($msg) {
 
         $('select#class').change(function () {
             $('input[name="class_id"]').val($(this).val());
-//            $('input[type="checkbox"]').each(function () {
-//                $(this).removeAttr('checked');
+//            $('.icheckbox_minimal').each(function () {
+//                $(this).iCheck('uncheck');
 //            });
             if ($(this).val() == "-1") {
                 return false;
