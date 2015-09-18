@@ -124,26 +124,32 @@ $img_src = ($avatar != "") ?
                         $rule->affi || $rule->affu || $rule->affd ||
                         $rule->affgi || $rule->affgu || $rule->affgd
                 ):
+                    $url = ($rule->affi || $rule->affu || $rule->affd) ?
+                            site_url() . "admin/affiliates" : "#";
                     ?>
                     <li class="treeview" id="5">
                         <a style="float: right" href="#">
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
-                        <a href="<?= site_url() ?>admin/affiliates">
+                        <a href="<?= $url ?>">
                             <i class="fa fa-wrench"></i> <span>Affiliates</span>
                         </a>
                         <ul class="treeview-menu">
-                            <li>
-                                <a href="<?= site_url() ?>admin/affiliates/addAffiliate">
-                                    <i class="fa fa-plus"></i>
-                                    <span>Create New Affiliate</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="<?= site_url() ?>admin/affiliate_groups">
-                                    <i class="fa fa-angle-double-right"></i> <span>Affiliate Groups</span>
-                                </a>
-                            </li>
+                            <?php if ($rule->affi): ?>
+                                <li>
+                                    <a href="<?= site_url() ?>admin/affiliates/addAffiliate">
+                                        <i class="fa fa-plus"></i>
+                                        <span>Create New Affiliate</span>
+                                    </a>
+                                </li>
+                            <?php endif; ?>
+                            <?php if ($rule->affgi || $rule->affgu || $rule->affgd): ?>
+                                <li>
+                                    <a href="<?= site_url() ?>admin/affiliate_groups">
+                                        <i class="fa fa-angle-double-right"></i> <span>Affiliate Groups</span>
+                                    </a>
+                                </li>
+                            <?php endif; ?>
                         </ul>
                     </li>
                 <?php endif; ?>
