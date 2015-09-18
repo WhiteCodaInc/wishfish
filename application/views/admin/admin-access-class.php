@@ -348,6 +348,7 @@ switch ($msg) {
                         $('#class_name').val('');
                         $('#class').append('<option value="' + data + '">' + cname + '</option>');
                         $('#class').val(data);
+                        alertify.success("Access class successfully created..!");
                         $('#discard').trigger('click');
                     }
                 }
