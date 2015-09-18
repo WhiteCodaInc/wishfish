@@ -19,12 +19,12 @@ class M_admin_access extends CI_Model {
     }
 
     function getAdminAccessClass() {
-        $query = $this->db->get_where('privilage');
+        $query = $this->db->get_where('access_class');
         return $query->result();
     }
 
     function addClass($post) {
-        if ($this->db->insert('privilage', $post)) {
+        if ($this->db->insert('access_class', $post)) {
             return TRUE;
         } else {
             return FALSE;
@@ -32,7 +32,7 @@ class M_admin_access extends CI_Model {
     }
 
     function getPermission($post) {
-        $query = $this->db->get_where('privilage', array('class_id' => $post['class_id']));
+        $query = $this->db->get_where('access_class', array('class_id' => $post['class_id']));
         return $query->row();
     }
 
@@ -49,7 +49,7 @@ class M_admin_access extends CI_Model {
         );
         $this->session->set_userdata('classid', $post['class_id']);
         $where = array('class_id' => $post['class_id']);
-        if ($this->db->update('privilage', $set, $where)) {
+        if ($this->db->update('access_class', $set, $where)) {
             return $post['class_id'];
         } else {
             return FALSE;
