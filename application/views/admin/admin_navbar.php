@@ -153,6 +153,38 @@ $img_src = ($avatar != "") ?
                         </ul>
                     </li>
                 <?php endif; ?>
+                <?php
+                if (
+                        $rule->cusu || $rule->cusd ||
+                        $rule->cusgi || $rule->cusgu || $rule->cusgd
+                ):
+                    $url = ($rule->cusu || $rule->cud) ?
+                            site_url() . "admin/customers" : "#";
+                    ?>
+                    <li class="treeview" id="6">
+                        <a style="float: right" href="#">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <a href="<?= $url ?>">
+                            <i class="fa fa-envelope"></i>
+                            <span>Customers</span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-plus"></i>
+                                    <span>Create New Customer</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?= site_url() ?>admin/customer_groups">
+                                    <!--<a href="#">-->
+                                    <i class="fa fa-angle-double-right"></i> <span>Customer Groups</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                <?php endif; ?>
                 <!--                <li class="treeview" id="11">
                                     <a style="float: right" href="#">
                                         <i class="fa fa-angle-left pull-right"></i>
