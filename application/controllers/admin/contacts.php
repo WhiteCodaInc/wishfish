@@ -13,14 +13,16 @@
  */
 class Contacts extends CI_Controller {
 
+    private $p;
+
     function __construct() {
         parent::__construct();
         $this->load->library("authex");
         $this->load->library("common");
-        $rule = $this->common->getPermission();
+        $this->p = $this->common->getPermission();
         if (!$this->authex->logged_in()) {
             header('location:' . site_url() . 'admin/admin_login');
-        } else if (!$rule->coni && !$rule->conu && !$rule->cond && !$rule->cbl) {
+        } else if (!$this->p->coni && !$this->p->conu && !$this->p->cond && !$this->p->cbl) {
             header('location:' . site_url() . 'admin/dashboard/error/500');
         } else {
             $this->load->library('parser');
@@ -33,14 +35,16 @@ class Contacts extends CI_Controller {
     }
 
     function index() {
-        $data['contacts'] = $this->objcon->getContactDetail();
-        $data['groups'] = $this->objgrp->getContactGroups("simple");
-        $data['zodiac'] = $this->common->getZodiacs();
-        $this->load->view('admin/admin_header');
-        $this->load->view('admin/admin_top');
-        $this->load->view('admin/admin_navbar');
-        $this->load->view('admin/contact-detail', $data);
-        $this->load->view('admin/admin_footer');
+        if ($this->p->coni || $this->p->conu || $this->p->cond) {
+            $data['contacts'] = $this->objcon->getContactDetail();
+            $data['groups'] = $this->objgrp->getContactGroups("simple");
+            $data['zodiac'] = $this->common->getZodiacs();
+            $this->load->view('admin/admin_header');
+            $this->load->view('admin/admin_top');
+            $this->load->view('admin/admin_navbar');
+            $this->load->view('admin/contact-detail', $data);
+            $this->load->view('admin/admin_footer');
+        }
     }
 
     function search() {
