@@ -38,14 +38,9 @@ class M_admin_access extends CI_Model {
 
     function addPermission($post) {
         $set = array(
-            'admin' => (isset($post['admin']) ? 1 : 0),
-            'contacts' => (isset($post['contacts']) ? 1 : 0),
-            'affiliates' => (isset($post['affiliates']) ? 1 : 0),
-            'customers' => (isset($post['customers']) ? 1 : 0),
-            'sms' => (isset($post['sms']) ? 1 : 0),
-            'email' => (isset($post['email']) ? 1 : 0),
-            'calender' => (isset($post['calender']) ? 1 : 0),
-            'setting' => (isset($post['setting']) ? 1 : 0),
+            'coni' => (isset($post['coni']) ? 1 : 0),
+            'conu' => (isset($post['conu']) ? 1 : 0),
+            'cond' => (isset($post['cond']) ? 1 : 0),
         );
         $this->session->set_userdata('classid', $post['class_id']);
         $where = array('class_id' => $post['class_id']);
