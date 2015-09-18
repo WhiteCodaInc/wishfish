@@ -44,6 +44,8 @@ class Contacts extends CI_Controller {
             $this->load->view('admin/admin_navbar');
             $this->load->view('admin/contact-detail', $data);
             $this->load->view('admin/admin_footer');
+        } else {
+            header('location:' . site_url() . 'admin/dashboard/error/500');
         }
     }
 
