@@ -139,6 +139,11 @@ switch ($msg) {
 <!-- /.modal -->
 <script type="text/javascript">
     $(document).ready(function () {
+
+        $('span.plabel').click(function () {
+            $(this).prev('.icheckbox_minimal').iCheck('check');
+        });
+
         $('#Update').click(function () {
             $('#permissionForm').submit();
         });
