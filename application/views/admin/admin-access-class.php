@@ -63,7 +63,25 @@
                                                                 <span class="plabel">Delete</span>
                                                             </div>
                                                         </div>
-                                                    </div>  
+                                                    </div>
+                                                    <hr/>
+                                                    <div class="row">
+                                                        <div class="col-md-2"><label>Contact Groups</label></div>
+                                                        <div class="col-md-10">
+                                                            <div class="col-md-3">
+                                                                <input name="congi" id="congi"  type="checkbox" >
+                                                                <span class="plabel">Create</span>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <input name="congu" id="congu"  type="checkbox" >
+                                                                <span class="plabel">Update</span>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <input name="congd" id="congd"  type="checkbox" >
+                                                                <span class="plabel">Delete</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
