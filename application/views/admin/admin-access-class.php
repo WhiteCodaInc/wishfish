@@ -1,4 +1,3 @@
-<link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/dashboard/css/checkbox.css"/>
 <aside class="right-side">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -21,8 +20,8 @@
     <!-- Main content -->
     <section class="content">
         <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-6">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="box-header">
@@ -37,55 +36,16 @@
                                             <h3 class="box-title">Permission</h3>
                                         </div><!-- /.box-header -->
                                         <div class="box-body">
-                                            <div class="row">
-                                                <div class="col-md-1"></div>
+                                            <div class="row well" style="margin: 10px 5px;">
+                                                <div class="col-md-2"><label>Contacts</label></div>
                                                 <div class="col-md-10">
-                                                    <div class="row well" style="height: auto !important">
-                                                        <div class="col-md-6">
-                                                            <label>
-                                                                <input name="admin" id="admin" class="simple"  type="checkbox" >
-                                                                <span class="lbl padding-8">Admin</span>
-                                                            </label>
-                                                            <br/>
-                                                            <label>
-                                                                <input name="contacts" id="contacts" class="simple"  type="checkbox" >
-                                                                <span class="lbl padding-8">Contacts</span>
-                                                            </label>
-                                                            <br/>
-                                                            <label>
-                                                                <input name="affiliates" id="affiliates" class="simple"  type="checkbox" >
-                                                                <span class="lbl padding-8">Affiliates</span>
-                                                            </label>
-                                                            <br/>
-                                                            <label>
-                                                                <input name="customers" id="customers" class="simple"  type="checkbox" >
-                                                                <span class="lbl padding-8">Customers</span>
-                                                            </label>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label>
-                                                                <input name="sms" id="sms" class="simple"  type="checkbox" >
-                                                                <span class="lbl padding-8">SMS</span>
-                                                            </label>
-                                                            <br/>
-                                                            <label>
-                                                                <input name="email" id="email" class="simple"  type="checkbox" >
-                                                                <span class="lbl padding-8">Email</span>
-                                                            </label>
-                                                            <br/>
-                                                            <label>
-                                                                <input name="calender" id="calender" class="simple"  type="checkbox" >
-                                                                <span class="lbl padding-8">Calender</span>
-                                                            </label>
-                                                            <br/>
-                                                            <label>
-                                                                <input name="setting" id="setting" class="simple"  type="checkbox" >
-                                                                <span class="lbl padding-8">Setting</span>
-                                                            </label>
-                                                        </div>
+                                                    <div class="form-group form-inline">
+                                                        <input name="admin" id="admin"  type="checkbox" >
+                                                        Admin
+                                                        <input name="admin" id="admin"  type="checkbox" >
+                                                        Admin
                                                     </div>
                                                 </div>
-                                                <div class="col-md-1"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -96,7 +56,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3"></div>
+            <div class="col-md-2"></div>
         </div>
     </section><!-- /.content -->
 </aside><!-- /.right-side -->
