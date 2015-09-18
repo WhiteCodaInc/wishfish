@@ -283,28 +283,6 @@
 </div>
 
 
-<?php
-$msg = (isset($msg)) ? $msg : 0;
-switch ($msg) {
-    case "U":
-        $m = "Access Permission Successfully Updated..!";
-        $t = "success";
-        break;
-    case "F":
-        $m = "Access Permission not Successfully Updated..!";
-        $t = "error";
-        break;
-    default:
-        $m = 0;
-        break;
-}
-?>
-<script type="text/javascript">
-<?php if ($msg): ?>
-        alertify.<?= $t ?>("<?= $m ?>");
-<?php endif; ?>
-</script>
-
 <!-- /.modal -->
 <script type="text/javascript">
     $(document).ready(function () {
@@ -379,12 +357,6 @@ switch ($msg) {
                 }
             });
         });
-
-//        $('input[type="checkbox"]').change(function () {
-//            if (!this.checked) {
-//                $(this).removeAttr('checked');
-//            }
-//        });
 
         $('select#class').change(function () {
             $('input[name="class_id"]').val($(this).val());
