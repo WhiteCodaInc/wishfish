@@ -141,7 +141,12 @@ switch ($msg) {
     $(document).ready(function () {
 
         $('span.plabel').click(function () {
-            $(this).prev('.icheckbox_minimal').iCheck('check');
+            if ($(this).prev('.icheckbox_minimal').hasClass('checked')) {
+                $(this).prev('.icheckbox_minimal').iCheck('uncheck');
+            } else {
+                $(this).prev('.icheckbox_minimal').iCheck('uncheck');
+            }
+
         });
 
         $('#Update').click(function () {
