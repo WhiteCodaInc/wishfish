@@ -328,7 +328,7 @@ switch ($msg) {
             }
         });
         $('#addClass').click(function () {
-
+            var cname = $('#class_name').val();
             if (cname.trim() == '') {
                 $('#msg').css('color', 'red');
                 $('#msg').html("Enter Valid Class Name..!");
@@ -340,7 +340,7 @@ switch ($msg) {
 
             $button = $(this);
             $button.prop('disabled', true);
-            var cname = $('#class_name').val();
+
 
             $('#classForm .overlay').show();
             $('#classForm .loading-img').show();
