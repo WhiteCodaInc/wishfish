@@ -232,141 +232,250 @@ $img_src = ($avatar != "") ?
                 <?php endif; ?>
                 <?php
                 if (
-                        $rule->smsi ||
-                        $rule->smsb ||
-                        $rule->smslbi || $rule->smslbu || $rule->smslbd ||
-                        $rule->smsti || $rule->smstu || $rule->smstd
+                        $rule->emailm ||
+                        $rule->emailb ||
+                        $rule->emaillbi || $rule->emaillbu || $rule->emaillbd ||
+                        $rule->emailti || $rule->emailtu || $rule->emailtd ||
+                        $rule->emailn ||
+                        $rule->emailai || $rule->emailau || $rule->emailad
                 ):
-                    $url = ($rule->smsi) ?
-                            site_url() . "admin/sms/inbox" : "#";
+                    $url = ($rule->emailm) ?
+                            site_url() . "admin/mailbox" : "#";
                     ?>
                     <li class="treeview" id="8">
                         <a style="float: right" href="#">
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
-                        <a href="<?= site_url() ?>admin/mailbox">
+                        <a href="<?= $url ?>">
                             <i class="fa fa-wrench"></i> <span>Email</span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="<?= site_url() ?>admin/email/send_email"><i class="fa fa-angle-double-right"></i> Email Blast</a></li>
-                            <li><a href="<?= site_url() ?>admin/email_list_builder"><i class="fa fa-angle-double-right"></i> Email List Builder</a></li>
-                            <li><a href="<?= site_url() ?>admin/email_template"><i class="fa fa-angle-double-right"></i> <span>Email Template</span></a></li>
-                            <li>
-                                <a href="<?= site_url() ?>admin/email_notification">
-                                    <i class="fa fa-angle-double-right"></i>
-                                    <span>Email Notification</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="<?= site_url() ?>admin/cpanel">
-                                    <i class="fa fa-angle-double-right"></i>
-                                    <span>Email Accounts</span>
-                                </a>
-                            </li>
+                            <?php if ($rule->emailb): ?>
+                                <li>
+                                    <a href="<?= site_url() ?>admin/email/send_email">
+                                        <i class="fa fa-angle-double-right"></i> 
+                                        Email Blast
+                                    </a>
+                                </li>
+                            <?php endif; ?>
+                            <?php if ($rule->emaillbi || $rule->emaillbu || $rule->emaillbd): ?>
+                                <li>
+                                    <a href="<?= site_url() ?>admin/email_list_builder">
+                                        <i class="fa fa-angle-double-right"></i> 
+                                        Email List Builder
+                                    </a>
+                                </li>
+                            <?php endif; ?>
+                            <?php if ($rule->emailti || $rule->emailtu || $rule->emailtd): ?>
+                                <li>
+                                    <a href="<?= site_url() ?>admin/email_template">
+                                        <i class="fa fa-angle-double-right"></i> 
+                                        Email Template
+                                    </a>
+                                </li>
+                            <?php endif; ?>
+                            <?php if ($rule->emailn): ?>
+                                <li>
+                                    <a href="<?= site_url() ?>admin/email_notification">
+                                        <i class="fa fa-angle-double-right"></i> 
+                                        Email Notification
+                                    </a>
+                                </li>
+                            <?php endif; ?>
+                            <?php if ($rule->emailai || $rule->emailau || $rule->emailad): ?>
+                                <li>
+                                    <a href="<?= site_url() ?>admin/cpanel">
+                                        <i class="fa fa-angle-double-right"></i> 
+                                        Email Accounts
+                                    </a>
+                                </li>
+                            <?php endif; ?>
                         </ul>
                     </li>
                 <?php endif; ?>
-                <!--                <li class="treeview" id="11">
-                                    <a style="float: right" href="#">
-                                        <i class="fa fa-angle-left pull-right"></i>
-                                    </a>
-                                    <a  href="<?= site_url() ?>admin/faq">
-                                        <i class="fa fa-angle-double-right"></i>
-                                        <span>FAQ'S</span>
-                                    </a>
-                                    <ul class="treeview-menu">
-                                        <li>
-                                            <a href="<?= site_url() ?>admin/faq/faqCategory">
-                                                <i class="fa fa-angle-double-right"></i> <span>FAQ'S Category</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="treeview" id="12">
-                                    <a style="float: right" href="#">
-                                        <i class="fa fa-angle-left pull-right"></i>
-                                    </a>
-                                    <a  href="<?= site_url() ?>admin/pages">
-                                        <i class="fa fa-angle-double-right"></i>
-                                        <span>Web Pages</span>
-                                    </a>
-                                    <ul class="treeview-menu">
-                                        <li>
-                                            <a href="<?= site_url() ?>admin/sections/">
-                                                <i class="fa fa-angle-double-right"></i> <span>Homepage Section</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="" id="13">
-                                    <a href="<?= site_url() ?>admin/feedback">
-                                        <i class="fa fa-angle-double-right"></i> <span>Feedback/Support</span>
+                <?php
+                if (
+                        $rule->smssi || $rule->smssu ||
+                        $rule->cals || $rule->pays
+                ):
+                    ?>
+                    <li class="treeview" id="10">
+                        <a href="#">
+                            <i class="fa fa-wrench"></i>
+                            <span>Settings</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <?php if ($rule->smssi || $rule->smssu): ?>
+                                <li>
+                                    <a href="<?= site_url() ?>admin/setting/sms">
+                                        <i class="fa fa-angle-double-right"></i> <span>SMS Setting</span>
                                     </a>
                                 </li>
-                                <li class="" id="14">
-                                    <a href="<?= site_url() ?>admin/coupons">
-                                        <i class="fa fa-angle-double-right"></i> <span>Coupons</span>
+                            <?php endif; ?>
+                            <?php if ($rule->cals): ?>
+                                <li>
+                                    <a href="<?= site_url() ?>admin/setting/calender">
+                                        <i class="fa fa-angle-double-right"></i> <span>Calender Setting</span>
                                     </a>
                                 </li>
-                                <li class="treeview" id="15">
-                                    <a href="#">
-                                        <i class="fa fa-wrench"></i>
-                                        <span>Analytics</span>
-                                        <i class="fa fa-angle-left pull-right"></i>
-                                    </a>
-                                    <ul class="treeview-menu">
-                                        <li>
-                                            <a href="<?= site_url() ?>admin/analytics">
-                                                <i class="fa fa-angle-double-right"></i> <span>Total Payment</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="<?= site_url() ?>admin/analytics/totalUser">
-                                                <i class="fa fa-angle-double-right"></i> <span>Total Users</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="<?= site_url() ?>admin/analytics/totalNewUser">
-                                                <i class="fa fa-angle-double-right"></i> <span>Total New User</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="<?= site_url() ?>admin/analytics/adminReport">
-                                                <i class="fa fa-angle-double-right"></i> <span>Admin Report</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="" id="16">
-                                    <a href="<?= site_url() ?>admin/products">
-                                        <i class="fa fa-angle-double-right"></i> <span>Product Builder</span>
+                            <?php endif; ?>
+                            <?php if ($rule->pays): ?>
+                                <li>
+                                    <a href="<?= site_url() ?>admin/setting/payment">
+                                        <i class="fa fa-angle-double-right"></i> <span>Payment Setting</span>
                                     </a>
                                 </li>
-                                <li class="" id="17">
-                                    <a href="<?= site_url() ?>admin/plans">
-                                        <i class="fa fa-angle-double-right"></i> <span>Payment Plan Builder</span>
+                            <?php endif; ?>
+                        </ul>
+                    </li>
+                <?php endif; ?>
+                <?php
+                if (
+                        $rule->faqi || $rule->faqu || $rule->faqd ||
+                        $rule->faqci || $rule->faqcu || $rule->faqcd
+                ):
+                    $url = ($rule->faqi || $rule->faqu || $rule->faqd) ?
+                            site_url() . "admin/faq" : "#";
+                    ?>
+                    <li class="treeview" id="11">
+                        <a style="float: right" href="#">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <a  href="<?= $url ?>">
+                            <i class="fa fa-angle-double-right"></i>
+                            <span>FAQ'S</span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <?php if ($rule->faqci || $rule->faqcu || $rule->faqcd): ?>
+                                <li>
+                                    <a href="<?= site_url() ?>admin/faq/faqCategory">
+                                        <i class="fa fa-angle-double-right"></i> <span>FAQ'S Category</span>
                                     </a>
                                 </li>
-                                <li class="" id="18">
-                                    <a href="<?= site_url() ?>admin/offers">
-                                        <i class="fa fa-angle-double-right"></i> <span>Offer Builder</span>
+                            <?php endif; ?>
+                        </ul>
+                    </li>
+                <?php endif; ?>
+                <?php
+                if ($rule->webp || $rule->homes):
+                    $url = ($rule->webp) ?
+                            site_url() . "admin/pages" : "#";
+                    ?>
+                    <li class="treeview" id="12">
+                        <a style="float: right" href="#">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <a  href="<?= $url ?>">
+                            <i class="fa fa-angle-double-right"></i>
+                            <span>Web Pages</span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <?php if ($rule->homes): ?>
+                                <li>
+                                    <a href="<?= site_url() ?>admin/sections">
+                                        <i class="fa fa-angle-double-right"></i> <span>Homepage Section</span>
                                     </a>
                                 </li>
-                                <li class="" id="19">
-                                    <a href="<?= site_url() ?>page-builder/" target="_blank">
-                                        <i class="fa fa-angle-double-right"></i> <span>Page Builder</span>
+                            <?php endif; ?>
+                        </ul>
+                    </li>
+                <?php endif; ?>
+                <?php if ($rule->feed): ?>
+                    <li class="" id="13">
+                        <a href="<?= site_url() ?>admin/feedback">
+                            <i class="fa fa-angle-double-right"></i> <span>Feedback/Support</span>
+                        </a>
+                    </li>
+                <?php endif; ?>
+                <?php if ($rule->coui || $rule->couu || $rule->coud): ?>
+                    <li class="" id="14">
+                        <a href="<?= site_url() ?>admin/coupons">
+                            <i class="fa fa-angle-double-right"></i> <span>Coupons</span>
+                        </a>
+                    </li>
+                <?php endif; ?>
+                <?php if ($rule->totalp || $rule->totalu || $rule->totalnu || $rule->admr): ?>
+                    <li class="treeview" id="15">
+                        <a href="#">
+                            <i class="fa fa-wrench"></i>
+                            <span>Analytics</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <?php if ($rule->totalp): ?>
+                                <li>
+                                    <a href="<?= site_url() ?>admin/analytics">
+                                        <i class="fa fa-angle-double-right"></i> <span>Total Payment</span>
                                     </a>
                                 </li>
-                                <li class="" id="20">
-                                    <a href="<?= site_url() ?>admin/media/">
-                                        <i class="fa fa-angle-double-right"></i> <span>Media Library</span>
+                            <?php endif; ?>
+                            <?php if ($rule->totalu): ?>
+                                <li>
+                                    <a href="<?= site_url() ?>admin/analytics/totalUser">
+                                        <i class="fa fa-angle-double-right"></i> <span>Total Users</span>
                                     </a>
                                 </li>
-                                <li class="" id="21">
-                                    <a href="<?= site_url() ?>admin/email_list">
-                                        <i class="fa fa-angle-double-right"></i> <span>Funnel Email List</span>
+                            <?php endif; ?>
+                            <?php if ($rule->totalnu): ?>
+                                <li>
+                                    <a href="<?= site_url() ?>admin/analytics/totalNewUser">
+                                        <i class="fa fa-angle-double-right"></i> <span>Total New User</span>
                                     </a>
-                                </li>-->
+                                </li>
+                            <?php endif; ?>
+                            <?php if ($rule->admr): ?>
+                                <li>
+                                    <a href="<?= site_url() ?>admin/analytics/adminReport">
+                                        <i class="fa fa-angle-double-right"></i> <span>Admin Report</span>
+                                    </a>
+                                </li>
+                            <?php endif; ?>
+                        </ul>
+                    </li>
+                <?php endif; ?>
+                <?php if ($rule->probi || $rule->probu || $rule->probd): ?>
+                    <li class="" id="16">
+                        <a href="<?= site_url() ?>admin/products">
+                            <i class="fa fa-angle-double-right"></i> <span>Product Builder</span>
+                        </a>
+                    </li>
+                <?php endif; ?>
+                <?php if ($rule->paypi || $rule->paypu || $rule->paypd): ?>
+                    <li class="" id="17">
+                        <a href="<?= site_url() ?>admin/plans">
+                            <i class="fa fa-angle-double-right"></i> <span>Payment Plan Builder</span>
+                        </a>
+                    </li>
+                <?php endif; ?>
+                <?php if ($rule->offi || $rule->offu || $rule->offd): ?>
+                    <li class="" id="18">
+                        <a href="<?= site_url() ?>admin/offers">
+                            <i class="fa fa-angle-double-right"></i> <span>Offer Builder</span>
+                        </a>
+                    </li>
+                <?php endif; ?>
+                <?php if ($rule->pagb): ?>
+                    <li class="" id="19">
+                        <a href="<?= site_url() ?>page-builder/" target="_blank">
+                            <i class="fa fa-angle-double-right"></i> <span>Page Builder</span>
+                        </a>
+                    </li>
+                <?php endif; ?>
+                <?php if ($rule->medi || $rule->medu || $rule->medd): ?>
+                    <li class="" id="20">
+                        <a href="<?= site_url() ?>admin/media/">
+                            <i class="fa fa-angle-double-right"></i> <span>Media Library</span>
+                        </a>
+                    </li>
+                <?php endif; ?>
+                <?php if ($rule->funi || $rule->funv): ?>
+                    <li class="" id="21">
+                        <a href="<?= site_url() ?>admin/email_list">
+                            <i class="fa fa-angle-double-right"></i> <span>Funnel Email List</span>
+                        </a>
+                    </li>
+                <?php endif; ?>
             </ul>
             <script type="text/javascript">
                 $(document).ready(function () {
