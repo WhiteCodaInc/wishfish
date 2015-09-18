@@ -144,7 +144,7 @@ switch ($msg) {
             if ($(this).prev('.icheckbox_minimal').hasClass('checked')) {
                 $(this).prev('.icheckbox_minimal').iCheck('uncheck');
             } else {
-                $(this).prev('.icheckbox_minimal').iCheck('uncheck');
+                $(this).prev('.icheckbox_minimal').iCheck('check');
             }
 
         });
