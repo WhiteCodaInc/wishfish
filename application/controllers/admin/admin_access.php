@@ -42,7 +42,8 @@ class Admin_access extends CI_Controller {
         $post = $this->input->post();
         if (is_array($post) && count($post) > 0) {
             $res = $this->objclass->addClass($post);
-            echo ($res) ? $res : "0";
+//            echo ($res) ? $res : "0";
+            echo ($res) ? "0" : "0";
         }
     }
 

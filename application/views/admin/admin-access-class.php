@@ -331,6 +331,16 @@ switch ($msg) {
             $button = $(this);
             $button.prop('disabled', true)
             var cname = $('#class_name').val();
+
+            if (cname.trim() == '') {
+                $('#msg').css('color', 'red');
+                $('#msg').html("Enter Valid Class Name..!");
+                return false;
+            } else {
+                $('#msg').empty();
+                return false;
+            }
+
             $('#classForm .overlay').show();
             $('#classForm .loading-img').show();
             $.ajax({
