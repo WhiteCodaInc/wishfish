@@ -158,7 +158,7 @@ $img_src = ($avatar != "") ?
                         $rule->cusu || $rule->cusd ||
                         $rule->cusgi || $rule->cusgu || $rule->cusgd
                 ):
-                    $url = ($rule->cusu || $rule->cud) ?
+                    $url = ($rule->cusu || $rule->cusd) ?
                             site_url() . "admin/customers" : "#";
                     ?>
                     <li class="treeview" id="6">
