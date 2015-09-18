@@ -435,7 +435,7 @@
                                                         </div>
                                                         <div class="col-md-9">
                                                             <div class="col-md-12">
-                                                                <input name="webp" type="checkbox" >
+                                                                <input name="homes" type="checkbox" >
                                                                 <span class="plabel">Homepage Section</span>
                                                             </div>
                                                         </div>
@@ -446,7 +446,7 @@
                                                         </div>
                                                         <div class="col-md-9">
                                                             <div class="col-md-12">
-                                                                <input name="webp" type="checkbox" >
+                                                                <input name="feed" type="checkbox" >
                                                                 <span class="plabel">Feedback</span>
                                                             </div>
                                                         </div>
@@ -556,7 +556,7 @@
                                                         </div>
                                                         <div class="col-md-9">
                                                             <div class="col-md-12">
-                                                                <input name="pageb" type="checkbox" >
+                                                                <input name="pagb" type="checkbox" >
                                                                 <span class="plabel">Page Builder</span>
                                                             </div>
                                                         </div>
