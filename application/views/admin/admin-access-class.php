@@ -41,7 +41,7 @@
                         <h3 class="box-title">Admin Access Class</h3>
                     </div><!-- /.box-header -->
                     <div class="box-body">
-                        <form id="permissionForm" method="post" action="<?= site_url() ?>admin/admin_access/addPermission">
+                        <form id="permissionForm" method="post">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="box box-primary">
@@ -224,6 +224,8 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div style="display: none" class="overlay"></div>
+                                        <div style="display: none" class="loading-img"></div>
                                     </div>
                                 </div>
                             </div>
@@ -316,13 +318,28 @@ switch ($msg) {
         });
 
         $('#Update').click(function () {
+            $button = $(this);
+            $button.prop('disabled', true);
+
             if ($('#class').val() == "-1") {
                 alertify.error("Please Select Admin Access Class..!");
                 return false;
-            } else {
-
-                $('#permissionForm').submit();
             }
+            $('#permissionForm .overlay').hide();
+            $('#permissionForm .loading-img').hide();
+            $.ajax({
+                type: 'POST',
+                url: "<?= site_url() ?>admin/admin_access/addPermission",
+                data: $('#permissionForm').serialize(),
+                success: function (data, textStatus, jqXHR) {
+                    $('#classForm .overlay').hide();
+                    $('#classForm .loading-img').hide();
+                    $button.prop('disabled', false);
+                    (data == "0") ?
+                            alertify.error("Access class not successfully updated..!") :
+                            alertify.success("Access class successfully updated..!");
+                }
+            });
         });
         $('#addClass').click(function () {
             var cname = $('#class_name').val();
@@ -336,7 +353,6 @@ switch ($msg) {
 
             $button = $(this);
             $button.prop('disabled', true);
-
 
             $('#classForm .overlay').show();
             $('#classForm .loading-img').show();
@@ -391,12 +407,6 @@ switch ($msg) {
                 });
             }
         });
-
-<?php if (isset($id)): ?>
-            $('#class').val("<?= $id ?>");
-            $('#class').trigger('change');
-<?php endif; ?>
-
 
         function setPermission(data) {
             var cnt = 1;
