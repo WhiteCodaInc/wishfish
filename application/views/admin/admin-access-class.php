@@ -8,7 +8,7 @@
     }
     .well .row{
         margin-bottom: 10px;
-        border-bottom: 1px solid lightgray;
+        /*border-bottom: 1px solid lightgray;*/
     }
 </style>
 <aside class="right-side">
