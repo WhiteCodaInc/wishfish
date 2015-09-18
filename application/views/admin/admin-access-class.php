@@ -395,6 +395,8 @@ switch ($msg) {
                 return false;
             }
             else if ($(this).val() != "-1") {
+                $('#permissionForm .overlay').show();
+                $('#permissionForm .loading-img').show();
                 var cid = $(this).val();
                 $.ajax({
                     type: 'POST',
@@ -402,6 +404,8 @@ switch ($msg) {
                     url: "<?= site_url() ?>admin/admin_access/permission",
                     data: {'class_id': cid},
                     success: function (json, textStatus, jqXHR) {
+                        $('#permissionForm .overlay').hide();
+                        $('#permissionForm .loading-img').hide();
                         var data = JSON.parse(json);
                         setPermission(data);
                     }
