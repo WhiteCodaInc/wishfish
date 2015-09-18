@@ -61,7 +61,7 @@ $img_src = ($avatar != "") ?
                         </a>
                         <ul class="treeview-menu">
                             <li>
-                                <a href="<?= site_url() ?>admin/admin_access">
+                                <a href="<?= site_url() ?>admin/admin_access/">
                                     <i class="fa fa-angle-double-right"></i> <span>Admin Access Class</span>
                                 </a>
                             </li>
