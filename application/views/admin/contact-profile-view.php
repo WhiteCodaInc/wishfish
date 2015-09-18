@@ -32,26 +32,8 @@
     ?>
     <!-- Main content -->
     <section class="content">
-        <div class="row">
-            <div class="col-md-12" >
-<!--                <a style="margin-left: 10px" href="<?= site_url() ?>admin/contacts/editContact/<?= $contact->contact_id ?>" class="create btn bg-navy">
-                    <i class="fa fa-edit"></i>
-                    Edit
-                </a>
-                <a href="<?= site_url() ?>admin/calender/createEvent/contact/<?= $contact->contact_id ?>" class="create btn btn-success">
-                    <i class="fa fa-plus"></i>
-                    Create Calender Event
-                </a>
-                <a href="<?= site_url() ?>admin/calender/createEvent/contact/<?= $contact->contact_id ?>?type=bday" class="create btn btn-warning">
-                    Schedule Birthday
-                </a>-->
-            </div>
-        </div>
-        <br/>
-        <div class="box box-primary">
-            <div class="box-header">
-            </div><!-- /.box-header -->
 
+        <div class="box box-primary">
             <div class="box-body">
                 <div class="row">
                     <div class="col-md-3">
