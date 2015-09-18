@@ -70,8 +70,9 @@ $img_src = ($avatar != "") ?
                 <?php endif; ?>
                 <?php
                 if (
-                        $rule->coni || $rule->conu || $rule->cond || $rule->congi ||
-                        $rule->congu || $rule->congd || $rule->cbl
+                        $rule->coni || $rule->conu || $rule->cond ||
+                        $rule->congi || $rule->congu || $rule->congd ||
+                        $rule->cbl
                 ):
                     $url = ($rule->coni || $rule->conu || $rule->cond) ?
                             site_url() . "admin/contacts" : "#";
@@ -115,6 +116,34 @@ $img_src = ($avatar != "") ?
                                     </a>
                                 </li>
                             <?php endif; ?>
+                        </ul>
+                    </li>
+                <?php endif; ?>
+                <?php
+                if (
+                        $rule->affi || $rule->affu || $rule->affd ||
+                        $rule->affgi || $rule->affgu || $rule->affgd
+                ):
+                    ?>
+                    <li class="treeview" id="5">
+                        <a style="float: right" href="#">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <a href="<?= site_url() ?>admin/affiliates">
+                            <i class="fa fa-wrench"></i> <span>Affiliates</span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li>
+                                <a href="<?= site_url() ?>admin/affiliates/addAffiliate">
+                                    <i class="fa fa-plus"></i>
+                                    <span>Create New Affiliate</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?= site_url() ?>admin/affiliate_groups">
+                                    <i class="fa fa-angle-double-right"></i> <span>Affiliate Groups</span>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                 <?php endif; ?>
