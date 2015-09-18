@@ -73,38 +73,48 @@ $img_src = ($avatar != "") ?
                         $rule->coni || $rule->conu || $rule->cond || $rule->congi ||
                         $rule->congu || $rule->congd || $rule->cbl
                 ):
+                    $url = ($rule->coni || $rule->conu || $rule->cond) ?
+                            site_url() . "admin/contacts" : "#";
                     ?>
                     <li class="treeview" id="4">
                         <a style="float: right" href="#">
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
-                        <a href="<?= site_url() ?>admin/contacts">
+                        <a href="<?= $url ?>">
                             <i class="fa fa-wrench"></i> <span>Company Contacts</span>
                         </a>
                         <ul class="treeview-menu">
-                            <li>
-                                <a href="<?= site_url() ?>admin/contacts/addContact">
-                                    <i class="fa fa-plus"></i>
-                                    <span>Create New Contact</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="<?= site_url() ?>admin/contact_groups">
-                                    <i class="fa fa-angle-double-right"></i> <span>Contact Groups</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="<?= site_url() ?>admin/contacts/block_list">
-                                    <i class="fa fa-lock"></i>
-                                    <span>Contact Block List</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="<?= site_url() ?>admin/scrape">
-                                    <i class="fa fa-angle-double-right"></i>
-                                    <span>Scrape Contacts</span>
-                                </a>
-                            </li>
+                            <?php if ($rule->coni): ?>
+                                <li>
+                                    <a href="<?= site_url() ?>admin/contacts/addContact">
+                                        <i class="fa fa-plus"></i>
+                                        <span>Create New Contact</span>
+                                    </a>
+                                </li>
+                            <?php endif; ?>
+                            <?php if ($rule->congi || $rule->congu || $rule->congd): ?>
+                                <li>
+                                    <a href="<?= site_url() ?>admin/contact_groups">
+                                        <i class="fa fa-angle-double-right"></i> <span>Contact Groups</span>
+                                    </a>
+                                </li>
+                            <?php endif; ?>
+                            <?php if ($rule->cbl): ?>
+                                <li>
+                                    <a href="<?= site_url() ?>admin/contacts/block_list">
+                                        <i class="fa fa-lock"></i>
+                                        <span>Contact Block List</span>
+                                    </a>
+                                </li>
+                            <?php endif; ?>
+                            <?php if ($rule->coni): ?>
+                                <li>
+                                    <a href="<?= site_url() ?>admin/scrape">
+                                        <i class="fa fa-angle-double-right"></i>
+                                        <span>Scrape Contacts</span>
+                                    </a>
+                                </li>
+                            <?php endif; ?>
                         </ul>
                     </li>
                 <?php endif; ?>
