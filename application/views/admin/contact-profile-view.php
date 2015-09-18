@@ -9,17 +9,21 @@
         <h1 style=" display: none">
             Contact Profile
         </h1>
-        <a href="<?= site_url() ?>admin/contacts/editContact/<?= $contact->contact_id ?>" class="create btn bg-navy">
-            <i class="fa fa-edit"></i>
-            Edit
-        </a>
-        <a href="<?= site_url() ?>admin/calender/createEvent/contact/<?= $contact->contact_id ?>" class="create btn btn-success">
-            <i class="fa fa-plus"></i>
-            Create Calender Event
-        </a>
-        <a href="<?= site_url() ?>admin/calender/createEvent/contact/<?= $contact->contact_id ?>?type=bday" class="create btn btn-warning">
-            Schedule Birthday
-        </a>
+        <?php if ($p->conu): ?>
+            <a href="<?= site_url() ?>admin/contacts/editContact/<?= $contact->contact_id ?>" class="create btn bg-navy">
+                <i class="fa fa-edit"></i>
+                Edit
+            </a>
+        <?php endif; ?>
+        <?php if ($p->cal): ?>
+            <a href="<?= site_url() ?>admin/calender/createEvent/contact/<?= $contact->contact_id ?>" class="create btn btn-success">
+                <i class="fa fa-plus"></i>
+                Create Calender Event
+            </a>
+            <a href="<?= site_url() ?>admin/calender/createEvent/contact/<?= $contact->contact_id ?>?type=bday" class="create btn btn-warning">
+                Schedule Birthday
+            </a>
+        <?php endif; ?>
     </section>
     <?php
     $img_src = ($contact->contact_avatar != "") ?

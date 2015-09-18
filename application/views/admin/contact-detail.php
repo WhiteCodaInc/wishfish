@@ -224,10 +224,12 @@
                                             <td class="hidden-xs hidden-sm"><?= $value->zodiac ?></td>
                                             <td class="hidden-xs hidden-sm"><?= $value->group_name ?></td>
                                             <td >
-                                                <a href="<?= site_url() ?>admin/contacts/editContact/<?= $value->contact_id ?>" class="btn bg-navy btn-xs">
-                                                    <i class="fa fa-edit"></i>
-                                                    Edit
-                                                </a>
+                                                <?php if ($p->conu): ?>
+                                                    <a href="<?= site_url() ?>admin/contacts/editContact/<?= $value->contact_id ?>" class="btn bg-navy btn-xs">
+                                                        <i class="fa fa-edit"></i>
+                                                        Edit
+                                                    </a>
+                                                <?php endif; ?>
                                             </td>
                                         </tr>
                                     <?php } ?>
