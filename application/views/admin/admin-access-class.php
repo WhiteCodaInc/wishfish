@@ -365,19 +365,19 @@ switch ($msg) {
             if ($(this).val() == "-1") {
                 return false;
             }
-//            else if ($(this).val() != "-1") {
-//                var cid = $(this).val();
-//                $.ajax({
-//                    type: 'POST',
-//                    datatype: 'json',
-//                    url: "<?= site_url() ?>admin/admin_access/permission",
-//                    data: {'class_id': cid},
-//                    success: function (json, textStatus, jqXHR) {
-//                        var data = JSON.parse(json);
-//                        setPermission(data);
-//                    }
-//                });
-//            }
+            else if ($(this).val() != "-1") {
+                var cid = $(this).val();
+                $.ajax({
+                    type: 'POST',
+                    datatype: 'json',
+                    url: "<?= site_url() ?>admin/admin_access/permission",
+                    data: {'class_id': cid},
+                    success: function (json, textStatus, jqXHR) {
+                        var data = JSON.parse(json);
+                        setPermission(data);
+                    }
+                });
+            }
         });
 
 <?php if (isset($id)): ?>
