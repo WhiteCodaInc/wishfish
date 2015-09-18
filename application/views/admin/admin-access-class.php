@@ -48,8 +48,8 @@
                                             <div class="row well" style="margin: 10px 5px;">
                                                 <div class="col-md-12">
                                                     <div class="row">
-                                                        <div class="col-md-2"><label>Contacts</label></div>
-                                                        <div class="col-md-10">
+                                                        <div class="col-md-3 text-right"><label>Contacts</label></div>
+                                                        <div class="col-md-9">
                                                             <div class="col-md-3">
                                                                 <input name="coni" id="coni"  type="checkbox" >
                                                                 <span class="plabel">Create</span>
@@ -66,8 +66,8 @@
                                                     </div>
                                                     <hr/>
                                                     <div class="row">
-                                                        <div class="col-md-2"><label>Contact Groups</label></div>
-                                                        <div class="col-md-10">
+                                                        <div class="col-md-3"><label>Contact Groups</label></div>
+                                                        <div class="col-md-9 text-right">
                                                             <div class="col-md-3">
                                                                 <input name="congi" id="congi"  type="checkbox" >
                                                                 <span class="plabel">Create</span>
