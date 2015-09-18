@@ -40,24 +40,17 @@
                                                 <div class="col-md-2"><label>Contacts</label></div>
                                                 <div class="col-md-10">
                                                     <div class="col-md-2">
-                                                        <div class="form-group">
                                                             <input name="admin" id="admin"  type="checkbox" >
                                                             Admin
-                                                        </div>
                                                     </div>
                                                     <div class="col-md-2">
-                                                        <div class="form-group">
                                                             <input name="admin" id="admin"  type="checkbox" >
                                                             Admin
-                                                        </div>
                                                     </div>
                                                     <div class="col-md-2">
-                                                        <div class="form-group">
                                                             <input name="admin" id="admin"  type="checkbox" >
                                                             Admin
-                                                        </div>
                                                     </div>
-
                                                 </div>
                                             </div>
                                         </div>
