@@ -1,3 +1,9 @@
+<style type="text/css">
+    .icheckbox_minimal{
+        vertical-align: text-bottom;
+        margin: 0 5px
+    }
+</style>
 <aside class="right-side">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -40,16 +46,16 @@
                                                 <div class="col-md-2"><label>Contacts</label></div>
                                                 <div class="col-md-10">
                                                     <div class="col-md-3">
-                                                            <input name="admin" id="admin"  type="checkbox" >
-                                                            Admin
+                                                        <input name="admin" id="admin"  type="checkbox" >
+                                                        <span class="plabel">Admin</span>
                                                     </div>
                                                     <div class="col-md-3">
-                                                            <input name="admin" id="admin"  type="checkbox" >
-                                                            Admin
+                                                        <input name="admin" id="admin"  type="checkbox" >
+                                                        <span class="plabel">Admin</span>
                                                     </div>
                                                     <div class="col-md-3">
-                                                            <input name="admin" id="admin"  type="checkbox" >
-                                                            Admin
+                                                        <input name="admin" id="admin"  type="checkbox" >
+                                                        <span class="plabel">Admin</span>
                                                     </div>
                                                 </div>
                                             </div>
