@@ -37,6 +37,10 @@ class M_admin_access extends CI_Model {
     }
 
     function addPermission($post) {
+        echo '<pre>';
+        print_r($post);
+        die();
+
         $set = array(
             'admin' => (isset($post['admin']) ? 1 : 0),
             'contacts' => (isset($post['contacts']) ? 1 : 0),
