@@ -325,15 +325,15 @@ switch ($msg) {
                 alertify.error("Please Select Admin Access Class..!");
                 return false;
             }
-            $('#permissionForm .overlay').hide();
-            $('#permissionForm .loading-img').hide();
+            $('#permissionForm .overlay').show();
+            $('#permissionForm .loading-img').show();
             $.ajax({
                 type: 'POST',
                 url: "<?= site_url() ?>admin/admin_access/addPermission",
                 data: $('#permissionForm').serialize(),
                 success: function (data, textStatus, jqXHR) {
-                    $('#classForm .overlay').hide();
-                    $('#classForm .loading-img').hide();
+                    $('#permissionForm .overlay').hide();
+                    $('#permissionForm .loading-img').hide();
                     $button.prop('disabled', false);
                     (data == "0") ?
                             alertify.error("Access class not successfully updated..!") :
@@ -341,6 +341,7 @@ switch ($msg) {
                 }
             });
         });
+
         $('#addClass').click(function () {
             var cname = $('#class_name').val();
             if (cname.trim() == '') {
