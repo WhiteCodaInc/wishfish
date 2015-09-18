@@ -17,21 +17,27 @@
                 Create New Contact
             </a>
         <?php endif; ?>
-        <div style="float: left;margin-right: 2% ">
-            <select id="group"  class="form-control m-bot15">
-                <option value="-1">Select Group</option>
-                <?php foreach ($groups as $value) { ?>
-                    <option value="<?= $value->group_id ?>">
-                        <?= $value->group_name ?></option>
-                <?php } ?>
-            </select>
-        </div>
-        <button  value="Add" class="btn btn-info btn-sm add" id="Add" type="button" >Add To Group</button>
-        <button  value="Remove" class="btn btn-info btn-sm remove" id="Remove" type="button" >Remove From Group</button>
-        <button  value="Delete" class="btn btn-danger btn-sm delete" id="Delete" type="button" >Delete</button>
-        <a class="btn btn-primary btn-sm create" href="<?= site_url() ?>admin/import">
-            <span> Import Google Contact</span>
-        </a>
+        <?php if ($p->conu): ?>
+            <div style="float: left;margin-right: 2% ">
+                <select id="group"  class="form-control m-bot15">
+                    <option value="-1">Select Group</option>
+                    <?php foreach ($groups as $value) { ?>
+                        <option value="<?= $value->group_id ?>">
+                            <?= $value->group_name ?></option>
+                    <?php } ?>
+                </select>
+            </div>
+            <button  value="Add" class="btn btn-info btn-sm add" id="Add" type="button" >Add To Group</button>
+            <button  value="Remove" class="btn btn-info btn-sm remove" id="Remove" type="button" >Remove From Group</button>
+        <?php endif; ?>
+        <?php if ($p->cond): ?>
+            <button  value="Delete" class="btn btn-danger btn-sm delete" id="Delete" type="button" >Delete</button>
+        <?php endif; ?>
+        <?php if ($p->coni): ?>
+            <a class="btn btn-primary btn-sm create" href="<?= site_url() ?>admin/import">
+                <span> Import Google Contact</span>
+            </a>
+        <?php endif; ?>
         <div class="search" style="float:right;width: 25%">
             <select id="page_length" class="form-control" style="float: left;width: 30%">
                 <option value="25">25</option>
