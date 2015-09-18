@@ -335,7 +335,6 @@ switch ($msg) {
                 return false;
             } else {
                 $('#msg').empty();
-                return false;
             }
 
             $button = $(this);
