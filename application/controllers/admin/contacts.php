@@ -77,36 +77,52 @@ class Contacts extends CI_Controller {
     }
 
     function addContact() {
-        $data['groups'] = $this->objgrp->getContactGroups("simple");
-        $this->load->view('admin/admin_header');
-        $this->load->view('admin/admin_top');
-        $this->load->view('admin/admin_navbar');
-        $this->load->view('admin/add-contact', $data);
-        $this->load->view('admin/admin_footer');
+        if ($this->p->coni) {
+            $data['groups'] = $this->objgrp->getContactGroups("simple");
+            $this->load->view('admin/admin_header');
+            $this->load->view('admin/admin_top');
+            $this->load->view('admin/admin_navbar');
+            $this->load->view('admin/add-contact', $data);
+            $this->load->view('admin/admin_footer');
+        } else {
+            header('location:' . site_url() . 'admin/dashboard/error/500');
+        }
     }
 
     function createContact() {
-        $post = $this->input->post();
-        $this->objcon->createContact($post);
-        header('location:' . site_url() . 'admin/contacts?msg=I');
+        if ($this->p->coni) {
+            $post = $this->input->post();
+            $this->objcon->createContact($post);
+            header('location:' . site_url() . 'admin/contacts?msg=I');
+        } else {
+            header('location:' . site_url() . 'admin/dashboard/error/500');
+        }
     }
 
     function editContact($cid) {
-        $res = $this->objcon->getContact($cid, 'simple');
-        $data['contacts'] = $res[0];
-        $data['cgroup'] = $res[1];
-        $data['groups'] = $this->objgrp->getContactGroups("simple");
-        $this->load->view('admin/admin_header');
-        $this->load->view('admin/admin_top');
-        $this->load->view('admin/admin_navbar');
-        $this->load->view('admin/edit-contact', $data);
-        $this->load->view('admin/admin_footer');
+        if ($this->p->conu) {
+            $res = $this->objcon->getContact($cid, 'simple');
+            $data['contacts'] = $res[0];
+            $data['cgroup'] = $res[1];
+            $data['groups'] = $this->objgrp->getContactGroups("simple");
+            $this->load->view('admin/admin_header');
+            $this->load->view('admin/admin_top');
+            $this->load->view('admin/admin_navbar');
+            $this->load->view('admin/edit-contact', $data);
+            $this->load->view('admin/admin_footer');
+        } else {
+            header('location:' . site_url() . 'admin/dashboard/error/500');
+        }
     }
 
     function updateContact() {
-        $post = $this->input->post();
-        $msg = $this->objcon->updateContact($post);
-        header('location:' . site_url() . 'admin/contacts?msg=' . $msg);
+        if ($this->p->conu) {
+            $post = $this->input->post();
+            $msg = $this->objcon->updateContact($post);
+            header('location:' . site_url() . 'admin/contacts?msg=' . $msg);
+        } else {
+            header('location:' . site_url() . 'admin/dashboard/error/500');
+        }
     }
 
     function action() {
