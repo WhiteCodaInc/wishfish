@@ -70,15 +70,9 @@ $img_src = ($avatar != "") ?
                 <?php endif; ?>
                 <?php
                 if (
-//                        (isset($rule->coni) && $rule->coni) ||
-//                        (isset($rule->conu) && $rule->conu) ||
-//                        (isset($rule->cond) && $rule->cond) ||
-//                        (isset($rule->congi) && $rule->congi) ||
-//                        (isset($rule->congu) && $rule->congu) ||
-//                        (isset($rule->congd) && $rule->congd) ||
-//                        (isset($rule->cbl) && $rule->cbl)):
                         $rule->coni || $rule->conu || $rule->cond || $rule->congi ||
-                        $rule->congu || $rule->congd || $rule->cbl):
+                        $rule->congu || $rule->congd || $rule->cbl
+                ):
                     ?>
                     <li class="treeview" id="4">
                         <a style="float: right" href="#">
