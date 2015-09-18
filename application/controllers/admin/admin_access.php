@@ -31,22 +31,28 @@ class Admin_access extends CI_Controller {
     }
 
     function index() {
-        $data['role'] = $this->objprofile->getProfiles();
-        $this->load->view('admin/admin_header');
-        $this->load->view('admin/admin_top');
-        $this->load->view('admin/admin_navbar');
-        $this->load->view('admin/configure-admin-access', $data);
-        $this->load->view('admin/admin_footer');
-    }
-
-    function access_class() {
         $data['class'] = $this->objclass->getAdminAccessClass();
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');
         $this->load->view('admin/admin-access-class', $data);
         $this->load->view('admin/admin_footer');
+//        $data['role'] = $this->objprofile->getProfiles();
+//        $this->load->view('admin/admin_header');
+//        $this->load->view('admin/admin_top');
+//        $this->load->view('admin/admin_navbar');
+//        $this->load->view('admin/configure-admin-access', $data);
+//        $this->load->view('admin/admin_footer');
     }
+
+//    function access_class() {
+//        $data['class'] = $this->objclass->getAdminAccessClass();
+//        $this->load->view('admin/admin_header');
+//        $this->load->view('admin/admin_top');
+//        $this->load->view('admin/admin_navbar');
+//        $this->load->view('admin/admin-access-class', $data);
+//        $this->load->view('admin/admin_footer');
+//    }
 
     function addClass() {
         $post = $this->input->post();
