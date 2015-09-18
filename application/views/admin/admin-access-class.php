@@ -328,7 +328,8 @@ switch ($msg) {
             }
         });
         $('#addClass').click(function () {
-            $(this).prop('disabled', true);
+            $button = $(this);
+            $button.prop('disabled', true)
             var cname = $('#class_name').val();
             $('#classForm .overlay').show();
             $('#classForm .loading-img').show();
@@ -339,7 +340,7 @@ switch ($msg) {
                 success: function (data, textStatus, jqXHR) {
                     $('#classForm .overlay').hide();
                     $('#classForm .loading-img').hide();
-                    $(this).prop('disabled', false);
+                    $button.prop('disabled', false);
                     if (data == "0") {
                         $('#msg').css('color', 'red');
                         $('#msg').html("Insertion Failed. Try again..!");
