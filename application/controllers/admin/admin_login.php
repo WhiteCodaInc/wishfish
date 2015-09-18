@@ -38,9 +38,11 @@ class Admin_login extends CI_Controller {
         $post = $this->input->post();
         if (is_array($post) && count($post) > 0) {
             $is_login = $this->authex->login($post);
-            if ($is_login) {
+            if ($is_login == 1) {
                 $this->storeCookie($post);
                 header('location:' . site_url() . 'admin/dashboard');
+            } else if ($is_login == 2) {
+                header('location:' . site_url() . 'admin/admin_login?msg=NA');
             } else {
                 header('location:' . site_url() . 'admin/admin_login?msg=fail');
             }

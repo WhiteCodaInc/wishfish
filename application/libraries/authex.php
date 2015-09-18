@@ -36,23 +36,27 @@ class Authex {
         if ($query->num_rows() !== 1) {
             /* their username and password combination
              * were not found in the databse */
-            return FALSE;
+            return 0;
         } else {
-            $last_login = date("Y-m-d H-i-s");
-            $data = array(
-                "last_login" => $last_login
-            );
-            $this->_CI->db->update("admin_profile", $data, array('userid' => $query->row()->userid));
-            $where['userid'] = $query->row()->userid;
-            $query = $this->_CI->db->get_where('admin_profile', $where);
-            $res = $query->row();
-            $this->_CI->session->set_userdata('profileid', $res->profile_id);
-            $this->_CI->session->set_userdata('name', $res->fname . ' ' . $res->lname);
-            $this->_CI->session->set_userdata('email', $res->email);
-            $this->_CI->session->set_userdata('phone', $res->phone);
-            $this->_CI->session->set_userdata('avatar', $res->admin_avatar);
-            unset($res);
-            return TRUE;
+            if ($query->row()->class_id != -1) {
+                $last_login = date("Y-m-d H-i-s");
+                $data = array(
+                    "last_login" => $last_login
+                );
+                $this->_CI->db->update("admin_profile", $data, array('userid' => $query->row()->userid));
+                $where['userid'] = $query->row()->userid;
+                $query = $this->_CI->db->get_where('admin_profile', $where);
+                $res = $query->row();
+                $this->_CI->session->set_userdata('profileid', $res->profile_id);
+                $this->_CI->session->set_userdata('name', $res->fname . ' ' . $res->lname);
+                $this->_CI->session->set_userdata('email', $res->email);
+                $this->_CI->session->set_userdata('phone', $res->phone);
+                $this->_CI->session->set_userdata('avatar', $res->admin_avatar);
+                unset($res);
+                return 1;
+            } else {
+                return 2;
+            }
         }
     }
 

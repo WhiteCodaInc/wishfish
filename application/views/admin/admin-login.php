@@ -40,6 +40,10 @@
                         <div class="form-group">
                             <span style="color:red">Invalid Username or password..!</span>
                         </div>
+                    <?php else: ?>
+                        <div class="form-group">
+                            <span style="color:red">You have no access right to login this system...!</span>
+                        </div>
                     <?php endif; ?>
                 </div>
                 <div class="footer">                                                               
