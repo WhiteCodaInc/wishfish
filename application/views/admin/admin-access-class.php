@@ -195,6 +195,17 @@
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-md-3 text-right">
+                                                            <label>SMS Inbox</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <div class="col-md-12">
+                                                                <input name="smsi" type="checkbox" >
+                                                                <span class="plabel">SMS Inbox</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-3 text-right">
                                                             <label>SMS Blast</label>
                                                         </div>
                                                         <div class="col-md-9">

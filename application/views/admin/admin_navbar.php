@@ -181,6 +181,33 @@ $img_src = ($avatar != "") ?
                         </ul>
                     </li>
                 <?php endif; ?>
+                <?php
+                if (
+                        $rule->smsb ||
+                        $rule->smslbi || $rule->smslbu || $rule->smslbd ||
+                        $rule->smsti || $rule->smstu || $rule->smstd
+                ):
+                    $url = ($rule->cusu || $rule->cusd) ?
+                            site_url() . "admin/customers" : "#";
+                    ?>
+                    <li class="treeview" id="7">
+
+                        <a style="float: right" href="#">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <a class="tab-desktop" href="<?= site_url() ?>admin/sms/inbox">
+                            <i class="fa fa-wrench"></i> <span>SMS</span>
+                        </a>
+                        <a class="tab-mobile" href="<?= site_url() ?>admin/sms/inbox?ver=mobile">
+                            <i class="fa fa-wrench"></i> <span>SMS</span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="<?= site_url() ?>admin/sms/send_sms"><i class="fa fa-angle-double-right"></i> SMS Blast</a></li>
+                            <li><a href="<?= site_url() ?>admin/sms_list_builder"><i class="fa fa-angle-double-right"></i> SMS List Builder</a></li>
+                            <li><a href="<?= site_url() ?>admin/sms_template"><i class="fa fa-angle-double-right"></i> SMS Template</a></li>
+                        </ul>
+                    </li>
+                <?php endif; ?>
                 <!--                <li class="treeview" id="11">
                                     <a style="float: right" href="#">
                                         <i class="fa fa-angle-left pull-right"></i>

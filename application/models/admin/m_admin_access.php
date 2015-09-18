@@ -58,6 +58,7 @@ class M_admin_access extends CI_Model {
             'cusgi' => (isset($post['cusgi']) ? 1 : 0),
             'cusgu' => (isset($post['cusgu']) ? 1 : 0),
             'cusgd' => (isset($post['cusgd']) ? 1 : 0),
+            'smsi' => (isset($post['smsi']) ? 1 : 0),
             'smsb' => (isset($post['smsb']) ? 1 : 0),
             'smslbi' => (isset($post['smslbi']) ? 1 : 0),
             'smslbu' => (isset($post['smslbu']) ? 1 : 0),
