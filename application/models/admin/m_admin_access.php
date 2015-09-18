@@ -25,7 +25,7 @@ class M_admin_access extends CI_Model {
 
     function addClass($post) {
         if ($this->db->insert('privilage', $post)) {
-            return TRUE;
+            return $this->db->insert_id();
         } else {
             return FALSE;
         }

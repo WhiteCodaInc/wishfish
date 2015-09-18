@@ -247,19 +247,25 @@
             </div>
             <form id="classForm"  method="post">
                 <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-7">
-                            <label>Admin Access Class</label>
-                            <div class="form-group" >
-                                <input type="text" id="class_name" name="class_name" class="form-control"   />
+                    <div class="box box-primary">
+                        <div class="box-header">
+                            <h3 class="box-title">Admin Access Class</h3>
+                        </div><!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <label>Admin Access Class</label>
+                                    <div class="form-group" >
+                                        <input type="text" id="class_name" name="class_name" class="form-control"   />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <span id="#msg"></span>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <img id="load" src="<?= base_url() ?>assets/dashboard/img/load.GIF" alt="" style="display: none" />
-                            <span style="display: none" id="msg"></span>
-                        </div>
+                        <div style="display: none" class="overlay"></div>
+                        <div style="display: none" class="loading-img"></div>
                     </div>
                 </div>
                 <div class="modal-footer clearfix">
@@ -310,7 +316,6 @@ switch ($msg) {
             } else {
                 $(this).prev('.icheckbox_minimal').iCheck('check');
             }
-
         });
 
         $('#Update').click(function () {
@@ -318,35 +323,33 @@ switch ($msg) {
                 alertify.error("Please Select Admin Access Class..!");
                 return false;
             } else {
+
                 $('#permissionForm').submit();
             }
         });
         $('#addClass').click(function () {
+            $(this).prop('disabled', true);
             var cname = $('#class_name').val();
-            $('#load').css('display', 'block');
-            $('#msg').css('display', 'none');
+            $('#classForm .overlay').show();
+            $('#classForm .loading-img').show();
             $.ajax({
                 type: 'POST',
                 url: "<?= site_url() ?>admin/admin_access/addClass",
                 data: {class_name: cname},
                 success: function (data, textStatus, jqXHR) {
-                    console.log(data);
-                    setTimeout(function () {
-                        if (data == "1") {
-                            $('#msg').html("Successfully Inserted");
-                            $('#load').css('display', 'none');
-                            $('#msg').css('display', 'block');
-                            $('#msg').css('color', 'green');
-                            $('#discard').trigger('click');
-                            location.reload(true);
-                        }
-                        else if (data == "0") {
-                            $('#loadDept').html("Insertion Failed. Try again..!");
-                            $('#load').css('display', 'none');
-                            $('#msg').css('display', 'block');
-                            $('#msg').css('color', 'red');
-                        }
-                    }, 1000);
+                    $('#classForm .overlay').show();
+                    $('#classForm .loading-img').show();
+                    $(this).prop('disabled', false);
+                    if (data == "0") {
+                        $('#msg').css('color', 'red');
+                        $('#msg').html("Insertion Failed. Try again..!");
+                    }
+                    else {
+                        $('#class_name').val('');
+                        $('#class').append('<option value="' + data + '">' + cname + '</option>');
+                        $('#class').val(data);
+                        $('#discard').trigger('click');
+                    }
                 }
             });
         });
@@ -389,15 +392,9 @@ switch ($msg) {
         function setPermission(data) {
             var cnt = 1;
             $.each(data, function (i, item) {
-                if (item == 1)
-                {
-                    //$('.well #' + i).attr('checked', 'checked');
-                    $('.well #' + i).parent('.icheckbox_minimal').iCheck('check');
-                }
-                else
-                {
-                    $('.well #' + i).parent('.icheckbox_minimal').iCheck('uncheck');
-                }
+                (item == 1) ?
+                        $('.well #' + i).parent('.icheckbox_minimal').iCheck('check') :
+                        $('.well #' + i).parent('.icheckbox_minimal').iCheck('uncheck');
             });
         }
     });
