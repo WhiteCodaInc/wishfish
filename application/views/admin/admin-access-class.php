@@ -66,8 +66,8 @@
                                                     </div>
                                                     <hr/>
                                                     <div class="row">
-                                                        <div class="col-md-3"><label>Contact Groups</label></div>
-                                                        <div class="col-md-9 text-right">
+                                                        <div class="col-md-3 text-right"><label>Contact Groups</label></div>
+                                                        <div class="col-md-9">
                                                             <div class="col-md-3">
                                                                 <input name="congi" id="congi"  type="checkbox" >
                                                                 <span class="plabel">Create</span>
