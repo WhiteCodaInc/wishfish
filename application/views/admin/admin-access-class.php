@@ -314,7 +314,12 @@ switch ($msg) {
         });
 
         $('#Update').click(function () {
-            $('#permissionForm').submit();
+            if ($('#class').val() == "-1") {
+                alertify.error("Please Select Admin Access Class..!");
+                return false;
+            } else {
+                $('#permissionForm').submit();
+            }
         });
         $('#addClass').click(function () {
             var cname = $('#class_name').val();
@@ -357,9 +362,9 @@ switch ($msg) {
 //            $('input[type="checkbox"]').each(function () {
 //                $(this).removeAttr('checked');
 //            });
-//            if ($(this).val() == "-1") {
-//                return false;
-//            }
+            if ($(this).val() == "-1") {
+                return false;
+            }
 //            else if ($(this).val() != "-1") {
 //                var cid = $(this).val();
 //                $.ajax({
@@ -380,12 +385,7 @@ switch ($msg) {
             $('#class').trigger('change');
 <?php endif; ?>
 
-        $('#submit').click(function () {
-            if ($('#class').val() == "-1") {
-                alertify.error("Please Select Admin Access Class..!");
-                return false;
-            }
-        });
+
 //        function setPermission(data) {
 //            var cnt = 1;
 //            $.each(data, function (i, item) {
