@@ -39,18 +39,25 @@
                                             <div class="row well" style="margin: 10px 5px;">
                                                 <div class="col-md-2"><label>Contacts</label></div>
                                                 <div class="col-md-10">
-                                                    <div class="form-group form-inline">
-                                                        <input name="admin" id="admin"  type="checkbox" >
-                                                        Admin
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <input name="admin" id="admin"  type="checkbox" >
+                                                            Admin
+                                                        </div>
                                                     </div>
-                                                    <div class="form-group form-inline">
-                                                        <input name="admin" id="admin"  type="checkbox" >
-                                                        Admin
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <input name="admin" id="admin"  type="checkbox" >
+                                                            Admin
+                                                        </div>
                                                     </div>
-                                                    <div class="form-group form-inline">
-                                                        <input name="admin" id="admin"  type="checkbox" >
-                                                        Admin
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <input name="admin" id="admin"  type="checkbox" >
+                                                            Admin
+                                                        </div>
                                                     </div>
+
                                                 </div>
                                             </div>
                                         </div>
