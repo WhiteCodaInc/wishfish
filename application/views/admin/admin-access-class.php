@@ -659,9 +659,6 @@
 <!-- /.modal -->
 <script type="text/javascript">
     $(document).ready(function () {
-        $('.icheckbox_minimal').each(function () {
-            $(this).iCheck('check');
-        });
         $('span.plabel').click(function () {
             if ($(this).prev('.icheckbox_minimal').hasClass('checked')) {
                 $(this).prev('.icheckbox_minimal').iCheck('uncheck');
