@@ -287,7 +287,7 @@ class Common {
 
     function getPermission() {
         $adminInfo = $this->getAdminInfo();
-        $permission = $this->_CI->db->get_where('access_class', array('class_id' => $adminInfo->class_id));
+        $permission = $this->_CI->db->get_where('privilage', array('class_id' => $adminInfo->class_id));
         return $permission->row();
     }
 
