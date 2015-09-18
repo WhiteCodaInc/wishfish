@@ -93,16 +93,6 @@ $img_src = ($avatar != "") ?
                         <span>Web Pages</span>
                     </a>
                     <ul class="treeview-menu">
-                        <!--                        <li>
-                                                    <a href="<?= site_url() ?>admin/pages/getTerm">
-                                                        <i class="fa fa-angle-double-right"></i> <span>Terms Of Services</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="<?= site_url() ?>admin/pages/getCommercialTerm">
-                                                        <i class="fa fa-angle-double-right"></i> <span>Commercial Terms</span>
-                                                    </a>
-                                                </li>-->
                         <li>
                             <a href="<?= site_url() ?>admin/sections/">
                                 <i class="fa fa-angle-double-right"></i> <span>Homepage Section</span>
