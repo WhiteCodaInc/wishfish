@@ -221,6 +221,25 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <div class="row">
+                                                        <div class="col-md-3 text-right">
+                                                            <label>Email List Builder</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <div class="col-md-3">
+                                                                <input name="emaillbi" id="smslbi"  type="checkbox" >
+                                                                <span class="plabel">Create</span>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <input name="smslbu" id="smslbu"  type="checkbox" >
+                                                                <span class="plabel">Update</span>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <input name="smslbd" id="smslbd"  type="checkbox" >
+                                                                <span class="plabel">Delete</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -390,8 +409,8 @@
             var cnt = 1;
             $.each(data, function (i, item) {
                 (item == 1) ?
-                        $('.well #' + i).parent('.icheckbox_minimal').iCheck('check') :
-                        $('.well #' + i).parent('.icheckbox_minimal').iCheck('uncheck');
+                        $('.well input[name="' + i + '"]').parent('.icheckbox_minimal').iCheck('check') :
+                        $('.well input[name="' + i + '"]').parent('.icheckbox_minimal').iCheck('uncheck');
             });
         }
     });
