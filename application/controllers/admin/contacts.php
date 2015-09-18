@@ -17,11 +17,11 @@ class Contacts extends CI_Controller {
         parent::__construct();
         $this->load->library("authex");
         $this->load->library("common");
-
+        $rule = $this->common->getPermission();
         if (!$this->authex->logged_in()) {
             header('location:' . site_url() . 'admin/admin_login');
-//        } else if (!$this->common->getPermission()->contacts) {
-//            header('location:' . site_url() . 'admin/dashboard/error/500');
+        } else if (!$rule->coni && !$rule->conu && !$rule->cond && !$rule->cbl) {
+            header('location:' . site_url() . 'admin/dashboard/error/500');
         } else {
             $this->load->library('parser');
             $this->load->model('admin/m_admin_contacts', 'objcon');
