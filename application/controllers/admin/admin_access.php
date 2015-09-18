@@ -18,8 +18,8 @@ class Admin_access extends CI_Controller {
         parent::__construct();
         $this->load->library("authex");
         $this->load->library("common");
-        
-             
+
+
         if (!$this->authex->logged_in()) {
             header('location:' . site_url() . 'admin/admin_login');
         } else if (!$this->common->getPermission()->admin) {
@@ -65,6 +65,9 @@ class Admin_access extends CI_Controller {
 
     function addPermission() {
         $post = $this->input->post();
+        echo '<pre>';
+        print_r($post);
+        die();
         $res = $this->objclass->addPermission($post);
         if ($res) {
             $data['msg'] = "U";
