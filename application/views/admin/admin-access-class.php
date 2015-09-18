@@ -346,34 +346,34 @@ switch ($msg) {
             });
         });
 
-        $('input[type="checkbox"]').change(function () {
-            if (!this.checked) {
-                $(this).removeAttr('checked');
-            }
-        });
+//        $('input[type="checkbox"]').change(function () {
+//            if (!this.checked) {
+//                $(this).removeAttr('checked');
+//            }
+//        });
 
-        $('select#class').change(function () {
-            $('input[name="class_id"]').val($(this).val());
-            $('input[type="checkbox"]').each(function () {
-                $(this).removeAttr('checked');
-            });
-            if ($(this).val() == "-1") {
-                return false;
-            }
-            else if ($(this).val() != "-1") {
-                var cid = $(this).val();
-                $.ajax({
-                    type: 'POST',
-                    datatype: 'json',
-                    url: "<?= site_url() ?>admin/admin_access/permission",
-                    data: {'class_id': cid},
-                    success: function (json, textStatus, jqXHR) {
-                        var data = JSON.parse(json);
-                        setPermission(data);
-                    }
-                });
-            }
-        });
+//        $('select#class').change(function () {
+//            $('input[name="class_id"]').val($(this).val());
+//            $('input[type="checkbox"]').each(function () {
+//                $(this).removeAttr('checked');
+//            });
+//            if ($(this).val() == "-1") {
+//                return false;
+//            }
+//            else if ($(this).val() != "-1") {
+//                var cid = $(this).val();
+//                $.ajax({
+//                    type: 'POST',
+//                    datatype: 'json',
+//                    url: "<?= site_url() ?>admin/admin_access/permission",
+//                    data: {'class_id': cid},
+//                    success: function (json, textStatus, jqXHR) {
+//                        var data = JSON.parse(json);
+//                        setPermission(data);
+//                    }
+//                });
+//            }
+//        });
 
 <?php if (isset($id)): ?>
             $('#class').val("<?= $id ?>");
@@ -386,19 +386,19 @@ switch ($msg) {
                 return false;
             }
         });
-        function setPermission(data) {
-            var cnt = 1;
-            $.each(data, function (i, item) {
-                if (item == 1)
-                {
-                    //$('.well #' + i).attr('checked', 'checked');
-                    $('.well #' + i).trigger('click');
-                }
-                else
-                {
-                    $('.well #' + i).removeAttr('checked');
-                }
-            });
-        }
+//        function setPermission(data) {
+//            var cnt = 1;
+//            $.each(data, function (i, item) {
+//                if (item == 1)
+//                {
+//                    //$('.well #' + i).attr('checked', 'checked');
+//                    $('.well #' + i).trigger('click');
+//                }
+//                else
+//                {
+//                    $('.well #' + i).removeAttr('checked');
+//                }
+//            });
+//        }
     });
 </script>
