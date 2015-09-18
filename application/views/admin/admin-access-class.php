@@ -3,6 +3,9 @@
         vertical-align: text-bottom;
         margin: 0 5px
     }
+    .plabel{
+        cursor: pointer
+    }
 </style>
 <aside class="right-side">
     <!-- Content Header (Page header) -->
