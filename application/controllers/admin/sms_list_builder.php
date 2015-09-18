@@ -20,8 +20,8 @@ class Sms_list_builder extends CI_Controller {
         
         if (!$this->authex->logged_in()) {
             header('location:' . site_url() . 'admin/admin_login');
-        } else if (!$this->common->getPermission()->sms) {
-            header('location:' . site_url() . 'admin/dashboard/error/500');
+//        } else if (!$this->common->getPermission()->sms) {
+//            header('location:' . site_url() . 'admin/dashboard/error/500');
         } else {
             $this->load->model('admin/m_list_builder', 'objbuilder');
             $this->load->model('admin/m_admin_contacts', 'objcon');

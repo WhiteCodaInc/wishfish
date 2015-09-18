@@ -19,8 +19,8 @@ class Customers extends CI_Controller {
         parent::__construct();
         if (!$this->authex->logged_in()) {
             header('location:' . site_url() . 'admin/admin_login');
-        } else if (!$this->common->getPermission()->customers) {
-            header('location:' . site_url() . 'admin/dashboard/error/500');
+//        } else if (!$this->common->getPermission()->customers) {
+//            header('location:' . site_url() . 'admin/dashboard/error/500');
         } else {
 
             $paypalGatewayInfo = $this->wi_common->getPaymentGatewayInfo("PAYPAL");

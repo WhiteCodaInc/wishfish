@@ -20,8 +20,8 @@ class Contacts extends CI_Controller {
 
         if (!$this->authex->logged_in()) {
             header('location:' . site_url() . 'admin/admin_login');
-        } else if (!$this->common->getPermission()->contacts) {
-            header('location:' . site_url() . 'admin/dashboard/error/500');
+//        } else if (!$this->common->getPermission()->contacts) {
+//            header('location:' . site_url() . 'admin/dashboard/error/500');
         } else {
             $this->load->library('parser');
             $this->load->model('admin/m_admin_contacts', 'objcon');

@@ -18,8 +18,8 @@ class Calender extends CI_Controller {
         parent::__construct();
         if (!$this->authex->logged_in()) {
             header('location:' . site_url() . 'admin/admin_login');
-        } else if (!$this->common->getPermission()->calender) {
-            header('location:' . site_url() . 'admin/dashboard/error/500');
+//        } else if (!$this->common->getPermission()->calender) {
+//            header('location:' . site_url() . 'admin/dashboard/error/500');
         } else {
             $this->load->model('admin/m_admin_contacts', 'objcontact');
             $this->load->model('admin/m_admin_contact_groups', 'objgrp');

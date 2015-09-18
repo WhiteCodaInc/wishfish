@@ -20,8 +20,8 @@ class Affiliate_groups extends CI_Controller {
         $rule = $this->common->getPermission();
         if (!$this->authex->logged_in()) {
             header('location:' . site_url() . 'admin/admin_login');
-        } else if (!$rule->affiliates) {
-            header('location:' . site_url() . 'admin/dashboard/error/500');
+//        } else if (!$rule->affiliates) {
+//            header('location:' . site_url() . 'admin/dashboard/error/500');
         } else {
             $this->load->model('admin/m_affiliate_groups', 'objgroup');
         }

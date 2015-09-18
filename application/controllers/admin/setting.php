@@ -21,8 +21,8 @@ class Setting extends CI_Controller {
 
         if (!$this->authex->logged_in()) {
             header('location:' . site_url() . 'admin/admin_login');
-        } else if (!$this->common->getPermission()->setting) {
-            header('location:' . site_url() . 'admin/dashboard/error/500');
+//        } else if (!$this->common->getPermission()->setting) {
+//            header('location:' . site_url() . 'admin/dashboard/error/500');
         } else {
             $this->load->model('admin/m_setting', 'objsetting');
             $this->load->model('admin/m_admin_access', 'objclass');

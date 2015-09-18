@@ -20,8 +20,8 @@ class Sms extends CI_Controller {
 
         if (!$this->authex->logged_in()) {
             header('location:' . site_url() . 'admin/admin_login');
-        } else if (!$this->common->getPermission()->sms) {
-            header('location:' . site_url() . 'admin/dashboard/error/500');
+//        } else if (!$this->common->getPermission()->sms) {
+//            header('location:' . site_url() . 'admin/dashboard/error/500');
         } else {
             $this->load->model('admin/m_sms', 'objsms');
             $this->load->model('admin/m_admin_profile', 'objprofile');
