@@ -6,6 +6,10 @@
     .plabel{
         cursor: pointer
     }
+    .well .row{
+        margin-bottom: 10px;
+        border-bottom: 1px solid lightgray;
+    }
 </style>
 <aside class="right-side">
     <!-- Content Header (Page header) -->
@@ -64,7 +68,6 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <hr/>
                                                     <div class="row">
                                                         <div class="col-md-3 text-right"><label>Contact Groups</label></div>
                                                         <div class="col-md-9">
