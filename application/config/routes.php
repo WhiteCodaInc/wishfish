@@ -41,7 +41,7 @@ if (!defined('BASEPATH'))
   |
  */
 $route['default_controller'] = "home";
-$route['404_override'] = '';
+$route['404_override'] = 'admin/500.php';
 $route['admin'] = "admin/admin_login";
 
 //--------------Web Pages---------------------//
