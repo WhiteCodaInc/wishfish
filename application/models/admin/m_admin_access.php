@@ -42,10 +42,9 @@ class M_admin_access extends CI_Model {
             'conu' => (isset($post['conu']) ? 1 : 0),
             'cond' => (isset($post['cond']) ? 1 : 0),
         );
-        $this->session->set_userdata('classid', $post['class_id']);
         $where = array('class_id' => $post['class_id']);
         if ($this->db->update('privilage', $set, $where)) {
-            return $post['class_id'];
+            return TRUE;
         } else {
             return FALSE;
         }
