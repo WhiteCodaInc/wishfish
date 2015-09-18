@@ -53,6 +53,17 @@
                                                 <div class="col-md-12">
                                                     <div class="row">
                                                         <div class="col-md-3 text-right">
+                                                            <label>Admin</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <div class="col-md-12">
+                                                                <input name="admin" type="checkbox" >
+                                                                <span class="plabel">Admin</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-3 text-right">
                                                             <label>Calendar</label>
                                                         </div>
                                                         <div class="col-md-9">
@@ -188,7 +199,7 @@
                                                             <label>SMS Blast</label>
                                                         </div>
                                                         <div class="col-md-9">
-                                                            <div class="col-md-3">
+                                                            <div class="col-md-12">
                                                                 <input name="smsb" type="checkbox" >
                                                                 <span class="plabel">SMS Blast</span>
                                                             </div>
@@ -237,7 +248,7 @@
                                                             <label>Email Blast</label>
                                                         </div>
                                                         <div class="col-md-9">
-                                                            <div class="col-md-3">
+                                                            <div class="col-md-12">
                                                                 <input name="emailb" type="checkbox" >
                                                                 <span class="plabel">Email Blast</span>
                                                             </div>
@@ -286,7 +297,7 @@
                                                             <label>Email Notification</label>
                                                         </div>
                                                         <div class="col-md-9">
-                                                            <div class="col-md-3">
+                                                            <div class="col-md-12">
                                                                 <input name="emailn" type="checkbox" >
                                                                 <span class="plabel">Email Notification</span>
                                                             </div>
@@ -331,7 +342,7 @@
                                                             <label>Calendar Setting</label>
                                                         </div>
                                                         <div class="col-md-9">
-                                                            <div class="col-md-3">
+                                                            <div class="col-md-12">
                                                                 <input name="cals" type="checkbox" >
                                                                 <span class="plabel">Calendar Setting</span>
                                                             </div>
