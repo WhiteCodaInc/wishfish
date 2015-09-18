@@ -388,10 +388,11 @@ switch ($msg) {
 
         $('select#class').change(function () {
             $('input[name="class_id"]').val($(this).val());
-//            $('.icheckbox_minimal').each(function () {
-//                $(this).iCheck('uncheck');
-//            });
+
             if ($(this).val() == "-1") {
+                $('.icheckbox_minimal').each(function () {
+                    $(this).iCheck('uncheck');
+                });
                 return false;
             }
             else if ($(this).val() != "-1") {
