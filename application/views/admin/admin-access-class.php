@@ -352,8 +352,8 @@ switch ($msg) {
 //            }
 //        });
 
-//        $('select#class').change(function () {
-//            $('input[name="class_id"]').val($(this).val());
+        $('select#class').change(function () {
+            $('input[name="class_id"]').val($(this).val());
 //            $('input[type="checkbox"]').each(function () {
 //                $(this).removeAttr('checked');
 //            });
@@ -373,7 +373,7 @@ switch ($msg) {
 //                    }
 //                });
 //            }
-//        });
+        });
 
 <?php if (isset($id)): ?>
             $('#class').val("<?= $id ?>");
