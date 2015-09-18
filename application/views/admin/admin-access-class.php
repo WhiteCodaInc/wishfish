@@ -42,6 +42,12 @@
                                                     <div class="form-group form-inline">
                                                         <input name="admin" id="admin"  type="checkbox" >
                                                         Admin
+                                                    </div>
+                                                    <div class="form-group form-inline">
+                                                        <input name="admin" id="admin"  type="checkbox" >
+                                                        Admin
+                                                    </div>
+                                                    <div class="form-group form-inline">
                                                         <input name="admin" id="admin"  type="checkbox" >
                                                         Admin
                                                     </div>
