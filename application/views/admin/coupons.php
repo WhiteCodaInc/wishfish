@@ -10,13 +10,19 @@
         <h1 style="display: none">
             Coupons
         </h1>
-        <a href="<?= site_url() ?>admin/coupons/addCoupon" class="create btn btn-success btn-sm">
-            <i class="fa fa-plus"></i>&nbsp;
-            Create New Coupon
-        </a>
-        <button value="Active" class="add btn btn-info btn-sm" id="Active" type="button" >Active</button>
-        <button value="Deactive" class="remove btn btn-warning btn-sm" id="Deactive" type="button" >Deactive</button>
-        <button value="Delete" class="delete btn btn-danger btn-sm" id="Delete" type="button" >Delete</button>
+        <?php if ($p->coui): ?>
+            <a href="<?= site_url() ?>admin/coupons/addCoupon" class="create btn btn-success btn-sm">
+                <i class="fa fa-plus"></i>&nbsp;
+                Create New Coupon
+            </a>
+        <?php endif; ?>
+        <?php if ($p->couu): ?>
+            <button value="Active" class="add btn btn-info btn-sm" id="Active" type="button" >Active</button>
+            <button value="Deactive" class="remove btn btn-warning btn-sm" id="Deactive" type="button" >Deactive</button>
+        <?php endif; ?>
+        <?php if ($p->coud): ?>
+            <button value="Delete" class="delete btn btn-danger btn-sm" id="Delete" type="button" >Delete</button>
+        <?php endif; ?>
     </section>
 
     <!-- Main content -->
@@ -27,24 +33,16 @@
                     <div class="box-header">
                         <h3 class="box-title">Coupon Detail</h3>
                     </div><!-- /.box-header -->
-                    <div class="row">
-                        <div class="col-xs-12" style="margin-left: 1%">
-<!--                            <a href="<?= site_url() ?>admin/coupons/addCoupon" class="create btn btn-success btn-sm">
-                                <i class="fa fa-plus"></i>
-                                Create New Coupon
-                            </a>
-                            <button style="margin-left: 10px" value="Delete" class="delete btn btn-danger btn-sm" id="Delete" type="button" >Delete</button>-->
-                        </div>
-                    </div>
-
                     <form name="checkForm" id="checkForm" action="" method="post">
                         <div class="box-body table-responsive" id="data-panel">
                             <table id="coupon-data-table" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th style="padding: 10px;">
-                                            <input type="checkbox"/>
-                                        </th>
+                                        <?php if ($p->couu || $p->coud): ?>
+                                            <th style="padding: 10px;">
+                                                <input type="checkbox"/>
+                                            </th>
+                                        <?php endif; ?>
                                         <th class="hidden-xs hidden-sm">Coupon Name</th>
                                         <th>Coupon Code</th>
                                         <th>Discount</th>
@@ -57,14 +55,16 @@
                                 <tbody>
                                     <?php foreach ($coupons as $value) { ?>
                                         <tr>
-                                            <td>
-                                                <div>
-                                                    <label>
-                                                        <input type="checkbox" name="coupon[]" value="<?= $value->coupon_id ?>"/>
-                                                        <input type="hidden" name="code[]" value="<?= $value->coupon_code ?>"/>
-                                                    </label>
-                                                </div>
-                                            </td>
+                                            <?php if ($p->couu || $p->coud): ?>
+                                                <td>
+                                                    <div>
+                                                        <label>
+                                                            <input type="checkbox" name="coupon[]" value="<?= $value->coupon_id ?>"/>
+                                                            <input type="hidden" name="code[]" value="<?= $value->coupon_code ?>"/>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                            <?php endif; ?>
                                             <td class="hidden-xs hidden-sm"><?= $value->coupon_name ?></td>
                                             <td><?= $value->coupon_code ?></td>
                                             <?php
@@ -92,7 +92,9 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th></th>
+                                        <?php if ($p->couu || $p->coud): ?>
+                                            <th></th>
+                                        <?php endif; ?>
                                         <th class="hidden-xs hidden-sm">Coupon Name</th>
                                         <th>Coupon Code</th>
                                         <th>Discount</th>
@@ -103,7 +105,9 @@
                                     </tr>
                                 </tfoot>
                             </table>
-                            <input type="hidden" id="actionType" name="actionType" value="" />
+                            <?php if ($p->couu || $p->coud): ?>
+                                <input type="hidden" id="actionType" name="actionType" value="" />
+                            <?php endif; ?>
                         </div><!-- /.box-body -->
                     </form>
                 </div><!-- /.box -->
@@ -159,54 +163,57 @@ switch ($msg) {
 <script type="text/javascript">
     $(function () {
         $("#coupon-data-table").dataTable({
+            bSort: false,
             aLengthMenu: [
                 [25, 50, 100, 200, -1],
                 [25, 50, 100, 200, "All"]
             ],
-            aoColumnDefs: [{
-                    bSortable: false,
-                    aTargets: [0, 1, 2, 3, 4, 7]
-                }],
+//            aoColumnDefs: [{
+//                    bSortable: false,
+//                    aTargets: [0, 1, 2, 3, 4, 7]
+//                }],
             iDisplayLength: -1,
-            aaSorting: [[5, 'desc']]
+//            aaSorting: [[5, 'desc']]
         });
     });
 </script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $('button.add').click(function (e) {
-            action($(this).val());
-            e.preventDefault();
-        });
-        $('button.remove').click(function (e) {
-            action($(this).val());
-            e.preventDefault();
-        });
-        $('button.delete').click(function (e) {
-            var agroup = "";
-            var act = $(this).val();
-            $('#coupon-data-table tbody tr').each(function () {
-                if ($(this).children('td:first').find('div.checked').length) {
-                    $txt = $(this).children('td:nth-child(3)').text();
-                    agroup += $txt.trim() + ",";
-                }
+<?php if ($p->couu || $p->coud): ?>
+            $('button.add').click(function (e) {
+                action($(this).val());
+                e.preventDefault();
             });
-            agroup = agroup.substring(0, agroup.length - 1);
-            alertify.confirm("Are you sure want to delete coupon(s):<br/>" + agroup, function (e) {
-                if (e) {
-                    action(act);
-                    return true;
-                }
-                else {
-                    return false;
-                }
+            $('button.remove').click(function (e) {
+                action($(this).val());
+                e.preventDefault();
             });
-        });
-        function action(actiontype) {
-            $('#actionType').val(actiontype);
-            $('#checkForm').attr('action', "<?= site_url() ?>admin/coupons/action");
-            $('#checkForm').submit();
-        }
+            $('button.delete').click(function (e) {
+                var agroup = "";
+                var act = $(this).val();
+                $('#coupon-data-table tbody tr').each(function () {
+                    if ($(this).children('td:first').find('div.checked').length) {
+                        $txt = $(this).children('td:nth-child(3)').text();
+                        agroup += $txt.trim() + ",";
+                    }
+                });
+                agroup = agroup.substring(0, agroup.length - 1);
+                alertify.confirm("Are you sure want to delete coupon(s):<br/>" + agroup, function (e) {
+                    if (e) {
+                        action(act);
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                });
+            });
+            function action(actiontype) {
+                $('#actionType').val(actiontype);
+                $('#checkForm').attr('action', "<?= site_url() ?>admin/coupons/action");
+                $('#checkForm').submit();
+            }
+<?php endif; ?>
     });
 
 </script>

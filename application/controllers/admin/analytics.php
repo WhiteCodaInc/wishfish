@@ -13,96 +13,142 @@
  */
 class Analytics extends CI_Controller {
 
-//put your code here
+    private $p;
+
     function __construct() {
         parent::__construct();
+        $this->p = $this->common->getPermission();
         if (!$this->authex->logged_in()) {
             header('location:' . site_url() . 'admin/admin_login');
-//        } else if (!$this->common->getPermission()->admin) {
-//            header('location:' . site_url() . 'admin/dashboard/error/500');
+        } else if (!$this->p->totalp && !$this->p->totalu && !$this->p->totalnu && !$this->p->admr) {
+            header('location:' . site_url() . 'admin/dashboard/error/500');
         } else {
             $this->load->model('admin/m_analytics', 'objanalytics');
         }
     }
 
     function index() {
-        $this->load->view('admin/admin_header');
-        $this->load->view('admin/admin_top');
-        $this->load->view('admin/admin_navbar');
-        $this->load->view('admin/analytics-payment');
-        $this->load->view('admin/admin_footer');
+        if ($this->p->totalp) {
+            $this->load->view('admin/admin_header');
+            $this->load->view('admin/admin_top');
+            $this->load->view('admin/admin_navbar');
+            $this->load->view('admin/analytics-payment');
+            $this->load->view('admin/admin_footer');
+        } else {
+            header('location:' . site_url() . 'admin/dashboard/error/500');
+        }
     }
 
     function getPayments() {
-        $post = $this->input->post();
-        $data['phistory'] = $this->objanalytics->getPayments($post);
-        $this->load->view('admin/analytics-datewise-payment', $data);
+        if ($this->p->totalp) {
+            $post = $this->input->post();
+            $data['phistory'] = $this->objanalytics->getPayments($post);
+            $this->load->view('admin/analytics-datewise-payment', $data);
+        } else {
+            header('location:' . site_url() . 'admin/dashboard/error/500');
+        }
     }
 
     function getPaymentDetail() {
-        $post = $this->input->post();
-        $data['pdetail'] = $this->objanalytics->getPaymentDetail($post);
-        $this->load->view('admin/analytics-payment-detail', $data);
+        if ($this->p->totalp) {
+            $post = $this->input->post();
+            $data['pdetail'] = $this->objanalytics->getPaymentDetail($post);
+            $this->load->view('admin/analytics-payment-detail', $data);
+        } else {
+            header('location:' . site_url() . 'admin/dashboard/error/500');
+        }
     }
 
     function totalUser() {
-        $this->load->view('admin/admin_header');
-        $this->load->view('admin/admin_top');
-        $this->load->view('admin/admin_navbar');
-        $this->load->view('admin/analytics-total-users');
-        $this->load->view('admin/admin_footer');
+        if ($this->p->totalu) {
+            $this->load->view('admin/admin_header');
+            $this->load->view('admin/admin_top');
+            $this->load->view('admin/admin_navbar');
+            $this->load->view('admin/analytics-total-users');
+            $this->load->view('admin/admin_footer');
+        } else {
+            header('location:' . site_url() . 'admin/dashboard/error/500');
+        }
     }
 
     function getTotalUser() {
-        $post = $this->input->post();
-        $data['users'] = $this->objanalytics->getTotalUser($post);
-        $this->load->view('admin/analytics-datewise-user', $data);
+        if ($this->p->totalu) {
+            $post = $this->input->post();
+            $data['users'] = $this->objanalytics->getTotalUser($post);
+            $this->load->view('admin/analytics-datewise-user', $data);
+        } else {
+            header('location:' . site_url() . 'admin/dashboard/error/500');
+        }
     }
 
     function getUserDetail() {
-        $post = $this->input->post();
-        $data['udetail'] = $this->objanalytics->getUserDetail($post);
-        $this->load->view('admin/analytics-user-detail', $data);
+        if ($this->p->totalu) {
+            $post = $this->input->post();
+            $data['udetail'] = $this->objanalytics->getUserDetail($post);
+            $this->load->view('admin/analytics-user-detail', $data);
+        } else {
+            header('location:' . site_url() . 'admin/dashboard/error/500');
+        }
     }
 
     function totalNewUser() {
-        $this->load->view('admin/admin_header');
-        $this->load->view('admin/admin_top');
-        $this->load->view('admin/admin_navbar');
-        $this->load->view('admin/analytics-total-new-users');
-        $this->load->view('admin/admin_footer');
+        if ($this->p->totalnu) {
+            $this->load->view('admin/admin_header');
+            $this->load->view('admin/admin_top');
+            $this->load->view('admin/admin_navbar');
+            $this->load->view('admin/analytics-total-new-users');
+            $this->load->view('admin/admin_footer');
+        } else {
+            header('location:' . site_url() . 'admin/dashboard/error/500');
+        }
     }
 
     function getTotalNewUser() {
-        $post = $this->input->post();
-        $data['users'] = $this->objanalytics->getTotalNewUser($post);
-        $this->load->view('admin/analytics-datewise-new-user', $data);
+        if ($this->p->totalnu) {
+            $post = $this->input->post();
+            $data['users'] = $this->objanalytics->getTotalNewUser($post);
+            $this->load->view('admin/analytics-datewise-new-user', $data);
+        } else {
+            header('location:' . site_url() . 'admin/dashboard/error/500');
+        }
     }
 
     function getNewUserDetail() {
-        $post = $this->input->post();
-        $data['udetail'] = $this->objanalytics->getNewUserDetail($post);
-        $this->load->view('admin/analytics-new-user-detail', $data);
+        if ($this->p->totalnu) {
+            $post = $this->input->post();
+            $data['udetail'] = $this->objanalytics->getNewUserDetail($post);
+            $this->load->view('admin/analytics-new-user-detail', $data);
+        } else {
+            header('location:' . site_url() . 'admin/dashboard/error/500');
+        }
     }
 
     function adminReport() {
-        $data['profiles'] = $this->objanalytics->getProfiles();
-        $data['class'] = $this->objanalytics->getAdminAccessClass();
-        $this->load->view('admin/admin_header');
-        $this->load->view('admin/admin_top');
-        $this->load->view('admin/admin_navbar');
-        $this->load->view('admin/analytics-admin', $data);
-        $this->load->view('admin/admin_footer');
+        if ($this->p->admr) {
+            $data['profiles'] = $this->objanalytics->getProfiles();
+            $data['class'] = $this->objanalytics->getAdminAccessClass();
+            $this->load->view('admin/admin_header');
+            $this->load->view('admin/admin_top');
+            $this->load->view('admin/admin_navbar');
+            $this->load->view('admin/analytics-admin', $data);
+            $this->load->view('admin/admin_footer');
+        } else {
+            header('location:' . site_url() . 'admin/dashboard/error/500');
+        }
     }
 
     function action() {
-        $post = $this->input->post();
-        $act = array("ee", "es", "de", "ds", "da", "ea");
-        if (in_array($post['actionType'], $act) && isset($post['profile']) && count($post['profile']) > 0) {
-            $msg = $this->objanalytics->setAction($post);
-            header('location:' . site_url() . 'admin/analytics/adminReport?msg=' . $msg);
+        if ($this->p->admr) {
+            $post = $this->input->post();
+            $act = array("ee", "es", "de", "ds", "da", "ea");
+            if (in_array($post['actionType'], $act) && isset($post['profile']) && count($post['profile']) > 0) {
+                $msg = $this->objanalytics->setAction($post);
+                header('location:' . site_url() . 'admin/analytics/adminReport?msg=' . $msg);
+            } else {
+                header('location:' . site_url() . 'admin/analytics/adminReport');
+            }
         } else {
-            header('location:' . site_url() . 'admin/analytics/adminReport');
+            header('location:' . site_url() . 'admin/dashboard/error/500');
         }
     }
 
