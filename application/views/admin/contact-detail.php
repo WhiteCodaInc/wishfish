@@ -333,7 +333,7 @@ switch ($msg) {
             ],
             aoColumnDefs: [{
                     bSortable: false,
-                    aTargets: [0, 1, 3, 4, 7, 8]
+//                    aTargets: [0, 1, 3, 4, 7, 8]
                 }],
             iDisplayLength: -1,
             aaSorting: [[2, 'asc']]
