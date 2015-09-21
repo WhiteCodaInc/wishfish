@@ -327,6 +327,7 @@ switch ($msg) {
 <script type="text/javascript">
     $(function () {
         oTable = $("#contact-data-table").dataTable({
+            bSort: false,
             aLengthMenu: [
                 [25, 50, 100, 200, -1],
                 [25, 50, 100, 200, "All"]
