@@ -165,9 +165,11 @@
                             <table id="contact-data-table" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th style="padding: 10px;">
-                                            <input type="checkbox"/>
-                                        </th>
+                                        <?php if ($p->conu || $p->cond): ?>
+                                            <th style="padding: 10px;">
+                                                <input type="checkbox"/>
+                                            </th>
+                                        <?php endif; ?>
                                         <th>Profile</th>
                                         <th>Name</th>
                                         <th class="hidden-xs hidden-sm">Email</th>
@@ -193,13 +195,15 @@
                                                 base_url() . 'assets/dashboard/img/default-avatar.png';
                                         ?>
                                         <tr>
-                                            <td >
-                                                <div>
-                                                    <label>
-                                                        <input type="checkbox" name="contact[]" value="<?= $value->contact_id ?>"/>
-                                                    </label>
-                                                </div>
-                                            </td>
+                                            <?php if ($p->conu || $p->cond): ?>
+                                                <td >
+                                                    <div>
+                                                        <label>
+                                                            <input type="checkbox" name="contact[]" value="<?= $value->contact_id ?>"/>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                            <?php endif; ?>
                                             <td >
                                                 <img style="width:60px;height:60px" src="<?= $img_src ?>" class="img-circle" alt="User Image" />
                                             </td>
@@ -236,7 +240,9 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th></th>
+                                        <?php if ($p->conu || $p->cond): ?>
+                                            <th></th>
+                                        <?php endif; ?>
                                         <th>Profile</th>
                                         <th>Name</th>
                                         <th class="hidden-xs hidden-sm">Email</th>
@@ -248,8 +254,10 @@
                                     </tr>
                                 </tfoot>
                             </table>
-                            <input type="hidden" id="actionType" name="actionType" value="" />
-                            <input type="hidden" id="groupid" name="groupid" value="" />
+                            <?php if ($p->conu || $p->cond): ?>
+                                <input type="hidden" id="actionType" name="actionType" value="" />
+                                <input type="hidden" id="groupid" name="groupid" value="" />
+                            <?php endif; ?>
                         </div><!-- /.box-body -->
                     </form>
                 </div><!-- /.box -->
@@ -354,51 +362,49 @@ switch ($msg) {
             $('input[name="address_search"]').val("<?= $data['address_search'] ?>");
             $('select[name="rating_search"]').val("<?= $data['rating_search'] ?>");
 <?php } ?>
-        $('#contact-data-table tbody tr').each(function () {
-            $(this).children('td.sorting_1').find('div.checked');
-        });
-
-        $('button.add').click(function (e) {
-            action($(this).val());
-            e.preventDefault();
-        });
-        $('button.remove').click(function (e) {
-            action($(this).val());
-            e.preventDefault();
-        });
-
-        $('button.delete').click(function (e) {
-            var contact = "";
-            var act = $(this).val();
-            $('#contact-data-table tbody tr').each(function () {
-                if ($(this).children('td:first').find('div.checked').length) {
-                    $txt = $(this).children('td:nth-child(3)').children('a').text();
-                    contact += $txt.trim() + ",";
-                }
+<?php if ($p->conu || $p->cond): ?>
+            $('button.add').click(function (e) {
+                action($(this).val());
+                e.preventDefault();
             });
-            contact = contact.substring(0, contact.length - 1);
-
-            alertify.confirm("Are you sure want to delete contact(s):<br/>" + contact, function (e) {
-                if (e) {
-                    action(act);
-                    return true;
-                }
-                else {
-                    return false;
-                }
+            $('button.remove').click(function (e) {
+                action($(this).val());
+                e.preventDefault();
             });
-        });
-        function action(actiontype) {
-            $('#actionType').val(actiontype);
-            $('#groupid').val($('#group').val());
-            if (actiontype == "Add" || actiontype == "Remove") {
-                if ($('#group').val() == "-1") {
-                    alertify.error("Please Select Group First..!");
-                    return false;
+
+            $('button.delete').click(function (e) {
+                var contact = "";
+                var act = $(this).val();
+                $('#contact-data-table tbody tr').each(function () {
+                    if ($(this).children('td:first').find('div.checked').length) {
+                        $txt = $(this).children('td:nth-child(3)').children('a').text();
+                        contact += $txt.trim() + ",";
+                    }
+                });
+                contact = contact.substring(0, contact.length - 1);
+
+                alertify.confirm("Are you sure want to delete contact(s):<br/>" + contact, function (e) {
+                    if (e) {
+                        action(act);
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                });
+            });
+            function action(actiontype) {
+                $('#actionType').val(actiontype);
+                $('#groupid').val($('#group').val());
+                if (actiontype == "Add" || actiontype == "Remove") {
+                    if ($('#group').val() == "-1") {
+                        alertify.error("Please Select Group First..!");
+                        return false;
+                    }
                 }
+                $('#checkForm').attr('action', "<?= site_url() ?>admin/contacts/action");
+                $('#checkForm').submit();
             }
-            $('#checkForm').attr('action', "<?= site_url() ?>admin/contacts/action");
-            $('#checkForm').submit();
-        }
+<?php endif; ?>
     });
 </script>

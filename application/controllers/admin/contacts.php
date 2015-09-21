@@ -126,14 +126,18 @@ class Contacts extends CI_Controller {
     }
 
     function action() {
-        $post = $this->input->post();
-        $type = $post['actionType'];
-        if ($type == "Delete" || $type == "Add" || $type == "Remove") {
-            $msg = $this->objcon->setAction($post);
+        if ($this->p->conu || $this->p->cond) {
+            $post = $this->input->post();
+            $type = $post['actionType'];
+            if ($type == "Delete" || $type == "Add" || $type == "Remove") {
+                $msg = $this->objcon->setAction($post);
+            } else {
+                $msg = "F";
+            }
+            header('location:' . site_url() . 'admin/contacts?msg=' . $msg);
         } else {
-            $msg = "F";
+            header('location:' . site_url() . 'admin/dashboard/error/500');
         }
-        header('location:' . site_url() . 'admin/contacts?msg=' . $msg);
     }
 
     function getZodiac($dt) {
@@ -200,15 +204,23 @@ class Contacts extends CI_Controller {
     }
 
     function createList() {
-        $post = $this->input->post();
-        $this->objcon->createList($post);
-        header('location:' . site_url() . 'admin/contacts/block_list?msg=I');
+        if ($this->p->cbl) {
+            $post = $this->input->post();
+            $this->objcon->createList($post);
+            header('location:' . site_url() . 'admin/contacts/block_list?msg=I');
+        } else {
+            header('location:' . site_url() . 'admin/dashboard/error/500');
+        }
     }
 
     function updateList() {
-        $post = $this->input->post();
-        $this->objcon->updateList($post);
-        header('location:' . site_url() . 'admin/contacts/block_list?msg=U');
+        if ($this->p->cbl) {
+            $post = $this->input->post();
+            $this->objcon->updateList($post);
+            header('location:' . site_url() . 'admin/contacts/block_list?msg=U');
+        } else {
+            header('location:' . site_url() . 'admin/dashboard/error/500');
+        }
     }
 
 }
