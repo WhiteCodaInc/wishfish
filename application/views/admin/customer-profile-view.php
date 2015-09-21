@@ -802,9 +802,9 @@ switch ($msg) {
 
         CKEDITOR.replace('emailbody');
         $(".textarea").wysihtml5();
-
-        Stripe.setPublishableKey('<?= $gatewayInfo->publish_key ?>');
-
+<?php if ($p->cusu): ?>
+            Stripe.setPublishableKey('<?= $gatewayInfo->publish_key ?>');
+<?php endif; ?>
         $("#payment-data-table").dataTable({
 //            order: [],
             bSort: false,
