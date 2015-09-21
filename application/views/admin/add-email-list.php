@@ -28,7 +28,6 @@
                                 <input type="text" name="name" value="<?= isset($lists) ? $lists->name : '' ?>" autofocus="autofocus" class="form-control" placeholder="Enter List Name" />
                             </div>
                         </div><!-- /.box-body -->
-                        <button id="submit" type="submit" ></button>
                         <?php if (isset($lists)): ?>
                             <input type="hidden" name="listid" value="<?= $lists->list_id ?>" />
                         <?php endif; ?>
@@ -44,7 +43,12 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $('#addList').click(function () {
-            ('#listForm #submit').trigger('click');
+            var name = $('#listForm input[name="name"]').val();
+            if (name.trim() == "") {
+                alertify.error("Enter Valid Name..!");
+                return false;
+            }
+            $('#listForm').submit();
         });
     });
 </script>
