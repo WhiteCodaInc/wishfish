@@ -28,7 +28,7 @@
                                 <input type="text" name="name" value="<?= isset($lists) ? $lists->name : '' ?>" autofocus="autofocus" class="form-control" placeholder="Enter List Name" />
                             </div>
                         </div><!-- /.box-body -->
-                        <button id="submit" type="submit" style="display: none"></button>
+                        <button id="submit" type="submit" ></button>
                         <?php if (isset($lists)): ?>
                             <input type="hidden" name="listid" value="<?= $lists->list_id ?>" />
                         <?php endif; ?>
