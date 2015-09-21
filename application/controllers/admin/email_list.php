@@ -30,6 +30,7 @@ class Email_list extends CI_Controller {
     function index() {
         if ($this->p->funi || $this->p->funu || $this->p->funv) {
             $data['lists'] = $this->objlist->getEmailLists();
+            $data['p'] = $this->p;
             $this->load->view('admin/admin_header');
             $this->load->view('admin/admin_top');
             $this->load->view('admin/admin_navbar');
