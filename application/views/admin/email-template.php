@@ -10,11 +10,15 @@
         <h1 style=" display: none">
             Email Template
         </h1>
-        <a href="<?= site_url() ?>admin/email_template/addTemplate" class="create btn btn-success btn-sm">
-            <i class="fa fa-plus"></i>
-            Create New Email Template
-        </a>
-        <button value="Delete" class="delete btn btn-danger btn-sm" id="Delete" type="button" >Delete</button>
+        <?php if ($p->emailti): ?>
+            <a href="<?= site_url() ?>admin/email_template/addTemplate" class="create btn btn-success btn-sm">
+                <i class="fa fa-plus"></i>
+                Create New Email Template
+            </a>
+        <?php endif; ?>
+        <?php if ($p->emailtd): ?>
+            <button value="Delete" class="delete btn btn-danger btn-sm" id="Delete" type="button" >Delete</button>
+        <?php endif; ?>
     </section>
 
     <!-- Main content -->
@@ -26,61 +30,65 @@
                     <div class="box-header">
                         <h3 class="box-title">Email Template</h3>
                     </div><!-- /.box-header -->
-                    <div class="row">
-                        <div class="col-xs-12" style="margin-left: 1%">
-<!--                            <a href="<?= site_url() ?>admin/email_template/addTemplate" class="create btn btn-success btn-sm">
-                                <i class="fa fa-plus"></i>
-                                Create New Email Template
-                            </a>
-                            <button style="margin-left: 10px" value="Delete" class="delete btn btn-danger btn-sm" id="Delete" type="button" >Delete</button>-->
-                        </div>
-                    </div>
-
                     <form name="checkForm" id="checkForm" action="" method="post">
                         <div class="box-body table-responsive" id="data-panel">
 
                             <table id="template-data-table" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th style="padding: 10px;">
-                                            <input type="checkbox"/>
-                                        </th>
+                                        <?php if ($p->emailtd): ?>
+                                            <th style="padding: 10px;">
+                                                <input type="checkbox"/>
+                                            </th>
+                                        <?php endif; ?>
                                         <th>Email Template</th>
                                         <th class="hidden-xs hidden-sm">Email Subject</th>
-                                        <th>Edit</th>
+                                        <?php if ($p->emailtu): ?>
+                                            <th>Edit</th>
+                                        <?php endif; ?>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach ($template as $value) { ?>
                                         <tr>
-                                            <td>
-                                                <div>
-                                                    <label>
-                                                        <input type="checkbox" name="template[]" value="<?= $value->template_id ?>"/>
-                                                    </label>
-                                                </div>
-                                            </td>
+                                            <?php if ($p->emailtd): ?>
+                                                <td>
+                                                    <div>
+                                                        <label>
+                                                            <input type="checkbox" name="template[]" value="<?= $value->template_id ?>"/>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                            <?php endif; ?>
                                             <td><?= $value->name ?></td>
                                             <td class="hidden-xs hidden-sm"><?= $value->subject ?></td>
-                                            <td>
-                                                <a href="<?= site_url() ?>admin/email_template/editTemplate/<?= $value->template_id ?>" class="btn bg-navy btn-xs">
-                                                    <i class="fa fa-edit"></i>
-                                                    Edit
-                                                </a>
-                                            </td>
+                                            <?php if ($p->emailtu): ?>
+                                                <td>
+                                                    <a href="<?= site_url() ?>admin/email_template/editTemplate/<?= $value->template_id ?>" class="btn bg-navy btn-xs">
+                                                        <i class="fa fa-edit"></i>
+                                                        Edit
+                                                    </a>
+                                                </td>
+                                            <?php endif; ?>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th></th>
+                                        <?php if ($p->emailtd): ?>
+                                            <th></th>
+                                        <?php endif; ?>
                                         <th>Email Template</th>
                                         <th class="hidden-xs hidden-sm">Email Subject</th>
-                                        <th>Edit</th>
+                                        <?php if ($p->emailtu): ?>
+                                            <th>Edit</th>
+                                        <?php endif; ?>
                                     </tr>
                                 </tfoot>
                             </table>
-                            <input type="hidden" id="actionType" name="actionType" value="" />
+                            <?php if ($p->emailtd): ?>
+                                <input type="hidden" id="actionType" name="actionType" value="" />
+                            <?php endif; ?>
                         </div><!-- /.box-body -->
                     </form>
                 </div><!-- /.box -->
@@ -124,10 +132,11 @@ switch ($msg) {
 <script type="text/javascript">
     $(function () {
         $("#template-data-table").dataTable({
-            aoColumnDefs: [{
-                    bSortable: false,
-                    aTargets: [0, 2, 3]
-                }]
+            bSort: false,
+//            aoColumnDefs: [{
+//                    bSortable: false,
+//                    aTargets: [0, 2, 3]
+//                }]
         });
     });
 </script>
@@ -135,21 +144,22 @@ switch ($msg) {
     $(document).ready(function () {
 
 
+<?php if ($p->emailtd): ?>
+            $('button.delete').click(function (e) {
+                if (confirm("Are you show want to delete ?") == true) {
+                    action($(this).val());
+                } else {
+                    return false;
+                }
+                e.preventDefault();
+            });
 
-        $('button.delete').click(function (e) {
-            if (confirm("Are you show want to delete ?") == true) {
-                action($(this).val());
-            } else {
-                return false;
+            function action(actiontype) {
+                $('#actionType').val(actiontype);
+                $('#checkForm').attr('action', "<?= site_url() ?>admin/email_template/action");
+                $('#checkForm').submit();
             }
-            e.preventDefault();
-        });
-
-        function action(actiontype) {
-            $('#actionType').val(actiontype);
-            $('#checkForm').attr('action', "<?= site_url() ?>admin/email_template/action");
-            $('#checkForm').submit();
-        }
+<?php endif; ?>
     });
 
 </script>

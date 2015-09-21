@@ -10,13 +10,13 @@
         <h1 style=" display: none">
             SMS List Builder
         </h1>
-        <?php if ($p->smsti): ?>
+        <?php if ($p->smslbi): ?>
             <a href="<?= site_url() ?>admin/sms_list_builder/addList" class="create btn btn-success btn-sm">
                 <i class="fa fa-plus"></i>
                 New SMS List
             </a>
         <?php endif; ?>
-        <?php if ($p->smstd): ?>
+        <?php if ($p->smslbd): ?>
             <button value="Delete" class="delete btn btn-danger btn-sm" id="Delete" type="button" >Delete</button>
         <?php endif; ?>
     </section>
@@ -36,14 +36,14 @@
                             <table id="builder-data-table" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <?php if ($p->smstd): ?>
+                                        <?php if ($p->smslbd): ?>
                                             <th style="padding: 10px;">
                                                 <input type="checkbox"/>
                                             </th>
                                         <?php endif; ?>
                                         <th>SMS List</th>
                                         <th class="hidden-xs hidden-sm">Total Contacts</th>
-                                        <?php if ($p->smstu): ?>
+                                        <?php if ($p->smslbu): ?>
                                             <th>Add Contacts</th>
                                             <th>Add Groups</th>
                                         <?php endif; ?>
@@ -52,7 +52,7 @@
                                 <tbody>
                                     <?php foreach ($groups as $value) { ?>
                                         <tr>
-                                            <?php if ($p->smstd): ?>
+                                            <?php if ($p->smslbd): ?>
                                                 <td>
                                                     <div>
                                                         <label>
@@ -63,7 +63,7 @@
                                             <?php endif; ?>
                                             <td><?= $value->group_name ?></td>
                                             <td class="hidden-xs hidden-sm"><?= $value->total ?></td>
-                                            <?php if ($p->smstu): ?>
+                                            <?php if ($p->smslbu): ?>
                                                 <td>
                                                     <a href="<?= site_url() ?>admin/sms_list_builder/addContacts/<?= $value->group_id ?>" class="btn bg-navy">
                                                         <i class="fa fa-edit"></i>
@@ -82,19 +82,19 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <?php if ($p->smstd): ?>
+                                        <?php if ($p->smslbd): ?>
                                             <th></th>
                                         <?php endif; ?>
                                         <th>SMS List</th>
                                         <th class="hidden-xs hidden-sm">Total Contacts</th>
-                                        <?php if ($p->smstu): ?>
+                                        <?php if ($p->smslbu): ?>
                                             <th>Add Contacts</th>
                                             <th>Add Groups</th>
                                         <?php endif; ?>
                                     </tr>
                                 </tfoot>
                             </table>
-                            <?php if ($p->smstd): ?>
+                            <?php if ($p->smslbd): ?>
                                 <input type="hidden" id="actionType" name="actionType" value="" />
                             <?php endif; ?>
                         </div><!-- /.box-body -->
@@ -150,7 +150,7 @@ switch ($msg) {
 <script type="text/javascript">
     $(document).ready(function () {
 
-<?php if ($p->smstd): ?>
+<?php if ($p->smslbd): ?>
             $('button.delete').click(function (e) {
                 var sms = "";
                 var act = $(this).val();

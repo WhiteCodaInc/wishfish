@@ -17,7 +17,7 @@ class Sms_template extends CI_Controller {
 
     function __construct() {
         parent::__construct();
-
+        $this->p = $this->common->getPermission();
         if (!$this->authex->logged_in()) {
             header('location:' . site_url() . 'admin/admin_login');
         } else if (!$this->p->smsti && !$this->p->smstu && !$this->p->smstd) {
@@ -30,6 +30,7 @@ class Sms_template extends CI_Controller {
     function index() {
         if ($this->p->smsti || $this->p->smstu || $this->p->smstd) {
             $data['template'] = $this->objtmplt->getTemplates();
+            $data['p'] = $this->p;
             $this->load->view('admin/admin_header');
             $this->load->view('admin/admin_top');
             $this->load->view('admin/admin_navbar');
@@ -41,11 +42,15 @@ class Sms_template extends CI_Controller {
     }
 
     function addTemplate() {
-        $this->load->view('admin/admin_header');
-        $this->load->view('admin/admin_top');
-        $this->load->view('admin/admin_navbar');
-        $this->load->view('admin/add-sms-template');
-        $this->load->view('admin/admin_footer');
+        if ($this->p->smsti) {
+            $this->load->view('admin/admin_header');
+            $this->load->view('admin/admin_top');
+            $this->load->view('admin/admin_navbar');
+            $this->load->view('admin/add-sms-template');
+            $this->load->view('admin/admin_footer');
+        } else {
+            header('location:' . site_url() . 'admin/dashboard/error/500');
+        }
     }
 
     function createTemplate() {

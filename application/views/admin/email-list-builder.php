@@ -10,11 +10,15 @@
         <h1 style=" display: none">
             Email List Builder
         </h1>
-        <a href="<?= site_url() ?>admin/email_list_builder/addList" class="create btn btn-success btn-sm">
-            <i class="fa fa-plus"></i>
-            New Email List
-        </a>
-        <button  value="Delete" class="delete btn btn-danger btn-sm" id="Delete" type="button" >Delete</button>
+        <?php if ($p->emaillbi): ?>
+            <a href="<?= site_url() ?>admin/email_list_builder/addList" class="create btn btn-success btn-sm">
+                <i class="fa fa-plus"></i>
+                New Email List
+            </a>
+        <?php endif; ?>
+        <?php if ($p->emaillbd): ?>
+            <button  value="Delete" class="delete btn btn-danger btn-sm" id="Delete" type="button" >Delete</button>
+        <?php endif; ?>
     </section>
 
     <!-- Main content -->
@@ -26,73 +30,77 @@
                     <div class="box-header">
                         <h3 class="box-title">Email List Detail</h3>
                     </div><!-- /.box-header -->
-                    <div class="row">
-                        <div class="col-xs-12" style="margin-left: 1%">
-<!--                            <a href="<?= site_url() ?>admin/email_list_builder/addList" class="create btn btn-success btn-sm">
-                                <i class="fa fa-plus"></i>
-                                New Email List
-                            </a>
-                            <button style="margin-left: 10px" value="Delete" class="delete btn btn-danger btn-sm" id="Delete" type="button" >Delete</button>-->
-                        </div>
-                    </div>
-
                     <form name="checkForm" id="checkForm" action="" method="post">
                         <div class="box-body table-responsive" id="data-panel">
 
                             <table id="builder-data-table" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th style="padding: 10px;">
-                                            <input type="checkbox"/>
-                                        </th>
+                                        <?php if ($p->emaillbd): ?>
+                                            <th style="padding: 10px;">
+                                                <input type="checkbox"/>
+                                            </th>
+                                        <?php endif; ?>
                                         <th>Email List</th>
                                         <th>Total Contacts</th>
-                                        <th>Add Contacts</th>
-                                        <th>Add Groups</th>
+                                        <?php if ($p->emaillbu): ?>
+                                            <th>Add Contacts</th>
+                                            <th>Add Groups</th>
+                                        <?php endif; ?>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach ($groups as $value) { ?>
                                         <tr>
-                                            <td>
-                                                <div>
-                                                    <label>
-                                                        <input type="checkbox" name="group[]" value="<?= $value->group_id ?>"/>
-                                                    </label>
-                                                </div>
-                                            </td>
+                                            <?php if ($p->emaillbd): ?>
+                                                <td>
+                                                    <div>
+                                                        <label>
+                                                            <input type="checkbox" name="group[]" value="<?= $value->group_id ?>"/>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                            <?php endif; ?>
                                             <td><?= $value->group_name ?></td>
                                             <td>
                                                 <a style="cursor: pointer" id="<?= $value->group_id ?>" class="view" >
                                                     <?= $value->total ?>
                                                 </a>
                                             </td>
-                                            <td>
-                                                <a href="<?= site_url() ?>admin/email_list_builder/addContacts/<?= $value->group_id ?>" class="btn bg-navy">
-                                                    <i class="fa fa-edit"></i>
-                                                    Add Contacts
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <a href="<?= site_url() ?>admin/email_list_builder/addGroups/<?= $value->group_id ?>" class="btn bg-navy">
-                                                    <i class="fa fa-edit"></i>
-                                                    Add Groups
-                                                </a>
-                                            </td>
+                                            <?php if ($p->emaillbu): ?>
+                                                <td>
+                                                    <a href="<?= site_url() ?>admin/email_list_builder/addContacts/<?= $value->group_id ?>" class="btn bg-navy">
+                                                        <i class="fa fa-edit"></i>
+                                                        Add Contacts
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a href="<?= site_url() ?>admin/email_list_builder/addGroups/<?= $value->group_id ?>" class="btn bg-navy">
+                                                        <i class="fa fa-edit"></i>
+                                                        Add Groups
+                                                    </a>
+                                                </td>
+                                            <?php endif; ?>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th></th>
+                                        <?php if ($p->emaillbd): ?>
+                                            <th></th>
+                                        <?php endif; ?>
                                         <th>Email List</th>
                                         <th class="hidden-xs hidden-sm">Total Contacts</th>
-                                        <th>Add Contacts</th>
-                                        <th>Add Groups</th>
+                                        <?php if ($p->emaillbu): ?>
+                                            <th>Add Contacts</th>
+                                            <th>Add Groups</th>
+                                        <?php endif; ?>
                                     </tr>
                                 </tfoot>
                             </table>
-                            <input type="hidden" id="actionType" name="actionType" value="" />
+                            <?php if ($p->emaillbd): ?>
+                                <input type="hidden" id="actionType" name="actionType" value="" />
+                            <?php endif; ?>
                         </div><!-- /.box-body -->
                     </form>
                 </div><!-- /.box -->
@@ -166,43 +174,46 @@ switch ($msg) {
 <script type="text/javascript">
     $(function () {
         $("#builder-data-table").dataTable({
-            aoColumnDefs: [{
-                    bSortable: false,
-                    aTargets: [0, 3, 4]
-                }]
+            bSort: false,
+//            aoColumnDefs: [{
+//                    bSortable: false,
+//                    aTargets: [0, 3, 4]
+//                }]
         });
     });
 </script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $('button.delete').click(function (e) {
-            var email = "";
-            var act = $(this).val();
-            $('#builder-data-table tbody tr').each(function () {
-                if ($(this).children('td:first').find('div.checked').length) {
-                    $txt = $(this).children('td:nth-child(2)').text();
-                    email += $txt.trim() + ",";
-                }
+<?php if ($p->emaillbd): ?>
+            $('button.delete').click(function (e) {
+                var email = "";
+                var act = $(this).val();
+                $('#builder-data-table tbody tr').each(function () {
+                    if ($(this).children('td:first').find('div.checked').length) {
+                        $txt = $(this).children('td:nth-child(2)').text();
+                        email += $txt.trim() + ",";
+                    }
+                });
+
+                email = email.substring(0, email.length - 1);
+
+                alertify.confirm("Are you sure want to delete email list(s):<br/>" + email, function (e) {
+                    if (e) {
+                        action(act);
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                });
             });
 
-            email = email.substring(0, email.length - 1);
-
-            alertify.confirm("Are you sure want to delete email list(s):<br/>" + email, function (e) {
-                if (e) {
-                    action(act);
-                    return true;
-                }
-                else {
-                    return false;
-                }
-            });
-        });
-
-        function action(actiontype) {
-            $('#actionType').val(actiontype);
-            $('#checkForm').attr('action', "<?= site_url() ?>admin/email_list_builder/action");
-            $('#checkForm').submit();
-        }
+            function action(actiontype) {
+                $('#actionType').val(actiontype);
+                $('#checkForm').attr('action', "<?= site_url() ?>admin/email_list_builder/action");
+                $('#checkForm').submit();
+            }
+<?php endif; ?>
 
         $('.view').click(function () {
             var groupid = $(this).attr('id');

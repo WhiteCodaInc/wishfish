@@ -287,38 +287,34 @@ class Sms extends CI_Controller {
     }
 
     function sendSMS($to = NULL, $body = NULL) {
-        if ($this->p->smsb) {
-            if ($to == NULL && $body == NULL) {
-                $post = $this->input->post();
-                $to = $post['to'];
-                $body = $post['msg'];
-                $flag = TRUE;
-            } else {
-                $flag = FALSE;
-            }
-            if ($this->common->sendSMS($to, $body)) {
-                $set = array('status' => 0, 'body' => $body);
-                $where = array('from' => $to);
-                $this->objsms->updateStatus($set, $where);
-                if ($flag && !isset($post['ver'])) {
-                    $data['inbox'] = $this->objsms->getInbox();
-                    $this->load->view('admin/sms-inbox-view', $data);
-                } else if ($flag && isset($post['ver'])) {
-                    header('location:' . site_url() . 'admin/sms/inbox?ver=mobile&msg=send');
-                } else if (!$flag) {
-                    return TRUE;
-                }
-            } else {
-                if ($flag && !isset($post['ver'])) {
-                    echo 0;
-                } else if ($flag && isset($post['ver'])) {
-                    header('location:' . site_url() . 'admin/sms/inbox?ver=mobile&msg=fail');
-                } else if (!$flag) {
-                    return FALSE;
-                }
+        if ($to == NULL && $body == NULL) {
+            $post = $this->input->post();
+            $to = $post['to'];
+            $body = $post['msg'];
+            $flag = TRUE;
+        } else {
+            $flag = FALSE;
+        }
+        if ($this->common->sendSMS($to, $body)) {
+            $set = array('status' => 0, 'body' => $body);
+            $where = array('from' => $to);
+            $this->objsms->updateStatus($set, $where);
+            if ($flag && !isset($post['ver'])) {
+                $data['inbox'] = $this->objsms->getInbox();
+                $this->load->view('admin/sms-inbox-view', $data);
+            } else if ($flag && isset($post['ver'])) {
+                header('location:' . site_url() . 'admin/sms/inbox?ver=mobile&msg=send');
+            } else if (!$flag) {
+                return TRUE;
             }
         } else {
-            header('location:' . site_url() . 'admin/dashboard/error/500');
+            if ($flag && !isset($post['ver'])) {
+                echo 0;
+            } else if ($flag && isset($post['ver'])) {
+                header('location:' . site_url() . 'admin/sms/inbox?ver=mobile&msg=fail');
+            } else if (!$flag) {
+                return FALSE;
+            }
         }
     }
 
