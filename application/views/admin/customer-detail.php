@@ -13,9 +13,13 @@
         <h1 style=" display: none">
             Customers
         </h1>
-        <button value="Active" class="add btn btn-success btn-sm" id="Active" type="button" >Active</button>
-        <button value="Deactive" class="remove btn btn-warning btn-sm" id="Deactive" type="button" >Deactivate</button>
-        <button value="Delete" class="delete btn btn-danger btn-sm" id="Delete" type="button" >Delete</button>
+        <?php if ($p->cusu): ?>
+            <button value="Active" class="add btn btn-success btn-sm" id="Active" type="button" >Active</button>
+            <button value="Deactive" class="remove btn btn-warning btn-sm" id="Deactive" type="button" >Deactivate</button>
+        <?php endif; ?>
+        <?php if ($p->cusd): ?>
+            <button value="Delete" class="delete btn btn-danger btn-sm" id="Delete" type="button" >Delete</button>
+        <?php endif; ?>
         <div class="search" style="float:right;width: 24%">
             <select id="page_length" class="form-control" style="float: left;width: 28%;margin-right: 2%">
                 <option value="25">25</option>

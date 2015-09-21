@@ -17,6 +17,7 @@ class Affiliates extends CI_Controller {
 
     function __construct() {
         parent::__construct();
+        $this->p = $this->common->getPermission();
         if (!$this->authex->logged_in()) {
             header('location:' . site_url() . 'admin/admin_login');
         } else if (!$this->p->affi && !$this->p->affu && !$this->p->affd) {

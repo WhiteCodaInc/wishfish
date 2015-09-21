@@ -13,16 +13,16 @@
  */
 class Customers extends CI_Controller {
 
-    private $api_username, $api_password, $api_signature;
+    private $api_username, $api_password, $api_signature, $p;
 
     function __construct() {
         parent::__construct();
+        $this->p = $this->common->getPermission();
         if (!$this->authex->logged_in()) {
             header('location:' . site_url() . 'admin/admin_login');
-//        } else if (!$this->common->getPermission()->customers) {
-//            header('location:' . site_url() . 'admin/dashboard/error/500');
+        } else if (!$this->p->cusu && !$this->p->cusd) {
+            header('location:' . site_url() . 'admin/dashboard/error/500');
         } else {
-
             $paypalGatewayInfo = $this->wi_common->getPaymentGatewayInfo("PAYPAL");
             $this->api_username = $paypalGatewayInfo->api_username;
             $this->api_password = $paypalGatewayInfo->api_password;
@@ -44,9 +44,7 @@ class Customers extends CI_Controller {
         $data['customers'] = $this->objcustomer->getCustomerDetail();
         $data['plans'] = $this->wi_common->getPlans();
         $data['groups'] = $this->objgroup->getCustomerGroups();
-//        echo '<pre>';
-//        print_r($data);
-//        die();
+        $data['p'] = $this->p;
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');
@@ -58,6 +56,7 @@ class Customers extends CI_Controller {
         $data['searchResult'] = $this->objcustomer->searchResult();
         $data['groups'] = $this->objgroup->getCustomerGroups();
         $data['plans'] = $this->wi_common->getPlans();
+        $data['p'] = $this->p;
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');
@@ -73,14 +72,13 @@ class Customers extends CI_Controller {
 
             $data['groups'] = $this->objgroup->getCustomerGroups();
 
-//        $data['customer'] = $this->objcustomer->getCustomerInfo($cid);
-
             $data['phistory'] = $this->objcustomer->getPaymentHistory($cid);
             $data['card'] = $this->getCardDetail($cid);
             $data['gatewayInfo'] = $this->wi_common->getPaymentGatewayInfo("STRIPE");
             $data['plans'] = $this->wi_common->getPlans();
             $data['sms_template'] = $this->objsmstmplt->getTemplates();
             $data['email_template'] = $this->objemailtmplt->getTemplates();
+            $data['p'] = $this->p;
 
             $this->load->view('admin/admin_header');
             $this->load->view('admin/admin_top');
@@ -99,7 +97,6 @@ class Customers extends CI_Controller {
         $data['cgroup'] = $res[1];
         $data['groups'] = $this->objgroup->getCustomerGroups();
 
-//        $data['customers'] = $this->objcustomer->getCustomerInfo($cid);
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');

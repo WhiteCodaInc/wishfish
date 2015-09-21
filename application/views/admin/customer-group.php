@@ -10,11 +10,15 @@
         <h1 style=" display: none">
             Customer Groups
         </h1>
-        <a href="<?= site_url() ?>admin/customer_groups/addCustomerGroup" class="create btn btn-success btn-sm">
-            <i class="fa fa-plus"></i>
-            Create New Customer Group
-        </a>
-        <button value="Delete" class="delete btn btn-danger btn-sm" id="Delete" type="button" >Delete</button>
+        <?php if ($p->cusgi): ?>
+            <a href="<?= site_url() ?>admin/customer_groups/addCustomerGroup" class="create btn btn-success btn-sm">
+                <i class="fa fa-plus"></i>
+                Create New Customer Group
+            </a>
+        <?php endif; ?>
+        <?php if ($p->cusgd): ?>
+            <button value="Delete" class="delete btn btn-danger btn-sm" id="Delete" type="button" >Delete</button>
+        <?php endif; ?>
     </section>
 
     <!-- Main content -->
@@ -26,61 +30,65 @@
                     <div class="box-header">
                         <h3 class="box-title">Customer Group Detail</h3>
                     </div><!-- /.box-header -->
-                    <div class="row">
-                        <div class="col-xs-12" style="margin-left: 1%">
-<!--                            <a href="<?= site_url() ?>admin/customer_groups/addCustomerGroup" class="create btn btn-success btn-sm">
-                                <i class="fa fa-plus"></i>
-                                Create New Customer Group
-                            </a>
-                            <button style="margin-left: 10px" value="Delete" class="delete btn btn-danger btn-sm" id="Delete" type="button" >Delete</button>-->
-                        </div>
-                    </div>
-
                     <form name="checkForm" id="checkForm" action="" method="post">
                         <div class="box-body table-responsive" id="data-panel">
 
                             <table id="customer-data-table" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th style="padding: 10px;">
-                                            <input type="checkbox"/>
-                                        </th>
+                                        <?php if ($p->cusgd): ?>
+                                            <th style="padding: 10px;">
+                                                <input type="checkbox"/>
+                                            </th>
+                                        <?php endif; ?>
                                         <th class="hidden-xs hidden-sm">Group Id</th>
                                         <th>Group Name</th>
-                                        <th>Edit</th>
+                                        <?php if ($p->cusgu): ?>
+                                            <th>Edit</th>
+                                        <?php endif; ?>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach ($groups as $value) { ?>
                                         <tr>
-                                            <td>
-                                                <div>
-                                                    <label>
-                                                        <input type="checkbox" name="group[]" value="<?= $value->group_id ?>"/>
-                                                    </label>
-                                                </div>
-                                            </td>
+                                            <?php if ($p->cusgd): ?>
+                                                <td>
+                                                    <div>
+                                                        <label>
+                                                            <input type="checkbox" name="group[]" value="<?= $value->group_id ?>"/>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                            <?php endif; ?>
                                             <td class="hidden-xs hidden-sm"><?= $value->group_id ?></td>
                                             <td><?= $value->group_name ?></td>
-                                            <td>
-                                                <a href="<?= site_url() ?>admin/customer_groups/editCustomerGroup/<?= $value->group_id ?>" class="btn bg-navy btn-xs">
-                                                    <i class="fa fa-edit"></i>
-                                                    Edit
-                                                </a>
-                                            </td>
+                                            <?php if ($p->cusgu): ?>
+                                                <td>
+                                                    <a href="<?= site_url() ?>admin/customer_groups/editCustomerGroup/<?= $value->group_id ?>" class="btn bg-navy btn-xs">
+                                                        <i class="fa fa-edit"></i>
+                                                        Edit
+                                                    </a>
+                                                </td>
+                                            <?php endif; ?>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th></th>
+                                        <?php if ($p->cusgd): ?>
+                                            <th></th>
+                                        <?php endif; ?>
                                         <th class="hidden-xs hidden-sm">Group Id</th>
                                         <th>Group Name</th>
-                                        <th>Edit</th>
+                                        <?php if ($p->cusgu): ?>
+                                            <th>Edit</th>
+                                        <?php endif; ?>
                                     </tr>
                                 </tfoot>
                             </table>
-                            <input type="hidden" id="actionType" name="actionType" value="" />
+                            <?php if ($p->cusgd): ?>
+                                <input type="hidden" id="actionType" name="actionType" value="" />
+                            <?php endif; ?>
                         </div><!-- /.box-body -->
                     </form>
                 </div><!-- /.box -->
@@ -123,44 +131,46 @@ switch ($msg) {
 <script type="text/javascript">
     $(function () {
         $("#customer-data-table").dataTable({
-            aoColumnDefs: [{
-                    bSortable: false,
-                    aTargets: [0, 3]
-                }]
+            bSort: false,
+//            aoColumnDefs: [{
+//                    bSortable: false,
+//                    aTargets: [0, 3]
+//                }]
         });
     });
 </script>
 <script type="text/javascript">
     $(document).ready(function () {
+<?php if ($p->cusgd): ?>
+            $('button.delete').click(function (e) {
+                var cgroup = "";
+                var act = $(this).val();
+                $('#customer-data-table tbody tr').each(function () {
+                    if ($(this).children('td:first').find('div.checked').length) {
+                        $txt = $(this).children('td:nth-child(3)').text();
+                        cgroup += $txt.trim() + ",";
+                    }
+                });
 
-        $('button.delete').click(function (e) {
-            var cgroup = "";
-            var act = $(this).val();
-            $('#customer-data-table tbody tr').each(function () {
-                if ($(this).children('td:first').find('div.checked').length) {
-                    $txt = $(this).children('td:nth-child(3)').text();
-                    cgroup += $txt.trim() + ",";
-                }
+                cgroup = cgroup.substring(0, cgroup.length - 1);
+
+                alertify.confirm("Are you sure want to delete contact group(s):<br/>" + cgroup, function (e) {
+                    if (e) {
+                        action(act);
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                });
             });
 
-            cgroup = cgroup.substring(0, cgroup.length - 1);
-
-            alertify.confirm("Are you sure want to delete contact group(s):<br/>" + cgroup, function (e) {
-                if (e) {
-                    action(act);
-                    return true;
-                }
-                else {
-                    return false;
-                }
-            });
-        });
-
-        function action(actiontype) {
-            $('#actionType').val(actiontype);
-            $('#checkForm').attr('action', "<?= site_url() ?>admin/customer_groups/action");
-            $('#checkForm').submit();
-        }
+            function action(actiontype) {
+                $('#actionType').val(actiontype);
+                $('#checkForm').attr('action', "<?= site_url() ?>admin/customer_groups/action");
+                $('#checkForm').submit();
+            }
+<?php endif; ?>
     });
 
 </script>
