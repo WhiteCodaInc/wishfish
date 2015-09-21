@@ -30,6 +30,7 @@ class Customer_groups extends CI_Controller {
     function index() {
         if ($this->p->cusgi || $this->p->cusgu || $this->p->cusgd) {
             $data['groups'] = $this->objgroup->getCustomerGroups();
+            $data['p'] = $this->p;
             $this->load->view('admin/admin_header');
             $this->load->view('admin/admin_top');
             $this->load->view('admin/admin_navbar');

@@ -10,11 +10,15 @@
         <h1 style=" display: none">
             SMS List Builder
         </h1>
-        <a href="<?= site_url() ?>admin/sms_list_builder/addList" class="create btn btn-success btn-sm">
-            <i class="fa fa-plus"></i>
-            New SMS List
-        </a>
-        <button value="Delete" class="delete btn btn-danger btn-sm" id="Delete" type="button" >Delete</button>
+        <?php if ($p->smsti): ?>
+            <a href="<?= site_url() ?>admin/sms_list_builder/addList" class="create btn btn-success btn-sm">
+                <i class="fa fa-plus"></i>
+                New SMS List
+            </a>
+        <?php endif; ?>
+        <?php if ($p->smstd): ?>
+            <button value="Delete" class="delete btn btn-danger btn-sm" id="Delete" type="button" >Delete</button>
+        <?php endif; ?>
     </section>
 
     <!-- Main content -->
@@ -32,53 +36,67 @@
                             <table id="builder-data-table" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th style="padding: 10px;">
-                                            <input type="checkbox"/>
-                                        </th>
+                                        <?php if ($p->smstd): ?>
+                                            <th style="padding: 10px;">
+                                                <input type="checkbox"/>
+                                            </th>
+                                        <?php endif; ?>
                                         <th>SMS List</th>
                                         <th class="hidden-xs hidden-sm">Total Contacts</th>
-                                        <th>Add Contacts</th>
-                                        <th>Add Groups</th>
+                                        <?php if ($p->smstu): ?>
+                                            <th>Add Contacts</th>
+                                            <th>Add Groups</th>
+                                        <?php endif; ?>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach ($groups as $value) { ?>
                                         <tr>
-                                            <td>
-                                                <div>
-                                                    <label>
-                                                        <input type="checkbox" name="group[]" value="<?= $value->group_id ?>"/>
-                                                    </label>
-                                                </div>
-                                            </td>
+                                            <?php if ($p->smstd): ?>
+                                                <td>
+                                                    <div>
+                                                        <label>
+                                                            <input type="checkbox" name="group[]" value="<?= $value->group_id ?>"/>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                            <?php endif; ?>
                                             <td><?= $value->group_name ?></td>
                                             <td class="hidden-xs hidden-sm"><?= $value->total ?></td>
-                                            <td>
-                                                <a href="<?= site_url() ?>admin/sms_list_builder/addContacts/<?= $value->group_id ?>" class="btn bg-navy">
-                                                    <i class="fa fa-edit"></i>
-                                                    Add Contacts
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <a href="<?= site_url() ?>admin/sms_list_builder/addGroups/<?= $value->group_id ?>" class="btn bg-navy">
-                                                    <i class="fa fa-edit"></i>
-                                                    Add Groups
-                                                </a>
-                                            </td>
+                                            <?php if ($p->smstu): ?>
+                                                <td>
+                                                    <a href="<?= site_url() ?>admin/sms_list_builder/addContacts/<?= $value->group_id ?>" class="btn bg-navy">
+                                                        <i class="fa fa-edit"></i>
+                                                        Add Contacts
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a href="<?= site_url() ?>admin/sms_list_builder/addGroups/<?= $value->group_id ?>" class="btn bg-navy">
+                                                        <i class="fa fa-edit"></i>
+                                                        Add Groups
+                                                    </a>
+                                                </td>
+                                            <?php endif; ?>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th></th>
+                                        <?php if ($p->smstd): ?>
+                                            <th></th>
+                                        <?php endif; ?>
                                         <th>SMS List</th>
                                         <th class="hidden-xs hidden-sm">Total Contacts</th>
-                                        <th>Add Contacts</th>
-                                        <th>Add Groups</th>
+                                        <?php if ($p->smstu): ?>
+                                            <th>Add Contacts</th>
+                                            <th>Add Groups</th>
+                                        <?php endif; ?>
                                     </tr>
                                 </tfoot>
                             </table>
-                            <input type="hidden" id="actionType" name="actionType" value="" />
+                            <?php if ($p->smstd): ?>
+                                <input type="hidden" id="actionType" name="actionType" value="" />
+                            <?php endif; ?>
                         </div><!-- /.box-body -->
                     </form>
                 </div><!-- /.box -->
@@ -121,45 +139,47 @@ switch ($msg) {
 <script type="text/javascript">
     $(function () {
         $("#builder-data-table").dataTable({
-            aoColumnDefs: [{
-                    bSortable: false,
-                    aTargets: [0, 3, 4]
-                }]
+            bSort: false,
+//            aoColumnDefs: [{
+//                    bSortable: false,
+//                    aTargets: [0, 3, 4]
+//                }]
         });
     });
 </script>
 <script type="text/javascript">
     $(document).ready(function () {
 
+<?php if ($p->smstd): ?>
+            $('button.delete').click(function (e) {
+                var sms = "";
+                var act = $(this).val();
+                $('#builder-data-table tbody tr').each(function () {
+                    if ($(this).children('td:first').find('div.checked').length) {
+                        $txt = $(this).children('td:nth-child(2)').text();
+                        sms += $txt.trim() + ",";
+                    }
+                });
 
-        $('button.delete').click(function (e) {
-            var sms = "";
-            var act = $(this).val();
-            $('#builder-data-table tbody tr').each(function () {
-                if ($(this).children('td:first').find('div.checked').length) {
-                    $txt = $(this).children('td:nth-child(2)').text();
-                    sms += $txt.trim() + ",";
-                }
+                sms = sms.substring(0, sms.length - 1);
+
+                alertify.confirm("Are you sure want to delete sms list(s):<br/>" + sms, function (e) {
+                    if (e) {
+                        action(act);
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                });
             });
 
-            sms = sms.substring(0, sms.length - 1);
-
-            alertify.confirm("Are you sure want to delete sms list(s):<br/>" + sms, function (e) {
-                if (e) {
-                    action(act);
-                    return true;
-                }
-                else {
-                    return false;
-                }
-            });
-        });
-
-        function action(actiontype) {
-            $('#actionType').val(actiontype);
-            $('#checkForm').attr('action', "<?= site_url() ?>admin/sms_list_builder/action");
-            $('#checkForm').submit();
-        }
+            function action(actiontype) {
+                $('#actionType').val(actiontype);
+                $('#checkForm').attr('action', "<?= site_url() ?>admin/sms_list_builder/action");
+                $('#checkForm').submit();
+            }
+<?php endif; ?>
     });
 
 </script>

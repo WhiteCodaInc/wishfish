@@ -13,15 +13,13 @@
  */
 class Sms extends CI_Controller {
 
-    //put your code here
+    private $p;
 
     function __construct() {
         parent::__construct();
-
+        $this->p = $this->common->getPermission();
         if (!$this->authex->logged_in()) {
             header('location:' . site_url() . 'admin/admin_login');
-//        } else if (!$this->common->getPermission()->sms) {
-//            header('location:' . site_url() . 'admin/dashboard/error/500');
         } else {
             $this->load->model('admin/m_sms', 'objsms');
             $this->load->model('admin/m_admin_profile', 'objprofile');
@@ -37,40 +35,48 @@ class Sms extends CI_Controller {
     }
 
     function send_sms() {
-        $data['individual'] = $this->objprofile->getProfiles();
-        $data['template'] = $this->objtmplt->getTemplates();
-        $this->load->view('admin/admin_header');
-        $this->load->view('admin/admin_top');
-        $this->load->view('admin/admin_navbar');
-        $this->load->view('admin/send-sms', $data);
-        $this->load->view('admin/admin_footer');
-    }
-
-    function inbox() {
-        $from = array();
-        $adminInfo = $this->common->getAdminInfo();
-        $sms = $this->getInbox();
-        foreach ($sms as $msg) {
-            if ($msg->direction == "inbound" && $msg->to == $adminInfo->twilio_number) {
-                if (!in_array($msg->from, $from)) {
-                    $from[] = $msg->from;
-                    $this->isExists($msg);
-                }
-            }
-        }
-        $data['inbox'] = $this->objsms->getInbox();
-        if ($this->input->get('type') == "ajax") {
-            $this->load->view('admin/sms-inbox-view', $data);
-        } else {
+        if ($this->p->smsb) {
+            $data['individual'] = $this->objprofile->getProfiles();
+            $data['template'] = $this->objtmplt->getTemplates();
             $this->load->view('admin/admin_header');
             $this->load->view('admin/admin_top');
             $this->load->view('admin/admin_navbar');
-            if ($this->input->get('ver') != "mobile") {
-                $this->load->view('admin/sms-inbox', $data);
-            } else {
-                $this->load->view('admin/sms-inbox-mob', $data);
-            }
+            $this->load->view('admin/send-sms', $data);
             $this->load->view('admin/admin_footer');
+        } else {
+            header('location:' . site_url() . 'admin/dashboard/error/500');
+        }
+    }
+
+    function inbox() {
+        if ($this->p->smsb) {
+            $from = array();
+            $adminInfo = $this->common->getAdminInfo();
+            $sms = $this->getInbox();
+            foreach ($sms as $msg) {
+                if ($msg->direction == "inbound" && $msg->to == $adminInfo->twilio_number) {
+                    if (!in_array($msg->from, $from)) {
+                        $from[] = $msg->from;
+                        $this->isExists($msg);
+                    }
+                }
+            }
+            $data['inbox'] = $this->objsms->getInbox();
+            if ($this->input->get('type') == "ajax") {
+                $this->load->view('admin/sms-inbox-view', $data);
+            } else {
+                $this->load->view('admin/admin_header');
+                $this->load->view('admin/admin_top');
+                $this->load->view('admin/admin_navbar');
+                if ($this->input->get('ver') != "mobile") {
+                    $this->load->view('admin/sms-inbox', $data);
+                } else {
+                    $this->load->view('admin/sms-inbox-mob', $data);
+                }
+                $this->load->view('admin/admin_footer');
+            }
+        } else {
+            header('location:' . site_url() . 'admin/dashboard/error/500');
         }
     }
 
@@ -105,191 +111,214 @@ class Sms extends CI_Controller {
     }
 
     function allUser($type) {
-        $individual = $ids = $user = array();
-        switch ($type) {
-            case 1:
-                $individual = $this->objprofile->getProfiles();
-                foreach ($individual as $key => $value) {
-                    $user[$key] = $value->fname . '  ' . $value->lname . ' || ' . $value->phone;
-                    $ids[$key] = $value->profile_id;
-                }
-                break;
-            case 2:
-                $individual = $this->objcon->getContactDetail();
-                foreach ($individual as $key => $value) {
-                    $user[$key] = $value->fname . '  ' . $value->lname . ' || ' . $value->phone;
-                    $ids[$key] = $value->contact_id;
-                }
-                break;
-            case 3:
-                $individual = $this->objaffiliate->getAffiliateDetail();
-                foreach ($individual as $key => $value) {
-                    $user[$key] = $value->fname . '  ' . $value->lname . ' || ' . $value->phone;
-                    $ids[$key] = $value->affiliate_id;
-                }
-                break;
-            case 4:
-                $individual = $this->objcustomer->getCustomerDetail();
-                foreach ($individual as $key => $value) {
-                    $user[$key] = $value->name . ' || ' . $value->phone;
-                    $ids[$key] = $value->user_id;
-                }
-                break;
+        if ($this->p->smsb) {
+            $individual = $ids = $user = array();
+            switch ($type) {
+                case 1:
+                    $individual = $this->objprofile->getProfiles();
+                    foreach ($individual as $key => $value) {
+                        $user[$key] = $value->fname . '  ' . $value->lname . ' || ' . $value->phone;
+                        $ids[$key] = $value->profile_id;
+                    }
+                    break;
+                case 2:
+                    $individual = $this->objcon->getContactDetail();
+                    foreach ($individual as $key => $value) {
+                        $user[$key] = $value->fname . '  ' . $value->lname . ' || ' . $value->phone;
+                        $ids[$key] = $value->contact_id;
+                    }
+                    break;
+                case 3:
+                    $individual = $this->objaffiliate->getAffiliateDetail();
+                    foreach ($individual as $key => $value) {
+                        $user[$key] = $value->fname . '  ' . $value->lname . ' || ' . $value->phone;
+                        $ids[$key] = $value->affiliate_id;
+                    }
+                    break;
+                case 4:
+                    $individual = $this->objcustomer->getCustomerDetail();
+                    foreach ($individual as $key => $value) {
+                        $user[$key] = $value->name . ' || ' . $value->phone;
+                        $ids[$key] = $value->user_id;
+                    }
+                    break;
+            }
+            $data['user'] = $user;
+            $data['ids'] = $ids;
+            echo json_encode($data);
+        } else {
+            header('location:' . site_url() . 'admin/dashboard/error/500');
         }
-        $data['user'] = $user;
-        $data['ids'] = $ids;
-        echo json_encode($data);
     }
 
     function allGroup($type) {
-        switch ($type) {
-            case 2:
-                $group = $this->objcongroup->getContactGroups("simple");
-                break;
-            case 3:
-                $group = $this->objaffiliategroup->getAffiliateGroups();
-                break;
-            case 4:
-                $group = $this->objcustomergroup->getCustomerGroups();
-                break;
+        if ($this->p->smsb) {
+            switch ($type) {
+                case 2:
+                    $group = $this->objcongroup->getContactGroups("simple");
+                    break;
+                case 3:
+                    $group = $this->objaffiliategroup->getAffiliateGroups();
+                    break;
+                case 4:
+                    $group = $this->objcustomergroup->getCustomerGroups();
+                    break;
+            }
+            echo '<select  name="group_id" class="form-control">';
+            foreach ($group as $value) {
+                echo "<option value='$value->group_id'>$value->group_name</option>";
+            }
+            echo '</select>';
+        } else {
+            header('location:' . site_url() . 'admin/dashboard/error/500');
         }
-        echo '<select  name="group_id" class="form-control">';
-        foreach ($group as $value) {
-            echo "<option value='$value->group_id'>$value->group_name</option>";
-        }
-        echo '</select>';
     }
 
     function allSMSList() {
-        $group = $this->objcongroup->getContactGroups("sms");
-        echo '<select  name="group_id" class="form-control">';
-        foreach ($group as $value) {
-            echo "<option value='$value->group_id'>$value->group_name</option>";
+        if ($this->p->smsb) {
+            $group = $this->objcongroup->getContactGroups("sms");
+            echo '<select  name="group_id" class="form-control">';
+            foreach ($group as $value) {
+                echo "<option value='$value->group_id'>$value->group_name</option>";
+            }
+            echo '</select>';
+        } else {
+            header('location:' . site_url() . 'admin/dashboard/error/500');
         }
-        echo '</select>';
     }
 
     function getTemplate($tmpid) {
-        $this->objsms->getTemplate($tmpid);
+        if ($this->p->smsb) {
+            $this->objsms->getTemplate($tmpid);
+        } else {
+            header('location:' . site_url() . 'admin/dashboard/error/500');
+        }
     }
 
     function send_message() {
-        $is_send = FALSE;
-        $post = $this->input->post();
-        $blackList = $this->objcon->getBlackList();
-        switch ($post['assign']) {
-            case 'all_c':
-                switch ($post['user']) {
-                    case 1:
-                        $user = $this->objprofile->getProfile($post['user_id']);
-                        $tag = $this->common->setToken($user);
-                        break;
-                    case 2:
-                        if (!in_array($post['user_id'], $blackList)) {
-                            $user = $this->objcon->getContactInfo($post['user_id']);
+        if ($this->p->smsb) {
+            $is_send = FALSE;
+            $post = $this->input->post();
+            $blackList = $this->objcon->getBlackList();
+            switch ($post['assign']) {
+                case 'all_c':
+                    switch ($post['user']) {
+                        case 1:
+                            $user = $this->objprofile->getProfile($post['user_id']);
                             $tag = $this->common->setToken($user);
+                            break;
+                        case 2:
+                            if (!in_array($post['user_id'], $blackList)) {
+                                $user = $this->objcon->getContactInfo($post['user_id']);
+                                $tag = $this->common->setToken($user);
+                            } else {
+                                $user = array();
+                            }
+                            break;
+                        case 3:
+                            $user = $this->objaffiliate->getAffiliateInfo($post['user_id']);
+                            $tag = $this->common->setToken($user);
+                            break;
+                        case 4:
+                            $user = $this->objcustomer->getCustomerInfo($post['user_id']);
+                            $tag = $this->common->setToken($user, "customer");
+                            break;
+                    }
+                    if (count($user) && $user->phone != NULL) {
+
+                        $body = $this->parser->parse_string($post['body'], $tag, TRUE);
+                        $is_send = $this->sendSMS($user->phone, $body);
+                    } else {
+                        $phoneNotExist = "F";
+                    }
+                    break;
+                case 'all_gc':
+                case 'all_l':
+                    switch ($post['user']) {
+                        case 2:
+                            if ($post['assign'] == "all_gc") {
+                                $res = $this->objbuilder->getGroupContact($post['group_id']);
+                                $ids = $res[1];
+                            } else {
+                                $ids = $this->objbuilder->getSubGroupContact($post['group_id']);
+                            }
+                            $flag = TRUE;
+                            break;
+                        case 3:
+                            $res = $this->objbuilder->getGroupAffiliate($post['group_id']);
+                            $ids = $res[1];
+                            $flag = FALSE;
+                            break;
+                        case 4:
+                            $res = $this->objbuilder->getGroupCustomer($post['group_id']);
+                            $ids = $res[1];
+                            $flag = FALSE;
+                            break;
+                    }
+                    foreach ($ids as $value) {
+                        if ($flag && !in_array($value, $blackList)) {
+                            $user = $this->objcon->getContactInfo($value);
+                        } else if ($post['user'] == 3 && !$flag) {
+                            $user = $this->objaffiliate->getAffiliateInfo($value);
+                        } else if ($post['user'] == 4 && !$flag) {
+                            $user = $this->objcustomer->getCustomerInfo($value);
                         } else {
                             $user = array();
                         }
-                        break;
-                    case 3:
-                        $user = $this->objaffiliate->getAffiliateInfo($post['user_id']);
-                        $tag = $this->common->setToken($user);
-                        break;
-                    case 4:
-                        $user = $this->objcustomer->getCustomerInfo($post['user_id']);
-                        $tag = $this->common->setToken($user, "customer");
-                        break;
-                }
-                if (count($user) && $user->phone != NULL) {
-
-                    $body = $this->parser->parse_string($post['body'], $tag, TRUE);
-                    $is_send = $this->sendSMS($user->phone, $body);
-                } else {
-                    $phoneNotExist = "F";
-                }
-                break;
-            case 'all_gc':
-            case 'all_l':
-                switch ($post['user']) {
-                    case 2:
-                        if ($post['assign'] == "all_gc") {
-                            $res = $this->objbuilder->getGroupContact($post['group_id']);
-                            $ids = $res[1];
-                        } else {
-                            $ids = $this->objbuilder->getSubGroupContact($post['group_id']);
+                        if (count($user) > 0) {
+                            $tag = $this->common->setToken($user);
+                            $body = $this->parser->parse_string($post['body'], $tag, TRUE);
+                            $is_send = $this->sendSMS($user->phone, $body);
                         }
-                        $flag = TRUE;
-                        break;
-                    case 3:
-                        $res = $this->objbuilder->getGroupAffiliate($post['group_id']);
-                        $ids = $res[1];
-                        $flag = FALSE;
-                        break;
-                    case 4:
-                        $res = $this->objbuilder->getGroupCustomer($post['group_id']);
-                        $ids = $res[1];
-                        $flag = FALSE;
-                        break;
-                }
-                foreach ($ids as $value) {
-                    if ($flag && !in_array($value, $blackList)) {
-                        $user = $this->objcon->getContactInfo($value);
-                    } else if ($post['user'] == 3 && !$flag) {
-                        $user = $this->objaffiliate->getAffiliateInfo($value);
-                    } else if ($post['user'] == 4 && !$flag) {
-                        $user = $this->objcustomer->getCustomerInfo($value);
-                    } else {
-                        $user = array();
                     }
-                    if (count($user) > 0) {
-                        $tag = $this->common->setToken($user);
-                        $body = $this->parser->parse_string($post['body'], $tag, TRUE);
-                        $is_send = $this->sendSMS($user->phone, $body);
-                    }
-                }
-                break;
-            default:
-                break;
-        }
-        if (isset($phoneNotExist)) {
-            $msg = $phoneNotExist;
+                    break;
+                default:
+                    break;
+            }
+            if (isset($phoneNotExist)) {
+                $msg = $phoneNotExist;
+            } else {
+                $msg = ($is_send) ? "send" : "fail";
+            }
+            header('location:' . site_url() . 'admin/sms/send_sms?msg=' . $msg);
         } else {
-            $msg = ($is_send) ? "send" : "fail";
+            header('location:' . site_url() . 'admin/dashboard/error/500');
         }
-        header('location:' . site_url() . 'admin/sms/send_sms?msg=' . $msg);
     }
 
     function sendSMS($to = NULL, $body = NULL) {
-
-        if ($to == NULL && $body == NULL) {
-            $post = $this->input->post();
-            $to = $post['to'];
-            $body = $post['msg'];
-            $flag = TRUE;
-        } else {
-            $flag = FALSE;
-        }
-        if ($this->common->sendSMS($to, $body)) {
-            $set = array('status' => 0, 'body' => $body);
-            $where = array('from' => $to);
-            $this->objsms->updateStatus($set, $where);
-            if ($flag && !isset($post['ver'])) {
-                $data['inbox'] = $this->objsms->getInbox();
-                $this->load->view('admin/sms-inbox-view', $data);
-            } else if ($flag && isset($post['ver'])) {
-                header('location:' . site_url() . 'admin/sms/inbox?ver=mobile&msg=send');
-            } else if (!$flag) {
-                return TRUE;
+        if ($this->p->smsb) {
+            if ($to == NULL && $body == NULL) {
+                $post = $this->input->post();
+                $to = $post['to'];
+                $body = $post['msg'];
+                $flag = TRUE;
+            } else {
+                $flag = FALSE;
+            }
+            if ($this->common->sendSMS($to, $body)) {
+                $set = array('status' => 0, 'body' => $body);
+                $where = array('from' => $to);
+                $this->objsms->updateStatus($set, $where);
+                if ($flag && !isset($post['ver'])) {
+                    $data['inbox'] = $this->objsms->getInbox();
+                    $this->load->view('admin/sms-inbox-view', $data);
+                } else if ($flag && isset($post['ver'])) {
+                    header('location:' . site_url() . 'admin/sms/inbox?ver=mobile&msg=send');
+                } else if (!$flag) {
+                    return TRUE;
+                }
+            } else {
+                if ($flag && !isset($post['ver'])) {
+                    echo 0;
+                } else if ($flag && isset($post['ver'])) {
+                    header('location:' . site_url() . 'admin/sms/inbox?ver=mobile&msg=fail');
+                } else if (!$flag) {
+                    return FALSE;
+                }
             }
         } else {
-            if ($flag && !isset($post['ver'])) {
-                echo 0;
-            } else if ($flag && isset($post['ver'])) {
-                header('location:' . site_url() . 'admin/sms/inbox?ver=mobile&msg=fail');
-            } else if (!$flag) {
-                return FALSE;
-            }
+            header('location:' . site_url() . 'admin/dashboard/error/500');
         }
     }
 
@@ -303,39 +332,47 @@ class Sms extends CI_Controller {
     }
 
     function viewconversation() {
-        $from = $this->input->post('from');
-        $msg = array();
-        $messages = $this->twilio->account->messages->getIterator(0, 50, array());
-        foreach ($messages as $sms) {
-            $msg[] = $sms;
+        if ($this->p->smsi) {
+            $from = $this->input->post('from');
+            $msg = array();
+            $messages = $this->twilio->account->messages->getIterator(0, 50, array());
+            foreach ($messages as $sms) {
+                $msg[] = $sms;
+            }
+            $set = array('status' => 2);
+            $where = array('from' => $from, 'status' => 1);
+            $this->objsms->updateStatus($set, $where);
+            $data['adminInfo'] = $this->common->getAdminInfo();
+            $data['messages'] = array_reverse($msg);
+            $data['contactInfo'] = $this->objsms->getProfilePics($from);
+            $this->load->view('admin/sms-chat', $data);
+        } else {
+            header('location:' . site_url() . 'admin/dashboard/error/500');
         }
-        $set = array('status' => 2);
-        $where = array('from' => $from, 'status' => 1);
-        $this->objsms->updateStatus($set, $where);
-        $data['adminInfo'] = $this->common->getAdminInfo();
-        $data['messages'] = array_reverse($msg);
-        $data['contactInfo'] = $this->objsms->getProfilePics($from);
-        $this->load->view('admin/sms-chat', $data);
     }
 
     function loadConversation() {
-        $from = $this->input->get('from');
-        $msg = array();
-        $messages = $this->twilio->account->messages->getIterator(0, 50, array());
-        foreach ($messages as $sms) {
-            $msg[] = $sms;
+        if ($this->p->smsi) {
+            $from = $this->input->get('from');
+            $msg = array();
+            $messages = $this->twilio->account->messages->getIterator(0, 50, array());
+            foreach ($messages as $sms) {
+                $msg[] = $sms;
+            }
+            $data['messages'] = array_reverse($msg);
+            $data['contactInfo'] = $this->objsms->getProfilePics('+' . trim($from));
+            $data['adminInfo'] = $this->common->getAdminInfo();
+            $set = array('status' => 2);
+            $where = array('from' => '+' . trim($from), 'status' => 1);
+            $this->objsms->updateStatus($set, $where);
+            $this->load->view('admin/admin_header');
+            $this->load->view('admin/admin_top');
+            $this->load->view('admin/admin_navbar');
+            $this->load->view('admin/sms-chat-mob', $data);
+            $this->load->view('admin/admin_footer');
+        } else {
+            header('location:' . site_url() . 'admin/dashboard/error/500');
         }
-        $data['messages'] = array_reverse($msg);
-        $data['contactInfo'] = $this->objsms->getProfilePics('+' . trim($from));
-        $data['adminInfo'] = $this->common->getAdminInfo();
-        $set = array('status' => 2);
-        $where = array('from' => '+' . trim($from), 'status' => 1);
-        $this->objsms->updateStatus($set, $where);
-        $this->load->view('admin/admin_header');
-        $this->load->view('admin/admin_top');
-        $this->load->view('admin/admin_navbar');
-        $this->load->view('admin/sms-chat-mob', $data);
-        $this->load->view('admin/admin_footer');
     }
 
     function updateStatus($sid) {
