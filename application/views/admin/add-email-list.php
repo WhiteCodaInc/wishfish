@@ -28,7 +28,7 @@
                                 <input type="text" name="name" value="<?= isset($lists) ? $lists->name : '' ?>" autofocus="autofocus" class="form-control" placeholder="Enter List Name" />
                             </div>
                         </div><!-- /.box-body -->
-                        <input type="submit" style="display: none" />
+                        <button id="submit" type="submit" style="display: none"></button>
                         <?php if (isset($lists)): ?>
                             <input type="hidden" name="listid" value="<?= $lists->list_id ?>" />
                         <?php endif; ?>
@@ -44,7 +44,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $('#addList').click(function () {
-            ('#listForm input[type="submit"]').trigger('click');
+            ('#listForm #submit').trigger('click');
         });
     });
 </script>
