@@ -17,9 +17,9 @@ class Contacts extends CI_Controller {
 
     function __construct() {
         parent::__construct();
-        $this->load->library("authex");
-        $this->load->library("common");
+
         $this->p = $this->common->getPermission();
+
         if (!$this->authex->logged_in()) {
             header('location:' . site_url() . 'admin/admin_login');
         } else if (!$this->p->coni && !$this->p->conu && !$this->p->cond && !$this->p->cbl) {
@@ -54,6 +54,7 @@ class Contacts extends CI_Controller {
         $data['searchResult'] = $this->objcon->searchResult();
         $data['groups'] = $this->objgrp->getContactGroups("simple");
         $data['zodiac'] = $this->common->getZodiacs();
+        $data['p'] = $this->p;
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
         $this->load->view('admin/admin_navbar');

@@ -177,7 +177,9 @@
                                         <th class="hidden-xs hidden-sm">Birthday</th>
                                         <th class="hidden-xs hidden-sm">Zodiac</th>
                                         <th class="hidden-xs hidden-sm">Contact Groups</th>
-                                        <th>Edit</th>
+                                        <?php if ($p->conu): ?>
+                                            <th>Edit</th>
+                                        <?php endif; ?>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -250,7 +252,9 @@
                                         <th class="hidden-xs hidden-sm">Birthday</th>
                                         <th class="hidden-xs hidden-sm">Zodiac</th>
                                         <th class="hidden-xs hidden-sm">Profile Rating(1-10)</th>
-                                        <th>Edit</th>
+                                        <?php if ($p->conu): ?>
+                                            <th>Edit</th>
+                                        <?php endif; ?>
                                     </tr>
                                 </tfoot>
                             </table>
