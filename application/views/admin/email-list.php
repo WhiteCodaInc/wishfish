@@ -13,7 +13,7 @@
         <h1 style=" display: none">
             Email Lists
         </h1>
-        <?php if ($p->medi): ?>
+        <?php if ($p->funi): ?>
             <a href="<?= site_url() ?>admin/email_list/addEmailList" class="create btn btn-success btn-sm">
                 <i class="fa fa-plus"></i>
                 Create New Email List
@@ -45,13 +45,13 @@
                                         <td><?= $value->name ?></td>
                                         <td><?= $value->total ?></td>
                                         <td>
-                                            <?php if ($p->medu): ?>
+                                            <?php if ($p->funu): ?>
                                                 <a href="<?= site_url() ?>admin/email_list/editEmailList/<?= $value->list_id ?>" class="btn bg-navy btn-xs">
                                                     <i class="fa fa-pencil"></i>
                                                     Edit
                                                 </a>
                                             <?php endif; ?>
-                                            <?php if ($p->medv): ?>
+                                            <?php if ($p->funv): ?>
                                                 <?php if ($value->total > 0): ?>
                                                     <a href="<?= site_url() ?>admin/email_list/view/<?= $value->list_id ?>" class="btn bg-navy btn-xs">
                                                         <i class="fa fa-eye"></i>
