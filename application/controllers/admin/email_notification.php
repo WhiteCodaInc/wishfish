@@ -12,13 +12,14 @@
  * @author Laxmisoft
  */
 class Email_notification extends CI_Controller {
-
+private $p;
     function __construct() {
         parent::__construct();
+        $this->p = $this->common->getPermission();
         if (!$this->authex->logged_in()) {
             header('location:' . site_url() . 'admin/admin_login');
-//        } else if (!$this->common->getPermission()->email) {
-//            header('location:' . site_url() . 'admin/dashboard/error/500');
+        } else if (!$this->p->emailn) {
+            header('location:' . site_url() . 'admin/dashboard/error/500');
         } else {
             $this->load->model('admin/m_email_notification', 'obnotification');
         }

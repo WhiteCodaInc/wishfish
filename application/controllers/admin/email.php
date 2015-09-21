@@ -21,8 +21,6 @@ class Email extends CI_Controller {
         $this->p = $this->common->getPermission();
         if (!$this->authex->logged_in()) {
             header('location:' . site_url() . 'admin/admin_login');
-        } else if (!$this->p->emaillbi && !$this->p->emaillbu && !$this->p->emaillbd) {
-            header('location:' . site_url() . 'admin/dashboard/error/500');
         } else {
             $this->load->library('parser');
             $this->load->library('common');
@@ -56,88 +54,72 @@ class Email extends CI_Controller {
     }
 
     function allUser($type) {
-        if ($this->p->emailb) {
-            $individual = $ids = $user = array();
-            switch ($type) {
-                case 1:
-                    $individual = $this->objprofile->getProfiles();
-                    foreach ($individual as $key => $value) {
-                        $user[$key] = $value->fname . '  ' . $value->lname . ' || ' . $value->email;
-                        $ids[$key] = $value->profile_id;
-                    }
-                    break;
-                case 2:
-                    $individual = $this->objcon->getContactDetail();
-                    foreach ($individual as $key => $value) {
-                        $user[$key] = $value->fname . '  ' . $value->lname . ' || ' . $value->email;
-                        $ids[$key] = $value->contact_id;
-                    }
-                    break;
-                case 3:
-                    $individual = $this->objaffiliate->getAffiliateDetail();
-                    foreach ($individual as $key => $value) {
-                        $user[$key] = $value->fname . '  ' . $value->lname . ' || ' . $value->email;
-                        $ids[$key] = $value->affiliate_id;
-                    }
-                    break;
-                case 4:
-                    $individual = $this->objcustomer->getCustomerDetail();
-                    foreach ($individual as $key => $value) {
-                        $user[$key] = $value->name . ' || ' . $value->email;
-                        $ids[$key] = $value->user_id;
-                    }
-                    break;
-            }
-            $data['user'] = $user;
-            $data['ids'] = $ids;
-            echo json_encode($data);
-        } else {
-            header('location:' . site_url() . 'admin/dashboard/error/500');
+        $individual = $ids = $user = array();
+        switch ($type) {
+            case 1:
+                $individual = $this->objprofile->getProfiles();
+                foreach ($individual as $key => $value) {
+                    $user[$key] = $value->fname . '  ' . $value->lname . ' || ' . $value->email;
+                    $ids[$key] = $value->profile_id;
+                }
+                break;
+            case 2:
+                $individual = $this->objcon->getContactDetail();
+                foreach ($individual as $key => $value) {
+                    $user[$key] = $value->fname . '  ' . $value->lname . ' || ' . $value->email;
+                    $ids[$key] = $value->contact_id;
+                }
+                break;
+            case 3:
+                $individual = $this->objaffiliate->getAffiliateDetail();
+                foreach ($individual as $key => $value) {
+                    $user[$key] = $value->fname . '  ' . $value->lname . ' || ' . $value->email;
+                    $ids[$key] = $value->affiliate_id;
+                }
+                break;
+            case 4:
+                $individual = $this->objcustomer->getCustomerDetail();
+                foreach ($individual as $key => $value) {
+                    $user[$key] = $value->name . ' || ' . $value->email;
+                    $ids[$key] = $value->user_id;
+                }
+                break;
         }
+        $data['user'] = $user;
+        $data['ids'] = $ids;
+        echo json_encode($data);
     }
 
     function allGroup($type) {
-        if ($this->p->emailb) {
-            switch ($type) {
-                case 2:
-                    $group = $this->objcongroup->getContactGroups("simple");
-                    break;
-                case 3:
-                    $group = $this->objaffiliategroup->getAffiliateGroups();
-                    break;
-                case 4:
-                    $group = $this->objcustomergroup->getCustomerGroups();
-                    break;
-            }
-            echo '<select  name="group_id" class="form-control">';
-            foreach ($group as $value) {
-                echo "<option value='$value->group_id'>$value->group_name</option>";
-            }
-            echo '</select>';
-        } else {
-            header('location:' . site_url() . 'admin/dashboard/error/500');
+        switch ($type) {
+            case 2:
+                $group = $this->objcongroup->getContactGroups("simple");
+                break;
+            case 3:
+                $group = $this->objaffiliategroup->getAffiliateGroups();
+                break;
+            case 4:
+                $group = $this->objcustomergroup->getCustomerGroups();
+                break;
         }
+        echo '<select  name="group_id" class="form-control">';
+        foreach ($group as $value) {
+            echo "<option value='$value->group_id'>$value->group_name</option>";
+        }
+        echo '</select>';
     }
 
     function allEmailList() {
-        if ($this->p->emailb) {
-            $group = $this->objcongroup->getContactGroups("email");
-            echo '<select  name="group_id" class="form-control">';
-            foreach ($group as $value) {
-                echo "<option value='$value->group_id'>$value->group_name</option>";
-            }
-            echo '</select>';
-        } else {
-            header('location:' . site_url() . 'admin/dashboard/error/500');
+        $group = $this->objcongroup->getContactGroups("email");
+        echo '<select  name="group_id" class="form-control">';
+        foreach ($group as $value) {
+            echo "<option value='$value->group_id'>$value->group_name</option>";
         }
+        echo '</select>';
     }
 
     function getTemplate($tmpid) {
-        if ($this->p->emailb) {
-            $this->objemail->getTemplate($tmpid);
-        } else {
-            header('location:' . site_url() . 'admin/dashboard/error/500');
-        }
+        $this->objemail->getTemplate($tmpid);
     }
 
     function send_message() {

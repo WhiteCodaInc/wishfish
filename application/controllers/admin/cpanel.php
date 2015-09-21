@@ -8,14 +8,14 @@ class Cpanel extends CI_Controller {
     private $stream, $inbox_user, $inbox_passwd;
     private $ip, $uname, $passwd, $domain, $quota;
     private $cpmm;
+    private $p;
 
     function __construct() {
         parent::__construct();
+        $this->p = $this->common->getPermission();
         require_once APPPATH . 'third_party/cpanel_email_account.php';
         if (!$this->authex->logged_in()) {
             header('location:' . site_url() . 'admin/admin_login');
-//        } else if (!$this->common->getPermission()->email) {
-//            header('location:' . site_url() . 'admin/dashboard/error/500');
         } else {
             $this->ip = "50.28.18.90";
             $this->uname = "wishfish";
@@ -33,99 +33,123 @@ class Cpanel extends CI_Controller {
     }
 
     function index() {
-        $account = $this->objcpanel->getAccounts();
-        //echo "<pre>";
-        // print_r($account);
-        foreach ($account as $key => $value) {
-            if ($this->openInbox($value->email, $value->password)) {
-                $account[$key]->unread = $this->getUnread();
-                $account[$key]->total = $this->getTotal();
-                imap_close($this->stream);
-            } else {
-                $account[$key]->unread = 0;
-                $account[$key]->total = 0;
+        if ($this->p->emailai || $this->p->emailau || $this->p->emailad) {
+            $account = $this->objcpanel->getAccounts();
+            //echo "<pre>";
+            // print_r($account);
+            foreach ($account as $key => $value) {
+                if ($this->openInbox($value->email, $value->password)) {
+                    $account[$key]->unread = $this->getUnread();
+                    $account[$key]->total = $this->getTotal();
+                    imap_close($this->stream);
+                } else {
+                    $account[$key]->unread = 0;
+                    $account[$key]->total = 0;
+                }
             }
+            // print_r($account);
+            // die();
+            $data['account'] = $account;
+            $this->load->view('admin/admin_header');
+            $this->load->view('admin/admin_top');
+            $this->load->view('admin/admin_navbar');
+            $this->load->view('admin/cpanel-email-account', $data);
+            $this->load->view('admin/admin_footer');
+        } else {
+            header('location:' . site_url() . 'admin/dashboard/error/500');
         }
-        // print_r($account);
-        // die();
-        $data['account'] = $account;
-        $this->load->view('admin/admin_header');
-        $this->load->view('admin/admin_top');
-        $this->load->view('admin/admin_navbar');
-        $this->load->view('admin/cpanel-email-account', $data);
-        $this->load->view('admin/admin_footer');
     }
 
     function addAccount() {
-        $this->load->view('admin/admin_header');
-        $this->load->view('admin/admin_top');
-        $this->load->view('admin/admin_navbar');
-        $this->load->view('admin/add-cpanel-email-account');
-        $this->load->view('admin/admin_footer');
+        if ($this->p->emailai) {
+            $this->load->view('admin/admin_header');
+            $this->load->view('admin/admin_top');
+            $this->load->view('admin/admin_navbar');
+            $this->load->view('admin/add-cpanel-email-account');
+            $this->load->view('admin/admin_footer');
+        } else {
+            header('location:' . site_url() . 'admin/dashboard/error/500');
+        }
     }
 
     function createAccount() {
-        $post = $this->input->post();
-        $post['email'] = $post['email'] . $this->domain;
-        if ($this->cpmm->emailExists($post['email'], true)) {
-            $msg = "E";
-        } else {
-            $result = $this->cpmm->createEmail($post['email'], $post['password'], $this->quota);
-            if ($result) {
-                $this->objcpanel->createAccount($post);
-                $msg = "I";
+        if ($this->p->emailai) {
+            $post = $this->input->post();
+            $post['email'] = $post['email'] . $this->domain;
+            if ($this->cpmm->emailExists($post['email'], true)) {
+                $msg = "E";
             } else {
-                $msg = "F";
-            }
-        }
-        $this->session->set_flashdata('msg', $msg);
-        header('location:' . site_url() . 'admin/cpanel');
-    }
-
-    function editAccount($accountid) {
-        $data['account'] = $this->objcpanel->getAccount($accountid);
-        $this->load->view('admin/admin_header');
-        $this->load->view('admin/admin_top');
-        $this->load->view('admin/admin_navbar');
-        $this->load->view('admin/add-cpanel-email-account', $data);
-        $this->load->view('admin/admin_footer');
-    }
-
-    function updateAccount($accountid) {
-        $post = $this->input->post();
-        $accountInfo = $this->objcpanel->getAccount($accountid);
-        $result = $this->cpmm->changePW($accountInfo->email, $post['password']);
-        if ($result) {
-            $this->objcpanel->updateAccount($accountid, $post);
-        }
-        $this->session->set_flashdata('msg', "U");
-        header('location:' . site_url() . 'admin/cpanel');
-    }
-
-    function action() {
-        $msg = "";
-        $post = $this->input->post();
-        $type = $post['actionType'];
-        if ($type == "Delete") {
-            foreach ($post['account'] as $value) {
-                $accountInfo = $this->objcpanel->getAccount($value);
-                $result = $this->cpmm->deleteEmail($accountInfo->email);
+                $result = $this->cpmm->createEmail($post['email'], $post['password'], $this->quota);
                 if ($result) {
-                    $this->objcpanel->setAction($type, $value);
+                    $this->objcpanel->createAccount($post);
+                    $msg = "I";
+                } else {
+                    $msg = "F";
                 }
-                $msg = "D";
             }
-        } else if ($type == "Add" || $type == "Remove") {
-            $this->objcpanel->setAction($type, $post['account']);
-            $msg = ($type == "Add") ? "A" : "R";
-        } else {
-            $msg = "";
-        }
-        if ($msg != "") {
             $this->session->set_flashdata('msg', $msg);
             header('location:' . site_url() . 'admin/cpanel');
         } else {
+            header('location:' . site_url() . 'admin/dashboard/error/500');
+        }
+    }
+
+    function editAccount($accountid) {
+        if ($this->p->emailau) {
+            $data['account'] = $this->objcpanel->getAccount($accountid);
+            $this->load->view('admin/admin_header');
+            $this->load->view('admin/admin_top');
+            $this->load->view('admin/admin_navbar');
+            $this->load->view('admin/add-cpanel-email-account', $data);
+            $this->load->view('admin/admin_footer');
+        } else {
+            header('location:' . site_url() . 'admin/dashboard/error/500');
+        }
+    }
+
+    function updateAccount($accountid) {
+        if ($this->p->emailau) {
+            $post = $this->input->post();
+            $accountInfo = $this->objcpanel->getAccount($accountid);
+            $result = $this->cpmm->changePW($accountInfo->email, $post['password']);
+            if ($result) {
+                $this->objcpanel->updateAccount($accountid, $post);
+            }
+            $this->session->set_flashdata('msg', "U");
             header('location:' . site_url() . 'admin/cpanel');
+        } else {
+            header('location:' . site_url() . 'admin/dashboard/error/500');
+        }
+    }
+
+    function action() {
+        if ($this->p->emailau || $this->p->emailad) {
+            $msg = "";
+            $post = $this->input->post();
+            $type = $post['actionType'];
+            if ($type == "Delete") {
+                foreach ($post['account'] as $value) {
+                    $accountInfo = $this->objcpanel->getAccount($value);
+                    $result = $this->cpmm->deleteEmail($accountInfo->email);
+                    if ($result) {
+                        $this->objcpanel->setAction($type, $value);
+                    }
+                    $msg = "D";
+                }
+            } else if ($type == "Add" || $type == "Remove") {
+                $this->objcpanel->setAction($type, $post['account']);
+                $msg = ($type == "Add") ? "A" : "R";
+            } else {
+                $msg = "";
+            }
+            if ($msg != "") {
+                $this->session->set_flashdata('msg', $msg);
+                header('location:' . site_url() . 'admin/cpanel');
+            } else {
+                header('location:' . site_url() . 'admin/cpanel');
+            }
+        } else {
+            header('location:' . site_url() . 'admin/dashboard/error/500');
         }
     }
 

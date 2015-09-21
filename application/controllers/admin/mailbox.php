@@ -8,14 +8,16 @@ class Mailbox extends CI_Controller {
     private $stream, $inbox_user, $inbox_passwd;
     private $ip, $uname, $passwd, $domain, $quota;
     private $cpmm;
+    private $p;
 
     function __construct() {
         parent::__construct();
+        $this->p = $this->common->getPermission();
         require_once APPPATH . 'third_party/cpanel_email_account.php';
         if (!$this->authex->logged_in()) {
             header('location:' . site_url() . 'admin/admin_login');
-//        } else if (!$this->common->getPermission()->email) {
-//            header('location:' . site_url() . 'admin/dashboard/error/500');
+        } else if (!$this->p->emailm) {
+            header('location:' . site_url() . 'admin/dashboard/error/500');
         } else {
             $this->ip = "50.28.18.90";
             $this->uname = "wishfish";

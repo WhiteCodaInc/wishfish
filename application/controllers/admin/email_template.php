@@ -30,6 +30,7 @@ class Email_template extends CI_Controller {
     function index() {
         if ($this->p->emailti || $this->p->emailtu || $this->p->emailtd) {
             $data['template'] = $this->objtmplt->getTemplates();
+            $data['p'] = $this->p;
             $this->load->view('admin/admin_header');
             $this->load->view('admin/admin_top');
             $this->load->view('admin/admin_navbar');
@@ -53,13 +54,17 @@ class Email_template extends CI_Controller {
     }
 
     function createTemplate() {
-        $post = $this->input->post();
-        $this->objtmplt->createTemplate($post);
-        header('location:' . site_url() . 'admin/email_template?msg=I');
+        if ($this->p->emailti) {
+            $post = $this->input->post();
+            $this->objtmplt->createTemplate($post);
+            header('location:' . site_url() . 'admin/email_template?msg=I');
+        } else {
+            header('location:' . site_url() . 'admin/dashboard/error/500');
+        }
     }
 
     function editTemplate($pid) {
-        if ($this->p->emailti) {
+        if ($this->p->emailtu) {
             $data['template'] = $this->objtmplt->getTemplate($pid);
             $data['p'] = $this->p;
             $this->load->view('admin/admin_header');

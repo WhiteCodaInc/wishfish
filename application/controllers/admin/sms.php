@@ -111,88 +111,72 @@ class Sms extends CI_Controller {
     }
 
     function allUser($type) {
-        if ($this->p->smsb) {
-            $individual = $ids = $user = array();
-            switch ($type) {
-                case 1:
-                    $individual = $this->objprofile->getProfiles();
-                    foreach ($individual as $key => $value) {
-                        $user[$key] = $value->fname . '  ' . $value->lname . ' || ' . $value->phone;
-                        $ids[$key] = $value->profile_id;
-                    }
-                    break;
-                case 2:
-                    $individual = $this->objcon->getContactDetail();
-                    foreach ($individual as $key => $value) {
-                        $user[$key] = $value->fname . '  ' . $value->lname . ' || ' . $value->phone;
-                        $ids[$key] = $value->contact_id;
-                    }
-                    break;
-                case 3:
-                    $individual = $this->objaffiliate->getAffiliateDetail();
-                    foreach ($individual as $key => $value) {
-                        $user[$key] = $value->fname . '  ' . $value->lname . ' || ' . $value->phone;
-                        $ids[$key] = $value->affiliate_id;
-                    }
-                    break;
-                case 4:
-                    $individual = $this->objcustomer->getCustomerDetail();
-                    foreach ($individual as $key => $value) {
-                        $user[$key] = $value->name . ' || ' . $value->phone;
-                        $ids[$key] = $value->user_id;
-                    }
-                    break;
-            }
-            $data['user'] = $user;
-            $data['ids'] = $ids;
-            echo json_encode($data);
-        } else {
-            header('location:' . site_url() . 'admin/dashboard/error/500');
+        $individual = $ids = $user = array();
+        switch ($type) {
+            case 1:
+                $individual = $this->objprofile->getProfiles();
+                foreach ($individual as $key => $value) {
+                    $user[$key] = $value->fname . '  ' . $value->lname . ' || ' . $value->phone;
+                    $ids[$key] = $value->profile_id;
+                }
+                break;
+            case 2:
+                $individual = $this->objcon->getContactDetail();
+                foreach ($individual as $key => $value) {
+                    $user[$key] = $value->fname . '  ' . $value->lname . ' || ' . $value->phone;
+                    $ids[$key] = $value->contact_id;
+                }
+                break;
+            case 3:
+                $individual = $this->objaffiliate->getAffiliateDetail();
+                foreach ($individual as $key => $value) {
+                    $user[$key] = $value->fname . '  ' . $value->lname . ' || ' . $value->phone;
+                    $ids[$key] = $value->affiliate_id;
+                }
+                break;
+            case 4:
+                $individual = $this->objcustomer->getCustomerDetail();
+                foreach ($individual as $key => $value) {
+                    $user[$key] = $value->name . ' || ' . $value->phone;
+                    $ids[$key] = $value->user_id;
+                }
+                break;
         }
+        $data['user'] = $user;
+        $data['ids'] = $ids;
+        echo json_encode($data);
     }
 
     function allGroup($type) {
-        if ($this->p->smsb) {
-            switch ($type) {
-                case 2:
-                    $group = $this->objcongroup->getContactGroups("simple");
-                    break;
-                case 3:
-                    $group = $this->objaffiliategroup->getAffiliateGroups();
-                    break;
-                case 4:
-                    $group = $this->objcustomergroup->getCustomerGroups();
-                    break;
-            }
-            echo '<select  name="group_id" class="form-control">';
-            foreach ($group as $value) {
-                echo "<option value='$value->group_id'>$value->group_name</option>";
-            }
-            echo '</select>';
-        } else {
-            header('location:' . site_url() . 'admin/dashboard/error/500');
+        switch ($type) {
+            case 2:
+                $group = $this->objcongroup->getContactGroups("simple");
+                break;
+            case 3:
+                $group = $this->objaffiliategroup->getAffiliateGroups();
+                break;
+            case 4:
+                $group = $this->objcustomergroup->getCustomerGroups();
+                break;
         }
+        echo '<select  name="group_id" class="form-control">';
+        foreach ($group as $value) {
+            echo "<option value='$value->group_id'>$value->group_name</option>";
+        }
+        echo '</select>';
     }
 
     function allSMSList() {
-        if ($this->p->smsb) {
-            $group = $this->objcongroup->getContactGroups("sms");
-            echo '<select  name="group_id" class="form-control">';
-            foreach ($group as $value) {
-                echo "<option value='$value->group_id'>$value->group_name</option>";
-            }
-            echo '</select>';
-        } else {
-            header('location:' . site_url() . 'admin/dashboard/error/500');
+        $group = $this->objcongroup->getContactGroups("sms");
+        echo '<select  name="group_id" class="form-control">';
+        foreach ($group as $value) {
+            echo "<option value='$value->group_id'>$value->group_name</option>";
         }
+        echo '</select>';
     }
 
     function getTemplate($tmpid) {
-        if ($this->p->smsb) {
-            $this->objsms->getTemplate($tmpid);
-        } else {
-            header('location:' . site_url() . 'admin/dashboard/error/500');
-        }
+        $this->objsms->getTemplate($tmpid);
     }
 
     function send_message() {
