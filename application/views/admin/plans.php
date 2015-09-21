@@ -11,11 +11,15 @@
         <h1 style="display: none">
             Payment Plans
         </h1>
-        <a href="<?= site_url() ?>admin/plans/addPlan" class="create btn btn-success btn-sm">
-            <i class="fa fa-plus"></i>
-            Create New Payment Plan
-        </a>
-        <button  value="Delete" class="delete btn btn-danger btn-sm" id="Delete" type="button" >Delete</button>
+        <?php if ($p->paypi): ?>
+            <a href="<?= site_url() ?>admin/plans/addPlan" class="create btn btn-success btn-sm">
+                <i class="fa fa-plus"></i>
+                Create New Payment Plan
+            </a>
+        <?php endif; ?>
+        <?php if ($p->paypd): ?>
+            <button  value="Delete" class="delete btn btn-danger btn-sm" id="Delete" type="button" >Delete</button>
+        <?php endif; ?>
     </section>
 
     <!-- Main content -->
@@ -32,49 +36,63 @@
                                 <table id="plan-data-table" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th style="padding: 10px;">
-                                                <input type="checkbox"/>
-                                            </th>
+                                            <?php if ($p->paypd): ?>
+                                                <th style="padding: 10px;">
+                                                    <input type="checkbox"/>
+                                                </th>
+                                            <?php endif; ?>
                                             <th>Payment Plan</th>
                                             <th>Description</th>
-                                            <th>Edit</th>
+                                            <?php if ($p->paypu): ?>
+                                                <th>Edit</th>
+                                            <?php endif; ?>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php foreach ($plans as $value) { ?>
                                             <tr id="<?= $value->payment_plan_id ?>">
-                                                <td>
-                                                    <div>
-                                                        <label>
-                                                            <input type="checkbox" name="plan[]" value="<?= $value->payment_plan_id ?>"/>
-                                                        </label>
-                                                    </div>
-                                                </td>
+                                                <?php if ($p->paypd): ?>
+                                                    <td>
+                                                        <div>
+                                                            <label>
+                                                                <input type="checkbox" name="plan[]" value="<?= $value->payment_plan_id ?>"/>
+                                                            </label>
+                                                        </div>
+                                                    </td>
+                                                <?php endif; ?>
                                                 <td><?= $value->payment_plan ?></td>
                                                 <td>
                                                     <strong>$ <?= $value->initial_amt ?></strong> immediately,
                                                     and <strong>$ <?= $value->amount . ' / ' . $value->interval ?></strong> 
                                                     after <strong><?= $value->trial_period ?> days.</strong>
                                                 </td>
-                                                <td>
-                                                    <a href="<?= site_url() ?>admin/plans/editPlan/<?= $value->payment_plan_id ?>" class="btn bg-navy btn-xs">
-                                                        <i class="fa fa-edit"></i>
-                                                        Edit
-                                                    </a>
-                                                </td>
+                                                <?php if ($p->paypu): ?>
+                                                    <td>
+                                                        <a href="<?= site_url() ?>admin/plans/editPlan/<?= $value->payment_plan_id ?>" class="btn bg-navy btn-xs">
+                                                            <i class="fa fa-edit"></i>
+                                                            Edit
+                                                        </a>
+                                                    </td>
+                                                <?php endif; ?>
                                             </tr>
                                         <?php } ?>
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <th></th>
+                                            <?php if ($p->paypd): ?>
+                                                <th></th>
+                                            <?php endif; ?>
                                             <th>Payment Plan</th>
                                             <th>Description</th>
-                                            <th>Edit</th>
+                                            <?php if ($p->paypu): ?>
+                                                <th>Edit</th>
+                                            <?php endif; ?>
                                         </tr>
                                     </tfoot>
                                 </table>
-                                <input type="hidden" id="actionType" name="actionType" value="" />
+                                <?php if ($p->paypd): ?>
+                                    <input type="hidden" id="actionType" name="actionType" value="" />
+                                <?php endif; ?>
                             </div><!-- /.box-body -->
                         </form>
                     </div>
@@ -120,42 +138,45 @@ switch ($msg) {
 <script type="text/javascript">
     $(function () {
         $("#plan-data-table").dataTable({
-            aoColumnDefs: [{
-                    bSortable: false,
-                    aTargets: [0, 1, 2, 3]
-                }]
+            bSort: false,
+//            aoColumnDefs: [{
+//                    bSortable: false,
+//                    aTargets: [0, 1, 2, 3]
+//                }]
         });
     });
 </script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $('button.delete').click(function (e) {
-            var plans = "";
-            var act = $(this).val();
-            $('#plan-data-table tbody tr').each(function () {
-                if ($(this).children('td:first').find('div.checked').length) {
-                    $txt = $(this).children('td:nth-child(2)').text();
-                    plans += $txt.trim() + ",";
-                }
+<?php if ($p->paypd): ?>
+            $('button.delete').click(function (e) {
+                var plans = "";
+                var act = $(this).val();
+                $('#plan-data-table tbody tr').each(function () {
+                    if ($(this).children('td:first').find('div.checked').length) {
+                        $txt = $(this).children('td:nth-child(2)').text();
+                        plans += $txt.trim() + ",";
+                    }
+                });
+                plans = plans.substring(0, plans.length - 1);
+                alertify.confirm("Are you sure want to delete payment plan(s):<br/>" + plans, function (e) {
+                    if (e) {
+                        action(act);
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                });
             });
-            plans = plans.substring(0, plans.length - 1);
-            alertify.confirm("Are you sure want to delete payment plan(s):<br/>" + plans, function (e) {
-                if (e) {
-                    action(act);
-                    return true;
-                }
-                else {
-                    return false;
-                }
-            });
-        });
 
-        function action(actiontype) {
-            $('#actionType').val(actiontype);
-            $('#productid').val($('#product').val());
-            $('#checkForm').attr('action', "<?= site_url() ?>admin/plans/action");
-            $('#checkForm').submit();
-        }
+            function action(actiontype) {
+                $('#actionType').val(actiontype);
+                $('#productid').val($('#product').val());
+                $('#checkForm').attr('action', "<?= site_url() ?>admin/plans/action");
+                $('#checkForm').submit();
+            }
+<?php endif; ?>
     });
 
 </script>

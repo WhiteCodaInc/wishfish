@@ -14,13 +14,19 @@
         <h1 style=" display: none">
             Offers
         </h1>
-        <a href="<?= site_url() ?>admin/offers/addOffer" class="create btn btn-success btn-sm">
-            <i class="fa fa-plus"></i>
-            Create New Offer
-        </a>
-        <button value="Active" class="add btn btn-success btn-sm" id="Active" type="button" >Active</button>
-        <button value="Deactive" class="remove btn btn-warning btn-sm" id="Deactive" type="button" >Deactivate</button>
-        <button value="Delete" class="delete btn btn-danger btn-sm" id="Delete" type="button" >Delete</button>
+        <?php if ($p->offi): ?>
+            <a href="<?= site_url() ?>admin/offers/addOffer" class="create btn btn-success btn-sm">
+                <i class="fa fa-plus"></i>
+                Create New Offer
+            </a>
+        <?php endif; ?>
+        <?php if ($p->offu): ?>
+            <button value="Active" class="add btn btn-success btn-sm" id="Active" type="button" >Active</button>
+            <button value="Deactive" class="remove btn btn-warning btn-sm" id="Deactive" type="button" >Deactivate</button>
+        <?php endif; ?>
+        <?php if ($p->offd): ?>
+            <button value="Delete" class="delete btn btn-danger btn-sm" id="Delete" type="button" >Delete</button>
+        <?php endif; ?>
         <div class="search" style="float:right;width: 24%">
             <select id="page_length" class="form-control" style="float: left;width: 28%;margin-right: 2%">
                 <option value="25">25</option>
@@ -42,27 +48,32 @@
                             <table id="offer-data-table" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th style="padding: 10px;">
-                                            <input type="checkbox"/>
-                                        </th>
+                                        <?php if ($p->offu || $p->offd): ?>
+                                            <th style="padding: 10px;">
+                                                <input type="checkbox"/>
+                                            </th>
+                                        <?php endif; ?>
                                         <th>Offer Name</th>
                                         <th>Product</th>
                                         <th>Payment Plan</th>
                                         <th>Status</th>
-                                        <th>Edit</th>
+                                        <?php if ($p->offu): ?>
+                                            <th>Edit</th>
+                                        <?php endif; ?>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach ($offers as $value) { ?>
                                         <tr>
-                                            <td>
-                                                <div>
-                                                    <label>
-                                                        <input type="checkbox" class="check"  name="offers[]" value="<?= $value->offer_id ?>"/>
-                                                    </label>
-                                                </div>
-                                            </td>
-
+                                            <?php if ($p->offu || $p->offd): ?>
+                                                <td>
+                                                    <div>
+                                                        <label>
+                                                            <input type="checkbox" class="check"  name="offers[]" value="<?= $value->offer_id ?>"/>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                            <?php endif; ?>
                                             <td><?= $value->offer_name ?></td>
                                             <td><?= ($value->product_id) ? $value->product_name : "N/A" ?></td>
                                             <td>
@@ -82,27 +93,35 @@
                                                     <span class="btn btn-danger btn-xs">Deactivate</span>
                                                 <?php endif; ?>
                                             </td>
-                                            <td>
-                                                <a href="<?= site_url() ?>admin/offers/editOffer/<?= $value->offer_id ?>" class="btn bg-navy btn-xs">
-                                                    <i class="fa fa-edit"></i>
-                                                    Edit
-                                                </a>
-                                            </td>
+                                            <?php if ($p->offu): ?>
+                                                <td>
+                                                    <a href="<?= site_url() ?>admin/offers/editOffer/<?= $value->offer_id ?>" class="btn bg-navy btn-xs">
+                                                        <i class="fa fa-edit"></i>
+                                                        Edit
+                                                    </a>
+                                                </td>
+                                            <?php endif; ?>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th></th>
+                                        <?php if ($p->offu || $p->offd): ?>
+                                            <th></th>
+                                        <?php endif; ?>
                                         <th>Offer Name</th>
                                         <th>Product</th>
                                         <th>Payment Plan</th>
                                         <th>Status</th>
-                                        <th>Edit</th>
+                                        <?php if ($p->offu): ?>
+                                            <th>Edit</th>
+                                        <?php endif; ?>
                                     </tr>
                                 </tfoot>
                             </table>
-                            <input type="hidden" id="actionType" name="actionType" value="" />
+                            <?php if ($p->offu || $p->offd): ?>
+                                <input type="hidden" id="actionType" name="actionType" value="" />
+                            <?php endif; ?>
                         </div><!-- /.box-body -->
                     </form>
                 </div><!-- /.box -->
@@ -156,10 +175,11 @@ switch ($msg) {
 <script type="text/javascript">
     $(function () {
         oTable = $("#offer-data-table").dataTable({
-            aoColumnDefs: [{
-                    bSortable: false,
-                    aTargets: [0, 1, 2, 3, 4]
-                }]
+            bSort: false,
+//            aoColumnDefs: [{
+//                    bSortable: false,
+//                    aTargets: [0, 1, 2, 3, 4]
+//                }]
         });
         $("#searchbox").on("keyup search input paste cut", function () {
             oTable.fnFilter(this.value);
@@ -175,40 +195,40 @@ switch ($msg) {
 </script>
 <script type="text/javascript">
     $(document).ready(function () {
-
-        $('button.add').click(function (e) {
-            action($(this).val());
-            e.preventDefault();
-        });
-        $('button.remove').click(function (e) {
-            action($(this).val());
-            e.preventDefault();
-        });
-        $('button.delete').click(function (e) {
-            var offer = "";
-            var act = $(this).val();
-            $('#offer-data-table tbody tr').each(function () {
-                if ($(this).children('td:first').find('div.checked').length) {
-                    $txt = $(this).children('td:nth-child(2)').text();
-                    offer += $txt.trim() + "<br/>";
-                }
+<?php if ($p->offu || $p->offd): ?>
+            $('button.add').click(function (e) {
+                action($(this).val());
+                e.preventDefault();
             });
-            offer = offer.substring(0, offer.length - 1);
-            alertify.confirm("Are you sure want to delete offer(s):<br/>" + offer, function (e) {
-                if (e) {
-                    action(act);
-                    return true;
-                }
-                else {
-                    return false;
-                }
+            $('button.remove').click(function (e) {
+                action($(this).val());
+                e.preventDefault();
             });
+            $('button.delete').click(function (e) {
+                var offer = "";
+                var act = $(this).val();
+                $('#offer-data-table tbody tr').each(function () {
+                    if ($(this).children('td:first').find('div.checked').length) {
+                        $txt = $(this).children('td:nth-child(2)').text();
+                        offer += $txt.trim() + "<br/>";
+                    }
+                });
+                offer = offer.substring(0, offer.length - 1);
+                alertify.confirm("Are you sure want to delete offer(s):<br/>" + offer, function (e) {
+                    if (e) {
+                        action(act);
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                });
+            });
+            function action(actiontype) {
+                $('#actionType').val(actiontype);
+                $('#checkForm').attr('action', "<?= site_url() ?>admin/offers/action");
+                $('#checkForm').submit();
+            }
         });
-        function action(actiontype) {
-            $('#actionType').val(actiontype);
-            $('#checkForm').attr('action', "<?= site_url() ?>admin/offers/action");
-            $('#checkForm').submit();
-        }
-    });
-
+<?php endif; ?>
 </script>
