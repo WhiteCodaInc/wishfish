@@ -101,7 +101,7 @@ class Email_list extends CI_Controller {
     }
 
     function action() {
-        if ($this->p->fund) {
+        if ($this->p->funv) {
             $post = $this->input->post();
             if ($post['actionType'] == "Delete") {
                 $this->objlist->setAction($post);

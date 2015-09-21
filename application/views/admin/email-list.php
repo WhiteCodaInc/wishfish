@@ -36,7 +36,9 @@
                                 <tr>
                                     <th>Email List Name</th>
                                     <th>No. of Contacts</th>
-                                    <th>Action</th>
+                                    <?php if ($p->funu || $p->funv): ?>
+                                        <th>Action</th>
+                                    <?php endif; ?>
                                 </tr>
                             </thead>
                             <tbody>
@@ -44,22 +46,24 @@
                                     <tr>
                                         <td><?= $value->name ?></td>
                                         <td><?= $value->total ?></td>
-                                        <td>
-                                            <?php if ($p->funu): ?>
-                                                <a href="<?= site_url() ?>admin/email_list/editEmailList/<?= $value->list_id ?>" class="btn bg-navy btn-xs">
-                                                    <i class="fa fa-pencil"></i>
-                                                    Edit
-                                                </a>
-                                            <?php endif; ?>
-                                            <?php if ($p->funv): ?>
-                                                <?php if ($value->total > 0): ?>
-                                                    <a href="<?= site_url() ?>admin/email_list/view/<?= $value->list_id ?>" class="btn bg-navy btn-xs">
-                                                        <i class="fa fa-eye"></i>
-                                                        View
+                                        <?php if ($p->funu || $p->funv): ?>
+                                            <td>
+                                                <?php if ($p->funu): ?>
+                                                    <a href="<?= site_url() ?>admin/email_list/editEmailList/<?= $value->list_id ?>" class="btn bg-navy btn-xs">
+                                                        <i class="fa fa-pencil"></i>
+                                                        Edit
                                                     </a>
                                                 <?php endif; ?>
-                                            <?php endif; ?>
-                                        </td>
+                                                <?php if ($p->funv): ?>
+                                                    <?php if ($value->total > 0): ?>
+                                                        <a href="<?= site_url() ?>admin/email_list/view/<?= $value->list_id ?>" class="btn bg-navy btn-xs">
+                                                            <i class="fa fa-eye"></i>
+                                                            View
+                                                        </a>
+                                                    <?php endif; ?>
+                                                <?php endif; ?>
+                                            </td>
+                                        <?php endif; ?>
                                     </tr>
                                 <?php } ?>
                             </tbody>
@@ -67,7 +71,9 @@
                                 <tr>
                                     <th>Email List Name</th>
                                     <th>No. of Contacts</th>
-                                    <th>Action</th>
+                                    <?php if ($p->funu || $p->funv): ?>
+                                        <th>Action</th>
+                                    <?php endif; ?>
                                 </tr>
                             </tfoot>
                         </table>

@@ -4,7 +4,7 @@
         <h1 style="display: none">
             <?= isset($lists) ? "Edit" : "Add New" ?> Email List
         </h1>
-        <button type="button" id="addCGroup" class="btn btn-primary">
+        <button type="button" id="addList" class="btn btn-primary">
             <?= isset($lists) ? 'Update Existing List' : 'Create New List' ?>
         </button>
     </section>
