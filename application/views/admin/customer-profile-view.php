@@ -19,45 +19,47 @@
         <h1 style=" display: none">
             Customer Profile
         </h1>
-        <a href="<?= site_url() ?>admin/customers/editCustomer/<?= $customer->user_id ?>" class="create btn bg-navy">
-            <i class="fa fa-edit"></i>
-            Edit
-        </a>
-        <a href="<?= site_url() ?>admin/customers/loginAsUser/<?= $customer->user_id ?>" class="create btn bg-maroon" target="_blank">
-            <i class="fa fa-lock"></i>
-            Log in As User
-        </a>
-        <?php if (count($currPlan) && $currPlan->plan_id == 1) : ?>
-            <a href="#" id="extend" class="create btn bg-olive" data-toggle="modal" data-target="#trial-modal">
-                Extend Trial
+        <?php if ($p->affu): ?>
+            <a href="<?= site_url() ?>admin/customers/editCustomer/<?= $customer->user_id ?>" class="create btn bg-navy">
+                <i class="fa fa-edit"></i>
+                Edit
             </a>
-        <?php endif; ?>
-        <?php if (!$customer->is_set || ($customer->is_set && $customer->gateway == "STRIPE")): ?>
-            <a href="#" id="card" class="create btn btn-info" data-toggle="modal" data-target="#card-modal">
-                Change Payment Detail
+            <a href="<?= site_url() ?>admin/customers/loginAsUser/<?= $customer->user_id ?>" class="create btn bg-maroon" target="_blank">
+                <i class="fa fa-lock"></i>
+                Log in As User
             </a>
-        <?php endif; ?>
-        <?php if ($customer->plan_id == 1): ?>
+            <?php if (count($currPlan) && $currPlan->plan_id == 1) : ?>
+                <a href="#" id="extend" class="create btn bg-olive" data-toggle="modal" data-target="#trial-modal">
+                    Extend Trial
+                </a>
+            <?php endif; ?>
+            <?php if (!$customer->is_set || ($customer->is_set && $customer->gateway == "STRIPE")): ?>
+                <a href="#" id="card" class="create btn btn-info" data-toggle="modal" data-target="#card-modal">
+                    Change Payment Detail
+                </a>
+            <?php endif; ?>
+            <?php if ($customer->plan_id == 1): ?>
+                <?php
+                $life = $customer->is_lifetime;
+                $id = ($life == NULL || !$life) ? "assign" : "remove";
+                $color = ($life == NULL || !$life) ? "bg-purple" : "btn-danger";
+                ?>
+                <a href="#" id="<?= $id ?>" class="create btn <?= $color ?> access">
+                    <?= ucfirst($id) ?> Lifetime Access
+                </a>
+            <?php endif; ?>
+            <a href="#" class="create btn bg-green" data-toggle="modal" data-target="#charge-modal">
+                Manually Charge User
+            </a>
             <?php
-            $life = $customer->is_lifetime;
-            $id = ($life == NULL || !$life) ? "assign" : "remove";
-            $color = ($life == NULL || !$life) ? "bg-purple" : "btn-danger";
+            $test = $customer->testmode;
+            $lbl = ($test) ? "disable" : "enable";
+            $clr = ($test) ? "btn-danger" : "bg-maroon";
             ?>
-            <a href="#" id="<?= $id ?>" class="create btn <?= $color ?> access">
-                <?= ucfirst($id) ?> Lifetime Access
+            <a href="<?= site_url() ?>admin/customers/<?= $lbl ?>Testmode/<?= $customer->user_id ?>" class="create btn <?= $clr ?>">
+                <?= ucfirst($lbl) ?> Test mode
             </a>
         <?php endif; ?>
-        <a href="#" class="create btn bg-green" data-toggle="modal" data-target="#charge-modal">
-            Manually Charge User
-        </a>
-        <?php
-        $test = $customer->testmode;
-        $lbl = ($test) ? "disable" : "enable";
-        $clr = ($test) ? "btn-danger" : "bg-maroon";
-        ?>
-        <a href="<?= site_url() ?>admin/customers/<?= $lbl ?>Testmode/<?= $customer->user_id ?>" class="create btn <?= $clr ?>">
-            <?= ucfirst($lbl) ?> Test mode
-        </a>
     </section>
     <?php
     $img_src = ($customer->profile_pic != "") ?

@@ -91,23 +91,30 @@ class Customers extends CI_Controller {
     }
 
     function editCustomer($cid) {
+        if ($this->p->cusu) {
+            $res = $this->objcustomer->getCustomer($cid);
+            $data['customers'] = $res[0];
+            $data['cgroup'] = $res[1];
+            $data['groups'] = $this->objgroup->getCustomerGroups();
 
-        $res = $this->objcustomer->getCustomer($cid);
-        $data['customers'] = $res[0];
-        $data['cgroup'] = $res[1];
-        $data['groups'] = $this->objgroup->getCustomerGroups();
-
-        $this->load->view('admin/admin_header');
-        $this->load->view('admin/admin_top');
-        $this->load->view('admin/admin_navbar');
-        $this->load->view('admin/edit-customer', $data);
-        $this->load->view('admin/admin_footer');
+            $this->load->view('admin/admin_header');
+            $this->load->view('admin/admin_top');
+            $this->load->view('admin/admin_navbar');
+            $this->load->view('admin/edit-customer', $data);
+            $this->load->view('admin/admin_footer');
+        } else {
+            header('location:' . site_url() . 'admin/dashboard/error/500');
+        }
     }
 
     function updateCustomer() {
-        $post = $this->input->post();
-        $msg = $this->objcustomer->updateCustomer($post);
-        header('location:' . site_url() . 'admin/customers?msg=' . $msg);
+        if ($this->p->cusu) {
+            $post = $this->input->post();
+            $msg = $this->objcustomer->updateCustomer($post);
+            header('location:' . site_url() . 'admin/customers?msg=' . $msg);
+        } else {
+            header('location:' . site_url() . 'admin/dashboard/error/500');
+        }
     }
 
     function action() {
@@ -141,51 +148,71 @@ class Customers extends CI_Controller {
     }
 
     function loginAsUser($cid) {
-        $customer = $this->objcustomer->getCustomerInfo($cid);
-        if ($customer->status) {
-            $uid = $this->encryption->encode($customer->user_id);
-            $url = 'https://wish-fish.com/app/dashboard?d=direct&uid=' . $uid;
-            header('location:' . $url);
+        if ($this->p->cusu) {
+            $customer = $this->objcustomer->getCustomerInfo($cid);
+            if ($customer->status) {
+                $uid = $this->encryption->encode($customer->user_id);
+                $url = 'https://wish-fish.com/app/dashboard?d=direct&uid=' . $uid;
+                header('location:' . $url);
+            } else {
+                echo '<script>alert("Customer account currently was deactivated..!");close();</script>';
+            }
         } else {
-            echo '<script>alert("Customer account currently was deactivated..!");close();</script>';
+            header('location:' . site_url() . 'admin/dashboard/error/500');
         }
     }
 
     function extendTrial() {
-        $post = $this->input->post();
-        if (is_array($post) && count($post) > 0) {
-            $this->objcustomer->extendTrial($post);
-            header('location:' . site_url() . 'admin/customers/profile/' . $post['userid']);
+        if ($this->p->cusu) {
+            $post = $this->input->post();
+            if (is_array($post) && count($post) > 0) {
+                $this->objcustomer->extendTrial($post);
+                header('location:' . site_url() . 'admin/customers/profile/' . $post['userid']);
+            } else {
+                header('location:' . site_url() . 'admin/customers');
+            }
         } else {
-            header('location:' . site_url() . 'admin/customers');
+            header('location:' . site_url() . 'admin/dashboard/error/500');
         }
     }
 
     function lifetimeAccess() {
-        $post = $this->input->post();
-        if (is_array($post) && count($post) > 0) {
-            $this->objcustomer->lifetimeAccess($post);
-            header('location:' . site_url() . 'admin/customers/profile/' . $post['userid']);
+        if ($this->p->cusu) {
+            $post = $this->input->post();
+            if (is_array($post) && count($post) > 0) {
+                $this->objcustomer->lifetimeAccess($post);
+                header('location:' . site_url() . 'admin/customers/profile/' . $post['userid']);
+            } else {
+                header('location:' . site_url() . 'admin/customers');
+            }
         } else {
-            header('location:' . site_url() . 'admin/customers');
+            header('location:' . site_url() . 'admin/dashboard/error/500');
         }
     }
 
     function enableTestmode($uid = NULL) {
-        if ($uid != NULL) {
-            $this->objcustomer->enableTestmode($uid);
-            header('location:' . site_url() . 'admin/customers/profile/' . $uid);
+        if ($this->p->cusu) {
+            if ($uid != NULL) {
+                $this->objcustomer->enableTestmode($uid);
+                header('location:' . site_url() . 'admin/customers/profile/' . $uid);
+            } else {
+                header('location:' . site_url() . 'admin/customers');
+            }
         } else {
-            header('location:' . site_url() . 'admin/customers');
+            header('location:' . site_url() . 'admin/dashboard/error/500');
         }
     }
 
     function disableTestmode($uid = NULL) {
-        if ($uid != NULL) {
-            $this->objcustomer->disableTestmode($uid);
-            header('location:' . site_url() . 'admin/customers/profile/' . $uid);
+        if ($this->p->cusu) {
+            if ($uid != NULL) {
+                $this->objcustomer->disableTestmode($uid);
+                header('location:' . site_url() . 'admin/customers/profile/' . $uid);
+            } else {
+                header('location:' . site_url() . 'admin/customers');
+            }
         } else {
-            header('location:' . site_url() . 'admin/customers');
+            header('location:' . site_url() . 'admin/dashboard/error/500');
         }
     }
 
@@ -221,14 +248,18 @@ class Customers extends CI_Controller {
     }
 
     function updatePaymentDetail() {
-        $post = $this->input->post();
-        if ($post['stripeToken'] != "" && $post['userid'] != "") {
-            (isset($post['isNew']) && $post['isNew']) ?
-                            $this->createCard($post['userid'], $post['stripeToken']) :
-                            $this->updateCard($post['userid'], $post['stripeToken']);
-            header('location:' . site_url() . 'admin/customers/profile/' . $post['userid']);
+        if ($this->p->cusu) {
+            $post = $this->input->post();
+            if ($post['stripeToken'] != "" && $post['userid'] != "") {
+                (isset($post['isNew']) && $post['isNew']) ?
+                                $this->createCard($post['userid'], $post['stripeToken']) :
+                                $this->updateCard($post['userid'], $post['stripeToken']);
+                header('location:' . site_url() . 'admin/customers/profile/' . $post['userid']);
+            } else {
+                header('location:' . site_url() . 'admin/customers');
+            }
         } else {
-            header('location:' . site_url() . 'admin/customers');
+            header('location:' . site_url() . 'admin/dashboard/error/500');
         }
     }
 
@@ -280,92 +311,93 @@ class Customers extends CI_Controller {
     }
 
     function chargeUser() {
-        $post = $this->input->post();
-        if (is_array($post) && count($post) > 0) {
-            $error = "";
-            $flag = TRUE;
-            $uInfo = $this->wi_common->getUserInfo($post['userid']);
-//            echo '<pre>';
-//            print_r($post);
-//            print_r($uInfo);
-//            die();
-            if ($uInfo->is_set && $uInfo->gateway == "PAYPAL") {
-                $currPlan = $this->wi_common->getLatestPlan($post['userid']);
-                $profileId = $this->objcustomer->isExistProfileId($currPlan);
+        if ($this->p->cusu) {
+            $post = $this->input->post();
+            if (is_array($post) && count($post) > 0) {
+                $error = "";
+                $flag = TRUE;
+                $uInfo = $this->wi_common->getUserInfo($post['userid']);
 
-                if ($profileId) {
-                    $this->cancelRecurringProfile($profileId->transaction_id);
-                }
-                try {
-                    $customer = Stripe_Customer::create(array(
-                                "email" => $uInfo->email,
-                                "metadata" => array("userid" => $post['userid']),
-                    ));
-                    $user_set = array(
-                        'gateway' => "STRIPE",
-                        'is_set' => 1,
-                        'customer_id' => $customer->id
-                    );
-                    $this->objcustomer->updateCustomerInfo($post['userid'], $user_set);
-                } catch (Exception $e) {
-                    $flag = FALSE;
-                    $error = $e->getMessage();
-                }
-            } else if (!$uInfo->is_set || ($uInfo->is_set && $uInfo->gateway == "STRIPE")) {
-                try {
-                    $customer = Stripe_Customer::retrieve($uInfo->customer_id);
+                if ($uInfo->is_set && $uInfo->gateway == "PAYPAL") {
+                    $currPlan = $this->wi_common->getLatestPlan($post['userid']);
+                    $profileId = $this->objcustomer->isExistProfileId($currPlan);
 
-                    if (isset($customer->subscriptions->data[0]->id)) {
-                        $subs = $customer->subscriptions->data[0]->id;
-                        $customer->subscriptions->retrieve($subs)->cancel();
+                    if ($profileId) {
+                        $this->cancelRecurringProfile($profileId->transaction_id);
                     }
-                    $user_set = array(
-                        'gateway' => "STRIPE",
-                        'is_set' => 1
-                    );
-                    $this->objcustomer->updateCustomerInfo($post['userid'], $user_set);
-                } catch (Exception $e) {
-                    $flag = FALSE;
-                    $error = $e->getMessage();
+                    try {
+                        $customer = Stripe_Customer::create(array(
+                                    "email" => $uInfo->email,
+                                    "metadata" => array("userid" => $post['userid']),
+                        ));
+                        $user_set = array(
+                            'gateway' => "STRIPE",
+                            'is_set' => 1,
+                            'customer_id' => $customer->id
+                        );
+                        $this->objcustomer->updateCustomerInfo($post['userid'], $user_set);
+                    } catch (Exception $e) {
+                        $flag = FALSE;
+                        $error = $e->getMessage();
+                    }
+                } else if (!$uInfo->is_set || ($uInfo->is_set && $uInfo->gateway == "STRIPE")) {
+                    try {
+                        $customer = Stripe_Customer::retrieve($uInfo->customer_id);
+
+                        if (isset($customer->subscriptions->data[0]->id)) {
+                            $subs = $customer->subscriptions->data[0]->id;
+                            $customer->subscriptions->retrieve($subs)->cancel();
+                        }
+                        $user_set = array(
+                            'gateway' => "STRIPE",
+                            'is_set' => 1
+                        );
+                        $this->objcustomer->updateCustomerInfo($post['userid'], $user_set);
+                    } catch (Exception $e) {
+                        $flag = FALSE;
+                        $error = $e->getMessage();
+                    }
                 }
-            }
-            if ($flag) {
-                try {
-                    $random = $this->wi_common->getRandomDigit(5);
-                    $planid = preg_replace('/\s\s+/', '_', trim($uInfo->name)) . '_' . $post['userid'] . '_' . $random;
-                    Stripe_Plan::create(array(
-                        "amount" => $post['amount'] * 100,
-                        "currency" => 'USD',
-                        "interval" => 'month',
-                        "interval_count" => $post['interval'],
-                        "name" => $uInfo->name . '(Individual)',
-                        "id" => $planid));
+                if ($flag) {
+                    try {
+                        $random = $this->wi_common->getRandomDigit(5);
+                        $planid = preg_replace('/\s\s+/', '_', trim($uInfo->name)) . '_' . $post['userid'] . '_' . $random;
+                        Stripe_Plan::create(array(
+                            "amount" => $post['amount'] * 100,
+                            "currency" => 'USD',
+                            "interval" => 'month',
+                            "interval_count" => $post['interval'],
+                            "name" => $uInfo->name . '(Individual)',
+                            "id" => $planid));
 //                    $customer->sources->create(array("source" => $post['stripeToken']));
-                    $stripe = array(
-                        "plan" => $planid,
-                        "source" => $post['stripeToken']
-                    );
-                    $subscription = $customer->subscriptions->create($stripe);
+                        $stripe = array(
+                            "plan" => $planid,
+                            "source" => $post['stripeToken']
+                        );
+                        $subscription = $customer->subscriptions->create($stripe);
 //                    $pid = $this->objcustomer->insertPlanDetail($post['userid'], $post['plan'], $subscription);
-                    $pid = $this->objcustomer->insertPlanDetail($post, $subscription);
-                    $data = array("userid" => $post['userid'], "planid" => $pid);
-                    $customer->metadata = $data;
-                    $customer->save();
-                    header('location:' . site_url() . 'admin/customers/profile/' . $post['userid'] . '?msg=C');
-                } catch (Exception $e) {
-                    $flag = FALSE;
-                    $error = $e->getMessage();
+                        $pid = $this->objcustomer->insertPlanDetail($post, $subscription);
+                        $data = array("userid" => $post['userid'], "planid" => $pid);
+                        $customer->metadata = $data;
+                        $customer->save();
+                        header('location:' . site_url() . 'admin/customers/profile/' . $post['userid'] . '?msg=C');
+                    } catch (Exception $e) {
+                        $flag = FALSE;
+                        $error = $e->getMessage();
+                    }
+                } else {
+                    $this->session->set_flashdata('error', $error);
+                    header('location:' . site_url() . 'admin/customers/profile/' . $post['userid']);
+                }
+                if (!$flag) {
+                    $this->session->set_flashdata('error', $error);
+                    header('location:' . site_url() . 'admin/customers/profile/' . $post['userid']);
                 }
             } else {
-                $this->session->set_flashdata('error', $error);
-                header('location:' . site_url() . 'admin/customers/profile/' . $post['userid']);
-            }
-            if (!$flag) {
-                $this->session->set_flashdata('error', $error);
-                header('location:' . site_url() . 'admin/customers/profile/' . $post['userid']);
+                header('location:' . site_url() . 'admin/customers');
             }
         } else {
-            header('location:' . site_url() . 'admin/customers');
+            header('location:' . site_url() . 'admin/dashboard/error/500');
         }
     }
 
@@ -398,32 +430,40 @@ class Customers extends CI_Controller {
     }
 
     function refundStripe($userid, $chargeid) {
-        try {
-            $charge = Stripe_Charge::retrieve($chargeid);
-            $charge->refunds->create();
-            $this->db->update('wi_payment_mst', array('status' => 0), array('invoice_id' => $chargeid));
-        } catch (Exception $e) {
-            $this->session->set_flashdata('error', $e->getMessage());
+        if ($this->p->cusu) {
+            try {
+                $charge = Stripe_Charge::retrieve($chargeid);
+                $charge->refunds->create();
+                $this->db->update('wi_payment_mst', array('status' => 0), array('invoice_id' => $chargeid));
+            } catch (Exception $e) {
+                $this->session->set_flashdata('error', $e->getMessage());
+            }
+            header('location:' . site_url() . 'admin/customers/profile/' . $userid);
+        } else {
+            header('location:' . site_url() . 'admin/dashboard/error/500');
         }
-        header('location:' . site_url() . 'admin/customers/profile/' . $userid);
     }
 
     function refundPaypal($userid, $chargeid) {
-        try {
-            $this->paypal_lib->set_acct_info(
-                    $this->api_username, $this->api_password, $this->api_signature
-            );
+        if ($this->p->cusu) {
+            try {
+                $this->paypal_lib->set_acct_info(
+                        $this->api_username, $this->api_password, $this->api_signature
+                );
 
-            $requestParams = array(
-                'TRANSACTIONID' => $chargeid,
-                'REFUNDTYPE' => 'Full', //Partial
-            );
-            $this->paypal_lib->request('RefundTransaction', $requestParams);
-            $this->db->update('wi_payment_mst', array('status' => 0), array('invoice_id' => $chargeid));
-        } catch (Exception $e) {
-            $this->session->set_flashdata('error', $e->getMessage());
+                $requestParams = array(
+                    'TRANSACTIONID' => $chargeid,
+                    'REFUNDTYPE' => 'Full', //Partial
+                );
+                $this->paypal_lib->request('RefundTransaction', $requestParams);
+                $this->db->update('wi_payment_mst', array('status' => 0), array('invoice_id' => $chargeid));
+            } catch (Exception $e) {
+                $this->session->set_flashdata('error', $e->getMessage());
+            }
+            header('location:' . site_url() . 'admin/customers/profile/' . $userid);
+        } else {
+            header('location:' . site_url() . 'admin/dashboard/error/500');
         }
-        header('location:' . site_url() . 'admin/customers/profile/' . $userid);
     }
 
     //----------------Contact Profile Functionality--------------------------//
