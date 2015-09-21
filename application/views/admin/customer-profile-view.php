@@ -19,7 +19,7 @@
         <h1 style=" display: none">
             Customer Profile
         </h1>
-        <?php if ($p->affu): ?>
+        <?php if ($p->cusu): ?>
             <a href="<?= site_url() ?>admin/customers/editCustomer/<?= $customer->user_id ?>" class="create btn bg-navy">
                 <i class="fa fa-edit"></i>
                 Edit
