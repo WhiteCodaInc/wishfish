@@ -806,7 +806,8 @@ switch ($msg) {
         Stripe.setPublishableKey('<?= $gatewayInfo->publish_key ?>');
 
         $("#payment-data-table").dataTable({
-            order: [],
+//            order: [],
+            bSort: false,
             aLengthMenu: [
                 [25, 50, 100, 200, -1],
                 [25, 50, 100, 200, "All"]
