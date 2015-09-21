@@ -32,7 +32,6 @@
     ?>
     <!-- Main content -->
     <section class="content">
-
         <div class="box box-primary">
             <div class="box-body">
                 <div class="row">

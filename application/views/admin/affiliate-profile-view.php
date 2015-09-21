@@ -9,15 +9,18 @@
         <h1 style=" display: none">
             Affiliate Profile
         </h1>
-        <a  href="<?= site_url() ?>admin/affiliates/editAffiliate/<?= $affiliate->affiliate_id ?>" class="create btn bg-navy">
-            <i class="fa fa-edit"></i>
-            Edit
-        </a>
-
-        <a href="<?= site_url() ?>admin/calender/createEvent/affiliate/<?= $affiliate->affiliate_id ?>" class="create btn btn-success">
-            <i class="fa fa-plus"></i>
-            Create Calender Event
-        </a>
+        <?php if ($p->affu): ?>
+            <a  href="<?= site_url() ?>admin/affiliates/editAffiliate/<?= $affiliate->affiliate_id ?>" class="create btn bg-navy">
+                <i class="fa fa-edit"></i>
+                Edit
+            </a>
+        <?php endif; ?>
+        <?php if ($p->cal): ?>
+            <a href="<?= site_url() ?>admin/calender/createEvent/affiliate/<?= $affiliate->affiliate_id ?>" class="create btn btn-success">
+                <i class="fa fa-plus"></i>
+                Create Calender Event
+            </a>
+        <?php endif; ?>
     </section>
     <?php
     $img_src = ($affiliate->affiliate_avatar != "") ?
@@ -26,24 +29,9 @@
     ?>
     <!-- Main content -->
     <section class="content">
-        <div class="row">
-            <div class="col-md-12" >
-<!--                <a style="margin-left: 10px" href="<?= site_url() ?>admin/affiliates/editAffiliate/<?= $affiliate->affiliate_id ?>" class="create btn bg-navy">
-                    <i class="fa fa-edit"></i>
-                    Edit
-                </a>
-
-                <a href="<?= site_url() ?>admin/calender/createEvent/affiliate/<?= $affiliate->affiliate_id ?>" class="create btn btn-success">
-                    <i class="fa fa-plus"></i>
-                    Create Calender Event
-                </a>-->
-            </div>
-        </div>
-        <br/>
         <div class="box box-primary">
             <div class="box-header">
             </div><!-- /.box-header -->
-
             <div class="box-body">
                 <div class="row">
                     <div class="col-md-3">
