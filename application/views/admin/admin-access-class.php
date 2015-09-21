@@ -590,6 +590,10 @@
                                                                 <span class="plabel">Create</span>
                                                             </div>
                                                             <div class="col-md-3">
+                                                                <input name="funu" type="checkbox" >
+                                                                <span class="plabel">Update</span>
+                                                            </div>
+                                                            <div class="col-md-3">
                                                                 <input name="funv" type="checkbox" >
                                                                 <span class="plabel">View</span>
                                                             </div>
