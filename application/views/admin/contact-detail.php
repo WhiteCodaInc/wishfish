@@ -337,7 +337,7 @@ switch ($msg) {
 ////                    aTargets: [0, 1, 3, 4, 7, 8]
 //                }],
             iDisplayLength: -1,
-//            aaSorting: [[2, 'asc']]
+            aaSorting: [[2, 'asc']]
         });
         $("#searchbox").on("keyup search input paste cut", function () {
             oTable.fnFilter(this.value);
