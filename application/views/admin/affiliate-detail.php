@@ -13,11 +13,15 @@
         <h1 style=" display: none">
             Affiliates
         </h1>
-        <a href="<?= site_url() ?>admin/affiliates/addAffiliate" class="btn btn-success btn-sm create">
-            <i class="fa fa-plus"></i>
-            Create New Affiliate
-        </a>
-        <button style="margin-left: 10px" value="Delete" class="btn btn-danger btn-sm delete" id="Delete" type="button" >Delete</button>
+        <?php if ($p->affi): ?>
+            <a href="<?= site_url() ?>admin/affiliates/addAffiliate" class="btn btn-success btn-sm create">
+                <i class="fa fa-plus"></i>
+                Create New Affiliate
+            </a>
+        <?php endif; ?>
+        <?php if ($p->affd): ?>
+            <button style="margin-left: 10px" value="Delete" class="btn btn-danger btn-sm delete" id="Delete" type="button" >Delete</button>
+        <?php endif; ?>
         <div class="search" style="float:right;width: 25%">
             <select id="page_length" class="form-control" style="float: left;width: 30%">
                 <option value="25">25</option>
@@ -145,9 +149,11 @@
                             <table id="affiliate-data-table" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th style="padding: 10px;">
-                                            <input type="checkbox"/>
-                                        </th>
+                                        <?php if ($p->affd): ?>
+                                            <th style="padding: 10px;">
+                                                <input type="checkbox"/>
+                                            </th>
+                                        <?php endif; ?>
                                         <th>Profile</th>
                                         <th>Name</th>
                                         <th class="hidden-xs hidden-sm">Email</th>
@@ -155,7 +161,9 @@
                                         <th class="hidden-xs hidden-sm">Birthday</th>
                                         <th class="hidden-xs hidden-sm">Zodiac</th>
                                         <th class="hidden-xs hidden-sm">Profile Rating(1-10)</th>                                     
-                                        <th>Edit</th>
+                                        <?php if ($p->affu): ?>
+                                            <th>Edit</th>
+                                        <?php endif; ?>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -173,13 +181,15 @@
                                                 base_url() . 'assets/dashboard/img/default-avatar.png';
                                         ?>
                                         <tr>
-                                            <td>
-                                                <div>
-                                                    <label>
-                                                        <input type="checkbox" name="affiliate[]" value="<?= $value->affiliate_id ?>"/>
-                                                    </label>
-                                                </div>
-                                            </td>
+                                            <?php if ($p->affd): ?>
+                                                <td>
+                                                    <div>
+                                                        <label>
+                                                            <input type="checkbox" name="affiliate[]" value="<?= $value->affiliate_id ?>"/>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                            <?php endif; ?>
                                             <td >
                                                 <img style="width:60px;height:60px" src="<?= $img_src ?>" class="img-circle" alt="User Image" />
                                             </td>
@@ -203,18 +213,22 @@
                                             <td class="hidden-xs hidden-sm"><?= ($value->birthday != NULL) ? date('d-m-Y', strtotime($value->birthday)) : 'N/A' ?></td>
                                             <td class="hidden-xs hidden-sm"><?= $value->zodiac ?></td>
                                             <td class="hidden-xs hidden-sm"><?= ($value->rating != "-1") ? $value->rating : '' ?></td>
-                                            <td>
-                                                <a href="<?= site_url() ?>admin/affiliates/editAffiliate/<?= $value->affiliate_id ?>" class="btn bg-navy btn-xs">
-                                                    <i class="fa fa-edit"></i>
-                                                    Edit
-                                                </a>
-                                            </td>
+                                            <?php if ($p->affu): ?>
+                                                <td>
+                                                    <a href="<?= site_url() ?>admin/affiliates/editAffiliate/<?= $value->affiliate_id ?>" class="btn bg-navy btn-xs">
+                                                        <i class="fa fa-edit"></i>
+                                                        Edit
+                                                    </a>
+                                                </td>
+                                            <?php endif; ?>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th></th>
+                                        <?php if ($p->affd): ?>
+                                            <th></th>
+                                        <?php endif; ?>
                                         <th>Profile</th>
                                         <th>Name</th>
                                         <th class="hidden-xs hidden-sm">Email</th>
@@ -222,11 +236,15 @@
                                         <th class="hidden-xs hidden-sm">Birthday</th>
                                         <th class="hidden-xs hidden-sm">Zodiac</th>
                                         <th class="hidden-xs hidden-sm">Profile Rating(1-10)</th>
-                                        <th>Edit</th>
+                                        <?php if ($p->affu): ?>
+                                            <th>Edit</th>
+                                        <?php endif; ?>
                                     </tr>
                                 </tfoot>
                             </table>
-                            <input type="hidden" id="actionType" name="actionType" value="" />
+                            <?php if ($p->affd): ?>
+                                <input type="hidden" id="actionType" name="actionType" value="" />
+                            <?php endif; ?>
                         </div><!-- /.box-body -->
                     </form>
                 </div><!-- /.box -->
@@ -324,38 +342,36 @@ switch ($msg) {
             $('input[name="address_search"]').val("<?= $data['address_search'] ?>");
             $('select[name="rating_search"]').val("<?= $data['rating_search'] ?>");
 <?php } ?>
-        $('#affiliate-data-table tbody tr').each(function () {
-            $(this).children('td.sorting_1').find('div.checked');
-        });
 
+<?php if ($p->affd): ?>
 
-        $('button.delete').click(function (e) {
-            var affiliate = "";
-            var act = $(this).val();
-            $('#affiliate-data-table tbody tr').each(function () {
-                if ($(this).children('td:first').find('div.checked').length) {
-                    $txt = $(this).children('td:nth-child(3)').children('a').text();
-                    affiliate += $txt.trim() + ",";
-                }
+            $('button.delete').click(function (e) {
+                var affiliate = "";
+                var act = $(this).val();
+                $('#affiliate-data-table tbody tr').each(function () {
+                    if ($(this).children('td:first').find('div.checked').length) {
+                        $txt = $(this).children('td:nth-child(3)').children('a').text();
+                        affiliate += $txt.trim() + ",";
+                    }
+                });
+
+                affiliate = affiliate.substring(0, affiliate.length - 1);
+                alertify.confirm("Are you sure want to delete affiliate(s):<br/>" + affiliate, function (e) {
+                    if (e) {
+                        action(act);
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                });
             });
 
-            affiliate = affiliate.substring(0, affiliate.length - 1);
-            alertify.confirm("Are you sure want to delete affiliate(s):<br/>" + affiliate, function (e) {
-                if (e) {
-                    action(act);
-                    return true;
-                }
-                else {
-                    return false;
-                }
-            });
-        });
-
-        function action(actiontype) {
-            $('#actionType').val(actiontype);
-            $('#checkForm').attr('action', "<?= site_url() ?>admin/affiliates/action");
-            $('#checkForm').submit();
-        }
+            function action(actiontype) {
+                $('#actionType').val(actiontype);
+                $('#checkForm').attr('action', "<?= site_url() ?>admin/affiliates/action");
+                $('#checkForm').submit();
+            }
+<?php endif; ?>
     });
-
 </script>

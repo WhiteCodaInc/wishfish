@@ -17,8 +17,7 @@ class Contact_groups extends CI_Controller {
 
     function __construct() {
         parent::__construct();
-        $this->load->library("authex");
-        $this->load->library("common");
+
         $this->p = $this->common->getPermission();
 
         if (!$this->authex->logged_in()) {
@@ -90,7 +89,7 @@ class Contact_groups extends CI_Controller {
     }
 
     function action() {
-        if ($this->p->cond) {
+        if ($this->p->congd) {
             $type = $this->input->post('actionType');
             if ($type == "Delete") {
                 $this->objgrp->setAction();

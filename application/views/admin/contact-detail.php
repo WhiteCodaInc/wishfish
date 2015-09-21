@@ -229,14 +229,14 @@
                                             <td class="hidden-xs hidden-sm"><?= ($value->birthday != NULL) ? date('d-m-Y', strtotime($value->birthday)) : 'N/A' ?></td>
                                             <td class="hidden-xs hidden-sm"><?= $value->zodiac ?></td>
                                             <td class="hidden-xs hidden-sm"><?= $value->group_name ?></td>
-                                            <td >
-                                                <?php if ($p->conu): ?>
+                                            <?php if ($p->conu): ?>
+                                                <td >
                                                     <a href="<?= site_url() ?>admin/contacts/editContact/<?= $value->contact_id ?>" class="btn bg-navy btn-xs">
                                                         <i class="fa fa-edit"></i>
                                                         Edit
                                                     </a>
-                                                <?php endif; ?>
-                                            </td>
+                                                </td>
+                                            <?php endif; ?>
                                         </tr>
                                     <?php } ?>
                                 </tbody>

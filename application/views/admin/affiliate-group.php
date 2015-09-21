@@ -10,11 +10,15 @@
         <h1 style="display: none">
             Affiliate Groups
         </h1>
-        <a href="<?= site_url() ?>admin/affiliate_groups/addAffiliateGroup" class="create btn btn-success btn-sm">
-            <i class="fa fa-plus"></i>
-            Create New Affiliate Group
-        </a>
-        <button style="margin-left: 10px" value="Delete" class="delete btn btn-danger btn-sm" id="Delete" type="button" >Delete</button>
+        <?php if ($p->affgi): ?>
+            <a href="<?= site_url() ?>admin/affiliate_groups/addAffiliateGroup" class="create btn btn-success btn-sm">
+                <i class="fa fa-plus"></i>
+                Create New Affiliate Group
+            </a>
+        <?php endif; ?>
+        <?php if ($p->affgd): ?>
+            <button style="margin-left: 10px" value="Delete" class="delete btn btn-danger btn-sm" id="Delete" type="button" >Delete</button>
+        <?php endif; ?>
     </section>
 
     <!-- Main content -->
@@ -25,60 +29,65 @@
                     <div class="box-header">
                         <h3 class="box-title">Affiliate Group Detail</h3>
                     </div><!-- /.box-header -->
-                    <div class="row">
-                        <div class="col-xs-12" style="margin-left: 1%">
-<!--                            <a href="<?= site_url() ?>admin/affiliate_groups/addAffiliateGroup" class="create btn btn-success btn-sm">
-                                <i class="fa fa-plus"></i>
-                                Create New Affiliate Group
-                            </a>
-                            <button style="margin-left: 10px" value="Delete" class="delete btn btn-danger btn-sm" id="Delete" type="button" >Delete</button>-->
-                        </div>
-                    </div>
-
                     <form name="checkForm" id="checkForm" action="" method="post">
                         <div class="box-body table-responsive" id="data-panel">
 
                             <table id="affiliate-data-table" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th style="padding: 10px;">
-                                            <input type="checkbox"/>
-                                        </th>
+                                        <?php if ($p->affgd): ?>
+                                            <th style="padding: 10px;">
+                                                <input type="checkbox"/>
+                                            </th>
+                                        <?php endif; ?>
                                         <th class="hidden-xs hidden-sm">Group Id</th>
                                         <th>Group Name</th>
-                                        <th>Edit</th>
+                                        <?php if ($p->affgu): ?>
+                                            <th>Edit</th>
+                                        <?php endif; ?>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach ($groups as $value) { ?>
                                         <tr>
-                                            <td>
-                                                <div>
-                                                    <label>
-                                                        <input type="checkbox" name="group[]" value="<?= $value->group_id ?>"/>
-                                                    </label>
-                                                </div>
-                                            </td>
+                                            <?php if ($p->affgd): ?>
+                                                <td>
+                                                    <div>
+                                                        <label>
+                                                            <input type="checkbox" name="group[]" value="<?= $value->group_id ?>"/>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                            <?php endif; ?>
                                             <td class="hidden-xs hidden-sm"><?= $value->group_id ?></td>
                                             <td><?= $value->group_name ?></td>
-                                            <td>
-                                                <a href="<?= site_url() ?>admin/affiliate_groups/editAffiliateGroup/<?= $value->group_id ?>" class="btn bg-navy btn-xs">
-                                                    <i class="fa fa-edit"></i>
-                                                    Edit
-                                                </a>
-                                            </td>
+                                            <?php if ($p->affgu): ?>
+                                                <td>
+                                                    <a href="<?= site_url() ?>admin/affiliate_groups/editAffiliateGroup/<?= $value->group_id ?>" class="btn bg-navy btn-xs">
+                                                        <i class="fa fa-edit"></i>
+                                                        Edit
+                                                    </a>
+                                                </td>
+                                            <?php endif; ?>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th></th>
+                                        <?php if ($p->affgd): ?>
+                                            <th></th>
+                                        <?php endif; ?>
                                         <th class="hidden-xs hidden-sm">Group Id</th>
                                         <th>Group Name</th>
-                                        <th>Edit</th>
+                                        <?php if ($p->affgu): ?>
+                                            <th>Edit</th>
+                                        <?php endif; ?>
                                     </tr>
                                 </tfoot>
                             </table>
+                            <?php if ($p->affgd): ?>
+                                <input type="hidden" id="actionType" name="actionType" value="" />
+                            <?php endif; ?>
                         </div><!-- /.box-body -->
                     </form>
                 </div><!-- /.box -->
@@ -131,33 +140,33 @@ switch ($msg) {
 <script type="text/javascript">
     $(document).ready(function () {
 
-
-
-        $('button.delete').click(function (e) {
-            var agroup = "";
-            var act = $(this).val();
-            $('#affiliate-data-table tbody tr').each(function () {
-                if ($(this).children('td:first').find('div.checked').length) {
-                    $txt = $(this).children('td:nth-child(3)').text();
-                    agroup += $txt.trim() + ",";
-                }
+<?php if ($p->affgd): ?>
+            $('button.delete').click(function (e) {
+                var agroup = "";
+                var act = $(this).val();
+                $('#affiliate-data-table tbody tr').each(function () {
+                    if ($(this).children('td:first').find('div.checked').length) {
+                        $txt = $(this).children('td:nth-child(3)').text();
+                        agroup += $txt.trim() + ",";
+                    }
+                });
+                agroup = agroup.substring(0, agroup.length - 1);
+                alertify.confirm("Are you sure want to delete affiliate group(s):<br/>" + agroup, function (e) {
+                    if (e) {
+                        action(act);
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                });
             });
-            agroup = agroup.substring(0, agroup.length - 1);
-            alertify.confirm("Are you sure want to delete affiliate group(s):<br/>" + agroup, function (e) {
-                if (e) {
-                    action(act);
-                    return true;
-                }
-                else {
-                    return false;
-                }
-            });
-        });
-        function action(actiontype) {
-            $('#actionType').val(actiontype);
-            $('#checkForm').attr('action', "<?= site_url() ?>admin/affiliate_groups/action");
-            $('#checkForm').submit();
-        }
+            function action(actiontype) {
+                $('#actionType').val(actiontype);
+                $('#checkForm').attr('action', "<?= site_url() ?>admin/affiliate_groups/action");
+                $('#checkForm').submit();
+            }
+<?php endif; ?>
     });
 
 </script>
