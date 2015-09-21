@@ -9,10 +9,12 @@
         <h1 style="display: none">
             Assigned Twilio Number
         </h1>
-        <a href="<?= site_url() ?>admin/setting/twilioNumber" class="btn btn-success create">
-            <i class="fa fa-plus"></i>
-            Assign New Twilio Number
-        </a>
+        <?php if ($p->smssi): ?>
+            <a href="<?= site_url() ?>admin/setting/twilioNumber" class="btn btn-success create">
+                <i class="fa fa-plus"></i>
+                Assign New Twilio Number
+            </a>
+        <?php endif; ?>
     </section>
     <!-- Main content -->
     <section class="content">
@@ -22,18 +24,15 @@
                     <div class="box-header">
                         <h3 class="box-title">Admin Access Class List</h3>
                     </div><!-- /.box-header -->
-                    <div class="row">
-                        <div class="col-md-12" style="margin-left: 10px">
-
-                        </div>
-                    </div>
                     <div class="box-body table-responsive">
                         <table id="access" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
                                     <th>Admin Access Class</th>
                                     <th>Assigned Twilio Number</th>
-                                    <th>Edit</th>
+                                    <?php if ($p->smssu): ?>
+                                        <th>Edit</th>
+                                    <?php endif; ?>
                                 </tr>
                             </thead>
                             <tbody>
@@ -47,12 +46,14 @@
                                         $phone .= substr($value->twilio_number, 8, 4);
                                         ?>
                                         <td><?= $phone ?></td>
-                                        <td>
-                                            <a href="<?= site_url() ?>admin/setting/editTwilioNumber/<?= $value->twilio_id ?>" class="btn bg-navy btn-xs">
-                                                <i class="fa fa-edit"></i>
-                                                Edit
-                                            </a>
-                                        </td>
+                                        <?php if ($p->smssu): ?>
+                                            <td>
+                                                <a href="<?= site_url() ?>admin/setting/editTwilioNumber/<?= $value->twilio_id ?>" class="btn bg-navy btn-xs">
+                                                    <i class="fa fa-edit"></i>
+                                                    Edit
+                                                </a>
+                                            </td>
+                                        <?php endif; ?>
                                     </tr>
                                 <?php } ?>
                             </tbody>
@@ -60,8 +61,9 @@
                                 <tr>
                                     <th>Admin Access Class</th>
                                     <th>Assigned Twilio Number</th>
-                                    <th>Edit</th>
-
+                                    <?php if ($p->smssu): ?>
+                                        <th>Edit</th>
+                                    <?php endif; ?>
                                 </tr>
                             </tfoot>
                         </table>
