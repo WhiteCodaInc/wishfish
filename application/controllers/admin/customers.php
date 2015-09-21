@@ -20,8 +20,6 @@ class Customers extends CI_Controller {
         $this->p = $this->common->getPermission();
         if (!$this->authex->logged_in()) {
             header('location:' . site_url() . 'admin/admin_login');
-        } else if (!$this->p->cusu && !$this->p->cusd) {
-            header('location:' . site_url() . 'admin/dashboard/error/500');
         } else {
             $paypalGatewayInfo = $this->wi_common->getPaymentGatewayInfo("PAYPAL");
             $this->api_username = $paypalGatewayInfo->api_username;
@@ -41,52 +39,64 @@ class Customers extends CI_Controller {
     }
 
     function index() {
-        $data['customers'] = $this->objcustomer->getCustomerDetail();
-        $data['plans'] = $this->wi_common->getPlans();
-        $data['groups'] = $this->objgroup->getCustomerGroups();
-        $data['p'] = $this->p;
-        $this->load->view('admin/admin_header');
-        $this->load->view('admin/admin_top');
-        $this->load->view('admin/admin_navbar');
-        $this->load->view('admin/customer-detail', $data);
-        $this->load->view('admin/admin_footer');
-    }
-
-    function search() {
-        $data['searchResult'] = $this->objcustomer->searchResult();
-        $data['groups'] = $this->objgroup->getCustomerGroups();
-        $data['plans'] = $this->wi_common->getPlans();
-        $data['p'] = $this->p;
-        $this->load->view('admin/admin_header');
-        $this->load->view('admin/admin_top');
-        $this->load->view('admin/admin_navbar');
-        $this->load->view('admin/customer-detail', $data);
-        $this->load->view('admin/admin_footer');
-    }
-
-    function profile($cid = NULL) {
-        if ($cid != NULL) {
-            $res = $this->objcustomer->getCustomer($cid);
-            $data['customer'] = $res[0];
-            $data['cgroup'] = $res[1];
-
-            $data['groups'] = $this->objgroup->getCustomerGroups();
-
-            $data['phistory'] = $this->objcustomer->getPaymentHistory($cid);
-            $data['card'] = $this->getCardDetail($cid);
-            $data['gatewayInfo'] = $this->wi_common->getPaymentGatewayInfo("STRIPE");
+        if ($this->p->cusu || $this->p->cusd) {
+            $data['customers'] = $this->objcustomer->getCustomerDetail();
             $data['plans'] = $this->wi_common->getPlans();
-            $data['sms_template'] = $this->objsmstmplt->getTemplates();
-            $data['email_template'] = $this->objemailtmplt->getTemplates();
+            $data['groups'] = $this->objgroup->getCustomerGroups();
             $data['p'] = $this->p;
-
             $this->load->view('admin/admin_header');
             $this->load->view('admin/admin_top');
             $this->load->view('admin/admin_navbar');
-            $this->load->view('admin/customer-profile-view', $data);
+            $this->load->view('admin/customer-detail', $data);
             $this->load->view('admin/admin_footer');
         } else {
-            header('location:' . site_url() . 'admin/customers');
+            header('location:' . site_url() . 'admin/dashboard/error/500');
+        }
+    }
+
+    function search() {
+        if ($this->p->cusu || $this->p->cusd) {
+            $data['searchResult'] = $this->objcustomer->searchResult();
+            $data['groups'] = $this->objgroup->getCustomerGroups();
+            $data['plans'] = $this->wi_common->getPlans();
+            $data['p'] = $this->p;
+            $this->load->view('admin/admin_header');
+            $this->load->view('admin/admin_top');
+            $this->load->view('admin/admin_navbar');
+            $this->load->view('admin/customer-detail', $data);
+            $this->load->view('admin/admin_footer');
+        } else {
+            header('location:' . site_url() . 'admin/dashboard/error/500');
+        }
+    }
+
+    function profile($cid = NULL) {
+        if ($this->p->cusu || $this->p->cusd) {
+            if ($cid != NULL) {
+                $res = $this->objcustomer->getCustomer($cid);
+                $data['customer'] = $res[0];
+                $data['cgroup'] = $res[1];
+
+                $data['groups'] = $this->objgroup->getCustomerGroups();
+
+                $data['phistory'] = $this->objcustomer->getPaymentHistory($cid);
+                $data['card'] = $this->getCardDetail($cid);
+                $data['gatewayInfo'] = $this->wi_common->getPaymentGatewayInfo("STRIPE");
+                $data['plans'] = $this->wi_common->getPlans();
+                $data['sms_template'] = $this->objsmstmplt->getTemplates();
+                $data['email_template'] = $this->objemailtmplt->getTemplates();
+                $data['p'] = $this->p;
+
+                $this->load->view('admin/admin_header');
+                $this->load->view('admin/admin_top');
+                $this->load->view('admin/admin_navbar');
+                $this->load->view('admin/customer-profile-view', $data);
+                $this->load->view('admin/admin_footer');
+            } else {
+                header('location:' . site_url() . 'admin/customers');
+            }
+        } else {
+            header('location:' . site_url() . 'admin/dashboard/error/500');
         }
     }
 
@@ -118,32 +128,36 @@ class Customers extends CI_Controller {
     }
 
     function action() {
-        $type = $this->input->post('actionType');
-        if ($type == "Delete" || $type == "Active" || $type == "Deactive") {
-            $ids = $this->input->post('customer');
-            try {
-                if ($type == "Delete") {
-                    foreach ($ids as $value) {
-                        $uInfo = $this->wi_common->getUserInfo($value);
-                        if (!$uInfo->is_set || ($uInfo->is_set && $uInfo->gateway == "STRIPE")) {
-                            $cu = Stripe_Customer::retrieve($uInfo->customer_id);
-                            $cu->delete();
-                        } else if ($uInfo->is_set && $uInfo->gateway == "PAYPAL") {
-                            $currPlan = $this->wi_common->getLatestPlan($value);
-                            $profileId = $this->objcustomer->isExistProfileId($currPlan);
-                            if ($profileId) {
-                                $this->cancelRecurringProfile($profileId->transaction_id);
+        if ($this->p->cusu || $this->p->cusd) {
+            $type = $this->input->post('actionType');
+            if ($type == "Delete" || $type == "Active" || $type == "Deactive") {
+                $ids = $this->input->post('customer');
+                try {
+                    if ($type == "Delete") {
+                        foreach ($ids as $value) {
+                            $uInfo = $this->wi_common->getUserInfo($value);
+                            if (!$uInfo->is_set || ($uInfo->is_set && $uInfo->gateway == "STRIPE")) {
+                                $cu = Stripe_Customer::retrieve($uInfo->customer_id);
+                                $cu->delete();
+                            } else if ($uInfo->is_set && $uInfo->gateway == "PAYPAL") {
+                                $currPlan = $this->wi_common->getLatestPlan($value);
+                                $profileId = $this->objcustomer->isExistProfileId($currPlan);
+                                if ($profileId) {
+                                    $this->cancelRecurringProfile($profileId->transaction_id);
+                                }
                             }
                         }
                     }
+                } catch (Exception $e) {
+                    $e->getMessage();
                 }
-            } catch (Exception $e) {
-                $e->getMessage();
+                $msg = $this->objcustomer->setAction($type, $ids);
+                header('location:' . site_url() . 'admin/customers?msg=' . $msg);
+            } else {
+                header('location:' . site_url() . 'admin/customers');
             }
-            $msg = $this->objcustomer->setAction($type, $ids);
-            header('location:' . site_url() . 'admin/customers?msg=' . $msg);
         } else {
-            header('location:' . site_url() . 'admin/customers');
+            header('location:' . site_url() . 'admin/dashboard/error/500');
         }
     }
 
