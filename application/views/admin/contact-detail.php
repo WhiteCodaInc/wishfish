@@ -332,7 +332,7 @@ switch ($msg) {
                 [25, 50, 100, 200, "All"]
             ],
             aoColumnDefs: [{
-                    bSortable: false,
+//                    bSortable: false,
 //                    aTargets: [0, 1, 3, 4, 7, 8]
                 }],
             iDisplayLength: -1,
