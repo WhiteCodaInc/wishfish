@@ -130,10 +130,11 @@ switch ($msg) {
 <script type="text/javascript">
     $(function () {
         $("#affiliate-data-table").dataTable({
-            aoColumnDefs: [{
-                    bSortable: false,
-                    aTargets: [0, 3]
-                }]
+            bSort: false,
+//            aoColumnDefs: [{
+//                    bSortable: false,
+//                    aTargets: [0, 3]
+//                }]
         });
     });
 </script>

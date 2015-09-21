@@ -131,10 +131,11 @@ switch ($msg) {
 <script type="text/javascript">
     $(function () {
         $("#contact-data-table").dataTable({
-            aoColumnDefs: [{
-                    bSortable: false,
-                    aTargets: [0, 3]
-                }]
+            bSort: false,
+//            aoColumnDefs: [{
+//                    bSortable: false,
+//                    aTargets: [0, 3]
+//                }]
         });
     });
 </script>

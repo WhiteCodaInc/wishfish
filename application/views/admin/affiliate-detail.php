@@ -303,16 +303,17 @@ switch ($msg) {
 <script type="text/javascript">
     $(function () {
         oTable = $("#affiliate-data-table").dataTable({
+            bSort: false,
             aLengthMenu: [
                 [25, 50, 100, 200, -1],
                 [25, 50, 100, 200, "All"]
             ],
-            aoColumnDefs: [{
-                    bSortable: false,
-                    aTargets: [0, 1, 4, 6, 8]
-                }],
+//            aoColumnDefs: [{
+//                    bSortable: false,
+//                    aTargets: [0, 1, 4, 6, 8]
+//                }],
             iDisplayLength: -1,
-            aaSorting: [[2, 'asc']]
+//            aaSorting: [[2, 'asc']]
         });
         $("#searchbox").on("keyup search input paste cut", function () {
             oTable.fnFilter(this.value);
