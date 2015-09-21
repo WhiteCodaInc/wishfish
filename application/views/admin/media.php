@@ -13,11 +13,15 @@
         <h1 style=" display: none">
             Media Library
         </h1>
-        <a href="<?= site_url() ?>admin/media/addMedia" class="create btn btn-success btn-sm">
-            <i class="fa fa-plus"></i>
-            Create New Media
-        </a>
-        <button  value="Delete" class="delete btn btn-danger btn-sm" id="Delete" type="button" >Delete</button>
+        <?php if ($p->medi): ?>
+            <a href="<?= site_url() ?>admin/media/addMedia" class="create btn btn-success btn-sm">
+                <i class="fa fa-plus"></i>
+                Create New Media
+            </a>
+        <?php endif; ?>
+        <?php if ($p->medd): ?>
+            <button  value="Delete" class="delete btn btn-danger btn-sm" id="Delete" type="button" >Delete</button>
+        <?php endif; ?>
     </section>
 
     <!-- Main content -->
@@ -78,9 +82,11 @@
                             <table id="media-data-table" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th style="padding: 10px;">
-                                            <input type="checkbox"/>
-                                        </th>
+                                        <?php if ($p->medd): ?>
+                                            <th style="padding: 10px;">
+                                                <input type="checkbox"/>
+                                            </th>
+                                        <?php endif; ?>
                                         <th>Date</th>
                                         <th>Media</th>
                                         <th>Media Type</th>
@@ -91,13 +97,15 @@
                                 <tbody>
                                     <?php foreach ($media as $value) { ?>
                                         <tr id="<?= $value->media_id ?>">
-                                            <td>
-                                                <div>
-                                                    <label>
-                                                        <input type="checkbox" name="media[]" value="<?= $value->media_id ?>"/>
-                                                    </label>
-                                                </div>
-                                            </td>
+                                            <?php if ($p->medd): ?>
+                                                <td>
+                                                    <div>
+                                                        <label>
+                                                            <input type="checkbox" name="media[]" value="<?= $value->media_id ?>"/>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                            <?php endif; ?>
                                             <td><?= date('m-d-Y', strtotime($value->date)) ?></td>
                                             <td>
                                                 <?php if ($value->path != NULL): ?>
@@ -145,17 +153,21 @@
                                                     <i class="fa fa-eye"></i>
                                                     Link
                                                 </button>
-                                                <a href="<?= site_url() ?>admin/media/editMedia/<?= $value->media_id ?>" class="btn bg-navy btn-xs">
-                                                    <i class="fa fa-edit"></i>
-                                                    Edit
-                                                </a>
+                                                <?php if ($p->medu): ?>
+                                                    <a href="<?= site_url() ?>admin/media/editMedia/<?= $value->media_id ?>" class="btn bg-navy btn-xs">
+                                                        <i class="fa fa-edit"></i>
+                                                        Edit
+                                                    </a>
+                                                <?php endif; ?>
                                             </td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th></th>
+                                        <?php if ($p->medd): ?>
+                                            <th></th>
+                                        <?php endif; ?>
                                         <th>Date</th>
                                         <th>Media</th>
                                         <th>Media Type</th>
@@ -164,7 +176,9 @@
                                     </tr>
                                 </tfoot>
                             </table>
-                            <input type="hidden" id="actionType" name="actionType" value="" />
+                            <?php if ($p->medd): ?>
+                                <input type="hidden" id="actionType" name="actionType" value="" />
+                            <?php endif; ?>
                         </div><!-- /.box-body -->
                     </form>
                 </div><!-- /.box -->
@@ -241,10 +255,11 @@ switch ($msg) {
 <script type="text/javascript">
     $(function () {
         $("#media-data-table").dataTable({
-            aoColumnDefs: [{
-                    bSortable: false,
-                    aTargets: [0, 1, 2, 3, 5]
-                }]
+            bSort: false,
+//            aoColumnDefs: [{
+//                    bSortable: false,
+//                    aTargets: [0, 1, 2, 3, 5]
+//                }]
         });
     });
 </script>
@@ -257,25 +272,26 @@ switch ($msg) {
             $('input[name="to_search"]').val("<?= $data['to_search'] ?>");
             $('select[name="type_search"]').val("<?= $data['type_search'] ?>");
 <?php } ?>
-
-        $('button.delete').click(function (e) {
-            var act = $(this).val();
-            alertify.confirm("Are you sure you wish to delete Media(s)", function (e) {
-                if (e) {
-                    action(act);
-                    return true;
-                }
-                else {
-                    return false;
-                }
+<?php if ($p->medd): ?>
+            $('button.delete').click(function (e) {
+                var act = $(this).val();
+                alertify.confirm("Are you sure you wish to delete Media(s)", function (e) {
+                    if (e) {
+                        action(act);
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                });
             });
-        });
 
-        function action(actiontype) {
-            $('#actionType').val(actiontype);
-            $('#checkForm').attr('action', "<?= site_url() ?>admin/media/action");
-            $('#checkForm').submit();
-        }
+            function action(actiontype) {
+                $('#actionType').val(actiontype);
+                $('#checkForm').attr('action', "<?= site_url() ?>admin/media/action");
+                $('#checkForm').submit();
+            }
+<?php endif; ?>
         $('a#img').click(function () {
             var mediaid = $(this).parents('tr').attr('id');
             var name = $('tr#' + mediaid).find('td.name').text();

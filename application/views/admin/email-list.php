@@ -13,10 +13,12 @@
         <h1 style=" display: none">
             Email Lists
         </h1>
-        <a href="<?= site_url() ?>admin/email_list/addEmailList" class="create btn btn-success btn-sm">
-            <i class="fa fa-plus"></i>
-            Create New Email List
-        </a>
+        <?php if ($p->medi): ?>
+            <a href="<?= site_url() ?>admin/email_list/addEmailList" class="create btn btn-success btn-sm">
+                <i class="fa fa-plus"></i>
+                Create New Email List
+            </a>
+        <?php endif; ?>
     </section>
 
     <!-- Main content -->
@@ -34,7 +36,7 @@
                                 <tr>
                                     <th>Email List Name</th>
                                     <th>No. of Contacts</th>
-                                    <th>View Contacts</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -43,11 +45,19 @@
                                         <td><?= $value->name ?></td>
                                         <td><?= $value->total ?></td>
                                         <td>
-                                            <?php if ($value->total > 0): ?>
-                                                <a href="<?= site_url() ?>admin/email_list/view/<?= $value->list_id ?>" class="btn bg-navy btn-xs">
-                                                    <i class="fa fa-eye"></i>
-                                                    View
+                                            <?php if ($p->medu): ?>
+                                                <a href="<?= site_url() ?>admin/email_list/editEmailList/<?= $value->list_id ?>" class="btn bg-navy btn-xs">
+                                                    <i class="fa fa-pencil"></i>
+                                                    Edit
                                                 </a>
+                                            <?php endif; ?>
+                                            <?php if ($p->medv): ?>
+                                                <?php if ($value->total > 0): ?>
+                                                    <a href="<?= site_url() ?>admin/email_list/view/<?= $value->list_id ?>" class="btn bg-navy btn-xs">
+                                                        <i class="fa fa-eye"></i>
+                                                        View
+                                                    </a>
+                                                <?php endif; ?>
                                             <?php endif; ?>
                                         </td>
                                     </tr>
@@ -57,7 +67,7 @@
                                 <tr>
                                     <th>Email List Name</th>
                                     <th>No. of Contacts</th>
-                                    <th>View Contacts</th>
+                                    <th>Action</th>
                                 </tr>
                             </tfoot>
                         </table>
@@ -104,34 +114,16 @@ switch ($msg) {
 <script type="text/javascript">
     $(function () {
         $("#list-data-table").dataTable({
-            aoColumnDefs: [{
-                    bSortable: false,
-                    aTargets: [0, 1, 2]
-                }]
+            bSort: false,
+//            aoColumnDefs: [{
+//                    bSortable: false,
+//                    aTargets: [0, 1, 2]
+//                }]
         });
     });
 </script>
 <script type="text/javascript">
     $(document).ready(function () {
-//        $('#list-data-table tbody tr td a').click(function () {
-//            var listid = $(this).attr('id');
-//            $('.elist .overlay').show();
-//            $('.elist .loading-img').show();
-//            $.ajax({
-//                type: 'POST',
-//                url: "<?= site_url() ?>admin/email_list/view/" + listid,
-//                success: function (data, textStatus, jqXHR) {
-//                    $('.elist .overlay').hide();
-//                    $('.elist .loading-img').hide();
-//                    $('.elist').hide();
-//                    $('#lcontact-data-table tbody').html(data);
-//                    $('.lcontacts').show();
-//                }
-//            });
-//        });
-//        $('#goback').click(function () {
-//            $('.lcontacts').hide();
-//            $('.elist').show();
-//        });
+
     });
 </script>
