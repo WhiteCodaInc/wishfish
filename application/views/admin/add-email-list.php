@@ -44,7 +44,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $('#addList').click(function () {
-            ('#listForm input:submit').trigger('click');
+            ('#listForm input[type="submit"]').trigger('click');
         });
     });
 </script>
