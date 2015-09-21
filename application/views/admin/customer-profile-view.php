@@ -410,7 +410,9 @@
                                         <th>Payment Method</th>
                                         <th>Plan</th>
                                         <th>Status</th>
-                                        <th>Refund</th>
+                                        <?php if ($p->cusu): ?>
+                                            <th>Refund</th>
+                                        <?php endif; ?>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -428,14 +430,16 @@
                                                     <span class="btn btn-warning btn-xs">Refunded</span>
                                                 <?php endif; ?>
                                             </td>
-                                            <td>
-                                                <?php $method = ($value->gateway == "STRIPE") ? "refundStripe" : "refundPaypal"; ?>
-                                                <?php if ($value->status && $value->mc_gross > 0 && $value->invoice_id): ?>
-                                                    <a class="btn btn-primary btn-xs refund" href="<?= site_url() ?>admin/customers/<?= $method ?>/<?= $customer->user_id ?>/<?= $value->invoice_id ?>">
-                                                        Refund
-                                                    </a>
-                                                <?php endif; ?>
-                                            </td>
+                                            <?php if ($p->cusu): ?>
+                                                <td>
+                                                    <?php $method = ($value->gateway == "STRIPE") ? "refundStripe" : "refundPaypal"; ?>
+                                                    <?php if ($value->status && $value->mc_gross > 0 && $value->invoice_id): ?>
+                                                        <a class="btn btn-primary btn-xs refund" href="<?= site_url() ?>admin/customers/<?= $method ?>/<?= $customer->user_id ?>/<?= $value->invoice_id ?>">
+                                                            Refund
+                                                        </a>
+                                                    <?php endif; ?>
+                                                </td>
+                                            <?php endif; ?>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
@@ -447,7 +451,9 @@
                                         <th>Payment Method</th>
                                         <th>Plan</th>
                                         <th>Status</th>
-                                        <th>Refund</th>
+                                        <?php if ($p->cusu): ?>
+                                            <th>Refund</th>
+                                        <?php endif; ?>
                                     </tr>
                                 </tfoot>
                             </table>
@@ -805,11 +811,11 @@ switch ($msg) {
                 [25, 50, 100, 200, -1],
                 [25, 50, 100, 200, "All"]
             ],
-            aoColumnDefs: [{
-                    targets: 'no-sort',
-                    bSortable: false,
-                    aTargets: [0, 1, 2, 3, 4, 5, 6]
-                }],
+//            aoColumnDefs: [{
+//                    targets: 'no-sort',
+//                    bSortable: false,
+//                    aTargets: [0, 1, 2, 3, 4, 5, 6]
+//                }],
             iDisplayLength: -1
         });
 
