@@ -754,9 +754,9 @@
 <script src="//cdn.ckeditor.com/4.4.3/standard/ckeditor.js"></script>
 <!-- Bootstrap WYSIHTML5 -->
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
-
-<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-
+<?php if ($p->cusu): ?>
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<?php endif; ?>
 <!-- DATA TABES SCRIPT -->
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
@@ -871,144 +871,145 @@ switch ($msg) {
         });
 
         var formType = "";
-
-        $('a.access').click(function () {
-            var type = $(this).prop('id');
-            $('#lifetimeForm input[name="type"]').val(type);
-            $('#lifetimeForm').submit();
-        });
-
-        $('#cardForm,#chargeForm').on('submit', function () {
-            formType = $(this).prop('id');
-            (formType == "cardForm") ?
-                    $('#save').prop('disabled', true) :
-                    $('#charge').prop('disabled', true);
-            var error = false;
-            var ccNum = $(this).find('.card_number').val(),
-                    cvcNum = $(this).find('.cvc').val(),
-                    expMonth = $(this).find('.month').val(),
-                    expYear = $(this).find('.year').val();
-
-            // Validate the number:
-            if (!Stripe.card.validateCardNumber(ccNum)) {
-                error = true;
-                $('#' + formType + ' #msgCard').text('The credit card number appears to be invalid.');
-                $('#' + formType + ' #msgCard').show();
-                (formType == "cardForm") ?
-                        $('#save').prop('disabled', false) :
-                        $('#charge').prop('disabled', false);
-                return false;
-            }
-            // Validate the CVC:
-            if (!Stripe.card.validateCVC(cvcNum)) {
-                error = true;
-                $('#' + formType + ' #msgCard').text('The CVC number appears to be invalid.');
-                $('#' + formType + ' #msgCard').show();
-                (formType == "cardForm") ?
-                        $('#save').prop('disabled', false) :
-                        $('#charge').prop('disabled', false);
-                return false;
-            }
-            // Validate the expiration:
-            if (!Stripe.card.validateExpiry(expMonth, expYear)) {
-                error = true;
-                $('#' + formType + ' #msgCard').text('The expiration date appears to be invalid.');
-                $('#' + formType + ' #msgCard').show();
-                (formType == "cardForm") ?
-                        $('#save').prop('disabled', false) :
-                        $('#charge').prop('disabled', false);
-                return false;
-            }
-            // Check for errors:
-            if (!error) {
-                // Get the Stripe token:
-                $('#' + formType + ' #msgCard').hide();
-                $('#' + formType + ' #error').hide();
-                Stripe.card.createToken({
-                    number: ccNum,
-                    cvc: cvcNum,
-                    exp_month: expMonth,
-                    exp_year: expYear
-                }, stripeResponseHandler);
-                return false;
-            } else {
-                $('#' + formType + ' #error').show();
-                $('#' + formType + ' #msgCard').show();
-                return false;
-            }
-            return false;
-        });
-
-        function stripeResponseHandler(status, response) {
-            // Check for an error:
-            if (response.error) {
-                reportError(response.error.message);
-            } else { // No errors, submit the form:
-                var f = $('#' + formType);
-
-                // Token contains id, last4, and card type:
-                var token = response['id'];
-
-                // Insert the token into the form so it gets submitted to the server
-                f.append("<input type='hidden' name='stripeToken' value='" + token + "' />");
-                // Submit the form:
-                f.get(0).submit();
-//                $('#charge').prop('disabled', false);
-//                return false;
-            }
-
-        }
-
-        $('input[name="type"]').change(function () {
-            var type = $(this).val();
-            if (type == "onetime") {
-                $('p.line_onetime').show();
-                $('p.line_recur').hide();
-            } else {
-                $('p.line_onetime').hide();
-                $('p.line_recur').show();
-            }
-        });
-
-        $('select[name="plan"]').change(function () {
-            var planid = $(this).val();
-            var interval = $('select[name="interval"]').val();
-            $amt = (planid == '2') ?
-                    parseFloat('9.99') * parseInt(interval) :
-                    parseFloat('49.99') * parseInt(interval);
-            $('input[name="amount"]').val($amt);
-        });
-
-        $('select[name="interval"]').change(function () {
-            var interval = $(this).val();
-            var planid = $('select[name="plan"]').val();
-            $('#month').text(interval);
-            $amt = (planid == '2') ?
-                    parseFloat('9.99') * parseInt(interval) :
-                    parseFloat('49.99') * parseInt(interval);
-            $('input[name="amount"]').val($amt);
-            $.ajax({
-                type: 'POST',
-                url: "<?= site_url() ?>admin/customers/getRecurDate",
-                data: {interval: interval},
-                success: function (data, textStatus, jqXHR) {
-                    $('#recur_date').text(data);
-                }
+<?php if ($p->cusu): ?>
+            $('a.access').click(function () {
+                var type = $(this).prop('id');
+                $('#lifetimeForm input[name="type"]').val(type);
+                $('#lifetimeForm').submit();
             });
-        });
 
-        $('a.refund').click(function (e) {
-            var href = $(this).prop('href');
-            alertify.confirm("Are you sure want to Refund to <?= $customer->name ?>", function (e) {
-                if (e) {
-                    window.location.href = href;
-                    return true;
-                }
-                else {
+            $('#cardForm,#chargeForm').on('submit', function () {
+                formType = $(this).prop('id');
+                (formType == "cardForm") ?
+                        $('#save').prop('disabled', true) :
+                        $('#charge').prop('disabled', true);
+                var error = false;
+                var ccNum = $(this).find('.card_number').val(),
+                        cvcNum = $(this).find('.cvc').val(),
+                        expMonth = $(this).find('.month').val(),
+                        expYear = $(this).find('.year').val();
+
+                // Validate the number:
+                if (!Stripe.card.validateCardNumber(ccNum)) {
+                    error = true;
+                    $('#' + formType + ' #msgCard').text('The credit card number appears to be invalid.');
+                    $('#' + formType + ' #msgCard').show();
+                    (formType == "cardForm") ?
+                            $('#save').prop('disabled', false) :
+                            $('#charge').prop('disabled', false);
                     return false;
                 }
+                // Validate the CVC:
+                if (!Stripe.card.validateCVC(cvcNum)) {
+                    error = true;
+                    $('#' + formType + ' #msgCard').text('The CVC number appears to be invalid.');
+                    $('#' + formType + ' #msgCard').show();
+                    (formType == "cardForm") ?
+                            $('#save').prop('disabled', false) :
+                            $('#charge').prop('disabled', false);
+                    return false;
+                }
+                // Validate the expiration:
+                if (!Stripe.card.validateExpiry(expMonth, expYear)) {
+                    error = true;
+                    $('#' + formType + ' #msgCard').text('The expiration date appears to be invalid.');
+                    $('#' + formType + ' #msgCard').show();
+                    (formType == "cardForm") ?
+                            $('#save').prop('disabled', false) :
+                            $('#charge').prop('disabled', false);
+                    return false;
+                }
+                // Check for errors:
+                if (!error) {
+                    // Get the Stripe token:
+                    $('#' + formType + ' #msgCard').hide();
+                    $('#' + formType + ' #error').hide();
+                    Stripe.card.createToken({
+                        number: ccNum,
+                        cvc: cvcNum,
+                        exp_month: expMonth,
+                        exp_year: expYear
+                    }, stripeResponseHandler);
+                    return false;
+                } else {
+                    $('#' + formType + ' #error').show();
+                    $('#' + formType + ' #msgCard').show();
+                    return false;
+                }
+                return false;
             });
-            return false;
-        });
+
+            function stripeResponseHandler(status, response) {
+                // Check for an error:
+                if (response.error) {
+                    reportError(response.error.message);
+                } else { // No errors, submit the form:
+                    var f = $('#' + formType);
+
+                    // Token contains id, last4, and card type:
+                    var token = response['id'];
+
+                    // Insert the token into the form so it gets submitted to the server
+                    f.append("<input type='hidden' name='stripeToken' value='" + token + "' />");
+                    // Submit the form:
+                    f.get(0).submit();
+                    //                $('#charge').prop('disabled', false);
+                    //                return false;
+                }
+
+            }
+
+            $('input[name="type"]').change(function () {
+                var type = $(this).val();
+                if (type == "onetime") {
+                    $('p.line_onetime').show();
+                    $('p.line_recur').hide();
+                } else {
+                    $('p.line_onetime').hide();
+                    $('p.line_recur').show();
+                }
+            });
+
+            $('select[name="plan"]').change(function () {
+                var planid = $(this).val();
+                var interval = $('select[name="interval"]').val();
+                $amt = (planid == '2') ?
+                        parseFloat('9.99') * parseInt(interval) :
+                        parseFloat('49.99') * parseInt(interval);
+                $('input[name="amount"]').val($amt);
+            });
+
+            $('select[name="interval"]').change(function () {
+                var interval = $(this).val();
+                var planid = $('select[name="plan"]').val();
+                $('#month').text(interval);
+                $amt = (planid == '2') ?
+                        parseFloat('9.99') * parseInt(interval) :
+                        parseFloat('49.99') * parseInt(interval);
+                $('input[name="amount"]').val($amt);
+                $.ajax({
+                    type: 'POST',
+                    url: "<?= site_url() ?>admin/customers/getRecurDate",
+                    data: {interval: interval},
+                    success: function (data, textStatus, jqXHR) {
+                        $('#recur_date').text(data);
+                    }
+                });
+            });
+
+            $('a.refund').click(function (e) {
+                var href = $(this).prop('href');
+                alertify.confirm("Are you sure want to Refund to <?= $customer->name ?>", function (e) {
+                    if (e) {
+                        window.location.href = href;
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                });
+                return false;
+            });
+<?php endif; ?>
     });
 </script>
