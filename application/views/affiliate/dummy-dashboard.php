@@ -104,6 +104,19 @@
         <script type="text/javascript" src="<?= base_url() ?>assets/dashboard/js/alertify.js"></script>
         <script type="text/javascript" src="<?= base_url() ?>assets/dashboard/js/alertify.min.js"></script>
         <style type="text/css">
+            .overlay{
+                position:absolute;
+                background:rgba(0,0,0,0.50) 0%;
+                top:0;
+                left:0;
+                z-index:30;
+                width:100%;
+                height:100%
+            }
+            .overlay div.msg{
+                padding: 14% 21%;
+                color: white
+            }
             .title-blue{
                 float: left;
                 width: 74%;
@@ -122,7 +135,7 @@
         <header class="header">
             <a href="#" class="logo">
                 <!-- Add the class icon to your logo image or logo icon to add the margining -->
-                <?= $this->session->userdata('name') ?> 
+                <?= (!$affInfo) ? $this->session->userdata('d-name') : $affInfo->fname . ' ' . $affInfo->lname ?>
             </a>
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top fixed"  role="navigation">
@@ -145,7 +158,7 @@
                                 <li class="user-header bg-light-blue">
                                     <img src="<?= base_url() . 'assets/dashboard/img/default-avatar.png' ?>" class="img-circle" alt="User Image" />
                                     <p>
-                                        <?= $this->session->userdata('name') ?>
+                                        <?= (!$affInfo) ? $this->session->userdata('d-name') : $affInfo->fname . ' ' . $affInfo->lname ?>
                                     </p>
                                 </li>
                                 <!-- Menu Body -->
@@ -167,6 +180,35 @@
         <!-- Right side column. Contains the navbar and content of the page -->
 
         <div class="wrapper row-offcanvas row-offcanvas-left">
+
+            <div class="overlay" style="">
+                <div class="msg">
+                    <?php if (!$flag): ?>
+                        <h1 style="text-align: center">Welcome to Wish-Fish!<br/>Please click the 'Activate Your Account' Button in your Email To Get Started!</h1>
+                        <h3>Didn't get our Email? No worries, <a href="javascript:void(0);" id="sendAgain">Click Here</a> and We'll send you another one!</h3>
+                    <?php else : ?>
+                        <div class="row" >
+                            <div class="col-md-3"></div>
+                            <form id="passForm" action="<?= site_url() ?>affiliate/dashboard/updatePassword" method="post">
+                                <div class="col-md-6" style="text-align: center;">
+                                    <?php if (!$isForgot) : ?>
+                                        <lable><h2>Email confirmed!</h2></lable>
+                                    <?php endif; ?>
+                                    <lable><h2>Please set a password:</h2></lable>
+                                    <input id="passwd" type="password" name="password" placeholder="Please Enter a New Password" class="form-control" required /><br/>
+                                    <input id="confirm_passwd" type="password" placeholder="Please Confirm your new password" class="form-control" required /><br/>
+                                    <button  type="submit" class="btn btn-primary">Let's Get Started!</button> <br/>
+                                    <span id="msgPass" style="color: red"></span>
+                                </div>
+                                <input type="hidden" name="userid" value="<?= $affInfo->affiliate_id ?>" />
+                                <input type="hidden" name="type" value="<?= ($isForgot) ? "forgot" : "welcome" ?>" />
+                            </form>
+                            <div class="col-md-3"></div>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+
             <!-- Left side column. contains the logo and sidebar -->
             <aside class="left-side sidebar-offcanvas">
                 <!-- sidebar: style can be found in sidebar.less -->
@@ -177,7 +219,7 @@
                             <img src="<?= base_url() . 'assets/dashboard/img/default-avatar.png' ?>" class="img-circle" alt="User Image" />
                         </div>
                         <div class="pull-left info">
-                            <p><?= $this->session->userdata('name') ?></p>
+                            <p><?= (!$affInfo) ? $this->session->userdata('d-name') : $affInfo->fname . ' ' . $affInfo->lname ?></p>
                         </div>
                     </div>
 
@@ -467,6 +509,7 @@
             </aside>
 
             <aside class="right-side">
+
                 <!-- Content Header (Page header) -->
                 <section class="content-header" style="display: none">
                     <h1 style="display: none">
