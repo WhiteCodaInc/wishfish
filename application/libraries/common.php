@@ -34,7 +34,7 @@ class Common {
     }
 
     function getAffInfo($affid) {
-        $query = $this->_CI->db->get_where('customer_detail', array('affiliate_id' => $affid));
+        $query = $this->_CI->db->get_where('affiliate_detail', array('affiliate_id' => $affid));
         return $query->row();
     }
 
