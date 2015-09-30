@@ -77,7 +77,7 @@ class M_affiliate extends CI_Model {
                                         </td>";
         $link .= "</tr></table>";
         $tag = array(
-            'NAME' => $post['name'],
+            'NAME' => $post['fname'] . ' ' . $post['lname'],
             'LINK' => $link,
             'THISDOMAIN' => "Wish-Fish"
         );
