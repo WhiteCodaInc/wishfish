@@ -31,7 +31,7 @@ class Affiliate extends CI_Controller {
         $post = $this->input->post();
         $res = $this->wi_authex->aff_can_register($post['email']);
         if ($res) {
-            $flag = $this->objregister->register($post);
+            $flag = $this->objaffiliate->register($post);
             if ($flag) {
                 header('location:' . site_url() . 'affiliate/dashboard');
             } else {
