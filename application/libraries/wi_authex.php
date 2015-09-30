@@ -16,6 +16,10 @@ class Wi_authex {
         return ($this->_CI->session->userdata("u_userid") ) ? true : false;
     }
 
+    function alogged_in() {
+        return ($this->_CI->session->userdata("a_affid") ) ? true : false;
+    }
+
     function login($where) {
 
         (isset($where['password'])) ? $where['password'] = sha1($where['password']) : '';
@@ -43,6 +47,40 @@ class Wi_authex {
             $this->_CI->session->set_userdata('u_profile_pic', $res->profile_pic);
             $this->_CI->session->set_userdata('u_timezone', $res->timezones);
             $this->_CI->session->set_userdata('u_date_format', $res->date_format);
+            unset($res);
+            return TRUE;
+        } else {
+            return -1;
+        }
+    }
+
+    function alogin($where) {
+
+        (isset($where['password'])) ? $where['password'] = sha1($where['password']) : '';
+
+        $query = $this->_CI->db->get_where('affiliate_mst', $where);
+
+        if ($query->num_rows() !== 1) {
+            /* their username and password combination
+             * were not found in the databse */
+            return FALSE;
+        } else if ($query->row()->status) {
+//            $last_login = date("Y-m-d H-i-s");
+            $last_login = $this->_CI->wi_common->getUTCDateWithTime($query->row()->timezones);
+            $data = array(
+//                "is_login" => 1,
+                "last_login" => $last_login
+            );
+            $this->_CI->db->update('affiliate_mst', $data, array('aff_id' => $query->row()->aff_id));
+            $where['aff_id'] = $query->row()->aff_id;
+            $query = $this->_CI->db->get_where('affiliate_mst', $where);
+            $res = $query->row();
+            $this->_CI->session->set_userdata('a_affid', $res->aff_id);
+            $this->_CI->session->set_userdata('a_name', $res->name);
+            $this->_CI->session->set_userdata('a_email', $res->email);
+            $this->_CI->session->set_userdata('a_profile_pic', $res->profile_pic);
+            $this->_CI->session->set_userdata('a_timezone', $res->timezones);
+            $this->_CI->session->set_userdata('a_date_format', $res->date_format);
             unset($res);
             return TRUE;
         } else {
