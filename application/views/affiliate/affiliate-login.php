@@ -59,7 +59,7 @@ and open the template in the editor.
                     <div class="col-md-4">
                         <!-- CONTACT FORM -->
                         <div data-wow-offset="10" data-wow-duration="1.55s" class="wow rollIn animated contact-form m-bot15">
-                            <form method="post" action="<?= site_url() ?>affiliate/signin" role="form" >
+                            <form method="post" action="<?= site_url() ?>affiliate/login/signin" role="form" >
                                 <fieldset>
                                     <div class="row m-bot15">
                                         <div class="col-md-12">

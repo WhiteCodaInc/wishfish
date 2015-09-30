@@ -32,7 +32,7 @@ class Dashboard extends CI_Controller {
             $this->daid = $this->session->userdata('d-affid');
         }
 
-        $this->load->model('affiliate/m_dashboard', 'objdashboard');
+//        $this->load->model('affiliate/m_dashboard', 'objdashboard');
         $this->load->model('affiliate/m_affiliate', 'objaffiliate');
     }
 
