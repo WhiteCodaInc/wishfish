@@ -41,7 +41,7 @@ and open the template in the editor.
         <!-- <link rel="stylesheet" href="<?= base_url() ?>assets/wow/css/colors/dark.css">-->
 
         <!-- Alertify -->
-        <!--<link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/alertify/alertify.core.css"/>-->
+        <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/alertify/alertify.core.css"/>
         <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/alertify/alertify.default.css"/>
 
         <script src="<?= base_url() ?>assets/wow/js/vendor/jquery-1.10.2.min.js"></script>
@@ -49,7 +49,7 @@ and open the template in the editor.
         <script src="<?= base_url() ?>assets/wow/js/vendor/modernizr-2.6.2.min.js"></script>
 
         <!--Alertify-->
-        <!--<script type="text/javascript" src="<?= base_url() ?>assets/alertify/alertify.js"></script>-->
+        <script type="text/javascript" src="<?= base_url() ?>assets/alertify/alertify.js"></script>
         <script type="text/javascript" src="<?= base_url() ?>assets/alertify/alertify.min.js"></script>
 
     </head>
