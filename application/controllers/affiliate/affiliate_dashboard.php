@@ -11,7 +11,7 @@
  *
  * @author Laxmisoft
  */
-class Dashboard extends CI_Controller {
+class Affiliate_dashboard extends CI_Controller {
 
     private $aid, $daid, $directLogin;
 
@@ -54,9 +54,9 @@ class Dashboard extends CI_Controller {
                         'email' => $affInfo->email
                     );
                     if ($this->wi_authex->login($login)) {
-                        header('location:' . site_url() . 'app/dashboard');
+                        header('location:' . site_url() . 'affiliate/affiliate_dashboard');
                     } else {
-                        header('location:' . site_url() . 'login');
+                        header('location:' . site_url() . 'affiliate/login');
                     }
                 } else {
                     $data['flag'] = TRUE;
