@@ -28,23 +28,17 @@ class Affiliate extends CI_Controller {
     }
 
     function signup() {
-        header('location:' . site_url() . 'affiliate/join');
         $post = $this->input->post();
-        if ($this->objaffiliate->isAffiliateExist($post)) {
-            header('location:' . site_url() . 'affiliate/join?msg=R');
+        $res = $this->wi_authex->aff_can_register($post['email']);
+        if ($res) {
+            $flag = $this->objregister->register($post);
+            if ($flag) {
+                header('location:' . site_url() . 'affiliate/dashboard');
+            } else {
+                header('location:' . site_url() . 'affiliate/join?msg=RF');
+            }
         } else {
-            $msg = $this->objaffiliate->register($post);
-            header('location:' . site_url() . 'affiliate/login');
-        }
-    }
-
-    function signin() {
-        header('location:' . site_url() . 'affiliate/login');
-        $post = $this->input->post();
-        if ($this->objaffiliate->login($post)) {
-            header('location:' . site_url() . 'homepage');
-        } else {
-            header('location:' . site_url() . 'login?msg=fail');
+            header('location:' . site_url() . 'affiliate/login?msg=E');
         }
     }
 

@@ -35,13 +35,15 @@ class M_affiliate extends CI_Model {
         $name = explode(' ', $post['fullname']);
         $post['fname'] = $name[0];
         $post['lname'] = $name[1];
-        $post['password'] = $this->generateRandomString(5);
         unset($post['fullname']);
         $this->db->insert('affiliate_detail', $post);
-        $this->session->set_userdata('name', $post['fname'] . ' ' . $post['lname']);
-        $reply = $this->sendCredential($post);
-        $msg = ($reply) ? "true" : "false";
-        return $msg;
+        $insertid = $this->db->insert_id();
+
+        $this->session->set_userdata('d-affid', $insertid);
+        $this->session->set_userdata('d-name', $post['fname'] . ' ' . $post['lname']);
+
+        $this->sendMail($post, $insertid);
+        return TRUE;
     }
 
     function isAffiliateExist($post) {
@@ -60,13 +62,24 @@ class M_affiliate extends CI_Model {
         return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
     }
 
-    function sendCredential($post) {
-        $templateInfo = $this->common->getAutomailTemplate("NEW USER REGISTRATION");
+    function sendMail($post, $affid) {
+        $uid = $this->encryption->encode($affid);
+        $templateInfo = $this->wi_common->getAutomailTemplate("NEW USER REGISTRATION");
+        $url = site_url() . 'affiliate/dashboard?aid=' . $uid;
+        $link = "<table border='0' align='center' cellpadding='0' cellspacing='0' class='mainBtn' style='margin-top: 0;margin-left: auto;margin-right: auto;margin-bottom: 0;padding-top: 0;padding-bottom: 0;padding-left: 0;padding-right: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-collapse: collapse;border-spacing: 0;'>";
+        $link .= "<tr>";
+        $link .= "<td align='center' valign='middle' class='btnMain' style='margin-top: 0;margin-left: 0;margin-right: 0;margin-bottom: 0;padding-top: 12px;padding-bottom: 12px;padding-left: 22px;padding-right: 22px;border-collapse: collapse;border-spacing: 0;-webkit-text-size-adjust: none;font-family: Arial, Helvetica, sans-serif;background-color: {$templateInfo['color']};height: 20px;font-size: 18px;line-height: 20px;mso-line-height-rule: exactly;text-align: center;vertical-align: middle;'>
+                                            <a href='{$url}' style='padding-top: 0;padding-bottom: 0;padding-left: 0;padding-right: 0;display: inline-block;text-decoration: none;-webkit-text-size-adjust: none;font-family: Arial, Helvetica, sans-serif;color: #ffffff;font-weight: bold;'>
+                                                <span style='text-decoration: none;color: #ffffff;'>
+                                                    Activate Your Account
+                    `                            </span>
+                                            </a>
+                                        </td>";
+        $link .= "</tr></table>";
         $tag = array(
-            'FIRST_NAME' => $post['fname'],
-            'LAST_NAME' => $post['lname'],
-            'EMAIL' => $post['email'],
-            'PASSWORD' => $post['password']
+            'NAME' => $post['name'],
+            'LINK' => $link,
+            'THISDOMAIN' => "Wish-Fish"
         );
         $subject = $this->parser->parse_string($templateInfo['mail_subject'], $tag, TRUE);
         $this->load->view('email_format', $templateInfo, TRUE);
@@ -75,7 +88,7 @@ class M_affiliate extends CI_Model {
         $from = ($templateInfo['from'] != "") ? $templateInfo['from'] : NULL;
         $name = ($templateInfo['name'] != "") ? $templateInfo['name'] : NULL;
 
-        return $this->common->sendAutoMail($post['email'], $subject, $body, $from, $name);
+        return $this->wi_common->sendAutoMail($post['email'], $subject, $body, $from, $name);
     }
 
 }

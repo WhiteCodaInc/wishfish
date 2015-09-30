@@ -33,6 +33,11 @@ class Common {
         return $query->row();
     }
 
+    function getAffInfo($affid) {
+        $query = $this->_CI->db->get_where('customer_detail', array('affiliate_id' => $affid));
+        return $query->row();
+    }
+
     function sendMail($to = NULL, $subject, $body, $bcc = NULL, $from = NULL) {
         $set = array(
             'subject' => $subject,

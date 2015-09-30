@@ -58,24 +58,24 @@ class Wi_authex {
 
         (isset($where['password'])) ? $where['password'] = sha1($where['password']) : '';
 
-        $query = $this->_CI->db->get_where('affiliate_mst', $where);
+        $query = $this->_CI->db->get_where('affiliate_detail', $where);
 
         if ($query->num_rows() !== 1) {
             /* their username and password combination
              * were not found in the databse */
             return FALSE;
         } else if ($query->row()->status) {
-//            $last_login = date("Y-m-d H-i-s");
+            $last_login = date("Y-m-d H-i-s");
             $last_login = $this->_CI->wi_common->getUTCDateWithTime($query->row()->timezones);
             $data = array(
-//                "is_login" => 1,
+                "is_login" => 1,
                 "last_login" => $last_login
             );
-            $this->_CI->db->update('affiliate_mst', $data, array('aff_id' => $query->row()->aff_id));
-            $where['aff_id'] = $query->row()->aff_id;
-            $query = $this->_CI->db->get_where('affiliate_mst', $where);
+            $this->_CI->db->update('affiliate_detail', $data, array('affiliate_id' => $query->row()->affiliate_id));
+            $where['affiliate_id'] = $query->row()->affiliate_id;
+            $query = $this->_CI->db->get_where('affiliate_detail', $where);
             $res = $query->row();
-            $this->_CI->session->set_userdata('a_affid', $res->aff_id);
+            $this->_CI->session->set_userdata('a_affid', $res->affiliate_id);
             $this->_CI->session->set_userdata('a_name', $res->name);
             $this->_CI->session->set_userdata('a_email', $res->email);
             $this->_CI->session->set_userdata('a_profile_pic', $res->profile_pic);
@@ -132,6 +132,11 @@ class Wi_authex {
             }
         }
 //        return ($query->num_rows() > 0) ? FALSE : TRUE;
+    }
+
+    function aff_can_register($email) {
+        $query = $this->_CI->db->get_where("affiliate_detail", array("email" => $email));
+        return ($query->num_rows() > 0) ? FALSE : TRUE;
     }
 
     function email_exists($email) {
