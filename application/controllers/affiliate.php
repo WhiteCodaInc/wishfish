@@ -20,6 +20,7 @@ class Affiliate extends CI_Controller {
     }
 
     function join() {
+        $this->load->view('header');
         $this->load->view('affiliate-join');
     }
 
