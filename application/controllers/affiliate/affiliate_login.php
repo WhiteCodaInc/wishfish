@@ -11,7 +11,7 @@
  *
  * @author Laxmisoft
  */
-class Login extends CI_Controller {
+class Affiliate_login extends CI_Controller {
 
     function __construct() {
         parent::__construct();
@@ -24,7 +24,7 @@ class Login extends CI_Controller {
         if ($this->authex->alogged_in()) {
             header('location:' . site_url() . 'affiliate/dashboard');
         } else {
-            $this->load->model('affiliate/m_login', 'objlogin');
+//            $this->load->model('affiliate/m_login', 'objlogin');
         }
     }
 
@@ -40,11 +40,11 @@ class Login extends CI_Controller {
             $is_login = $this->authex->alogin($post);
             if ($is_login == 1) {
                 $this->storeCookie($post);
-                header('location:' . site_url() . 'affiliate/dashboard');
+                header('location:' . site_url() . 'affiliate_login/dashboard');
             } else if ($is_login == 2) {
-                header('location:' . site_url() . 'affiliate/login?msg=NA');
+                header('location:' . site_url() . 'affiliate_login/login?msg=NA');
             } else {
-                header('location:' . site_url() . 'affiliate/login?msg=fail');
+                header('location:' . site_url() . 'affiliate_login/login?msg=fail');
             }
         } else {
             header('location:' . site_url() . 'affiliate/login');
@@ -76,7 +76,7 @@ class Login extends CI_Controller {
     function createProfile() {
         $post = $this->input->post();
         $this->objlogin->createProfile($post);
-        header('location:' . site_url() . 'affiliate/login');
+        header('location:' . site_url() . 'affiliate_login/login');
     }
 
 }
