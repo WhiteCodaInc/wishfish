@@ -72,7 +72,7 @@ class M_affiliate extends CI_Model {
                                             <a href='{$url}' style='padding-top: 0;padding-bottom: 0;padding-left: 0;padding-right: 0;display: inline-block;text-decoration: none;-webkit-text-size-adjust: none;font-family: Arial, Helvetica, sans-serif;color: #ffffff;font-weight: bold;'>
                                                 <span style='text-decoration: none;color: #ffffff;'>
                                                     Activate Your Account
-                    `                            </span>
+                                                </span>
                                             </a>
                                         </td>";
         $link .= "</tr></table>";

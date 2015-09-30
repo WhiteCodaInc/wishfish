@@ -11,20 +11,16 @@
  *
  * @author Laxmisoft
  */
-class Affiliate extends CI_Controller {
+class Join extends CI_Controller {
 
     //put your code here
     function __construct() {
         parent::__construct();
-        $this->load->model('m_affiliate', 'objaffiliate');
+        $this->load->model('affiliate/m_affiliate', 'objaffiliate');
     }
 
-    function join() {
-        $this->load->view('affiliate-join');
-    }
-
-    function login() {
-        $this->load->view('affiliate-login');
+    function index() {
+        $this->load->view('affiliate/affiliate-join');
     }
 
     function signup() {

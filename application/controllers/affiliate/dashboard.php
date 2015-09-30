@@ -33,7 +33,7 @@ class Dashboard extends CI_Controller {
         }
 
         $this->load->model('affiliate/m_dashboard', 'objdashboard');
-        $this->load->model('m_affiliate', 'objregister');
+        $this->load->model('affiliate/m_affiliate', 'objaffiliate');
     }
 
     function index() {
