@@ -64,11 +64,12 @@ class Affiliate_dashboard extends CI_Controller {
                     $data['isForgot'] = ($this->type != "" && $this->type == "forgot") ? TRUE : FALSE;
                     $this->load->view('affiliate/dummy-dashboard', $data);
                 }
-            } else if ($this->duid != "") {
+            } else if ($this->daid != "") {
                 $data['flag'] = FALSE;
                 $data['affInfo'] = FALSE;
                 $this->load->view('affiliate/dummy-dashboard', $data);
             } else if ($this->daid != "") {
+                $data['flag'] = TRUE;
                 $data['isForgot'] = FALSE;
                 $data['affInfo'] = FALSE;
                 $data['affId'] = $this->daid;
