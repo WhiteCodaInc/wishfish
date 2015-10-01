@@ -14,10 +14,10 @@
             Affiliates
         </h1>
         <?php if ($p->affi): ?>
-<!--            <a href="<?= site_url() ?>admin/affiliates/addAffiliate" class="btn btn-success btn-sm create">
-                <i class="fa fa-plus"></i>
-                Create New Affiliate
-            </a>-->
+                                                                            <!--            <a href="<?= site_url() ?>admin/affiliates/addAffiliate" class="btn btn-success btn-sm create">
+                                                                                            <i class="fa fa-plus"></i>
+                                                                                            Create New Affiliate
+                                                                                        </a>-->
         <?php endif; ?>
         <?php if ($p->caffu): ?>
             <button value="Active" class="add btn btn-success btn-sm" id="Active" type="button" >Active</button>
@@ -162,12 +162,9 @@
                                         <th>Name</th>
                                         <th class="hidden-xs hidden-sm">Email</th>
                                         <th class="hidden-xs hidden-sm">Phone</th>
-                                        <th class="hidden-xs hidden-sm">Birthday</th>
-                                        <th class="hidden-xs hidden-sm">Zodiac</th>
-                                        <th class="hidden-xs hidden-sm">Profile Rating(1-10)</th>                                     
-                                        <?php if ($p->affu): ?>
-                                            <th>Edit</th>
-                                        <?php endif; ?>
+                                        <th>Payout Setting</th>
+                                        <th>Join Date & Time</th>
+                                        <th>Affiliate Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -214,17 +211,15 @@
                                             }
                                             ?>
                                             <td class="hidden-xs hidden-sm"><?= $phone ?></td>
-                                            <td class="hidden-xs hidden-sm"><?= ($value->birthday != NULL) ? date('d-m-Y', strtotime($value->birthday)) : 'N/A' ?></td>
-                                            <td class="hidden-xs hidden-sm"><?= $value->zodiac ?></td>
-                                            <td class="hidden-xs hidden-sm"><?= ($value->rating != "-1") ? $value->rating : '' ?></td>
-                                            <?php if ($p->affu): ?>
-                                                <td>
-                                                    <a href="<?= site_url() ?>admin/affiliates/editAffiliate/<?= $value->affiliate_id ?>" class="btn bg-navy btn-xs">
-                                                        <i class="fa fa-edit"></i>
-                                                        Edit
-                                                    </a>
-                                                </td>
-                                            <?php endif; ?>
+                                            <td class=""><?= $value->payout_type ?></td>
+                                            <td class=""><?= $value->register_date ?></td>
+                                            <td>
+                                                <?php if ($value->status): ?>
+                                                    <span class="btn btn-success btn-xs">Active</span>
+                                                <?php else : ?>
+                                                    <span class="btn btn-danger btn-xs">Deactivate</span>
+                                                <?php endif; ?>
+                                            </td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
@@ -237,12 +232,9 @@
                                         <th>Name</th>
                                         <th class="hidden-xs hidden-sm">Email</th>
                                         <th class="hidden-xs hidden-sm">Phone</th>
-                                        <th class="hidden-xs hidden-sm">Birthday</th>
-                                        <th class="hidden-xs hidden-sm">Zodiac</th>
-                                        <th class="hidden-xs hidden-sm">Profile Rating(1-10)</th>
-                                        <?php if ($p->affu): ?>
-                                            <th>Edit</th>
-                                        <?php endif; ?>
+                                        <th>Payout Setting</th>
+                                        <th>Join Date & Time</th>
+                                        <th>Affiliate Status</th>
                                     </tr>
                                 </tfoot>
                             </table>
@@ -262,10 +254,18 @@
 <?php $data = $this->input->post(); ?>
 <?php
 switch ($msg) {
-    case "I":
-        $m = "Affiliate Profile Successfully Created..!";
+    case "A":
+        $m = "Affiliate Profile Successfully Activated..!";
         $t = "success";
         break;
+    case "DA":
+        $m = "Affiliate Profile Successfully Deactivated..!";
+        $t = "success";
+        break;
+//    case "I":
+//        $m = "Affiliate Profile Successfully Created..!";
+//        $t = "success";
+//        break;
     case "U":
         $m = "Affiliate Profile Successfully Updated..!";
         $t = "success";
@@ -292,7 +292,7 @@ switch ($msg) {
         alertify.<?= $t ?>("<?= $m ?>");
 <?php endif; ?>
     $('.input-daterange').datepicker({
-        format: "dd-mm-yyyy",
+        format: "mm-dd-yyyy",
         todayBtn: "linked",
         autoclose: true,
         todayHighlight: true
@@ -349,6 +349,16 @@ switch ($msg) {
 <?php } ?>
 
 <?php if ($p->affd): ?>
+            $('button.add').click(function (e) {
+                action($(this).val());
+                e.preventDefault();
+            });
+            $('button.remove').click(function (e) {
+                action($(this).val());
+                e.preventDefault();
+            });
+<?php endif; ?>
+<?php if ($p->affd): ?>
 
             $('button.delete').click(function (e) {
                 var affiliate = "";
@@ -371,12 +381,11 @@ switch ($msg) {
                     }
                 });
             });
-
-            function action(actiontype) {
-                $('#actionType').val(actiontype);
-                $('#checkForm').attr('action', "<?= site_url() ?>admin/affiliates/action");
-                $('#checkForm').submit();
-            }
 <?php endif; ?>
+        function action(actiontype) {
+            $('#actionType').val(actiontype);
+            $('#checkForm').attr('action', "<?= site_url() ?>admin/affiliates/action");
+            $('#checkForm').submit();
+        }
     });
 </script>

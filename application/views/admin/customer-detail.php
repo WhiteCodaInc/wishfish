@@ -316,9 +316,7 @@ switch ($msg) {
             $('select[name="status_search"]').val("<?= $data['status_search'] ?>");
             $('select[name="group_search"]').val("<?= $data['group_search'] ?>");
 <?php } ?>
-        $('#customer-data-table tbody tr').each(function () {
-            $(this).children('td.sorting_1').find('div.checked');
-        });
+        
         $('button.add').click(function (e) {
             action($(this).val());
             e.preventDefault();
