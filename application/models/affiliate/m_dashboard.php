@@ -13,10 +13,10 @@
  */
 class M_dashboard extends CI_Model {
 
-    private $userid;
-    private $bucket;
-    private $accessKey;
-    private $secretKey;
+//    private $userid;
+//    private $bucket;
+//    private $accessKey;
+//    private $secretKey;
 
     function __construct() {
         parent::__construct();

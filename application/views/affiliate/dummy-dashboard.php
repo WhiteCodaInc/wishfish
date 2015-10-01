@@ -254,7 +254,7 @@
                                     <button  type="submit" class="btn btn-primary">Let's Get Started!</button> <br/>
                                     <span id="msgPass" style="color: red"></span>
                                 </div>
-                                <input type="hidden" name="userid" value="<?= $affInfo->affiliate_id ?>" />
+                                <input type="hidden" name="affid" value="<?= $affInfo->affiliate_id ?>" />
                                 <input type="hidden" name="type" value="<?= ($isForgot) ? "forgot" : "welcome" ?>" />
                             </form>
                             <div class="col-md-3"></div>
