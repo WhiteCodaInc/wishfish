@@ -14,6 +14,10 @@
                 <i class="fa fa-edit"></i>
                 Edit
             </a>
+            <a href="<?= site_url() ?>admin/affiliates/loginAsUser/<?= $affiliate->affiliate_id ?>" class="create btn bg-maroon" target="_blank">
+                <i class="fa fa-lock"></i>
+                Log in As User
+            </a>
         <?php endif; ?>
         <?php if ($p->cal): ?>
             <a href="<?= site_url() ?>admin/calender/createEvent/affiliate/<?= $affiliate->affiliate_id ?>" class="create btn btn-success">

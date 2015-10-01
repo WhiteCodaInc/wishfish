@@ -135,6 +135,21 @@ class Affiliates extends CI_Controller {
         }
     }
 
+    function loginAsUser($aid) {
+        if ($this->p->affu) {
+            $affilaite = $this->common->getAffInfo($aid);
+            if ($affilaite->status) {
+                $aid = $this->encryption->encode($affilaite->affiliate_id);
+                $url = 'https://wish-fish.com/affiliate/dashboard?d=direct&aid=' . $aid;
+                header('location:' . $url);
+            } else {
+                echo '<script>alert("Affilaite account currently was deactivated..!");close();</script>';
+            }
+        } else {
+            header('location:' . site_url() . 'admin/dashboard/error/500');
+        }
+    }
+
     function getZodiac($dt) {
         $zodiac = $this->common->getZodiac($dt);
         echo $zodiac;
