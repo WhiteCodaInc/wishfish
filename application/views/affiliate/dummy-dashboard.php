@@ -446,10 +446,10 @@
 
             <header class="header">
 
-                <a href="#" class="logo">
-                    <!-- Add the class icon to your logo image or logo icon to add the margining -->
+<!--                <a href="#" class="logo">
+                     Add the class icon to your logo image or logo icon to add the margining 
                     <?= (!$affInfo) ? $this->session->userdata('d-name') : $affInfo->fname . ' ' . $affInfo->lname ?> 
-                </a>
+                </a>-->
                 <!-- Header Navbar: style can be found in header.less -->
                 <nav class="navbar navbar-static-top fixed"  role="navigation">
                     <!-- Sidebar toggle button-->
