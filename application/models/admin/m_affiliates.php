@@ -129,6 +129,7 @@ class M_affiliates extends CI_Model {
     function updateAffiliate($set) {
         $m = "";
         $aid = $set['affiliateid'];
+
         $set['phone'] = (preg_match('/^\(?\d{3}\)?[- ]?\d{3}[- ]?\d{4}$/', $set['phone'])) ?
                 str_replace(array('(', ')', ' ', '-'), '', $set['code'] . $set['phone']) :
                 NULL;
@@ -166,8 +167,15 @@ class M_affiliates extends CI_Model {
                         $m = "U";
                         break;
                 }
+            } else {
+                $m = "U";
             }
+        } else {
+            $m = "U";
         }
+
+        (isset($set['password'])) ?
+                        $set['password'] = sha1($set['password']) : "";
 
         $this->db->trans_start();
         $m = "U";

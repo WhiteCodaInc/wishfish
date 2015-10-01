@@ -46,7 +46,7 @@
                                     </div>
                                     <div class="col-md-9">
                                         <label for="profile pic">Profile Picture</label>
-                                        <input title="Add a photo so we can recognize you !" name="profile_pic"  type="file" id="profilePic" class="form-control" />
+                                        <input title="Add a photo so we can recognize you !" name="affiliate_avatar"  type="file" id="profilePic" class="form-control" />
                                         <span id="error_message"></span>
                                     </div>
                                 </div>
@@ -350,7 +350,6 @@
             $("#profile_previewing").attr('src', e.target.result);
         }
     });
-
 </script>
 
 <script type="text/javascript">
