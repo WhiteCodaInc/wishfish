@@ -97,7 +97,7 @@
                 left:0;
                 z-index:99999;
                 width:100%;
-                height:100%
+                height: 1042px;
             }
             .overlay div.msg{
                 padding: 14% 21%;
