@@ -41,9 +41,9 @@ class Affiliate_dashboard extends CI_Controller {
             $aid = $this->session->userdata('a_affid');
             $data['affInfo'] = $this->common->getAffInfo($aid);
             $this->load->view('admin/admin_header');
-            $this->load->view('admin/admin_top');
-            $this->load->view('admin/admin_navbar');
-            $this->load->view('admin/admin-dashboard', $data);
+            $this->load->view('affiliate/affiliate_top');
+            $this->load->view('affiliate/affiliate_navbar');
+            $this->load->view('affiliate/affiliate-dashboard', $data);
             $this->load->view('admin/admin_footer');
         } else {
             $affInfo = $this->common->getAffInfo($this->aid);
