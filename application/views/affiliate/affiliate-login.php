@@ -63,13 +63,13 @@ and open the template in the editor.
                                 <fieldset>
                                     <div class="row m-bot15">
                                         <div class="col-md-12">
-                                            <input value="" type="email" class="form-control " name="email"  placeholder="Your Email Address" required="">
+                                            <input value="<?= $aemail ?>" type="email" class="form-control " name="email"  placeholder="Your Email Address" required="">
                                         </div>
                                     </div>
 
                                     <div class="row m-bot15">
                                         <div class="col-md-12">
-                                            <input type="password" value="" class="form-control " name="password"  placeholder="Your Password" required="">
+                                            <input type="password" value="<?= $apasswd ?>" class="form-control " name="password"  placeholder="Your Password" required="">
                                         </div>
                                     </div>
                                     <div class="row m-bot15">
@@ -205,7 +205,7 @@ and open the template in the editor.
                         $.ajax({
                             type: "POST",
                             data: {email: email},
-                            url: "<?= base_url() ?>home/checkEmail",
+                            url: "<?= base_url() ?>affiliate/login/checkEmail",
                             success: function (res) {
                                 if (res == 0) {
                                     emailV = 0;
@@ -244,7 +244,7 @@ and open the template in the editor.
                     $.ajax({
                         type: "POST",
                         data: {email: email},
-                        url: "<?= base_url() ?>home/sendMail",
+                        url: "<?= base_url() ?>affilaite/login/sendMail",
                         success: function (res) {
                             $('#loadSend').css('display', 'none');
                             if (res == 1) {
@@ -283,38 +283,6 @@ and open the template in the editor.
                 $('#remember').click(function () {
                     $('input[name="remember"]').trigger('click');
                 });
-            });
-        </script>
-        <script type="text/javascript">
-            window.fbAsyncInit = function () {
-                //Initiallize the facebook using the facebook javascript sdk
-                FB.init({
-                    appId: '<?= $this->config->item('appID'); ?>', // App ID 
-                    cookie: true, // enable cookies to allow the server to access the session
-                    status: true, // check login status
-                    xfbml: true, // parse XFBML
-                    oauth: true //enable Oauth 
-                });
-            };
-            //Read the baseurl from the config.php file
-            (function (d) {
-                var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-                if (d.getElementById(id)) {
-                    return;
-                }
-                js = d.createElement('script');
-                js.id = id;
-                js.async = true;
-                js.src = "//connect.facebook.net/en_US/all.js";
-                ref.parentNode.insertBefore(js, ref);
-            }(document));
-            //Onclick for fb login
-            $('.facebook').click(function (e) {
-                FB.login(function (response) {
-                    if (response.authResponse) {
-                        parent.location = '<?= site_url() ?>login/fbsignin'; //redirect uri after closing the facebook popup
-                    }
-                }, {scope: 'email,read_stream,user_birthday,user_photos'}); //permissions for facebook
             });
         </script>
     </body>

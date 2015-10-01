@@ -157,6 +157,11 @@ class Wi_authex {
         return ($query->num_rows() === 1) ? true : false;
     }
 
+    function aemail_exists($email) {
+        $query = $this->_CI->db->get_where("affiliate_detail", array("email" => $email));
+        return ($query->num_rows() === 1) ? true : false;
+    }
+
     function isTrue($password) {
         $this->_CI->db->select('password');
         $query = $this->_CI->db->get_where("login", array("login_id" => $this->_CI->session->userdata("loginid")));
