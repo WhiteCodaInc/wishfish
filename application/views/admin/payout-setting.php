@@ -145,7 +145,7 @@
                 $('#msgPayout').empty();
             }
             if (recur < 0 || recur > 100) {
-                $('#msgPayout').text("Invalid Immediate Purchase Value..!");
+                $('#msgPayout').text("Invalid Recurring Purchase Value..!");
                 return false;
             } else {
                 $('#msgPayout').empty();
