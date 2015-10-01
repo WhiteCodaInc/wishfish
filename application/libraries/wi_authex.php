@@ -78,7 +78,7 @@ class Wi_authex {
             $this->_CI->session->set_userdata('a_affid', $res->affiliate_id);
             $this->_CI->session->set_userdata('a_name', $res->name);
             $this->_CI->session->set_userdata('a_email', $res->email);
-            $this->_CI->session->set_userdata('a_profile_pic', $res->profile_pic);
+            $this->_CI->session->set_userdata('a_avatar', $res->affiliate_avatar);
             $this->_CI->session->set_userdata('a_timezone', $res->timezones);
             $this->_CI->session->set_userdata('a_date_format', $res->date_format);
             unset($res);

@@ -65,16 +65,6 @@
         <!-- Theme Style -->
         <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/dashboard/css/AdminLTE.css"/>
 
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-          <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-        <![endif]-->
-
-        <!-- Alertify -->
-        <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/dashboard/css/alertify.core.css"/>
-        <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/dashboard/css/alertify.default.css"/>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"></script>
@@ -86,25 +76,24 @@
         <script src="//code.jquery.com/ui/1.11.1/jquery-ui.min.js" type="text/javascript"></script>
         <script type="text/javascript" src="<?= base_url() ?>assets/dashboard/js/AdminLTE/jquery.resize.js"></script>
 
-        <script src="<?= base_url() ?>assets/dashboard/exportToExcel/jquery.battatech.excelexport.js"></script>
 
         <!--BOOTSTRAP--> 
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js" type="text/javascript"></script>
 
-
-
-
-        <!--pickers plugins-->
-        <script type="text/javascript" src="<?= base_url() ?>assets/dashboard/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-
-        <!--Cookie-->
-        <script type="text/javascript" src="<?= base_url() ?>assets/dashboard/js/jquery.cookie.js"></script>
-
-        <!--Alertify-->
-        <script type="text/javascript" src="<?= base_url() ?>assets/dashboard/js/alertify.js"></script>
-        <script type="text/javascript" src="<?= base_url() ?>assets/dashboard/js/alertify.min.js"></script>
         <style type="text/css">
+            .title-blue{
+                float: left;
+                width: 74%;
+                text-align: center;
+                /* padding: 0px; */
+                font-size: 28px;
+                color: white
+            }
+            .navbar ul.menu,.navbar .slimScrollDiv{
+                height: 550px !important;
+            }
             .overlay{
+                /*display:none;*/
                 position:absolute;
                 background:rgba(0,0,0,0.50) 0%;
                 top:0;
@@ -117,113 +106,29 @@
                 padding: 14% 21%;
                 color: white
             }
-            .title-blue{
-                float: left;
-                width: 74%;
-                text-align: center;
-                /* padding: 0px; */
-                font-size: 28px;
-                color: white
-            }
-            .navbar ul.menu,.navbar .slimScrollDiv{
-                height: 550px !important;
-            }
         </style>
     </head>
+    <?php
+    $avatar = $this->session->userdata('a_avatar');
+
+    $aff_img_src = ($avatar != "") ?
+            "https://mikhailkuznetsov.s3.amazonaws.com/" . $avatar :
+            base_url() . 'assets/dashboard/img/default-avatar.png';
+    ?>
     <body class="skin-blue">
-
-        <header class="header">
-            <a href="#" class="logo">
-                <!-- Add the class icon to your logo image or logo icon to add the margining -->
-                <?= (!$affInfo) ? $this->session->userdata('d-name') : $affInfo->fname . ' ' . $affInfo->lname ?>
-            </a>
-            <!-- Header Navbar: style can be found in header.less -->
-            <nav class="navbar navbar-static-top fixed"  role="navigation">
-                <!-- Sidebar toggle button-->
-                <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </a>
-                <div class="navbar-right">
-                    <ul class="nav navbar-nav">
-                        <li class="dropdown user user-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="glyphicon glyphicon-user"></i>
-                                <span><i class="caret"></i></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <!-- User image -->
-                                <li class="user-header bg-light-blue">
-                                    <img src="<?= base_url() . 'assets/dashboard/img/default-avatar.png' ?>" class="img-circle" alt="User Image" />
-                                    <p>
-                                        <?= (!$affInfo) ? $this->session->userdata('d-name') : $affInfo->fname . ' ' . $affInfo->lname ?>
-                                    </p>
-                                </li>
-                                <!-- Menu Body -->
-                                <!-- Menu Footer-->
-                                <li class="user-footer">
-                                    <div class="pull-right">
-                                        <a href="#" class="btn btn-default btn-flat">Sign out</a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                <div class="row title-blue">
-                    <div id="titleblue" class="col-md-12"></div>
-                </div>
-            </nav>
-        </header>
-        <!-- Right side column. Contains the navbar and content of the page -->
-
         <div class="wrapper row-offcanvas row-offcanvas-left">
 
-            <div class="overlay" style="">
-                <div class="msg">
-                    <?php if (!$flag): ?>
-                        <h1 style="text-align: center">Welcome to Wish-Fish!<br/>Please click the 'Activate Your Account' Button in your Email To Get Started!</h1>
-                        <h3>Didn't get our Email? No worries, <a href="javascript:void(0);" id="sendAgain">Click Here</a> and We'll send you another one!</h3>
-                    <?php else : ?>
-                        <div class="row" >
-                            <div class="col-md-3"></div>
-                            <form id="passForm" action="<?= site_url() ?>affiliate/dashboard/updatePassword" method="post">
-                                <div class="col-md-6" style="text-align: center;">
-                                    <?php if (!$isForgot) : ?>
-                                        <lable><h2>Email confirmed!</h2></lable>
-                                    <?php endif; ?>
-                                    <lable><h2>Please set a password:</h2></lable>
-                                    <input id="passwd" type="password" name="password" placeholder="Please Enter a New Password" class="form-control" required /><br/>
-                                    <input id="confirm_passwd" type="password" placeholder="Please Confirm your new password" class="form-control" required /><br/>
-                                    <button  type="submit" class="btn btn-primary">Let's Get Started!</button> <br/>
-                                    <span id="msgPass" style="color: red"></span>
-                                </div>
-                                <input type="hidden" name="userid" value="<?= $affInfo->affiliate_id ?>" />
-                                <input type="hidden" name="type" value="<?= ($isForgot) ? "forgot" : "welcome" ?>" />
-                            </form>
-                            <div class="col-md-3"></div>
-                        </div>
-                    <?php endif; ?>
-                </div>
-            </div>
-
-            <!-- Left side column. contains the logo and sidebar -->
             <aside class="left-side sidebar-offcanvas">
-                <!-- sidebar: style can be found in sidebar.less -->
                 <section class="sidebar">
                     <!-- Sidebar user panel -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="<?= base_url() . 'assets/dashboard/img/default-avatar.png' ?>" class="img-circle" alt="User Image" />
+                            <img src="<?= $aff_img_src ?>" class="img-circle" alt="User Image" />
                         </div>
                         <div class="pull-left info">
                             <p><?= (!$affInfo) ? $this->session->userdata('d-name') : $affInfo->fname . ' ' . $affInfo->lname ?></p>
                         </div>
                     </div>
-
-                    <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
                         <li class="active" id="1">
                             <a href="#">
@@ -508,8 +413,133 @@
                 <!-- /.sidebar -->
             </aside>
 
-            <aside class="right-side">
 
+            <!-- header logo: style can be found in header.less -->
+
+            <header class="header">
+
+                <a href="#" class="logo">
+                    <!-- Add the class icon to your logo image or logo icon to add the margining -->
+                    <?= (!$affInfo) ? $this->session->userdata('d-name') : $affInfo->fname . ' ' . $affInfo->lname ?> 
+                </a>
+                <!-- Header Navbar: style can be found in header.less -->
+                <nav class="navbar navbar-static-top fixed"  role="navigation">
+                    <!-- Sidebar toggle button-->
+                    <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <div class="navbar-right">
+                        <ul class="nav navbar-nav">
+                            <!-- New Payment Notification -->
+                            <li class="dropdown messages-menu payment-notification">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fa fa-tasks"></i>
+                                    <span class="label label-success">
+                                        0
+                                    </span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="header">You have 0 payments</li>
+                                    <li>
+                                        <!-- inner menu: contains the actual data -->
+                                        <ul class="menu">
+
+                                        </ul>
+                                    </li>
+                                    <li class="footer"><a href="#">See All Payments</a></li>
+                                </ul>
+                            </li>
+                            <!-- ENd Payment Notification -->
+                            <!-- New Customer Join Notification -->
+                            <li class="dropdown messages-menu customer-notification">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fa fa-tasks"></i>
+                                    <span class="label label-success">
+                                        0
+                                    </span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="header">You have 0 Customers</li>
+                                    <li>
+                                        <!-- inner menu: contains the actual data -->
+                                        <ul class="menu newCustomer">
+
+                                        </ul>
+                                    </li>
+                                    <li class="footer"><a href="#">See All Customers</a></li>
+                                </ul>
+                            </li>
+                            <!-- ENd New Customer Join Notification -->
+                            <!-- SMS Inbox -->
+                            <li class="dropdown messages-menu sms-notification">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fa fa-envelope"></i>
+                                    <span class="label label-success">
+                                        0
+                                    </span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="header">You have 0 messages</li>
+                                    <li>
+                                        <!-- inner menu: contains the actual data -->
+                                        <ul class="menu unreadSMS">
+
+                                        </ul>
+                                    </li>
+                                    <li class="footer"><a href="#">See All Messages</a></li>
+                                </ul>
+                            </li>
+                            <!-- End SMS Inbox -->
+                            <!-- Emails -->
+                            <li class="dropdown messages-menu email-notify">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fa fa-envelope-o"></i>
+                                    <span class="label label-success ebadge">0</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="header">You have 0 emails</li>
+                                    <li>
+                                        <!-- inner menu: contains the actual data -->
+                                        <ul class="menu"></ul>
+                                    </li>
+                                    <li class="footer"><a href="#">See All Emails</a></li>
+                                </ul>
+                            </li>
+                            <!-- ENd Email -->
+                            <li class="dropdown user user-menu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="glyphicon glyphicon-user"></i>
+                                    <span><i class="caret"></i></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <!-- User image -->
+                                    <li class="user-header bg-light-blue">
+                                        <img src="<?= $aff_img_src ?>" class="img-circle" alt="User Image" />
+                                        <p>
+                                            <?= (!$affInfo) ? $this->session->userdata('d-name') : $affInfo->fname . ' ' . $affInfo->lname ?>
+                                        </p>
+                                    </li>
+                                    <!-- Menu Body -->
+                                    <!-- Menu Footer-->
+                                    <li class="user-footer">
+                                        <div class="pull-right">
+                                            <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="row title-blue">
+                        <div id="titleblue" class="col-md-12"></div>
+                    </div>
+                </nav>
+            </header>
+
+            <aside class="right-side">
                 <!-- Content Header (Page header) -->
                 <section class="content-header" style="display: none">
                     <h1 style="display: none">
@@ -589,11 +619,36 @@
                             </div>
                         </div><!-- ./col -->
                     </div><!-- /.row -->
-                </section><!-- /.content -->
+                </section>
             </aside><!-- /.right-side -->
+
+        </div>
+        <div class="overlay" style="">
+            <div class="msg">
+                <?php if (!$flag): ?>
+                    <h1 style="text-align: center">Welcome to Wish-Fish!<br/>Please click the 'Activate Your Account' Button in your Email To Get Started!</h1>
+                    <h3>Didn't get our Email? No worries, <a href="javascript:void(0);" id="sendAgain">Click Here</a> and We'll send you another one!</h3>
+                <?php else : ?>
+                    <div class="row" >
+                        <div class="col-md-3"></div>
+                        <form id="passForm" action="<?= site_url() ?>affiliate/dashboard/updatePassword" method="post">
+                            <div class="col-md-6" style="text-align: center;">
+                                <?php if (!$isForgot) : ?>
+                                    <lable><h2>Email confirmed!</h2></lable>
+                                <?php endif; ?>
+                                <lable><h2>Please set a password:</h2></lable>
+                                <input id="passwd" type="password" name="password" placeholder="Please Enter a New Password" class="form-control" required /><br/>
+                                <input id="confirm_passwd" type="password" placeholder="Please Confirm your new password" class="form-control" required /><br/>
+                                <button  type="submit" class="btn btn-primary">Let's Get Started!</button> <br/>
+                                <span id="msgPass" style="color: red"></span>
+                            </div>
+                            <input type="hidden" name="userid" value="<?= $affInfo->affiliate_id ?>" />
+                            <input type="hidden" name="type" value="<?= ($isForgot) ? "forgot" : "welcome" ?>" />
+                        </form>
+                        <div class="col-md-3"></div>
+                    </div>
+                <?php endif; ?>
+            </div>
         </div>
     </body>
 </html>
-<script type="text/javascript">
-    $('#titleblue').text($('.content-header h1').text());
-</script>
