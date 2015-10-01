@@ -36,6 +36,11 @@ class M_affiliate extends CI_Model {
         $post['fname'] = $name[0];
         $post['lname'] = $name[1];
         unset($post['fullname']);
+
+        $row = $this->db->get_where('payout_setting', array('payout_id' => 1));
+        $post['normal_payout'] = $row->normal;
+        $post['recurring_payout'] = $row->recurring;
+
         $this->db->insert('affiliate_detail', $post);
         $insertid = $this->db->insert_id();
 
