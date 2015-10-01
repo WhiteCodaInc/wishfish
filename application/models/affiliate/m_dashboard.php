@@ -13,7 +13,7 @@
  */
 class M_dashboard extends CI_Model {
 
-//    private $userid;
+//    private $affid;
 //    private $bucket;
 //    private $accessKey;
 //    private $secretKey;
@@ -89,12 +89,12 @@ class M_dashboard extends CI_Model {
         }
     }
 
-    function sendMail($userid, $type) {
-        $userInfo = $this->wi_common->getUserInfo($userid);
+    function sendMail($affid, $type) {
+        $affInfo = $this->common->getAffInfo($affid);
         $templateInfo = $this->wi_common->getAutomailTemplate($type);
 
         $tag = array(
-            'NAME' => $userInfo->name,
+            'NAME' => $affInfo->fname . ' ' . $affInfo->lname,
             'THISDOMAIN' => "Wish-Fish"
         );
 
@@ -105,7 +105,7 @@ class M_dashboard extends CI_Model {
         $from = ($templateInfo['from'] != "") ? $templateInfo['from'] : NULL;
         $name = ($templateInfo['name'] != "") ? $templateInfo['name'] : NULL;
 
-        return $this->wi_common->sendAutoMail($userInfo->email, $subject, $body, $from, $name);
+        return $this->wi_common->sendAutoMail($affInfo->email, $subject, $body, $from, $name);
     }
 
 }
