@@ -25,8 +25,8 @@
                             <thead>
                                 <tr>
                                     <th>Payout Type</th>
-                                    <th>Immediate Purchase</th>
-                                    <th>Recurring Purchase</th>
+                                    <th>Payout On Immediate Purchase</th>
+                                    <th>Payout On Recurring Purchase</th>
                                     <th>Edit</th>
                                 </tr>
                             </thead>
@@ -53,8 +53,8 @@
                             <tfoot>
                                 <tr>
                                     <th>Payout Type</th>
-                                    <th>Immediate Purchase</th>
-                                    <th>Recurring Purchase</th>
+                                    <th>Payout On Immediate Purchase</th>
+                                    <th>Payout On Recurring Purchase</th>
                                     <th>Edit</th>
                                 </tr>
                             </tfoot>
@@ -129,9 +129,9 @@
 
         $('a.edit').click(function () {
             var pid = $(this).attr('data-payout_id');
-            (pid == '1') ? 
-                $('.modal-title').text("GLOBAL") : 
-                $('.modal-title').text("AFFILIATE SPECIFIC");
+            (pid == '1') ?
+                    $('.modal-title').text("GLOBAL") :
+                    $('.modal-title').text("AFFILIATE SPECIFIC");
             $('input[name="payoutid"]').val(pid);
             $('input[name="normal"]').val($(this).attr('data-normal'));
             $('input[name="recurring"]').val($(this).attr('data-recurring'));
