@@ -264,12 +264,12 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <div style="float: left;padding-right: 5px;cursor: pointer">
-                            <input type="radio" id="global" value="global"  name="payouttype" checked="" class="simple form-control">                          
-                            <span for="global" class="lbl padding-8">Global&nbsp;</span>
+                            <input type="radio" value="global"  name="payouttype" checked="" class="simple form-control">                          
+                            <span class="lbl padding-8">Global&nbsp;</span>
                         </div>
                         <div style="float: left;padding:0 5px;cursor: pointer">
-                            <input type="radio" id="aff" value="female"  name="payouttype" class="simple form-control">
-                            <span for="aff" class="lbl padding-8">Affiliate Specific&nbsp;</span>
+                            <input type="radio" value="female"  name="payouttype" class="simple form-control">
+                            <span  class="lbl padding-8">Affiliate Specific&nbsp;</span>
                         </div>
                     </div>
                     <div class="form-group aff-specific" style="display: none">
@@ -387,6 +387,13 @@ switch ($msg) {
 </script>
 <script type="text/javascript">
     $(document).ready(function () {
+
+        $('span.lbl.padding-8').click(function () {
+            $(this).prev('input:radio').trigger('click');
+        });
+
+
+
 <?php if (is_array($data)) { ?>
             $('input[name="fname_search"]').val("<?= $data['fname_search'] ?>");
             $('input[name="lname_search"]').val("<?= $data['lname_search'] ?>");
