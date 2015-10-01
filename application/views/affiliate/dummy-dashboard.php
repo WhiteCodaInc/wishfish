@@ -98,7 +98,7 @@
                 background:rgba(0,0,0,0.50) 0%;
                 top:0;
                 left:0;
-                z-index:30;
+                z-index:99999;
                 width:100%;
                 height:100%
             }
@@ -446,10 +446,10 @@
 
             <header class="header">
 
-<!--                <a href="#" class="logo">
-                     Add the class icon to your logo image or logo icon to add the margining 
+                <a href="#" class="logo">
+                    <!--Add the class icon to your logo image or logo icon to add the margining--> 
                     <?= (!$affInfo) ? $this->session->userdata('d-name') : $affInfo->fname . ' ' . $affInfo->lname ?> 
-                </a>-->
+                </a>
                 <!-- Header Navbar: style can be found in header.less -->
                 <nav class="navbar navbar-static-top fixed"  role="navigation">
                     <!-- Sidebar toggle button-->
@@ -566,7 +566,6 @@
                     </div>
                 </nav>
             </header>
-
             <aside class="right-side">
                 <!-- Content Header (Page header) -->
                 <section class="content-header" style="display: none">
@@ -649,11 +648,14 @@
                     </div><!-- /.row -->
                 </section>
             </aside><!-- /.right-side -->
-
         </div>
-
     </body>
     <script type="text/javascript">
         $('#titleblue').text($('.content-header h1').text());
     </script>
+    <!-- AdminLTE App -->
+    <script src="<?= base_url() ?>assets/dashboard/js/AdminLTE/app.js" type="text/javascript"></script>
+
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="<?= base_url() ?>assets/dashboard/js/AdminLTE/dashboard.js" type="text/javascript"></script>
 </html>
