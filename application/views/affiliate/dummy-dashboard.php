@@ -97,10 +97,10 @@
                 left:0;
                 z-index:99999;
                 width:100%;
-                height: 1042px;
+                height: 100%;
             }
             .overlay div.msg{
-                padding: 14% 21%;
+                padding: 14% 20%;
                 color: white
             }
         </style>
