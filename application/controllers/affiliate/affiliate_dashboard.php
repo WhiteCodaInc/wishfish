@@ -53,26 +53,26 @@ class Affiliate_dashboard extends CI_Controller {
                     $login = array(
                         'email' => $affInfo->email
                     );
-                    if ($this->wi_authex->login($login)) {
+                    if ($this->wi_authex->alogin($login)) {
                         header('location:' . site_url() . 'affiliate/affiliate_dashboard');
                     } else {
                         header('location:' . site_url() . 'affiliate/login');
                     }
                 } else {
                     $data['flag'] = TRUE;
-                    $data['userInfo'] = $affInfo;
+                    $data['affInfo'] = $affInfo;
                     $data['isForgot'] = ($this->type != "" && $this->type == "forgot") ? TRUE : FALSE;
                     $this->load->view('affiliate/dummy-dashboard', $data);
                 }
             } else if ($this->duid != "") {
                 $data['flag'] = FALSE;
-                $data['userInfo'] = FALSE;
-                $this->load->view('dashboard/dummy-dashboard', $data);
+                $data['affInfo'] = FALSE;
+                $this->load->view('affiliate/dummy-dashboard', $data);
             } else if ($this->daid != "") {
                 $data['isForgot'] = FALSE;
-                $data['userInfo'] = FALSE;
-                $data['userId'] = $this->daid;
-                $this->load->view('dashboard/dummy-dashboard', $data);
+                $data['affInfo'] = FALSE;
+                $data['affId'] = $this->daid;
+                $this->load->view('affiliate/dummy-dashboard', $data);
             } else {
                 header('location:' . site_url() . 'home');
             }
