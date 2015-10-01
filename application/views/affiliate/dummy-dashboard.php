@@ -89,9 +89,6 @@
                 font-size: 28px;
                 color: white
             }
-            .navbar ul.menu,.navbar .slimScrollDiv{
-                height: 550px !important;
-            }
             .overlay{
                 /*display:none;*/
                 position:absolute;
@@ -116,7 +113,6 @@
             base_url() . 'assets/dashboard/img/default-avatar.png';
     ?>
     <body class="skin-blue">
-
         <div class="wrapper row-offcanvas row-offcanvas-left">
             <aside class="left-side sidebar-offcanvas">
                 <section class="sidebar">
@@ -417,8 +413,7 @@
             <!-- header logo: style can be found in header.less -->
 
             <header class="header">
-
-                <a href="#" class="logo">
+                <a href="<?= site_url() ?>admin/dashboard" class="logo">
                     <!--Add the class icon to your logo image or logo icon to add the margining--> 
                     <?= (!$affInfo) ? $this->session->userdata('d-name') : $affInfo->fname . ' ' . $affInfo->lname ?> 
                 </a>
