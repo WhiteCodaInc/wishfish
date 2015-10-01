@@ -37,8 +37,7 @@
                                         <td><?= $value->normal ?> %</td>
                                         <td><?= $value->recurring ?> %</td>
                                         <td>
-                                            <a href="<?= site_url() ?>admin/pay/editContactGroup/<?= $value->payout_id ?>" class="btn bg-navy btn-xs">
-                                                <i class="fa fa-edit"></i>
+                                            <a href="#" data-payout_id ="<?= $value->payout_id ?>" class="create btn btn-info edit" data-toggle="modal" data-target="#payout-modal">
                                                 Edit
                                             </a>
                                         </td>
@@ -62,7 +61,50 @@
     </section><!-- /.content -->
 </aside><!-- /.right-side -->
 </div><!-- ./wrapper -->
-<?php $msg = $this->input->get('msg'); ?>
+
+
+<!-------------------------------Card Detail Model------------------------------------>
+<div class="modal fade" id="payout-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" style="max-width: 400px">
+        <div class="modal-content">
+            <form id="payoutForm" role="form" action="<?= site_url() ?>admin/payout/updateSetting"  method="post">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Payout On Immediate Purchase </label>
+                        <input value=""  type="number" name="normal" class="form-control" placeholder="PER(%)" required="" />
+                    </div>
+                    <div class="form-group">
+                        <label>Payout On Recurring Purchase </label>
+                        <input value=""  type="number" name="recurring" class="form-control" placeholder="PER(%)" required="" />
+                    </div>
+                    <div class="form-group">
+                        <span style="color: red;" id="msgPayout"></span>
+                    </div>
+                </div>
+                <div class="modal-footer clearfix">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <button type="submit" class="btn btn-primary pull-left">Save</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-danger discard" data-dismiss="modal">
+                                <i class="fa fa-times"></i> Discard
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" name="payoutid" value="" />
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<!------------------------------------------------------------------------>
+
+
 
 <!-- DATA TABES SCRIPT -->
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
@@ -78,5 +120,28 @@
 </script>
 <script type="text/javascript">
     $(document).ready(function () {
+
+        $('a.edit').click(function () {
+            $('input[name="payoutid"]').val($(this).attr('data-payout_id'));
+        });
+
+        $('#payoutForm').on('submit', function () {
+            $form = $(this);
+            var normal = $('input[name="normal"]').val();
+            var recur = $('input[name="recurring"]').val();
+
+            if (normal < 0 || normal > 100) {
+                $('#msgPayout').text("Invalid Immediate Purchase Value..!");
+                return false;
+            } else {
+                $('#msgPayout').empty();
+            }
+            if (recur < 0 || recur > 100) {
+                $('#msgPayout').text("Invalid Immediate Purchase Value..!");
+                return false;
+            } else {
+                $('#msgPayout').empty();
+            }
+        });
     });
 </script>
