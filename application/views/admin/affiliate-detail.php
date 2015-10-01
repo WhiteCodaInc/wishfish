@@ -271,7 +271,7 @@
                             <input type="radio" value="aff"  name="payouttype" class="simple form-control">
                             <span  class="lbl padding-8">Affiliate Specific&nbsp;</span>
                         </div>
-                    </div>
+                    </div><br/>
                     <div class="form-group aff-specific" style="display: none">
                         <label>Payout On Recurring Purchase </label>
                         <input value=""  type="number" name="normal" class="form-control" placeholder="PER(%)" />
