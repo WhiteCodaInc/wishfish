@@ -233,8 +233,7 @@
             $("#profilePic").css("color", "green");
             $("#profile_previewing").attr('src', e.target.result);
         }
-    }
-    );
+    });
 </script>
 <script type="text/javascript">
     $('.searchable').multiSelect({
