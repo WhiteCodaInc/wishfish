@@ -32,7 +32,7 @@ class Affiliate_dashboard extends CI_Controller {
             $this->daid = $this->session->userdata('d-affid');
         }
 
-//        $this->load->model('affiliate/m_dashboard', 'objdashboard');
+        $this->load->model('affiliate/m_dashboard', 'objdashboard');
         $this->load->model('affiliate/m_affiliate', 'objaffiliate');
     }
 
@@ -76,6 +76,22 @@ class Affiliate_dashboard extends CI_Controller {
             } else {
                 header('location:' . site_url() . 'home');
             }
+        }
+    }
+
+    function updatePassword() {
+        $post = $this->input->post();
+        if (isset($post) && is_array($post)) {
+            $login = $this->objdashboard->updatePassword($post);
+            if ($login && $this->wi_authex->alogin($login)) {
+                header('location:' . site_url() . 'affiliate/affiliate_dashboard');
+            } else {
+                header('location:' . site_url() . 'affiliate/affiliate_dashboard?aid=' . $this->aid);
+            }
+        } else if ($this->wi_authex->alogged_in()) {
+            header('location:' . site_url() . 'affiliate/affiliate_dashboard');
+        } else {
+            header('location:' . site_url() . 'home');
         }
     }
 

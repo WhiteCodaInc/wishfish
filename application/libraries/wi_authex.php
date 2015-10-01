@@ -68,7 +68,7 @@ class Wi_authex {
             $last_login = date("Y-m-d H-i-s");
             $last_login = $this->_CI->wi_common->getUTCDateWithTime($query->row()->timezones);
             $data = array(
-                "is_login" => 1,
+//                "is_login" => 1,
                 "last_login" => $last_login
             );
             $this->_CI->db->update('affiliate_detail', $data, array('affiliate_id' => $query->row()->affiliate_id));
@@ -113,6 +113,18 @@ class Wi_authex {
             'u_profile_pic' => '',
             'u_timezone' => '',
             'u_date_format' => ''
+        );
+        $CI->session->unset_userdata($sess);
+    }
+    function alogout() {
+        $CI = & get_instance();
+        $sess = array(
+            'a_affid' => '',
+            'a_name' => '',
+            'a_email' => '',
+            'a_avatar' => '',
+            'a_timezone' => '',
+            'a_date_format' => ''
         );
         $CI->session->unset_userdata($sess);
     }
