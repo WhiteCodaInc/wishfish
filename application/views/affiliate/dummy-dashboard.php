@@ -116,8 +116,36 @@
             base_url() . 'assets/dashboard/img/default-avatar.png';
     ?>
     <body class="skin-blue">
-        <div class="wrapper row-offcanvas row-offcanvas-left">
 
+        <div class="overlay" style="">
+            <div class="msg">
+                <?php if (!$flag): ?>
+                    <h1 style="text-align: center">Welcome to Wish-Fish!<br/>Please click the 'Activate Your Account' Button in your Email To Get Started!</h1>
+                    <h3>Didn't get our Email? No worries, <a href="javascript:void(0);" id="sendAgain">Click Here</a> and We'll send you another one!</h3>
+                <?php else : ?>
+                    <div class="row" >
+                        <div class="col-md-3"></div>
+                        <form id="passForm" action="<?= site_url() ?>affiliate/affiliate_dashboard/updatePassword" method="post">
+                            <div class="col-md-6" style="text-align: center;">
+                                <?php if (!$isForgot) : ?>
+                                    <lable><h2>Email confirmed!</h2></lable>
+                                <?php endif; ?>
+                                <lable><h2>Please set a password:</h2></lable>
+                                <input id="passwd" type="password" name="password" placeholder="Please Enter a New Password" class="form-control" required /><br/>
+                                <input id="confirm_passwd" type="password" placeholder="Please Confirm your new password" class="form-control" required /><br/>
+                                <button  type="submit" class="btn btn-primary">Let's Get Started!</button> <br/>
+                                <span id="msgPass" style="color: red"></span>
+                            </div>
+                            <input type="hidden" name="userid" value="<?= $affInfo->affiliate_id ?>" />
+                            <input type="hidden" name="type" value="<?= ($isForgot) ? "forgot" : "welcome" ?>" />
+                        </form>
+                        <div class="col-md-3"></div>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </div>
+
+        <div class="wrapper row-offcanvas row-offcanvas-left">
             <aside class="left-side sidebar-offcanvas">
                 <section class="sidebar">
                     <!-- Sidebar user panel -->
@@ -623,32 +651,9 @@
             </aside><!-- /.right-side -->
 
         </div>
-        <div class="overlay" style="">
-            <div class="msg">
-                <?php if (!$flag): ?>
-                    <h1 style="text-align: center">Welcome to Wish-Fish!<br/>Please click the 'Activate Your Account' Button in your Email To Get Started!</h1>
-                    <h3>Didn't get our Email? No worries, <a href="javascript:void(0);" id="sendAgain">Click Here</a> and We'll send you another one!</h3>
-                <?php else : ?>
-                    <div class="row" >
-                        <div class="col-md-3"></div>
-                        <form id="passForm" action="<?= site_url() ?>affiliate/affiliate_dashboard/updatePassword" method="post">
-                            <div class="col-md-6" style="text-align: center;">
-                                <?php if (!$isForgot) : ?>
-                                    <lable><h2>Email confirmed!</h2></lable>
-                                <?php endif; ?>
-                                <lable><h2>Please set a password:</h2></lable>
-                                <input id="passwd" type="password" name="password" placeholder="Please Enter a New Password" class="form-control" required /><br/>
-                                <input id="confirm_passwd" type="password" placeholder="Please Confirm your new password" class="form-control" required /><br/>
-                                <button  type="submit" class="btn btn-primary">Let's Get Started!</button> <br/>
-                                <span id="msgPass" style="color: red"></span>
-                            </div>
-                            <input type="hidden" name="userid" value="<?= $affInfo->affiliate_id ?>" />
-                            <input type="hidden" name="type" value="<?= ($isForgot) ? "forgot" : "welcome" ?>" />
-                        </form>
-                        <div class="col-md-3"></div>
-                    </div>
-                <?php endif; ?>
-            </div>
-        </div>
+
     </body>
+    <script type="text/javascript">
+        $('#titleblue').text($('.content-header h1').text());
+    </script>
 </html>
