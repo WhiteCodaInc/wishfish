@@ -268,7 +268,7 @@
                             <span class="lbl padding-8">Global&nbsp;</span>
                         </div>
                         <div style="float: left;padding:0 5px;cursor: pointer">
-                            <input type="radio" value="female"  name="payouttype" class="simple form-control">
+                            <input type="radio" value="aff"  name="payouttype" class="simple form-control">
                             <span  class="lbl padding-8">Affiliate Specific&nbsp;</span>
                         </div>
                     </div>
@@ -391,7 +391,13 @@ switch ($msg) {
         $('span.lbl.padding-8').click(function () {
             $(this).prev('input:radio').trigger('click');
         });
-
+        $('input[name="payouttype"]').change(function () {
+            if ($(this).val() == "aff") {
+                $('.aff-specific').show();
+            } else {
+                $('.aff-specific').hide();
+            }
+        });
 
 
 <?php if (is_array($data)) { ?>
