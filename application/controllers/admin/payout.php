@@ -25,7 +25,7 @@ class Payout extends CI_Controller {
         } else if (!$this->p->affs) {
             header('location:' . site_url() . 'admin/dashboard/error/500');
         } else {
-//            $this->load->model('admin/m_payout', 'objpayout');
+            $this->load->model('admin/m_payout', 'objpayout');
         }
     }
 
