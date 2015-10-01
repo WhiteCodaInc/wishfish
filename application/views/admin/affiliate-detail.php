@@ -13,15 +13,15 @@
         <h1 style=" display: none">
             Affiliates
         </h1>
-        <?php if ($p->affi): ?>
-                                                                                <!--            <a href="<?= site_url() ?>admin/affiliates/addAffiliate" class="btn btn-success btn-sm create">
-                                                                                                <i class="fa fa-plus"></i>
-                                                                                                Create New Affiliate
-                                                                                            </a>-->
-        <?php endif; ?>
         <?php if ($p->affu): ?>
             <button value="Active" class="add btn btn-success btn-sm" id="Active" type="button" >Active</button>
             <button value="Deactive" class="remove btn btn-warning btn-sm" id="Deactive" type="button" >Deactivate</button>
+            <a href="javascript:void(0);" 
+               class="create btn btn-info btn-sm"
+               data-toggle="modal"
+               data-target="#payout-modal">
+                Payout Setting
+            </a>
         <?php endif; ?>
         <?php if ($p->affd): ?>
             <button style="margin-left: 10px" value="Delete" class="btn btn-danger btn-sm delete" id="Delete" type="button" >Delete</button>
@@ -246,10 +246,63 @@
                 </div><!-- /.box -->
             </div>
         </div>
-
     </section><!-- /.content -->
 </aside><!-- /.right-side -->
 </div><!-- ./wrapper -->
+
+
+<!-------------------------------Card Detail Model------------------------------------>
+<div class="modal fade" id="payout-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" style="max-width: 400px">
+        <div class="modal-content">
+            <form id="payoutForm" role="form" action="<?= site_url() ?>admin/affiliate/updateSetting"  method="post">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Payout Setting</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div style="float: left;padding-right: 5px;cursor: pointer">
+                            <input type="radio" value="global"  name="payouttype" checked="" class="simple form-control">                          
+                            <span class="lbl padding-8">Global&nbsp;</span>
+                        </div>
+                        <div style="float: left;padding:0 5px;cursor: pointer">
+                            <input type="radio" value="female"  name="payouttype" class="simple form-control">
+                            <span class="lbl padding-8">Affiliate Specific&nbsp;</span>
+                        </div>
+                    </div>
+                    <div class="form-group aff-specific" style="display: none">
+                        <label>Payout On Recurring Purchase </label>
+                        <input value=""  type="number" name="normal" class="form-control" placeholder="PER(%)" />
+                    </div>
+                    <div class="form-group aff-specific" style="display: none">
+                        <label>Payout On Recurring Purchase </label>
+                        <input value=""  type="number" name="recurring" class="form-control" placeholder="PER(%)" />
+                    </div>
+                    <div class="form-group">
+                        <span style="color: red;" id="msgPayout"></span>
+                    </div>
+                </div>
+                <div class="modal-footer clearfix">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <button type="submit" class="btn btn-primary pull-left">Save</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-danger discard" data-dismiss="modal">
+                                <i class="fa fa-times"></i> Discard
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" name="payoutid" value="" />
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<!------------------------------------------------------------------------>
+
+
 <?php $msg = $this->input->get('msg'); ?>
 <?php $data = $this->input->post(); ?>
 <?php
