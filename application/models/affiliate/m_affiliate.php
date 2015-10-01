@@ -65,7 +65,7 @@ class M_affiliate extends CI_Model {
     function sendMail($post, $affid) {
         $uid = $this->encryption->encode($affid);
         $templateInfo = $this->wi_common->getAutomailTemplate("NEW USER REGISTRATION");
-        $url = site_url() . 'affiliate/affiliate_dashboard?aid=' . $uid;
+        $url = site_url() . 'affiliate/dashboard?aid=' . $uid;
         $link = "<table border='0' align='center' cellpadding='0' cellspacing='0' class='mainBtn' style='margin-top: 0;margin-left: auto;margin-right: auto;margin-bottom: 0;padding-top: 0;padding-bottom: 0;padding-left: 0;padding-right: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-collapse: collapse;border-spacing: 0;'>";
         $link .= "<tr>";
         $link .= "<td align='center' valign='middle' class='btnMain' style='margin-top: 0;margin-left: 0;margin-right: 0;margin-bottom: 0;padding-top: 12px;padding-bottom: 12px;padding-left: 22px;padding-right: 22px;border-collapse: collapse;border-spacing: 0;-webkit-text-size-adjust: none;font-family: Arial, Helvetica, sans-serif;background-color: {$templateInfo['color']};height: 20px;font-size: 18px;line-height: 20px;mso-line-height-rule: exactly;text-align: center;vertical-align: middle;'>

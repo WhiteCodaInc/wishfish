@@ -56,7 +56,7 @@ class Dashboard extends CI_Controller {
                         'email' => $affInfo->email
                     );
                     if ($this->wi_authex->alogin($login)) {
-                        header('location:' . site_url() . 'affiliate/affiliate_dashboard');
+                        header('location:' . site_url() . 'affiliate/dashboard');
                     } else {
                         header('location:' . site_url() . 'affiliate/login');
                     }
@@ -87,12 +87,12 @@ class Dashboard extends CI_Controller {
         if (isset($post) && is_array($post)) {
             $login = $this->objdashboard->updatePassword($post);
             if ($login && $this->wi_authex->alogin($login)) {
-                header('location:' . site_url() . 'affiliate/affiliate_dashboard');
+                header('location:' . site_url() . 'affiliate/dashboard');
             } else {
-                header('location:' . site_url() . 'affiliate/affiliate_dashboard?aid=' . $this->aid);
+                header('location:' . site_url() . 'affiliate/dashboard?aid=' . $this->aid);
             }
         } else if ($this->wi_authex->alogged_in()) {
-            header('location:' . site_url() . 'affiliate/affiliate_dashboard');
+            header('location:' . site_url() . 'affiliate/dashboard');
         } else {
             header('location:' . site_url() . 'home');
         }

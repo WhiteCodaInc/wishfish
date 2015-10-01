@@ -29,7 +29,7 @@ class Join extends CI_Controller {
         if ($res) {
             $flag = $this->objaffiliate->register($post);
             if ($flag) {
-                header('location:' . site_url() . 'affiliate/affiliate_dashboard');
+                header('location:' . site_url() . 'affiliate/dashboard');
             } else {
                 header('location:' . site_url() . 'affiliate/join?msg=RF');
             }

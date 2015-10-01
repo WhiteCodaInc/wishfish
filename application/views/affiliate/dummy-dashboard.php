@@ -243,7 +243,7 @@
                     <?php else : ?>
                         <div class="row" >
                             <div class="col-md-3"></div>
-                            <form id="passForm" action="<?= site_url() ?>affiliate/affiliate_dashboard/updatePassword" method="post">
+                            <form id="passForm" action="<?= site_url() ?>affiliate/dashboard/updatePassword" method="post">
                                 <div class="col-md-6" style="text-align: center;">
                                     <?php if (!$isForgot) : ?>
                                         <lable><h2>Email confirmed!</h2></lable>
