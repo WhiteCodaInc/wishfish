@@ -19,7 +19,7 @@
                                                                                             Create New Affiliate
                                                                                         </a>-->
         <?php endif; ?>
-        <?php if ($p->caffu): ?>
+        <?php if ($p->affu): ?>
             <button value="Active" class="add btn btn-success btn-sm" id="Active" type="button" >Active</button>
             <button value="Deactive" class="remove btn btn-warning btn-sm" id="Deactive" type="button" >Deactivate</button>
         <?php endif; ?>
