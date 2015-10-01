@@ -138,6 +138,10 @@
                                                                 <input name="affd" type="checkbox" >
                                                                 <span class="plabel">Delete</span>
                                                             </div>
+                                                            <div class="col-md-3">
+                                                                <input name="affs" type="checkbox" >
+                                                                <span class="plabel">Affiliate Configuration</span>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="row">

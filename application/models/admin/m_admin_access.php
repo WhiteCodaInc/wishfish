@@ -50,6 +50,7 @@ class M_admin_access extends CI_Model {
         'affi' => (isset($post['affi']) ? 1 : 0),
         'affu' => (isset($post['affu']) ? 1 : 0),
         'affd' => (isset($post['affd']) ? 1 : 0),
+        'affs' => (isset($post['affs']) ? 1 : 0),
         'affgi' => (isset($post['affgi']) ? 1 : 0),
         'affgu' => (isset($post['affgu']) ? 1 : 0),
         'affgd' => (isset($post['affgd']) ? 1 : 0),

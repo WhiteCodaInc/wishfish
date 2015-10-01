@@ -150,6 +150,13 @@ $img_src = ($avatar != "") ?
                                     </a>
                                 </li>
                             <?php endif; ?>
+                            <?php if ($rule->affs): ?>
+                                <li>
+                                    <a href="<?= site_url() ?>admin/payout">
+                                        <i class="fa fa-angle-double-right"></i> <span>Affiliate Configuration</span>
+                                    </a>
+                                </li>
+                            <?php endif; ?>
                         </ul>
                     </li>
                 <?php endif; ?>

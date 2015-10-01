@@ -14,10 +14,14 @@
             Affiliates
         </h1>
         <?php if ($p->affi): ?>
-            <a href="<?= site_url() ?>admin/affiliates/addAffiliate" class="btn btn-success btn-sm create">
+<!--            <a href="<?= site_url() ?>admin/affiliates/addAffiliate" class="btn btn-success btn-sm create">
                 <i class="fa fa-plus"></i>
                 Create New Affiliate
-            </a>
+            </a>-->
+        <?php endif; ?>
+        <?php if ($p->caffu): ?>
+            <button value="Active" class="add btn btn-success btn-sm" id="Active" type="button" >Active</button>
+            <button value="Deactive" class="remove btn btn-warning btn-sm" id="Deactive" type="button" >Deactivate</button>
         <?php endif; ?>
         <?php if ($p->affd): ?>
             <button style="margin-left: 10px" value="Delete" class="btn btn-danger btn-sm delete" id="Delete" type="button" >Delete</button>
