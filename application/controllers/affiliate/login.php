@@ -24,7 +24,7 @@ class Login extends CI_Controller {
         $this->session->set_userdata('captchaWord', $data['word']);
         $data['aemail'] = $this->input->cookie('affemail', TRUE);
         $data['apasswd'] = $this->input->cookie('affpassword', TRUE);
-        $this->load->view('affiliate/affiliate-login');
+        $this->load->view('affiliate/affiliate-login', $data);
     }
 
     function signin($get = NULL) {
