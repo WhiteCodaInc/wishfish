@@ -135,6 +135,7 @@
 
         $('#payoutForm').on('submit', function () {
             $form = $(this);
+
             var normal = $('input[name="normal"]').val();
             var recur = $('input[name="recurring"]').val();
 
@@ -150,6 +151,7 @@
             } else {
                 $('#msgPayout').empty();
             }
+            $form.find('button:submit').prop('disabled', true);
         });
     });
 </script>
