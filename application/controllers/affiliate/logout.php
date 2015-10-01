@@ -22,7 +22,7 @@ class Logout extends CI_Controller {
 //        $this->session->unset_userdata('userid');
 //        $this->session->unset_userdata('name');
 //        $this->session->unset_userdata('email');
-        $this->wi_authex->logout();
+        $this->wi_authex->alogout();
         header('location:' . site_url() . 'affiliate/login');
         //header('location:' . site_url() . 'home');
     }
