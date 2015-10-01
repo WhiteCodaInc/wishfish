@@ -221,7 +221,7 @@ class M_affiliates extends CI_Model {
     function setAction($type) {
         $ids = $this->input->post('affiliate');
         $msg = "";
-        $where = 'user_id in (' . implode(',', $ids) . ')';
+        $where = 'affiliate_id in (' . implode(',', $ids) . ')';
         $this->db->where($where);
         switch ($type) {
             case "Active":
