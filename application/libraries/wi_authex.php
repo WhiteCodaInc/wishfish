@@ -76,7 +76,7 @@ class Wi_authex {
             $query = $this->_CI->db->get_where('affiliate_detail', $where);
             $res = $query->row();
             $this->_CI->session->set_userdata('a_affid', $res->affiliate_id);
-            $this->_CI->session->set_userdata('a_name', $res->name);
+            $this->_CI->session->set_userdata('a_name', $res->fname . ' ' . $res->lname);
             $this->_CI->session->set_userdata('a_email', $res->email);
             $this->_CI->session->set_userdata('a_avatar', $res->affiliate_avatar);
             $this->_CI->session->set_userdata('a_timezone', $res->timezones);
@@ -116,6 +116,7 @@ class Wi_authex {
         );
         $CI->session->unset_userdata($sess);
     }
+
     function alogout() {
         $CI = & get_instance();
         $sess = array(
