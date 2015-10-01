@@ -250,7 +250,7 @@ and open the template in the editor.
                     $.ajax({
                         type: "POST",
                         data: {email: email},
-                        url: "<?= base_url() ?>affilaite/login/sendMail",
+                        url: "<?= base_url() ?>affiliate/login/sendMail",
                         success: function (res) {
                             $('#loadSend').css('display', 'none');
                             if (res == 1) {
