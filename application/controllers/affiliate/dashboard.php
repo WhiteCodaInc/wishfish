@@ -11,32 +11,34 @@
  *
  * @author Laxmisoft
  */
-class Affiliate_dashboard extends CI_Controller {
+class Dashboard extends CI_Controller {
 
     private $aid, $daid, $directLogin;
 
     //put your code here
     function __construct() {
         parent::__construct();
-        $this->output->set_header('cache-Control: no-store, no-cache, must-revalidate');
-        $this->output->set_header("cache-Control: post-check=0, pre-check=0", false);
-        $this->output->set_header("Pragma: no-cache");
-        $this->output->set_header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
-
-        $affid = $this->input->get('aid');
-        $this->type = $this->input->get('type');
-        $this->directLogin = $this->input->get('d');
-        $this->aid = ($affid != "") ? $this->encryption->decode($affid) : '';
-
-        if ($this->session->userdata('d-affid')) {
-            $this->daid = $this->session->userdata('d-affid');
-        }
+//        $this->output->set_header('cache-Control: no-store, no-cache, must-revalidate');
+//        $this->output->set_header("cache-Control: post-check=0, pre-check=0", false);
+//        $this->output->set_header("Pragma: no-cache");
+//        $this->output->set_header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+//
+//        $affid = $this->input->get('aid');
+//        $this->type = $this->input->get('type');
+//        $this->directLogin = $this->input->get('d');
+//        $this->aid = ($affid != "") ? $this->encryption->decode($affid) : '';
+//
+//        if ($this->session->userdata('d-affid')) {
+//            $this->daid = $this->session->userdata('d-affid');
+//        }
 
         $this->load->model('affiliate/m_dashboard', 'objdashboard');
         $this->load->model('affiliate/m_affiliate', 'objaffiliate');
     }
 
     function index() {
+        echo 'CALLED NO PROBLEM';
+        die();
         if (!$this->directLogin && $this->wi_authex->alogged_in()) {
             $aid = $this->session->userdata('a_affid');
             $data['affInfo'] = $this->common->getAffInfo($aid);
