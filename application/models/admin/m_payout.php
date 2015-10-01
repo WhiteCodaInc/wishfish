@@ -28,7 +28,7 @@ class M_payout extends CI_Model {
     function updateSetting($post) {
         $pid = $post['payoutid'];
         unset($post['payoutid']);
-        $this->db->update('payout_setting', $post, array('group_id' => $pid));
+        $this->db->update('payout_setting', $post, array('payout_id' => $pid));
         return TRUE;
     }
 
