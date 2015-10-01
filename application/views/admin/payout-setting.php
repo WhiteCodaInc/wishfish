@@ -37,7 +37,13 @@
                                         <td><?= $value->normal ?> %</td>
                                         <td><?= $value->recurring ?> %</td>
                                         <td>
-                                            <a href="#" data-payout_id ="<?= $value->payout_id ?>" class="create btn btn-info edit" data-toggle="modal" data-target="#payout-modal">
+                                            <a href="javascript:void(0);" 
+                                               data-payout_id ="<?= $value->payout_id ?>" 
+                                               data-normal ="<?= $value->normal ?>" 
+                                               data-recurring ="<?= $value->recurring ?>" 
+                                               class="create btn btn-info edit"
+                                               data-toggle="modal"
+                                               data-target="#payout-modal">
                                                 Edit
                                             </a>
                                         </td>
@@ -123,6 +129,8 @@
 
         $('a.edit').click(function () {
             $('input[name="payoutid"]').val($(this).attr('data-payout_id'));
+            $('input[name="normal"]').val($(this).attr('data-normal'));
+            $('input[name="recurring"]').val($(this).attr('data-recurring'));
         });
 
         $('#payoutForm').on('submit', function () {
