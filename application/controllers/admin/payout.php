@@ -42,4 +42,14 @@ class Payout extends CI_Controller {
         }
     }
 
+    function updateSetting() {
+        $post = $this->input->post();
+        if (is_array($post) && count($post)) {
+            $this->objpayout->updateSetting();
+            header('location:' . site_url() . 'admin/payout');
+        } else {
+            header('location:' . site_url() . 'admin/payout');
+        }
+    }
+
 }

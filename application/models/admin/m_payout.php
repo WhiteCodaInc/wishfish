@@ -25,30 +25,11 @@ class M_payout extends CI_Model {
         return $query->result();
     }
 
-    function getCustomerGroup($gid) {
-        $query = $this->db->get_where('customer_groups', array('group_id' => $gid));
-        return $query->row();
-    }
-
-    function createCustomerGroup($set) {
-        $this->db->insert('customer_groups', $set);
+    function updateSetting($post) {
+        $pid = $post['payoutid'];
+        unset($post['payoutid']);
+        $this->db->update('payout_setting', $post, array('group_id' => $pid));
         return TRUE;
-    }
-
-    function updateCustomerGroup($set) {
-        $gid = $set['groupid'];
-        unset($set['groupid']);
-
-        $this->db->update('customer_groups', $set, array('group_id' => $gid));
-        return TRUE;
-    }
-
-    function setAction() {
-
-        $ids = $this->input->post('group');
-        foreach ($ids as $value) {
-            $this->db->delete('customer_groups', array('group_id' => $value));
-        }
     }
 
 }
