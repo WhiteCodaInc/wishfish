@@ -39,7 +39,7 @@ class Dashboard extends CI_Controller {
     function index() {
 
         if ((!$this->directLogin || !$this->type ) && $this->wi_authex->alogged_in()) {
-            
+
             $aid = $this->session->userdata('a_affid');
             $data['affInfo'] = $this->common->getAffInfo($aid);
             $this->load->view('admin/admin_header');
