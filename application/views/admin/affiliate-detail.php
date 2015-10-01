@@ -14,10 +14,10 @@
             Affiliates
         </h1>
         <?php if ($p->affi): ?>
-                                                                            <!--            <a href="<?= site_url() ?>admin/affiliates/addAffiliate" class="btn btn-success btn-sm create">
-                                                                                            <i class="fa fa-plus"></i>
-                                                                                            Create New Affiliate
-                                                                                        </a>-->
+                                                                                <!--            <a href="<?= site_url() ?>admin/affiliates/addAffiliate" class="btn btn-success btn-sm create">
+                                                                                                <i class="fa fa-plus"></i>
+                                                                                                Create New Affiliate
+                                                                                            </a>-->
         <?php endif; ?>
         <?php if ($p->affu): ?>
             <button value="Active" class="add btn btn-success btn-sm" id="Active" type="button" >Active</button>
@@ -211,7 +211,7 @@
                                             }
                                             ?>
                                             <td class="hidden-xs hidden-sm"><?= $phone ?></td>
-                                            <td class=""><?= $value->payout_type ?></td>
+                                            <td class=""><?= ($value->payout_type == 1) ? "Global" : "Affiliate Specific" ?></td>
                                             <td class=""><?= $value->register_date ?></td>
                                             <td>
                                                 <?php if ($value->status): ?>
