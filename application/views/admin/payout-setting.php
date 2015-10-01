@@ -37,7 +37,7 @@
                                         <td><?= $value->normal ?> %</td>
                                         <td><?= $value->recurring ?> %</td>
                                         <td>
-                                            <a href="<?= site_url() ?>admin/pay/editContactGroup/<?= $value->group_id ?>" class="btn bg-navy btn-xs">
+                                            <a href="<?= site_url() ?>admin/pay/editContactGroup/<?= $value->payout_id ?>" class="btn bg-navy btn-xs">
                                                 <i class="fa fa-edit"></i>
                                                 Edit
                                             </a>
