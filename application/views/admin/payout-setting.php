@@ -129,7 +129,9 @@
 
         $('a.edit').click(function () {
             var pid = $(this).attr('data-payout_id');
-            (pid == '1') ? $('.modal-title').text("GLOBAL") : $('.modal-title').text("AFFILIATE SPECIFIC");
+            (pid == '1') ? 
+                $('.modal-title').text("GLOBAL") : 
+                $('.modal-title').text("AFFILIATE SPECIFIC");
             $('input[name="payoutid"]').val(pid);
             $('input[name="normal"]').val($(this).attr('data-normal'));
             $('input[name="recurring"]').val($(this).attr('data-recurring'));
