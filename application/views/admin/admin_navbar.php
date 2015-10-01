@@ -136,12 +136,12 @@ $img_src = ($avatar != "") ?
                         </a>
                         <ul class="treeview-menu">
                             <?php if ($rule->affi): ?>
-                                <li>
+<!--                                <li>
                                     <a href="<?= site_url() ?>admin/affiliates/addAffiliate">
                                         <i class="fa fa-plus"></i>
                                         <span>Create New Affiliate</span>
                                     </a>
-                                </li>
+                                </li>-->
                             <?php endif; ?>
                             <?php if ($rule->affgi || $rule->affgu || $rule->affgd): ?>
                                 <li>
