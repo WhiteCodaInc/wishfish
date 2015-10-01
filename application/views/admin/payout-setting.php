@@ -44,7 +44,7 @@
                                                class="create btn btn-primary btn-xs edit"
                                                data-toggle="modal"
                                                data-target="#payout-modal">
-                                                Edit
+                                                <i class="fa fa-pencil-square-o"></i> Edit
                                             </a>
                                         </td>
                                     </tr>
