@@ -16,7 +16,7 @@
 
 <header class="header">
     <?php
-    $avatar = $this->session->userdata('avatar');
+    $avatar = $this->session->userdata('a_avatar');
 
     $aff_img_src = ($avatar != "") ?
             "https://mikhailkuznetsov.s3.amazonaws.com/" . $avatar :
