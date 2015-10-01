@@ -127,9 +127,9 @@ class Affiliates extends CI_Controller {
         if ($this->p->affu || $this->p->affd) {
             $type = $this->input->post('actionType');
             if ($type == "Delete" || $type == "Active" || $type == "Deactive") {
-                $this->objaffiliate->setAction($type);
+                $msg = $this->objaffiliate->setAction($type);
             }
-            header('location:' . site_url() . 'admin/affiliates?msg=D');
+            header('location:' . site_url() . 'admin/affiliates?msg=' . $msg);
         } else {
             header('location:' . site_url() . 'admin/dashboard/error/500');
         }
