@@ -124,10 +124,10 @@ class Affiliates extends CI_Controller {
     }
 
     function action() {
-        if ($this->p->affd) {
+        if ($this->p->affu || $this->p->affd) {
             $type = $this->input->post('actionType');
-            if ($type == "Delete") {
-                $this->objaffiliate->setAction();
+            if ($type == "Delete" || $type == "Active" || $type == "Deactive") {
+                $this->objaffiliate->setAction($type);
             }
             header('location:' . site_url() . 'admin/affiliates?msg=D');
         } else {

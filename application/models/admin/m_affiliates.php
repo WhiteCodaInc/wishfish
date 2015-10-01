@@ -218,12 +218,26 @@ class M_affiliates extends CI_Model {
         }
     }
 
-    function setAction() {
-
+    function setAction($type) {
         $ids = $this->input->post('affiliate');
-        foreach ($ids as $value) {
-            $this->db->delete('affiliate_detail', array('affiliate_id' => $value));
+        $msg = "";
+        $where = 'user_id in (' . implode(',', $ids) . ')';
+        $this->db->where($where);
+        switch ($type) {
+            case "Active":
+                $this->db->update('affiliate_detail', array('status' => 1));
+                $msg = "A";
+                break;
+            case "Deactive":
+                $this->db->update('affiliate_detail', array('status' => 0));
+                $msg = "DA";
+                break;
+            case "Delete":
+                $this->db->delete('affiliate_detail');
+                $msg = "D";
+                break;
         }
+        return $msg;
     }
 
 }
