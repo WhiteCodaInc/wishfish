@@ -94,7 +94,7 @@
                 <div class="container-fluid">
                     <div class="navbar-header">
                         <a href="<?= site_url() ?>app/dashboard" class="title-logo">
-                            <?= (!$affInfo) ? $this->session->userdata('d-name') : $affInfo->name ?>
+                            <?= (!$userInfo) ? $this->session->userdata('d-name') : $userInfo->name ?>
                         </a>
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
                             <i class="fa fa-bars"></i>
@@ -170,7 +170,7 @@
                                                 <img id="profile_pic" style="cursor: pointer;" src="<?= $img_src ?>" class="img-circle" alt="User Image" />
                                             </div>
                                             <p>
-                                                <?= (!$affInfo) ? $this->session->userdata('d-name') : $affInfo->name ?>
+                                                <?= (!$userInfo) ? $this->session->userdata('d-name') : $userInfo->name ?>
                                             </p>
                                         </form>
                                     </li>
@@ -247,7 +247,7 @@
                                             <span id="msgPass" style="color: red"></span>
                                         </div>
                                     </div>
-                                    <input type="hidden" name="affid" value="<?= (!$affId) ? $affInfo->affilaite_id : $affId ?>" />
+                                    <input type="hidden" name="userid" value="<?= (!$userId) ? $userInfo->user_id : $userId ?>" />
                                     <input type="hidden" name="type" value="<?= ($isForgot) ? 'forgot' : 'welcome' ?>" />
                                 </form>
                             </div>
