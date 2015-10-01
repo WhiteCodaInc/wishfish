@@ -10,8 +10,8 @@ and open the template in the editor.
         <title>Wish-Fish</title>
         <link href="<?= base_url() ?>favicon.ico" rel="Shortcut Icon" type="image/x-icon" />
 
-        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet" type="text/css">
-        <link href="http://fonts.googleapis.com/css?family=Raleway:500,400,300" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Raleway:500,400,300" rel="stylesheet" type="text/css">
 
         <link rel="stylesheet" href="<?= base_url() ?>assets/wow/css/themes/default/default.css">
         <link rel="stylesheet" href="<?= base_url() ?>assets/wow/css/bootstrap-theme.min.css">
@@ -29,6 +29,7 @@ and open the template in the editor.
         <!-- Alertify -->
         <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/alertify/alertify.core.css"/>
         <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/alertify/alertify.default.css"/>
+
 
         <style type="text/css">
             .form-group{
@@ -81,10 +82,16 @@ and open the template in the editor.
                                         </div>
                                     </div>
                                     <?php $msg = $this->input->get('msg'); ?>
-                                    <?php if (isset($msg) && $msg == "F"): ?>
+                                    <?php if ($msg == "F" || $msg == "DA"): ?>
                                         <div class="row m-bot15">
                                             <div class="col-md-12" style="text-align: center">
-                                                <span style="color:red">Username or Passsword is invalid..!</span>
+                                                <span style="color:red">
+                                                    <?=
+                                                    ($msg == "F") ?
+                                                            "Username or Passsword is invalid..!" :
+                                                            "Account is deactivated by Administrator..!"
+                                                    ?>
+                                                </span>
                                             </div>
                                         </div>
                                         <br/>
@@ -105,13 +112,12 @@ and open the template in the editor.
                     <div  style="text-align: center" class="col-md-10">
                         Don't have an account?
                         <a href="<?= site_url() ?>affiliate/join">Create account</a> | 
-                        <a href="javascript:void(0);">Forgot Password</a>
-                        <!--<a href="javascript:void(0);"  data-toggle="modal" data-target="#new-event">Forgot Password</a>-->
+                        <a href="javascript:void(0);" data-toggle="modal" data-target="#forgot-modal">Forgot Password</a>
                     </div>
                     <div class="col-md-1"></div>
                 </div>
             </div>
-            <div class="modal fade" id="new-event" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal fade" id="forgot-modal" tabindex="-1" role="dialog" aria-hidden="true">
                 <div class="modal-dialog" style="width: 400px">
                     <div class="modal-content">
                         <div class="modal-header">
