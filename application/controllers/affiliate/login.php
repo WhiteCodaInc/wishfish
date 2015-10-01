@@ -20,6 +20,9 @@ class Login extends CI_Controller {
     }
 
     function index() {
+        echo '<pre>';
+        print_r($this->session->all_userdata());
+        die();
         $data['word'] = $this->wi_common->getRandomDigit(5);
         $this->session->set_userdata('captchaWord', $data['word']);
         $data['aemail'] = $this->input->cookie('affemail', TRUE);
