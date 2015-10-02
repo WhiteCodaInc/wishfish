@@ -30,8 +30,8 @@ class Analytics extends CI_Controller {
     function index() {
         if ($this->p->totalp) {
             $this->load->view('admin/admin_header');
-            $this->load->view('affiliate/admin_top');
-            $this->load->view('affiliate/admin_navbar');
+            $this->load->view('affiliate/affiliate_top');
+            $this->load->view('affiliate/affiliate_navbar');
             $this->load->view('affiliate/analytics-payment');
             $this->load->view('admin/admin_footer');
         } else {
@@ -53,8 +53,8 @@ class Analytics extends CI_Controller {
 
     function totalUser() {
         $this->load->view('admin/admin_header');
-        $this->load->view('affiliate/admin_top');
-        $this->load->view('affiliate/admin_navbar');
+        $this->load->view('affiliate/affiliate_top');
+        $this->load->view('affiliate/affiliate_navbar');
         $this->load->view('affiliate/analytics-total-users');
         $this->load->view('admin/admin_footer');
     }
@@ -73,8 +73,8 @@ class Analytics extends CI_Controller {
 
     function totalNewUser() {
         $this->load->view('admin/admin_header');
-        $this->load->view('affiliate/admin_top');
-        $this->load->view('affiliate/admin_navbar');
+        $this->load->view('affiliate/affiliate_top');
+        $this->load->view('affiliate/affiliate_navbar');
         $this->load->view('affiliate/analytics-total-new-users');
         $this->load->view('admin/admin_footer');
     }
@@ -95,8 +95,8 @@ class Analytics extends CI_Controller {
         $data['profiles'] = $this->objanalytics->getProfiles();
         $data['class'] = $this->objanalytics->getAdminAccessClass();
         $this->load->view('admin/admin_header');
-        $this->load->view('affiliate/admin_top');
-        $this->load->view('affiliate/admin_navbar');
+        $this->load->view('affiliate/affiliate_top');
+        $this->load->view('affiliate/affiliate_navbar');
         $this->load->view('affiliate/analytics-admin', $data);
         $this->load->view('admin/admin_footer');
     }
