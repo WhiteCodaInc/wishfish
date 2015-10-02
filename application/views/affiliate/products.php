@@ -132,6 +132,7 @@
 
         $('button.link').click(function () {
             var offerid = $(this).parents('tr').attr('id');
+            console.log(offerid);
             var name = $('tr#' + offerid).find('td.name').text();
             console.log(name);
             $('.modal-title').text(name);
