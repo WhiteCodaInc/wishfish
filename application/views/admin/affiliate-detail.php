@@ -247,8 +247,49 @@
 </div><!-- ./wrapper -->
 
 <a href="javascript:void(0);" id="payoutModal" class="btn btn-info btn-sm" data-toggle="modal" data-target="#payout-modal"></a>
+
 <!-------------------------------Card Detail Model------------------------------------>
 <div class="modal fade" id="payout-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" style="max-width: 400px">
+        <div class="modal-content">
+            <form id="payoutForm" role="form" action="<?= site_url() ?>admin/payout/updateSetting"  method="post">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Payout On Immediate Purchase </label>
+                        <input value=""  type="number" name="normal" class="form-control" placeholder="PER(%)" required="" />
+                    </div>
+                    <div class="form-group">
+                        <label>Payout On Recurring Purchase </label>
+                        <input value=""  type="number" name="recurring" class="form-control" placeholder="PER(%)" required="" />
+                    </div>
+                    <div class="form-group">
+                        <span style="color: red;" id="msgPayout"></span>
+                    </div>
+                </div>
+                <div class="modal-footer clearfix">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <button type="submit" class="btn btn-primary pull-left">Save</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-danger discard" data-dismiss="modal">
+                                <i class="fa fa-times"></i> Discard
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" name="payoutid" value="" />
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+<!-------------------------------Card Detail Model------------------------------------>
+<!--<div class="modal fade" id="payout-modal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" style="max-width: 400px">
         <div class="modal-content">
             <form id="payoutForm" role="form" action=""  method="post">
@@ -296,9 +337,9 @@
                     </div>
                 </div>
             </form>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div>
+        </div> /.modal-content 
+    </div> /.modal-dialog 
+</div>-->
 <!------------------------------------------------------------------------>
 
 
