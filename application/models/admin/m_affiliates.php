@@ -241,6 +241,9 @@ class M_affiliates extends CI_Model {
     }
 
     function updateSetting($post) {
+        echo '<pre>';
+        print_r($post);
+        die();
         $row = $this->db->get_where('payout_setting', array('payout_id' => 1))->row();
         if ($post['payouttype'] == "global") {
             $set = array(
