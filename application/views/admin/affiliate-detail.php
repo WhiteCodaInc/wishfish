@@ -441,7 +441,6 @@ switch ($msg) {
                     $('#payoutForm button.discard').trigger('click');
                     $('#payoutForm .overlay').hide();
                     $('#payoutForm .loading-img').hide();
-                    alertify.success("Payout Setting Successfully Updated...!");
                 }
             });
         });
