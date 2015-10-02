@@ -37,7 +37,6 @@ class Affiliates extends CI_Controller {
             $data['affiliates'] = $this->objaffiliate->getAffiliateDetail();
             $data['groups'] = $this->objgroup->getAffiliateGroups();
             $data['zodiac'] = $this->common->getZodiacs();
-            $data['payout'] = $this->objpayout->getPayoutSetting();
             $data['p'] = $this->p;
             $this->load->view('admin/admin_header');
             $this->load->view('admin/admin_top');
@@ -125,8 +124,22 @@ class Affiliates extends CI_Controller {
         }
     }
 
+    function editSetting($aid) {
+        if ($this->p->affs) {
+            $data['affInfo'] = $this->common->getAffInfo($aid);
+            $data['payout'] = $this->objpayout->getPayoutSetting();
+            $this->load->view('admin/admin_header');
+            $this->load->view('admin/admin_top');
+            $this->load->view('admin/admin_navbar');
+            $this->load->view('admin/edit-payout-setting', $data);
+            $this->load->view('admin/admin_footer');
+        } else {
+            header('location:' . site_url() . 'admin/dashboard/error/500');
+        }
+    }
+
     function updateSetting() {
-        if ($this->p->affu) {
+        if ($this->p->affs) {
             $post = $this->input->post();
             $this->objaffiliate->updateSetting($post);
         } else {

@@ -258,51 +258,7 @@
                     <h4 class="modal-title">Payout Setting</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="box box-primary">
-                        <div class="box-body">
-                            <div class="form-group">
-                                <div style="float: left;padding-right: 5px;cursor: pointer">
-                                    <input type="radio" value="global"  name="payouttype" checked="" class="simple form-control">                          
-                                    <span class="lbl padding-8">Global&nbsp;</span>
-                                </div>
-                                <div style="float: left;padding:0 5px;cursor: pointer">
-                                    <input type="radio" value="aff"  name="payouttype" class="simple form-control">
-                                    <span  class="lbl padding-8">Affiliate Specific&nbsp;</span>
-                                </div>
-                                <div style="float: left;padding:0 5px;cursor: pointer">
-                                    <input type="radio" value="offer"  name="payouttype" class="simple form-control">
-                                    <span  class="lbl padding-8">Offer Specific&nbsp;</span>
-                                </div>
-                            </div><br/>
-                            <div class="form-group aff-specific" style="display: none">
-                                <label>Payout On Immediate Purchase </label>
-                                <input value=""  type="number" name="normal" class="form-control" placeholder="PER(%)" />
-                            </div>
-                            <div class="form-group aff-specific" style="display: none">
-                                <label>Payout On Upsell Purchase </label>
-                                <input value=""  type="number" name="upsell" class="form-control" placeholder="PER(%)" />
-                            </div>
-                            <div class="form-group aff-specific" style="display: none">
-                                <label>Payout On Recurring Purchase </label>
-                                <input value=""  type="number" name="recurring" class="form-control" placeholder="PER(%)" />
-                            </div>
-                            <div class="form-group">
-                                <span style="color: red;" id="msgPayout"></span>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <button type="button" class="btn btn-primary pull-left save">Save</button>
-                                </div>
-                                <div class="col-md-3">
-                                    <button type="button" class="btn btn-danger discard" data-dismiss="modal">
-                                        <i class="fa fa-times"></i> Discard
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="overlay" style="display: none"></div>
-                        <div class="loading-img" style="display: none"></div>
-                    </div>
+                    
                 </div>
             </form>
         </div> 
@@ -449,7 +405,7 @@ switch ($msg) {
             $.ajax({
                 type: 'POST',
                 data: $('#payoutForm').serialize() + "&" + $('#checkForm').serialize(),
-                url: "<?= site_url() ?>admin/affiliates/updateSetting",
+                url: "",
                 success: function (data, textStatus, jqXHR) {
                     $('.icheckbox_minimal').iCheck('uncheck');
                     $('#payoutForm').trigger('reset');
