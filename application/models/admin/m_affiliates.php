@@ -258,7 +258,7 @@ class M_affiliates extends CI_Model {
                 'recurring_payout' => $post['recurring']
             );
         }
-        $this->db->where_in('affiliate_id', $post['affiliate']);
+        $this->db->where('affiliate_id IN (' . implode(',', $post['affiliate']) . ')');
         $this->db->update('affiliate_detail', $set);
         echo '1';
     }
