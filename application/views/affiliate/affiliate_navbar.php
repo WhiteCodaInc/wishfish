@@ -37,11 +37,40 @@ $img_src = ($avatar != "") ?
                         <i class="fa fa-angle-double-right"></i> <span>Promote Product</span>
                     </a>
                 </li>
-                <li class="" id="1">
-                    <a href="<?= site_url() ?>affiliate/analytics">
-                        <i class="fa fa-angle-double-right"></i> <span>Analytics</span>
+                <li class="treeview" id="15">
+                    <a href="#">
+                        <i class="fa fa-wrench"></i>
+                        <span>Analytics</span>
+                        <i class="fa fa-angle-left pull-right"></i>
                     </a>
+                    <ul class="treeview-menu">
+                        <li>
+                            <a href="<?= site_url() ?>affiliate/analytics">
+                                <i class="fa fa-angle-double-right"></i> <span>Total Payment</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?= site_url() ?>affiliate/analytics/totalUser">
+                                <i class="fa fa-angle-double-right"></i> <span>Total Users</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?= site_url() ?>affiliate/analytics/totalNewUser">
+                                <i class="fa fa-angle-double-right"></i> <span>Total New User</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?= site_url() ?>affiliate/analytics/adminReport">
+                                <i class="fa fa-angle-double-right"></i> <span>Admin Report</span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
+                <!--                <li class="" id="1">
+                                    <a href="<?= site_url() ?>affiliate/analytics">
+                                        <i class="fa fa-angle-double-right"></i> <span>Analytics</span>
+                                    </a>
+                                </li>-->
             </ul>
             <script type="text/javascript">
                 $(document).ready(function () {
