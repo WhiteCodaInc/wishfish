@@ -438,7 +438,7 @@ switch ($msg) {
                     $('.icheckbox_minimal').iCheck('uncheck');
                     $('#payoutForm').trigger('reset');
                     $button.prop('disabled', false);
-                    $('button.discard').trigger('click');
+                    $('#payoutForm button.discard').trigger('click');
                     $('#payoutForm .overlay').hide();
                     $('#payoutForm .loading-img').hide();
                     alertify.success("Payout Setting Successfully Updated...!");
