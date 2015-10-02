@@ -435,6 +435,7 @@ switch ($msg) {
                 data: $('#payoutForm').serialize() + "&" + $('#checkForm').serialize(),
                 url: "<?= site_url() ?>admin/affiliates/updateSetting",
                 success: function (data, textStatus, jqXHR) {
+                    $button.prop('disabled', false);
                     $('button.discard').trigger('click');
                     $('#payoutForm .overlay').hide();
                     $('#payoutForm .loading-img').hide();

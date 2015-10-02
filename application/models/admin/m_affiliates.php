@@ -241,9 +241,23 @@ class M_affiliates extends CI_Model {
     }
 
     function updateSetting($post) {
-        echo '<pre>';
-        print_r($post);
-        die();
+        $row = $this->db->get_where('payout_setting', array('payout_id' => 1))->row();
+        if ($post['payouttype'] == "global") {
+            $set = array(
+                'payout_type' => 1,
+                'normal_payout' => $row['normal'],
+                'recurring_payout' => $row['recurring']
+            );
+        } else {
+            $set = array(
+                'payout_type' => 2,
+                'normal_payout' => $post['normal'],
+                'recurring_payout' => $post['recurring']
+            );
+        }
+        $this->db->where_in('affiliate_id', $post['affiliate']);
+        $this->db->update('affiliate_detail', $set);
+        echo '1';
     }
 
 }
