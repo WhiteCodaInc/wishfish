@@ -6,6 +6,27 @@
     audio{
         width: 45px !important;
     }
+    span.copyText {
+        position: relative;
+        display: inline;
+        cursor: pointer
+    }
+    .callout textarea {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0 none transparent;
+        margin: 0;
+        padding: 0;
+        outline: none;
+        resize: none;
+        overflow: hidden;
+        font-family: inherit;
+        font-size: 1em;
+        cursor: pointer
+    }
 </style>
 <aside class="right-side">
     <!-- Content Header (Page header) -->
@@ -19,7 +40,7 @@
     <section class="content">
         <div class="callout callout-info">
             <h4>Unique Affiliate Link :</h4>
-            <p>https://www.wish-fish.com?aff=<?= $this->session->userdata('a_name') ?></p>
+            <p><span class="copyText">https://www.wish-fish.com?aff=<?= $this->session->userdata('a_name') ?></span></p>
         </div>
         <div class="row">
             <div class="col-xs-12">
@@ -117,6 +138,26 @@
 </script>
 <script type="text/javascript">
     $(document).ready(function () {
+
+        $('.copyText').click(
+                function () {
+                    if ($('#tmp').length) {
+                        $('#tmp').remove();
+                    }
+                    var clickText = $(this).text();
+                    $('<textarea id="tmp" />')
+                            .appendTo($(this))
+                            .val(clickText)
+                            .focus()
+                            .select();
+                    return false;
+                });
+        $(':not(.copyText)').click(
+                function () {
+                    $('#tmp').remove();
+                });
+
+
         $('button.html1').click(function () {
             var type = $(this).val();
             var offerid = $(this).parents('tr').attr('id');
