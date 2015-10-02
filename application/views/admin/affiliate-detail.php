@@ -396,10 +396,10 @@ switch ($msg) {
         $('input[name="payouttype"]').change(function () {
             if ($(this).val() == "aff") {
                 $('.aff-specific').show();
-                $('.aff-specific input').val('');
-                $('#msgPayout').empty();
             } else {
                 $('.aff-specific').hide();
+                $('.aff-specific input').val('');
+                $('#msgPayout').empty();
             }
         });
 
