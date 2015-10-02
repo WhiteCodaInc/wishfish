@@ -40,11 +40,11 @@
                                     <label>Payout On Immediate Purchase </label>
                                     <input value="<?= $n ?>"  type="number" name="normal" class="form-control" placeholder="PER(%)" />
                                 </div>
-                                <div class="form-group" style="display: none">
+                                <div class="form-group">
                                     <label>Payout On Upsell Purchase </label>
                                     <input value="<?= $u ?>"  type="number" name="upsell" class="form-control" placeholder="PER(%)" />
                                 </div>
-                                <div class="form-group" style="display: none">
+                                <div class="form-group">
                                     <label>Payout On Recurring Purchase </label>
                                     <input value="<?= $r ?>"  type="number" name="recurring" class="form-control" placeholder="PER(%)" />
                                 </div>
@@ -55,15 +55,15 @@
                             $r = ($affInfo->payout_type == 3) ? $affInfo->recurring_payout : $payout[2]->recurring;
                             ?>
                             <div class="offer-specific" <?= ($affInfo->payout_type == 3) ? "" : "style='display: none'" ?>>
-                                <div class="form-group" style="display: none">
+                                <div class="form-group">
                                     <label>Payout On Immediate Purchase </label>
                                     <input value="<?= $n ?>"  type="number" name="normal" class="form-control" placeholder="PER(%)" />
                                 </div>
-                                <div class="form-group" style="display: none">
+                                <div class="form-group">
                                     <label>Payout On Upsell Purchase </label>
                                     <input value="<?= $u ?>"  type="number" name="upsell" class="form-control" placeholder="PER(%)" />
                                 </div>
-                                <div class="form-group" style="display: none">
+                                <div class="form-group">
                                     <label>Payout On Recurring Purchase </label>
                                     <input value="<?= $r ?>"  type="number" name="recurring" class="form-control" placeholder="PER(%)" />
                                 </div>
