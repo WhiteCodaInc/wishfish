@@ -137,9 +137,9 @@
 
         $('a.edit').click(function () {
             var pid = $(this).attr('data-payout_id');
-            (pid == '1') ?
-                    $('.modal-title').text("GLOBAL") :
-                    $('.modal-title').text("AFFILIATE SPECIFIC");
+            var title = (pid == '1') ?
+                    "GLOBAL" : ((pid == '2') ? "AFFILIATE SPECIFIC" : "OFFER SPECIFIC");
+            $('.modal-title').text(title);
             $('input[name="payoutid"]').val(pid);
             $('input[name="normal"]').val($(this).attr('data-normal'));
             $('input[name="upsell"]').val($(this).attr('data-upsell'));
@@ -148,7 +148,6 @@
 
         $('#payoutForm').on('submit', function () {
             $form = $(this);
-
             var normal = $('input[name="normal"]').val();
             var upsell = $('input[name="upsell"]').val();
             var recur = $('input[name="recurring"]').val();
