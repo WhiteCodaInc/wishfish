@@ -123,6 +123,16 @@ class Affiliates extends CI_Controller {
         }
     }
 
+    function updateSetting() {
+        if ($this->p->affu) {
+            $post = $this->input->post();
+            $msg = $this->objaffiliate->updateSetting($post);
+            header('location:' . site_url() . 'admin/affiliates?msg=' . $msg);
+        } else {
+            header('location:' . site_url() . 'admin/dashboard/error/500');
+        }
+    }
+
     function action() {
         if ($this->p->affu || $this->p->affd) {
             $type = $this->input->post('actionType');

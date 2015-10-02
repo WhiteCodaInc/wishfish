@@ -96,4 +96,10 @@ class M_affiliate extends CI_Model {
         return $this->wi_common->sendAutoMail($post['email'], $subject, $body, $from, $name);
     }
 
+    function updateSetting($post) {
+        echo '<pre>';
+        print_r($post);
+        die();
+    }
+
 }
