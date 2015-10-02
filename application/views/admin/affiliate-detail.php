@@ -396,8 +396,11 @@ switch ($msg) {
         $('input[name="payouttype"]').change(function () {
             if ($(this).val() == "aff") {
                 $('.aff-specific').show();
+                $('#payoutForm input').val('');
+                $('#msgPayout').empty();
             } else {
                 $('.aff-specific').hide();
+
             }
         });
 
@@ -406,10 +409,7 @@ switch ($msg) {
             var normal = $('input[name="normal"]').val();
             var recur = $('input[name="recurring"]').val();
             console.log(type);
-            if (type == "global") {
-                $('#payoutForm input').val('');
-                $('#msgPayout').empty();
-            } else {
+            if (type == "aff") {
                 if (normal < 0 || normal > 100) {
                     $('#msgPayout').text("Invalid Immediate Purchase Value..!");
                     return false;
