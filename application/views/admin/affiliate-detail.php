@@ -268,7 +268,7 @@
                         </div>
                     </div><br/>
                     <div class="form-group aff-specific" style="display: none">
-                        <label>Payout On Recurring Purchase </label>
+                        <label>Payout On Immediate Purchase </label>
                         <input value=""  type="number" name="normal" class="form-control" placeholder="PER(%)" />
                     </div>
                     <div class="form-group aff-specific" style="display: none">
@@ -408,6 +408,7 @@ switch ($msg) {
             console.log(type);
             if (type == "global") {
                 $('#payoutForm input').empty();
+                $('#msgPayout').empty();
             } else {
                 if (normal < 0 || normal > 100) {
                     $('#msgPayout').text("Invalid Immediate Purchase Value..!");
