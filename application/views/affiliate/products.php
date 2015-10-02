@@ -137,7 +137,6 @@
 </script>
 <script type="text/javascript">
     $(document).ready(function () {
-
         $('.copyText').click(
                 function () {
                     if ($('#tmp').length) {
