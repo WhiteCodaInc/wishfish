@@ -132,9 +132,7 @@
 
         $('button.link').click(function () {
             var offerid = $(this).parents('tr').attr('id');
-            console.log(offerid);
             var name = $('#product-data-table tr#' + offerid).find('td.name').text();
-            console.log(name);
             $('.modal-title').text(name);
             $('#view').html("<textarea class='form-control'></textarea>");
             $('#view textarea').text("<?= site_url() ?>?offer=" + offerid);
