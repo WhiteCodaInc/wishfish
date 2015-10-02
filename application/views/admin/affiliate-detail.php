@@ -17,7 +17,7 @@
         <?php if ($p->affu): ?>
             <button value="Active" class="add btn btn-success btn-sm" id="Active" type="button" >Active</button>
             <button value="Deactive" class="remove btn btn-warning btn-sm" id="Deactive" type="button" >Deactivate</button>
-            <button type="button" class="remove btn btn-info btn-sm setting">Payout Setting</button>
+            <button type="button" style="margin-right: 1%;float: left;" class="btn btn-info btn-sm setting">Payout Setting</button>
         <?php endif; ?>
         <?php if ($p->affd): ?>
             <button style="margin-left: 10px" value="Delete" class="btn btn-danger btn-sm delete" id="Delete" type="button" >Delete</button>
