@@ -251,7 +251,7 @@
 <div class="modal fade" id="payout-modal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" style="max-width: 400px">
         <div class="modal-content">
-            <form id="payoutForm" role="form" action="<?= site_url() ?>admin/affiliate/updateSetting"  method="post">
+            <form id="payoutForm" role="form" action="<?= site_url() ?>admin/affiliates/updateSetting"  method="post">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title">Payout Setting</h4>
