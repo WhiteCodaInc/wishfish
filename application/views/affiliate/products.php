@@ -39,7 +39,7 @@
     <section class="content">
         <div class="callout callout-info">
             <h4>Unique Affiliate Link :</h4>
-            <p><span class="copyText">https://www.wish-fish.com?aff=<?= $this->session->userdata('a_name') ?></span></p>
+            <p><span class="copyText">https://www.wish-fish.com?aff=<?= $affInfo->fname . $affInfo->lname ?></span></p>
         </div>
         <div class="row">
             <div class="col-xs-12">
