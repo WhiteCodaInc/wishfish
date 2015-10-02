@@ -15,7 +15,7 @@ class M_analytics extends CI_Model {
 
     function __construct() {
         parent::__construct();
-        $this->profileid = $this->session->userdata('profileid');
+        $this->profileid = $this->session->userdata('affid');
     }
 
     function getPayments($post) {
