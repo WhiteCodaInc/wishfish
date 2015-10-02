@@ -25,11 +25,11 @@
                                     <span class="lbl padding-8">Global&nbsp;</span>
                                 </div>
                                 <div style="float: left;padding:0 5px;cursor: pointer">
-                                    <input type="radio" value="aff"  name="payouttype" <?= ($affInfo->payout_type == 1) ? "checked" : "" ?> class="simple form-control">
+                                    <input type="radio" value="aff"  name="payouttype" <?= ($affInfo->payout_type == 2) ? "checked" : "" ?> class="simple form-control">
                                     <span  class="lbl padding-8">Affiliate Specific&nbsp;</span>
                                 </div>
                                 <div style="float: left;padding:0 5px;cursor: pointer">
-                                    <input type="radio" value="offer"  name="payouttype" <?= ($affInfo->payout_type == 1) ? "checked" : "" ?> class="simple form-control">
+                                    <input type="radio" value="offer"  name="payouttype" <?= ($affInfo->payout_type == 3) ? "checked" : "" ?> class="simple form-control">
                                     <span  class="lbl padding-8">Offer Specific&nbsp;</span>
                                 </div>
                             </div><br/>
@@ -83,5 +83,6 @@
                 $('#msgPayout').empty();
             }
         });
+        $('input[name="payouttype"]:checked').trigger('change');
     });
 </script>
