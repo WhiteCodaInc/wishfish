@@ -246,7 +246,7 @@
 </aside><!-- /.right-side -->
 </div><!-- ./wrapper -->
 
-<a href="javascript:void(0);" id="payoutModal" class="create btn btn-info btn-sm" data-toggle="modal" data-target="#payout-modal"></a>
+<a href="javascript:void(0);" id="payoutModal" class="btn btn-info btn-sm" data-toggle="modal" data-target="#payout-modal"></a>
 <!-------------------------------Card Detail Model------------------------------------>
 <div class="modal fade" id="payout-modal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" style="max-width: 400px">
