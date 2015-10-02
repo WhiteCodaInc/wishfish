@@ -118,47 +118,16 @@
             var offerid = $(this).parents('tr').attr('id');
             var name = $('tr#' + offerid).find('td.name').text();
             $('.modal-title').text(name);
-            switch (type) {
-                case "audio":
-                    $('#view').html("<textarea class='form-control' rows='5'></textarea>");
-                    $audio = $('tr#' + offerid + ' td:nth-child(3)').html();
-                    $('#view textarea').text(($audio.replace(/  +/g, ' ')).trim());
-                    $('#preview-modal').modal('show');
-                    setTimeout(function () {
-                        $('#view textarea').focus();
-                        $('#view textarea').select();
-                    }, 500);
-                    break;
-                case "picture":
-                    $img = $('tr#' + offerid).find('img');
-                    $img.removeAttr('style');
-                    $('#view').html("<textarea class='form-control'></textarea>");
-                    $('#view textarea').text("<img alt='" + $img.attr('alt') + "' src='" + $img.attr('src') + "' />");
-                    $('#preview-modal').modal('show');
-                    setTimeout(function () {
-                        $('#view textarea').focus();
-                        $('#view textarea').select();
-                    }, 500);
-                    break;
-                case "video":
-                    $('#view').html("<textarea class='form-control'  rows='9'></textarea>");
-                    $.ajax({
-                        type: 'POST',
-                        data: {offerid: offerid},
-                        url: "<?= site_url() ?>admin/media/getMedia",
-                        success: function (data, textStatus, jqXHR) {
-                            $('#view textarea').text(data);
-                            $('#video_preview').trigger('click');
-                            setTimeout(function () {
-                                $('#view textarea').focus();
-                                $('#view textarea').select();
-                            }, 500);
-                        }
-                    });
-                    break;
-            }
 
-
+            $img = $('tr#' + offerid).find('img');
+            $img.removeAttr('style');
+            $('#view').html("<textarea class='form-control'></textarea>");
+            $('#view textarea').text("<img alt='" + $img.attr('alt') + "' src='" + $img.attr('src') + "' />");
+            $('#preview-modal').modal('show');
+            setTimeout(function () {
+                $('#view textarea').focus();
+                $('#view textarea').select();
+            }, 500);
         });
 
         $('button.link').click(function () {
@@ -167,7 +136,7 @@
             $('.modal-title').text(name);
             $('#view').html("<textarea class='form-control'></textarea>");
             $('#view textarea').text("<?= site_url() ?>?offer=" + offerid);
-            $('#video_preview').trigger('click');
+            $('#preview-modal').modal('show');
             setTimeout(function () {
                 $('#view textarea').focus();
                 $('#view textarea').select();
