@@ -124,48 +124,4 @@ class M_analytics extends CI_Model {
         $query = $this->db->get('wi_user_mst');
         return $query->result();
     }
-
-    function getProfiles() {
-        $this->db->order_by('fname', 'asc');
-        $query = $this->db->get_where('admin_profile');
-        return $query->result();
-    }
-
-    function getAdminAccessClass() {
-        $query = $this->db->get_where('access_class');
-        return $query->result();
-    }
-
-    function setAction($post) {
-        $msg = "";
-        $this->db->where('profile_id in(' . implode(',', $post['profile']) . ')');
-        switch ($post['actionType']) {
-            case "ee":
-                $this->db->update('admin_profile', array('email_report' => 1));
-                $msg = "EE";
-                break;
-            case "es":
-                $this->db->update('admin_profile', array('sms_report' => 1));
-                $msg = "ES";
-                break;
-            case "de":
-                $this->db->update('admin_profile', array('email_report' => 0));
-                $msg = "DE";
-                break;
-            case "ds":
-                $this->db->update('admin_profile', array('sms_report' => 0));
-                $msg = "DS";
-                break;
-            case "da":
-                $this->db->update('admin_profile', array('sms_report' => 0, 'email_report' => 0));
-                $msg = "DA";
-                break;
-            case "ea":
-                $this->db->update('admin_profile', array('sms_report' => 1, 'email_report' => 1));
-                $msg = "EA";
-                break;
-        }
-        return $msg;
-    }
-
 }

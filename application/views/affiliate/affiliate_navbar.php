@@ -59,11 +59,6 @@ $img_src = ($avatar != "") ?
                                 <i class="fa fa-angle-double-right"></i> <span>Total New User</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="<?= site_url() ?>affiliate/analytics/adminReport">
-                                <i class="fa fa-angle-double-right"></i> <span>Admin Report</span>
-                            </a>
-                        </li>
                     </ul>
                 </li>
                 <!--                <li class="" id="1">

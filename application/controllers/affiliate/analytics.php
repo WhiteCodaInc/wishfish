@@ -91,25 +91,4 @@ class Analytics extends CI_Controller {
         $this->load->view('affiliate/analytics-new-user-detail', $data);
     }
 
-    function adminReport() {
-        $data['profiles'] = $this->objanalytics->getProfiles();
-        $data['class'] = $this->objanalytics->getAdminAccessClass();
-        $this->load->view('admin/admin_header');
-        $this->load->view('affiliate/affiliate_top');
-        $this->load->view('affiliate/affiliate_navbar');
-        $this->load->view('affiliate/analytics-admin', $data);
-        $this->load->view('admin/admin_footer');
-    }
-
-    function action() {
-        $post = $this->input->post();
-        $act = array("ee", "es", "de", "ds", "da", "ea");
-        if (in_array($post['actionType'], $act) && isset($post['profile']) && count($post['profile']) > 0) {
-            $msg = $this->objanalytics->setAction($post);
-            header('location:' . site_url() . 'affiliate/analytics/adminReport?msg=' . $msg);
-        } else {
-            header('location:' . site_url() . 'affiliate/analytics/adminReport');
-        }
-    }
-
 }
