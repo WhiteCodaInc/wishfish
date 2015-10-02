@@ -17,12 +17,7 @@
         <?php if ($p->affu): ?>
             <button value="Active" class="add btn btn-success btn-sm" id="Active" type="button" >Active</button>
             <button value="Deactive" class="remove btn btn-warning btn-sm" id="Deactive" type="button" >Deactivate</button>
-            <a href="javascript:void(0);" 
-               class="create btn btn-info btn-sm"
-               data-toggle="modal"
-               data-target="#payout-modal">
-                Payout Setting
-            </a>
+            <button type="button" class="create btn btn-info btn-sm setting">Payout Setting</button>
         <?php endif; ?>
         <?php if ($p->affd): ?>
             <button style="margin-left: 10px" value="Delete" class="btn btn-danger btn-sm delete" id="Delete" type="button" >Delete</button>
@@ -251,7 +246,7 @@
 </aside><!-- /.right-side -->
 </div><!-- ./wrapper -->
 
-
+<a href="javascript:void(0);" id="payoutModal" class="create btn btn-info btn-sm" data-toggle="modal" data-target="#payout-modal"></a>
 <!-------------------------------Card Detail Model------------------------------------>
 <div class="modal fade" id="payout-modal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" style="max-width: 400px">
@@ -386,6 +381,18 @@ switch ($msg) {
         $('span.lbl.padding-8').click(function () {
             $(this).prev('input:radio').trigger('click');
         });
+
+        $('button.setting').click(function () {
+            var len = $('#affiliate-data-table tbody :checkbox').filter(':checked').length;
+            if (len > 0) {
+                $('#payoutModal').trigger('click');
+                return true;
+            } else {
+                alertify.error('Minimum one affiliate must be selected..!');
+                return false;
+            }
+        });
+
         $('input[name="payouttype"]').change(function () {
             if ($(this).val() == "aff") {
                 $('.aff-specific').show();
