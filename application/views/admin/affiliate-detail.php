@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/dashboard/css/checkbox.css"/>
+
 <style type="text/css">
     #affiliate-data-table tr td,#affiliate-data-table tr th{
         text-align: center;
