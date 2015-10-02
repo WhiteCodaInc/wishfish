@@ -409,13 +409,13 @@ switch ($msg) {
             var recur = $('input[name="recurring"]').val();
             console.log(type);
             if (type == "aff") {
-                if (normal < 0 || normal > 100) {
+                if (normal.trim() == "" || normal < 0 || normal > 100) {
                     $('#msgPayout').text("Invalid Immediate Purchase Value..!");
                     return false;
                 } else {
                     $('#msgPayout').empty();
                 }
-                if (recur < 0 || recur > 100) {
+                if (recur.trim() == "" || recur < 0 || recur > 100) {
                     $('#msgPayout').text("Invalid Recurring Purchase Value..!");
                     return false;
                 } else {
