@@ -73,6 +73,28 @@
 </div><!-- ./wrapper -->
 
 
+<!-- NEW EVENT MODAL -->
+<div class="modal fade" id="preview-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+                <div class="row m-bot15">                        
+                    <div id="view" class="col-md-12" style="text-align: center">
+
+                    </div>
+                </div>
+                <div class="modal-footer clearfix">
+                    <button type="button" id="n_discard" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Discard</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+</div>
+
 
 <script type="text/javascript">
 </script>
@@ -101,7 +123,7 @@
                     $('#view').html("<textarea class='form-control' rows='5'></textarea>");
                     $audio = $('tr#' + offerid + ' td:nth-child(3)').html();
                     $('#view textarea').text(($audio.replace(/  +/g, ' ')).trim());
-                    $('#video_preview').trigger('click');
+                    $('#preview-modal').modal('show');
                     setTimeout(function () {
                         $('#view textarea').focus();
                         $('#view textarea').select();
@@ -112,7 +134,7 @@
                     $img.removeAttr('style');
                     $('#view').html("<textarea class='form-control'></textarea>");
                     $('#view textarea').text("<img alt='" + $img.attr('alt') + "' src='" + $img.attr('src') + "' />");
-                    $('#video_preview').trigger('click');
+                    $('#preview-modal').modal('show');
                     setTimeout(function () {
                         $('#view textarea').focus();
                         $('#view textarea').select();
