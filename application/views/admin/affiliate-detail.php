@@ -435,12 +435,13 @@ switch ($msg) {
                 data: $('#payoutForm').serialize() + "&" + $('#checkForm').serialize(),
                 url: "<?= site_url() ?>admin/affiliates/updateSetting",
                 success: function (data, textStatus, jqXHR) {
-                    $('.icheckbox_minimal').iCheck('uncheck');
-                    $('#payoutForm').trigger('reset');
+//                    $('.icheckbox_minimal').iCheck('uncheck');
+//                    $('#payoutForm').trigger('reset');
                     $button.prop('disabled', false);
-                    $('#payoutForm button.discard').trigger('click');
+//                    $('#payoutForm button.discard').trigger('click');
                     $('#payoutForm .overlay').hide();
                     $('#payoutForm .loading-img').hide();
+                    alertify.success("Payout Setting Successfully Updated...!");
                 }
             });
         });
