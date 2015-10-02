@@ -17,7 +17,8 @@
         <?php if ($p->affu): ?>
             <button value="Active" class="add btn btn-success btn-sm" id="Active" type="button" >Active</button>
             <button value="Deactive" class="remove btn btn-warning btn-sm" id="Deactive" type="button" >Deactivate</button>
-            <button type="button" style="margin-right: 1%;float: left;" class="btn btn-info btn-sm setting">Payout Setting</button>
+<!--            <button type="button" style="margin-right: 1%;float: left;" class="btn btn-info btn-sm setting">Payout Setting</button>-->
+<a href="javascript:void(0);" class="btn btn-info btn-sm" data-toggle="modal" data-target="#payout-modal"></a>
         <?php endif; ?>
         <?php if ($p->affd): ?>
             <button style="margin-left: 10px" value="Delete" class="btn btn-danger btn-sm delete" id="Delete" type="button" >Delete</button>
@@ -246,7 +247,7 @@
 </aside><!-- /.right-side -->
 </div><!-- ./wrapper -->
 
-<a href="javascript:void(0);" id="payoutModal" class="btn btn-info btn-sm" data-toggle="modal" data-target="#payout-modal"></a>
+<!--<a href="javascript:void(0);" id="payoutModal" class="btn btn-info btn-sm" data-toggle="modal" data-target="#payout-modal"></a>-->
 
 <!-------------------------------Card Detail Model------------------------------------>
 <div class="modal fade" id="payout-modal" tabindex="-1" role="dialog" aria-hidden="true">
