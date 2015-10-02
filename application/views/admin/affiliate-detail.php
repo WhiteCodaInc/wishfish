@@ -17,7 +17,7 @@
         <?php if ($p->affu): ?>
             <button value="Active" class="add btn btn-success btn-sm" id="Active" type="button" >Active</button>
             <button value="Deactive" class="remove btn btn-warning btn-sm" id="Deactive" type="button" >Deactivate</button>
-            <button type="button" style="margin-right: 1%;float: left;" class="btn btn-info btn-sm paysetting">Payout Setting</button>
+            <button type="button" style="margin-right: 1%;float: left;" class="btn btn-info btn-sm setting">Payout Setting</button>
         <?php endif; ?>
         <?php if ($p->affd): ?>
             <button style="margin-left: 10px" value="Delete" class="btn btn-danger btn-sm delete" id="Delete" type="button" >Delete</button>
@@ -246,7 +246,7 @@
 </aside><!-- /.right-side -->
 </div><!-- ./wrapper -->
 
-<button type="button" id="payoutModal" class="create btn btn-info btn-sm" data-toggle="modal" data-target="#payout-modal"></button>
+<a href="javascript:void(0);" id="payoutModal" class="create btn btn-info btn-sm" data-toggle="modal" data-target="#payout-modal"></a>
 <!-------------------------------Card Detail Model------------------------------------>
 <div class="modal fade" id="payout-modal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" style="max-width: 400px">
@@ -385,7 +385,7 @@ switch ($msg) {
             $(this).prev('input:radio').trigger('click');
         });
 
-        $('button.paysetting').click(function () {
+        $('button.setting').click(function () {
             var len = $('#affiliate-data-table tbody :checkbox').filter(':checked').length;
             if (len > 0) {
                 $('#payoutModal').trigger('click');
@@ -435,10 +435,10 @@ switch ($msg) {
                 data: $('#payoutForm').serialize() + "&" + $('#checkForm').serialize(),
                 url: "<?= site_url() ?>admin/affiliates/updateSetting",
                 success: function (data, textStatus, jqXHR) {
-//                    $('.icheckbox_minimal').iCheck('uncheck');
-//                    $('#payoutForm').trigger('reset');
+                    $('.icheckbox_minimal').iCheck('uncheck');
+                    $('#payoutForm').trigger('reset');
                     $button.prop('disabled', false);
-//                    $('#payoutForm button.discard').trigger('click');
+                    $('#payoutForm button.discard').trigger('click');
                     $('#payoutForm .overlay').hide();
                     $('#payoutForm .loading-img').hide();
                     alertify.success("Payout Setting Successfully Updated...!");
