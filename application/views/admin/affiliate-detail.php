@@ -257,7 +257,7 @@
                     <h4 class="modal-title">Payout Setting</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="box box-primary parse">
+                    <div class="box box-primary">
                         <div class="box-body">
                             <div class="form-group">
                                 <div style="float: left;padding-right: 5px;cursor: pointer">
