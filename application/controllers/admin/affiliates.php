@@ -142,7 +142,7 @@ class Affiliates extends CI_Controller {
         if ($this->p->affs) {
             $post = $this->input->post();
             $this->objaffiliate->updateSetting($post);
-            header('location:' . site_url() . 'admin/affiliates?msg=U');
+            header('location:' . site_url() . 'admin/affiliates?msg=US');
         } else {
             header('location:' . site_url() . 'admin/dashboard/error/500');
         }

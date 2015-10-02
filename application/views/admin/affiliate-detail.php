@@ -274,6 +274,10 @@ switch ($msg) {
         $m = "Affiliate Profile Successfully Updated..!";
         $t = "success";
         break;
+    case "US":
+        $m = "Payout Setting Successfully Updated..!";
+        $t = "success";
+        break;
     case "UF":
         $m = "Affiliate Avatar not uploaded..!";
         $t = "error";
