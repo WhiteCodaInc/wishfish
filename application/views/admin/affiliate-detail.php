@@ -422,7 +422,6 @@ switch ($msg) {
                     $('#msgPayout').empty();
                 }
             }
-            return false;
         });
 
 <?php if (is_array($data)) { ?>
