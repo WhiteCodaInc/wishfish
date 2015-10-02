@@ -73,8 +73,8 @@
                                 <span style="color: red;" id="msgPayout"></span>
                             </div>
                             <div class="row">
-                                <div class="col-md-3">
-                                    <button type="button" class="btn btn-primary pull-left save">Save</button>
+                                <div class="col-md-2">
+                                    <button type="submit" class="btn btn-primary pull-left save">Update</button>
                                 </div>
                                 <div class="col-md-3">
                                     <button type="button" class="btn btn-danger discard" data-dismiss="modal">
@@ -86,6 +86,7 @@
                         <div class="overlay" style="display: none"></div>
                         <div class="loading-img" style="display: none"></div>
                     </div>
+                    <input type="hidden" name="affid" value="<?= $affInfo->affiliate_id ?>" />
                 </form>
             </div>
             <div class="col-md-3"></div>
@@ -115,5 +116,38 @@
             }
         });
         $('input[name="payouttype"]:checked').trigger('change');
+
+
+        $('#payoutForm').submit(function () {
+            $button = $('#payoutForm button:submit');
+
+            var type = $('input[name="payouttype"]:checked').val();
+            var normal = $('input[name="normal"]').val();
+            var upsell = $('input[name="upsell"]').val();
+            var recur = $('input[name="recurring"]').val();
+
+            if (type == "aff" || type == "offer") {
+                if (normal.trim() == "" || normal < 0 || normal > 100) {
+                    $('#msgPayout').text("Invalid Immediate Purchase Value..!");
+                    return false;
+                } else {
+                    $('#msgPayout').empty();
+                }
+                if (upsell.trim() == "" || upsell < 0 || upsell > 100) {
+                    $('#msgPayout').text("Invalid Immediate Purchase Value..!");
+                    return false;
+                } else {
+                    $('#msgPayout').empty();
+                }
+                if (recur.trim() == "" || recur < 0 || recur > 100) {
+                    $('#msgPayout').text("Invalid Recurring Purchase Value..!");
+                    return false;
+                } else {
+                    $('#msgPayout').empty();
+                }
+            }
+            $button.prop('disabled', true);
+        });
+
     });
 </script>
