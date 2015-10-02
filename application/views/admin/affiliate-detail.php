@@ -407,7 +407,7 @@ switch ($msg) {
             var recur = $('input[name="recurring"]').val();
             console.log(type);
             if (type == "global") {
-                $('#payoutForm input').empty();
+                $('#payoutForm input').val('');
                 $('#msgPayout').empty();
             } else {
                 if (normal < 0 || normal > 100) {
