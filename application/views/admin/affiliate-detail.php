@@ -251,47 +251,50 @@
 <div class="modal fade" id="payout-modal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" style="max-width: 400px">
         <div class="modal-content">
-            <form id="payoutForm" role="form" action="<?= site_url() ?>admin/affiliates/updateSetting"  method="post">
+            <form id="payoutForm" role="form" action=""  method="post">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title">Payout Setting</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
-                        <div style="float: left;padding-right: 5px;cursor: pointer">
-                            <input type="radio" value="global"  name="payouttype" checked="" class="simple form-control">                          
-                            <span class="lbl padding-8">Global&nbsp;</span>
+                    <div class="box box-primary parse">
+                        <div class="box-body">
+                            <div class="form-group">
+                                <div style="float: left;padding-right: 5px;cursor: pointer">
+                                    <input type="radio" value="global"  name="payouttype" checked="" class="simple form-control">                          
+                                    <span class="lbl padding-8">Global&nbsp;</span>
+                                </div>
+                                <div style="float: left;padding:0 5px;cursor: pointer">
+                                    <input type="radio" value="aff"  name="payouttype" class="simple form-control">
+                                    <span  class="lbl padding-8">Affiliate Specific&nbsp;</span>
+                                </div>
+                            </div><br/>
+                            <div class="form-group aff-specific" style="display: none">
+                                <label>Payout On Immediate Purchase </label>
+                                <input value=""  type="number" name="normal" class="form-control" placeholder="PER(%)" />
+                            </div>
+                            <div class="form-group aff-specific" style="display: none">
+                                <label>Payout On Recurring Purchase </label>
+                                <input value=""  type="number" name="recurring" class="form-control" placeholder="PER(%)" />
+                            </div>
+                            <div class="form-group">
+                                <span style="color: red;" id="msgPayout"></span>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <button type="button" class="btn btn-primary pull-left save">Save</button>
+                                </div>
+                                <div class="col-md-3">
+                                    <button type="button" class="btn btn-danger discard" data-dismiss="modal">
+                                        <i class="fa fa-times"></i> Discard
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                        <div style="float: left;padding:0 5px;cursor: pointer">
-                            <input type="radio" value="aff"  name="payouttype" class="simple form-control">
-                            <span  class="lbl padding-8">Affiliate Specific&nbsp;</span>
-                        </div>
-                    </div><br/>
-                    <div class="form-group aff-specific" style="display: none">
-                        <label>Payout On Immediate Purchase </label>
-                        <input value=""  type="number" name="normal" class="form-control" placeholder="PER(%)" />
-                    </div>
-                    <div class="form-group aff-specific" style="display: none">
-                        <label>Payout On Recurring Purchase </label>
-                        <input value=""  type="number" name="recurring" class="form-control" placeholder="PER(%)" />
-                    </div>
-                    <div class="form-group">
-                        <span style="color: red;" id="msgPayout"></span>
+                        <div class="overlay" style="display: none"></div>
+                        <div class="loading-img" style="display: none"></div>
                     </div>
                 </div>
-                <div class="modal-footer clearfix">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <button type="submit" class="btn btn-primary pull-left">Save</button>
-                        </div>
-                        <div class="col-md-3">
-                            <button type="button" class="btn btn-danger discard" data-dismiss="modal">
-                                <i class="fa fa-times"></i> Discard
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <input type="hidden" name="payoutid" value="" />
             </form>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -403,11 +406,13 @@ switch ($msg) {
             }
         });
 
-        $('#payoutForm').on('submit', function () {
+        $('button.save').on('click', function () {
+            $button = $(this);
+
             var type = $('input[name="payouttype"]:checked').val();
             var normal = $('input[name="normal"]').val();
             var recur = $('input[name="recurring"]').val();
-            console.log(type);
+
             if (type == "aff") {
                 if (normal.trim() == "" || normal < 0 || normal > 100) {
                     $('#msgPayout').text("Invalid Immediate Purchase Value..!");
@@ -422,6 +427,20 @@ switch ($msg) {
                     $('#msgPayout').empty();
                 }
             }
+            $button.prop('disabled', true);
+            $('#payoutForm .overlay').show();
+            $('#payoutForm .loading-img').show();
+            $.ajax({
+                type: 'POST',
+                data: $('#payoutForm').serialize() + "&" + $('#checkForm').serialize(),
+                url: "<?= site_url() ?>admin/affiliates/updateSetting",
+                success: function (data, textStatus, jqXHR) {
+                    $('button.discard').trigger('click');
+                    $('#payoutForm .overlay').hide();
+                    $('#payoutForm .loading-img').hide();
+                    alertify.success("Payout Setting Successfully Updated...!");
+                }
+            });
         });
 
 <?php if (is_array($data)) { ?>
