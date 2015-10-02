@@ -241,27 +241,39 @@ class M_affiliates extends CI_Model {
     }
 
     function updateSetting($post) {
-        echo '<pre>';
-        print_r($post);
-        die();
+//        echo '<pre>';
+//        print_r($post);
+//        die();
+
         $row = $this->db->get_where('payout_setting', array('payout_id' => 1))->row();
-        if ($post['payouttype'] == "global") {
-            $set = array(
-                'payout_type' => 1,
-                'normal_payout' => $row->normal,
-                'upsell_payout' => $row->upsell,
-                'recurring_payout' => $row->recurring
-            );
-        } else {
-            $set = array(
-                'payout_type' => 2,
-                'normal_payout' => $post['normal'],
-                'upsell_payout' => $post['upsell'],
-                'recurring_payout' => $post['recurring']
-            );
+
+        switch ($post['payouttype']) {
+            case "global":
+                $set = array(
+                    'payout_type' => 1,
+                    'normal_payout' => $row->normal,
+                    'upsell_payout' => $row->upsell,
+                    'recurring_payout' => $row->recurring
+                );
+                break;
+            case "aff":
+                $set = array(
+                    'payout_type' => 2,
+                    'normal_payout' => $post['normal'],
+                    'upsell_payout' => $post['upsell'],
+                    'recurring_payout' => $post['recurring']
+                );
+                break;
+            case "offer":
+                $set = array(
+                    'payout_type' => 3,
+                    'normal_payout' => $post['normal'],
+                    'upsell_payout' => $post['upsell'],
+                    'recurring_payout' => $post['recurring']
+                );
+                break;
         }
-        $this->db->where_in('affiliate_id', $post['affiliate']);
-        $this->db->update('affiliate_detail', $set);
+        $this->db->update('affiliate_detail', $set, array('affid' => $post['affid']));
         echo '1';
     }
 
