@@ -26,6 +26,7 @@
                                 <tr>
                                     <th>Payout Type</th>
                                     <th>Payout On Immediate Purchase</th>
+                                    <th>Payout On Upsell Purchase</th>
                                     <th>Payout On Recurring Purchase</th>
                                     <th>Edit</th>
                                 </tr>
@@ -35,11 +36,13 @@
                                     <tr>
                                         <td><?= strtoupper($value->type) ?></td>
                                         <td><?= $value->normal ?> %</td>
+                                        <td><?= $value->upsell ?> %</td>
                                         <td><?= $value->recurring ?> %</td>
                                         <td>
                                             <a href="javascript:void(0);" 
                                                data-payout_id ="<?= $value->payout_id ?>" 
                                                data-normal ="<?= $value->normal ?>" 
+                                               data-upsell ="<?= $value->upsell ?>" 
                                                data-recurring ="<?= $value->recurring ?>" 
                                                class="create btn bg-navy btn-xs edit"
                                                data-toggle="modal"
@@ -54,6 +57,7 @@
                                 <tr>
                                     <th>Payout Type</th>
                                     <th>Payout On Immediate Purchase</th>
+                                    <th>Payout On Upsell Purchase</th>
                                     <th>Payout On Recurring Purchase</th>
                                     <th>Edit</th>
                                 </tr>
@@ -79,6 +83,14 @@
                     <h4 class="modal-title"></h4>
                 </div>
                 <div class="modal-body">
+                    <div class="form-group">
+                        <label>Payout On Immediate Purchase </label>
+                        <input value=""  type="number" name="normal" class="form-control" placeholder="PER(%)" required="" />
+                    </div>
+                    <div class="form-group">
+                        <label>Payout On Upsell Purchase </label>
+                        <input value=""  type="number" name="upsell" class="form-control" placeholder="PER(%)" required="" />
+                    </div>
                     <div class="form-group">
                         <label>Payout On Immediate Purchase </label>
                         <input value=""  type="number" name="normal" class="form-control" placeholder="PER(%)" required="" />
@@ -134,6 +146,7 @@
                     $('.modal-title').text("AFFILIATE SPECIFIC");
             $('input[name="payoutid"]').val(pid);
             $('input[name="normal"]').val($(this).attr('data-normal'));
+            $('input[name="upsell"]').val($(this).attr('data-upsell'));
             $('input[name="recurring"]').val($(this).attr('data-recurring'));
         });
 
@@ -141,10 +154,17 @@
             $form = $(this);
 
             var normal = $('input[name="normal"]').val();
+            var upsell = $('input[name="upsell"]').val();
             var recur = $('input[name="recurring"]').val();
 
             if (normal < 0 || normal > 100) {
                 $('#msgPayout').text("Invalid Immediate Purchase Value..!");
+                return false;
+            } else {
+                $('#msgPayout').empty();
+            }
+            if (upsell < 0 || upsell > 100) {
+                $('#msgPayout').text("Invalid Upsell Purchase Value..!");
                 return false;
             } else {
                 $('#msgPayout').empty();

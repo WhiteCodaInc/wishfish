@@ -249,16 +249,17 @@ class M_affiliates extends CI_Model {
             $set = array(
                 'payout_type' => 1,
                 'normal_payout' => $row->normal,
+                'upsell_payout' => $row->upsell,
                 'recurring_payout' => $row->recurring
             );
         } else {
             $set = array(
                 'payout_type' => 2,
                 'normal_payout' => $post['normal'],
+                'upsell_payout' => $post['upsell'],
                 'recurring_payout' => $post['recurring']
             );
         }
-//        $this->db->where('affiliate_id IN (' . implode(',', $post['affiliate']) . ')');
         $this->db->where_in('affiliate_id', $post['affiliate']);
         $this->db->update('affiliate_detail', $set);
         echo '1';

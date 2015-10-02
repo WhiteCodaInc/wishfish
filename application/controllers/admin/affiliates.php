@@ -25,6 +25,7 @@ class Affiliates extends CI_Controller {
         } else {
             $this->load->library('parser');
             $this->load->model('admin/m_affiliates', 'objaffiliate');
+            $this->load->model('admin/m_payout', 'objpayout');
             $this->load->model('admin/m_affiliate_groups', 'objgroup');
             $this->load->model('admin/m_admin_sms_template', 'objsmstmplt');
             $this->load->model('admin/m_admin_email_template', 'objemailtmplt');
@@ -36,6 +37,7 @@ class Affiliates extends CI_Controller {
             $data['affiliates'] = $this->objaffiliate->getAffiliateDetail();
             $data['groups'] = $this->objgroup->getAffiliateGroups();
             $data['zodiac'] = $this->common->getZodiacs();
+            $data['payout'] = $this->objpayout->getPayoutSetting();
             $data['p'] = $this->p;
             $this->load->view('admin/admin_header');
             $this->load->view('admin/admin_top');

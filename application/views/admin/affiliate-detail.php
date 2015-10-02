@@ -207,7 +207,9 @@
                                             }
                                             ?>
                                             <td class="hidden-xs hidden-sm"><?= $phone ?></td>
-                                            <td class=""><?= ($value->payout_type == 1) ? "Global" : "Affiliate Specific" ?></td>
+                                            <td class="">
+                                                <?= ($value->payout_type == 1) ? "Global" : (($value->payout_type == 2) ? "Affiliate Specific" : "Offer Specific") ?>
+                                            </td>
                                             <td class=""><?= $value->register_date ?></td>
                                             <td>
                                                 <?php if ($value->status): ?>
@@ -246,8 +248,6 @@
 </aside><!-- /.right-side -->
 </div><!-- ./wrapper -->
 
-<!--<a href="javascript:void(0);" id="payoutModal" class="btn btn-info btn-sm" data-toggle="modal" data-target="#payout-modal"></a>-->
-
 <!-------------------------------Card Detail Model------------------------------------>
 <div class="modal fade" id="payout-modal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" style="max-width: 400px">
@@ -269,10 +269,18 @@
                                     <input type="radio" value="aff"  name="payouttype" class="simple form-control">
                                     <span  class="lbl padding-8">Affiliate Specific&nbsp;</span>
                                 </div>
+                                <div style="float: left;padding:0 5px;cursor: pointer">
+                                    <input type="radio" value="offer"  name="payouttype" class="simple form-control">
+                                    <span  class="lbl padding-8">Offer Specific&nbsp;</span>
+                                </div>
                             </div><br/>
                             <div class="form-group aff-specific" style="display: none">
                                 <label>Payout On Immediate Purchase </label>
                                 <input value=""  type="number" name="normal" class="form-control" placeholder="PER(%)" />
+                            </div>
+                            <div class="form-group aff-specific" style="display: none">
+                                <label>Payout On Upsell Purchase </label>
+                                <input value=""  type="number" name="upsell" class="form-control" placeholder="PER(%)" />
                             </div>
                             <div class="form-group aff-specific" style="display: none">
                                 <label>Payout On Recurring Purchase </label>
@@ -398,7 +406,7 @@ switch ($msg) {
         });
 
         $('input[name="payouttype"]').change(function () {
-            if ($(this).val() == "aff") {
+            if ($(this).val() == "aff" || $(this).val() == "offer") {
                 $('.aff-specific').show();
             } else {
                 $('.aff-specific').hide();
@@ -412,10 +420,17 @@ switch ($msg) {
 
             var type = $('input[name="payouttype"]:checked').val();
             var normal = $('input[name="normal"]').val();
+            var upsell = $('input[name="upsell"]').val();
             var recur = $('input[name="recurring"]').val();
 
-            if (type == "aff") {
+            if (type == "aff" || type == "offer") {
                 if (normal.trim() == "" || normal < 0 || normal > 100) {
+                    $('#msgPayout').text("Invalid Immediate Purchase Value..!");
+                    return false;
+                } else {
+                    $('#msgPayout').empty();
+                }
+                if (upsell.trim() == "" || upsell < 0 || upsell > 100) {
                     $('#msgPayout').text("Invalid Immediate Purchase Value..!");
                     return false;
                 } else {
