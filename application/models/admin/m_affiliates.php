@@ -240,4 +240,10 @@ class M_affiliates extends CI_Model {
         return $msg;
     }
 
+    function updateSetting($post) {
+        echo '<pre>';
+        print_r($post);
+        die();
+    }
+
 }
