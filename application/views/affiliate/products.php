@@ -1,4 +1,3 @@
-<script type='text/javascript' src='https://d2f058tgxz31a7.cloudfront.net/video_setting/jwplayer.js'></script>
 <style type="text/css">
     #product-data-table tr td,#product-data-table tr th{
         text-align: center;
