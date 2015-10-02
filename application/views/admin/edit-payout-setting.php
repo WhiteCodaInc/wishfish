@@ -76,15 +76,8 @@
                                 <div class="col-md-2">
                                     <button type="submit" class="btn btn-primary pull-left save">Update</button>
                                 </div>
-                                <div class="col-md-3">
-                                    <button type="button" class="btn btn-danger discard" data-dismiss="modal">
-                                        <i class="fa fa-times"></i> Discard
-                                    </button>
-                                </div>
                             </div>
                         </div>
-                        <div class="overlay" style="display: none"></div>
-                        <div class="loading-img" style="display: none"></div>
                     </div>
                     <input type="hidden" name="affid" value="<?= $affInfo->affiliate_id ?>" />
                 </form>
