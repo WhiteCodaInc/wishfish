@@ -106,12 +106,18 @@
             if ($(this).val() == "aff") {
                 $('.aff-specific').show();
                 $('.offer-specific').hide();
+                $('.offer-specific input').prop('disabled', true);
+                $('.aff-specific input').prop('disabled', false);
             } else if ($(this).val() == "offer") {
                 $('.offer-specific').show();
                 $('.aff-specific').hide();
+                $('.offer-specific input').prop('disabled', false);
+                $('.aff-specific input').prop('disabled', true);
             } else {
                 $('.aff-specific').hide();
                 $('.offer-specific').hide();
+                $('.offer-specific input').prop('disabled', true);
+                $('.aff-specific input').prop('disabled', true);
                 $('#msgPayout').empty();
             }
         });
