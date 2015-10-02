@@ -5,9 +5,6 @@
         <h1 style="display: none">
             Edit Payout Setting
         </h1>
-        <button type="submit" id="pupdate" class="btn btn-primary">
-            update
-        </button>
     </section>
 
     <!-- Main content -->
