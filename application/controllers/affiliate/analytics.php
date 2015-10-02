@@ -25,15 +25,11 @@ class Analytics extends CI_Controller {
     }
 
     function index() {
-        if ($this->p->totalp) {
-            $this->load->view('admin/admin_header');
-            $this->load->view('affiliate/affiliate_top');
-            $this->load->view('affiliate/affiliate_navbar');
-            $this->load->view('affiliate/analytics-payment');
-            $this->load->view('admin/admin_footer');
-        } else {
-            header('location:' . site_url() . 'admin/dashboard/error/500');
-        }
+        $this->load->view('admin/admin_header');
+        $this->load->view('affiliate/affiliate_top');
+        $this->load->view('affiliate/affiliate_navbar');
+        $this->load->view('affiliate/analytics-payment');
+        $this->load->view('admin/admin_footer');
     }
 
     function getPayments() {
