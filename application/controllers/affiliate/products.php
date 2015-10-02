@@ -24,7 +24,7 @@ class Products extends CI_Controller {
 
     function index() {
         $affid = $this->session->userdata('a_affid');
-        $data['product'] = $this->objproduct->getProductDetail();
+//        $data['product'] = $this->objproduct->getProductDetail();
         $data['affInfo'] = $this->common->getAffInfo($affid);
         $this->load->view('admin/admin_header');
         $this->load->view('affiliate/affiliate_top');
