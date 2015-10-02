@@ -133,6 +133,7 @@
         $('button.link').click(function () {
             var offerid = $(this).parents('tr').attr('id');
             var name = $('tr#' + offerid).find('td.name').text();
+            console.log(name);
             $('.modal-title').text(name);
             $('#view').html("<textarea class='form-control'></textarea>");
             $('#view textarea').text("<?= site_url() ?>?offer=" + offerid);
@@ -140,7 +141,7 @@
             setTimeout(function () {
                 $('#view textarea').focus();
                 $('#view textarea').select();
-            }, 100);
+            }, 500);
         });
     });
 </script>
