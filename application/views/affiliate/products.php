@@ -116,7 +116,7 @@
         $('button.html1').click(function () {
             var type = $(this).val();
             var offerid = $(this).parents('tr').attr('id');
-            var name = $('tr#' + offerid).find('td.name').text();
+            var name = $('#product-data-table tr#' + offerid).find('td.name').text();
             $('.modal-title').text(name);
 
             $img = $('tr#' + offerid).find('img');
@@ -133,7 +133,7 @@
         $('button.link').click(function () {
             var offerid = $(this).parents('tr').attr('id');
             console.log(offerid);
-            var name = $('tr#' + offerid).find('td.name').text();
+            var name = $('#product-data-table tr#' + offerid).find('td.name').text();
             console.log(name);
             $('.modal-title').text(name);
             $('#view').html("<textarea class='form-control'></textarea>");
