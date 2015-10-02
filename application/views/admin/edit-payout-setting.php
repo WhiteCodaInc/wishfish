@@ -103,6 +103,7 @@
             $(this).prev('input:radio').trigger('click');
         });
         $('input[name="payouttype"]').change(function () {
+            $('#msgPayout').empty();
             if ($(this).val() == "aff") {
                 $('.aff-specific').show();
                 $('.offer-specific').hide();
@@ -118,7 +119,6 @@
                 $('.offer-specific').hide();
                 $('.offer-specific input').prop('disabled', true);
                 $('.aff-specific input').prop('disabled', true);
-                $('#msgPayout').empty();
             }
         });
         $('input[name="payouttype"]:checked').trigger('change');
@@ -128,9 +128,10 @@
             $button = $('#payoutForm button:submit');
 
             var type = $('input[name="payouttype"]:checked').val();
-            var normal = $('input[name="normal"]').val();
-            var upsell = $('input[name="upsell"]').val();
-            var recur = $('input[name="recurring"]').val();
+            $box = $('.' + type + '-specific');
+            var normal = $('input[name="normal"]', $box).val();
+            var upsell = $('input[name="upsell"]', $box).val();
+            var recur = $('input[name="recurring"]', $box).val();
 
             if (type == "aff" || type == "offer") {
                 if (normal.trim() == "" || normal < 0 || normal > 100) {
