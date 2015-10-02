@@ -17,11 +17,8 @@ class Analytics extends CI_Controller {
 
     function __construct() {
         parent::__construct();
-        $this->p = $this->common->getPermission();
-        if (!$this->authex->logged_in()) {
+        if (!$this->wi_authex->alogged_in()) {
             header('location:' . site_url() . 'admin/admin_login');
-        } else if (!$this->p->totalp && !$this->p->totalu && !$this->p->totalnu && !$this->p->admr) {
-            header('location:' . site_url() . 'admin/dashboard/error/500');
         } else {
             $this->load->model('affiliate/m_analytics', 'objanalytics');
         }
