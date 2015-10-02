@@ -17,7 +17,6 @@
         <?php if ($p->affu): ?>
             <button value="Active" class="add btn btn-success btn-sm" id="Active" type="button" >Active</button>
             <button value="Deactive" class="remove btn btn-warning btn-sm" id="Deactive" type="button" >Deactivate</button>
-            <button type="button" style="margin-right: 1%;float: left;" class="btn btn-info btn-sm setting">Payout Setting</button>
         <?php endif; ?>
         <?php if ($p->affd): ?>
             <button style="margin-left: 10px" value="Delete" class="btn btn-danger btn-sm delete" id="Delete" type="button" >Delete</button>
@@ -221,7 +220,7 @@
                                             </td>
                                             <td>
                                                 <a href="<?= site_url() ?>admin/affiliates/editSetting/<?= $value->affiliate_id ?>" class="create btn bg-navy btn-xs edit">
-                                                    <i class="fa fa-pencil-square-o"></i> Edit
+                                                    <i class="fa fa-pencil-square-o"></i> Payout Setting
                                                 </a>
                                             </td>
                                         </tr>
@@ -254,25 +253,6 @@
     </section><!-- /.content -->
 </aside><!-- /.right-side -->
 </div><!-- ./wrapper -->
-
-<!-------------------------------Card Detail Model------------------------------------>
-<div class="modal fade" id="payout-modal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" style="max-width: 400px">
-        <div class="modal-content">
-            <form id="payoutForm" role="form" action=""  method="post">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Payout Setting</h4>
-                </div>
-                <div class="modal-body">
-
-                </div>
-            </form>
-        </div> 
-    </div>
-</div>
-<!------------------------------------------------------------------------>
-
 
 <?php $msg = $this->input->get('msg'); ?>
 <?php $data = $this->input->post(); ?>
@@ -352,75 +332,6 @@ switch ($msg) {
 </script>
 <script type="text/javascript">
     $(document).ready(function () {
-
-        $('button.setting').click(function () {
-            var len = $('#affiliate-data-table tbody :checkbox').filter(':checked').length;
-            if (len > 0) {
-                $('#payout-modal').modal('show');
-                return true;
-            } else {
-                alertify.error('Minimum one affiliate must be selected..!');
-                return false;
-            }
-        });
-
-        $('input[name="payouttype"]').change(function () {
-            if ($(this).val() == "aff" || $(this).val() == "offer") {
-                $('.aff-specific').show();
-            } else {
-                $('.aff-specific').hide();
-                $('.aff-specific input').val('');
-                $('#msgPayout').empty();
-            }
-        });
-
-        $('button.save').on('click', function () {
-            $button = $(this);
-
-            var type = $('input[name="payouttype"]:checked').val();
-            var normal = $('input[name="normal"]').val();
-            var upsell = $('input[name="upsell"]').val();
-            var recur = $('input[name="recurring"]').val();
-
-            if (type == "aff" || type == "offer") {
-                if (normal.trim() == "" || normal < 0 || normal > 100) {
-                    $('#msgPayout').text("Invalid Immediate Purchase Value..!");
-                    return false;
-                } else {
-                    $('#msgPayout').empty();
-                }
-                if (upsell.trim() == "" || upsell < 0 || upsell > 100) {
-                    $('#msgPayout').text("Invalid Immediate Purchase Value..!");
-                    return false;
-                } else {
-                    $('#msgPayout').empty();
-                }
-                if (recur.trim() == "" || recur < 0 || recur > 100) {
-                    $('#msgPayout').text("Invalid Recurring Purchase Value..!");
-                    return false;
-                } else {
-                    $('#msgPayout').empty();
-                }
-            }
-            $button.prop('disabled', true);
-            $('#payoutForm .overlay').show();
-            $('#payoutForm .loading-img').show();
-            $.ajax({
-                type: 'POST',
-                data: $('#payoutForm').serialize() + "&" + $('#checkForm').serialize(),
-                url: "",
-                success: function (data, textStatus, jqXHR) {
-                    $('.icheckbox_minimal').iCheck('uncheck');
-                    $('#payoutForm').trigger('reset');
-                    $('.aff-specific').hide();
-                    $button.prop('disabled', false);
-                    $('#payoutForm button.discard').trigger('click');
-                    $('#payoutForm .overlay').hide();
-                    $('#payoutForm .loading-img').hide();
-                    alertify.success("Payout Setting Successfully Updated...!");
-                }
-            });
-        });
 
 <?php if (is_array($data)) { ?>
             $('input[name="fname_search"]').val("<?= $data['fname_search'] ?>");
