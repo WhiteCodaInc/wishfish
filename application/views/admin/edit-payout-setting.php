@@ -148,6 +148,5 @@
             }
             $button.prop('disabled', true);
         });
-
     });
 </script>
