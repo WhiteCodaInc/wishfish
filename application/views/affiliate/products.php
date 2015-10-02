@@ -17,6 +17,10 @@
 
     <!-- Main content -->
     <section class="content">
+        <div class="callout callout-info">
+            <h4>I am an info callout!</h4>
+            <p>Follow the steps to continue to payment.</p>
+        </div>
         <div class="row">
             <div class="col-xs-12">
                 <div class="box" >
