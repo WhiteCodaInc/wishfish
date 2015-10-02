@@ -18,8 +18,8 @@
     <!-- Main content -->
     <section class="content">
         <div class="callout callout-info">
-            <h4>I am an info callout!</h4>
-            <p>Follow the steps to continue to payment.</p>
+            <h4>Unique Affiliate Link :</h4>
+            <p>https://www.wish-fish.com?aff=<?= $this->session->userdata('a_name') ?></p>
         </div>
         <div class="row">
             <div class="col-xs-12">
