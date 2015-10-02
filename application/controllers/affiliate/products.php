@@ -27,7 +27,7 @@ class Products extends CI_Controller {
         $this->load->view('admin/admin_header');
         $this->load->view('affiliate/affiliate_top');
         $this->load->view('affiliate/affiliate_navbar');
-        $this->load->view('affiliate/products', $data);
+        $this->load->view('affiliate/products');
         $this->load->view('admin/admin_footer');
     }
 
