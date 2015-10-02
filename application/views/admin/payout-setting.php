@@ -41,7 +41,7 @@
                                                data-payout_id ="<?= $value->payout_id ?>" 
                                                data-normal ="<?= $value->normal ?>" 
                                                data-recurring ="<?= $value->recurring ?>" 
-                                               class="create btn btn-primary btn-xs edit"
+                                               class="create btn bg-navy btn-xs edit"
                                                data-toggle="modal"
                                                data-target="#payout-modal">
                                                 <i class="fa fa-pencil-square-o"></i> Edit

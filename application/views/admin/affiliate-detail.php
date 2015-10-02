@@ -366,12 +366,7 @@ switch ($msg) {
                 [25, 50, 100, 200, -1],
                 [25, 50, 100, 200, "All"]
             ],
-//            aoColumnDefs: [{
-//                    bSortable: false,
-//                    aTargets: [0, 1, 4, 6, 8]
-//                }],
-            iDisplayLength: -1,
-//            aaSorting: [[2, 'asc']]
+            iDisplayLength: -1
         });
         $("#searchbox").on("keyup search input paste cut", function () {
             oTable.fnFilter(this.value);
@@ -399,6 +394,28 @@ switch ($msg) {
             }
         });
 
+        $('#payoutForm').on('submit', function () {
+            var type = $('input[name="payouttype"]:checked').val();
+            var normal = $('input[name="normal"]').val();
+            var recur = $('input[name="recurring"]').val();
+
+            if (type == "global") {
+                $('#payoutForm input').empty();
+            } else {
+                if (normal < 0 || normal > 100) {
+                    $('#msgPayout').text("Invalid Immediate Purchase Value..!");
+                    return false;
+                } else {
+                    $('#msgPayout').empty();
+                }
+                if (recur < 0 || recur > 100) {
+                    $('#msgPayout').text("Invalid Recurring Purchase Value..!");
+                    return false;
+                } else {
+                    $('#msgPayout').empty();
+                }
+            }
+        });
 
 <?php if (is_array($data)) { ?>
             $('input[name="fname_search"]').val("<?= $data['fname_search'] ?>");
