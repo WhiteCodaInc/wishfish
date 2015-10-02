@@ -435,6 +435,7 @@ switch ($msg) {
                 data: $('#payoutForm').serialize() + "&" + $('#checkForm').serialize(),
                 url: "<?= site_url() ?>admin/affiliates/updateSetting",
                 success: function (data, textStatus, jqXHR) {
+                    $('.icheckbox_minimal').iCheck('uncheck');
                     $button.prop('disabled', false);
                     $('button.discard').trigger('click');
                     $('#payoutForm .overlay').hide();
