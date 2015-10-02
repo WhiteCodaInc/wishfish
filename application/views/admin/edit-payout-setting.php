@@ -33,18 +33,45 @@
                                     <span  class="lbl padding-8">Offer Specific&nbsp;</span>
                                 </div>
                             </div><br/>
-                            <div class="form-group aff-specific" style="display: none">
-                                <label>Payout On Immediate Purchase </label>
-                                <input value=""  type="number" name="normal" class="form-control" placeholder="PER(%)" />
+                            <?php
+                            $n = ($affInfo->payout_type == 2) ? $affInfo->normal_payout : $payout[1]->normal;
+                            $u = ($affInfo->payout_type == 2) ? $affInfo->upsell_payout : $payout[1]->upsell;
+                            $r = ($affInfo->payout_type == 2) ? $affInfo->recurring_payout : $payout[1]->recurring;
+                            ?>
+                            <div class="aff-specific" <?= ($affInfo->payout_type == 2) ? "" : "style='display: none'" ?>>
+                                <div class="form-group">
+                                    <label>Payout On Immediate Purchase </label>
+                                    <input value="<?= $n ?>"  type="number" name="normal" class="form-control" placeholder="PER(%)" />
+                                </div>
+                                <div class="form-group aff-specific" style="display: none">
+                                    <label>Payout On Upsell Purchase </label>
+                                    <input value="<?= $u ?>"  type="number" name="upsell" class="form-control" placeholder="PER(%)" />
+                                </div>
+                                <div class="form-group aff-specific" style="display: none">
+                                    <label>Payout On Recurring Purchase </label>
+                                    <input value="<?= $r ?>"  type="number" name="recurring" class="form-control" placeholder="PER(%)" />
+                                </div>
                             </div>
-                            <div class="form-group aff-specific" style="display: none">
-                                <label>Payout On Upsell Purchase </label>
-                                <input value=""  type="number" name="upsell" class="form-control" placeholder="PER(%)" />
+                            <?php
+                            $n = ($affInfo->payout_type == 3) ? $affInfo->normal_payout : $payout[2]->normal;
+                            $u = ($affInfo->payout_type == 3) ? $affInfo->upsell_payout : $payout[2]->upsell;
+                            $r = ($affInfo->payout_type == 3) ? $affInfo->recurring_payout : $payout[2]->recurring;
+                            ?>
+                            <div class="offer-specific" <?= ($affInfo->payout_type == 3) ? "" : "style='display: none'" ?>>
+                                <div class="form-group aff-specific" style="display: none">
+                                    <label>Payout On Immediate Purchase </label>
+                                    <input value="<?= $n ?>"  type="number" name="normal" class="form-control" placeholder="PER(%)" />
+                                </div>
+                                <div class="form-group aff-specific" style="display: none">
+                                    <label>Payout On Upsell Purchase </label>
+                                    <input value="<?= $u ?>"  type="number" name="upsell" class="form-control" placeholder="PER(%)" />
+                                </div>
+                                <div class="form-group aff-specific" style="display: none">
+                                    <label>Payout On Recurring Purchase </label>
+                                    <input value="<?= $r ?>"  type="number" name="recurring" class="form-control" placeholder="PER(%)" />
+                                </div>
                             </div>
-                            <div class="form-group aff-specific" style="display: none">
-                                <label>Payout On Recurring Purchase </label>
-                                <input value=""  type="number" name="recurring" class="form-control" placeholder="PER(%)" />
-                            </div>
+
                             <div class="form-group">
                                 <span style="color: red;" id="msgPayout"></span>
                             </div>
@@ -74,12 +101,19 @@
         $('#pupdate').click(function () {
             $('#groupForm').submit();
         });
+        $('span.lbl.padding-8').click(function () {
+            $(this).prev('input:radio').trigger('click');
+        });
         $('input[name="payouttype"]').change(function () {
-            if ($(this).val() == "aff" || $(this).val() == "offer") {
+            if ($(this).val() == "aff") {
                 $('.aff-specific').show();
+                $('.offer-specific').hide();
+            } else if ($(this).val() == "offer") {
+                $('.offer-specific').show();
+                $('.aff-specific').hide();
             } else {
                 $('.aff-specific').hide();
-                $('.aff-specific input').val('');
+                $('.offer-specific').hide();
                 $('#msgPayout').empty();
             }
         });

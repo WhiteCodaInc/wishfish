@@ -353,10 +353,6 @@ switch ($msg) {
 <script type="text/javascript">
     $(document).ready(function () {
 
-        $('span.lbl.padding-8').click(function () {
-            $(this).prev('input:radio').trigger('click');
-        });
-
         $('button.setting').click(function () {
             var len = $('#affiliate-data-table tbody :checkbox').filter(':checked').length;
             if (len > 0) {
