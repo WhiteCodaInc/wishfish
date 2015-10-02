@@ -405,7 +405,7 @@ switch ($msg) {
             var type = $('input[name="payouttype"]:checked').val();
             var normal = $('input[name="normal"]').val();
             var recur = $('input[name="recurring"]').val();
-
+            console.log(type);
             if (type == "global") {
                 $('#payoutForm input').empty();
             } else {
@@ -422,6 +422,7 @@ switch ($msg) {
                     $('#msgPayout').empty();
                 }
             }
+            return false;
         });
 
 <?php if (is_array($data)) { ?>
