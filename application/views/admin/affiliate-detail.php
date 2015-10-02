@@ -17,7 +17,7 @@
         <?php if ($p->affu): ?>
             <button value="Active" class="add btn btn-success btn-sm" id="Active" type="button" >Active</button>
             <button value="Deactive" class="remove btn btn-warning btn-sm" id="Deactive" type="button" >Deactivate</button>
-            <button type="button" style="margin-right: 1%;float: left;" class="btn btn-info btn-sm setting">Payout Setting</button>
+            <button type="button" style="margin-right: 1%;float: left;" class="btn btn-info btn-sm paysetting">Payout Setting</button>
         <?php endif; ?>
         <?php if ($p->affd): ?>
             <button style="margin-left: 10px" value="Delete" class="btn btn-danger btn-sm delete" id="Delete" type="button" >Delete</button>
@@ -385,7 +385,7 @@ switch ($msg) {
             $(this).prev('input:radio').trigger('click');
         });
 
-        $('button.setting').click(function () {
+        $('button.paysetting').click(function () {
             var len = $('#affiliate-data-table tbody :checkbox').filter(':checked').length;
             if (len > 0) {
                 $('#payoutModal').trigger('click');
