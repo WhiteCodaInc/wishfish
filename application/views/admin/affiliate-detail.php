@@ -438,6 +438,7 @@ switch ($msg) {
                 success: function (data, textStatus, jqXHR) {
                     $('.icheckbox_minimal').iCheck('uncheck');
                     $('#payoutForm').trigger('reset');
+                    $('.aff-specific').hide();
                     $button.prop('disabled', false);
                     $('#payoutForm button.discard').trigger('click');
                     $('#payoutForm .overlay').hide();
