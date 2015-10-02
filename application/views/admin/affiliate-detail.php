@@ -161,6 +161,7 @@
                                         <th>Payout Setting</th>
                                         <th>Join Date & Time</th>
                                         <th>Affiliate Status</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -218,6 +219,11 @@
                                                     <span class="btn btn-danger btn-xs">Deactivate</span>
                                                 <?php endif; ?>
                                             </td>
+                                            <td>
+                                                <a href="<?= site_url() ?>admin/affiliates/editSetting/<?= $value->affiliate_id ?>" class="create btn bg-navy btn-xs edit">
+                                                    <i class="fa fa-pencil-square-o"></i> Edit
+                                                </a>
+                                            </td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
@@ -233,6 +239,7 @@
                                         <th>Payout Setting</th>
                                         <th>Join Date & Time</th>
                                         <th>Affiliate Status</th>
+                                        <th>Action</th>
                                     </tr>
                                 </tfoot>
                             </table>
@@ -258,7 +265,7 @@
                     <h4 class="modal-title">Payout Setting</h4>
                 </div>
                 <div class="modal-body">
-                    
+
                 </div>
             </form>
         </div> 
