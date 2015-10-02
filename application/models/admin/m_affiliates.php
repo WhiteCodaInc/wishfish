@@ -274,7 +274,7 @@ class M_affiliates extends CI_Model {
                 break;
         }
         $this->db->update('affiliate_detail', $set, array('affiliate_id' => $post['affid']));
-        echo '1';
+        return TRUE;
     }
 
 }
