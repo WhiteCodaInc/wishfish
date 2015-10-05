@@ -139,16 +139,6 @@
                                     </select>
                                 </div>
                                 <div class="col-md-4">
-                                    <label>Affiliate Offers</label>
-                                    <select name="offer_search" class="form-control m-bot15">
-                                        <option value="-1">--Select--</option>
-                                        <?php foreach ($offers as $value) { ?>
-                                            <option value="<?= $value->offer_id ?>">
-                                                <?= $value->offer_name ?></option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
-                                <div class="col-md-4">
                                     <label>Affiliate Status</label>
                                     <select name="status_search" class="form-control m-bot15">
                                         <option value="-1">--Select--</option>

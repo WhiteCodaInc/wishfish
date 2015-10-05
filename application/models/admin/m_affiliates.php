@@ -64,7 +64,6 @@ class M_affiliates extends CI_Model {
         $city = $post['city_search'];
         $address = $post['address_search'];
         $rating = $post['rating_search'];
-        $offer = $post['offer_search'];
         $status = $post['status_search'];
 
         ($fname != "") ? $this->db->like('fname', $fname) : '';
@@ -79,7 +78,6 @@ class M_affiliates extends CI_Model {
         ($address != "") ? $this->db->like('address', $address) : '';
         ($rating != "" && $rating != "-1") ? $where['rating'] = $rating : '';
         ($group != "" && $group != "-1") ? $where['group_id'] = $group : '';
-        ($offer != "" && $offer != "-1") ? $where['offer_id'] = $offer : '';
         ($status != "" && $status != "-1") ? $where['status'] = $status : '';
 
         $this->db->select('*');
