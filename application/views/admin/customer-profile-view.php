@@ -14,7 +14,7 @@
     $currPlan = $this->wi_common->getCurrentPlan($customer->user_id);
 
     $affInfo = ($customer->referal_by == NULL) ?
-            NULL : $this->wi_common->getAffInfo($customer->referal_by);
+            NULL : $this->common->getAffInfo($customer->referal_by);
     ?>
 
     <!-- Content Header (Page header) -->
