@@ -89,7 +89,20 @@ class M_affiliates extends CI_Model {
         (isset($where) && is_array($where)) ? $this->db->where($where) : '';
 
         $query = $this->db->get();
-        return $query->result();
+        $res = $query->result();
+        foreach ($res as $key => $value) {
+            $offer_name = "";
+            $this->db->select('O.offer_id,O.offer_name');
+            $this->db->from('multiple_affiliate_group as M');
+            $this->db->join('affiliate_offers as O', 'M.offer_id = O.offer_id');
+            $this->db->where('M.affiliate_id', $value->affiliate_id);
+            $query = $this->db->get();
+            foreach ($query->result() as $grp) {
+                $offer_name .= ($grp->offer_name . '<br>');
+            }
+            $res[$key]->offer_name = $offer_name;
+        }
+        return $res;
     }
 
     function getAffiliateInfo($aid) {
