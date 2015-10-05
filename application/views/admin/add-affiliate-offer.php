@@ -75,6 +75,21 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Funnel / Page URL</label>
+                                        <input value="<?= isset($offer) ? $offer->page_url : '' ?>" type="text" name="page_url" class="form-control" placeholder="Enter Funnel / Page URL" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group aff-link">
+
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <?php if (isset($offer)): ?>
                             <input type="hidden" name="offerid" value="<?= $offer->offer_id ?>" />
@@ -90,6 +105,11 @@
 </div><!-- ./wrapper -->
 <script type="text/javascript">
     $(document).ready(function () {
+
+        $('input[name="page_url"]').focusout(function () {
+            $('.aff-link').html('<h3>' + $(this).val() + '?offer=1&aff=1</h3>');
+        });
+
         $('#save-offer').click(function () {
             if ($('input[name="offer_name"]').val().trim() == "") {
                 alertify.error("Enter Offer Name..!");
