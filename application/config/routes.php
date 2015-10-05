@@ -43,6 +43,7 @@ if (!defined('BASEPATH'))
 $route['default_controller'] = "home";
 $route['404_override'] = '';
 $route['admin'] = "admin/admin_login";
+$route['affiliate'] = "affiliate/login";
 
 //--------------Web Pages---------------------//
 $route['whats-new'] = "home/index/whats-new";
