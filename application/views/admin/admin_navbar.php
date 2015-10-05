@@ -122,7 +122,9 @@ $img_src = ($avatar != "") ?
                 <?php
                 if (
                         $rule->affi || $rule->affu || $rule->affd ||
-                        $rule->affgi || $rule->affgu || $rule->affgd
+                        $rule->affgi || $rule->affgu || $rule->affgd ||
+                        $rule->affs ||
+                        $rule->affoi || $rule->affou || $rule->affod
                 ):
                     $url = ($rule->affi || $rule->affu || $rule->affd) ?
                             site_url() . "admin/affiliates" : "#";
