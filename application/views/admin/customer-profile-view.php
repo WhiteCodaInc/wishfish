@@ -12,6 +12,9 @@
     <?php
     $userInfo = $this->wi_common->getUserInfo($customer->user_id);
     $currPlan = $this->wi_common->getCurrentPlan($customer->user_id);
+
+    $affInfo = ($customer->referal_by == NULL) ?
+            NULL : $this->wi_common->getAffInfo($customer->referal_by);
     ?>
 
     <!-- Content Header (Page header) -->
@@ -145,6 +148,14 @@
                                 <div class="col-md-4"><label>Timezone</label></div>
                                 <div class="col-md-8">
                                     <span class="title"><?= ($customer->timezones != NULL) ? $customer->timezones : 'N/A' ?></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-4"><label>Referal By</label></div>
+                                <div class="col-md-8">
+                                    <span class="title"><?= ($affInfo == NULL) ? 'N/A' : $affInfo->fname . ' ' . $affInfo->lname ?></span>
                                 </div>
                             </div>
                         </div>
