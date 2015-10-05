@@ -100,6 +100,9 @@ class M_affiliates extends CI_Model {
             }
             $res[$key]->offer_name = $offer_name;
         }
+        echo '<pre>';
+        print_r($res);
+        die();
         return $res;
     }
 
