@@ -129,7 +129,7 @@ class M_affiliates extends CI_Model {
 
         $this->db->select('O.offer_id');
         $this->db->from('affiliate_offers as O');
-        $this->db->join('multiple_affiliate_offer as MC', 'A.offer_id = MC.offer_id');
+        $this->db->join('multiple_affiliate_offer as MC', 'O.offer_id = MC.offer_id');
         $this->db->where('affiliate_id', $aid);
         $query = $this->db->get();
         $coffer = array();
