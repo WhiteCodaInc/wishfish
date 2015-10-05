@@ -26,8 +26,8 @@
                     <?php } ?>
                 </select>
             </div>
-            <button  value="Add" class="btn btn-info btn-sm add" type="button" >Add To Group</button>
-            <button  value="Remove" class="btn btn-info btn-sm remove" type="button" >Remove From Group</button>
+            <button  value="Add" class="btn btn-info btn-sm add" type="button" >Add To Offer</button>
+            <button  value="Remove" class="btn btn-info btn-sm remove" type="button" >Remove From Offer</button>
         <?php endif; ?>
 
         <?php if ($p->affd): ?>
