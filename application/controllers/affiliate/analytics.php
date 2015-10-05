@@ -13,12 +13,10 @@
  */
 class Analytics extends CI_Controller {
 
-    private $p;
-
     function __construct() {
         parent::__construct();
         if (!$this->wi_authex->alogged_in()) {
-            header('location:' . site_url() . 'admin/admin_login');
+            header('location:' . site_url() . 'affiliate/login');
         } else {
             $this->load->model('affiliate/m_analytics', 'objanalytics');
         }
