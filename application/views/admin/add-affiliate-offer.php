@@ -85,8 +85,8 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="form-group aff-link">
-
+                                    <div class="form-group ">
+                                        <a href="javascript:void(0);" class="aff-link"></a>
                                     </div>
                                 </div>
                             </div>
@@ -107,7 +107,7 @@
     $(document).ready(function () {
 
         $('input[name="page_url"]').focusout(function () {
-            $('.aff-link').html('<h3>' + $(this).val() + '?offer=1&aff=1</h3>');
+            $('.aff-link').html('<h4>' + $(this).val() + '?offer=1&aff=1</h4>');
         });
 
         $('#save-offer').click(function () {
