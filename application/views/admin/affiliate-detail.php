@@ -382,6 +382,7 @@ switch ($msg) {
             $('input[name="city_search"]').val("<?= $data['city_search'] ?>");
             $('input[name="address_search"]').val("<?= $data['address_search'] ?>");
             $('select[name="rating_search"]').val("<?= $data['rating_search'] ?>");
+            $('select[name="status_search"]').val("<?= $data['status_search'] ?>");
 <?php } ?>
 
 <?php if ($p->affu): ?>
