@@ -77,7 +77,9 @@
                                                     <i class="fa fa-eye"></i>
                                                     Html Code
                                                 </button>
-                                                <button type="button"  value="link" class="btn btn-primary btn-xs link">
+                                                <button type="button"  value="link" 
+                                                        data-aff_link="<?= $value->page_url ?>?offer=<?= $value->offer_id ?>&aff=<?= $affInfo->affiliate_id ?>" 
+                                                        class="btn btn-primary btn-xs link" >
                                                     <i class="fa fa-eye"></i>
                                                     Link
                                                 </button>
@@ -180,11 +182,12 @@
         });
 
         $('button.link').click(function () {
-            var offerid = $(this).parents('tr').attr('id');
+//            var offerid = $(this).parents('tr').attr('id');
+            var aff_link = $(this).attr('data-aff_link');
             var name = $('#product-data-table tr#' + offerid).find('td.name').text();
             $('.modal-title').text(name);
             $('#view').html("<textarea class='form-control'></textarea>");
-            $('#view textarea').text("<?= site_url() ?>?offer=" + offerid + "&aff=<?= $affInfo->affiliate_id ?>");
+            $('#view textarea').text(aff_link);
             $('#preview-modal').modal('show');
             setTimeout(function () {
                 $('#view textarea').focus();
