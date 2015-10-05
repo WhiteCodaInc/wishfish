@@ -82,7 +82,20 @@ class M_admin_contacts extends CI_Model {
         (isset($where) && is_array($where)) ? $this->db->where($where) : '';
 
         $query = $this->db->get();
-        return $query->result();
+        $res = $query->result();
+        foreach ($res as $key => $value) {
+            $group_name = "";
+            $this->db->select('C.group_id,C.group_name');
+            $this->db->from('multiple_contact_group as M');
+            $this->db->join('contact_groups as C', 'M.group_id = C.group_id');
+            $this->db->where('M.contact_id', $value->contact_id);
+            $query = $this->db->get();
+            foreach ($query->result() as $grp) {
+                $group_name .= ($grp->group_name . '<br>');
+            }
+            $res[$key]->group_name = $group_name;
+        }
+        return $res;
     }
 
     function getContactInfo($cid) {

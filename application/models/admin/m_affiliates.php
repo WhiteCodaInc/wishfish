@@ -29,9 +29,25 @@ class M_affiliates extends CI_Model {
     }
 
     function getAffiliateDetail() {
+//        $this->db->order_by('fname', 'asc');
+//        $query = $this->db->get('affiliate_detail');
+//        return $query->result();
         $this->db->order_by('fname', 'asc');
         $query = $this->db->get('affiliate_detail');
-        return $query->result();
+        $res = $query->result();
+        foreach ($res as $key => $value) {
+            $offer_name = "";
+            $this->db->select('O.offer_id,O.offer_name');
+            $this->db->from('multiple_affiliate_group as M');
+            $this->db->join('affiliate_offers as O', 'M.offer_id = O.offer_id');
+            $this->db->where('M.affiliate_id', $value->affiliate_id);
+            $query = $this->db->get();
+            foreach ($query->result() as $grp) {
+                $offer_name .= ($grp->offer_name . '<br>');
+            }
+            $res[$key]->offer_name = $offer_name;
+        }
+        return $res;
     }
 
     function searchResult() {
@@ -48,6 +64,8 @@ class M_affiliates extends CI_Model {
         $city = $post['city_search'];
         $address = $post['address_search'];
         $rating = $post['rating_search'];
+        $offer = $post['offer_search'];
+        $status = $post['status_search'];
 
         ($fname != "") ? $this->db->like('fname', $fname) : '';
         ($lname != "") ? $this->db->like('lname', $lname) : '';
@@ -61,6 +79,8 @@ class M_affiliates extends CI_Model {
         ($address != "") ? $this->db->like('address', $address) : '';
         ($rating != "" && $rating != "-1") ? $where['rating'] = $rating : '';
         ($group != "" && $group != "-1") ? $where['group_id'] = $group : '';
+        ($offer != "" && $offer != "-1") ? $where['offer_id'] = $offer : '';
+        ($status != "" && $status != "-1") ? $where['status'] = $status : '';
 
         $this->db->select('*');
         $this->db->from('affiliate_detail as A');
