@@ -37,10 +37,10 @@
 
     <!-- Main content -->
     <section class="content">
-        <div class="callout callout-info">
-            <h4>Unique Affiliate Link :</h4>
-            <p><span class="copyText">https://www.wish-fish.com?aff=<?= $affInfo->fname . $affInfo->lname ?></span></p>
-        </div>
+        <!--        <div class="callout callout-info">
+                    <h4>Unique Affiliate Link :</h4>
+                    <p><span class="copyText">https://www.wish-fish.com?aff=<?= $affInfo->fname . $affInfo->lname ?></span></p>
+                </div>-->
         <div class="row">
             <div class="col-xs-12">
                 <div class="box" >
@@ -60,7 +60,7 @@
                                 </thead>
                                 <tbody>
                                     <?php foreach ($product as $value) { ?>
-                                        <tr id="1">
+                                        <tr id="<?= $value->offer_id ?>">
                                             <td class="name"><?= $value->offer_name ?></td>
                                             <td>
                                                 <?php if ($value->payment_plan_id): ?>
@@ -184,7 +184,7 @@
             var name = $('#product-data-table tr#' + offerid).find('td.name').text();
             $('.modal-title').text(name);
             $('#view').html("<textarea class='form-control'></textarea>");
-            $('#view textarea').text("<?= site_url() ?>?offer=" + offerid);
+            $('#view textarea').text("<?= site_url() ?>?offer=" + offerid + "&aff=<?= $affInfo->affiliate_id ?>");
             $('#preview-modal').modal('show');
             setTimeout(function () {
                 $('#view textarea').focus();
