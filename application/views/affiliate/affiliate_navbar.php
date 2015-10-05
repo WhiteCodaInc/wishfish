@@ -61,6 +61,11 @@ $img_src = ($avatar != "") ?
                         </li>
                     </ul>
                 </li>
+                <li class="" id="18">
+                    <a href="<?= site_url() ?>affiliate/offers">
+                        <i class="fa fa-angle-double-right"></i> <span>Offer Builder</span>
+                    </a>
+                </li>
                 <!--                <li class="" id="1">
                                     <a href="<?= site_url() ?>affiliate/analytics">
                                         <i class="fa fa-angle-double-right"></i> <span>Analytics</span>
