@@ -37,7 +37,7 @@ $img_src = ($avatar != "") ?
                         <i class="fa fa-angle-double-right"></i> <span>Promote Product</span>
                     </a>
                 </li>
-                <li class="treeview" id="15">
+                <li class="treeview" id="3">
                     <a href="#">
                         <i class="fa fa-wrench"></i>
                         <span>Analytics</span>
@@ -60,11 +60,6 @@ $img_src = ($avatar != "") ?
                             </a>
                         </li>
                     </ul>
-                </li>
-                <li class="" id="18">
-                    <a href="<?= site_url() ?>affiliate/offers">
-                        <i class="fa fa-angle-double-right"></i> <span>Offer Builder</span>
-                    </a>
                 </li>
                 <!--                <li class="" id="1">
                                     <a href="<?= site_url() ?>affiliate/analytics">

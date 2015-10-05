@@ -138,12 +138,10 @@
                                                                 <input name="affd" type="checkbox" >
                                                                 <span class="plabel">Delete</span>
                                                             </div>
-                                                            <div class="col-md-3">
-                                                                <input name="affs" type="checkbox" >
-                                                                <span class="plabel">Affiliate Configuration</span>
-                                                            </div>
+
                                                         </div>
                                                     </div>
+
                                                     <div class="row">
                                                         <div class="col-md-3 text-right">
                                                             <label>Affiliate Groups</label>
@@ -159,6 +157,36 @@
                                                             </div>
                                                             <div class="col-md-3">
                                                                 <input name="affgd" type="checkbox" >
+                                                                <span class="plabel">Delete</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-3 text-right">
+                                                            <label>Affiliate Configuration</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <div class="col-md-3">
+                                                                <input name="affs" type="checkbox" >
+                                                                <span class="plabel">Affiliate Configuration</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-3 text-right">
+                                                            <label>Affiliate Offers</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <div class="col-md-3">
+                                                                <input name="affoi" type="checkbox" >
+                                                                <span class="plabel">Create</span>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <input name="affou" type="checkbox" >
+                                                                <span class="plabel">Update</span>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <input name="affod" type="checkbox" >
                                                                 <span class="plabel">Delete</span>
                                                             </div>
                                                         </div>

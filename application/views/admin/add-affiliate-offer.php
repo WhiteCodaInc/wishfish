@@ -21,7 +21,7 @@
                     </div><!-- /.box-header -->
                     <?php $method = (isset($offer)) ? "updateOffer" : "createOffer" ?>
                     <!-- form start -->
-                    <form id="offerForm" role="form" action="<?= site_url() ?>affiliate/offers/<?= $method ?>" method="post">
+                    <form id="offerForm" role="form" action="<?= site_url() ?>admin/affiliate_offers/<?= $method ?>" method="post">
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-md-12">

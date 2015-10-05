@@ -136,12 +136,12 @@ $img_src = ($avatar != "") ?
                         </a>
                         <ul class="treeview-menu">
                             <?php if ($rule->affi): ?>
-<!--                                <li>
-                                    <a href="<?= site_url() ?>admin/affiliates/addAffiliate">
-                                        <i class="fa fa-plus"></i>
-                                        <span>Create New Affiliate</span>
-                                    </a>
-                                </li>-->
+                                <!--                                <li>
+                                                                    <a href="<?= site_url() ?>admin/affiliates/addAffiliate">
+                                                                        <i class="fa fa-plus"></i>
+                                                                        <span>Create New Affiliate</span>
+                                                                    </a>
+                                                                </li>-->
                             <?php endif; ?>
                             <?php if ($rule->affgi || $rule->affgu || $rule->affgd): ?>
                                 <li>
@@ -154,6 +154,11 @@ $img_src = ($avatar != "") ?
                                 <li>
                                     <a href="<?= site_url() ?>admin/payout">
                                         <i class="fa fa-angle-double-right"></i> <span>Affiliate Configuration</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="<?= site_url() ?>admin/affiliate_offers">
+                                        <i class="fa fa-angle-double-right"></i> <span>Affiliate Offer</span>
                                     </a>
                                 </li>
                             <?php endif; ?>

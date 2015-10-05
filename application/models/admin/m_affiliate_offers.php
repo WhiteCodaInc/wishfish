@@ -11,18 +11,18 @@
  *
  * @author Laxmisoft
  */
-class M_offers extends CI_Model {
+class M_affiliate_offers extends CI_Model {
 
-    private $affid;
+    private $profileid;
 
     function __construct() {
         parent::__construct();
-        $this->affid = $this->session->userdata('a_affid');
+        $this->profileid = $this->session->userdata('profileid');
     }
 
     function getOffers() {
         $this->db->select('*');
-        $this->db->from('offers as O');
+        $this->db->from('affiliate_offers as O');
         $this->db->join('products as P', 'O.product_id = P.product_id', 'left outer');
         $this->db->join('payment_plan as PL', 'O.payment_plan_id = PL.payment_plan_id', 'left outer');
         $query = $this->db->get();
@@ -30,19 +30,19 @@ class M_offers extends CI_Model {
     }
 
     function getOffer($oid) {
-        $query = $this->db->get_where('offers', array('offer_id' => $oid));
+        $query = $this->db->get_where('affiliate_offers', array('offer_id' => $oid));
         return $query->row();
     }
 
     function createOffer($set) {
-        $this->db->insert('offers', $set);
+        $this->db->insert('affiliate_offers', $set);
         return TRUE;
     }
 
     function updateOffer($set) {
         $oid = $set['offerid'];
         unset($set['offerid']);
-        $this->db->update('offers', $set, array('offer_id' => $oid));
+        $this->db->update('affiliate_offers', $set, array('offer_id' => $oid));
         return "U";
     }
 
@@ -52,15 +52,15 @@ class M_offers extends CI_Model {
         $this->db->where($where);
         switch ($type) {
             case "Active":
-                $this->db->update('offers', array('status' => 1));
+                $this->db->update('affiliate_offers', array('status' => 1));
                 $msg = "A";
                 break;
             case "Deactive":
-                $this->db->update('offers', array('status' => 0));
+                $this->db->update('affiliate_offers', array('status' => 0));
                 $msg = "DA";
                 break;
             case "Delete":
-                $this->db->delete('offers');
+                $this->db->delete('affiliate_offers');
                 $msg = "D";
                 break;
         }
