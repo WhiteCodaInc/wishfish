@@ -272,7 +272,7 @@ class M_affiliates extends CI_Model {
             case "Remove":
                 foreach ($ids as $value) {
                     $set = array(
-                        'affiOliate_id' => $value,
+                        'affiliate_id' => $value,
                         'offer_id' => $post['offerid']
                     );
                     if ($this->isAlreadyExists($set)) {
