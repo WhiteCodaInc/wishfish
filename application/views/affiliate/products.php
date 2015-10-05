@@ -182,7 +182,7 @@
         });
 
         $('button.link').click(function () {
-//            var offerid = $(this).parents('tr').attr('id');
+            var offerid = $(this).parents('tr').attr('id');
             var aff_link = $(this).attr('data-aff_link');
             var name = $('#product-data-table tr#' + offerid).find('td.name').text();
             $('.modal-title').text(name);
