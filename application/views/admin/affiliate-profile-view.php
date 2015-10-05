@@ -103,6 +103,15 @@
                                 ?>
                             <?php } ?>
                         </div>
+                        <div class="row">
+                            <div class="col-md-12"><h4 style="margin-top: 5px">Affiliate Offers</h4></div>
+                            <?php foreach ($offers as $value) { ?>
+                                <?=
+                                (in_array($value->offer_id, $aoffer)) ?
+                                        '<div class="col-md-12 title"><label>' . $value->offer_name . '</label></div>' : ''
+                                ?>
+                            <?php } ?>
+                        </div>
                     </div>
                 </div>
             </div>
