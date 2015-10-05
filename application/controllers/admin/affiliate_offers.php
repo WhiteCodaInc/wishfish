@@ -36,7 +36,7 @@ class affiliate_Offers extends CI_Controller {
             $this->load->view('admin/admin_header');
             $this->load->view('admin/admin_top');
             $this->load->view('admin/admin_navbar');
-            $this->load->view('admin/affiliate_offers', $data);
+            $this->load->view('admin/affiliate-offers', $data);
             $this->load->view('admin/admin_footer');
         } else {
             header('location:' . site_url() . 'admin/dashboard/error/500');
