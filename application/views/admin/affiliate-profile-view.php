@@ -48,11 +48,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4" style="margin-top:10px ">
+                    <div class="col-md-3" style="margin-top:10px ">
                         <div class="form-group">
                             <div class="row">
-                                <div class="col-md-4"><label>Birthday</label></div>
-                                <div class="col-md-8">
+                                <div class="col-md-5"><label>Birthday</label></div>
+                                <div class="col-md-7">
                                     <span class="title">
                                         <?= ($affiliate->birthday != NULL) ? date('d-m-Y', strtotime($affiliate->birthday)) : 'N/A' ?>
                                     </span>
@@ -61,8 +61,8 @@
                         </div>
                         <div class="form-group">
                             <div class="row">
-                                <div class="col-md-4"><label>Zodiac </label></div>
-                                <div class="col-md-8">
+                                <div class="col-md-5"><label>Zodiac </label></div>
+                                <div class="col-md-7">
                                     <span class="title"><?= $affiliate->zodiac ?></span>
                                 </div>
                             </div>
@@ -70,24 +70,24 @@
 
                         <div class="form-group">
                             <div class="row">
-                                <div class="col-md-4"><label>Phone</label></div>
-                                <div class="col-md-8">
+                                <div class="col-md-5"><label>Phone</label></div>
+                                <div class="col-md-7">
                                     <span class="title"><?= $affiliate->phone ?></span>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="row">
-                                <div class="col-md-4"><label>E-mail</label></div>
-                                <div class="col-md-8">
+                                <div class="col-md-5"><label>E-mail</label></div>
+                                <div class="col-md-7">
                                     <span class="title"><?= $affiliate->email ?></span>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="row">
-                                <div class="col-md-4"><label>Profile Rating</label></div>
-                                <div class="col-md-8">
+                                <div class="col-md-5"><label>Profile Rating</label></div>
+                                <div class="col-md-7">
                                     <span class="title"><?= ($affiliate->rating != "-1") ? $affiliate->rating : 'N/A' ?></span>
                                 </div>
                             </div>
