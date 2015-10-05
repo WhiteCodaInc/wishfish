@@ -12,8 +12,8 @@
     <section class="content">
         <div class="row">
             <!-- left column -->
-            <div class="col-md-4"></div>
-            <div class="col-md-4">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="box-header">
@@ -97,7 +97,7 @@
                     </form>
                 </div><!-- /.box -->
             </div><!--/.col (left) -->
-            <div class="col-md-4"></div>
+            <div class="col-md-3"></div>
             <!-- right column -->
         </div>
     </section><!-- /.content -->
