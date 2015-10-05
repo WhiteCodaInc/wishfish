@@ -53,36 +53,42 @@
                             <table id="product-data-table" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th>Date</th>
                                         <th>Offer Name</th>
-                                        <th>commission</th>
+                                        <th>Payment Plan</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php //foreach ($product as $value) { ?>
-                                    <tr id="1">
-                                        <td>10-02-2015</td>
-                                        <td class="name">DIWALI OFFER</td>
-                                        <td>70%</td>
-                                        <td>
-                                            <button type="button"  value="html" class="btn btn-info btn-xs html">
-                                                <i class="fa fa-eye"></i>
-                                                Html Code
-                                            </button>
-                                            <button type="button"  value="link" class="btn btn-primary btn-xs link">
-                                                <i class="fa fa-eye"></i>
-                                                Link
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <?php // } ?>
+                                    <?php foreach ($product as $value) { ?>
+                                        <tr id="1">
+                                            <td class="name"><?= $value->offer_name ?></td>
+                                            <td>
+                                                <?php if ($value->payment_plan_id): ?>
+                                                    <strong><?= $value->payment_plan ?></strong><br/>
+                                                    <strong>$ <?= $value->initial_amt ?></strong> immediately,
+                                                    and <strong>$ <?= $value->amount . ' / ' . $value->interval ?></strong> 
+                                                    after <strong><?= $value->trial_period ?> days.</strong>
+                                                <?php else: ?>
+                                                    N/A
+                                                <?php endif; ?>
+                                            </td>
+                                            <td>
+                                                <button type="button"  value="html" class="btn btn-info btn-xs html">
+                                                    <i class="fa fa-eye"></i>
+                                                    Html Code
+                                                </button>
+                                                <button type="button"  value="link" class="btn btn-primary btn-xs link">
+                                                    <i class="fa fa-eye"></i>
+                                                    Link
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th>Date</th>
                                         <th>Offer Name</th>
-                                        <th>commission</th>
+                                        <th>Payment Plan</th>
                                         <th>Action</th>
                                     </tr>
                                 </tfoot>

@@ -66,5 +66,4 @@ class M_affiliate_offers extends CI_Model {
         }
         return $msg;
     }
-
 }

@@ -29,9 +29,9 @@ class M_products extends CI_Model {
         $this->db->join('payment_plan as PL', 'O.payment_plan_id = PL.payment_plan_id', 'left outer');
         $this->db->where('M.affiliate_id', $this->affid);
         $query = $this->db->get();
-        echo '<pre>';
-        print_r($query->result());
-        die();
+//        echo '<pre>';
+//        print_r($query->result());
+//        die();
         return $query->result();
     }
 
