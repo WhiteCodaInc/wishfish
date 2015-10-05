@@ -17,7 +17,19 @@
         <?php if ($p->affu): ?>
             <button value="Active" class="add btn btn-success btn-sm" id="Active" type="button" >Active</button>
             <button value="Deactive" class="remove btn btn-warning btn-sm" id="Deactive" type="button" >Deactivate</button>
+            <div style="float: left;margin-right: 2% ">
+                <select id="offer"  class="form-control m-bot15">
+                    <option value="-1">Select Offer</option>
+                    <?php foreach ($offers as $value) { ?>
+                        <option value="<?= $value->offer_id ?>">
+                            <?= $value->offer_name ?></option>
+                    <?php } ?>
+                </select>
+            </div>
+            <button  value="Add" class="btn btn-info btn-sm add" type="button" >Add To Group</button>
+            <button  value="Remove" class="btn btn-info btn-sm remove" type="button" >Remove From Group</button>
         <?php endif; ?>
+
         <?php if ($p->affd): ?>
             <button style="margin-left: 10px" value="Delete" class="btn btn-danger btn-sm delete" id="Delete" type="button" >Delete</button>
         <?php endif; ?>
@@ -124,6 +136,24 @@
                                         <option value="8">8</option>
                                         <option value="9">9</option>
                                         <option value="10">10</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Affiliate Offers</label>
+                                    <select name="offer_search" class="form-control m-bot15">
+                                        <option value="-1">--Select--</option>
+                                        <?php foreach ($offers as $value) { ?>
+                                            <option value="<?= $value->offer_id ?>">
+                                                <?= $value->offer_name ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Affiliate Status</label>
+                                    <select name="status_search" class="form-control m-bot15">
+                                        <option value="-1">--Select--</option>
+                                        <option value="1">Active</option>
+                                        <option value="0">Deactive</option>
                                     </select>
                                 </div>
                             </div>
@@ -244,6 +274,7 @@
                             </table>
                             <?php if ($p->affd): ?>
                                 <input type="hidden" id="actionType" name="actionType" value="" />
+                                <input type="hidden" id="offerid" name="offerid" value="" />
                             <?php endif; ?>
                         </div><!-- /.box-body -->
                     </form>
@@ -276,6 +307,14 @@ switch ($msg) {
         break;
     case "US":
         $m = "Payout Setting Successfully Updated..!";
+        $t = "success";
+        break;
+    case "AO":
+        $m = "Successfully Apply Offer To The Affiliate(s) ..!";
+        $t = "success";
+        break;
+    case "RO":
+        $m = "Successfully Remove Offer From The Affiliate(s) ..!";
         $t = "success";
         break;
     case "UF":
@@ -352,7 +391,7 @@ switch ($msg) {
             $('select[name="rating_search"]').val("<?= $data['rating_search'] ?>");
 <?php } ?>
 
-<?php if ($p->affd): ?>
+<?php if ($p->affu): ?>
             $('button.add').click(function (e) {
                 action($(this).val());
                 e.preventDefault();
@@ -388,6 +427,13 @@ switch ($msg) {
 <?php endif; ?>
         function action(actiontype) {
             $('#actionType').val(actiontype);
+            $('#offerid').val($('#offer').val());
+            if (actiontype == "Add" || actiontype == "Remove") {
+                if ($('#offer').val() == "-1") {
+                    alertify.error("Please Select Offer First..!");
+                    return false;
+                }
+            }
             $('#checkForm').attr('action', "<?= site_url() ?>admin/affiliates/action");
             $('#checkForm').submit();
         }

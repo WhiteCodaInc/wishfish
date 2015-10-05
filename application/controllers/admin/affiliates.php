@@ -150,9 +150,13 @@ class Affiliates extends CI_Controller {
 
     function action() {
         if ($this->p->affu || $this->p->affd) {
-            $type = $this->input->post('actionType');
-            if ($type == "Delete" || $type == "Active" || $type == "Deactive") {
-                $msg = $this->objaffiliate->setAction($type);
+            $post = $this->input->post();
+            $type = $post['actionType'];
+            $action = array("Delete", "Active", "Deactive", "Add", "Remove");
+            if (in_array($type, $action)) {
+                $msg = $this->objaffiliate->setAction($post);
+            } else {
+                $msg = "F";
             }
             header('location:' . site_url() . 'admin/affiliates?msg=' . $msg);
         } else {

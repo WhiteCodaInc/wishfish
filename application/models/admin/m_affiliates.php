@@ -218,12 +218,36 @@ class M_affiliates extends CI_Model {
         }
     }
 
-    function setAction($type) {
-        $ids = $this->input->post('affiliate');
+    function setAction($post) {
         $msg = "";
+        $ids = $post['affiliate'];
         $where = 'affiliate_id in (' . implode(',', $ids) . ')';
         $this->db->where($where);
-        switch ($type) {
+        switch ($post['actionType']) {
+            case "Add":
+                foreach ($ids as $value) {
+                    $set = array(
+                        'affiliate_id' => $value,
+                        'offer_id' => $post['offerid']
+                    );
+                    if (!$this->isAlreadyExists($set)) {
+                        $this->db->insert('multiple_affiliate_offer', $set);
+                    }
+                }
+                $msg = "AO";
+                break;
+            case "Remove":
+                foreach ($ids as $value) {
+                    $set = array(
+                        'affiOliate_id' => $value,
+                        'offer_id' => $post['offerid']
+                    );
+                    if ($this->isAlreadyExists($set)) {
+                        $this->db->delete('multiple_affiliate_offer', $set);
+                    }
+                }
+                $msg = "RO";
+                break;
             case "Active":
                 $this->db->update('affiliate_detail', array('status' => 1));
                 $msg = "A";
@@ -238,6 +262,11 @@ class M_affiliates extends CI_Model {
                 break;
         }
         return $msg;
+    }
+
+    function isAlreadyExists($set) {
+        $query = $this->db->get_where('multiple_affiliate_offer', $set);
+        return ($query->num_rows() > 0) ? TRUE : FALSE;
     }
 
     function updateSetting($post) {

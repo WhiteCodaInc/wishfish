@@ -27,8 +27,8 @@
                     <?php } ?>
                 </select>
             </div>
-            <button  value="Add" class="btn btn-info btn-sm add" id="Add" type="button" >Add To Group</button>
-            <button  value="Remove" class="btn btn-info btn-sm remove" id="Remove" type="button" >Remove From Group</button>
+            <button  value="Add" class="btn btn-info btn-sm add" type="button" >Add To Group</button>
+            <button  value="Remove" class="btn btn-info btn-sm remove" type="button" >Remove From Group</button>
         <?php endif; ?>
         <?php if ($p->cond): ?>
             <button  value="Delete" class="btn btn-danger btn-sm delete" id="Delete" type="button" >Delete</button>
