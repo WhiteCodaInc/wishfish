@@ -107,7 +107,7 @@
     $(document).ready(function () {
 
         $('input[name="page_url"]').focusout(function () {
-            $('.aff-link').html('<h4>' + $(this).val() + '?offer=1&aff=1</h4>');
+            $('.aff-link').html('<h4>' + $(this).val() + '?offer={ID}&aff={ID}</h4>');
         });
 
         $('#save-offer').click(function () {
