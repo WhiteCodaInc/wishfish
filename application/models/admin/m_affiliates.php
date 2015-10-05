@@ -38,7 +38,7 @@ class M_affiliates extends CI_Model {
         foreach ($res as $key => $value) {
             $offer_name = "";
             $this->db->select('O.offer_id,O.offer_name');
-            $this->db->from('multiple_affiliate_group as M');
+            $this->db->from('multiple_affiliate_offer as M');
             $this->db->join('affiliate_offers as O', 'M.offer_id = O.offer_id');
             $this->db->where('M.affiliate_id', $value->affiliate_id);
             $query = $this->db->get();
@@ -93,7 +93,7 @@ class M_affiliates extends CI_Model {
         foreach ($res as $key => $value) {
             $offer_name = "";
             $this->db->select('O.offer_id,O.offer_name');
-            $this->db->from('multiple_affiliate_group as M');
+            $this->db->from('multiple_affiliate_offer as M');
             $this->db->join('affiliate_offers as O', 'M.offer_id = O.offer_id');
             $this->db->where('M.affiliate_id', $value->affiliate_id);
             $query = $this->db->get();

@@ -251,7 +251,7 @@
                                         <th class="hidden-xs hidden-sm">Phone</th>
                                         <th class="hidden-xs hidden-sm">Birthday</th>
                                         <th class="hidden-xs hidden-sm">Zodiac</th>
-                                        <th class="hidden-xs hidden-sm">Profile Rating(1-10)</th>
+                                        <th class="hidden-xs hidden-sm">Contact Groups</th>
                                         <?php if ($p->conu): ?>
                                             <th>Edit</th>
                                         <?php endif; ?>

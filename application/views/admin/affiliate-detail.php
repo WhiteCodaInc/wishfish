@@ -190,6 +190,7 @@
                                         <th>Payout Setting</th>
                                         <th>Join Date & Time</th>
                                         <th>Affiliate Status</th>
+                                        <th>Affiliate Offers</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -240,7 +241,7 @@
                                             <td class="">
                                                 <?= ($value->payout_type == 1) ? "Global" : (($value->payout_type == 2) ? "Affiliate Specific" : "Offer Specific") ?>
                                             </td>
-                                            <td class=""><?= $value->register_date ?></td>
+                                            <td><?= $value->register_date ?></td>
                                             <td>
                                                 <?php if ($value->status): ?>
                                                     <span class="btn btn-success btn-xs">Active</span>
@@ -248,6 +249,7 @@
                                                     <span class="btn btn-danger btn-xs">Deactivate</span>
                                                 <?php endif; ?>
                                             </td>
+                                            <td><?= $value->offer_name ?></td>
                                             <td>
                                                 <a href="<?= site_url() ?>admin/affiliates/editSetting/<?= $value->affiliate_id ?>" class="create btn bg-navy btn-xs edit">
                                                     <i class="fa fa-pencil-square-o"></i> Payout Setting
@@ -268,6 +270,7 @@
                                         <th>Payout Setting</th>
                                         <th>Join Date & Time</th>
                                         <th>Affiliate Status</th>
+                                        <th>Affiliate Offers</th>
                                         <th>Action</th>
                                     </tr>
                                 </tfoot>
