@@ -115,6 +115,10 @@
                 alertify.error("Enter Offer Name..!");
                 return false;
             }
+            if ($('input[name="page_url"]').val().trim() == "") {
+                alertify.error("Enter Valid URL..!");
+                return false;
+            }
             $('#offerForm').submit();
         });
     });
