@@ -24,12 +24,25 @@ class Plan_trigger extends CI_Controller {
     function index() {
         $res = $this->objtrigger->getPlanDetail();
         foreach ($res as $value) {
+
             $uInfo = $this->wi_common->getUserInfo($value->user_id);
-            $this->db->update('wi_plan_detail', array('cancel_by' => 0), array('id' => $value->id));
             $customer = Stripe_Customer::retrieve($uInfo->customer_id);
+            $this->db->update('wi_plan_detail', array('cancel_by' => 0), array('id' => $value->id));
+
             if (isset($customer->subscriptions->data[0]->id)) {
+
                 $subs = $customer->subscriptions->data[0]->id;
+
+                $myfile = fopen(FCPATH . 'canceled.txt', "a");
+                fwrite($myfile, "\n-----------------$subs------------------- \n");
+                fwrite($myfile, "User Id :" . $uInfo->user_id . "\n");
+                fwrite($myfile, "Name :" . $uInfo->name . "\n");
+
                 $customer->subscriptions->retrieve($subs)->cancel();
+            }
+
+            if ($uInfo->is_bill) {
+                $customer->subscriptions->create(array("plan" => "wishfish-personal"));
             }
         }
     }
