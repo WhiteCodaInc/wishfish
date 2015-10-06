@@ -75,9 +75,9 @@ class M_plan_stripe_webhooker extends CI_Model {
                 break;
 
             case "customer.subscription.trial_will_end":
-                $myfile = fopen(FCPATH . 'expired.txt', "a");
-                fwrite($myfile, "\n-----------------$event------------------- \n");
-                fwrite($myfile, "Event :" . json_encode($event_json) . "\n");
+//                $myfile = fopen(FCPATH . 'expired.txt', "a");
+//                fwrite($myfile, "\n-----------------$event------------------- \n");
+//                fwrite($myfile, "Event :" . json_encode($event_json) . "\n");
                 /*
                   $userid = $customer->metadata->userid;
                   $userInfo = $this->wi_common->getUserInfo($userid);
