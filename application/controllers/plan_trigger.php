@@ -50,9 +50,41 @@ class Plan_trigger extends CI_Controller {
             }
 
             if ($uInfo->is_bill) {
+                $pid = $this->insertPlanDetail($uInfo->user_id, 2);
+                $data = array('planid' => $pid, 'userid' => $uInfo->user_id);
+                $this->updateCardDetail($customer, $data);
                 $customer->subscriptions->create(array("plan" => "wishfish-personal"));
                 echo 'New Plan Registered..!';
             }
+        }
+    }
+
+    function insertPlanDetail($userid, $planid) {
+
+        $planInfo = $this->wi_common->getPlan($planid);
+        $startDt = date('Y-m-d');
+        $plan_set = array(
+            'user_id' => $userid,
+            'plan_id' => $planid,
+            'contacts' => $planInfo->contacts,
+            'sms_events' => $planInfo->sms_events,
+            'email_events' => $planInfo->email_events,
+            'group_events' => $planInfo->group_events,
+            'amount' => $planInfo->amount,
+            'plan_status' => 1,
+            'start_date' => $startDt
+        );
+        $this->db->insert('wi_plan_detail', $plan_set);
+        return $this->db->insert_id();
+    }
+
+    function updateCardDetail($customer, $data) {
+        try {
+            $customer->metadata = $data;
+            $customer->save();
+            return TRUE;
+        } catch (Exception $e) {
+            return FALSE;
         }
     }
 
