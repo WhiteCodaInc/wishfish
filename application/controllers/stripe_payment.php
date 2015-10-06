@@ -30,9 +30,9 @@ class Stripe_payment extends CI_Controller {
         $flag = TRUE;
         $set = $this->input->post();
 
-        echo '<pre>';
-        print_r($set);
-        die();
+//        echo '<pre>';
+//        print_r($set);
+//        die();
 
         if ($set['coupon'] != "") {
             $flag = ($this->objregister->checkCoupon($set['coupon'])) ? TRUE : FALSE;
@@ -99,7 +99,7 @@ class Stripe_payment extends CI_Controller {
         $planInfo = $this->wi_common->getPlan($planid);
 
         $startDt = date('Y-m-d', $customer->subscriptions->data[0]->current_period_start);
-//        $endDt = date('Y-m-d', $customer->subscriptions->data[0]->current_period_end);
+        $endDt = date('Y-m-d', $customer->subscriptions->data[0]->current_period_end);
 
         if ($set['coupon'] != "") {
             $coupon = $this->getCoupon($set['coupon']);
@@ -119,8 +119,7 @@ class Stripe_payment extends CI_Controller {
             'plan_status' => 1,
             'start_date' => $startDt
         );
-//        $plan_set['expiry_date'] = ($type != NULL) ?
-//                (($type == "onetime") ? $endDt : NULL) : NULL;
+        $plan_set['expiry_date'] = ($planid == '1') ? $endDt : NULL;
         $this->db->insert('wi_plan_detail', $plan_set);
         return $this->db->insert_id();
     }
