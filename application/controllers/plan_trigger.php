@@ -48,13 +48,12 @@ class Plan_trigger extends CI_Controller {
 
                 $subs = $customer->subscriptions->data[0]->id;
 
-                $myfile = fopen(FCPATH . 'canceled.txt', "a");
-                fwrite($myfile, "\n-----------------$subs------------------- \n");
-                fwrite($myfile, "User Id :" . $uInfo->user_id . "\n");
-                fwrite($myfile, "Name :" . $uInfo->name . "\n");
+//                $myfile = fopen(FCPATH . 'canceled.txt', "a");
+//                fwrite($myfile, "\n-----------------$subs------------------- \n");
+//                fwrite($myfile, "User Id :" . $uInfo->user_id . "\n");
+//                fwrite($myfile, "Name :" . $uInfo->name . "\n");
 
                 $customer->subscriptions->retrieve($subs)->cancel();
-                echo 'Old Plan Canceled..!';
             }
 
             if ($uInfo->is_bill) {
@@ -62,7 +61,6 @@ class Plan_trigger extends CI_Controller {
                 $data = array('planid' => $pid, 'userid' => $uInfo->user_id);
                 $this->updateCardDetail($customer, $data);
                 $customer->subscriptions->create(array("plan" => "wishfish-personal"));
-                echo 'New Plan Registered..!';
             }
         }
     }
