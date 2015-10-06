@@ -26,7 +26,6 @@ class M_plan_stripe_webhooker extends CI_Model {
 
 //        $customer_id = $event_json->data->object->customer;
 //        $customer = Stripe_Customer::retrieve($customer_id);
-        
 //        $myfile = fopen(FCPATH . 'events.txt', "a");
 //        fwrite($myfile, "\n-----------------$event------------------- \n");
 //        fwrite($myfile, "Event :" . json_encode($event_json) . "\n");
@@ -40,13 +39,14 @@ class M_plan_stripe_webhooker extends CI_Model {
                 $uid = $customer->metadata->userid;
                 $pid = $customer->metadata->planid;
 //                if ($inv->lines->data[0]->amount != '0') {
-                    $this->insertPaymentDetail($pid, $inv->charge, $customer);
-                    if (isset($customer->metadata->coupon)) {
-                        $data = array('planid' => $pid, 'userid' => $uid);
-                        $this->updateCardDetail($customer, $data);
-                    }
+                $this->insertPaymentDetail($pid, $inv->charge, $customer);
+                if (isset($customer->metadata->coupon)) {
+                    $data = array('planid' => $pid, 'userid' => $uid);
+                    $this->updateCardDetail($customer, $data);
+                }
 //                }
                 break;
+
             case "customer.subscription.deleted":
                 $customer = Stripe_Customer::retrieve($event_json->data->object->customer);
                 $subsid = $event_json->data->object->id;
@@ -73,7 +73,11 @@ class M_plan_stripe_webhooker extends CI_Model {
                   }
                   } */
                 break;
+
             case "customer.subscription.trial_will_end":
+                $myfile = fopen(FCPATH . 'expired.txt', "a");
+                fwrite($myfile, "\n-----------------$event------------------- \n");
+                fwrite($myfile, "Event :" . json_encode($event_json) . "\n");
                 /*
                   $userid = $customer->metadata->userid;
                   $userInfo = $this->wi_common->getUserInfo($userid);
