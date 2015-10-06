@@ -27,7 +27,7 @@ class Plan_trigger extends CI_Controller {
         foreach ($res as $value) {
             $uInfo = $this->wi_common->getUserInfo($value->user_id);
             $customer = Stripe_Customer::retrieve($uInfo->customer_id);
-            
+
             $this->db->update('wi_plan_detail', array('cancel_by' => 0), array('id' => $value->id));
 
 //            echo '<pre>';
@@ -46,10 +46,12 @@ class Plan_trigger extends CI_Controller {
                 fwrite($myfile, "Name :" . $uInfo->name . "\n");
 
                 $customer->subscriptions->retrieve($subs)->cancel();
+                echo 'Old Plan Canceled..!';
             }
 
             if ($uInfo->is_bill) {
                 $customer->subscriptions->create(array("plan" => "wishfish-personal"));
+                echo 'New Plan Registered..!';
             }
         }
     }
