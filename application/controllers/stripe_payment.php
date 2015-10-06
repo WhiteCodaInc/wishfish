@@ -60,6 +60,9 @@ class Stripe_payment extends CI_Controller {
                         'is_set' => 1,
                         'register_date' => date('Y-m-d', $customer->subscriptions->data[0]->current_period_start)
                     );
+                    (isset($set['is_bill']) && $set['is_bill'] == '1') ?
+                                    $user_set['is_bill'] = 1 : '';
+
                     $this->db->insert('wi_user_mst', $user_set);
                     $uid = $this->db->insert_id();
 
