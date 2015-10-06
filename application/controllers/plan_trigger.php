@@ -28,13 +28,21 @@ class Plan_trigger extends CI_Controller {
             $uInfo = $this->wi_common->getUserInfo($value->user_id);
             $customer = Stripe_Customer::retrieve($uInfo->customer_id);
 
-            $this->db->update('wi_plan_detail', array('cancel_by' => 0), array('id' => $value->id));
-
+//            $this->db->update('wi_plan_detail', array('cancel_by' => 0), array('id' => $value->id));
 //            echo '<pre>';
 //            print_r($res);
 //            print_r($customer);
 //            die();
 
+            $set = array(
+                'cancel_by' => 0,
+                'plan_status' => 0,
+                'cancel_date' => date('Y-m-d')
+            );
+            $where = array(
+                'id' => $value->id
+            );
+            $this->db->update('wi_plan_detail', $set, $where);
 
             if (isset($customer->subscriptions->data[0]->id)) {
 
