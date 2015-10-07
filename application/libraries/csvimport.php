@@ -99,7 +99,7 @@ class Csvimport {
                 $row++;
                 continue;
             }
-
+            $result = array();
             // If first row, parse for column_headers
             if ($row == $this->initial_line) {
                 // If column_headers already provided, use them
