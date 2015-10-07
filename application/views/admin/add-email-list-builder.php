@@ -18,7 +18,7 @@
             <!-- left column -->
             <div class="col-md-6">
                 <!-- general form elements -->
-                <div class="box box-primary">
+                <div class="box box-primary list-builder">
                     <div class="box-header">
                         <h3 class="box-title">Email List</h3>
                     </div><!-- /.box-header -->
@@ -85,6 +85,8 @@
                             <input type="hidden" name="updateType" value="<?= isset($subgroup) ? "group" : "contact" ?>" />
                         </form>
                     </div><!-- /.box-body -->
+                    <div class="overlay" style="display: none"></div>
+                    <div class="loading-img" style="display: none"></div>
                 </div><!-- /.box -->
             </div><!--/.col (left) -->
             <div class="col-md-3"></div>
@@ -122,13 +124,18 @@
         $('#csv_form').on('submit', (function (e) {
             if (!isValid)
                 return false;
+            $('.list-builder .overlay').show();
+            $('.list-builder .loading-img').show();
+
             $('#csv_form #csv').prop('disabled', true);
+            $('#addEmailBuilder').prop('disabled', true);
             $("#csv_form span.errorMsg").empty();
             $('#csv_form .calert').hide();
         }));
 
 
         $('#addEmailBuilder').click(function () {
+            $(this).prop('disabled', true);
             $('#emailForm').submit();
         });
     });
