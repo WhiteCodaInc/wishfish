@@ -533,7 +533,7 @@ switch ($msg) {
                     $('.conversation .overlay').hide();
                     var json = JSON.parse(data);
                     $.each(json, function (i, item) {
-                        $('div.mailbox').after().html(item.body);
+                        $('section.content').append(item.body);
 //                        $acordian = $('#accordion .demo').clone();
 //                        $acordian.removeClass('demo');
 //                        $acordian.removeAttr('style');
