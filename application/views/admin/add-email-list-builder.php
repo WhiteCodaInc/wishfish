@@ -23,7 +23,7 @@
                             <h3 class="box-title">Email List</h3>
                         </div>
                         <div class="form-grop">
-                            <a class="btn btn-primary" style="" href="<?= site_url() ?>example.csv" target="_blank">Download Sample File</a> 
+                            <a  class="btn btn-primary" style="margin: 10px;color: white;" href="<?= site_url() ?>example.csv" target="_blank">Download Sample File</a> 
                         </div>
 
                     </div><!-- /.box-header -->
