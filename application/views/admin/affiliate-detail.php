@@ -243,12 +243,15 @@
                                             <td>
                                                 <a href="javascript:void(0);" 
                                                    data-payout_id ="<?= $value->payout_type ?>" 
+                                                   data-normal ="<?= $value->normal ?>" 
+                                                   data-upsell ="<?= $value->upsell ?>" 
+                                                   data-recurring ="<?= $value->recurring ?>" 
                                                    class="create btn bg-navy btn-xs edit"
                                                    data-toggle="modal"
                                                    data-target="#payout-modal">
                                                     <i class="fa fa-pencil-square-o"></i> Edit
                                                 </a>
-    <!--                                                <a href="<?= site_url() ?>admin/affiliates/editSetting/<?= $value->affiliate_id ?>" class="create btn bg-navy btn-xs edit">
+<!--                                                <a href="<?= site_url() ?>admin/affiliates/editSetting/<?= $value->affiliate_id ?>" class="create btn bg-navy btn-xs edit">
                                                     <i class="fa fa-pencil-square-o"></i> Payout Setting
                                                 </a>-->
                                             </td>
