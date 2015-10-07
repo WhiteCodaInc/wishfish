@@ -22,7 +22,7 @@
                         <div class="form-grop" style="float: left">
                             <h3 class="box-title">Email List</h3>
                         </div>
-                        <div class="form-grop">
+                        <div class="form-grop" style="text-align: right">
                             <a  class="btn btn-primary" style="margin: 10px;color: white;" href="<?= site_url() ?>example.csv" target="_blank">Download Sample File</a> 
                         </div>
 
