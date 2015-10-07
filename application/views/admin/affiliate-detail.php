@@ -242,6 +242,7 @@
                                             <td><?= $value->offer_name ?></td>
                                             <td>
                                                 <a href="javascript:void(0);" 
+                                                   data-aff_id ="<?= $value->affiliate_id ?>" 
                                                    data-payout_id ="<?= $value->payout_type ?>" 
                                                    data-normal ="<?= $value->normal_payout ?>" 
                                                    data-upsell ="<?= $value->upsell_payout ?>" 
@@ -314,7 +315,7 @@
                                     <span  class="lbl padding-8">Offer Specific&nbsp;</span>
                                 </div>
                             </div><br/>
-                            <div class="aff-specific">
+                            <div class="aff-specific" style="display: none">
                                 <div class="form-group">
                                     <label>Payout On Immediate Purchase </label>
                                     <input value="<?= $payout->normal ?>"  type="number" name="normal" class="form-control" placeholder="PER(%)" />
@@ -459,32 +460,30 @@ switch ($msg) {
 <?php if ($p->affu): ?>
 
             $('a.edit').click(function () {
+                var aid = $(this).attr('data-aff_id');
                 var pid = $(this).attr('data-payout_id');
                 var title = (pid == '1') ?
                         "GLOBAL" : ((pid == '2') ? "AFFILIATE SPECIFIC" : "OFFER SPECIFIC");
                 $('.modal-title').text(title);
-                $('input[name="payoutid"]').val(pid);
-                $('input[name="normal"]').val($(this).attr('data-normal'));
-                $('input[name="upsell"]').val($(this).attr('data-upsell'));
-                $('input[name="recurring"]').val($(this).attr('data-recurring'));
+                $('input[name="affid"]').val(aid);
+                if (pid == '2') {
+                    $('input[name="normal"]').val($(this).attr('data-normal'));
+                    $('input[name="upsell"]').val($(this).attr('data-upsell'));
+                    $('input[name="recurring"]').val($(this).attr('data-recurring'));
+                    $('aff-specific').show();
+                } else {
+                    $('aff-specific').hide();
+                }
+
             });
 
             $('input[name="payouttype"]').change(function () {
                 $('#msgPayout').empty();
                 if ($(this).val() == "aff") {
                     $('.aff-specific').show();
-                    $('.offer-specific').hide();
-                    $('.offer-specific input').prop('disabled', true);
                     $('.aff-specific input').prop('disabled', false);
-                } else if ($(this).val() == "offer") {
-                    $('.offer-specific').show();
-                    $('.aff-specific').hide();
-                    $('.offer-specific input').prop('disabled', false);
-                    $('.aff-specific input').prop('disabled', true);
                 } else {
                     $('.aff-specific').hide();
-                    $('.offer-specific').hide();
-                    $('.offer-specific input').prop('disabled', true);
                     $('.aff-specific input').prop('disabled', true);
                 }
             });
