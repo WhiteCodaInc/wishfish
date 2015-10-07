@@ -533,19 +533,18 @@ switch ($msg) {
                     $('.conversation .overlay').hide();
                     var json = JSON.parse(data);
                     $.each(json, function (i, item) {
-                        $('section.content').append(item.body);
-//                        $acordian = $('#accordion .demo').clone();
-//                        $acordian.removeClass('demo');
-//                        $acordian.removeAttr('style');
-//                        $acordian.find('h4 > a').prop('href', "#collapse" + item.id);
-////                        $acordian.find('#collapseOne .box-body').html(item.body);
-//                        
-//                        $acordian.find('h4 > a').html(item.from);
-//                        $acordian.find('#collapseOne').prop('id', "collapse" + item.id);
-//                        $acordian.find('#time').text(item.date);
-//                        $('#accordion .demo').before($acordian);
-//                        if (i == json.length - 1)
-//                            $("#collapse" + item.id).collapse('show');
+                        $acordian = $('#accordion .demo').clone();
+                        $acordian.removeClass('demo');
+                        $acordian.removeAttr('style');
+                        $acordian.find('h4 > a').prop('href', "#collapse" + item.id);
+                        $acordian.find('#collapseOne .box-body').html(item.body);
+                        $acordian.find('h4 > a').html(item.from);
+                        $acordian.find('#collapseOne').prop('id', "collapse" + item.id);
+                        $acordian.find('#time').text(item.date);
+                        $('#accordion .demo').before($acordian);
+                        $('table.collapse').removeClass('collapse');
+                        if (i == json.length - 1)
+                            $("#collapse" + item.id).collapse('show');
                     });
                 }
             });
