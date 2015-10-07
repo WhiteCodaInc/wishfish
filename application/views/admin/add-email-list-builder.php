@@ -8,6 +8,7 @@
         <button type="button" id="addEmailBuilder" class="btn btn-primary">
             <?= isset($group) ? "Save Current Email List" : "Create New Email List" ?>
         </button>
+        <a  class="btn btn-info add" href="<?= site_url() ?>example.csv" target="_blank">Download Sample File</a> 
     </section>
 
     <!-- Main content -->
@@ -19,13 +20,7 @@
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="box-header">
-                        <div class="form-grop" style="float: left">
-                            <h3 class="box-title">Email List</h3>
-                        </div>
-                        <div class="form-grop" style="text-align: right">
-                            <a  class="btn btn-primary" style="margin: 10px;color: white;" href="<?= site_url() ?>example.csv" target="_blank">Download Sample File</a> 
-                        </div>
-
+                        <h3 class="box-title">Email List</h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     <?php $method = (isset($group)) ? "updateList" : "createList"; ?>
