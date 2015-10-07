@@ -122,8 +122,11 @@
         });
 
         $('#csv_form').on('submit', (function (e) {
-            if (!isValid)
+            if (!isValid) {
+                $('#csv_form .calert').show();
+                $('#csv_form span.errorMsg').html("Please Select a valid CSV File! Only csv type allowed.");
                 return false;
+            }
             $('.list-builder .overlay').show();
             $('.list-builder .loading-img').show();
 
