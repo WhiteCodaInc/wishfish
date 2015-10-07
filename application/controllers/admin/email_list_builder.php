@@ -153,6 +153,7 @@ class Email_list_builder extends CI_Controller {
 //    }
 
     function importcsv() {
+        $gid = $this->input->post('groupid');
         if (!empty($_FILES)) {
             $error = "";
             $config['upload_path'] = FCPATH . 'uploads/';
@@ -167,8 +168,6 @@ class Email_list_builder extends CI_Controller {
                 $file_data = $this->upload->data();
                 $file_path = FCPATH . 'uploads/' . $file_data['file_name'];
 
-                $contacts = array();
-
                 if ($this->csvimport->get_array($file_path)) {
                     $csv_array = $this->csvimport->get_array($file_path);
 
@@ -179,23 +178,13 @@ class Email_list_builder extends CI_Controller {
                             'email' => ($row['email'] != "") ? $row['email'] : NULL,
                             'phone' => ($row['phone'] != "") ? $row['phone'] : NULL,
                         );
-
-                        $contactid = $this->objbuilder->getGroupContact($set);
+                        $this->objbuilder->addEmailList($set, $gid);
                     }
                     unlink($file_path);
-                } else {
-                    $error = "Error occur during importing contact..! Try Again..!";
-                    $data['contacts'] = $contacts;
                 }
             }
-            $this->session->set_flashdata('error', $error);
-            $this->load->view('dashboard/header');
-            $this->load->view('dashboard/top');
-            $this->load->view('dashboard/csv', $data);
-            $this->load->view('dashboard/footer');
-        } else {
-            header('location:' . site_url() . 'app/csv');
         }
+        header("location:" . site_url() . "admin/email_list_builder/addContacts/$gid");
     }
 
 }

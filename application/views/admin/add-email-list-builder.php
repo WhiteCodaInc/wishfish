@@ -41,9 +41,10 @@
                                     </div>
                                     <div class="form-group">
                                         <div style="display: none;margin-top: 10px;" class="calert">
-                                            <span style="color: red" class="errorMsg">Hello</span>
+                                            <span style="color: red" class="errorMsg"></span>
                                         </div>
                                     </div>
+                                    <input type="hidden" name="groupid" value="<?= isset($group) ? $group->group_id : '' ?>" />
                                 </form>
                             </div>
                         </div>

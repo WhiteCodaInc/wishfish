@@ -231,9 +231,16 @@ class M_list_builder extends CI_Model {
         return TRUE;
     }
 
-    function addContact($set) {
+    function addEmailList($set, $gid) {
+        $this->db->trans_start();
         $this->db->insert('contact_detail', $set);
-        return $this->db->insert_id();
+        $cid = $this->db->insert_id();
+        $data = array(
+            'group_id' => $gid,
+            'contact_id' => $cid
+        );
+        $this->db->insert('multiple_contact_group', $data);
+        $this->db->trans_complete();
     }
 
 }
