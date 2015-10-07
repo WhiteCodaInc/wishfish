@@ -358,4 +358,9 @@ class M_affiliates extends CI_Model {
         return TRUE;
     }
 
+    function isEmailRegister($email) {
+        $query = $this->db->get_where('affiliate_detail', array('email' => $email));
+        return ($query->num_rows() == 1) ? TRUE : FALSE;
+    }
+
 }

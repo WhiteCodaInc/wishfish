@@ -36,7 +36,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="password">Email</label>
-                                <input name="email" type="email" class="form-control"  placeholder="Email">
+                                <input name="email" type="email" class="form-control"  placeholder="Email" required="">
+                                <span style="color: red"></span>
                             </div>
                             <div class="form-group" id="strengthForm">
                                 <label for="password">Password</label>
@@ -108,6 +109,28 @@
         ;
     });
     $(document).ready(function () {
+        var affEmail = false;
+        $form = $('#affiliateForm');
+
+        $('input[name="email"]', $form).focusout(function () {
+            $email = $(this);
+            var email = $(this).val();
+            if (email.trim() != "") {
+                $.ajax({
+                    type: 'POST',
+                    data: {email: email},
+                    url: "<?= site_url() ?>admin/affiliates/isEmailRegister",
+                    success: function (data, textStatus, jqXHR) {
+                        (data == '1') ?
+                                $email.next('span').text("Email Address is already Exists..!") :
+                                $email.next('span').text("");
+                    }
+                });
+            } else {
+                $('input[name="zodiac"]').val('');
+                $('input[name="age"]').val('');
+            }
+        });
 
         $('#myPassword').strength({
             strengthClass: 'strength',
@@ -121,7 +144,7 @@
             $('#affiliateForm').submit();
         });
 
-        $('input[name="birthday"]').focusout(function () {
+        $('input[name="birthday"]', $form).focusout(function () {
             var dt = $(this).val();
             var pastYear = dt.split('-');
             var now = new Date();

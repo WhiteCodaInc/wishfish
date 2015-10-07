@@ -190,6 +190,11 @@ class Affiliates extends CI_Controller {
         echo $zodiac;
     }
 
+    function isEmailRegister() {
+        $email = $this->input->post('email');
+        echo ($this->objaffiliate->isEmailRegister($email)) ? 0 : 1;
+    }
+
     //----------------Affiliate Profile Functionality--------------------------//
 
     function send_message() {
