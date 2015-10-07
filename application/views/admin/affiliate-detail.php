@@ -499,7 +499,7 @@ switch ($msg) {
                     $('.aff-specific input').prop('disabled', true);
                 }
             });
-            $('input[name="payouttype"]:checked').trigger('change');
+//            $('input[name="payouttype"]:checked').trigger('change');
 
             $('button.add').click(function (e) {
                 action($(this).val());
