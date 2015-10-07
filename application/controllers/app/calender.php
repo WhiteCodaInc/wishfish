@@ -18,11 +18,7 @@ class Calender extends CI_Controller {
     //put your code here
     function __construct() {
         parent::__construct();
-//        $code = $this->input->get('code');
-//        echo $code;
-        echo '<pre>';
-        print_r($this->input->get());
-        die();
+        $code = $this->input->get('code');
         if ($code == "") {
             if (!$this->wi_authex->logged_in()) {
                 header('location:' . site_url() . 'home');
@@ -45,6 +41,9 @@ class Calender extends CI_Controller {
         if (isset($get['error']) && $get['error'] == "access_denied") {
             header('location:' . site_url() . 'app/calender');
         } else if (isset($get['code']) && $get['code'] != "") {
+            echo '<pre>';
+            print_r($get);
+            die();
             $uid = $this->input->cookie('userid', TRUE);
             delete_cookie('userid', '.wish-fish.com', '/');
             $this->session->set_userdata('u_userid', $this->encryption->decode($uid));
