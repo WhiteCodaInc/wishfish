@@ -19,7 +19,8 @@
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="box-header">
-                        <h3 class="box-title">Email List</h3>
+                        <h3 style="float: left" class="box-title">Email List</h3>
+                        <a class="btn btn-primary" style="" href="<?= site_url() ?>example.csv" target="_blank">Download Sample File</a> 
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     <?php $method = (isset($group)) ? "updateList" : "createList"; ?>
@@ -35,7 +36,7 @@
                                             <button class="btn btn-success" type="submit" id="csv">Upload</button>
                                         </div>
                                         <div class="col-md-5" style="text-align: right">
-                                            <a class="btn btn-primary" href="<?= site_url() ?>example.csv" target="_blank">Download Sample File</a> 
+
                                         </div>
                                     </div>
                                     <div class="form-group">
