@@ -39,6 +39,7 @@ class Affiliates extends CI_Controller {
             $data['groups'] = $this->objgroup->getAffiliateGroups();
             $data['zodiac'] = $this->common->getZodiacs();
             $data['offers'] = $this->objoffer->getOffers();
+            $data['payout'] = $this->objpayout->getPayout(2);
             $data['p'] = $this->p;
             $this->load->view('admin/admin_header');
             $this->load->view('admin/admin_top');

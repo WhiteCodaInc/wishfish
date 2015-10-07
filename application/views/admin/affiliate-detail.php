@@ -243,17 +243,14 @@
                                             <td>
                                                 <a href="javascript:void(0);" 
                                                    data-payout_id ="<?= $value->payout_id ?>" 
-                                                   data-normal ="<?= $value->normal ?>" 
-                                                   data-upsell ="<?= $value->upsell ?>" 
-                                                   data-recurring ="<?= $value->recurring ?>" 
                                                    class="create btn bg-navy btn-xs edit"
                                                    data-toggle="modal"
                                                    data-target="#payout-modal">
                                                     <i class="fa fa-pencil-square-o"></i> Edit
                                                 </a>
-                                                <a href="<?= site_url() ?>admin/affiliates/editSetting/<?= $value->affiliate_id ?>" class="create btn bg-navy btn-xs edit">
+    <!--                                                <a href="<?= site_url() ?>admin/affiliates/editSetting/<?= $value->affiliate_id ?>" class="create btn bg-navy btn-xs edit">
                                                     <i class="fa fa-pencil-square-o"></i> Payout Setting
-                                                </a>
+                                                </a>-->
                                             </td>
                                         </tr>
                                     <?php } ?>
@@ -292,41 +289,48 @@
 <div class="modal fade" id="payout-modal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" style="max-width: 400px">
         <div class="modal-content">
-            <form id="payoutForm" role="form" action="<?= site_url() ?>admin/payout/updateSetting"  method="post">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title"></h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label>Payout On Immediate Purchase </label>
-                        <input value=""  type="number" name="normal" class="form-control" placeholder="PER(%)" required="" />
-                    </div>
-                    <div class="form-group">
-                        <label>Payout On Upsell Purchase </label>
-                        <input value=""  type="number" name="upsell" class="form-control" placeholder="PER(%)" required="" />
-                    </div>
-                    <div class="form-group">
-                        <label>Payout On Recurring Purchase </label>
-                        <input value=""  type="number" name="recurring" class="form-control" placeholder="PER(%)" required="" />
-                    </div>
-                    <div class="form-group">
-                        <span style="color: red;" id="msgPayout"></span>
-                    </div>
-                </div>
-                <div class="modal-footer clearfix">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <button type="submit" class="btn btn-primary pull-left">Save</button>
+            <form id="payoutForm" role="form" action="<?= site_url() ?>admin/affiliates/updateSetting" method="post">
+                <div class="box box-primary">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <div style="float: left;padding-right: 5px;cursor: pointer">
+                                <input type="radio" value="global"  name="payouttype"  class="simple form-control">                          
+                                <span class="lbl padding-8">Global&nbsp;</span>
+                            </div>
+                            <div style="float: left;padding:0 5px;cursor: pointer">
+                                <input type="radio" value="aff"  name="payouttype" class="simple form-control">
+                                <span  class="lbl padding-8">Affiliate Specific&nbsp;</span>
+                            </div>
+                            <div style="float: left;padding:0 5px;cursor: pointer">
+                                <input type="radio" value="offer"  name="payouttype" class="simple form-control">
+                                <span  class="lbl padding-8">Offer Specific&nbsp;</span>
+                            </div>
+                        </div><br/>
+                        <div class="aff-specific">
+                            <div class="form-group">
+                                <label>Payout On Immediate Purchase </label>
+                                <input value="<?= $payout->normal ?>"  type="number" name="normal" class="form-control" placeholder="PER(%)" />
+                            </div>
+                            <div class="form-group">
+                                <label>Payout On Upsell Purchase </label>
+                                <input value="<?= $payout->upsell ?>"  type="number" name="upsell" class="form-control" placeholder="PER(%)" />
+                            </div>
+                            <div class="form-group">
+                                <label>Payout On Recurring Purchase </label>
+                                <input value="<?= $payout->recurring ?>"  type="number" name="recurring" class="form-control" placeholder="PER(%)" />
+                            </div>
                         </div>
-                        <div class="col-md-3">
-                            <button type="button" class="btn btn-danger discard" data-dismiss="modal">
-                                <i class="fa fa-times"></i> Discard
-                            </button>
+                        <div class="form-group">
+                            <span style="color: red;" id="msgPayout"></span>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-primary pull-left save">Update</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <input type="hidden" name="payoutid" value="" />
+                <input type="hidden" name="affid" value="<?= $affInfo->affiliate_id ?>" />
             </form>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -455,6 +459,27 @@ switch ($msg) {
                 $('input[name="upsell"]').val($(this).attr('data-upsell'));
                 $('input[name="recurring"]').val($(this).attr('data-recurring'));
             });
+
+            $('input[name="payouttype"]').change(function () {
+                $('#msgPayout').empty();
+                if ($(this).val() == "aff") {
+                    $('.aff-specific').show();
+                    $('.offer-specific').hide();
+                    $('.offer-specific input').prop('disabled', true);
+                    $('.aff-specific input').prop('disabled', false);
+                } else if ($(this).val() == "offer") {
+                    $('.offer-specific').show();
+                    $('.aff-specific').hide();
+                    $('.offer-specific input').prop('disabled', false);
+                    $('.aff-specific input').prop('disabled', true);
+                } else {
+                    $('.aff-specific').hide();
+                    $('.offer-specific').hide();
+                    $('.offer-specific input').prop('disabled', true);
+                    $('.aff-specific input').prop('disabled', true);
+                }
+            });
+            $('input[name="payouttype"]:checked').trigger('change');
 
             $('button.add').click(function (e) {
                 action($(this).val());
