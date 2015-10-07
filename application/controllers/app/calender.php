@@ -227,9 +227,11 @@ class Calender extends CI_Controller {
 //---------------Google Calender Event Function---------------------------//
 
     function connect() {
-        echo ($this->setClient()) ? "TRUE" : "FALSE";
-//        $this->setClient();
-//        header('location:' . $this->client->createAuthUrl());
+        if ($this->setClient()) {
+            header('location:' . $this->client->createAuthUrl());
+        } else {
+            header('location:' . site_url() . 'app/setting');
+        }
     }
 
     function setClient() {
@@ -253,7 +255,6 @@ class Calender extends CI_Controller {
             $this->service = new Google_CalendarService($this->client);
             return TRUE;
         } else {
-            header('location:' . site_url() . 'app/setting');
             return FALSE;
         }
     }
