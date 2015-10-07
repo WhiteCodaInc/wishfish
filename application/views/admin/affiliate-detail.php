@@ -299,44 +299,40 @@
                     <h4 class="modal-title"></h4>
                 </div>
                 <div class="modal-body">
-                    <div class="box box-primary">
-                        <div class="box-body">
-                            <div class="form-group">
-                                <div style="float: left;padding-right: 5px;cursor: pointer">
-                                    <input type="radio" value="global"  name="payouttype"  class="simple form-control">                          
-                                    <span class="lbl padding-8">Global&nbsp;</span>
-                                </div>
-                                <div style="float: left;padding:0 5px;cursor: pointer">
-                                    <input type="radio" value="aff"  name="payouttype" class="simple form-control">
-                                    <span  class="lbl padding-8">Affiliate Specific&nbsp;</span>
-                                </div>
-                                <div style="float: left;padding:0 5px;cursor: pointer">
-                                    <input type="radio" value="offer"  name="payouttype" class="simple form-control">
-                                    <span  class="lbl padding-8">Offer Specific&nbsp;</span>
-                                </div>
-                            </div><br/>
-                            <div class="aff-specific" style="display: none">
-                                <div class="form-group">
-                                    <label>Payout On Immediate Purchase </label>
-                                    <input value=""  type="number" name="normal" class="form-control" placeholder="PER(%)" />
-                                </div>
-                                <div class="form-group">
-                                    <label>Payout On Upsell Purchase </label>
-                                    <input value=""  type="number" name="upsell" class="form-control" placeholder="PER(%)" />
-                                </div>
-                                <div class="form-group">
-                                    <label>Payout On Recurring Purchase </label>
-                                    <input value=""  type="number" name="recurring" class="form-control" placeholder="PER(%)" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <span style="color: red;" id="msgPayout"></span>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <button type="submit" class="btn btn-primary pull-left save">Update</button>
-                                </div>
-                            </div>
+                    <div class="form-group">
+                        <div style="float: left;padding-right: 5px;cursor: pointer">
+                            <input type="radio" value="global"  name="payouttype"  class="simple form-control">                          
+                            <span class="lbl padding-8">Global&nbsp;</span>
+                        </div>
+                        <div style="float: left;padding:0 5px;cursor: pointer">
+                            <input type="radio" value="aff"  name="payouttype" class="simple form-control">
+                            <span  class="lbl padding-8">Affiliate Specific&nbsp;</span>
+                        </div>
+                        <div style="float: left;padding:0 5px;cursor: pointer">
+                            <input type="radio" value="offer"  name="payouttype" class="simple form-control">
+                            <span  class="lbl padding-8">Offer Specific&nbsp;</span>
+                        </div>
+                    </div><br/>
+                    <div class="aff-specific" style="display: none">
+                        <div class="form-group">
+                            <label>Payout On Immediate Purchase </label>
+                            <input value=""  type="number" name="normal" class="form-control" placeholder="PER(%)" />
+                        </div>
+                        <div class="form-group">
+                            <label>Payout On Upsell Purchase </label>
+                            <input value=""  type="number" name="upsell" class="form-control" placeholder="PER(%)" />
+                        </div>
+                        <div class="form-group">
+                            <label>Payout On Recurring Purchase </label>
+                            <input value=""  type="number" name="recurring" class="form-control" placeholder="PER(%)" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <span style="color: red;" id="msgPayout"></span>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-primary pull-left save">Update</button>
                         </div>
                     </div>
                 </div>
@@ -498,6 +494,37 @@ switch ($msg) {
                     $('.aff-specific').hide();
                     $('.aff-specific input').prop('disabled', true);
                 }
+            });
+
+            $('#payoutForm').submit(function () {
+                $button = $('#payoutForm button:submit');
+
+                var type = $('input[name="payouttype"]:checked').val();
+                var normal = $('input[name="normal"]').val();
+                var upsell = $('input[name="upsell"]').val();
+                var recur = $('input[name="recurring"]').val();
+
+                if (type == "aff") {
+                    if (normal.trim() == "" || normal < 0 || normal > 100) {
+                        $('#msgPayout').text("Invalid Immediate Purchase Value..!");
+                        return false;
+                    } else {
+                        $('#msgPayout').empty();
+                    }
+                    if (upsell.trim() == "" || upsell < 0 || upsell > 100) {
+                        $('#msgPayout').text("Invalid Immediate Purchase Value..!");
+                        return false;
+                    } else {
+                        $('#msgPayout').empty();
+                    }
+                    if (recur.trim() == "" || recur < 0 || recur > 100) {
+                        $('#msgPayout').text("Invalid Recurring Purchase Value..!");
+                        return false;
+                    } else {
+                        $('#msgPayout').empty();
+                    }
+                }
+                $button.prop('disabled', true);
             });
 
 
