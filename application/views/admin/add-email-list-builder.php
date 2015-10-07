@@ -23,8 +23,31 @@
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     <?php $method = (isset($group)) ? "updateList" : "createList"; ?>
-                    <form id="emailForm" role="form" action="<?= site_url() . "admin/email_list_builder/" . $method ?>" method="post">
-                        <div class="box-body">
+
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-xs-12"  style="margin: 2% 0;">
+                                <form id="csv_form" action="<?= site_url() ?>app/csv/importcsv" enctype="multipart/form-data" method="post">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <input name="upload"  type="file" class="form-control" />
+                                        </div>
+                                        <div class="col-md-1">
+                                            <button class="btn btn-success" type="submit" id="csv">Upload</button>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div style="display: none;margin-top: 10px;" class="calert">
+                                                <span style="color: red" class="errorMsg"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3" style="text-align: right">
+                                            <a class="btn btn-primary" href="<?= site_url() ?>example.csv" target="_blank">Download Sample File</a> 
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <form id="emailForm" role="form" action="<?= site_url() . "admin/email_list_builder/" . $method ?>" method="post">
                             <div class="form-group">
                                 <label for="group name">Email List Name</label>
                                 <input type="text" value="<?= isset($group) ? $group->group_name : '' ?>" name="group_name" autofocus="autofocus" class="form-control" placeholder="Email List Name" />
@@ -56,12 +79,11 @@
                                     <?php endif; ?>
                                 </div>
                             </div>
-                        </div><!-- /.box-body -->
-
-                        <input type="hidden" name="groupid" value="<?= isset($group) ? $group->group_id : '' ?>" />
-                        <input type="hidden" name="type" value="email" />
-                        <input type="hidden" name="updateType" value="<?= isset($subgroup) ? "group" : "contact" ?>" />
-                    </form>
+                            <input type="hidden" name="groupid" value="<?= isset($group) ? $group->group_id : '' ?>" />
+                            <input type="hidden" name="type" value="email" />
+                            <input type="hidden" name="updateType" value="<?= isset($subgroup) ? "group" : "contact" ?>" />
+                        </form>
+                    </div><!-- /.box-body -->
                 </div><!-- /.box -->
             </div><!--/.col (left) -->
             <div class="col-md-3"></div>
