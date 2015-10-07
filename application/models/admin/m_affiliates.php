@@ -148,6 +148,12 @@ class M_affiliates extends CI_Model {
                 str_replace(array('(', ')', ' ', '-'), '', $set['code'] . $set['phone']) :
                 NULL;
         unset($set['code']);
+
+        $payout = $this->db->get_where('payout_setting', array('payout_id' => 1))->row();
+        $set['normal_payout'] = $payout->normal;
+        $set['upsell_payout'] = $payout->upsell;
+        $set['recurring_payout'] = $payout->recurring;
+
         $this->db->insert('affiliate_detail', $set);
         $insertid = $this->db->insert_id();
         $m = "I";
