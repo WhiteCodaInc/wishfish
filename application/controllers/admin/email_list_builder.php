@@ -172,6 +172,7 @@ class Email_list_builder extends CI_Controller {
 
                 if ($this->csvimport->get_array($file_path)) {
                     $csv_array = $this->csvimport->get_array($file_path);
+                    echo '<pre>';
                     foreach ($csv_array as $row) {
                         $set = array(
                             'fname' => ($row['firstname'] != "") ? $row['firstname'] : NULL,
@@ -179,9 +180,11 @@ class Email_list_builder extends CI_Controller {
                             'email' => ($row['email'] != "") ? $row['email'] : NULL,
                             'phone' => ($row['phone'] != "") ? "+" . $row['phone'] : NULL,
                         );
-                        $this->objbuilder->addEmailList($set, $gid);
+                        print_r($set);
+//                        $this->objbuilder->addEmailList($set, $gid);
                     }
                     unlink($file_path);
+                    die();
                 }
             }
         }
