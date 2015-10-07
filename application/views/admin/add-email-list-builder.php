@@ -23,25 +23,24 @@
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     <?php $method = (isset($group)) ? "updateList" : "createList"; ?>
-
                     <div class="box-body">
                         <div class="row">
                             <div class="col-xs-12"  style="margin: 2% 0;">
                                 <form id="csv_form" action="<?= site_url() ?>app/csv/importcsv" enctype="multipart/form-data" method="post">
                                     <div class="row">
-                                        <div class="col-md-3">
+                                        <div class="col-md-6">
                                             <input name="upload"  type="file" class="form-control" />
                                         </div>
                                         <div class="col-md-1">
                                             <button class="btn btn-success" type="submit" id="csv">Upload</button>
                                         </div>
-                                        <div class="col-md-5">
-                                            <div style="display: none;margin-top: 10px;" class="calert">
-                                                <span style="color: red" class="errorMsg"></span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3" style="text-align: right">
+                                        <div class="col-md-5" style="text-align: right">
                                             <a class="btn btn-primary" href="<?= site_url() ?>example.csv" target="_blank">Download Sample File</a> 
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div style="display: none;margin-top: 10px;" class="calert">
+                                            <span style="color: red" class="errorMsg">Hello</span>
                                         </div>
                                     </div>
                                 </form>
