@@ -100,7 +100,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
 
-        var isValid = true;
+        var isValid = false;
         $("#csv_form input:file").change(function () {
             $("#csv_form span.errorMsg").empty(); // To remove the previous error message
             var file = this.files[0];
