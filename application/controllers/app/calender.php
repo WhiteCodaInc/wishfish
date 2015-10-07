@@ -13,6 +13,8 @@
  */
 class Calender extends CI_Controller {
 
+    private $client;
+
     //put your code here
     function __construct() {
         parent::__construct();
