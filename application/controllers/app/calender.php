@@ -296,7 +296,7 @@ class Calender extends CI_Controller {
         try {
             if ($this->refresh()) {
                 $calendarList = $this->service->calendarList->listCalendarList();
-                echo '<pre>';
+//                echo '<pre>';
 //            print_r($calendarList);
 //            die();
                 foreach ($calendarList->items as $calendarListEntry) {
@@ -396,18 +396,23 @@ class Calender extends CI_Controller {
             $timestamp = $this->timezone_by_offset($timezone);
             date_default_timezone_set($timestamp);
             $events = $this->objcal->loadLocalEvent();
-            echo '<pre>';
-            print_r($events);
-            die();
+//            echo '<pre>';
+//            print_r($events);
+//            die();
             foreach ($events as $ev) {
                 $eventDt = $ev['date'] . ' ' . $ev['time'];
                 $ev_dt = date(DATE_RFC3339, strtotime($eventDt));
                 switch ($ev['group_type']) {
                     case 'individual':
-                        $contactInfo = $this->wi_common->getContactInfo($ev['contact_id']);
+                        $uInfo = ($ev['notify'] == "them") ?
+                                $this->wi_common->getContactInfo($ev['contact_id']) :
+                                $this->wi_common->getUserInfo($ev['contact_id']);
+                        $name = ($ev['notify'] == "them") ?
+                                $uInfo->fname . ' ' . $uInfo->lname :
+                                $uInfo->name;
                         $attendee = new Google_EventAttendee();
-                        $attendee->setEmail($contactInfo->email);
-                        $attendee->setDisplayName($contactInfo->fname . ' ' . $contactInfo->lname);
+                        $attendee->setEmail($uInfo->email);
+                        $attendee->setDisplayName($name);
                         break;
                     case 'simple':
                         $res = $this->objtrigger->getGroupContact($ev['group_id']);
