@@ -475,7 +475,6 @@ switch ($msg) {
                 $('.modal-title').text(title);
                 $('input[name="affid"]').val(aid);
                 if (pid == '2') {
-                    
                     $('input[name="normal"]').val($(this).attr('data-normal'));
                     $('input[name="upsell"]').val($(this).attr('data-upsell'));
                     $('input[name="recurring"]').val($(this).attr('data-recurring'));
@@ -486,6 +485,7 @@ switch ($msg) {
                     $('input[name="recurring"]').val("<?= $payout->recurring ?>");
                     $('aff-specific').hide();
                 }
+                $('input[name="payouttype"]:checked').trigger('change');
 
             });
 
@@ -499,7 +499,7 @@ switch ($msg) {
                     $('.aff-specific input').prop('disabled', true);
                 }
             });
-            $('input[name="payouttype"]:checked').trigger('change');
+
 
             $('button.add').click(function (e) {
                 action($(this).val());
