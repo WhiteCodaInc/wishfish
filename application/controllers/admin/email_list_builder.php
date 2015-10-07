@@ -151,4 +151,51 @@ class Email_list_builder extends CI_Controller {
 //        $msg = ($type == "contacts") ? "DC" : "DG";
 //        header('location:' . site_url() . 'admin/email_list_builder/getGroupInfo?msg=' . $msg . '&id=' . $post['groupid']);
 //    }
+
+    function importcsv() {
+        if (!empty($_FILES)) {
+            $error = "";
+            $config['upload_path'] = FCPATH . 'uploads/';
+            $config['allowed_types'] = '*';
+            $config['max_size'] = '1000';
+
+            $this->load->library('upload', $config);
+
+            if (!$this->upload->do_upload('upload')) {
+                $error = $this->upload->display_errors();
+            } else {
+                $file_data = $this->upload->data();
+                $file_path = FCPATH . 'uploads/' . $file_data['file_name'];
+
+                $contacts = array();
+
+                if ($this->csvimport->get_array($file_path)) {
+                    $csv_array = $this->csvimport->get_array($file_path);
+
+                    foreach ($csv_array as $row) {
+                        $set = array(
+                            'fname' => ($row['firstname'] != "") ? $row['firstname'] : NULL,
+                            'lname' => ($row['lastname'] != "") ? $row['lastname'] : NULL,
+                            'email' => ($row['email'] != "") ? $row['email'] : NULL,
+                            'phone' => ($row['phone'] != "") ? $row['phone'] : NULL,
+                        );
+
+                        $contactid = $this->objbuilder->getGroupContact($set);
+                    }
+                    unlink($file_path);
+                } else {
+                    $error = "Error occur during importing contact..! Try Again..!";
+                    $data['contacts'] = $contacts;
+                }
+            }
+            $this->session->set_flashdata('error', $error);
+            $this->load->view('dashboard/header');
+            $this->load->view('dashboard/top');
+            $this->load->view('dashboard/csv', $data);
+            $this->load->view('dashboard/footer');
+        } else {
+            header('location:' . site_url() . 'app/csv');
+        }
+    }
+
 }

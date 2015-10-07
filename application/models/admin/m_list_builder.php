@@ -99,7 +99,9 @@ class M_list_builder extends CI_Model {
     }
 
     function updateList($set) {
-
+        echo '<pre>';
+        print_r($set);
+        die();
         $type = $set['updateType'];
         $gid = $set['groupid'];
 
@@ -227,6 +229,11 @@ class M_list_builder extends CI_Model {
             $this->db->delete('subgroup', array('group_id' => $post['groupid']));
         }
         return TRUE;
+    }
+
+    function addContact($set) {
+        $this->db->insert('contact_detail', $set);
+        return $this->db->insert_id();
     }
 
 }

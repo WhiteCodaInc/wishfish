@@ -8,7 +8,7 @@
         <button type="button" id="addEmailBuilder" class="btn btn-primary">
             <?= isset($group) ? "Save Current Email List" : "Create New Email List" ?>
         </button>
-        <a  class="btn btn-info add" href="<?= site_url() ?>example.csv" target="_blank">Download Sample File</a> 
+        <a  class="btn btn-info add" href="<?= site_url() ?>email_list.csv" target="_blank">Download Sample File</a> 
     </section>
 
     <!-- Main content -->
