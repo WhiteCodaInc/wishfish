@@ -253,8 +253,8 @@ class Calender extends CI_Controller {
             $this->service = new Google_CalendarService($this->client);
             return TRUE;
         } else {
+            header('location:' . site_url() . 'app/setting');
             return FALSE;
-//            header('location:' . site_url() . 'app/setting');
         }
     }
 
