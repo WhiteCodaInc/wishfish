@@ -19,8 +19,13 @@
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="box-header">
-                        <h3 style="float: left" class="box-title">Email List</h3>
-                        <a class="btn btn-primary" style="" href="<?= site_url() ?>example.csv" target="_blank">Download Sample File</a> 
+                        <div class="form-grop" style="float: left">
+                            <h3 class="box-title">Email List</h3>
+                        </div>
+                        <div class="form-grop">
+                            <a class="btn btn-primary" style="" href="<?= site_url() ?>example.csv" target="_blank">Download Sample File</a> 
+                        </div>
+
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     <?php $method = (isset($group)) ? "updateList" : "createList"; ?>
