@@ -14,6 +14,12 @@
         <h1 style=" display: none">
             Affiliates
         </h1>
+        <?php if ($p->affi): ?>
+            <a style="float: left" href="<?= site_url() ?>admin/affiliates/addAffiliate" class="btn btn-success btn-sm create">
+                <i class="fa fa-plus"></i>
+                Create New Affiliate
+            </a>
+        <?php endif; ?>
         <?php if ($p->affu): ?>
             <button value="Active" class="add btn btn-success btn-sm" id="Active" type="button" >Active</button>
             <button value="Deactive" class="remove btn btn-warning btn-sm" id="Deactive" type="button" >Deactivate</button>
