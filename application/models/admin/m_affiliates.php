@@ -154,6 +154,9 @@ class M_affiliates extends CI_Model {
         $set['upsell_payout'] = $payout->upsell;
         $set['recurring_payout'] = $payout->recurring;
 
+        (isset($set['password'])) ?
+                        $set['password'] = sha1($set['password']) : NULL;
+
         $this->db->insert('affiliate_detail', $set);
         $insertid = $this->db->insert_id();
         $m = "I";
