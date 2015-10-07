@@ -99,9 +99,7 @@ class M_list_builder extends CI_Model {
     }
 
     function updateList($set) {
-        echo '<pre>';
-        print_r($set);
-        die();
+
         $type = $set['updateType'];
         $gid = $set['groupid'];
 
