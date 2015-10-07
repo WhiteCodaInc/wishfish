@@ -242,7 +242,7 @@
                                             <td><?= $value->offer_name ?></td>
                                             <td>
                                                 <a href="javascript:void(0);" 
-                                                   data-payout_id ="<?= $value->payout_id ?>" 
+                                                   data-payout_id ="<?= $value->payout_type ?>" 
                                                    class="create btn bg-navy btn-xs edit"
                                                    data-toggle="modal"
                                                    data-target="#payout-modal">
