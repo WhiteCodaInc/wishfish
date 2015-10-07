@@ -285,7 +285,7 @@
 </style>
 <!--<a class="btn btn-block btn-primary" data-toggle="modal" data-target="#mail-body"></a>-->
 <div class="modal fade" id="mail-body" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" style="min-width: 294px;max-width: 600px">
+    <div class="modal-dialog" style="min-width: 294px;max-width: 750px">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
