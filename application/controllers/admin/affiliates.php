@@ -130,19 +130,19 @@ class Affiliates extends CI_Controller {
         }
     }
 
-    function editSetting($aid) {
-        if ($this->p->affs) {
-            $data['affInfo'] = $this->common->getAffInfo($aid);
-            $data['payout'] = $this->objpayout->getPayout(2);
-            $this->load->view('admin/admin_header');
-            $this->load->view('admin/admin_top');
-            $this->load->view('admin/admin_navbar');
-            $this->load->view('admin/edit-payout-setting', $data);
-            $this->load->view('admin/admin_footer');
-        } else {
-            header('location:' . site_url() . 'admin/dashboard/error/500');
-        }
-    }
+//    function editSetting($aid) {
+//        if ($this->p->affs) {
+//            $data['affInfo'] = $this->common->getAffInfo($aid);
+//            $data['payout'] = $this->objpayout->getPayout(2);
+//            $this->load->view('admin/admin_header');
+//            $this->load->view('admin/admin_top');
+//            $this->load->view('admin/admin_navbar');
+//            $this->load->view('admin/edit-payout-setting', $data);
+//            $this->load->view('admin/admin_footer');
+//        } else {
+//            header('location:' . site_url() . 'admin/dashboard/error/500');
+//        }
+//    }
 
     function updateSetting() {
         if ($this->p->affs) {
