@@ -232,8 +232,8 @@ class Calender extends CI_Controller {
 
     function connect() {
         if ($this->setClient()) {
-            echo $this->client->createAuthUrl();
-            die();
+//            echo $this->client->createAuthUrl();
+//            die();
             header('location:' . $this->client->createAuthUrl());
         } else {
             header('location:' . site_url() . 'app/setting');
