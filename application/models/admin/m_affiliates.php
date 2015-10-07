@@ -316,9 +316,9 @@ class M_affiliates extends CI_Model {
     }
 
     function updateSetting($post) {
-        echo '<pre>';
-        print_r($post);
-        die();
+//        echo '<pre>';
+//        print_r($post);
+//        die();
 
         $row = $this->db->get_where('payout_setting', array('payout_id' => 1))->row();
 
@@ -342,9 +342,9 @@ class M_affiliates extends CI_Model {
             case "offer":
                 $set = array(
                     'payout_type' => 3,
-                    'normal_payout' => $post['normal'],
-                    'upsell_payout' => $post['upsell'],
-                    'recurring_payout' => $post['recurring']
+                    'normal_payout' => NULL,
+                    'upsell_payout' => NULL,
+                    'recurring_payout' => NULL
                 );
                 break;
         }
