@@ -227,8 +227,9 @@ class Calender extends CI_Controller {
 //---------------Google Calender Event Function---------------------------//
 
     function connect() {
-        $this->setClient();
-        header('location:' . $this->client->createAuthUrl());
+        echo ($this->setClient()) ? "TRUE" : "FALSE";
+//        $this->setClient();
+//        header('location:' . $this->client->createAuthUrl());
     }
 
     function setClient() {
