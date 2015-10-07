@@ -75,6 +75,9 @@
                                 <label>Affiliate Avatar</label>
                                 <input name="affiliate_avatar"  type="file" class="form-control" />
                             </div>
+                            <div class="form-group" style="display: none">
+                                <button type="submit"></button>
+                            </div>
                         </div><!-- /.box-body -->
                         <input value="" name="zodiac" type="hidden" class="form-control" >
                         <input value="" name="age" type="hidden" class="form-control" >
@@ -130,9 +133,6 @@
                         }
                     }
                 });
-            } else {
-                $('input[name="zodiac"]').val('');
-                $('input[name="age"]').val('');
             }
         });
 
@@ -145,7 +145,9 @@
         });
 
         $('#affiliate').click(function () {
-            $('#affiliateForm').submit();
+            if (!affEmail)
+                return false;
+            $('button:submit', $form).trigger('click');
         });
 
         $('input[name="birthday"]', $form).focusout(function () {
