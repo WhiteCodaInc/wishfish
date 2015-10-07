@@ -38,6 +38,7 @@ class Affiliates extends CI_Controller {
             $data['affiliates'] = $this->objaffiliate->getAffiliateDetail();
             $data['groups'] = $this->objgroup->getAffiliateGroups();
             $data['zodiac'] = $this->common->getZodiacs();
+            $data['offers'] = $this->objoffer->getOffers();
             $data['p'] = $this->p;
             $this->load->view('admin/admin_header');
             $this->load->view('admin/admin_top');
@@ -53,6 +54,7 @@ class Affiliates extends CI_Controller {
         $data['searchResult'] = $this->objaffiliate->searchResult();
         $data['groups'] = $this->objgroup->getAffiliateGroups();
         $data['zodiac'] = $this->common->getZodiacs();
+        $data['offers'] = $this->objoffer->getOffers();
         $data['p'] = $this->p;
         $this->load->view('admin/admin_header');
         $this->load->view('admin/admin_top');
