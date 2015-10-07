@@ -70,7 +70,7 @@ class M_profile extends CI_Model {
                     NULL;
         }
         $set['is_bill'] = (isset($set['is_bill'])) ? 1 : 0;
-
+        $this->session->userdata('u_date_format', $set['date_format']);
         if ($this->isEmailChange($set['email'])) {
             $set['email_verification'] = 0;
             $this->sendActivationLink($set['email']);
