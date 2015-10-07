@@ -293,42 +293,48 @@
     <div class="modal-dialog" style="max-width: 400px">
         <div class="modal-content">
             <form id="payoutForm" role="form" action="<?= site_url() ?>admin/affiliates/updateSetting" method="post">
-                <div class="box box-primary">
-                    <div class="box-body">
-                        <div class="form-group">
-                            <div style="float: left;padding-right: 5px;cursor: pointer">
-                                <input type="radio" value="global"  name="payouttype"  class="simple form-control">                          
-                                <span class="lbl padding-8">Global&nbsp;</span>
-                            </div>
-                            <div style="float: left;padding:0 5px;cursor: pointer">
-                                <input type="radio" value="aff"  name="payouttype" class="simple form-control">
-                                <span  class="lbl padding-8">Affiliate Specific&nbsp;</span>
-                            </div>
-                            <div style="float: left;padding:0 5px;cursor: pointer">
-                                <input type="radio" value="offer"  name="payouttype" class="simple form-control">
-                                <span  class="lbl padding-8">Offer Specific&nbsp;</span>
-                            </div>
-                        </div><br/>
-                        <div class="aff-specific">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="box box-primary">
+                        <div class="box-body">
                             <div class="form-group">
-                                <label>Payout On Immediate Purchase </label>
-                                <input value="<?= $payout->normal ?>"  type="number" name="normal" class="form-control" placeholder="PER(%)" />
+                                <div style="float: left;padding-right: 5px;cursor: pointer">
+                                    <input type="radio" value="global"  name="payouttype"  class="simple form-control">                          
+                                    <span class="lbl padding-8">Global&nbsp;</span>
+                                </div>
+                                <div style="float: left;padding:0 5px;cursor: pointer">
+                                    <input type="radio" value="aff"  name="payouttype" class="simple form-control">
+                                    <span  class="lbl padding-8">Affiliate Specific&nbsp;</span>
+                                </div>
+                                <div style="float: left;padding:0 5px;cursor: pointer">
+                                    <input type="radio" value="offer"  name="payouttype" class="simple form-control">
+                                    <span  class="lbl padding-8">Offer Specific&nbsp;</span>
+                                </div>
+                            </div><br/>
+                            <div class="aff-specific">
+                                <div class="form-group">
+                                    <label>Payout On Immediate Purchase </label>
+                                    <input value="<?= $payout->normal ?>"  type="number" name="normal" class="form-control" placeholder="PER(%)" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Payout On Upsell Purchase </label>
+                                    <input value="<?= $payout->upsell ?>"  type="number" name="upsell" class="form-control" placeholder="PER(%)" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Payout On Recurring Purchase </label>
+                                    <input value="<?= $payout->recurring ?>"  type="number" name="recurring" class="form-control" placeholder="PER(%)" />
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label>Payout On Upsell Purchase </label>
-                                <input value="<?= $payout->upsell ?>"  type="number" name="upsell" class="form-control" placeholder="PER(%)" />
+                                <span style="color: red;" id="msgPayout"></span>
                             </div>
-                            <div class="form-group">
-                                <label>Payout On Recurring Purchase </label>
-                                <input value="<?= $payout->recurring ?>"  type="number" name="recurring" class="form-control" placeholder="PER(%)" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <span style="color: red;" id="msgPayout"></span>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2">
-                                <button type="submit" class="btn btn-primary pull-left save">Update</button>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <button type="submit" class="btn btn-primary pull-left save">Update</button>
+                                </div>
                             </div>
                         </div>
                     </div>
