@@ -18,9 +18,11 @@ class Calender extends CI_Controller {
     //put your code here
     function __construct() {
         parent::__construct();
-        $code = $this->input->get('code');
+//        $code = $this->input->get('code');
 //        echo $code;
-//        die();
+        echo '<pre>';
+        print_r($this->input->get());
+        die();
         if ($code == "") {
             if (!$this->wi_authex->logged_in()) {
                 header('location:' . site_url() . 'home');
