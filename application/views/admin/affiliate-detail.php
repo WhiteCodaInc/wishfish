@@ -362,10 +362,10 @@ switch ($msg) {
         $m = "Affiliate Profile Successfully Deactivated..!";
         $t = "success";
         break;
-//    case "I":
-//        $m = "Affiliate Profile Successfully Created..!";
-//        $t = "success";
-//        break;
+    case "I":
+        $m = "Affiliate Profile Successfully Created..!";
+        $t = "success";
+        break;
     case "U":
         $m = "Affiliate Profile Successfully Updated..!";
         $t = "success";
@@ -400,7 +400,7 @@ switch ($msg) {
 }
 ?>
 <script type="text/javascript">
-<?php if ($msg): ?>
+<?php if ($m): ?>
         alertify.<?= $t ?>("<?= $m ?>");
 <?php endif; ?>
     $('.input-daterange').datepicker({
