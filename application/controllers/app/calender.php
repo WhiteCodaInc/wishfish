@@ -41,10 +41,10 @@ class Calender extends CI_Controller {
         if (isset($get['error']) && $get['error'] == "access_denied") {
             header('location:' . site_url() . 'app/calender');
         } else if (isset($get['code']) && $get['code'] != "") {
-//            echo '<pre>';
-//            print_r($get);
-//            die();
-            $uid = $this->input->cookie('userid', TRUE);
+            echo '<pre>';
+            print_r($get);
+            die();
+            $uid = $this->input->cookie('user', TRUE);
             delete_cookie('userid', '.wish-fish.com', '/');
             $this->session->set_userdata('u_userid', $this->encryption->decode($uid));
             $this->setClient();
@@ -231,8 +231,13 @@ class Calender extends CI_Controller {
 
     function connect() {
         if ($this->setClient()) {
-//            echo $this->client->createAuthUrl();
-//            die();
+            $userid = array(
+                'name' => 'user',
+                'value' => $this->encryption->encode($this->session->userdata('u_userid')),
+                'expire' => time() + (3600 * 24),
+                'domain' => '.wish-fish.com'
+            );
+            $this->input->set_cookie($userid);
             header('location:' . $this->client->createAuthUrl());
         } else {
             header('location:' . site_url() . 'app/setting');
