@@ -2314,9 +2314,7 @@ Component: timeline
     Component: Mailbox
 */
 .mailbox .table-mailbox {
-    border-left: 1px solid #ddd;
-    border-right: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
+    border: 1px solid #ddd;
 }
 .mailbox .table-mailbox tr.unread > td {
     background-color: rgba(0, 0, 0, 0.05);

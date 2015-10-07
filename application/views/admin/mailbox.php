@@ -25,7 +25,7 @@
                 <div class="box box-solid">
                     <div class="box-body">
                         <div class="row">
-                            <div class="col-md-3 col-sm-4">
+                            <div class="col-md-2">
                                 <!-- BOXES are complex enough to move the .box-header around.
                                      This is an example of having the box header within the box body -->
                                 <div class="box-header">
@@ -74,7 +74,7 @@
                                     </ul>
                                 </div>
                             </div><!-- /.col (LEFT) -->
-                            <div class="col-md-9 col-sm-8">
+                            <div class="col-md-10">
                                 <form name="checkForm" id="checkForm" action="<?= site_url() ?>admin/mailbox/action" method="post">
                                     <div class="row pad" style="padding: 10px 0;">
                                         <div class="col-sm-10">
