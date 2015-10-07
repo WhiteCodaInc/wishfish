@@ -462,6 +462,9 @@ switch ($msg) {
             $('a.edit').click(function () {
                 var aid = $(this).attr('data-aff_id');
                 var pid = $(this).attr('data-payout_id');
+
+                $('#payoutForm input:radio:nth(' + pid + ')').prop('checked', true);
+
                 var title = (pid == '1') ?
                         "GLOBAL" : ((pid == '2') ? "AFFILIATE SPECIFIC" : "OFFER SPECIFIC");
                 $('.modal-title').text(title);
