@@ -318,15 +318,15 @@
                             <div class="aff-specific" style="display: none">
                                 <div class="form-group">
                                     <label>Payout On Immediate Purchase </label>
-                                    <input value="<?= $payout->normal ?>"  type="number" name="normal" class="form-control" placeholder="PER(%)" />
+                                    <input value=""  type="number" name="normal" class="form-control" placeholder="PER(%)" />
                                 </div>
                                 <div class="form-group">
                                     <label>Payout On Upsell Purchase </label>
-                                    <input value="<?= $payout->upsell ?>"  type="number" name="upsell" class="form-control" placeholder="PER(%)" />
+                                    <input value=""  type="number" name="upsell" class="form-control" placeholder="PER(%)" />
                                 </div>
                                 <div class="form-group">
                                     <label>Payout On Recurring Purchase </label>
-                                    <input value="<?= $payout->recurring ?>"  type="number" name="recurring" class="form-control" placeholder="PER(%)" />
+                                    <input value=""  type="number" name="recurring" class="form-control" placeholder="PER(%)" />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -475,11 +475,15 @@ switch ($msg) {
                 $('.modal-title').text(title);
                 $('input[name="affid"]').val(aid);
                 if (pid == '2') {
+                    
                     $('input[name="normal"]').val($(this).attr('data-normal'));
                     $('input[name="upsell"]').val($(this).attr('data-upsell'));
                     $('input[name="recurring"]').val($(this).attr('data-recurring'));
                     $('aff-specific').show();
                 } else {
+                    $('input[name="normal"]').val("<?= $payout->normal ?>");
+                    $('input[name="upsell"]').val("<?= $payout->upsell ?>");
+                    $('input[name="recurring"]').val("<?= $payout->recurring ?>");
                     $('aff-specific').hide();
                 }
 
