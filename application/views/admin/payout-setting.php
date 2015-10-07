@@ -84,15 +84,15 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>Payout On Immediate Purchase </label>
+                        <label>Payout On Immediate Purchase (%) </label>
                         <input value=""  type="number" name="normal" class="form-control" placeholder="PER(%)" required="" />
                     </div>
                     <div class="form-group">
-                        <label>Payout On Upsell Purchase </label>
+                        <label>Payout On Upsell Purchase (%) </label>
                         <input value=""  type="number" name="upsell" class="form-control" placeholder="PER(%)" required="" />
                     </div>
                     <div class="form-group">
-                        <label>Payout On Recurring Purchase </label>
+                        <label>Payout On Recurring Purchase (%) </label>
                         <input value=""  type="number" name="recurring" class="form-control" placeholder="PER(%)" required="" />
                     </div>
                     <div class="form-group">
