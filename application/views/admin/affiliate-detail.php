@@ -241,6 +241,16 @@
                                             </td>
                                             <td><?= $value->offer_name ?></td>
                                             <td>
+                                                <a href="javascript:void(0);" 
+                                                   data-payout_id ="<?= $value->payout_id ?>" 
+                                                   data-normal ="<?= $value->normal ?>" 
+                                                   data-upsell ="<?= $value->upsell ?>" 
+                                                   data-recurring ="<?= $value->recurring ?>" 
+                                                   class="create btn bg-navy btn-xs edit"
+                                                   data-toggle="modal"
+                                                   data-target="#payout-modal">
+                                                    <i class="fa fa-pencil-square-o"></i> Edit
+                                                </a>
                                                 <a href="<?= site_url() ?>admin/affiliates/editSetting/<?= $value->affiliate_id ?>" class="create btn bg-navy btn-xs edit">
                                                     <i class="fa fa-pencil-square-o"></i> Payout Setting
                                                 </a>
@@ -277,6 +287,52 @@
     </section><!-- /.content -->
 </aside><!-- /.right-side -->
 </div><!-- ./wrapper -->
+
+<!-------------------------------Card Detail Model------------------------------------>
+<div class="modal fade" id="payout-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" style="max-width: 400px">
+        <div class="modal-content">
+            <form id="payoutForm" role="form" action="<?= site_url() ?>admin/payout/updateSetting"  method="post">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Payout On Immediate Purchase </label>
+                        <input value=""  type="number" name="normal" class="form-control" placeholder="PER(%)" required="" />
+                    </div>
+                    <div class="form-group">
+                        <label>Payout On Upsell Purchase </label>
+                        <input value=""  type="number" name="upsell" class="form-control" placeholder="PER(%)" required="" />
+                    </div>
+                    <div class="form-group">
+                        <label>Payout On Recurring Purchase </label>
+                        <input value=""  type="number" name="recurring" class="form-control" placeholder="PER(%)" required="" />
+                    </div>
+                    <div class="form-group">
+                        <span style="color: red;" id="msgPayout"></span>
+                    </div>
+                </div>
+                <div class="modal-footer clearfix">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <button type="submit" class="btn btn-primary pull-left">Save</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-danger discard" data-dismiss="modal">
+                                <i class="fa fa-times"></i> Discard
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" name="payoutid" value="" />
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<!------------------------------------------------------------------------>
+
 
 <?php $msg = $this->input->get('msg'); ?>
 <?php $data = $this->input->post(); ?>
@@ -369,6 +425,8 @@ switch ($msg) {
 <script type="text/javascript">
     $(document).ready(function () {
 
+
+
 <?php if (is_array($data)) { ?>
             $('input[name="fname_search"]').val("<?= $data['fname_search'] ?>");
             $('input[name="lname_search"]').val("<?= $data['lname_search'] ?>");
@@ -386,6 +444,18 @@ switch ($msg) {
 <?php } ?>
 
 <?php if ($p->affu): ?>
+
+            $('a.edit').click(function () {
+                var pid = $(this).attr('data-payout_id');
+                var title = (pid == '1') ?
+                        "GLOBAL" : ((pid == '2') ? "AFFILIATE SPECIFIC" : "OFFER SPECIFIC");
+                $('.modal-title').text(title);
+                $('input[name="payoutid"]').val(pid);
+                $('input[name="normal"]').val($(this).attr('data-normal'));
+                $('input[name="upsell"]').val($(this).attr('data-upsell'));
+                $('input[name="recurring"]').val($(this).attr('data-recurring'));
+            });
+
             $('button.add').click(function (e) {
                 action($(this).val());
                 e.preventDefault();

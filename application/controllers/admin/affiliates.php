@@ -132,7 +132,7 @@ class Affiliates extends CI_Controller {
     function editSetting($aid) {
         if ($this->p->affs) {
             $data['affInfo'] = $this->common->getAffInfo($aid);
-            $data['payout'] = $this->objpayout->getPayoutSetting();
+            $data['payout'] = $this->objpayout->getPayout(2);
             $this->load->view('admin/admin_header');
             $this->load->view('admin/admin_top');
             $this->load->view('admin/admin_navbar');

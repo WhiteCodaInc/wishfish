@@ -25,6 +25,11 @@ class M_payout extends CI_Model {
         return $query->result();
     }
 
+    function getPayout($pid) {
+        $query = $this->db->get_where('payout_setting', array('payout_id' => $pid));
+        return $query->row();
+    }
+
     function updateSetting($post) {
         $pid = $post['payoutid'];
         unset($post['payoutid']);
