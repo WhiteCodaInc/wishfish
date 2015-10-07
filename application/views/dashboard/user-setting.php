@@ -67,7 +67,7 @@
 
                             <div class="form-group">
                                 <ul class="instruction">
-                                    <li>First Open  <a href="https://console.developers.google.com/project/">
+                                    <li>First Open  <a href="https://console.developers.google.com/project/" target="_blank">
                                             https://console.developers.google.com/project/ 
                                         </a> and login with google account.
                                     </li>
