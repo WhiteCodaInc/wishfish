@@ -121,9 +121,13 @@
                     data: {email: email},
                     url: "<?= site_url() ?>admin/affiliates/isEmailRegister",
                     success: function (data, textStatus, jqXHR) {
-                        (data == '1') ?
-                                $email.next('span').text("Email Address is already Exists..!") :
-                                $email.next('span').text("");
+                        if (data == '1') {
+                            $email.next('span').text("Email Address is already Exists..!");
+                            affEmail = false;
+                        } else {
+                            $email.next('span').text("");
+                            affEmail = true;
+                        }
                     }
                 });
             } else {

@@ -192,7 +192,7 @@ class Affiliates extends CI_Controller {
 
     function isEmailRegister() {
         $email = $this->input->post('email');
-        echo ($this->objaffiliate->isEmailRegister($email)) ? 0 : 1;
+        echo ($this->objaffiliate->isEmailRegister($email)) ? 1 : 0;
     }
 
     //----------------Affiliate Profile Functionality--------------------------//
