@@ -173,6 +173,7 @@ class Email_list_builder extends CI_Controller {
                 if ($this->csvimport->get_array($file_path)) {
                     $csv_array = $this->csvimport->get_array($file_path);
                     echo '<pre>';
+                    print_r($csv_array);
                     foreach ($csv_array as $row) {
                         $set = array(
                             'fname' => ($row['firstname'] != "") ? $row['firstname'] : NULL,
