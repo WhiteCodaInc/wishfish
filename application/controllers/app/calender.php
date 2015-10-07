@@ -41,9 +41,6 @@ class Calender extends CI_Controller {
         if (isset($get['error']) && $get['error'] == "access_denied") {
             header('location:' . site_url() . 'app/calender');
         } else if (isset($get['code']) && $get['code'] != "") {
-            echo '<pre>';
-            print_r($get);
-            die();
             $uid = $this->input->cookie('user', TRUE);
             delete_cookie('userid', '.wish-fish.com', '/');
             $this->session->set_userdata('u_userid', $this->encryption->decode($uid));
