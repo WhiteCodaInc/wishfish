@@ -110,11 +110,11 @@ class Mailbox extends CI_Controller {
     function getConversation() {
         if (!$this->is_login())
             header('location:' . site_url() . 'admin/mailbox');
-//        $post = $this->input->post();
-        $post = array(
-            'subject' => 'Confirm-your-Twitter-account,-Wish-Fish',
-            'type' => 'Inbox'
-        );
+        $post = $this->input->post();
+//        $post = array(
+//            'subject' => 'Confirm-your-Twitter-account,-Wish-Fish',
+//            'type' => 'Inbox'
+//        );
 
         if ($post['subject'] != "") {
             $subject = str_replace('-', ' ', $post['subject']);
@@ -149,9 +149,9 @@ class Mailbox extends CI_Controller {
                 }
             }
             $threads = $this->makeThreads($mailbox);
-            echo '<pre>';
-            print_r($threads);
-            die();
+//            echo '<pre>';
+//            print_r($threads);
+//            die();
             echo json_encode(array_reverse($threads[$subject]));
         } else {
             header('location:' . site_url() . 'admin/mailbox/inbox');
