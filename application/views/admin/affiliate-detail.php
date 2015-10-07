@@ -243,9 +243,9 @@
                                             <td>
                                                 <a href="javascript:void(0);" 
                                                    data-payout_id ="<?= $value->payout_type ?>" 
-                                                   data-normal ="<?= $value->normal ?>" 
-                                                   data-upsell ="<?= $value->upsell ?>" 
-                                                   data-recurring ="<?= $value->recurring ?>" 
+                                                   data-normal ="<?= $value->normal_payout ?>" 
+                                                   data-upsell ="<?= $value->upsell_payout ?>" 
+                                                   data-recurring ="<?= $value->recurring_payout ?>" 
                                                    class="create btn bg-navy btn-xs edit"
                                                    data-toggle="modal"
                                                    data-target="#payout-modal">
