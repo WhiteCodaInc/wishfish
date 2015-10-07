@@ -459,6 +459,10 @@ switch ($msg) {
 
 <?php if ($p->affu): ?>
 
+            $('span.lbl.padding-8').click(function () {
+                $(this).prev('input:radio').trigger('click');
+            });
+
             $('a.edit').click(function () {
                 var aid = $(this).attr('data-aff_id');
                 var pid = parseInt($(this).attr('data-payout_id'));
@@ -467,6 +471,7 @@ switch ($msg) {
 
                 var title = (pid == '1') ?
                         "GLOBAL" : ((pid == '2') ? "AFFILIATE SPECIFIC" : "OFFER SPECIFIC");
+
                 $('.modal-title').text(title);
                 $('input[name="affid"]').val(aid);
                 if (pid == '2') {
