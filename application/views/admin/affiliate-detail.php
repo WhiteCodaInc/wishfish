@@ -251,7 +251,7 @@
                                                    data-target="#payout-modal">
                                                     <i class="fa fa-pencil-square-o"></i> Edit
                                                 </a>
-<!--                                                <a href="<?= site_url() ?>admin/affiliates/editSetting/<?= $value->affiliate_id ?>" class="create btn bg-navy btn-xs edit">
+    <!--                                                <a href="<?= site_url() ?>admin/affiliates/editSetting/<?= $value->affiliate_id ?>" class="create btn bg-navy btn-xs edit">
                                                     <i class="fa fa-pencil-square-o"></i> Payout Setting
                                                 </a>-->
                                             </td>
@@ -333,7 +333,7 @@
                         </div>
                     </div>
                 </div>
-                <input type="hidden" name="affid" value="<?= $affInfo->affiliate_id ?>" />
+                <input type="hidden" name="affid" value="" />
             </form>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
