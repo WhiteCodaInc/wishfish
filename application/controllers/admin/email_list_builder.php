@@ -17,6 +17,8 @@ class Email_list_builder extends CI_Controller {
 
     function __construct() {
         parent::__construct();
+        $this->load->library('csvimport');
+
         $this->p = $this->common->getPermission();
         if (!$this->authex->logged_in()) {
             header('location:' . site_url() . 'admin/admin_login');
