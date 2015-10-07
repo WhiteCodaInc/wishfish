@@ -168,7 +168,7 @@
             if (file.type != "application/vnd.ms-excel")
             {
                 $('#csv_form .calert').show();
-                $('#csv_form span.errorMsg').html("Please Select a valid Image File! Only csv type allowed.");
+                $('#csv_form span.errorMsg').html("Please Select a valid CSV File! Only csv type allowed.");
                 isValid = false;
                 return false;
             }

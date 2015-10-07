@@ -27,7 +27,7 @@
                     <div class="box-body">
                         <div class="row">
                             <div class="col-xs-12"  style="margin: 2% 0;">
-                                <form id="csv_form" action="<?= site_url() ?>app/csv/importcsv" enctype="multipart/form-data" method="post">
+                                <form id="csv_form" action="<?= site_url() ?>admin/email_list_builder/importcsv" enctype="multipart/form-data" method="post">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <input name="upload"  type="file" class="form-control" />
@@ -96,6 +96,37 @@
 <script src="<?= base_url() ?>assets/dashboard/js/plugins/multi-select/js/jquery.quicksearch.js" type="text/javascript"></script>
 <script type="text/javascript">
     $(document).ready(function () {
+
+        var isValid = true;
+        $("#csv_form input:file").change(function () {
+            $("#csv_form span.errorMsg").empty(); // To remove the previous error message
+            var file = this.files[0];
+            if (file.type != "application/vnd.ms-excel")
+            {
+                $('#csv_form .calert').show();
+                $('#csv_form span.errorMsg').html("Please Select a valid CSV File! Only csv type allowed.");
+                isValid = false;
+                return false;
+            }
+            else
+            {
+                $("#csv_form span.errorMsg").empty();
+                $('#csv_form .calert').hide();
+                var reader = new FileReader();
+                reader.readAsDataURL(this.files[0]);
+                isValid = true;
+            }
+        });
+
+        $('#csv_form').on('submit', (function (e) {
+            if (!isValid)
+                return false;
+            $('#csv_form #csv').prop('disabled', true);
+            $("#csv_form span.errorMsg").empty();
+            $('#csv_form .calert').hide();
+        }));
+
+
         $('#addEmailBuilder').click(function () {
             $('#emailForm').submit();
         });
