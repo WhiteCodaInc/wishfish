@@ -19,6 +19,8 @@ class Calender extends CI_Controller {
     function __construct() {
         parent::__construct();
         $code = $this->input->get('code');
+//        echo $code;
+//        die();
         if ($code == "") {
             if (!$this->wi_authex->logged_in()) {
                 header('location:' . site_url() . 'home');
@@ -228,6 +230,8 @@ class Calender extends CI_Controller {
 
     function connect() {
         if ($this->setClient()) {
+            echo $this->client->createAuthUrl();
+            die();
             header('location:' . $this->client->createAuthUrl());
         } else {
             header('location:' . site_url() . 'app/setting');
