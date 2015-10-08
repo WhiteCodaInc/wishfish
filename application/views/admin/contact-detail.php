@@ -293,7 +293,7 @@
             <div class="modal-body">
                 <form id="csv_form" action="<?= site_url() ?>admin/contacts/importcsv" enctype="multipart/form-data" method="post">
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-12">
                             <label>Select Contact Group</label>
                             <select id="group"  class="form-control m-bot15">
                                 <option value="-1">Select Group</option>
@@ -303,15 +303,15 @@
                                 <?php } ?>
                             </select>
                         </div>
-                    </div>
+                    </div><br/>
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-9">
                             <input name="upload"  type="file" class="form-control" />
                         </div>
-                        <div class="col-md-1">
+                        <div class="col-md-3">
                             <button class="btn btn-success" type="submit" id="csv">Upload</button>
                         </div>
-                    </div>
+                    </div><br/>
                     <div style="display: none;margin-top: 10px;" class="form-group calert">
                         <span style="color: red" class="errorMsg"></span>
                     </div>

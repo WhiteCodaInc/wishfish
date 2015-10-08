@@ -146,6 +146,55 @@ class Contacts extends CI_Controller {
         echo $zodiac;
     }
 
+    function importcsv() {
+        if (!empty($_FILES)) {
+            $error = "";
+            $config['upload_path'] = FCPATH . 'uploads/';
+            $config['allowed_types'] = '*';
+            $config['max_size'] = '1000';
+
+            $this->load->library('upload', $config);
+
+            if (!$this->upload->do_upload('upload')) {
+                $error = $this->upload->display_errors();
+            } else {
+                $file_data = $this->upload->data();
+                $file_path = FCPATH . 'uploads/' . $file_data['file_name'];
+
+                $contacts = array();
+
+                if ($this->csvimport->get_array($file_path)) {
+                    $csv_array = $this->csvimport->get_array($file_path);
+
+                    foreach ($csv_array as $row) {
+
+                        $set = array(
+                            'fname' => ($row['first_name'] != "") ? $row['first_name'] : "",
+                            'lname' => ($row['last_name'] != "") ? $row['last_name'] : "",
+                            'phone' => ($row['phone'] != "") ? $row['phone'] : "",
+                            'email' => ($row['email'] != "") ? $row['email'] : "",
+                            'birthday' => ($row['birthdate'] != "") ? $row['birthdate'] : "",
+                            'contact_avatar' => ($row['profile_pic_url'] != "") ? $row['profile_pic_url'] : "",
+                        );
+                        $contacts[] = $set;
+                    }
+                    $data['contacts'] = $contacts;
+                    unlink($file_path);
+                } else {
+                    $error = "Error occur during importing contact..! Try Again..!";
+                    $data['contacts'] = $contacts;
+                }
+            }
+            $this->session->set_flashdata('error', $error);
+            $this->load->view('dashboard/header');
+            $this->load->view('dashboard/top');
+            $this->load->view('dashboard/csv', $data);
+            $this->load->view('dashboard/footer');
+        } else {
+            header('location:' . site_url() . 'app/csv');
+        }
+    }
+
     //----------------Contact Profile Functionality--------------------------//
 
     function send_message() {
