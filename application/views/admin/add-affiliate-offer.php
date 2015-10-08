@@ -130,7 +130,7 @@
             $('#offerForm button:submit').trigger('click');
         });
 
-        $('#offerFrom').submit(function () {
+        $('#offerForm').on('submit', function () {
             alert();
             var normal = $('input[name="normal"]').val();
             var upsell = $('input[name="upsell"]').val();
