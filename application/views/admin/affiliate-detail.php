@@ -256,7 +256,7 @@
                                                    class="create btn bg-navy btn-xs edit"
                                                    data-toggle="modal"
                                                    data-target="#payout-modal">
-                                                    <i class="fa fa-pencil-square-o"></i> Edit
+                                                    <i class="fa fa-pencil-square-o"></i> Payout Setting
                                                 </a>
     <!--                                                <a href="<?= site_url() ?>admin/affiliates/editSetting/<?= $value->affiliate_id ?>" class="create btn bg-navy btn-xs edit">
                                                     <i class="fa fa-pencil-square-o"></i> Payout Setting
