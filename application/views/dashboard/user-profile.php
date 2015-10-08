@@ -493,6 +493,7 @@
         var cardFlag;
 
         if ($('#userForm .card_number').prop('readonly')) {
+            console.log("Readonly");
             cardFlag = false;
         } else {
             var ccNum = $('#userForm').find('.card_number').val(),
@@ -502,8 +503,10 @@
             if (ccNum.trim() != "" || cvcNum.trim() != "" ||
                     expMonth.trim() != "" || expYear.trim() != "") {
                 cardFlag = true;
+                console.log("CARD NOT EMPTY");
             } else {
                 cardFlag = false;
+                console.log("CARD EMPTY");
             }
         }
 
@@ -534,9 +537,10 @@
         $('#userForm,#cardForm').on('submit', function () {
 
             cardForm = $(this).attr('id');
-            alert('FORM : ' + cardForm);
-            alert(cardFlag);
+            console.log(cardForm);
+            console.log(cardFlag);
 
+            return false;
 
             $('#save').prop('disabled', true);
 
