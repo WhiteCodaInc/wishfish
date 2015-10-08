@@ -168,7 +168,7 @@
                                        class="btn btn-warning"
                                        data-toggle="modal"
                                        data-target="#csv-modal">
-                                        <i class="fa fa-pencil-square-o"></i> Import Contact From CSV
+                                        <i class="fa fa-download"></i> Import Contact From CSV
                                     </a>
                                     <a class="btn btn-primary" href="<?= site_url() ?>contacts.csv" target="_blank">Download Sample File</a> 
                                 </div>
