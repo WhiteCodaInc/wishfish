@@ -491,6 +491,7 @@
 
         var cardForm;
         var cardFlag;
+
         if ($('#userForm .card_number').prop('readonly')) {
             cardFlag = false;
         } else {
@@ -531,8 +532,14 @@
         });
 
         $('#userForm,#cardForm').on('submit', function () {
+
             cardForm = $(this).attr('id');
+            alert('FORM : ' + cardForm);
+            alert(cardFlag);
+
+
             $('#save').prop('disabled', true);
+
             if (cardForm == "userForm") {
                 if ($('#userForm input[name="name"]').val().trim() == "") {
                     alertify.error("Name is Required...!");
