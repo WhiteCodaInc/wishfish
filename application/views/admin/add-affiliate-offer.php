@@ -127,7 +127,7 @@
         });
 
         $('#save-offer').click(function () {
-            $('#offerForm button:submit').trigger('click');
+            //$('#offerForm button:submit').trigger('click');
         });
 
         $('#offerFrom').submit(function () {
