@@ -446,14 +446,7 @@
             }
         });
     });
-    function reportError(msg) {
-        // Show the error in the form:
-        $('#error-msg').text(msg);
-        $('#error').show();
-        // re-enable the submit button:
-        $('#save-profile').prop('disabled', false);
-        return false;
-    }
+
 </script>
 <script type="text/javascript">
     $(document).ready(function (e) {
@@ -499,6 +492,7 @@
 
         var cardForm;
         var cardFlag;
+
         function checkCard() {
             if ($('#userForm .card_number').prop('readonly')) {
 //                console.log("Readonly");
@@ -511,7 +505,7 @@
                         rcode = $('#userForm').find('.rcode').val();
                 if (ccNum.trim() != "" || cvcNum.trim() != "" ||
                         expMonth.trim() != "" || expYear.trim() != "" ||
-                        (rcode.trim() != "" && rcode.length == 6))) {
+                        rcode.trim() != "") {
                     cardFlag = true;
 //                    console.log("CARD NOT EMPTY");
                 } else {
@@ -545,8 +539,6 @@
         $('#userForm,#cardForm').on('submit', function () {
             checkCard();
             cardForm = $(this).attr('id');
-//            console.log(cardForm);
-//            console.log(cardFlag);
 
             $('#save').prop('disabled', true);
 
@@ -571,10 +563,12 @@
                 var ccNum = $(this).find('.card_number').val(),
                         cvcNum = $(this).find('.cvc').val(),
                         expMonth = $(this).find('.month').val(),
-                        expYear = $(this).find('.year').val();
+                        expYear = $(this).find('.year').val(),
+                        rcode = $(this).find('.rcode').val();
 
                 if (ccNum.trim() != "" || cvcNum.trim() != "" ||
-                        expMonth.trim() != "" || expYear.trim() != "") {
+                        expMonth.trim() != "" || expYear.trim() != "" || rcode.trim() != "") {
+
                     // Validate the number:
                     if (!Stripe.card.validateCardNumber(ccNum)) {
                         error = true;
@@ -585,6 +579,7 @@
                         $('#save').prop('disabled', false);
                         return false;
                     }
+
                     // Validate the CVC:
                     if (!Stripe.card.validateCVC(cvcNum)) {
                         error = true;
@@ -595,6 +590,7 @@
                         $('#save').prop('disabled', false);
                         return false;
                     }
+
                     // Validate the expiration:
                     if (!Stripe.card.validateExpiry(expMonth, expYear)) {
                         error = true;
@@ -605,47 +601,55 @@
                         $('#save').prop('disabled', false);
                         return false;
                     }
-                    // Check for errors:
-                    if (!error) {
-                        // Get the Stripe token:
-                        $('#msgCard').hide();
-                        $('#error').hide();
-                        Stripe.card.createToken({
-                            number: ccNum,
-                            cvc: cvcNum,
-                            exp_month: expMonth,
-                            exp_year: expYear
-                        }, stripeResponseHandler);
-                    } else {
-                        $('#error').show();
-                        $('#msgCard').show();
+
+                    // Validate the RCODE:
+                    var rcode_regex = /^\d{6}$/;
+
+                    if (cardForm == "userForm" && !rcode_regex.test(rcode)) {
+                        error = true;
+                        reportError('Referral code appears to be invalid.');
+                        return false;
                     }
-                    return false;
-                    // Prevent the form from submitting:
-                } else {
-                    return (cardForm == "cardForm") ? false : true;
                 }
+                // Check for errors:
+                if (!error) {
+                    // Get the Stripe token:
+                    $('#msgCard').hide();
+                    $('#error').hide();
+                    Stripe.card.createToken({
+                        number: ccNum,
+                        cvc: cvcNum,
+                        exp_month: expMonth,
+                        exp_year: expYear
+                    }, stripeResponseHandler);
+                } else {
+                    $('#error').show();
+                    $('#msgCard').show();
+                }
+                return false;
+            } else {
+                return (cardForm == "cardForm") ? false : true;
             }
+        }
         });
-        // Function handles the Stripe response:
+
         function stripeResponseHandler(status, response) {
-            // Check for an error:
             if (response.error) {
                 reportError(response.error.message);
-            } else { // No errors, submit the form:
+            } else {
                 var f = $("#" + cardForm);
-
-                // Token contains id, last4, and card type:
                 var token = response['id'];
-
-                // Insert the token into the form so it gets submitted to the server
                 f.append("<input type='hidden' name='stripeToken' value='" + token + "' />");
-                // Submit the form:
                 f.get(0).submit();
             }
-
         }
-        // End of stripeResponseHandler() function.
+        function reportError(msg) {
+            $('#error-msg').text(msg);
+            $('#error').show();
+            $('#save-profile').prop('disabled', false);
+            return false;
+        }
+
 
         $("#profilePic").change(function () {
             var file = this.files[0];
