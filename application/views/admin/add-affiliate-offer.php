@@ -127,10 +127,11 @@
         });
 
         $('#save-offer').click(function () {
-            //$('#offerForm button:submit').trigger('click');
+            $('#offerForm button:submit').trigger('click');
         });
 
         $('#offerFrom').submit(function () {
+            alert();
             var normal = $('input[name="normal"]').val();
             var upsell = $('input[name="upsell"]').val();
             var recur = $('input[name="recurring"]').val();
