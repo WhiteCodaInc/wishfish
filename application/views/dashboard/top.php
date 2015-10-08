@@ -1223,7 +1223,7 @@ $userid = $this->session->userdata('u_userid');
                 <i class="fa fa-ban"></i>
                 <div class="form-group" style="margin: 0">
                     <h4 style="float: left;margin: 10px">Please Verify Your Phone Number.</h4>
-                    <a style="color: white;  margin: 2px -48px;" class="btn btn-info" data-toggle="modal" data-target="#varify-modal">
+                    <a class="btn btn-info" data-toggle="modal" data-target="#varify-modal">
                         Click Here To Verify
                     </a>
                 </div>
