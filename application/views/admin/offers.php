@@ -118,6 +118,9 @@
                                         <th>Offer Name</th>
                                         <th>Product</th>
                                         <th>Payment Plan</th>
+                                        <th>Payout On Immediate Purchase</th>
+                                        <th>Payout On Upsell Purchase</th>
+                                        <th>Payout On Recurring Purchase</th>
                                         <th>Status</th>
                                         <?php if ($p->offu): ?>
                                             <th>Edit</th>
