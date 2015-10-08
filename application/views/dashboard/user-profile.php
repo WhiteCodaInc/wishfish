@@ -1,12 +1,12 @@
 <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/dashboard/css/checkbox.css"/>
 <style type="text/css">
-/*    .alert a{
-        text-decoration: none;
-        color: #3c8dbc;
-        font-size: 15px;
-        padding: 0px 3px;
-        font-weight: 600;
-    }*/
+    /*    .alert a{
+            text-decoration: none;
+            color: #3c8dbc;
+            font-size: 15px;
+            padding: 0px 3px;
+            font-weight: 600;
+        }*/
 </style>
 <aside class="right-side">
     <!-- Content Header (Page header) -->
@@ -34,7 +34,7 @@
             <div class="col-md-3"></div>
             <div class="col-md-6">
                 <div class="callout callout-info">
-                    <h4>Your Referral Code is : <strong><?= $user->referral_code ?></strong></h4>
+                    <h4>Your Referral Code is : <strong class="selectable"><?= $user->referral_code ?></strong></h4>
                 </div>
             </div>
             <div class="col-md-3"></div>
