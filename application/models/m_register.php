@@ -48,6 +48,9 @@ class M_register extends CI_Model {
         $flag = FALSE;
         $this->db->trans_start();
         $planInfo = $this->wi_common->getPlan(1);
+
+        $post['referral_code'] = $this->wi_common->getRandomDigit(6);
+
         $this->db->insert('wi_user_mst', $post);
         $insertid = $this->db->insert_id();
 
@@ -161,6 +164,7 @@ class M_register extends CI_Model {
                     site_url() . "register<br/>Join With Facebook";
         }
         $set = array(
+            'referral_code' => $this->wi_common->getRandomDigit(6),
             'name' => $data['name'],
             'email' => $data['email'],
             'user_unique_id' => $data['id'],

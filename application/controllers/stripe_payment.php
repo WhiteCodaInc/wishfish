@@ -54,6 +54,7 @@ class Stripe_payment extends CI_Controller {
                         $this->objregister->updateCoupon($set['coupon']);
 
                     $user_set = array(
+                        'referral_code' => $this->wi_common->getRandomDigit(6),
                         'email' => $customer->email,
                         'customer_id' => $customer->id,
                         'gateway' => "STRIPE",

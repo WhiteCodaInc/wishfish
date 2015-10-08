@@ -125,6 +125,7 @@ class Paypal extends CI_Controller {
 
     function insertUser($data) {
         $user_set = array(
+            'referral_code' => $this->wi_common->getRandomDigit(6),
             'name' => $data['FIRSTNAME'] . ' ' . $data['LASTNAME'],
             'email' => $data['EMAIL'],
             'password' => $this->generateRandomString(5),
