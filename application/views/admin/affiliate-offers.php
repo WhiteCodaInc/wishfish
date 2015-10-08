@@ -56,6 +56,9 @@
                                         <th>Offer Name</th>
                                         <th>Product</th>
                                         <th>Payment Plan</th>
+                                        <th>Payout On Immediate Purchase</th>
+                                        <th>Payout On Upsell Purchase</th>
+                                        <th>Payout On Recurring Purchase</th>
                                         <th>Status</th>
                                         <?php if ($p->affou): ?>
                                             <th>Edit</th>
@@ -86,6 +89,9 @@
                                                     N/A
                                                 <?php endif; ?>
                                             </td>
+                                            <td><?= $value->normal ?> %</td>
+                                            <td><?= $value->upsell ?> %</td>
+                                            <td><?= $value->recurring ?> %</td>
                                             <td>
                                                 <?php if ($value->status): ?>
                                                     <span class="btn btn-success btn-xs">Active</span>
@@ -112,6 +118,9 @@
                                         <th>Offer Name</th>
                                         <th>Product</th>
                                         <th>Payment Plan</th>
+                                        <th>Payout On Immediate Purchase</th>
+                                        <th>Payout On Upsell Purchase</th>
+                                        <th>Payout On Recurring Purchase</th>
                                         <th>Status</th>
                                         <?php if ($p->affou): ?>
                                             <th>Edit</th>
