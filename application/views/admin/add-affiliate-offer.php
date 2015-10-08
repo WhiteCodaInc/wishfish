@@ -136,7 +136,7 @@
                 return false;
             }
             if (upsell.trim() == "" || upsell < 0 || upsell > 100) {
-                alertify.error("Invalid Immediate Purchase Value..!");
+                alertify.error("Invalid Upsell Purchase Value..!");
                 return false;
             }
             if (recur.trim() == "" || recur < 0 || recur > 100) {
