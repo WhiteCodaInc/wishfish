@@ -102,9 +102,6 @@
                                 <label>Payout On Recurring Purchase (%) </label>
                                 <input value="<?= isset($offer) ? $offer->recurring : '' ?>"  type="number" name="recurring" class="form-control" placeholder="PER(%)" required=""/>
                             </div>
-                            <div class="form-group">
-                                <span style="color: red;" id="msgPayout"></span>
-                            </div>
                             <button type="submit" style="display: none"></button>
                         </div>
                         <?php if (isset($offer)): ?>
@@ -135,22 +132,16 @@
             var upsell = $('input[name="upsell"]').val();
             var recur = $('input[name="recurring"]').val();
             if (normal.trim() == "" || normal < 0 || normal > 100) {
-                $('#msgPayout').text("Invalid Immediate Purchase Value..!");
+                alertify.error("Invalid Immediate Purchase Value..!");
                 return false;
-            } else {
-                $('#msgPayout').empty();
             }
             if (upsell.trim() == "" || upsell < 0 || upsell > 100) {
-                $('#msgPayout').text("Invalid Immediate Purchase Value..!");
+                alertify.error("Invalid Immediate Purchase Value..!");
                 return false;
-            } else {
-                $('#msgPayout').empty();
             }
             if (recur.trim() == "" || recur < 0 || recur > 100) {
-                $('#msgPayout').text("Invalid Recurring Purchase Value..!");
+                alertify.error("Invalid Recurring Purchase Value..!");
                 return false;
-            } else {
-                $('#msgPayout').empty();
             }
             $('#save-offer').prop('disabled', true);
         });
