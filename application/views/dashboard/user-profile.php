@@ -224,7 +224,7 @@
             <div class="col-md-6">
                 <div class="alert alert-danger alert-dismissable">
                     <i class="fa fa-ban"></i>
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <button type="button" class="close">×</button>
                     <b>Error!</b> <span id="error-msg"></span>
                 </div>
             </div>
@@ -455,8 +455,8 @@
             $('select[name="code"]').val("<?= substr($user->phone, -strlen($user->phone), 2) ?>");
 <?php endif; ?>
 
-        
-    
+
+
         $('#crop-modal #upload').click(function () {
             $('#uploader-section input[name="uploadImg"]').trigger('click');
         });
@@ -648,6 +648,10 @@
             $('#save-profile').prop('disabled', false);
             return false;
         }
+
+        $('#error .close').click(function () {
+            $('#error').hide();
+        });
 
 //---------------------------Profile Pic Upload-------------------------------//
 
