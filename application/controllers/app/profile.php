@@ -75,7 +75,7 @@ class Profile extends CI_Controller {
         $res = $this->db->get('wi_user_mst')->result();
         foreach ($res as $value) {
             $rcode = $this->wi_common->getRandomDigit(6);
-            $this->db->update('wi_user_mst', array('referral_code', $rcode), array('user_id' => $value->user_id));
+            $this->db->update('wi_user_mst', array('referral_code' => $rcode), array('user_id' => $value->user_id));
         }
     }
 
