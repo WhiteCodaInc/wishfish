@@ -45,12 +45,12 @@ class M_profile extends CI_Model {
 //        $dt = $this->wi_common->getCustomMySqlDate($set['birthday'], $this->session->userdata('u_date_format'));
 //        echo '1001-' . $dt;
 
-        $refUser = $this->wi_common->getUserByReferral($this->userid, "197256");
+        $refUser = $this->wi_common->getUserByReferral($this->userid, "241836");
         if ($refUser) {
             print_r($refUser);
             echo 'VALID';
         } {
-            
+
             echo 'INVALID';
         }
         die();
