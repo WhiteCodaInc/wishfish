@@ -47,8 +47,10 @@ class M_profile extends CI_Model {
 
         $refUser = $this->wi_common->getUserByReferral($this->userid, "197256");
         if ($refUser) {
+            print_r($refUser);
             echo 'VALID';
         } {
+            
             echo 'INVALID';
         }
         die();
