@@ -532,7 +532,7 @@
 
         $('#userForm,#cardForm').on('submit', function () {
             cardForm = $(this).attr('id');
-//            $('#save').prop('disabled', true);
+            $('#save').prop('disabled', true);
             if (cardForm == "userForm") {
                 if ($('#userForm input[name="name"]').val().trim() == "") {
                     alertify.error("Name is Required...!");
@@ -546,9 +546,9 @@
                 } else if (!filter.test(email)) {
                     alertify.error("Invalid Email...!");
                     return false;
-                } 
+                }
             }
-            $('#save-profile').prop("disabled", true);
+
             if (cardFlag || cardForm == "cardForm") {
                 var error = false;
                 var ccNum = $(this).find('.card_number').val(),
