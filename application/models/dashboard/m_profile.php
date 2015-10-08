@@ -40,20 +40,12 @@ class M_profile extends CI_Model {
 
     function updateProfile($set) {
 
-        echo '<pre>';
-        print_r($set);
+//        echo '<pre>';
+//        print_r($set);
 //        $dt = $this->wi_common->getCustomMySqlDate($set['birthday'], $this->session->userdata('u_date_format'));
 //        echo '1001-' . $dt;
 
-        $refUser = $this->wi_common->getUserByReferral($this->userid, "241836");
-        if ($refUser) {
-            print_r($refUser);
-            echo 'VALID';
-        } {
 
-            echo 'INVALID';
-        }
-        die();
 
         $userInfo = $this->wi_common->getUserInfo($this->userid);
         if ($userInfo->customer_id != NULL) {
@@ -178,17 +170,16 @@ class M_profile extends CI_Model {
         try {
             $refUser = $this->wi_common->getUserByReferral($this->userid, $set['rcode']);
             if ($refUser) {
-                echo 'VALID';
-//                $where['user_id'] = $this->userid;
-//                $set['ref_by'] = $refUser->user_id;
-//                $this->db->update('wi_user_mst', $set, $where);
-//                $customer = Stripe_Customer::retrieve($uInfo->customer_id);
-//                $customer->sources->create(array("source" => $set['stripeToken']));
+                $where['user_id'] = $this->userid;
+                $set['ref_by'] = $refUser->user_id;
+                $this->db->update('wi_user_mst', $set, $where);
+                $customer = Stripe_Customer::retrieve($uInfo->customer_id);
+                $customer->sources->create(array("source" => $set['stripeToken']));
                 $success = 1;
-            } {
-                echo 'INVALID';
+            } else {
+                $error = "Your Referal Code is Invalid..! Try Again..!";
+                $success = 0;
             }
-            die();
         } catch (Exception $e) {
             $error = $e->getMessage();
             $success = 0;
