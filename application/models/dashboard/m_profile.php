@@ -40,11 +40,18 @@ class M_profile extends CI_Model {
 
     function updateProfile($set) {
 
-//        echo '<pre>';
-//        print_r($set);
+        echo '<pre>';
+        print_r($set);
 //        $dt = $this->wi_common->getCustomMySqlDate($set['birthday'], $this->session->userdata('u_date_format'));
 //        echo '1001-' . $dt;
-//        die();
+
+        $refUser = $this->wi_common->getUserByReferral($this->userid, $set['rcode']);
+        if ($refUser) {
+            echo 'VALID';
+        } {
+            echo 'INVALID';
+        }
+        die();
 
         $userInfo = $this->wi_common->getUserInfo($this->userid);
         if ($userInfo->customer_id != NULL) {
