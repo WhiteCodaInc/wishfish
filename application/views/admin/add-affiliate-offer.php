@@ -27,7 +27,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="username">Offer Name</label>
-                                        <input value="<?= isset($offer) ? $offer->offer_name : '' ?>" type="text" autofocus="autofocus" name="offer_name" class="form-control" placeholder="Offer Name" />
+                                        <input value="<?= isset($offer) ? $offer->offer_name : '' ?>" type="text" autofocus="autofocus" name="offer_name" class="form-control" placeholder="Offer Name" required=""/>
                                     </div>
                                 </div>
                             </div>
@@ -90,6 +90,22 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label>Payout On Immediate Purchase (%) </label>
+                                <input value="<?= isset($offer) ? $offer->normal : '' ?>"  type="number" name="normal" class="form-control" placeholder="PER(%)" required=""/>
+                            </div>
+                            <div class="form-group">
+                                <label>Payout On Upsell Purchase (%) </label>
+                                <input value="<?= isset($offer) ? $offer->upsell : '' ?>"  type="number" name="upsell" class="form-control" placeholder="PER(%)" required=""/>
+                            </div>
+                            <div class="form-group">
+                                <label>Payout On Recurring Purchase (%) </label>
+                                <input value="<?= isset($offer) ? $offer->recurring : '' ?>"  type="number" name="recurring" class="form-control" placeholder="PER(%)" required=""/>
+                            </div>
+                            <div class="form-group">
+                                <span style="color: red;" id="msgPayout"></span>
+                            </div>
+                            <button type="submit" style="display: none"></button>
                         </div>
                         <?php if (isset($offer)): ?>
                             <input type="hidden" name="offerid" value="<?= $offer->offer_id ?>" />
@@ -111,15 +127,32 @@
         });
 
         $('#save-offer').click(function () {
-            if ($('input[name="offer_name"]').val().trim() == "") {
-                alertify.error("Enter Offer Name..!");
+            $('#offerForm button:submit').trigger('click');
+        });
+
+        $('#offerFrom').submit(function () {
+            var normal = $('input[name="normal"]').val();
+            var upsell = $('input[name="upsell"]').val();
+            var recur = $('input[name="recurring"]').val();
+            if (normal.trim() == "" || normal < 0 || normal > 100) {
+                $('#msgPayout').text("Invalid Immediate Purchase Value..!");
                 return false;
+            } else {
+                $('#msgPayout').empty();
             }
-            if ($('input[name="page_url"]').val().trim() == "") {
-                alertify.error("Enter Valid URL..!");
+            if (upsell.trim() == "" || upsell < 0 || upsell > 100) {
+                $('#msgPayout').text("Invalid Immediate Purchase Value..!");
                 return false;
+            } else {
+                $('#msgPayout').empty();
             }
-            $('#offerForm').submit();
+            if (recur.trim() == "" || recur < 0 || recur > 100) {
+                $('#msgPayout').text("Invalid Recurring Purchase Value..!");
+                return false;
+            } else {
+                $('#msgPayout').empty();
+            }
+            $('#save-offer').prop('disabled', true);
         });
     });
 </script>
