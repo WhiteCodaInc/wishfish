@@ -40,11 +40,11 @@ class M_profile extends CI_Model {
 
     function updateProfile($set) {
 
-//        echo '<pre>';
-//        print_r($set);
+        echo '<pre>';
+        print_r($set);
 //        $dt = $this->wi_common->getCustomMySqlDate($set['birthday'], $this->session->userdata('u_date_format'));
 //        echo '1001-' . $dt;
-//        die();
+        die();
 
         $userInfo = $this->wi_common->getUserInfo($this->userid);
         if ($userInfo->customer_id != NULL) {
@@ -179,8 +179,9 @@ class M_profile extends CI_Model {
             header('Location:' . site_url() . 'app/profile');
         } else {
             $user_set = array(
-                'gateway' => "STRIPE",
-                'is_set' => 1
+            'gateway' => "STRIPE",
+            'is_set' => 1,
+//            'ref_by' => $this->wi_common->
             );
             $this->db->update('wi_user_mst', $user_set, array('user_id' => $this->userid));
             return TRUE;
