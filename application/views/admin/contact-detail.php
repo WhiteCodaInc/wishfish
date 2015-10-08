@@ -163,7 +163,7 @@
                         <div class="box-body table-responsive" id="data-panel">
                             <div class="form-group" style="text-align: right">
                                 <a href="javascript:void(0);" 
-                                   class="create btn bg-navy btn-xs edit inline"
+                                   class="btn btn-warning"
                                    data-toggle="modal"
                                    data-target="#csv-modal">
                                     <i class="fa fa-pencil-square-o"></i> Import Contact From CSV
