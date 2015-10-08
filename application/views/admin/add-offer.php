@@ -75,6 +75,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <button type="submit" style="display: none"></button>
                         </div>
                         <?php if (isset($offer)): ?>
                             <input type="hidden" name="offerid" value="<?= $offer->offer_id ?>" />
@@ -93,6 +94,5 @@
         $('#save-offer').click(function () {
             $('#offerForm button:submit').trigger('click');
         });
-
     });
 </script>

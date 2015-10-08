@@ -518,7 +518,7 @@ switch ($msg) {
                         $('#msgPayout').empty();
                     }
                     if (upsell.trim() == "" || upsell < 0 || upsell > 100) {
-                        $('#msgPayout').text("Invalid Immediate Purchase Value..!");
+                        $('#msgPayout').text("Invalid Upsell Purchase Value..!");
                         return false;
                     } else {
                         $('#msgPayout').empty();
