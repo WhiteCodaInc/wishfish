@@ -161,7 +161,14 @@
                 <div class="box" >
                     <form name="checkForm" id="checkForm" action="" method="post">
                         <div class="box-body table-responsive" id="data-panel">
-
+                            <div class="form-group" style="text-align: right">
+                                <a href="javascript:void(0);" 
+                                   class="create btn bg-navy btn-xs edit"
+                                   data-toggle="modal"
+                                   data-target="#csv-modal">
+                                    <i class="fa fa-pencil-square-o"></i> Import Contact From CSV
+                                </a>
+                            </div>
                             <table id="contact-data-table" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
