@@ -451,6 +451,12 @@
 <script type="text/javascript">
     $(document).ready(function (e) {
 
+<?php if ($user->phone): ?>
+            $('select[name="code"]').val("<?= substr($user->phone, -strlen($user->phone), 2) ?>");
+<?php endif; ?>
+
+        
+    
         $('#crop-modal #upload').click(function () {
             $('#uploader-section input[name="uploadImg"]').trigger('click');
         });
@@ -489,37 +495,6 @@
             }
         });
 
-
-        var cardForm;
-        var cardFlag;
-
-        function checkCard() {
-            if ($('#userForm .card_number').prop('readonly')) {
-//                console.log("Readonly");
-                cardFlag = false;
-            } else {
-                var ccNum = $('#userForm').find('.card_number').val(),
-                        cvcNum = $('#userForm').find('.cvc').val(),
-                        expMonth = $('#userForm').find('.month').val(),
-                        expYear = $('#userForm').find('.year').val(),
-                        rcode = $('#userForm').find('.rcode').val();
-                if (ccNum.trim() != "" || cvcNum.trim() != "" ||
-                        expMonth.trim() != "" || expYear.trim() != "" ||
-                        rcode.trim() != "") {
-                    cardFlag = true;
-//                    console.log("CARD NOT EMPTY");
-                } else {
-                    cardFlag = false;
-//                    console.log("CARD EMPTY");
-                }
-            }
-        }
-
-
-<?php if ($user->phone): ?>
-            $('select[name="code"]').val("<?= substr($user->phone, -strlen($user->phone), 2) ?>");
-<?php endif; ?>
-
         $('#pay').click(function () {
             $(this).prop('disabled', true);
             $.ajax({
@@ -535,6 +510,30 @@
         $('#save-profile').click(function () {
             $('#userForm').submit();
         });
+
+//---------------------------User and Card Form-------------------------------//
+
+        var cardForm;
+        var cardFlag;
+
+        function checkCard() {
+            if ($('#userForm .card_number').prop('readonly')) {
+                cardFlag = false;
+            } else {
+                var ccNum = $('#userForm').find('.card_number').val(),
+                        cvcNum = $('#userForm').find('.cvc').val(),
+                        expMonth = $('#userForm').find('.month').val(),
+                        expYear = $('#userForm').find('.year').val(),
+                        rcode = $('#userForm').find('.rcode').val();
+                if (ccNum.trim() != "" || cvcNum.trim() != "" ||
+                        expMonth.trim() != "" || expYear.trim() != "" ||
+                        rcode.trim() != "") {
+                    cardFlag = true;
+                } else {
+                    cardFlag = false;
+                }
+            }
+        }
 
         $('#userForm,#cardForm').on('submit', function () {
             checkCard();
@@ -630,7 +629,6 @@
             } else {
                 return (cardForm == "cardForm") ? false : true;
             }
-        }
         });
 
         function stripeResponseHandler(status, response) {
@@ -643,6 +641,7 @@
                 f.get(0).submit();
             }
         }
+
         function reportError(msg) {
             $('#error-msg').text(msg);
             $('#error').show();
@@ -650,6 +649,7 @@
             return false;
         }
 
+//---------------------------Profile Pic Upload-------------------------------//
 
         $("#profilePic").change(function () {
             var file = this.files[0];
@@ -674,6 +674,8 @@
             $("#profile-pic #profilePic").css("color", "green");
             $("#profile-pic #profile_previewing").attr('src', e.target.result);
         }
+
+//-------------------------- Cancel Account ----------------------------------//
 
         $('#cancel-account').on('click', function () {
             alertify.confirm("Are you sure want to cancel your current plan?", function (e) {
