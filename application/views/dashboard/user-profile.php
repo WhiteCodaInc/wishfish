@@ -40,19 +40,19 @@
             </div>
             <div class="col-md-3"></div>
         </div>
-        <?php if ($error): ?>
-            <div  class="row">
-                <div class="col-md-3"></div>
-                <div class="col-md-6">
-                    <div style="background-color: mistyrose !important;border-color: mintcream;color: red !important;" class="alert alert-danger alert-dismissable">
-                        <i class="fa fa-ban"></i>
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                        <b>Error!</b> <?= $error ?> 
-                    </div>
+        <?php // if ($error): ?>
+        <div  class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="alert alert-danger alert-dismissable">
+                    <i class="fa fa-ban"></i>
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <b>Error!</b> <?= $error ?> 
                 </div>
-                <div class="col-md-3"></div>
             </div>
-        <?php endif; ?>
+            <div class="col-md-3"></div>
+        </div>
+        <?php // endif; ?>
         <div class="row">
             <div class="col-md-3"></div>
             <!-- left column -->
