@@ -192,7 +192,7 @@
                                             if ($user->ref_by)
                                                 $rcode = $this->wi_common->getUserInfo($user->ref_by)->referral_code;
                                             ?>
-                                            <input value="<?= (isset($rcode)) ? $rcode : "" ?>" type="text" maxlength="6" class="rcode form-control" placeholder="Referral Code" <?= (isset($rcode)) ? "readonly" : "" ?> />
+                                            <input name="rcode" value="<?= (isset($rcode)) ? $rcode : "" ?>" type="text" maxlength="6" class="rcode form-control" placeholder="Referral Code" <?= (isset($rcode)) ? "readonly" : "" ?> />
                                         </div>
                                         <?php
                                         $currPlan = $this->wi_common->getCurrentPlan();

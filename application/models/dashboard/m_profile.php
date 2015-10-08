@@ -49,7 +49,7 @@ class M_profile extends CI_Model {
         $userInfo = $this->wi_common->getUserInfo($this->userid);
         if ($userInfo->customer_id != NULL) {
             if (isset($set['stripeToken'])) {
-                $this->createCard($userInfo, $set['stripeToken']);
+                $this->createCard($userInfo, $set);
             }
         }
         if ($this->session->userdata('u_name') == "") {
@@ -77,7 +77,7 @@ class M_profile extends CI_Model {
             $set['email_verification'] = 0;
             $this->sendActivationLink($set['email']);
         }
-        unset($set['code'], $set['stripeToken']);
+        unset($set['code'], $set['stripeToken'], $set['rcode']);
 
 
         if ($set['importUrl'] != "") {
@@ -165,12 +165,21 @@ class M_profile extends CI_Model {
         }
     }
 
-    function createCard($uInfo, $stripeToken) {
+    function createCard($uInfo, $set) {
         try {
-            
-            $customer = Stripe_Customer::retrieve($uInfo->customer_id);
-            $customer->sources->create(array("source" => $stripeToken));
-            $success = 1;
+            $refUser = $this->wi_common->getUserByReferral($this->userid, $set['rcode']);
+            if ($refUser) {
+                echo 'VALID';
+//                $where['user_id'] = $this->userid;
+//                $set['ref_by'] = $refUser->user_id;
+//                $this->db->update('wi_user_mst', $set, $where);
+//                $customer = Stripe_Customer::retrieve($uInfo->customer_id);
+//                $customer->sources->create(array("source" => $set['stripeToken']));
+                $success = 1;
+            } {
+                echo 'INVALID';
+            }
+            die();
         } catch (Exception $e) {
             $error = $e->getMessage();
             $success = 0;
@@ -180,8 +189,8 @@ class M_profile extends CI_Model {
             header('Location:' . site_url() . 'app/profile');
         } else {
             $user_set = array(
-            'gateway' => "STRIPE",
-            'is_set' => 1,
+                'gateway' => "STRIPE",
+                'is_set' => 1,
 //            'ref_by' => $this->wi_common->
             );
             $this->db->update('wi_user_mst', $user_set, array('user_id' => $this->userid));
