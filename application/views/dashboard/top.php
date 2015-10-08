@@ -1219,7 +1219,7 @@ $userid = $this->session->userdata('u_userid');
     </style>
     <div class="row" style="background-color: #ecf0f5;margin: 0">
         <div class="col-md-12">
-            <div class="alert alert-danger">
+            <div class="alert alert-danger" style="margin: 20px">
                 <i class="fa fa-ban"></i>
                 <div class="form-group" style="margin: 0">
                     <h4 style="float: left;margin: 10px">Please Verify Your Phone Number.</h4>
