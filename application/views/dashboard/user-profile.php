@@ -491,24 +491,26 @@
 
         var cardForm;
         var cardFlag;
-
-        if ($('#userForm .card_number').prop('readonly')) {
-            console.log("Readonly");
-            cardFlag = false;
-        } else {
-            var ccNum = $('#userForm').find('.card_number').val(),
-                    cvcNum = $('#userForm').find('.cvc').val(),
-                    expMonth = $('#userForm').find('.month').val(),
-                    expYear = $('#userForm').find('.year').val();
-            if (ccNum.trim() != "" || cvcNum.trim() != "" ||
-                    expMonth.trim() != "" || expYear.trim() != "") {
-                cardFlag = true;
-                console.log("CARD NOT EMPTY");
-            } else {
+        function checkCard() {
+            if ($('#userForm .card_number').prop('readonly')) {
+                console.log("Readonly");
                 cardFlag = false;
-                console.log("CARD EMPTY");
+            } else {
+                var ccNum = $('#userForm').find('.card_number').val(),
+                        cvcNum = $('#userForm').find('.cvc').val(),
+                        expMonth = $('#userForm').find('.month').val(),
+                        expYear = $('#userForm').find('.year').val();
+                if (ccNum.trim() != "" || cvcNum.trim() != "" ||
+                        expMonth.trim() != "" || expYear.trim() != "") {
+                    cardFlag = true;
+                    console.log("CARD NOT EMPTY");
+                } else {
+                    cardFlag = false;
+                    console.log("CARD EMPTY");
+                }
             }
         }
+
 
 <?php if ($user->phone): ?>
             $('select[name="code"]').val("<?= substr($user->phone, -strlen($user->phone), 2) ?>");
@@ -535,7 +537,7 @@
         });
 
         $('#userForm,#cardForm').on('submit', function () {
-
+            checkCard();
             cardForm = $(this).attr('id');
             console.log(cardForm);
             console.log(cardFlag);
