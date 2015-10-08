@@ -459,6 +459,7 @@
             $('#crop-section').hide();
             $('#uploader-section').show();
         });
+
         $('a#calendar').click(function () {
             $('#full-calender').hide();
             $('#full-calender input[name="birthday"]').prop('disabled', true);
@@ -521,22 +522,9 @@
             });
         });
 
-        $('#userForm').submit(function () {
-            if ($('#userForm input[name="name"]').val().trim() == "") {
-                alertify.error("Name is Required...!");
-                return false;
-            }
-            var email = $('#userForm input[name="email"]').val();
-            var filter = /^([\w-+\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-            if (email.trim() == "") {
-                alertify.error("Email is Required...!");
-                return false;
-            } else if (!filter.test(email)) {
-                alertify.error("Invalid Email...!");
-                return false;
-            }
-            $('#save-profile').prop("disabled", true);
-        });
+//        $('#userForm').submit(function () {
+//           
+//        });
 
         $('#save-profile').click(function () {
             $('#userForm').submit();
@@ -545,6 +533,22 @@
         $('#userForm,#cardForm').on('submit', function () {
             cardForm = $(this).attr('id');
             $('#save').prop('disabled', true);
+            if (cardForm == "userForm") {
+                if ($('#userForm input[name="name"]').val().trim() == "") {
+                    alertify.error("Name is Required...!");
+                    return false;
+                }
+                var email = $('#userForm input[name="email"]').val();
+                var filter = /^([\w-+\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+                if (email.trim() == "") {
+                    alertify.error("Email is Required...!");
+                    return false;
+                } else if (!filter.test(email)) {
+                    alertify.error("Invalid Email...!");
+                    return false;
+                }
+                $('#save-profile').prop("disabled", true);
+            }
             if (cardFlag || cardForm == "cardForm") {
                 var error = false;
                 var ccNum = $(this).find('.card_number').val(),
