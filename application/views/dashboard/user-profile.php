@@ -186,6 +186,14 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="form-group">
+                                            <label>Referral Code</label>
+                                            <?php
+                                            if ($user->ref_by)
+                                                $rcode = $this->wi_common->getUserInfo($user->ref_by)->referral_code;
+                                            ?>
+                                            <input value="<?= (isset($rcode)) ? $rcode : "" ?>" type="text" maxlength="6" class="form-control" placeholder="Referral Code" <?= (isset($rcode)) ? "readonly" : "" ?> />
+                                        </div>
                                         <?php
                                         $currPlan = $this->wi_common->getCurrentPlan();
                                         if (count($currPlan) && $currPlan->plan_id == 1):

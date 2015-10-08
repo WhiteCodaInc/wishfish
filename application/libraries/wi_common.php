@@ -363,4 +363,10 @@ class Wi_common {
         }
     }
 
+    //---------------------- Referral Code Logic -----------------------------//
+    function getUserByReferral($rcode) {
+        $query = $this->_CI->db->get_where('wi_user_mst', array('referral_code' => $rcode));
+        return $query->row();
+    }
+
 }
