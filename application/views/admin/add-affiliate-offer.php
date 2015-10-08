@@ -131,7 +131,6 @@
         });
 
         $('#offerForm').on('submit', function () {
-            alert();
             var normal = $('input[name="normal"]').val();
             var upsell = $('input[name="upsell"]').val();
             var recur = $('input[name="recurring"]').val();
