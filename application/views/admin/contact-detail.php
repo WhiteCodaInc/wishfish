@@ -161,15 +161,18 @@
                 <div class="box" >
                     <form name="checkForm" id="checkForm" action="" method="post">
                         <div class="box-body table-responsive" id="data-panel">
-                            <div class="form-group" style="text-align: right">
-                                <a href="javascript:void(0);" 
-                                   class="btn btn-warning"
-                                   data-toggle="modal"
-                                   data-target="#csv-modal">
-                                    <i class="fa fa-pencil-square-o"></i> Import Contact From CSV
-                                </a>
-                                <a class="btn btn-primary" href="<?= site_url() ?>example.csv" target="_blank">Download Sample File</a> 
-                            </div>
+
+                            <?php if ($p->coni): ?>
+                                <div class="form-group" style="text-align: right">
+                                    <a href="javascript:void(0);" 
+                                       class="btn btn-warning"
+                                       data-toggle="modal"
+                                       data-target="#csv-modal">
+                                        <i class="fa fa-pencil-square-o"></i> Import Contact From CSV
+                                    </a>
+                                    <a class="btn btn-primary" href="<?= site_url() ?>contacts.csv" target="_blank">Download Sample File</a> 
+                                </div>
+                            <?php endif; ?>
                             <table id="contact-data-table" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
@@ -470,5 +473,36 @@ switch ($msg) {
                 $('#checkForm').submit();
             }
 <?php endif; ?>
-    });
+<?php if ($p->coni): ?>
+            var isValid = true;
+            $("#csv_form input:file").change(function () {
+                $("#csv_form span.errorMsg").empty(); // To remove the previous error message
+                var file = this.files[0];
+                if (file.type != "application/vnd.ms-excel")
+                {
+                    $('#csv_form .calert').show();
+                    $('#csv_form span.errorMsg').html("Please Select a valid CSV File! Only csv type allowed.");
+                    isValid = false;
+                    return false;
+                }
+                else
+                {
+                    $("#csv_form span.errorMsg").empty();
+                    $('#csv_form .calert').hide();
+                    var reader = new FileReader();
+                    reader.readAsDataURL(this.files[0]);
+                    isValid = true;
+                }
+            });
+
+            $('#csv_form').on('submit', (function (e) {
+                if (!isValid)
+                    return false;
+                $('#csv_form #csv').prop('disabled', true);
+                $("#csv_form span.errorMsg").empty();
+                $('#csv_form .calert').hide();
+            }));
+
+        });
+<?php endif; ?>
 </script>
