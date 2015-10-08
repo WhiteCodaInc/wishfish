@@ -163,11 +163,12 @@
                         <div class="box-body table-responsive" id="data-panel">
                             <div class="form-group" style="text-align: right">
                                 <a href="javascript:void(0);" 
-                                   class="create btn bg-navy btn-xs edit"
+                                   class="create btn bg-navy btn-xs edit inline"
                                    data-toggle="modal"
                                    data-target="#csv-modal">
                                     <i class="fa fa-pencil-square-o"></i> Import Contact From CSV
                                 </a>
+                                <a class="btn btn-primary" href="<?= site_url() ?>example.csv" target="_blank">Download Sample File</a> 
                             </div>
                             <table id="contact-data-table" class="table table-bordered table-striped">
                                 <thead>
@@ -277,6 +278,57 @@
     </section><!-- /.content -->
 </aside><!-- /.right-side -->
 </div><!-- ./wrapper -->
+
+<!-------------------------------CSV Model------------------------------------>
+<div class="modal fade" id="payout-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" style="max-width: 400px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+                <form id="csv_form" action="<?= site_url() ?>admin/contacts/importcsv" enctype="multipart/form-data" method="post">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label>Select Contact Group</label>
+                            <select id="group"  class="form-control m-bot15">
+                                <option value="-1">Select Group</option>
+                                <?php foreach ($groups as $value) { ?>
+                                    <option value="<?= $value->group_id ?>">
+                                        <?= $value->group_name ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <input name="upload"  type="file" class="form-control" />
+                        </div>
+                        <div class="col-md-1">
+                            <button class="btn btn-success" type="submit" id="csv">Upload</button>
+                        </div>
+                    </div>
+                    <div style="display: none;margin-top: 10px;" class="form-group calert">
+                        <span style="color: red" class="errorMsg"></span>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <button type="submit" class="btn btn-primary pull-left">Save</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-danger discard" data-dismiss="modal">
+                                <i class="fa fa-times"></i> Discard
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<!------------------------------------------------------------------------>
+
 <?php $msg = $this->input->get('msg'); ?>
 <?php $data = $this->input->post(); ?>
 <?php
