@@ -34,7 +34,7 @@
             <div class="col-md-3"></div>
             <div class="col-md-6">
                 <div class="callout callout-info">
-                    <h4>Your Referral Code is <strong><?= $user->referral_code ?></strong></h4>
+                    <h4>Your Referral Code is : <strong><?= $user->referral_code ?></strong></h4>
                 </div>
             </div>
             <div class="col-md-3"></div>
