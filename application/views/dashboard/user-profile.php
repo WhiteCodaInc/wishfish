@@ -542,8 +542,6 @@
             console.log(cardForm);
             console.log(cardFlag);
 
-            return false;
-
             $('#save').prop('disabled', true);
 
             if (cardForm == "userForm") {
