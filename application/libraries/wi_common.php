@@ -303,7 +303,7 @@ class Wi_common {
     }
 
     function getRandomDigit($length = 6) {
-        return substr(str_shuffle("0123456789"), 0, $length);
+        return substr(str_shuffle("123456789"), 0, $length);
     }
 
     function insertPlanDetail($userid, $planid, $customer) {
