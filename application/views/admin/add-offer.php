@@ -27,7 +27,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="username">Offer Name</label>
-                                        <input value="<?= isset($offer) ? $offer->offer_name : '' ?>" type="text" autofocus="autofocus" name="offer_name" class="form-control" placeholder="Offer Name" required=""/>
+                                        <input value="<?= isset($offer) ? $offer->offer_name : '' ?>" type="text" autofocus="autofocus" name="offer_name" class="form-control" placeholder="Offer Name" />
                                     </div>
                                 </div>
                             </div>
@@ -91,8 +91,23 @@
 </div><!-- ./wrapper -->
 <script type="text/javascript">
     $(document).ready(function () {
+
         $('#save-offer').click(function () {
             $('#offerForm button:submit').trigger('click');
+        });
+        $('#offerForm').on('submit', function () {
+            if ($('input[name="offer_name"]').val().trim() == "") {
+                alertify.error("Enter Offer Name..!");
+                return false;
+            }
+            if ($('select[name="product_id"]').val() == "-1") {
+                alertify.error("Select Product..!");
+                return false;
+            }
+            if ($('select[name="payment_plan_id"]').val() == "-1") {
+                alertify.error("Select Payment Plan..!");
+                return false;
+            }
         });
     });
 </script>
