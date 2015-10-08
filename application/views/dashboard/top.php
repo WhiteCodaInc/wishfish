@@ -1188,35 +1188,6 @@ $userid = $this->session->userdata('u_userid');
 
 
 <?php if (!$userInfo->phone_verification): ?>
-    <style type="text/css">
-        /*        .alert1 {
-                    position: relative;
-                    padding: 10px 35px;
-                    margin: 20px;
-                    border: 1px solid transparent;
-                    border-radius: 4px;
-                }
-                .alert-danger1 {
-                    color: #a94442;
-                    background-color: #f2dede;
-                    border-color: #ebccd1;
-                }
-        
-                .alert1 > .fa, .alert1 > .glyphicon {
-                    position: absolute;
-                    left: -15px;
-                    top: -15px;
-                    width: 35px;
-                    height: 35px;
-                    -webkit-border-radius: 50%;
-                    -moz-border-radius: 50%;
-                    border-radius: 50%;
-                    line-height: 35px;
-                    text-align: center;
-                    background: inherit;
-                    border: inherit;
-                }*/
-    </style>
     <div class="row" style="background-color: #ecf0f5;margin: 0">
         <div class="col-md-12">
             <div class="alert alert-danger" style="margin: 20px">
