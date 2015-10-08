@@ -167,6 +167,7 @@ class M_profile extends CI_Model {
 
     function createCard($uInfo, $stripeToken) {
         try {
+            
             $customer = Stripe_Customer::retrieve($uInfo->customer_id);
             $customer->sources->create(array("source" => $stripeToken));
             $success = 1;
