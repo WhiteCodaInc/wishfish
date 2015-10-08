@@ -75,6 +75,18 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label>Payout On Immediate Purchase (%) </label>
+                                <input value="<?= isset($offer) ? $offer->normal : '' ?>"  type="number" name="normal" class="form-control" placeholder="PER(%)" />
+                            </div>
+                            <div class="form-group">
+                                <label>Payout On Upsell Purchase (%) </label>
+                                <input value="<?= isset($offer) ? $offer->upsell : '' ?>"  type="number" name="upsell" class="form-control" placeholder="PER(%)" />
+                            </div>
+                            <div class="form-group">
+                                <label>Payout On Recurring Purchase (%) </label>
+                                <input value="<?= isset($offer) ? $offer->recurring : '' ?>"  type="number" name="recurring" class="form-control" placeholder="PER(%)" />
+                            </div>
                         </div>
                         <?php if (isset($offer)): ?>
                             <input type="hidden" name="offerid" value="<?= $offer->offer_id ?>" />
