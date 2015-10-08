@@ -315,16 +315,6 @@
                     <div style="display: none;margin-top: 10px;" class="form-group calert">
                         <span style="color: red" class="errorMsg"></span>
                     </div>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <button type="submit" class="btn btn-primary pull-left">Save</button>
-                        </div>
-                        <div class="col-md-3">
-                            <button type="button" class="btn btn-danger discard" data-dismiss="modal">
-                                <i class="fa fa-times"></i> Discard
-                            </button>
-                        </div>
-                    </div>
                 </form>
             </div>
         </div><!-- /.modal-content -->
