@@ -192,7 +192,7 @@
                                             if ($user->ref_by)
                                                 $rcode = $this->wi_common->getUserInfo($user->ref_by)->referral_code;
                                             ?>
-                                            <input value="<?= (isset($rcode)) ? $rcode : "" ?>" type="text" maxlength="6" class="form-control" placeholder="Referral Code" <?= (isset($rcode)) ? "readonly" : "" ?> />
+                                            <input value="<?= (isset($rcode)) ? $rcode : "" ?>" type="text" maxlength="6" class="rcode form-control" placeholder="Referral Code" <?= (isset($rcode)) ? "readonly" : "" ?> />
                                         </div>
                                         <?php
                                         $currPlan = $this->wi_common->getCurrentPlan();
@@ -507,9 +507,11 @@
                 var ccNum = $('#userForm').find('.card_number').val(),
                         cvcNum = $('#userForm').find('.cvc').val(),
                         expMonth = $('#userForm').find('.month').val(),
-                        expYear = $('#userForm').find('.year').val();
+                        expYear = $('#userForm').find('.year').val(),
+                        rcode = $('#userForm').find('.rcode').val();
                 if (ccNum.trim() != "" || cvcNum.trim() != "" ||
-                        expMonth.trim() != "" || expYear.trim() != "") {
+                        expMonth.trim() != "" || expYear.trim() != "" ||
+                        (rcode.trim() != "" && rcode.length == 6))) {
                     cardFlag = true;
 //                    console.log("CARD NOT EMPTY");
                 } else {
