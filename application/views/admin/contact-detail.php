@@ -295,7 +295,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <label>Select Contact Group</label>
-                            <select id="group"  class="form-control m-bot15">
+                            <select name="groupid"  class="form-control m-bot15">
                                 <option value="-1">Select Group</option>
                                 <?php foreach ($groups as $value) { ?>
                                     <option value="<?= $value->group_id ?>">
@@ -474,7 +474,7 @@ switch ($msg) {
             }
 <?php endif; ?>
 <?php if ($p->coni): ?>
-            var isValid = true;
+            var isValid = false;
             $("#csv_form input:file").change(function () {
                 $("#csv_form span.errorMsg").empty(); // To remove the previous error message
                 var file = this.files[0];
@@ -496,8 +496,11 @@ switch ($msg) {
             });
 
             $('#csv_form').on('submit', (function (e) {
-                if (!isValid)
+                if (!isValid) {
+                    $('#csv_form .calert').show();
+                    $('#csv_form span.errorMsg').html("Please Select a valid CSV File! Only csv type allowed.");
                     return false;
+                }
                 $('#csv_form #csv').prop('disabled', true);
                 $("#csv_form span.errorMsg").empty();
                 $('#csv_form .calert').hide();

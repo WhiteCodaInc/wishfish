@@ -458,4 +458,27 @@ class M_admin_contacts extends CI_Model {
         $this->db->insert('inbox', $set);
     }
 
+    function addCsvContact($set, $gid) {
+        if (!$this->isExistContact($set)) {
+            $this->db->trans_start();
+            $this->db->insert('contact_detail', $set);
+            $cid = $this->db->insert_id();
+            $data = array(
+                'group_id' => $gid,
+                'contact_id' => $cid
+            );
+            $this->db->insert('multiple_contact_group', $data);
+            $this->db->trans_complete();
+        }
+        return TRUE;
+    }
+
+    function isExistContact($set) {
+        $where = array(
+            'email' => $set['email']
+        );
+        $query = $this->db->get_where('contact_detail', $where);
+        return ($query->num_rows() == 1) ? TRUE : FALSE;
+    }
+
 }

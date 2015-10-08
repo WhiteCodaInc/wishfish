@@ -161,7 +161,7 @@
 </script>
 <script type="text/javascript">
     $(document).ready(function () {
-        var isValid = true;
+        var isValid = false;
         $("#csv_form input:file").change(function () {
             $("#csv_form span.errorMsg").empty(); // To remove the previous error message
             var file = this.files[0];
@@ -183,8 +183,11 @@
         });
 
         $('#csv_form').on('submit', (function (e) {
-            if (!isValid)
+            if (!isValid) {
+                $('#csv_form .calert').show();
+                $('#csv_form span.errorMsg').html("Please Select a valid CSV File! Only csv type allowed.");
                 return false;
+            }
             $('#csv_form #csv').prop('disabled', true);
             $("#csv_form span.errorMsg").empty();
             $('#csv_form .calert').hide();
