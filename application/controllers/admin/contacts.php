@@ -177,7 +177,7 @@ class Contacts extends CI_Controller {
                 }
             }
         }
-        header("location:" . site_url() . "admin/email_list_builder/addContacts/$gid");
+        header("location:" . site_url() . "admin/contacts");
     }
 
     //----------------Contact Profile Functionality--------------------------//
