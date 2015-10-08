@@ -493,7 +493,7 @@
         var cardFlag;
         function checkCard() {
             if ($('#userForm .card_number').prop('readonly')) {
-                console.log("Readonly");
+//                console.log("Readonly");
                 cardFlag = false;
             } else {
                 var ccNum = $('#userForm').find('.card_number').val(),
@@ -503,10 +503,10 @@
                 if (ccNum.trim() != "" || cvcNum.trim() != "" ||
                         expMonth.trim() != "" || expYear.trim() != "") {
                     cardFlag = true;
-                    console.log("CARD NOT EMPTY");
+//                    console.log("CARD NOT EMPTY");
                 } else {
                     cardFlag = false;
-                    console.log("CARD EMPTY");
+//                    console.log("CARD EMPTY");
                 }
             }
         }
@@ -528,10 +528,6 @@
             });
         });
 
-//        $('#userForm').submit(function () {
-//           
-//        });
-
         $('#save-profile').click(function () {
             $('#userForm').submit();
         });
@@ -539,8 +535,8 @@
         $('#userForm,#cardForm').on('submit', function () {
             checkCard();
             cardForm = $(this).attr('id');
-            console.log(cardForm);
-            console.log(cardFlag);
+//            console.log(cardForm);
+//            console.log(cardFlag);
 
             $('#save').prop('disabled', true);
 
