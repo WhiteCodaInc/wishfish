@@ -55,9 +55,17 @@
                                     <tr>
                                         <th>Offer Name</th>
                                         <th>Payment Plan</th>
+                                        <th>Payout On Immediate Purchase</th>
+                                        <th>Payout On Upsell Purchase</th>
+                                        <th>Payout On Recurring Purchase</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
+                                <?php
+                                ($affInfo->payout_type != '3') ? $n = $affInfo->normal_payout : '';
+                                ($affInfo->payout_type != '3') ? $u = $affInfo->upsell_payout : '';
+                                ($affInfo->payout_type != '3') ? $r = $affInfo->recurring_payout : '';
+                                ?>
                                 <tbody>
                                     <?php foreach ($product as $value) { ?>
                                         <tr id="<?= $value->offer_id ?>">
@@ -72,6 +80,9 @@
                                                     N/A
                                                 <?php endif; ?>
                                             </td>
+                                            <td><?= (isset($n)) ? $n : $value->normal ?> %</td>
+                                            <td><?= (isset($u)) ? $u : $value->upsell ?> %</td>
+                                            <td><?= (isset($r)) ? $r : $value->recurring ?> %</td>
                                             <td>
                                                 <button type="button"  value="html" class="btn btn-info btn-xs html">
                                                     <i class="fa fa-eye"></i>
@@ -91,6 +102,9 @@
                                     <tr>
                                         <th>Offer Name</th>
                                         <th>Payment Plan</th>
+                                        <th>Payout On Immediate Purchase</th>
+                                        <th>Payout On Upsell Purchase</th>
+                                        <th>Payout On Recurring Purchase</th>
                                         <th>Action</th>
                                     </tr>
                                 </tfoot>
