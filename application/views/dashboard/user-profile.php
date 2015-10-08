@@ -34,8 +34,7 @@
             <div class="col-md-3"></div>
             <div class="col-md-6">
                 <div class="callout callout-info">
-                    <h4>I am an info callout!</h4>
-                    <p>Follow the steps to continue to payment.</p>
+                    <h4>Your Referral Code is <strong></strong></h4>
                 </div>
             </div>
             <div class="col-md-3"></div>
