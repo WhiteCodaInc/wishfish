@@ -1,5 +1,5 @@
 <style type="text/css">
-    .overlay{
+    .overlay-black{
         position:absolute;
         background:rgba(0,0,0,0.85) 0%;
         background:-moz-linear-gradient(top, rgba(0,0,0,0.85) 0% 0%, rgba(0,0,0,0.95) 100% 100%);
@@ -23,7 +23,7 @@
         display:none;
     }
 
-    .overlay .cancel {
+    .overlay-black .cancel {
         position: absolute;
         right: 0;
         padding: 3%;
@@ -87,7 +87,7 @@
 
 <!-- if you like to use surface. change class="home" to class="surface"-->
 <section id="home" class="home">
-    <div class="overlay sign" style="display: none;min-height: 0">
+    <div class="overlay-black sign" style="display: none;min-height: 0">
         <a style="padding: 6%"  href="javascript:void(0);" class="cancel">close <i class="fa fa-close"></i></a>
         <div class="row" style="  margin: 7% 10%;">
             <div class="col-md-4"></div>
@@ -589,7 +589,7 @@
                         </div><!-- /.pricing2 -->
                     </div><!-- /.col-md-4 col -->
                     <?php if ($plan->plan_id == 1): ?>
-                        <div class="overlay social-register" style="display: none">
+                        <div class="overlay-black social-register" style="display: none">
                             <a  href="javascript:void(0);" class="cancel">close <i class="fa fa-close"></i></a>
                             <div class="row" style="  margin: 18% 10%;">
                                 <div class="col-md-4"></div>
@@ -1219,7 +1219,7 @@
 
         $('a.cancel').click(function () {
             $('.social-register').css('display', 'none');
-            $('.overlay').css('display', 'none');
+            $('.overlay-black').css('display', 'none');
             $('.sign').css('display', 'none');
         });
 
