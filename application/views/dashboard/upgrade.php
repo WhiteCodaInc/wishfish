@@ -138,7 +138,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <label>CVC</label>
-                                                <input maxlength="3" type="password" class="cvc form-control" <?= ($card) ? "readonly" : "" ?> required=""/>
+                                                <input maxlength="3" value="<?= ($card) ? "123" : "" ?>" type="password" class="cvc form-control" <?= ($card) ? "readonly" : "" ?> required=""/>
                                             </div>
                                         </div>
                                     </div>
