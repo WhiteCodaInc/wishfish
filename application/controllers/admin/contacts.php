@@ -165,15 +165,18 @@ class Contacts extends CI_Controller {
 
                 if ($this->csvimport->get_array($file_path)) {
                     $csv_array = $this->csvimport->get_array($file_path);
-                    foreach ($csv_array as $row) {
-                        $set = array(
-                            'fname' => ($row['firstname'] != "") ? $row['firstname'] : NULL,
-                            'lname' => ($row['lastname'] != "") ? $row['lastname'] : NULL,
-                            'email' => ($row['email'] != "") ? $row['email'] : NULL
-                        );
-                        $this->objcon->addCsvContact($set, $gid);
-                    }
+                    echo '<pre>';
+                    print_r($csv_array);
+//                    foreach ($csv_array as $row) {
+//                        $set = array(
+//                            'fname' => ($row['firstname'] != "") ? $row['firstname'] : NULL,
+//                            'lname' => ($row['lastname'] != "") ? $row['lastname'] : NULL,
+//                            'email' => ($row['email'] != "") ? $row['email'] : NULL
+//                        );
+//                        $this->objcon->addCsvContact($set, $gid);
+//                    }
                     unlink($file_path);
+                    die();
                 }
             }
         }
