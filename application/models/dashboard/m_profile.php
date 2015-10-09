@@ -53,7 +53,7 @@ class M_profile extends CI_Model {
         if ($userInfo->customer_id != NULL) {
             if (isset($set['stripeToken'])) {
                 if (!$this->createCard($userInfo, $set)) {
-                    header('location:' . site_url() . 'app/profile');
+                    return FALSE;
                 }
             }
         }
