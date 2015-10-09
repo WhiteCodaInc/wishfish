@@ -523,11 +523,9 @@
                 var ccNum = $('#userForm').find('.card_number').val(),
                         cvcNum = $('#userForm').find('.cvc').val(),
                         expMonth = $('#userForm').find('.month').val(),
-                        expYear = $('#userForm').find('.year').val(),
-                        rcode = $('#userForm').find('.rcode').val();
+                        expYear = $('#userForm').find('.year').val();
                 if (ccNum.trim() != "" || cvcNum.trim() != "" ||
-                        expMonth.trim() != "" || expYear.trim() != "" ||
-                        rcode.trim() != "") {
+                        expMonth.trim() != "" || expYear.trim() != "") {
                     cardFlag = true;
                 } else {
                     cardFlag = false;
@@ -540,6 +538,8 @@
 
             $('#save').prop('disabled', true);
             $('#save-profile').prop('disabled', true);
+
+
 
             if (cardForm == "userForm") {
                 checkCard();
@@ -556,6 +556,14 @@
                     alertify.error("Invalid Email...!");
                     return false;
                 }
+
+                // Validate the RCODE:
+                var rcode = $('#' + cardForm).find('.rcode').val();
+                var rcode_regex = /^\d{6}$/;
+                if (rcode.trim() != "" && !rcode_regex.test(rcode)) {
+                    alertify.error("Referral code appears to be invalid..!");
+                    return false;
+                }
             }
 
             if (cardFlag || cardForm == "cardForm") {
@@ -563,11 +571,10 @@
                 var ccNum = $(this).find('.card_number').val(),
                         cvcNum = $(this).find('.cvc').val(),
                         expMonth = $(this).find('.month').val(),
-                        expYear = $(this).find('.year').val(),
-                        rcode = $(this).find('.rcode').val();
+                        expYear = $(this).find('.year').val();
 
                 if (ccNum.trim() != "" || cvcNum.trim() != "" ||
-                        expMonth.trim() != "" || expYear.trim() != "" || rcode.trim() != "") {
+                        expMonth.trim() != "" || expYear.trim() != "") {
 
                     // Validate the number:
                     if (!Stripe.card.validateCardNumber(ccNum)) {
@@ -601,15 +608,13 @@
                         $('#save').prop('disabled', false);
                         return false;
                     }
-
-                    // Validate the RCODE:
-                    var rcode_regex = /^\d{6}$/;
-
-                    if (cardForm == "userForm" && !rcode_regex.test(rcode)) {
-                        error = true;
-                        reportError('Referral code appears to be invalid..!');
-                        return false;
-                    }
+//                    // Validate the RCODE:
+//                    var rcode_regex = /^\d{6}$/;
+//                    if (cardForm == "userForm" && !rcode_regex.test(rcode)) {
+//                        error = true;
+//                        reportError('Referral code appears to be invalid..!');
+//                        return false;
+//                    }
                 }
                 // Check for errors:
                 if (!error) {
