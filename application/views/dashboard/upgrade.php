@@ -573,6 +573,7 @@
                 data: {plan: "wishfish-personal", planid: 2, coupon: code},
                 url: "<?= site_url() ?>app/upgrade/upgradePlan",
                 success: function (data, textStatus, jqXHR) {
+                    $('#payPersonal').prop('disabled', false);
                     $('#planUpgrade .box-body button').prop('disabled', false);
                     $('.personal .overlay').hide();
                     $('.personal .loading-img').hide();
