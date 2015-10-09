@@ -390,6 +390,7 @@
             (formType == "personalCardForm") ?
                     $('#payPersonal').prop('disabled', true) :
                     $('#payEnterprise').prop('disabled', true);
+
             if (!cardFlag) {
                 var error = false;
                 var ccNum = $(this).find('.card_number').val(),
@@ -459,6 +460,7 @@
                 }
                 return false;
             } else {
+                var rcode = $(this).find('.rcode').val();
                 var rcode_regex = /^\d{6}$/;
                 if (!rcode_regex.test(rcode)) {
                     $('#' + formType + ' #msgCard').text('Referral code appears to be invalid..!');
