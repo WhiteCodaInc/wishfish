@@ -66,8 +66,8 @@ class Upgrade extends CI_Controller {
                 $ref_where['user_id'] = $this->userid;
                 $this->db->update('wi_user_mst', $ref_set, $ref_where);
             } else {
-                $data['error'] = "Your Referal Code is Invalid..! Try Again..!";
-                $this->load->view('dashboard/stripe_error', $data);
+                $this->session->set_flashdata('error', "Your Referal Code is Invalid..! Try Again..!");
+                header('location:' . site_url() . 'app/upgrade');
                 return FALSE;
             }
         }

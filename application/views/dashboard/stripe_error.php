@@ -9,7 +9,7 @@
     ?>
     <div class="row">
         <div class="col-md-3"></div>
-        <div  style="text-align: center;font-size: 20px;color: white" class="col-md-6">
+        <div  style="text-align: center;font-size: 20px;color: blueviolet" class="col-md-6">
             <p>ERROR : <?= $error ?></p>
             <p>Your Transaction is Fail..! Try Again..!</p>
             <br/>
