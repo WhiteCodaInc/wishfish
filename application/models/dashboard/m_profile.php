@@ -44,10 +44,12 @@ class M_profile extends CI_Model {
         print_r($set);
 //        $dt = $this->wi_common->getCustomMySqlDate($set['birthday'], $this->session->userdata('u_date_format'));
 //        echo '1001-' . $dt;
-        die();
+//        die();
 
 
         $userInfo = $this->wi_common->getUserInfo($this->userid);
+        print_r($userInfo);
+        die();
         if ($userInfo->customer_id != NULL) {
             if (isset($set['stripeToken'])) {
                 $this->createCard($userInfo, $set);
