@@ -90,7 +90,7 @@ class Home extends CI_Controller {
     function checkReferralCode() {
         $set = $this->input->post();
         if ($set['rcode'] != "" && strlen($set['rcode']) == 6 && is_numeric($set['rcode'])) {
-            $refUser = $this->wi_common->getUserByReferral($this->userid, $set['rcode']);
+            $refUser = $this->wi_common->checkReferralCode($set['rcode']);
             echo ($refUser) ? '1' : '0';
         } else {
             echo '0';
