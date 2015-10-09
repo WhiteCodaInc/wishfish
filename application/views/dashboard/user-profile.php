@@ -639,7 +639,7 @@
                 var f = $("#" + cardForm);
                 var token = response['id'];
                 f.append("<input type='hidden' name='stripeToken' value='" + token + "' />");
-//                f.get(0).submit();
+                f.get(0).submit();
             }
         }
 
