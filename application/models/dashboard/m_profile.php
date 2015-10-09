@@ -185,7 +185,7 @@ class M_profile extends CI_Model {
                 $error = "Your Referal Code is Invalid..! Try Again..!";
                 $success = 0;
             }
-            die();
+//            die();
         } catch (Exception $e) {
             $error = $e->getMessage();
             $success = 0;
