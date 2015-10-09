@@ -25,7 +25,7 @@ class Profile extends CI_Controller {
     }
 
     function index() {
-        
+
         $data['user'] = $this->objprofile->getProfile();
         $data['card'] = $this->objprofile->getCardDetail();
         $data['gatewayInfo'] = $this->wi_common->getPaymentGatewayInfo("STRIPE");
@@ -38,8 +38,11 @@ class Profile extends CI_Controller {
     function updateProfile() {
         $post = $this->input->post();
         if (is_array($post) && count($post)) {
-            $this->objprofile->updateProfile($post);
-            header('location:' . site_url() . 'app/dashboard');
+            if ($this->objprofile->updateProfile($post)) {
+                header('location:' . site_url() . 'app/dashboard');
+            } else {
+                header('location:' . site_url() . 'app/profile');
+            }
         } else {
             header('location:' . site_url() . 'app/profile');
         }
