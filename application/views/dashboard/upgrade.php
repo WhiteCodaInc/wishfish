@@ -141,6 +141,12 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <?php if ($userInfo->ref_by == NULL): ?>
+                                        <div class="form-group">
+                                            <label>Referral Code</label>
+                                            <input name="rcode" value="" type="text" maxlength="6" class="rcode form-control" placeholder="Referral Code" />
+                                        </div>
+                                    <?php endif; ?>
                                     <div class="form-group" style="text-align: center">
                                         <span style="color: red;display: none" id="msgCard"></span>
                                     </div>
@@ -192,6 +198,12 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <?php if ($userInfo->ref_by == NULL): ?>
+                                        <div class="form-group">
+                                            <label>Referral Code</label>
+                                            <input name="rcode" value="" type="text" maxlength="6" class="rcode form-control" placeholder="Referral Code" />
+                                        </div>
+                                    <?php endif; ?>
                                     <div class="form-group" style="text-align: center">
                                         <span style="color: red;display: none" id="msgCard"></span>
                                     </div>
