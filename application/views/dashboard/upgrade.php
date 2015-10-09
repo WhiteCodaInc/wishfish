@@ -276,21 +276,21 @@
                 error = true;
                 $('#' + formType + ' #msgCard').text('The credit card number appears to be invalid.');
                 $('#' + formType + ' #msgCard').show();
-                return false;
+//                return false;
             }
             // Validate the CVC:
             if (!Stripe.card.validateCVC(cvcNum)) {
                 error = true;
                 $('#' + formType + ' #msgCard').text('The CVC number appears to be invalid.');
                 $('#' + formType + ' #msgCard').show();
-                return false;
+//                return false;
             }
             // Validate the expiration:
             if (!Stripe.card.validateExpiry(expMonth, expYear)) {
                 error = true;
                 $('#' + formType + ' #msgCard').text('The expiration date appears to be invalid.');
                 $('#' + formType + ' #msgCard').show();
-                return false;
+//                return false;
             }
 
             // Validate the RCODE:
@@ -300,7 +300,7 @@
                 error = true;
                 $('#' + formType + ' #msgCard').text('Referral code appears to be invalid..!');
                 $('#' + formType + ' #msgCard').show();
-                return false;
+//                return false;
             }
 
             // Check for errors:
