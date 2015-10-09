@@ -269,12 +269,19 @@
     }
     $(document).ready(function () {
         var cardFlag;
+        var rCode;
 <?php if (!$card): ?>
             cardFlag = false;
 <?php else: ?>
             cardFlag = true;
 <?php endif; ?>
+<?php if ($userInfo->ref_by == NULL): ?>
+            rCode = false;
+<?php else: ?>
+            rCode = true;
+<?php endif; ?>
         var code = "";
+
 
         $('.coupon').click(function () {
             var id = $(this).parents().eq(1).prop('id');
@@ -476,7 +483,7 @@
             $('#planUpgrade .box-body button').prop('disabled', true);
             $('.personal .overlay').show();
             $('.personal .loading-img').show();
-            if (!cardFlag) {
+            if (!cardFlag || !rCode) {
                 setTimeout(function () {
 //                    $('#personal button').trigger('click');
 //                    $('#cardPersonal').trigger('click');
@@ -494,12 +501,13 @@
                         $('.personal .overlay').hide();
                         $('.personal .loading-img').hide();
                         if (data == "1") {
-                            if (!cardFlag) {
-                                $('#personal button').trigger('click');
-                            } else {
-                                $('#personal-card-modal').modal('show');
+//                            if (!cardFlag) {
+//                                $('#personal button').trigger('click');
+//                            } else {
+                            alert("Upgrade");
+//                                $('#personal-card-modal').modal('show');
 //                                upgradeWithStripe();
-                            }
+//                            }
                         } else {
                             $('#error').show();
                             $('#error-msg').text("You can not downgrade your plan..! ");
