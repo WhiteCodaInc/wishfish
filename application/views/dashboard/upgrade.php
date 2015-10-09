@@ -521,7 +521,7 @@
             $('#planUpgrade .box-body button').prop('disabled', true);
             $('.enterprise .overlay').show();
             $('.enterprise .loading-img').show();
-            if (!cardFlag) {
+            if (!cardFlag || !rCode) {
                 setTimeout(function () {
                     $('#enterprise-card-modal').modal('show');
                     $('#planUpgrade .box-body button').prop('disabled', false);
