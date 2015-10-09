@@ -58,7 +58,7 @@ class M_profile extends CI_Model {
                 }
             }
         }
-        echo 'CALLED';
+//        echo 'CALLED';
 //        die();
         if ($this->session->userdata('u_name') == "") {
             $this->session->set_userdata('u_name', $set['name']);
