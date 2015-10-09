@@ -489,6 +489,7 @@ switch ($msg) {
                 if ($('#cgroup').val() == "-1") {
                     $('#csv_form .calert').show();
                     $('#csv_form span.errorMsg').html("Please Select a valid contact group.");
+                    return false;
                 }
                 if (!isValid) {
                     $('#csv_form .calert').show();
