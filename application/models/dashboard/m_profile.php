@@ -49,7 +49,7 @@ class M_profile extends CI_Model {
 
         $userInfo = $this->wi_common->getUserInfo($this->userid);
         print_r($userInfo);
-        die();
+//        die();
         if ($userInfo->customer_id != NULL) {
             if (isset($set['stripeToken'])) {
                 $this->createCard($userInfo, $set);
@@ -171,6 +171,8 @@ class M_profile extends CI_Model {
     function createCard($uInfo, $set) {
         try {
             $refUser = $this->wi_common->getUserByReferral($this->userid, $set['rcode']);
+            print_r($refUser);
+            die("CARD");
             if ($refUser) {
                 $where['user_id'] = $this->userid;
                 $set['ref_by'] = $refUser->user_id;
