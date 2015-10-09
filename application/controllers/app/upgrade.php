@@ -53,6 +53,11 @@ class Upgrade extends CI_Controller {
         $success = 0;
         $flag = TRUE;
         $set = $this->input->post();
+
+        echo '<pre>';
+        print_r($set);
+        die();
+
         if ($set['coupon'] != "") {
             $flag = ($this->objregister->checkCoupon($set['coupon'])) ? TRUE : FALSE;
         }
@@ -78,7 +83,7 @@ class Upgrade extends CI_Controller {
                         "source" => $set['stripeToken']
                     );
                     ($set['coupon'] != "") ? $stripe['coupon'] = $set['coupon'] : '';
-                     $customer->subscriptions->create($stripe);
+                    $customer->subscriptions->create($stripe);
 
                     if ($set['coupon'] != "")
                         $this->objregister->updateCoupon($set['coupon']);
