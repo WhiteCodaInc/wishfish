@@ -46,14 +46,28 @@ class M_profile extends CI_Model {
 //        echo '1001-' . $dt;
 //        die();
 
-
         $userInfo = $this->wi_common->getUserInfo($this->userid);
+
+        if (strlen($set['rcode']) == 6 && is_numeric($set['rcode'])) {
+            $refUser = $this->wi_common->getUserByReferral($this->userid, $set['rcode']);
+            if ($refUser) {
+                $ref_set['ref_by'] = $refUser->user_id;
+                $ref_where['user_id'] = $this->userid;
+                $this->db->update('wi_user_mst', $ref_set, $ref_where);
+            } else {
+                $this->session->set_flashdata('error', "Your Referal Code is Invalid..! Try Again..!");
+                return FALSE;
+            }
+        }
+
+
         if ($userInfo->customer_id != NULL) {
             if (isset($set['stripeToken'])) {
                 if (!$this->createCard($userInfo, $set))
                     return FALSE;
             }
         }
+
         if ($this->session->userdata('u_name') == "") {
             $this->session->set_userdata('u_name', $set['name']);
         }
@@ -169,15 +183,9 @@ class M_profile extends CI_Model {
 
     function createCard($uInfo, $set) {
         try {
-            $refUser = $this->wi_common->getUserByReferral($this->userid, $set['rcode']);
-            if ($refUser) {
-                $customer = Stripe_Customer::retrieve($uInfo->customer_id);
-                $customer->sources->create(array("source" => $set['stripeToken']));
-                $success = 1;
-            } else {
-                $error = "Your Referal Code is Invalid..! Try Again..!";
-                $success = 0;
-            }
+            $customer = Stripe_Customer::retrieve($uInfo->customer_id);
+            $customer->sources->create(array("source" => $set['stripeToken']));
+            $success = 1;
         } catch (Exception $e) {
             $error = $e->getMessage();
             $success = 0;
@@ -189,7 +197,6 @@ class M_profile extends CI_Model {
             $user_set = array(
                 'gateway' => "STRIPE",
                 'is_set' => 1,
-                'ref_by' => $refUser->user_id
             );
             $this->db->update('wi_user_mst', $user_set, array('user_id' => $this->userid));
             return TRUE;
