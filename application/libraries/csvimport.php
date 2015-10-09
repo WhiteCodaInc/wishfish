@@ -184,7 +184,7 @@ class Csvimport {
         $result = array();
         while (($data = fgetcsv($this->handle, 0, $this->delimiter)) !== FALSE) {
 
-            $result[] = $data;
+            $result[] = $data[0];
 
 //            if ($row < $this->initial_line) {
 //                $row++;
