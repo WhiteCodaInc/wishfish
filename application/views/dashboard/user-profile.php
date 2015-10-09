@@ -535,12 +535,6 @@
 
         $('#userForm,#cardForm').on('submit', function () {
             cardForm = $(this).attr('id');
-
-            $('#save').prop('disabled', true);
-            $('#save-profile').prop('disabled', true);
-
-
-
             if (cardForm == "userForm") {
                 checkCard();
                 if ($('#userForm input[name="name"]').val().trim() == "") {
@@ -565,6 +559,9 @@
                     return false;
                 }
             }
+            
+            $('#save-profile').prop('disabled', true);
+            $('#save').prop('disabled', true);
 
             if (cardFlag || cardForm == "cardForm") {
                 var error = false;
