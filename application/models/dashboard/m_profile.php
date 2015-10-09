@@ -52,10 +52,12 @@ class M_profile extends CI_Model {
 //        die();
         if ($userInfo->customer_id != NULL) {
             if (isset($set['stripeToken'])) {
-                $this->createCard($userInfo, $set);
+                if (!$this->createCard($userInfo, $set)) {
+                    header('location:' . site_url() . 'app/profile');
+                }
             }
         }
-        die();
+//        die();
         if ($this->session->userdata('u_name') == "") {
             $this->session->set_userdata('u_name', $set['name']);
         }
@@ -194,7 +196,8 @@ class M_profile extends CI_Model {
         if ($success != 1) {
 //            echo 'Not SUCCESS';
             $this->session->set_flashdata('error', $error);
-            header('location:' . site_url() . 'app/profile');
+            return FALSE;
+//            header('location:' . site_url() . 'app/profile');
         } else {
 //            echo 'SUCCESS';
             $user_set = array(
