@@ -99,7 +99,7 @@
             <div class="col-md-2"></div>
         </div>
         <?php if ($userInfo->is_set == 0 || ($userInfo->is_set == 1 && $userInfo->gateway == "STRIPE")): ?>
-            <?php if (!$card): ?>
+            <?php if (!$card || $userInfo->ref_by == NULL): ?>
                 <!--                <a href="#" id="cardPersonal" class="create btn btn-info" style="display: none" data-toggle="modal" data-target="#personal-card-modal">
                                     Pay
                                 </a>-->
