@@ -462,7 +462,7 @@
             } else {
                 var rcode = $(this).find('.rcode').val();
                 var rcode_regex = /^\d{6}$/;
-                if (!rcode_regex.test(rcode)) {
+                if (rcode.trim() != "" && !rcode_regex.test(rcode)) {
                     $('#' + formType + ' #msgCard').text('Referral code appears to be invalid..!');
                     $('#' + formType + ' #msgCard').show();
                     (formType == "personalCardForm") ?
