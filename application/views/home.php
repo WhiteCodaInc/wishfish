@@ -849,8 +849,9 @@
 <script type="text/javascript">
     var stripeEmail = 0;
     var rCode = 1;
+    var formType = "";
     $(function () {
-        var formType = "";
+
         Stripe.setPublishableKey('<?= $stripe->publish_key ?>');
         $('#personalCardForm,#enterpriseCardForm').on('submit', function () {
             formType = $(this).prop('id');
@@ -969,12 +970,14 @@
                             $input.next('span').text('Your Email is already register!');
                         }
                         else {
+                            $('#' + formType + ' #msgCard').hide();
                             $input.next('span').empty();
                             stripeEmail = 1;
                         }
                     }
                 });
             } else {
+                $('#' + formType + ' #msgCard').hide();
                 $input.next('span').empty();
                 stripeEmail = 0;
             }
@@ -992,6 +995,7 @@
                         url: "<?= base_url() ?>home/checkReferralCode",
                         success: function (res) {
                             if (res == '1') {
+                                $('#' + formType + ' #msgCard').hide();
                                 $input.next('span').empty();
                                 rCode = 1;
                             }
@@ -1006,6 +1010,7 @@
                     $input.next('span').text('Referral code appears to be invalid..!');
                 }
             } else {
+                $('#' + formType + ' #msgCard').hide();
                 $input.next('span').empty();
                 rCode = 1;
             }
