@@ -295,7 +295,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <label>Select Contact Group</label>
-                            <select name="groupid"  class="form-control m-bot15">
+                            <select name="groupid" id="cgroup"  class="form-control m-bot15">
                                 <option value="-1">Select Group</option>
                                 <?php foreach ($groups as $value) { ?>
                                     <option value="<?= $value->group_id ?>">
@@ -486,6 +486,10 @@ switch ($msg) {
             });
 
             $('#csv_form').on('submit', (function (e) {
+                if ($('#cgroup').val() == '-1') {
+                    $('#csv_form .calert').show();
+                    $('#csv_form span.errorMsg').html("Please Select a valid contact group.");
+                }
                 if (!isValid) {
                     $('#csv_form .calert').show();
                     $('#csv_form span.errorMsg').html("Please Select a valid CSV File! Only csv type allowed.");

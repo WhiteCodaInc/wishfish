@@ -176,7 +176,7 @@ class Contacts extends CI_Controller {
                         $this->objcon->addCsvContact($set, $gid);
                     }
                     unlink($file_path);
-                    die();
+//                    die();
                 }
             }
         }
