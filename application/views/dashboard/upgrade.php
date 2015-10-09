@@ -100,12 +100,12 @@
         </div>
         <?php if ($userInfo->is_set == 0 || ($userInfo->is_set == 1 && $userInfo->gateway == "STRIPE")): ?>
             <?php if (!$card): ?>
-                <a href="#" id="cardPersonal" class="create btn btn-info" style="display: none" data-toggle="modal" data-target="#personal-card-modal">
-                    Pay
-                </a>
-                <a href="#" id="cardEnterprise" class="create btn btn-info" style="display: none" data-toggle="modal" data-target="#enterprise-card-modal">
-                    Pay
-                </a>
+                <!--                <a href="#" id="cardPersonal" class="create btn btn-info" style="display: none" data-toggle="modal" data-target="#personal-card-modal">
+                                    Pay
+                                </a>-->
+                <!--                <a href="#" id="cardEnterprise" class="create btn btn-info" style="display: none" data-toggle="modal" data-target="#enterprise-card-modal">
+                                    Pay
+                                </a>-->
                 <!-------------------------------Personal Card Detail Model------------------------------------>
                 <div class="modal fade" id="personal-card-modal" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog" style="max-width: 425px">
@@ -348,7 +348,6 @@
         function reportError(msg) {
             $('#error-msg').text(msg);
             $('#error').show();
-            $('#save-profile').prop('disabled', false);
             return false;
         }
     });
@@ -473,7 +472,8 @@
             if (!cardFlag) {
                 setTimeout(function () {
 //                    $('#personal button').trigger('click');
-                    $('#cardPersonal').trigger('click');
+//                    $('#cardPersonal').trigger('click');
+                    $('#personal-card-modal').modal('show');
                     $('#planUpgrade .box-body button').prop('disabled', false);
                     $('.personal .overlay').hide();
                     $('.personal .loading-img').hide();
@@ -508,7 +508,8 @@
             if (!cardFlag) {
                 setTimeout(function () {
 //                    $('#enterprise button').trigger('click');
-                    $('#cardEnterprise').trigger('click');
+//                    $('#cardEnterprise').trigger('click');
+                    $('#enterprise-card-modal').modal('show');
                     $('#planUpgrade .box-body button').prop('disabled', false);
                     $('.enterprise .overlay').hide();
                     $('.enterprise .loading-img').hide();
