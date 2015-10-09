@@ -117,9 +117,10 @@
                                     <span class="modal-descritpion">1-month of wish-fish Personal</span>
                                 </div>
                                 <div class="modal-body">
+                                    <?php ($card) ? $cardNo = "************{$card['last4']}" : ""; ?>
                                     <div class="form-group">
                                         <label>Credit Card Number </label>
-                                        <input data-stripe="number" value=""  type="text" maxlength="16" class="card_number form-control" placeholder="Card Number" required=""/>
+                                        <input data-stripe="number" value="<?= ($card) ? $cardNo : "" ?>"  type="text" maxlength="16" class="card_number form-control" placeholder="Card Number" <?= ($card) ? "readonly" : "" ?> required="" />
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
@@ -127,17 +128,17 @@
                                                 <label>Expiration (MM/YYYY)</label>
                                                 <div class="row">
                                                     <div class="col-md-5" style="padding-right: 0">
-                                                        <input value=""  data-stripe="exp-month" maxlength="2" type="text" class="month form-control" placeholder="MM" required=""/>
+                                                        <input value="<?= ($card) ? $card['exp_month'] : "" ?>"  data-stripe="exp-month" maxlength="2" type="text" class="month form-control" placeholder="MM" <?= ($card) ? "readonly" : "" ?> required=""/>
                                                     </div>
                                                     <div class="col-md-1" style="font-size: 25px;padding-left: 10px;">/</div>
                                                     <div class="col-md-5" style="padding-left: 0">
-                                                        <input value="" data-stripe="exp-year" type="text" maxlength="4" class="year form-control" placeholder="YYYY" required="" />
+                                                        <input value="<?= ($card) ? $card['exp_year'] : "" ?>" data-stripe="exp-year" type="text" maxlength="4" class="year form-control" placeholder="YYYY" <?= ($card) ? "readonly" : "" ?> required="" />
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <label>CVC</label>
-                                                <input maxlength="3" type="password" class="cvc form-control" required=""/>
+                                                <input maxlength="3" type="password" class="cvc form-control" <?= ($card) ? "readonly" : "" ?> required=""/>
                                             </div>
                                         </div>
                                     </div>
