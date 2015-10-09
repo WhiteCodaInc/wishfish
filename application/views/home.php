@@ -939,7 +939,7 @@
         }
 
         $('#pEmail,#eEmail').focusout(function () {
-            formType = $(this).parents('form').prop('id');
+            var fType = $(this).parents('form').prop('id');
             var semail = $(this).val();
             $input = $(this);
             if (semail.trim() != "") {
@@ -952,20 +952,20 @@
                             stripeEmail = 0;
                             $input.next('span').text('Your Email is already register!');
                         } else {
-                            $('#' + formType + ' #msgCard').hide();
+                            $('#' + fType + ' #msgCard').hide();
                             $input.next('span').empty();
                             stripeEmail = 1;
                         }
                     }
                 });
             } else {
-                $('#' + formType + ' #msgCard').hide();
+                $('#' + fType + ' #msgCard').hide();
                 $input.next('span').empty();
                 stripeEmail = 0;
             }
         });
         $('#pRcode,#eRcode').focusout(function () {
-
+            var fType = $(this).parents('form').prop('id');
             var rcode = $(this).val();
             $input = $(this);
             var rcode_regex = /^\d{6}$/;
@@ -977,7 +977,7 @@
                         url: "<?= base_url() ?>home/checkReferralCode",
                         success: function (res) {
                             if (res == '1') {
-                                $('#' + formType + ' #msgCard').hide();
+                                $('#' + fType + ' #msgCard').hide();
                                 $input.next('span').empty();
                                 rCode = 1;
                             }
@@ -992,7 +992,7 @@
                     $input.next('span').text('Referral code appears to be invalid..!');
                 }
             } else {
-                $('#' + formType + ' #msgCard').hide();
+                $('#' + fType + ' #msgCard').hide();
                 $input.next('span').empty();
                 rCode = 1;
             }
