@@ -431,7 +431,6 @@
                     $('#' + formType + ' #msgCard').show();
                     return false;
                 }
-                return false;
             } else {
                 var rcode = $(this).find('.rcode').val();
                 var rcode_regex = /^\d{6}$/;
@@ -452,6 +451,7 @@
                     upgradeWithStripe();
                 }
             }
+            return false;
         });
 
         function stripeResponseHandler(status, response) {
