@@ -54,67 +54,85 @@ class Upgrade extends CI_Controller {
         $flag = TRUE;
         $set = $this->input->post();
 
-        
-
         echo '<pre>';
         print_r($set);
         die();
 
+        if (strlen($set['rcode']) == 6 && is_numeric($set['rcode'])) {
+            $refUser = $this->wi_common->getUserByReferral($this->userid, $set['rcode']);
+            if ($refUser) {
+                echo 'VALID REF CODE<br>';
+                $ref_set['ref_by'] = $refUser->user_id;
+                $ref_where['user_id'] = $this->userid;
+                $this->db->update('wi_user_mst', $ref_set, $ref_where);
+            } else {
+                $data['error'] = "Your Referal Code is Invalid..! Try Again..!";
+                $this->load->view('dashboard/stripe_error', $data);
+                return FALSE;
+            }
+        }
+        echo 'CALLD<br>';
+        echo 'CALLD AGAIN<br>';
+        echo 'CALLD AGAIN<br>';
+        die();
         if ($set['coupon'] != "") {
             $flag = ($this->objregister->checkCoupon($set['coupon'])) ? TRUE : FALSE;
         }
+
         if ($flag) {
             $gatewayInfo = $this->wi_common->getPaymentGatewayInfo("STRIPE");
             require_once(FCPATH . 'stripe/lib/Stripe.php');
             Stripe::setApiKey($gatewayInfo->secret_key);
-            if ($set['stripeToken'] != "") {
-                try {
-                    $userInfo = $this->wi_common->getUserInfo($this->userid);
-                    $customer = Stripe_Customer::retrieve($userInfo->customer_id);
+//            if ($set['stripeToken'] != "") {
+            try {
+                $userInfo = $this->wi_common->getUserInfo($this->userid);
+                $customer = Stripe_Customer::retrieve($userInfo->customer_id);
 //                    $customer->sources->create(array("source" => $this->input->post('stripeToken')));
-                    if ($customer->subscriptions->total_count) {
-                        $subs = $customer->subscriptions->data[0]->id;
-                        $customer->subscriptions->retrieve($subs)->cancel();
-                    }
+                if ($customer->subscriptions->total_count) {
+                    $subs = $customer->subscriptions->data[0]->id;
+                    $customer->subscriptions->retrieve($subs)->cancel();
+                }
 //                    $stripe = array(
 //                        "plan" => $set['plan'],
 //                        "metadata" => array("userid" => $this->userid),
 //                    );
-                    $stripe = array(
-                        "plan" => $set['plan'],
-                        "source" => $set['stripeToken']
-                    );
-                    ($set['coupon'] != "") ? $stripe['coupon'] = $set['coupon'] : '';
-                    $customer->subscriptions->create($stripe);
 
-                    if ($set['coupon'] != "")
-                        $this->objregister->updateCoupon($set['coupon']);
+                $stripe = array(
+                    "plan" => $set['plan']
+                );
+                (isset($set['stripeToken'])) ? $stripe['source'] = $set['stripeToken'] : '';
 
-                    $pid = $this->objupgrade->insertPlanDetail($set['planid'], $customer, $set);
+                ($set['coupon'] != "") ? $stripe['coupon'] = $set['coupon'] : '';
+                $customer->subscriptions->create($stripe);
 
-                    $data = array("userid" => $this->userid, "planid" => $pid);
-                    ($set['coupon'] != "") ? $data['coupon'] = $set['coupon'] : '';
-                    $customer->metadata = $data;
-                    $customer->save();
+                if ($set['coupon'] != "")
+                    $this->objregister->updateCoupon($set['coupon']);
 
-                    $user_set = array(
-                        'gateway' => "STRIPE",
-                        'is_set' => 1
-                    );
-                    $this->db->update('wi_user_mst', $user_set, array('user_id' => $this->userid));
+                $pid = $this->objupgrade->insertPlanDetail($set['planid'], $customer, $set);
 
-                    $success = 1;
-                } catch (Exception $e) {
-                    $error = $e->getMessage();
-                    $success = 0;
-                }
-                if ($success != 1) {
-                    $data['error'] = $error;
-                    $this->load->view('dashboard/stripe_error', $data);
-                } else {
-                    header('Location:' . site_url() . 'app/dashboard');
-                }
+                $data = array("userid" => $this->userid, "planid" => $pid);
+                ($set['coupon'] != "") ? $data['coupon'] = $set['coupon'] : '';
+                $customer->metadata = $data;
+                $customer->save();
+
+                $user_set = array(
+                    'gateway' => "STRIPE",
+                    'is_set' => 1
+                );
+                $this->db->update('wi_user_mst', $user_set, array('user_id' => $this->userid));
+
+                $success = 1;
+            } catch (Exception $e) {
+                $error = $e->getMessage();
+                $success = 0;
             }
+            if ($success != 1) {
+                $data['error'] = $error;
+                $this->load->view('dashboard/stripe_error', $data);
+            } else {
+                header('Location:' . site_url() . 'app/dashboard');
+            }
+//            }
         } else {
             $data['error'] = "Coupon Code is Invalid...!";
             $this->load->view('stripe_error', $data);
