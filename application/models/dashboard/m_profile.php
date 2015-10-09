@@ -53,10 +53,7 @@ class M_profile extends CI_Model {
         if ($userInfo->customer_id != NULL) {
             if (isset($set['stripeToken'])) {
                 if (!$this->createCard($userInfo, $set)) {
-                    echo 'FALSE';
-                    return FALSE;
-                } else {
-                    echo 'TRUE';
+//                    echo 'FALSE';
                     return FALSE;
                 }
             }
