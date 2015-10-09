@@ -570,11 +570,12 @@
                     $('#a_personal').prop('disabled', false);
                     $('.personal .overlay').hide();
                     $('.personal .loading-img').hide();
-                    $('#' + formType + ' .overlay').show();
-                    $('#' + formType + ' .loading-img').show();
+                    $('#' + formType + ' .overlay').hide();
+                    $('#' + formType + ' .loading-img').hide();
                     if (data == 1) {
                         window.location.assign("<?= site_url() ?>app/dashboard");
                     } else {
+                        $('#personal-card-modal').modal('hide');
                         $('#error').show();
                         $('#error-msg').text(data);
                     }
