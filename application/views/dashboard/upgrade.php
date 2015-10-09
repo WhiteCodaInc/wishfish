@@ -559,12 +559,12 @@
             });
         }
 
-        function upgradeWithStripe(plan) {
+        function upgradeWithStripe(pname) {
 
             $('#planUpgrade .box-body button').prop('disabled', true);
             var plan;
             var planid;
-            if (plan == "PERSONAL") {
+            if (pname == "PERSONAL") {
                 plan = "wishfish-personal";
                 planid = 2;
                 $('.personal .overlay').show();
@@ -580,9 +580,9 @@
                 data: {plan: plan, planid: planid, coupon: code},
                 url: "<?= site_url() ?>app/upgrade/upgradePlan",
                 success: function (data, textStatus, jqXHR) {
-                    console.log(plan);
+                    console.log(pname);
                     $('#planUpgrade .box-body button').prop('disabled', false);
-                    if (plan == "PERSONAL") {
+                    if (pname == "PERSONAL") {
                         $('#payPersonal').prop('disabled', false);
                         $('.personal .overlay').hide();
                         $('.personal .loading-img').hide();
