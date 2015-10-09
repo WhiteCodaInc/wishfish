@@ -497,7 +497,8 @@
                             if (!cardFlag) {
                                 $('#personal button').trigger('click');
                             } else {
-                                upgradeWithStripe();
+                                $('#personal-card-modal').modal('show');
+//                                upgradeWithStripe();
                             }
                         } else {
                             $('#error').show();
