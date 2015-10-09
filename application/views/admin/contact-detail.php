@@ -487,9 +487,8 @@ switch ($msg) {
 
             $('#csv_form').on('submit', (function (e) {
                 if ($('#cgroup').val() == "-1") {
-                    alert();
                     $('#csv_form .calert').show();
-                    $('#csv_form span.errorMsg').html("Please Select a valid contact group.");
+                    $('#csv_form span.errorMsg').html("Please Select a valid contact group...!");
                     return false;
                 }
                 if (!isValid) {
