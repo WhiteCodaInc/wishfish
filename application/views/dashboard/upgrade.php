@@ -433,6 +433,7 @@
                     $('#' + formType + ' #msgCard').show();
                     return false;
                 }
+                return false;
             } else {
                 var rcode = $(this).find('.rcode').val();
                 var rcode_regex = /^\d{6}$/;
@@ -445,15 +446,19 @@
                                 $('#payEnterprise').prop('disabled', false);
                         return false;
                     } else {
+                        $('#' + formType + ' .overlay').show();
+                        $('#' + formType + ' .loading-img').show();
                         $('#' + formType + ' #msgCard').hide();
+                        return true;
                     }
                 } else {
                     $('#' + formType + ' .overlay').show();
                     $('#' + formType + ' .loading-img').show();
                     upgradeWithStripe();
+                    return false;
                 }
             }
-            return false;
+//            return false;
         });
 
         function stripeResponseHandler(status, response) {
