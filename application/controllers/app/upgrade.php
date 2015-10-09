@@ -54,9 +54,9 @@ class Upgrade extends CI_Controller {
         $flag = TRUE;
         $set = $this->input->post();
 
-        echo '<pre>';
-        print_r($set);
-        die();
+//        echo '<pre>';
+//        print_r($set);
+//        die();
 
         if (strlen($set['rcode']) == 6 && is_numeric($set['rcode'])) {
             $refUser = $this->wi_common->getUserByReferral($this->userid, $set['rcode']);
