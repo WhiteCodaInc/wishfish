@@ -172,18 +172,20 @@ class M_profile extends CI_Model {
         try {
             $refUser = $this->wi_common->getUserByReferral($this->userid, $set['rcode']);
             print_r($refUser);
-            die("CARD");
             if ($refUser) {
-                $where['user_id'] = $this->userid;
-                $set['ref_by'] = $refUser->user_id;
-                $this->db->update('wi_user_mst', $set, $where);
-                $customer = Stripe_Customer::retrieve($uInfo->customer_id);
-                $customer->sources->create(array("source" => $set['stripeToken']));
-                $success = 1;
+                echo 'VALID';
+//                $where['user_id'] = $this->userid;
+//                $set['ref_by'] = $refUser->user_id;
+//                $this->db->update('wi_user_mst', $set, $where);
+//                $customer = Stripe_Customer::retrieve($uInfo->customer_id);
+//                $customer->sources->create(array("source" => $set['stripeToken']));
+//                $success = 1;
             } else {
+                echo 'INVALID';
                 $error = "Your Referal Code is Invalid..! Try Again..!";
                 $success = 0;
             }
+            die();
         } catch (Exception $e) {
             $error = $e->getMessage();
             $success = 0;
