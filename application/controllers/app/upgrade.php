@@ -61,20 +61,14 @@ class Upgrade extends CI_Controller {
         if (strlen($set['rcode']) == 6 && is_numeric($set['rcode'])) {
             $refUser = $this->wi_common->getUserByReferral($this->userid, $set['rcode']);
             if ($refUser) {
-                echo 'VALID REF CODE<br>';
                 $ref_set['ref_by'] = $refUser->user_id;
                 $ref_where['user_id'] = $this->userid;
                 $this->db->update('wi_user_mst', $ref_set, $ref_where);
             } else {
                 $this->session->set_flashdata('error', "Your Referal Code is Invalid..! Try Again..!");
                 header('location:' . site_url() . 'app/upgrade');
-                return FALSE;
             }
         }
-        echo 'CALLD<br>';
-        echo 'CALLD AGAIN<br>';
-        echo 'CALLD AGAIN<br>';
-        die();
         if ($set['coupon'] != "") {
             $flag = ($this->objregister->checkCoupon($set['coupon'])) ? TRUE : FALSE;
         }
@@ -127,15 +121,15 @@ class Upgrade extends CI_Controller {
                 $success = 0;
             }
             if ($success != 1) {
-                $data['error'] = $error;
-                $this->load->view('dashboard/stripe_error', $data);
+                $this->session->set_flashdata('error', "Your Referal Code is Invalid..! Try Again..!");
+                header('location:' . site_url() . 'app/upgrade');
             } else {
                 header('Location:' . site_url() . 'app/dashboard');
             }
 //            }
         } else {
-            $data['error'] = "Coupon Code is Invalid...!";
-            $this->load->view('stripe_error', $data);
+            $this->session->set_flashdata('error', "Coupon Code is Invalid...!");
+            header('location:' . site_url() . 'app/upgrade');
         }
     }
 
