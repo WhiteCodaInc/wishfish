@@ -905,6 +905,8 @@
             }
             // Check for errors:
             if (!error) {
+                $('#' + formType + ' .overlay').show();
+                $('#' + formType + ' .loading-img').show();
                 // Get the Stripe token:
                 $('#' + formType + ' #msgCard').hide();
                 Stripe.card.createToken({
@@ -932,6 +934,13 @@
                 // Submit the form:
                 f.get(0).submit();
             }
+        }
+        function reportError(msg) {
+            $('#' + formType + ' .overlay').hide();
+            $('#' + formType + ' .loading-img').hide();
+            $('#' + formType + ' #msgCard').text(msg);
+            $('#' + formType + ' #msgCard').show();
+            return false;
         }
     });
     $(document).ready(function () {
