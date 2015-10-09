@@ -510,7 +510,7 @@
                         $('.personal .overlay').hide();
                         $('.personal .loading-img').hide();
                         if (data == "1") {
-                            upgradeWithStripe();
+                            upgradeWithStripe("PERSONAL");
                         } else {
                             $('#error').show();
                             $('#error-msg').text("You can not downgrade your plan..! ");
@@ -532,21 +532,10 @@
                     $('.enterprise .loading-img').hide();
                 }, 2000);
             } else {
-                $.ajax({
-                    type: 'POST',
-                    data: {plan: "wishfish-enterprise", planid: 3, coupon: code},
-                    url: "<?= site_url() ?>app/upgrade/upgradePlan",
-                    success: function (data, textStatus, jqXHR) {
-                        $('#planUpgrade .box-body button').prop('disabled', false);
-
-                        if (data == 1) {
-                            window.location.assign("<?= site_url() ?>app/dashboard");
-                        } else {
-                            $('#error').show();
-                            $('#error-msg').text(data);
-                        }
-                    }
-                });
+                $('#planUpgrade .box-body button').prop('disabled', false);
+                $('.enterprise .overlay').hide();
+                $('.enterprise .loading-img').hide();
+                upgradeWithStripe("ENTERPRISE");
             }
 
         });
