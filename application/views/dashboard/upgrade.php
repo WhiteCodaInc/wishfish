@@ -100,13 +100,8 @@
         </div>
         <?php if ($userInfo->is_set == 0 || ($userInfo->is_set == 1 && $userInfo->gateway == "STRIPE")): ?>
             <?php if (!$card || $userInfo->ref_by == NULL): ?>
-                <!--                <a href="#" id="cardPersonal" class="create btn btn-info" style="display: none" data-toggle="modal" data-target="#personal-card-modal">
-                                    Pay
-                                </a>-->
-                <!--                <a href="#" id="cardEnterprise" class="create btn btn-info" style="display: none" data-toggle="modal" data-target="#enterprise-card-modal">
-                                    Pay
-                                </a>-->
-                <!-------------------------------Personal Card Detail Model------------------------------------>
+
+                <!----------------Personal Card Detail Model------------------->
                 <div class="modal fade" id="personal-card-modal" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog" style="max-width: 425px">
                         <div class="modal-content">
@@ -117,42 +112,48 @@
                                     <span class="modal-descritpion">1-month of wish-fish Personal</span>
                                 </div>
                                 <div class="modal-body">
-                                    <?php ($card) ? $cardNo = "************{$card['last4']}" : ""; ?>
-                                    <div class="form-group">
-                                        <label>Credit Card Number </label>
-                                        <input data-stripe="number" value="<?= ($card) ? $cardNo : "" ?>"  type="text" maxlength="16" class="card_number form-control" placeholder="Card Number" <?= ($card) ? "readonly" : "" ?> required="" />
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Expiration (MM/YYYY)</label>
+                                    <div class="box box-solid">
+                                        <div class="box-body">
+                                            <?php ($card) ? $cardNo = "************{$card['last4']}" : ""; ?>
+                                            <div class="form-group">
+                                                <label>Credit Card Number </label>
+                                                <input data-stripe="number" value="<?= ($card) ? $cardNo : "" ?>"  type="text" maxlength="16" class="card_number form-control" placeholder="Card Number" <?= ($card) ? "readonly" : "" ?> required="" />
+                                            </div>
+                                            <div class="form-group">
                                                 <div class="row">
-                                                    <div class="col-md-5" style="padding-right: 0">
-                                                        <input value="<?= ($card) ? $card['exp_month'] : "" ?>"  data-stripe="exp-month" maxlength="2" type="text" class="month form-control" placeholder="MM" <?= ($card) ? "readonly" : "" ?> required=""/>
+                                                    <div class="col-md-6">
+                                                        <label>Expiration (MM/YYYY)</label>
+                                                        <div class="row">
+                                                            <div class="col-md-5" style="padding-right: 0">
+                                                                <input value="<?= ($card) ? $card['exp_month'] : "" ?>"  data-stripe="exp-month" maxlength="2" type="text" class="month form-control" placeholder="MM" <?= ($card) ? "readonly" : "" ?> required=""/>
+                                                            </div>
+                                                            <div class="col-md-1" style="font-size: 25px;padding-left: 10px;">/</div>
+                                                            <div class="col-md-5" style="padding-left: 0">
+                                                                <input value="<?= ($card) ? $card['exp_year'] : "" ?>" data-stripe="exp-year" type="text" maxlength="4" class="year form-control" placeholder="YYYY" <?= ($card) ? "readonly" : "" ?> required="" />
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div class="col-md-1" style="font-size: 25px;padding-left: 10px;">/</div>
-                                                    <div class="col-md-5" style="padding-left: 0">
-                                                        <input value="<?= ($card) ? $card['exp_year'] : "" ?>" data-stripe="exp-year" type="text" maxlength="4" class="year form-control" placeholder="YYYY" <?= ($card) ? "readonly" : "" ?> required="" />
+                                                    <div class="col-md-6">
+                                                        <label>CVC</label>
+                                                        <input maxlength="3" value="<?= ($card) ? "123" : "" ?>" type="password" class="cvc form-control" <?= ($card) ? "readonly" : "" ?> required=""/>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                <label>CVC</label>
-                                                <input maxlength="3" value="<?= ($card) ? "123" : "" ?>" type="password" class="cvc form-control" <?= ($card) ? "readonly" : "" ?> required=""/>
+                                            <?php if ($userInfo->ref_by == NULL): ?>
+                                                <div class="form-group">
+                                                    <label>Referral Code</label>
+                                                    <input name="rcode" value="" type="text" maxlength="6" class="rcode form-control" placeholder="Referral Code" />
+                                                </div>
+                                            <?php endif; ?>
+                                            <div class="form-group" style="text-align: center">
+                                                <span style="color: red;display: none" id="msgCard"></span>
+                                            </div>
+                                            <div class="form-group" style="text-align: center">
+                                                <button style="width: 50%" id="payPersonal" type="submit" class="btn btn-success btn-lg">Pay</button>
                                             </div>
                                         </div>
-                                    </div>
-                                    <?php if ($userInfo->ref_by == NULL): ?>
-                                        <div class="form-group">
-                                            <label>Referral Code</label>
-                                            <input name="rcode" value="" type="text" maxlength="6" class="rcode form-control" placeholder="Referral Code" />
-                                        </div>
-                                    <?php endif; ?>
-                                    <div class="form-group" style="text-align: center">
-                                        <span style="color: red;display: none" id="msgCard"></span>
-                                    </div>
-                                    <div class="form-group" style="text-align: center">
-                                        <button style="width: 50%" id="payPersonal" type="submit" class="btn btn-success btn-lg">Pay</button>
+                                        <div style="display: none" class="overlay"></div>
+                                        <div style="display: none" class="loading-img"></div>
                                     </div>
                                 </div>
                                 <input type="hidden" name="plan" value="wishfish-personal"/>
@@ -162,9 +163,9 @@
                         </div><!-- /.modal-content -->
                     </div><!-- /.modal-dialog -->
                 </div>
-                <!------------------------------------------------------------------------>
+                <!------------------------------------------------------------->
 
-                <!-------------------------------Enterprise Card Detail Model------------------------------------>
+                <!----------------Enterprise Card Detail Model----------------->
                 <div class="modal fade" id="enterprise-card-modal" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog" style="max-width: 425px">
                         <div class="modal-content">
@@ -219,35 +220,7 @@
                         </div><!-- /.modal-content -->
                     </div><!-- /.modal-dialog -->
                 </div>
-                <!------------------------------------------------------------------------>
-        <!--                <form style="display: none" id="personal" action="<?= site_url() ?>app/upgrade/pay" method="post">
-                    <input type="hidden" name="plan" value="wishfish-personal"/>
-                    <input type="hidden" name="planid" value="2">
-                    <input type="hidden" name="coupon" value="">
-                    <script
-                        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                        data-key="<?= $stripe->publish_key ?>"
-                        data-image="/square-image.png"
-                        data-name="$9.99"
-                        data-description="1-month of Wish-Fish Personal"                    
-                        data-label="Stripe"                    
-                        >
-                    </script>
-                </form>-->
-        <!--                <form style="display: none" id="enterprise" action="<?= site_url() ?>app/upgrade/pay" method="post">
-                    <input type="hidden" name="plan" value="wishfish-enterprise"/>
-                    <input type="hidden" name="planid" value="3">
-                    <input type="hidden" name="coupon" value="">
-                    <script
-                        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                        data-key="<?= $stripe->publish_key ?>"
-                        data-image="/square-image.png"
-                        data-name="$49.99"
-                        data-description="1-month of Wish-Fish Enterprise"                    
-                        data-label="Stripe"                    
-                        >
-                    </script>
-                </form>-->
+                <!------------------------------------------------------------->
             <?php endif; ?>
         <?php endif; ?>
 
@@ -462,15 +435,21 @@
             } else {
                 var rcode = $(this).find('.rcode').val();
                 var rcode_regex = /^\d{6}$/;
-                if (rcode.trim() != "" && !rcode_regex.test(rcode)) {
-                    $('#' + formType + ' #msgCard').text('Referral code appears to be invalid..!');
-                    $('#' + formType + ' #msgCard').show();
-                    (formType == "personalCardForm") ?
-                            $('#payPersonal').prop('disabled', false) :
-                            $('#payEnterprise').prop('disabled', false);
-                    return false;
+                if (rcode.trim() != "") {
+                    if (!rcode_regex.test(rcode)) {
+                        $('#' + formType + ' #msgCard').text('Referral code appears to be invalid..!');
+                        $('#' + formType + ' #msgCard').show();
+                        (formType == "personalCardForm") ?
+                                $('#payPersonal').prop('disabled', false) :
+                                $('#payEnterprise').prop('disabled', false);
+                        return false;
+                    } else {
+                        $('#' + formType + ' #msgCard').hide();
+                    }
                 } else {
-                    $('#' + formType + ' #msgCard').hide();
+                    $('#' + formType + ' .overlay').show();
+                    $('#' + formType + ' .loading-img').show();
+                    upgradeWithStripe();
                 }
             }
         });
@@ -515,13 +494,7 @@
                         $('.personal .overlay').hide();
                         $('.personal .loading-img').hide();
                         if (data == "1") {
-//                            if (!cardFlag) {
-//                                $('#personal button').trigger('click');
-//                            } else {
-                            alert("Upgrade");
-//                                $('#personal-card-modal').modal('show');
-//                                upgradeWithStripe();
-//                            }
+                            upgradeWithStripe();
                         } else {
                             $('#error').show();
                             $('#error-msg').text("You can not downgrade your plan..! ");
@@ -585,6 +558,7 @@
         }
 
         function upgradeWithStripe() {
+
             $('#planUpgrade .box-body button').prop('disabled', true);
             $('.personal .overlay').show();
             $('.personal .loading-img').show();
@@ -596,6 +570,8 @@
                     $('#a_personal').prop('disabled', false);
                     $('.personal .overlay').hide();
                     $('.personal .loading-img').hide();
+                    $('#' + formType + ' .overlay').show();
+                    $('#' + formType + ' .loading-img').show();
                     if (data == 1) {
                         window.location.assign("<?= site_url() ?>app/dashboard");
                     } else {
