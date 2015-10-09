@@ -413,6 +413,9 @@
                             $('#payPersonal').prop('disabled', false) :
                             $('#payEnterprise').prop('disabled', false);
                     return false;
+                } else {
+                    $('#' + formType + ' .overlay').show();
+                    $('#' + formType + ' .loading-img').show();
                 }
 
                 // Check for errors:
@@ -465,7 +468,7 @@
                 f.get(0).submit();
             }
         }
-        
+
         function reportError(msg) {
             $('#error-msg').text(msg);
             $('#error').show();
