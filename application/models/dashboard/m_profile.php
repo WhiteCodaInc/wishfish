@@ -55,6 +55,7 @@ class M_profile extends CI_Model {
                 $this->createCard($userInfo, $set);
             }
         }
+        die();
         if ($this->session->userdata('u_name') == "") {
             $this->session->set_userdata('u_name', $set['name']);
         }
@@ -193,7 +194,7 @@ class M_profile extends CI_Model {
         if ($success != 1) {
 //            echo 'Not SUCCESS';
             $this->session->set_flashdata('error', $error);
-            header('Location:' . site_url() . 'app/profile');
+            header('location:' . site_url() . 'app/profile');
         } else {
 //            echo 'SUCCESS';
             $user_set = array(
