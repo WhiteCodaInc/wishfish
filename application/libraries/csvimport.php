@@ -126,6 +126,94 @@ class Csvimport {
 
         return $result;
     }
+    
+    public function get_contacts($filepath = FALSE, $column_headers = FALSE, $detect_line_endings = FALSE, $initial_line = FALSE, $delimiter = FALSE) {
+        // File path
+        if (!$filepath) {
+            $filepath = $this->_get_filepath();
+        } else {
+            // If filepath provided, set it
+            $this->_set_filepath($filepath);
+        }
+
+        // If file doesn't exists, return false
+        if (!file_exists($filepath)) {
+            return FALSE;
+        }
+
+        // auto detect row endings
+        if (!$detect_line_endings) {
+            $detect_line_endings = $this->_get_detect_line_endings();
+        } else {
+            // If detect_line_endings provided, set it
+            $this->_set_detect_line_endings($detect_line_endings);
+        }
+
+        // If true, auto detect row endings
+        if ($detect_line_endings) {
+            ini_set("auto_detect_line_endings", TRUE);
+        }
+
+        // Parse from this line on
+        if (!$initial_line) {
+            $initial_line = $this->_get_initial_line();
+        } else {
+            $this->_set_initial_line($initial_line);
+        }
+
+        // Delimiter
+        if (!$delimiter) {
+            $delimiter = $this->_get_delimiter();
+        } else {
+            // If delimiter provided, set it
+            $this->_set_delimiter($delimiter);
+        }
+
+        // Column headers
+        if (!$column_headers) {
+            $column_headers = $this->_get_column_headers();
+        } else {
+            // If column headers provided, set them
+            $this->_set_column_headers($column_headers);
+        }
+
+        // Open the CSV for reading
+        $this->_get_handle();
+
+        $row = 0;
+        $result = array();
+        while (($data = fgetcsv($this->handle, 0, $this->delimiter)) !== FALSE) {
+            if ($row < $this->initial_line) {
+                $row++;
+                continue;
+            }
+//            $result = array();
+            // If first row, parse for column_headers
+            if ($row == $this->initial_line) {
+                // If column_headers already provided, use them
+                if ($this->column_headers) {
+                    foreach ($this->column_headers as $key => $value) {
+                        $column_headers[$key] = trim($value);
+                    }
+                } else { // Parse first row for column_headers to use
+                    foreach ($data as $key => $value) {
+                        $column_headers[$key] = trim($value);
+                    }
+                }
+            } else {
+                $new_row = $row - $this->initial_line - 1; // needed so that the returned array starts at 0 instead of 1
+                foreach ($column_headers as $key => $value) { // assumes there are as many columns as their are title columns
+                    $result[$new_row][$value] = utf8_encode(trim($data[$key]));
+                }
+            }
+
+            $row++;
+        }
+
+        $this->_close_csv();
+
+        return $result;
+    }
 
     /**
      * Sets the "detect_line_endings" flag

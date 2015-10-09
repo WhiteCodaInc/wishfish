@@ -163,8 +163,8 @@ class Contacts extends CI_Controller {
                 $file_data = $this->upload->data();
                 $file_path = FCPATH . 'uploads/' . $file_data['file_name'];
 
-                if ($this->csvimport->get_array($file_path)) {
-                    $csv_array = $this->csvimport->get_array($file_path);
+                if ($this->csvimport->get_contacts($file_path)) {
+                    $csv_array = $this->csvimport->get_contacts($file_path, array('contacts'));
                     echo '<pre>';
                     print_r($csv_array);
 //                    foreach ($csv_array as $row) {
