@@ -484,6 +484,7 @@
             $('.personal .overlay').show();
             $('.personal .loading-img').show();
             if (!cardFlag || !rCode) {
+                console.log("CALLED");
                 setTimeout(function () {
 //                    $('#personal button').trigger('click');
 //                    $('#cardPersonal').trigger('click');
@@ -493,6 +494,7 @@
                     $('.personal .loading-img').hide();
                 }, 2000);
             } else {
+                console.log("NOT CALLED");
                 $.ajax({
                     type: 'POST',
                     url: "<?= site_url() ?>app/upgrade/isAllowToDowngrade",
