@@ -176,41 +176,48 @@
                                     <span class="modal-descritpion">1-month of wish-fish Enterprise</span>
                                 </div>
                                 <div class="modal-body">
-                                    <div class="form-group">
-                                        <label>Credit Card Number </label>
-                                        <input data-stripe="number" value=""  type="text" maxlength="16" class="card_number form-control" placeholder="Card Number" required=""/>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Expiration (MM/YYYY)</label>
+                                    <div class="box box-solid">
+                                        <div class="box-body">
+                                            <?php ($card) ? $cardNo = "************{$card['last4']}" : ""; ?>
+                                            <div class="form-group">
+                                                <label>Credit Card Number </label>
+                                                <input data-stripe="number" value="<?= ($card) ? $cardNo : "" ?>"  type="text" maxlength="16" class="card_number form-control" placeholder="Card Number" <?= ($card) ? "readonly" : "" ?> required="" />
+                                            </div>
+                                            <div class="form-group">
                                                 <div class="row">
-                                                    <div class="col-md-5" style="padding-right: 0">
-                                                        <input value=""  data-stripe="exp-month" maxlength="2" type="text" class="month form-control" placeholder="MM" required=""/>
+                                                    <div class="col-md-6">
+                                                        <label>Expiration (MM/YYYY)</label>
+                                                        <div class="row">
+                                                            <div class="col-md-5" style="padding-right: 0">
+                                                                <input value="<?= ($card) ? $card['exp_month'] : "" ?>"  data-stripe="exp-month" maxlength="2" type="text" class="month form-control" placeholder="MM" <?= ($card) ? "readonly" : "" ?> required=""/>
+                                                            </div>
+                                                            <div class="col-md-1" style="font-size: 25px;padding-left: 10px;">/</div>
+                                                            <div class="col-md-5" style="padding-left: 0">
+                                                                <input value="<?= ($card) ? $card['exp_year'] : "" ?>" data-stripe="exp-year" type="text" maxlength="4" class="year form-control" placeholder="YYYY" <?= ($card) ? "readonly" : "" ?> required="" />
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div class="col-md-1" style="font-size: 25px;padding-left: 10px;">/</div>
-                                                    <div class="col-md-5" style="padding-left: 0">
-                                                        <input value="" data-stripe="exp-year" type="text" maxlength="4" class="year form-control" placeholder="YYYY" required="" />
+                                                    <div class="col-md-6">
+                                                        <label>CVC</label>
+                                                        <input maxlength="3" value="<?= ($card) ? "123" : "" ?>" type="password" class="cvc form-control" <?= ($card) ? "readonly" : "" ?> required=""/>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                <label>CVC</label>
-                                                <input maxlength="3" type="password" class="cvc form-control" required=""/>
+                                            <?php if ($userInfo->ref_by == NULL): ?>
+                                                <div class="form-group">
+                                                    <label>Referral Code</label>
+                                                    <input name="rcode" value="" type="text" maxlength="6" class="rcode form-control" placeholder="Referral Code" />
+                                                </div>
+                                            <?php endif; ?>
+                                            <div class="form-group" style="text-align: center">
+                                                <span style="color: red;display: none" id="msgCard"></span>
+                                            </div>
+                                            <div class="form-group" style="text-align: center">
+                                                <button style="width: 50%" id="payEnterprise" type="submit" class="btn btn-success btn-lg">Pay</button>
                                             </div>
                                         </div>
-                                    </div>
-                                    <?php if ($userInfo->ref_by == NULL): ?>
-                                        <div class="form-group">
-                                            <label>Referral Code</label>
-                                            <input name="rcode" value="" type="text" maxlength="6" class="rcode form-control" placeholder="Referral Code" />
-                                        </div>
-                                    <?php endif; ?>
-                                    <div class="form-group" style="text-align: center">
-                                        <span style="color: red;display: none" id="msgCard"></span>
-                                    </div>
-                                    <div class="form-group" style="text-align: center">
-                                        <button style="width: 50%" id="payEnterprise" type="submit" class="btn btn-success btn-lg">Pay</button>
+                                        <div style="display: none" class="overlay"></div>
+                                        <div style="display: none" class="loading-img"></div>
                                     </div>
                                 </div>
                                 <input type="hidden" name="plan" value="wishfish-enterprise"/>
@@ -516,8 +523,6 @@
             $('.enterprise .loading-img').show();
             if (!cardFlag) {
                 setTimeout(function () {
-//                    $('#enterprise button').trigger('click');
-//                    $('#cardEnterprise').trigger('click');
                     $('#enterprise-card-modal').modal('show');
                     $('#planUpgrade .box-body button').prop('disabled', false);
                     $('.enterprise .overlay').hide();
