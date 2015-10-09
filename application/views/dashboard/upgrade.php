@@ -580,6 +580,7 @@
                 data: {plan: plan, planid: planid, coupon: code},
                 url: "<?= site_url() ?>app/upgrade/upgradePlan",
                 success: function (data, textStatus, jqXHR) {
+                    console.log(plan);
                     $('#planUpgrade .box-body button').prop('disabled', false);
                     if (plan == "PERSONAL") {
                         $('#payPersonal').prop('disabled', false);
