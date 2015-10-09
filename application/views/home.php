@@ -953,8 +953,7 @@
                         if (res == '1') {
                             stripeEmail = 0;
                             $input.next('span').text('Your Email is already register!');
-                        }
-                        else {
+                        } else {
                             $('#' + formType + ' #msgCard').hide();
                             $input.next('span').empty();
                             stripeEmail = 1;
