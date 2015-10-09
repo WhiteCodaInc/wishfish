@@ -386,11 +386,11 @@
         var formType = "";
         Stripe.setPublishableKey('<?= $stripe->publish_key ?>');
         $('#personalCardForm,#enterpriseCardForm').on('submit', function () {
+            formType = $(this).prop('id');
+            (formType == "personalCardForm") ?
+                    $('#payPersonal').prop('disabled', true) :
+                    $('#payEnterprise').prop('disabled', true);
             if (!cardFlag) {
-                formType = $(this).prop('id');
-                (formType == "personalCardForm") ?
-                        $('#payPersonal').prop('disabled', true) :
-                        $('#payEnterprise').prop('disabled', true);
                 var error = false;
                 var ccNum = $(this).find('.card_number').val(),
                         cvcNum = $(this).find('.cvc').val(),
@@ -458,6 +458,17 @@
                     return false;
                 }
                 return false;
+            } else {
+                var rcode_regex = /^\d{6}$/;
+                if (!rcode_regex.test(rcode)) {
+                    error = true;
+                    $('#' + formType + ' #msgCard').text('Referral code appears to be invalid..!');
+                    $('#' + formType + ' #msgCard').show();
+                    (formType == "personalCardForm") ?
+                            $('#payPersonal').prop('disabled', false) :
+                            $('#payEnterprise').prop('disabled', false);
+                    return false;
+                }
             }
         });
 
@@ -484,7 +495,6 @@
             $('.personal .overlay').show();
             $('.personal .loading-img').show();
             if (!cardFlag || !rCode) {
-                console.log("CALLED");
                 setTimeout(function () {
 //                    $('#personal button').trigger('click');
 //                    $('#cardPersonal').trigger('click');
@@ -494,7 +504,6 @@
                     $('.personal .loading-img').hide();
                 }, 2000);
             } else {
-                console.log("NOT CALLED");
                 $.ajax({
                     type: 'POST',
                     url: "<?= site_url() ?>app/upgrade/isAllowToDowngrade",
