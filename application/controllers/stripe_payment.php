@@ -30,9 +30,21 @@ class Stripe_payment extends CI_Controller {
         $flag = TRUE;
         $set = $this->input->post();
 
-        echo '<pre>';
-        print_r($set);
-        die();
+//        echo '<pre>';
+//        print_r($set);
+//        die();
+
+        if ($set['rcode'] != "" && strlen($set['rcode']) == 6 && is_numeric($set['rcode'])) {
+            $refUser = $this->wi_common->getUserByReferral($this->userid, $set['rcode']);
+            if ($refUser) {
+                $ref_set['ref_by'] = $refUser->user_id;
+                $ref_where['user_id'] = $this->userid;
+                $this->db->update('wi_user_mst', $ref_set, $ref_where);
+            } else {
+                $this->session->set_flashdata('error', "Your Referal Code is Invalid..! Try Again..!");
+                header('location:' . site_url() . 'app/upgrade');
+            }
+        }
 
         if ($set['coupon'] != "") {
             $flag = ($this->objregister->checkCoupon($set['coupon'])) ? TRUE : FALSE;
