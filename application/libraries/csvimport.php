@@ -193,35 +193,8 @@ class Csvimport {
                 $result[$cnt]['email'] = $data[0];
                 $cnt++;
             }
-
-//            if ($row < $this->initial_line) {
-//                $row++;
-//                continue;
-//            }
-////            $result = array();
-//            // If first row, parse for column_headers
-//            if ($row == $this->initial_line) {
-//                // If column_headers already provided, use them
-//                if ($this->column_headers) {
-//                    foreach ($this->column_headers as $key => $value) {
-//                        $column_headers[$key] = trim($value);
-//                    }
-//                } else { // Parse first row for column_headers to use
-//                    foreach ($data as $key => $value) {
-//                        $column_headers[$key] = trim($value);
-//                    }
-//                }
-//            } else {
-//                $new_row = $row - $this->initial_line - 1; // needed so that the returned array starts at 0 instead of 1
-//                foreach ($column_headers as $key => $value) { // assumes there are as many columns as their are title columns
-//                    $result[$new_row][] = utf8_encode(trim($data[$key]));
-//                    $result[$new_row][] = utf8_encode(trim($data[$key]));
-//                }
-//            }
-//
             $row++;
         }
-
         $this->_close_csv();
 
         return $result;
