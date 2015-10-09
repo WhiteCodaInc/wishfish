@@ -514,7 +514,7 @@
 //---------------------------User and Card Form-------------------------------//
 
         var cardForm;
-        var cardFlag;
+        var cardFlag = false;
 
         function checkCard() {
             if ($('#userForm .card_number').prop('readonly')) {
@@ -536,13 +536,13 @@
         }
 
         $('#userForm,#cardForm').on('submit', function () {
-            checkCard();
             cardForm = $(this).attr('id');
 
             $('#save').prop('disabled', true);
             $('#save-profile').prop('disabled', true);
 
             if (cardForm == "userForm") {
+                checkCard();
                 if ($('#userForm input[name="name"]').val().trim() == "") {
                     alertify.error("Name is Required...!");
                     return false;
@@ -639,7 +639,7 @@
                 var f = $("#" + cardForm);
                 var token = response['id'];
                 f.append("<input type='hidden' name='stripeToken' value='" + token + "' />");
-                f.get(0).submit();
+//                f.get(0).submit();
             }
         }
 
