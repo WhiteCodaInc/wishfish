@@ -180,11 +180,19 @@ class Csvimport {
         // Open the CSV for reading
         $this->_get_handle();
 
-        $row = 0;
+        $row = 1;
+        $cnt = 0;
         $result = array();
         while (($data = fgetcsv($this->handle, 0, $this->delimiter)) !== FALSE) {
 
-            $result[] = $data[0];
+            if ($row % 2 != 0) {
+                $name = explode(' ', $data[0]);
+                $result[$cnt]['fname'] = (isset($name[0])) ? $name[0] : '';
+                $result[$cnt]['lname'] = (isset($name[1])) ? $name[1] : '';
+            } else {
+                $result[$cnt]['email'] = $data[0];
+                $cnt++;
+            }
 
 //            if ($row < $this->initial_line) {
 //                $row++;
@@ -211,7 +219,7 @@ class Csvimport {
 //                }
 //            }
 //
-//            $row++;
+            $row++;
         }
 
         $this->_close_csv();
