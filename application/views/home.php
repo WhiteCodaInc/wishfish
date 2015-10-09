@@ -836,11 +836,10 @@
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 
 <script type="text/javascript">
-    var stripeEmail = 0;
-    var rCode = 1;
-    var formType = "";
-    $(function () {
-
+    $(document).ready(function () {
+        var stripeEmail = 0;
+        var rCode = 1;
+        var formType = "";
         Stripe.setPublishableKey('<?= $stripe->publish_key ?>');
         $('#personalCardForm,#enterpriseCardForm').on('submit', function () {
             formType = $(this).prop('id');
@@ -938,8 +937,6 @@
             $('#' + formType + ' #msgCard').show();
             return false;
         }
-    });
-    $(document).ready(function () {
 
         $('#pEmail,#eEmail').focusout(function () {
             var semail = $(this).val();
