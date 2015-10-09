@@ -568,8 +568,8 @@
                     $('#planUpgrade .box-body button').prop('disabled', false);
                     $('.personal .overlay').hide();
                     $('.personal .loading-img').hide();
-                    $('#' + formType + ' .overlay').hide();
-                    $('#' + formType + ' .loading-img').hide();
+                    $('#personalCardForm .overlay').hide();
+                    $('#personalCardForm .loading-img').hide();
                     if (data == 1) {
                         window.location.assign("<?= site_url() ?>app/dashboard");
                     } else {
