@@ -48,18 +48,12 @@ class M_profile extends CI_Model {
 
 
         $userInfo = $this->wi_common->getUserInfo($this->userid);
-//        print_r($userInfo);
-//        die();
         if ($userInfo->customer_id != NULL) {
             if (isset($set['stripeToken'])) {
-                if (!$this->createCard($userInfo, $set)) {
-//                    echo 'FALSE';
+                if (!$this->createCard($userInfo, $set))
                     return FALSE;
-                }
             }
         }
-//        echo 'CALLED';
-//        die();
         if ($this->session->userdata('u_name') == "") {
             $this->session->set_userdata('u_name', $set['name']);
         }
@@ -176,32 +170,22 @@ class M_profile extends CI_Model {
     function createCard($uInfo, $set) {
         try {
             $refUser = $this->wi_common->getUserByReferral($this->userid, $set['rcode']);
-//            print_r($refUser);
             if ($refUser) {
-//                echo 'VALID';
-//                $where['user_id'] = $this->userid;
-//                $set['ref_by'] = $refUser->user_id;
-//                $this->db->update('wi_user_mst', $set, $where);
                 $customer = Stripe_Customer::retrieve($uInfo->customer_id);
                 $customer->sources->create(array("source" => $set['stripeToken']));
                 $success = 1;
             } else {
-//                echo 'INVALID';
                 $error = "Your Referal Code is Invalid..! Try Again..!";
                 $success = 0;
             }
-//            die();
         } catch (Exception $e) {
             $error = $e->getMessage();
             $success = 0;
         }
         if ($success != 1) {
-//            echo 'Not SUCCESS';
             $this->session->set_flashdata('error', $error);
             return FALSE;
-//            header('location:' . site_url() . 'app/profile');
         } else {
-//            echo 'SUCCESS';
             $user_set = array(
                 'gateway' => "STRIPE",
                 'is_set' => 1,
@@ -210,7 +194,6 @@ class M_profile extends CI_Model {
             $this->db->update('wi_user_mst', $user_set, array('user_id' => $this->userid));
             return TRUE;
         }
-//        die();
     }
 
     function updateCard($stripeToken) {
