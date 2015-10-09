@@ -126,7 +126,7 @@ class Csvimport {
 
         return $result;
     }
-    
+
     public function get_contacts($filepath = FALSE, $column_headers = FALSE, $detect_line_endings = FALSE, $initial_line = FALSE, $delimiter = FALSE) {
         // File path
         if (!$filepath) {
@@ -203,7 +203,8 @@ class Csvimport {
             } else {
                 $new_row = $row - $this->initial_line - 1; // needed so that the returned array starts at 0 instead of 1
                 foreach ($column_headers as $key => $value) { // assumes there are as many columns as their are title columns
-                    $result[$new_row][$value] = utf8_encode(trim($data[$key]));
+                    $result[$new_row][$key] = utf8_encode(trim($data[$key]));
+//                    $result[$new_row][$key] = utf8_encode(trim($data[$key]));
                 }
             }
 
