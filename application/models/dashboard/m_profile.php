@@ -191,17 +191,20 @@ class M_profile extends CI_Model {
             $success = 0;
         }
         if ($success != 1) {
-            $this->session->set_flashdata('error', $error);
-            header('Location:' . site_url() . 'app/profile');
+            echo 'Not SUCCESS';
+//            $this->session->set_flashdata('error', $error);
+//            header('Location:' . site_url() . 'app/profile');
         } else {
-            $user_set = array(
-                'gateway' => "STRIPE",
-                'is_set' => 1,
-//            'ref_by' => $this->wi_common->
-            );
-            $this->db->update('wi_user_mst', $user_set, array('user_id' => $this->userid));
-            return TRUE;
+            echo 'SUCCESS';
+//            $user_set = array(
+//                'gateway' => "STRIPE",
+//                'is_set' => 1,
+////            'ref_by' => $this->wi_common->
+//            );
+//            $this->db->update('wi_user_mst', $user_set, array('user_id' => $this->userid));
+//            return TRUE;
         }
+        die();
     }
 
     function updateCard($stripeToken) {
