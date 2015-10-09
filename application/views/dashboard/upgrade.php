@@ -478,8 +478,6 @@
             $('.personal .loading-img').show();
             if (!cardFlag || !rCode) {
                 setTimeout(function () {
-//                    $('#personal button').trigger('click');
-//                    $('#cardPersonal').trigger('click');
                     $('#personal-card-modal').modal('show');
                     $('#planUpgrade .box-body button').prop('disabled', false);
                     $('.personal .overlay').hide();
@@ -567,7 +565,7 @@
                 data: {plan: "wishfish-personal", planid: 2, coupon: code},
                 url: "<?= site_url() ?>app/upgrade/upgradePlan",
                 success: function (data, textStatus, jqXHR) {
-                    $('#a_personal').prop('disabled', false);
+                    $('#planUpgrade .box-body button').prop('disabled', false);
                     $('.personal .overlay').hide();
                     $('.personal .loading-img').hide();
                     $('#' + formType + ' .overlay').hide();
