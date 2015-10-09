@@ -540,6 +540,7 @@
             cardForm = $(this).attr('id');
 
             $('#save').prop('disabled', true);
+            $('#save-profile').prop('disabled', true);
 
             if (cardForm == "userForm") {
                 if ($('#userForm input[name="name"]').val().trim() == "") {
