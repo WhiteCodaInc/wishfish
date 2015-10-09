@@ -365,6 +365,7 @@
 
         var formType = "";
         Stripe.setPublishableKey('<?= $stripe->publish_key ?>');
+
         $('#personalCardForm,#enterpriseCardForm').on('submit', function () {
             formType = $(this).prop('id');
             (formType == "personalCardForm") ?
@@ -461,7 +462,9 @@
                 } else {
                     $('#' + formType + ' .overlay').show();
                     $('#' + formType + ' .loading-img').show();
-                    upgradeWithStripe();
+                    (formType == "personalCardForm") ?
+                            upgradeWithStripe("PERSONAL") :
+                            upgradeWithStripe("ENTERPRISE");
                     return false;
                 }
             }
@@ -535,8 +538,7 @@
                     url: "<?= site_url() ?>app/upgrade/upgradePlan",
                     success: function (data, textStatus, jqXHR) {
                         $('#planUpgrade .box-body button').prop('disabled', false);
-                        $('.enterprise .overlay').hide();
-                        $('.enterprise .loading-img').hide();
+
                         if (data == 1) {
                             window.location.assign("<?= site_url() ?>app/dashboard");
                         } else {
@@ -568,26 +570,46 @@
             });
         }
 
-        function upgradeWithStripe() {
+        function upgradeWithStripe(plan) {
 
             $('#planUpgrade .box-body button').prop('disabled', true);
-            $('.personal .overlay').show();
-            $('.personal .loading-img').show();
+            var plan;
+            var planid;
+            if (plan == "PERSONAL") {
+                plan = "wishfish-personal";
+                planid = 2;
+                $('.personal .overlay').show();
+                $('.personal .loading-img').show();
+            } else {
+                plan = "wishfish-enterprise";
+                planid = 3;
+                $('.enterprise .overlay').show();
+                $('.enterprise .loading-img').show();
+            }
             $.ajax({
                 type: 'POST',
-                data: {plan: "wishfish-personal", planid: 2, coupon: code},
+                data: {plan: plan, planid: planid, coupon: code},
                 url: "<?= site_url() ?>app/upgrade/upgradePlan",
                 success: function (data, textStatus, jqXHR) {
-                    $('#payPersonal').prop('disabled', false);
                     $('#planUpgrade .box-body button').prop('disabled', false);
-                    $('.personal .overlay').hide();
-                    $('.personal .loading-img').hide();
-                    $('#personalCardForm .overlay').hide();
-                    $('#personalCardForm .loading-img').hide();
+                    if (plan == "PERSONAL") {
+                        $('#payPersonal').prop('disabled', false);
+                        $('.personal .overlay').hide();
+                        $('.personal .loading-img').hide();
+                        $('#personalCardForm .overlay').hide();
+                        $('#personalCardForm .loading-img').hide();
+                    } else {
+                        $('#payEnterprise').prop('disabled', false);
+                        $('.enterprise .overlay').hide();
+                        $('.enterprise .loading-img').hide();
+                        $('#enterpriseCardForm .overlay').hide();
+                        $('#enterpriseCardForm .loading-img').hide();
+                    }
                     if (data == 1) {
                         window.location.assign("<?= site_url() ?>app/dashboard");
                     } else {
                         $('#personal-card-modal').modal('hide');
+                        $('#enterprise-card-modal').modal('hide');
                         $('#error').show();
                         $('#error-msg').text(data);
                     }
