@@ -939,6 +939,7 @@
         }
 
         $('#pEmail,#eEmail').focusout(function () {
+            formType = $(this).parents('form').prop('id');
             var semail = $(this).val();
             $input = $(this);
             if (semail.trim() != "") {
