@@ -1179,11 +1179,13 @@
                     break;
                 case "a_personal":
 //                            $('#personal button').trigger('click');
-                    $('#cardPersonal').trigger('click');
+//                    $('#cardPersonal').trigger('click');
+                    $('#personal-card-modal').modal('show');
                     break;
                 case "a_enterprise":
 //                            $('#enterprise button').trigger('click');
-                    $('#cardEnterprise').trigger('click');
+//                    $('#cardEnterprise').trigger('click');
+                    $('#enterprise-card-modal').modal('show');
                     break;
                 case "wishfish-personal":
                 case "wishfish-enterprise":
