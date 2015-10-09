@@ -40,15 +40,15 @@ class M_profile extends CI_Model {
 
     function updateProfile($set) {
 
-        echo '<pre>';
-        print_r($set);
+//        echo '<pre>';
+//        print_r($set);
 //        $dt = $this->wi_common->getCustomMySqlDate($set['birthday'], $this->session->userdata('u_date_format'));
 //        echo '1001-' . $dt;
 //        die();
 
 
         $userInfo = $this->wi_common->getUserInfo($this->userid);
-        print_r($userInfo);
+//        print_r($userInfo);
 //        die();
         if ($userInfo->customer_id != NULL) {
             if (isset($set['stripeToken'])) {
@@ -171,17 +171,17 @@ class M_profile extends CI_Model {
     function createCard($uInfo, $set) {
         try {
             $refUser = $this->wi_common->getUserByReferral($this->userid, $set['rcode']);
-            print_r($refUser);
+//            print_r($refUser);
             if ($refUser) {
-                echo 'VALID';
+//                echo 'VALID';
 //                $where['user_id'] = $this->userid;
 //                $set['ref_by'] = $refUser->user_id;
 //                $this->db->update('wi_user_mst', $set, $where);
-//                $customer = Stripe_Customer::retrieve($uInfo->customer_id);
-//                $customer->sources->create(array("source" => $set['stripeToken']));
-//                $success = 1;
+                $customer = Stripe_Customer::retrieve($uInfo->customer_id);
+                $customer->sources->create(array("source" => $set['stripeToken']));
+                $success = 1;
             } else {
-                echo 'INVALID';
+//                echo 'INVALID';
                 $error = "Your Referal Code is Invalid..! Try Again..!";
                 $success = 0;
             }
@@ -192,19 +192,19 @@ class M_profile extends CI_Model {
         }
         if ($success != 1) {
             echo 'Not SUCCESS';
-//            $this->session->set_flashdata('error', $error);
-//            header('Location:' . site_url() . 'app/profile');
+            $this->session->set_flashdata('error', $error);
+            header('Location:' . site_url() . 'app/profile');
         } else {
             echo 'SUCCESS';
-//            $user_set = array(
-//                'gateway' => "STRIPE",
-//                'is_set' => 1,
-////            'ref_by' => $this->wi_common->
-//            );
-//            $this->db->update('wi_user_mst', $user_set, array('user_id' => $this->userid));
-//            return TRUE;
+            $user_set = array(
+                'gateway' => "STRIPE",
+                'is_set' => 1,
+                'ref_by' => $refUser->user_id
+            );
+            $this->db->update('wi_user_mst', $user_set, array('user_id' => $this->userid));
+            return TRUE;
         }
-        die();
+//        die();
     }
 
     function updateCard($stripeToken) {
