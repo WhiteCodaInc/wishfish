@@ -710,52 +710,47 @@
                     <span class="modal-descritpion">1-month of wish-fish Personal</span>
                 </div>
                 <div class="modal-body">
-                    <div class="box box-solid">
-                        <div class="box-body">
-                            <div class="form-group">
-                                <label>Email</label>
-                                <input  type="email" name="stripeEmail" id="pEmail" class="form-control" placeholder="Email" required=""/>
-                                <span style="color: red;"></span>
-                            </div>
-                            <div class="form-group">
-                                <label>Credit Card Number </label>
-                                <input data-stripe="number" value=""  type="text" maxlength="16" class="card_number form-control" placeholder="Card Number" required=""/>
-                            </div>
-                            <div class="form-group">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input  type="email" name="stripeEmail" id="pEmail" class="form-control" placeholder="Email" required=""/>
+                        <span style="color: red;"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Credit Card Number </label>
+                        <input data-stripe="number" value=""  type="text" maxlength="16" class="card_number form-control" placeholder="Card Number" required=""/>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Expiration (MM/YYYY)</label>
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Expiration (MM/YYYY)</label>
-                                        <div class="row">
-                                            <div class="col-md-5" style="padding-right: 0">
-                                                <input value=""  data-stripe="exp-month" maxlength="2" type="text" class="month form-control" placeholder="MM" required=""/>
-                                            </div>
-                                            <div class="col-md-1" style="font-size: 35px;padding-left: 5px;">/</div>
-                                            <div class="col-md-5" style="padding-left: 0">
-                                                <input value="" data-stripe="exp-year" type="text" maxlength="4" class="year form-control" placeholder="YYYY" required="" />
-                                            </div>
-                                        </div>
+                                    <div class="col-md-5" style="padding-right: 0">
+                                        <input value=""  data-stripe="exp-month" maxlength="2" type="text" class="month form-control" placeholder="MM" required=""/>
                                     </div>
-                                    <div class="col-md-6">
-                                        <label>CVC</label>
-                                        <input maxlength="3" type="password" class="cvc form-control" required=""/>
+                                    <div class="col-md-1" style="font-size: 35px;padding-left: 5px;">/</div>
+                                    <div class="col-md-5" style="padding-left: 0">
+                                        <input value="" data-stripe="exp-year" type="text" maxlength="4" class="year form-control" placeholder="YYYY" required="" />
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label>Referral Code</label>
-                                <input name="rcode" id="pRcode" value="" type="text" maxlength="6" class="form-control" placeholder="Referral Code" />
-                                <span style="color: red;"></span>
-                            </div>
-                            <div class="form-group" style="text-align: center">
-                                <span style="color: red;display: none" id="msgCard"></span>
-                            </div>
-                            <div class="form-group" style="text-align: center">
-                                <button style="width: 50%" id="payPersonal" type="submit" class="btn btn-success btn-lg">Pay</button>
+                            <div class="col-md-6">
+                                <label>CVC</label>
+                                <input maxlength="3" type="password" class="cvc form-control" required=""/>
                             </div>
                         </div>
-                        <div style="display: none" class="overlay"></div>
-                        <div style="display: none" class="loading-img"></div>
-                    </div>                   
+                    </div>
+                    <div class="form-group">
+                        <label>Referral Code</label>
+                        <input name="rcode" id="pRcode" value="" type="text" maxlength="6" class="form-control" placeholder="Referral Code" />
+                        <span style="color: red;"></span>
+                    </div>
+                    <div class="form-group" style="text-align: center">
+                        <span style="color: red;display: none" id="msgCard"></span>
+                    </div>
+                    <div class="form-group" style="text-align: center">
+                        <button style="width: 50%" id="payPersonal" type="submit" class="btn btn-success btn-lg">Pay</button>
+                    </div>
+
                 </div>
                 <input type="hidden" name="plan" value="wishfish-personal"/>
                 <input type="hidden" name="planid" value="2"/>
@@ -777,51 +772,45 @@
                     <span class="modal-descritpion">1-month of wish-fish Enterprise</span>
                 </div>
                 <div class="modal-body">
-                    <div class="box box-solid">
-                        <div class="box-body">
-                            <div class="form-group">
-                                <label>Email</label>
-                                <input  type="email" name="stripeEmail" id="eEmail" class="form-control" placeholder="Email" required=""/>
-                                <span style="color: red;"></span>
-                            </div>
-                            <div class="form-group">
-                                <label>Credit Card Number </label>
-                                <input data-stripe="number" value=""  type="text" maxlength="16" class="card_number form-control" placeholder="Card Number" required=""/>
-                            </div>
-                            <div class="form-group">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input  type="email" name="stripeEmail" id="eEmail" class="form-control" placeholder="Email" required=""/>
+                        <span style="color: red;"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Credit Card Number </label>
+                        <input data-stripe="number" value=""  type="text" maxlength="16" class="card_number form-control" placeholder="Card Number" required=""/>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Expiration (MM/YYYY)</label>
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Expiration (MM/YYYY)</label>
-                                        <div class="row">
-                                            <div class="col-md-5" style="padding-right: 0">
-                                                <input value=""  data-stripe="exp-month" maxlength="2" type="text" class="month form-control" placeholder="MM" required=""/>
-                                            </div>
-                                            <div class="col-md-1" style="font-size: 35px;padding-left: 5px;">/</div>
-                                            <div class="col-md-5" style="padding-left: 0">
-                                                <input value="" data-stripe="exp-year" type="text" maxlength="4" class="year form-control" placeholder="YYYY" required="" />
-                                            </div>
-                                        </div>
+                                    <div class="col-md-5" style="padding-right: 0">
+                                        <input value=""  data-stripe="exp-month" maxlength="2" type="text" class="month form-control" placeholder="MM" required=""/>
                                     </div>
-                                    <div class="col-md-6">
-                                        <label>CVC</label>
-                                        <input maxlength="3" type="password" class="cvc form-control" required=""/>
+                                    <div class="col-md-1" style="font-size: 35px;padding-left: 5px;">/</div>
+                                    <div class="col-md-5" style="padding-left: 0">
+                                        <input value="" data-stripe="exp-year" type="text" maxlength="4" class="year form-control" placeholder="YYYY" required="" />
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label>Referral Code</label>
-                                <input name="rcode" value="" id="eRcode" type="text" maxlength="6" class="form-control" placeholder="Referral Code" />
-                                <span style="color: red;"></span>
-                            </div>
-                            <div class="form-group" style="text-align: center">
-                                <span style="color: red;display: none" id="msgCard"></span>
-                            </div>
-                            <div class="form-group" style="text-align: center">
-                                <button style="width: 50%" id="payEnterprise" type="submit" class="btn btn-success btn-lg">Pay</button>
+                            <div class="col-md-6">
+                                <label>CVC</label>
+                                <input maxlength="3" type="password" class="cvc form-control" required=""/>
                             </div>
                         </div>
-                        <div style="display: none" class="overlay"></div>
-                        <div style="display: none" class="loading-img"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Referral Code</label>
+                        <input name="rcode" value="" id="eRcode" type="text" maxlength="6" class="form-control" placeholder="Referral Code" />
+                        <span style="color: red;"></span>
+                    </div>
+                    <div class="form-group" style="text-align: center">
+                        <span style="color: red;display: none" id="msgCard"></span>
+                    </div>
+                    <div class="form-group" style="text-align: center">
+                        <button style="width: 50%" id="payEnterprise" type="submit" class="btn btn-success btn-lg">Pay</button>
                     </div>
                 </div>
                 <input type="hidden" name="plan" value="wishfish-enterprise"/>
@@ -916,8 +905,6 @@
             }
             // Check for errors:
             if (!error) {
-                $('#' + formType + ' .overlay').show();
-                $('#' + formType + ' .loading-img').show();
                 // Get the Stripe token:
                 $('#' + formType + ' #msgCard').hide();
                 Stripe.card.createToken({
@@ -947,8 +934,6 @@
             }
         }
         function reportError(msg) {
-            $('#' + formType + ' .overlay').hide();
-            $('#' + formType + ' .loading-img').hide();
             $('#' + formType + ' #msgCard').text(msg);
             $('#' + formType + ' #msgCard').show();
             return false;
