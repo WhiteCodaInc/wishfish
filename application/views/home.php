@@ -873,6 +873,16 @@
                         $('#payEnterprise').prop('disabled', false);
                 return false;
             }
+            // Validate Referral Code:
+            if (!rCode) {
+                error = true;
+                $('#' + formType + ' #msgCard').text('Referral code appears to be invalid..!');
+                $('#' + formType + ' #msgCard').show();
+                (formType == "personalCardForm") ?
+                        $('#payPersonal').prop('disabled', false) :
+                        $('#payEnterprise').prop('disabled', false);
+                return false;
+            }
             // Validate the number:
             if (!Stripe.card.validateCardNumber(ccNum)) {
                 error = true;
