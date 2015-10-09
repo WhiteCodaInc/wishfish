@@ -191,11 +191,11 @@ class M_profile extends CI_Model {
             $success = 0;
         }
         if ($success != 1) {
-            echo 'Not SUCCESS';
+//            echo 'Not SUCCESS';
             $this->session->set_flashdata('error', $error);
             header('Location:' . site_url() . 'app/profile');
         } else {
-            echo 'SUCCESS';
+//            echo 'SUCCESS';
             $user_set = array(
                 'gateway' => "STRIPE",
                 'is_set' => 1,
