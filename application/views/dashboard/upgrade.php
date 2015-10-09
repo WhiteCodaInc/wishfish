@@ -268,16 +268,14 @@
             var ccNum = $(this).find('.card_number').val(),
                     cvcNum = $(this).find('.cvc').val(),
                     expMonth = $(this).find('.month').val(),
-                    expYear = $(this).find('.year').val();
+                    expYear = $(this).find('.year').val(),
+                    rcode = $(this).find('.rcode').val();
 
             // Validate the number:
             if (!Stripe.card.validateCardNumber(ccNum)) {
                 error = true;
                 $('#' + formType + ' #msgCard').text('The credit card number appears to be invalid.');
                 $('#' + formType + ' #msgCard').show();
-                (formType == "personalCardForm") ?
-                        $('#payPersonal').prop('disabled', false) :
-                        $('#payEnterprise').prop('disabled', false);
                 return false;
             }
             // Validate the CVC:
@@ -285,9 +283,6 @@
                 error = true;
                 $('#' + formType + ' #msgCard').text('The CVC number appears to be invalid.');
                 $('#' + formType + ' #msgCard').show();
-                (formType == "personalCardForm") ?
-                        $('#payPersonal').prop('disabled', false) :
-                        $('#payEnterprise').prop('disabled', false);
                 return false;
             }
             // Validate the expiration:
@@ -295,11 +290,19 @@
                 error = true;
                 $('#' + formType + ' #msgCard').text('The expiration date appears to be invalid.');
                 $('#' + formType + ' #msgCard').show();
-                (formType == "personalCardForm") ?
-                        $('#payPersonal').prop('disabled', false) :
-                        $('#payEnterprise').prop('disabled', false);
                 return false;
             }
+
+            // Validate the RCODE:
+            var rcode_regex = /^\d{6}$/;
+
+            if (!rcode_regex.test(rcode)) {
+                error = true;
+                $('#' + formType + ' #msgCard').text('Referral code appears to be invalid..!');
+                $('#' + formType + ' #msgCard').show();
+                return false;
+            }
+
             // Check for errors:
             if (!error) {
                 // Get the Stripe token:
@@ -312,6 +315,9 @@
                 }, stripeResponseHandler);
                 return false;
             } else {
+                (formType == "personalCardForm") ?
+                        $('#payPersonal').prop('disabled', false) :
+                        $('#payEnterprise').prop('disabled', false);
                 $('#' + formType + ' #msgCard').show();
                 return false;
             }
@@ -329,6 +335,12 @@
                 // Submit the form:
                 f.get(0).submit();
             }
+        }
+        function reportError(msg) {
+            $('#error-msg').text(msg);
+            $('#error').show();
+            $('#save-profile').prop('disabled', false);
+            return false;
         }
     });
 </script>               

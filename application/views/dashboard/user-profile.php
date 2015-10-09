@@ -607,7 +607,7 @@
 
                     if (cardForm == "userForm" && !rcode_regex.test(rcode)) {
                         error = true;
-                        reportError('Referral code appears to be invalid.');
+                        reportError('Referral code appears to be invalid..!');
                         return false;
                     }
                 }
