@@ -258,99 +258,7 @@
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script type="text/javascript">
     $(function () {
-        var formType = "";
-        Stripe.setPublishableKey('<?= $stripe->publish_key ?>');
-        $('#personalCardForm,#enterpriseCardForm').on('submit', function () {
-            formType = $(this).prop('id');
-            (formType == "personalCardForm") ?
-                    $('#payPersonal').prop('disabled', true) :
-                    $('#payEnterprise').prop('disabled', true);
-            var error = false;
-            var ccNum = $(this).find('.card_number').val(),
-                    cvcNum = $(this).find('.cvc').val(),
-                    expMonth = $(this).find('.month').val(),
-                    expYear = $(this).find('.year').val(),
-                    rcode = $(this).find('.rcode').val();
 
-            // Validate the number:
-            if (!Stripe.card.validateCardNumber(ccNum)) {
-                error = true;
-                $('#' + formType + ' #msgCard').text('The credit card number appears to be invalid.');
-                $('#' + formType + ' #msgCard').show();
-                (formType == "personalCardForm") ?
-                        $('#payPersonal').prop('disabled', false) :
-                        $('#payEnterprise').prop('disabled', false);
-                return false;
-            }
-            // Validate the CVC:
-            if (!Stripe.card.validateCVC(cvcNum)) {
-                error = true;
-                $('#' + formType + ' #msgCard').text('The CVC number appears to be invalid.');
-                $('#' + formType + ' #msgCard').show();
-                (formType == "personalCardForm") ?
-                        $('#payPersonal').prop('disabled', false) :
-                        $('#payEnterprise').prop('disabled', false);
-                return false;
-            }
-            // Validate the expiration:
-            if (!Stripe.card.validateExpiry(expMonth, expYear)) {
-                error = true;
-                $('#' + formType + ' #msgCard').text('The expiration date appears to be invalid.');
-                $('#' + formType + ' #msgCard').show();
-                (formType == "personalCardForm") ?
-                        $('#payPersonal').prop('disabled', false) :
-                        $('#payEnterprise').prop('disabled', false);
-                return false;
-            }
-
-            // Validate the RCODE:
-            var rcode_regex = /^\d{6}$/;
-
-            if (!rcode_regex.test(rcode)) {
-                error = true;
-                $('#' + formType + ' #msgCard').text('Referral code appears to be invalid..!');
-                $('#' + formType + ' #msgCard').show();
-                (formType == "personalCardForm") ?
-                        $('#payPersonal').prop('disabled', false) :
-                        $('#payEnterprise').prop('disabled', false);
-                return false;
-            }
-
-            // Check for errors:
-            if (!error) {
-                // Get the Stripe token:
-                $('#' + formType + ' #msgCard').hide();
-                Stripe.card.createToken({
-                    number: ccNum,
-                    cvc: cvcNum,
-                    exp_month: expMonth,
-                    exp_year: expYear
-                }, stripeResponseHandler);
-                return false;
-            } else {
-                $('#' + formType + ' #msgCard').show();
-                return false;
-            }
-            return false;
-        });
-
-        function stripeResponseHandler(status, response) {
-            if (response.error) {
-                reportError(response.error.message);
-            } else { // No errors, submit the form:
-                var f = $('#' + formType);
-                var token = response['id'];
-                // Insert the token into the form so it gets submitted to the server
-                f.append("<input type='hidden' name='stripeToken' value='" + token + "' />");
-                // Submit the form:
-//                f.get(0).submit();
-            }
-        }
-        function reportError(msg) {
-            $('#error-msg').text(msg);
-            $('#error').show();
-            return false;
-        }
     });
 </script>               
 
@@ -465,6 +373,104 @@
                 }
             });
         });
+
+        //------------------------Credit Card Validation----------------------//
+
+        var formType = "";
+        Stripe.setPublishableKey('<?= $stripe->publish_key ?>');
+        $('#personalCardForm,#enterpriseCardForm').on('submit', function () {
+            if (!cardFlag) {
+                formType = $(this).prop('id');
+                (formType == "personalCardForm") ?
+                        $('#payPersonal').prop('disabled', true) :
+                        $('#payEnterprise').prop('disabled', true);
+                var error = false;
+                var ccNum = $(this).find('.card_number').val(),
+                        cvcNum = $(this).find('.cvc').val(),
+                        expMonth = $(this).find('.month').val(),
+                        expYear = $(this).find('.year').val(),
+                        rcode = $(this).find('.rcode').val();
+
+                // Validate the number:
+                if (!Stripe.card.validateCardNumber(ccNum)) {
+                    error = true;
+                    $('#' + formType + ' #msgCard').text('The credit card number appears to be invalid.');
+                    $('#' + formType + ' #msgCard').show();
+                    (formType == "personalCardForm") ?
+                            $('#payPersonal').prop('disabled', false) :
+                            $('#payEnterprise').prop('disabled', false);
+                    return false;
+                }
+                // Validate the CVC:
+                if (!Stripe.card.validateCVC(cvcNum)) {
+                    error = true;
+                    $('#' + formType + ' #msgCard').text('The CVC number appears to be invalid.');
+                    $('#' + formType + ' #msgCard').show();
+                    (formType == "personalCardForm") ?
+                            $('#payPersonal').prop('disabled', false) :
+                            $('#payEnterprise').prop('disabled', false);
+                    return false;
+                }
+                // Validate the expiration:
+                if (!Stripe.card.validateExpiry(expMonth, expYear)) {
+                    error = true;
+                    $('#' + formType + ' #msgCard').text('The expiration date appears to be invalid.');
+                    $('#' + formType + ' #msgCard').show();
+                    (formType == "personalCardForm") ?
+                            $('#payPersonal').prop('disabled', false) :
+                            $('#payEnterprise').prop('disabled', false);
+                    return false;
+                }
+
+                // Validate the RCODE:
+                var rcode_regex = /^\d{6}$/;
+
+                if (!rcode_regex.test(rcode)) {
+                    error = true;
+                    $('#' + formType + ' #msgCard').text('Referral code appears to be invalid..!');
+                    $('#' + formType + ' #msgCard').show();
+                    (formType == "personalCardForm") ?
+                            $('#payPersonal').prop('disabled', false) :
+                            $('#payEnterprise').prop('disabled', false);
+                    return false;
+                }
+
+                // Check for errors:
+                if (!error) {
+                    // Get the Stripe token:
+                    $('#' + formType + ' #msgCard').hide();
+                    Stripe.card.createToken({
+                        number: ccNum,
+                        cvc: cvcNum,
+                        exp_month: expMonth,
+                        exp_year: expYear
+                    }, stripeResponseHandler);
+                    return false;
+                } else {
+                    $('#' + formType + ' #msgCard').show();
+                    return false;
+                }
+                return false;
+            }
+        });
+
+        function stripeResponseHandler(status, response) {
+            if (response.error) {
+                reportError(response.error.message);
+            } else { // No errors, submit the form:
+                var f = $('#' + formType);
+                var token = response['id'];
+                // Insert the token into the form so it gets submitted to the server
+                f.append("<input type='hidden' name='stripeToken' value='" + token + "' />");
+                // Submit the form:
+//                f.get(0).submit();
+            }
+        }
+        function reportError(msg) {
+            $('#error-msg').text(msg);
+            $('#error').show();
+            return false;
+        }
 
         $('#a_personal').click(function () {
             $('#planUpgrade .box-body button').prop('disabled', true);
