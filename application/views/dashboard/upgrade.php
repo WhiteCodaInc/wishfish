@@ -309,6 +309,9 @@
                 error = true;
                 $('#' + formType + ' #msgCard').text('Referral code appears to be invalid..!');
                 $('#' + formType + ' #msgCard').show();
+                (formType == "personalCardForm") ?
+                        $('#payPersonal').prop('disabled', false) :
+                        $('#payEnterprise').prop('disabled', false);
                 return false;
             }
 
